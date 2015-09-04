@@ -1,2 +1,2 @@
 # FeedMe
-Une application centré nutrition !
+Une application centrée nutrition !
