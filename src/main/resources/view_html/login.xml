@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Authentification</title>
+</head>
+<body>
+	<h1>Authentification</h1>
+  
+	 
+	  <p>Identifiant  <input type="input" name="identifiantInput" placeholder="E-mail"> </p>
+  
+ 	 <p>Mot de passe <input type="input" name="passwordInput" placeholder="Mot de passe"> </p>
+  
+  <input type="button" name="boutonConfirmation" value="Confirmer" onclick=""> 
+</body>
+</html>
