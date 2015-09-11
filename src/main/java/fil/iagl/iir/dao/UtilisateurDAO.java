@@ -1,11 +1,21 @@
 package fil.iagl.iir.dao;
 
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 import fil.iagl.iir.entite.Utilisateur;
 
 public interface UtilisateurDAO {
 
-	List<Utilisateur> getAll();
+	/**
+	 * @param id
+	 * @return
+	 */
+	Utilisateur getById(@Param("id") Integer id);
+	
+	/**
+	 * @param utilisateur
+	 * @return
+	 */
+	Integer sauvegarder(@Param("utilisateur") Utilisateur utilisateur);
 
 }

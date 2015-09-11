@@ -4,9 +4,21 @@ public class Utilisateur {
 
 	private Integer id;
 
-	private String username;
+	private String nom;
 
 	private String password;
+
+	private String mail;
+	
+	
+	
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
 	public Integer getId() {
 		return id;
@@ -16,12 +28,12 @@ public class Utilisateur {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public String getPassword() {
@@ -34,7 +46,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [id=" + id + ", username=" + username + ", password=" + password + "]";
+		return "Utilisateur [id=" + id + ", username=" + nom + ", password=" + password + "]";
 	}
 
 }
