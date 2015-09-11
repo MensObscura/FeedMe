@@ -5,10 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>FeedMe - Profil</title>
         <meta name="description" content="Visualisation du profil FeedMe">
-        <script scr="jquery-2.1.4.min"></script>
+        <script src="jquery-2.1.4.min.js"></script>
+        <script src="basicjs.js"></script>
+        <script>$(document).ready(function(){
+                    loadFile("#footer", "footer.html");
+                    loadFile("#header", "header.html");
+        });</script>
     </head>
+    
     <body>
-        <link rel="import" href="./header.html">
+        <div id="header"></div>
         
         <p>Nom: Jean<br/>
         Prénom: Dupotager<br />
@@ -17,5 +23,6 @@
         
         Notes: Je suis très content d'être ici !</p>
         
+        <div id="footer"></div>
     </body>
 </html>
