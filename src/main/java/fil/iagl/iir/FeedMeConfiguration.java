@@ -17,7 +17,7 @@ public class FeedMeConfiguration {
 	@Bean
 	public DataSource getDataSource() {
 		return DataSourceBuilder.create().driverClassName("org.postgresql.Driver")
-				.url("jdbc:postgresql://10.10.6.97:5432/feedme").username("postgres").password("postgres").build();
+				.url("jdbc:postgresql://localhost/feedme").username("postgres").password("postgres").build();
 	}
 
 	@Bean
