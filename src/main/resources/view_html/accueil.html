@@ -5,9 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Accueil</title>
+<script src="jquery-2.1.4.min.js"></script>
+<script src="basicjs.js"></script>
+<script>$(document).ready(function(){
+                    loadFile("#footer", "footer.html");
+        });
+</script>
 </head>
 <body>
 <button type="button">Proposer un repas</button>
 <button type="button">Reserver un couvert</button>
+    
+    <div id="footer"></div>
 </body>
 </html>

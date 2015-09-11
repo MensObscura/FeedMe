@@ -5,9 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>My Example</title>
+<script src="jquery-2.1.4.min.js"></script>
+<script src="basicjs.js"></script>
+<script>$(document).ready(function(){
+                    loadFile("#footer", "footer.html");
+                    loadFile("#header", "header.html");
+        });
+    </script>
 </head>
 <body>
 
+    <div id="header"></div>
+    
   <h2>Titre </h2>
   
   <form method="post">
@@ -63,6 +72,8 @@
     
   </form>
   
+    <div id="footer"></div>
+    
 </body>
 
 </html>
