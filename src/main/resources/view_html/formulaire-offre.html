@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Proposer une offre</title>
+</head>
+<body>
+
+  <h2>Votre offre :</h2>
+  
+  <form method="post">
+    
+    <fieldset>
+    	<legend>Le repas</legend>
+      
+        <label for="title">Titre* : </label>
+    	<input type="text" id="title" placeholder="Titre de l'offre."><br>
+    
+    	<label for="nb_persons">Nombre de convives* : </label>
+    	<input type="number" id="nb_persons" placeholder="Nombre de couverts."><br>
+    
+    	<label for="price">Prix* : </label>
+    	<input type="number" step="0.01" id="price" placeholder="Prix par convive."><br>
+      
+        <label for="cooktype">Type de cuisine* : </label>
+    	<select type="select" id="cooktype">
+     		<option>A</option>
+      		<option>B</option>
+      		<option>C</option>
+      		<option>D</option>
+      	</select><br>
+      
+        <label for="menu">Menu* : </label>
+    	<input type="text" id="menu" placeholder="Votre menu."><br>
+      
+     	<label for="date">Date* : </label>
+   		<input type="datetime" id="date"><br>
+      
+        <label for="time">Durée : </label>
+   		<input type="number" id="time" placeholder="Durée prévisionnelle.">
+
+  	</fieldset>
+    
+    <fieldset>
+    	<legend>Lieu*</legend>
+      
+      	<label for="num">N° : </label>
+   		<input type="number" id="num" placeholder="Numéro de voirie."><br>
+      
+      	<label for="street">Rue : </label>
+    	<input type="text" id="street" placeholder="Nom de voirie."><br>
+      
+      	<label for="complementary">Compléments : </label>
+    	<input type="text" id="complementary" placeholder="Compléments."><br>
+      
+      	<label for="town">Ville : </label>
+   		<input type="text" id="town" placeholder="Votre ville."><br>
+      
+      	<label for="cp">Code Postal : </label>
+    	<input type="number" id="cp" placeholder="Votre code postal."><br>
+      
+    </fieldset>
+    
+    
+    <fieldset>
+    	<legend>Divers</legend>
+      
+      	<label for="age">Tranche d'âge : </label>
+    	<input type="number" id="age-min" placeholder="min.">-
+      	<input type="number" id="age-min" placeholder="max."><br>
+    
+        <input type="checkbox" name="animal" value="yes"> Présence d'un animal.<br>
+    
+    	<label for="note">Note : </label>
+    	<input type="text" id="note" placeholder="Informations complémentaires."><br>
+      
+      
+    </fieldset>
+ 
+    <input type="submit" value="Valider">
+    
+  </form>
+  
+</body>
+</html>
