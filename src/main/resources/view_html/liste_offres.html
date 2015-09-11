@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Liste des réservations</title>
+<script>$(document).ready(function(){
+                    loadFile("#footer", "footer.html");
+                    loadFile("#header", "header.html");
+        });
+</script>
 </head>
 <body>
+
+  <div id="header"></div>
 
   <ul>
     <li>
@@ -54,6 +61,8 @@
     </li>
     
   </ul>
+
+  <div id="footer"></div>
   
 </body>
 </html>
