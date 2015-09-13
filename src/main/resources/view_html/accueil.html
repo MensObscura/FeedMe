@@ -9,12 +9,15 @@
 <script src="basicjs.js"></script>
 <script>$(document).ready(function(){
                     loadFile("#footer", "footer.html");
+                    loadFile("#header", "header.html");
         });
 </script>
 </head>
 <body>
-<button type="button">Proposer un repas</button>
-<button type="button">Reserver un couvert</button>
+    <div id="header"></div>
+    
+<button type="button" onclick="window.location='offre.html';">Proposer un repas</button>
+<button type="button" onclick="window.location='liste_offres.html';">Reserver un couvert</button>
     
     <div id="footer"></div>
 </body>

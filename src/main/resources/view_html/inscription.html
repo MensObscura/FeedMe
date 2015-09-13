@@ -14,7 +14,7 @@
 <body>
     
   <h2>Inscription :</h2>
-  
+
   <form method="post">
     <label for="lastname">Nom* : </label>
     <input type="text" id="lastname" placeholder="Nom"><br>
@@ -34,7 +34,11 @@
     <label for="birthday">Date de naissance* : </label>
     <input type="date" id="birthday"><br>
     
-    <input type="submit" value="Confirmer">
+      <!-- ATTENTION modification ici pour maquette -> input type="submit" 
+        changé en "button" pour redirection vers page profil + js-->
+      
+      <!--<input type="submit" value="Confirmer" /> -->
+    <input type="button" value="Confirmer" onclick="window.location='visualiser_profil.html';" />
     
   </form>
   
