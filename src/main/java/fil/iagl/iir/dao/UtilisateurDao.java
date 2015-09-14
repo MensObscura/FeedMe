@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Param;
 
 import fil.iagl.iir.entite.Utilisateur;
 
-public interface UtilisateurDAO {
+public interface UtilisateurDao {
 
 	/**
 	 * @param id

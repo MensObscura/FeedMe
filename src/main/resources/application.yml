@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/feedmeDev
+    username: postgres
+    password: postgres
+
+---
+  
+spring:
+  profiles: test
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/feedmeTest
+    username: postgres
+    password: postgres
