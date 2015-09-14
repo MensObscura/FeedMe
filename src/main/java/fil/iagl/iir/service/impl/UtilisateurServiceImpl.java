@@ -1,10 +1,9 @@
 package fil.iagl.iir.service.impl;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fil.iagl.iir.dao.UtilisateurDAO;
+import fil.iagl.iir.dao.UtilisateurDao;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.service.UtilisateurService;
 
@@ -13,7 +12,7 @@ import fil.iagl.iir.service.UtilisateurService;
 public class UtilisateurServiceImpl implements UtilisateurService{
 
 	@Autowired
-	private UtilisateurDAO utilisateurDao;
+	private UtilisateurDao utilisateurDao;
 	
 	@Override
 	public Utilisateur getById(Integer id) {

@@ -1,4 +1,4 @@
-package fil.iagl.iir.dao;
+package fil.iagl.iir.outils;
 
 public enum SQLCODE {
 
@@ -10,7 +10,7 @@ public enum SQLCODE {
 		this.code = code;
 	}
 	
-	String getSqlCode(){
+	public String getSqlCode(){
 		return this.code;
 	}
 	

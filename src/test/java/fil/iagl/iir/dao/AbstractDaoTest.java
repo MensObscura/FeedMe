@@ -5,11 +5,14 @@ import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import fil.iagl.iir.AbstractFeedMeTest;
+import fil.iagl.iir.outils.SQLCODE;
 
-public abstract class AbstractDaoTest {
+
+public abstract class AbstractDaoTest extends AbstractFeedMeTest{
 	
 	@Autowired
-	protected UtilisateurDAO utilisateurDao;
+	protected UtilisateurDao utilisateurDao;
 	
 	
 	protected void assertSQLCode(DataIntegrityViolationException dive, SQLCODE sqlCode){

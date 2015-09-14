@@ -5,12 +5,11 @@ import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.dao.AbstractDaoTest;
-import fil.iagl.iir.dao.SQLCODE;
 import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.outils.SQLCODE;
 
 
-
-public class UtilisateurDAOTest extends AbstractDaoTest{
+public class UtilisateurDaoTest extends AbstractDaoTest{
 
 	
 	
