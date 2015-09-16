@@ -5,16 +5,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Proposer une offre</title>
-	<script src="jquery-2.1.4.min.js"></script>
 	<script src="basicjs.js"></script>
 	<script src="angular.min.js"></script> 
 	<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
+	<script src="jquery-2.1.4.min.js"></script>
 	<script src="jquery.datetimepicker.js"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-		            loadFile("#footer", "footer.html");
-		            loadFile("#header", "header.html");
+		        loadFile("#footer", "footer.html");
+		        loadFile("#header", "header.html");
+			$('#datetimepicker').datetimepicker();
 		});
 	</script>
 
@@ -50,7 +51,7 @@
 	    	<input type="text" id="menu" placeholder="Votre menu." required><br>
 	      
 	     	<label for="date">Date* : </label>
-		<input ng-model="datetime" id="datetimepicker" type="text" ><br>
+		<input type="datetime" ng-model="datetime" id="datetimepicker" required><br>
 	      
 		<label for="time">Durée : </label>
 	   		<input type="number" id="time" placeholder="Durée prévisionnelle.">
@@ -98,13 +99,11 @@
 	  </form>
 
 	<script type="text/javascript">
-		 $('#datetimepicker').datetimepicker();
-
 		var app = angular.module('AddOffer',[]);
 
 		app.controller('OfferCtrl', function($scope) {
 			today = new Date();
-			$scope.datetime =  today.toLocaleDateString("en-ZA")+" "+today.toLocaleTimeString("en-GB");
+			$scope.datetime = today.toLocaleDateString("en-ZA")+" "+today.toLocaleTimeString("en-GB");
 	
 		});
 	</script>
