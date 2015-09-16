@@ -7,6 +7,13 @@ import fil.iagl.iir.entite.Pays;
 
 public class PaysDaoTest extends AbstractDaoTest {
 
+	private static final int NB_PAYS = 2;
+
+	@Test
+	public void getAllTest() throws Exception {
+		Assertions.assertThat(paysDao.getAll()).isNotEmpty().hasSize(NB_PAYS);
+	}
+
 	@Test
 	public void getByIdTestSucces() throws Exception {
 		Integer id = 1;

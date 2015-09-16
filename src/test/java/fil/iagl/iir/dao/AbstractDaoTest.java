@@ -9,6 +9,7 @@ import fil.iagl.iir.AbstractFeedMeTest;
 import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.pays.PaysDao;
 import fil.iagl.iir.dao.typeCuisine.TypeCuisineDao;
+import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.outils.SQLCODE;
 
@@ -19,6 +20,9 @@ public abstract class AbstractDaoTest extends AbstractFeedMeTest {
 
 	@Autowired
 	protected ParticulierDao particulierDao;
+
+	@Autowired
+	protected ReservationDao reservationDao;
 
 	@Autowired
 	protected PaysDao paysDao;

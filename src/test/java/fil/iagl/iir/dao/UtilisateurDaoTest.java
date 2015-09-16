@@ -1,5 +1,8 @@
 package fil.iagl.iir.dao;
 
+import static org.fest.assertions.api.Assertions.assertThat;
+import static org.fest.assertions.api.Assertions.fail;
+
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -17,17 +20,16 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
 		String email = "toto.toto@gmail.com";
 		Utilisateur user = utilisateurDao.getById(id);
 
-		Assertions.assertThat(user).isNotNull();
-		Assertions.assertThat(user.getIdUtilisateur()).isNotNull().isPositive().isEqualTo(id);
-		Assertions.assertThat(user.getMail()).isNotNull().isEqualTo(email);
-		Assertions.assertThat(user.getNom()).isNotNull().isEqualTo(nom);
-		Assertions.assertThat(user.getPassword()).isNotNull().isEqualTo(password);
+		assertThat(user.getIdUtilisateur()).isNotNull().isPositive().isEqualTo(id);
+		assertThat(user.getMail()).isNotNull().isEqualTo(email);
+		assertThat(user.getNom()).isNotNull().isEqualTo(nom);
+		assertThat(user.getPassword()).isNotNull().isEqualTo(password);
 	}
 
 	@Test
 	public void getByIdTestEchec() throws Exception {
-		Assertions.assertThat(utilisateurDao.getById(null)).isNull();
-		Assertions.assertThat(utilisateurDao.getById(Integer.MAX_VALUE)).isNull();
+		assertThat(utilisateurDao.getById(null)).isNull();
+		assertThat(utilisateurDao.getById(Integer.MAX_VALUE)).isNull();
 	}
 
 	@Test
@@ -45,10 +47,10 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
 
 		utilisateurDao.sauvegarder(utilisateur);
 
-		Assertions.assertThat(utilisateur.getIdUtilisateur()).isNotNull().isPositive();
-		Assertions.assertThat(utilisateur.getMail()).isNotNull().isEqualTo(mail);
-		Assertions.assertThat(utilisateur.getNom()).isNotNull().isEqualTo(nom);
-		Assertions.assertThat(utilisateur.getPassword()).isNotNull().isEqualTo(password);
+		assertThat(utilisateur.getIdUtilisateur()).isNotNull().isPositive();
+		assertThat(utilisateur.getMail()).isNotNull().isEqualTo(mail);
+		assertThat(utilisateur.getNom()).isNotNull().isEqualTo(nom);
+		assertThat(utilisateur.getPassword()).isNotNull().isEqualTo(password);
 	}
 
 	@Test
@@ -64,8 +66,9 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
 
 		try {
 			utilisateurDao.sauvegarder(utilisateur);
-			Assertions.fail("Doit soulever une exception");
+			fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
+
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
 	}
@@ -83,7 +86,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
 
 		try {
 			utilisateurDao.sauvegarder(utilisateur);
-			Assertions.fail("Doit soulever une exception");
+			fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -102,7 +105,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
 
 		try {
 			utilisateurDao.sauvegarder(utilisateur);
-			Assertions.fail("Doit soulever une exception");
+			fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
