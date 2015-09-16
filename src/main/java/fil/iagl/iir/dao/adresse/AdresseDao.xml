@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fil.iagl.iir.dao.adresse.AdresseDao">
+
+	<resultMap type="fil.iagl.iir.entite.Adresse" id="Adresse_ResultMap">
+		<id property="id" column="adr_id" />
+		<result property="voie" column="adr_voie" />
+		<association property="ville" resultMap="Ville_ResultMap" />
+	</resultMap>
+
+	<resultMap type="fil.iagl.iir.entite.Ville" id="Ville_ResultMap">
+		<id property="id" column="vil_id" />
+		<result property="nom" column="vil_nom" />
+		<result property="cp" column="vil_cp" />
+		<association property="pays" resultMap="Pays_ResultMap" />
+	</resultMap>
+
+	<resultMap type="fil.iagl.iir.entite.Pays" id="Pays_ResultMap">
+		<id property="id" column="pay_id" />
+		<result property="codePays" column="pay_code_pays" />
+		<result property="nom" column="pay_nom" />
+	</resultMap>
+
+	<select id="getById" resultMap="Adresse_ResultMap">
+		SELECT
+		A.adr_id,
+		A.adr_voie,
+		V.vil_id,
+		V.vil_nom,
+		V.vil_cp,
+		P.pay_id,
+		P.pay_code_pays,
+		P.pay_nom
+		FROM ADRESSE A, VILLE V, PAYS P
+		WHERE A.adr_id = #{id}
+		AND A.adr_vil_id = V.vil_id
+		AND V.vil_pay_id = P.pay_id
+	</select>
+
+</mapper>

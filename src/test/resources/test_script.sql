@@ -37,5 +37,9 @@ INSERT INTO reservation(res_off_id, res_con_id, res_date_reservation) VALUES
 (1, 1, CURRENT_TIMESTAMP );
 
 
-	
-	
+-- Donnees pour AdresseDao
+INSERT INTO VILLE (vil_nom, vil_cp, vil_pay_id)
+VALUES ('Lille', '59000', 1);
+
+INSERT INTO ADRESSE (adr_voie, adr_vil_id)
+VALUES ('4 rue guillaume apollinaire', 1);
