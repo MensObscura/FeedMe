@@ -8,20 +8,10 @@
 	<script src="basicjs.js"></script>
 	<script src="angular.min.js"></script> 
 	<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
-	<script src="jquery-2.1.4.min.js"></script>
-	<script src="jquery.datetimepicker.js"></script>
-
-	<script type="text/javascript">
-		$(document).ready(function(){
-		        loadFile("#footer", "footer.html");
-		        loadFile("#header", "header.html");
-			$('#datetimepicker').datetimepicker();
-		});
-	</script>
-
+	<script src="angular.min.js"></script>
 </head>
-<body>
-	<div id="header"></div>
+<body ng-app>
+	<div ng-include="'header.html'"></div>
 
 	<h2>Votre offre :</h2>
 	  
@@ -108,7 +98,7 @@
 		});
 	</script>
 
-<div id="footer"></div>
+<div ng-include="'footer.html'"></div>
 	  
 </body>
 </html>

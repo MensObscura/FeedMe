@@ -5,13 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Inscription</title>
-    <script src="jquery-2.1.4.min.js"></script>
-    <script src="basicjs.js"></script>
-    <script>$(document).ready(function(){
-                    loadFile("#footer", "footer.html");
-    });</script>
+    <script src="angular.min.js"></script>
 </head>
-<body>
+<body ng-app>
     
   <h2>Inscription :</h2>
 
@@ -42,6 +38,6 @@
     
   </form>
   
-    <div id="footer"></div>
+    <div ng-include="'footer.html'"></div>
 </body>
 </html>

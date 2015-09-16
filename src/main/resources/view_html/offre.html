@@ -5,18 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>My Example</title>
-<script src="jquery-2.1.4.min.js"></script>
-<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-<script src="basicjs.js"></script>
-<script>$(document).ready(function(){
-                    loadFile("#footer", "footer.html");
-                    loadFile("#header", "header.html");
-        });
-    </script>
+<script src="angular.min.js"></script>
 </head>
-<body>
+<body ng-app>
 
-    <div id="header"></div>
+    <div ng-include="'header.html'"></div>
     
   <h2>Titre </h2>
   
@@ -76,7 +69,7 @@
     
   </form>
   
-    <div id="footer"></div>
+    <div ng-include="'footer.html'"></div>
     
 </body>
 

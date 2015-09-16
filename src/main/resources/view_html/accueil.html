@@ -5,20 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Accueil</title>
-<script src="jquery-2.1.4.min.js"></script>
-<script src="basicjs.js"></script>
-<script>$(document).ready(function(){
-                    loadFile("#footer", "footer.html");
-                    loadFile("#header", "header.html");
-        });
+<script src="angular.min.js">
 </script>
 </head>
-<body>
-    <div id="header"></div>
+<body ng-app>
+    <div ng-include="'header.html'"></div>
     
 <button type="button" onclick="window.location='offre.html';">Proposer un repas</button>
 <button type="button" onclick="window.location='liste_offres.html';">Reserver un couvert</button>
     
-    <div id="footer"></div>
+    <div ng-include="'footer.html'"></div>
 </body>
 </html>
