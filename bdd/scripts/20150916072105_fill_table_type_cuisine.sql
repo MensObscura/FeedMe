@@ -1,3 +1,4 @@
+
 -- // fill_table_type_cuisine
 -- Migration SQL that makes the change goes here.
 INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fil.iagl.iir.dao.typeCuisine.TypeCuisineDao">
+
+	<resultMap type="fil.iagl.iir.entite.TypeCuisine" id="Type_Cuisine_ResultMap">
+		<id property="id" column="typ_id"/>
+		<result property="typeCuisine" column="typ_cuisine"/>
+	</resultMap>
+
+
+	<sql id="select_all_columns_type_cuisine">
+		SELECT *
+		FROM TYPE_CUISINE
+	</sql>
+	
+	<select id="getAll" resultMap="Type_Cuisine_ResultMap">
+		<include refid="select_all_columns_type_cuisine"/>
+	</select>
+
+</mapper>

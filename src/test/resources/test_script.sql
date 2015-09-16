@@ -22,4 +22,3 @@ INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id)
 VALUES ( 'titi', '2015-01-31', 1); -- ID 1
 
 	
-	
