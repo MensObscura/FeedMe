@@ -19,5 +19,9 @@
 		<include refid="select_all_columns_pays"/>
 		WHERE pay_id = #{id}
 	</select>
+	
+	<select id="getAll" resultMap="Pays_ResultMap">
+		<include refid="select_all_columns_pays"/>
+	</select>
 
 </mapper>
