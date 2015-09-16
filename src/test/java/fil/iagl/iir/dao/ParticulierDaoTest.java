@@ -1,4 +1,4 @@
-package fil.iagl.iir.dao.particulier;
+package fil.iagl.iir.dao;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -7,7 +7,6 @@ import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import fil.iagl.iir.dao.AbstractDaoTest;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.outils.SQLCODE;
 

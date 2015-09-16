@@ -1,10 +1,9 @@
-package fil.iagl.iir.dao.utilisateur;
+package fil.iagl.iir.dao;
 
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import fil.iagl.iir.dao.AbstractDaoTest;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.SQLCODE;
 
