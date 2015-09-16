@@ -1,19 +1,20 @@
 -- // fill_table_type_cuisine
 -- Migration SQL that makes the change goes here.
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Cuisine régionale');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Africaine');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Steak House');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Gastronomique');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Grec');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Asiatique');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Espagnole');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Barbecue');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Provencale');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Bretonne');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Italienne');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Savoyard');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Alsacienne');
-INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES ('Mexicaine');
+INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES 
+('Cuisine régionale'),
+('Africaine'),
+('Steak House'),
+('Gastronomique'),
+('Grec'),
+('Asiatique'),
+('Espagnole'),
+('Barbecue'),
+('Provencale'),
+('Bretonne'),
+('Italienne'),
+('Savoyard'),
+('Alsacienne'),
+('Mexicaine');
 
 
 -- //@UNDO
