@@ -17,10 +17,12 @@ import org.springframework.core.io.Resource;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FeedMeConfiguration.class)
 @WebAppConfiguration
+@Transactional
 @ActiveProfiles("test")
 public abstract class AbstractFeedMeTest {
 
