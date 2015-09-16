@@ -7,20 +7,30 @@
 <title>Authentification</title>
     <script src="jquery-2.1.4.min.js"></script>
 <script src="basicjs.js"></script>
+<script src="angular.min.js"></script>
 <script>$(document).ready(function(){
                     loadFile("#footer", "footer.html");
         });
 </script>
 </head>
 <body>
+    <div ng-app="placeHolder" ng-controller="name">
+        
 	<h1>Authentification</h1>
+  	 
+	  <p><input type="input" ng-model="login" placeholder="E-mail"> </p>
   
-	 
-	  <p>Identifiant  <input type="input" name="identifiantInput" placeholder="E-mail"> </p>
-  
- 	 <p>Mot de passe <input type="input" name="passwordInput" placeholder="Mot de passe"> </p>
+ 	 <p><input type="input" name="passwordInput" placeholder="Mot de passe"> </p>
   
   <input type="button" name="boutonConfirmation" value="Confirmer" onclick="window.location='visualiser_profil.html';" /> 
+    </div>
+    
+    <script>
+    var app = angular.module('placeHolder', []);
+        app.controller('name', function($scope) {
+            $scope.login="example@xyz.com";
+        });
+    </script>
     
 </body>
     
