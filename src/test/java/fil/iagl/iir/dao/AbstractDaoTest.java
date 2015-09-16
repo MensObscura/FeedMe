@@ -6,18 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.AbstractFeedMeTest;
+import fil.iagl.iir.dao.particulier.ParticulierDao;
+import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.outils.SQLCODE;
 
+public abstract class AbstractDaoTest extends AbstractFeedMeTest {
 
-public abstract class AbstractDaoTest extends AbstractFeedMeTest{
-	
 	@Autowired
 	protected UtilisateurDao utilisateurDao;
-	
-	
-	protected void assertSQLCode(DataIntegrityViolationException dive, SQLCODE sqlCode){
+
+	@Autowired
+	protected ParticulierDao particulierDao;
+
+	protected void assertSQLCode(DataIntegrityViolationException dive, SQLCODE sqlCode) {
 		Assertions.assertThat(dive.getCause()).isInstanceOf(PSQLException.class);
-		Assertions.assertThat(((PSQLException)(dive.getCause())).getSQLState()).isEqualTo(sqlCode.getSqlCode());
+		Assertions.assertThat(((PSQLException) (dive.getCause())).getSQLState()).isEqualTo(sqlCode.getSqlCode());
 	}
 
 }

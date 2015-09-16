@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @MapperScan("fil.iagl.iir.dao")
-@ComponentScan( { "fil.iagl.iir.service" , "fil.iagl.iir.controller" })
+@ComponentScan({ "fil.iagl.iir.service", "fil.iagl.iir.controller" })
 @Configuration
 @EnableAutoConfiguration
 public class FeedMeConfiguration {
@@ -26,6 +26,8 @@ public class FeedMeConfiguration {
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
+
+		sessionFactory.setTypeHandlersPackage("com.github.javaplugs.mybatis");
 		return sessionFactory.getObject();
 	}
 

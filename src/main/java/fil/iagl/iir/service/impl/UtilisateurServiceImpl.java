@@ -3,7 +3,7 @@ package fil.iagl.iir.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fil.iagl.iir.dao.UtilisateurDao;
+import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.service.UtilisateurService;
 

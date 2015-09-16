@@ -1,4 +1,4 @@
-package fil.iagl.iir.dao;
+package fil.iagl.iir.dao.utilisateur;
 
 import org.apache.ibatis.annotations.Param;
 
