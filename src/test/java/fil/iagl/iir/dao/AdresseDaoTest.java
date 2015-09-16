@@ -13,7 +13,7 @@ public class AdresseDaoTest extends AbstractDaoTest {
 	@Autowired
 	private AdresseDao adresseDao;
 
-	private static final Integer ID_ADRESSE = 1;
+	private static final Integer ID_ADRESSE = 2;
 	private static final Integer ID_ADRESSE_INUTILISE = 0;
 
 	@Test
