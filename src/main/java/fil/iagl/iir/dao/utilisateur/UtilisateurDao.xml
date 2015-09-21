@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="fil.iagl.iir.dao.utilisateur.UtilisateurDao">
 
+<mapper namespace="fil.iagl.iir.dao.utilisateur.UtilisateurDao">
 	<resultMap type="fil.iagl.iir.entite.Utilisateur" id="Utilisateur_ResultMap">
 		<id property="idUtilisateur" column="usr_id"/>
 		<result property="nom" column="usr_nom"/>
@@ -15,6 +15,11 @@
 		SELECT usr_id, usr_nom, usr_password, usr_mail
 		FROM UTILISATEUR
 	</sql>
+	
+	<sql id="select_all_columns_without_password_utilisateur">
+		SELECT usr_id, usr_nom, usr_mail
+		FROM UTILISATEUR
+	</sql>
 
 	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="usr_id" keyProperty="utilisateur.idUtilisateur"> 
 		INSERT INTO UTILISATEUR ( usr_nom, usr_password, usr_mail ) 
@@ -22,7 +27,7 @@
 	</insert>
 
 	<select id="getById" resultMap="Utilisateur_ResultMap">
-		<include refid="select_all_columns_utilisateur"/>
+		<include refid="select_all_columns_without_password_utilisateur"/>
 		WHERE usr_id = #{id}
 	</select>
 

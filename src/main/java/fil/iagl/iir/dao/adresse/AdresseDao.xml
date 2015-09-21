@@ -22,6 +22,7 @@
 		<result property="nom" column="pay_nom" />
 	</resultMap>
 
+	<!-- FIXME : Faire une jointure avec le mot clef 'JOIN' ....-->
 	<select id="getById" resultMap="Adresse_ResultMap">
 		SELECT
 		A.adr_id,

@@ -16,14 +16,15 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
 	public void getByIdTestSucces() throws Exception {
 		Integer id = 1;
 		String nom = "toto";
-		String password = "tata";
 		String email = "toto.toto@gmail.com";
 		Utilisateur user = utilisateurDao.getById(id);
 
 		assertThat(user.getIdUtilisateur()).isNotNull().isPositive().isEqualTo(id);
 		assertThat(user.getMail()).isNotNull().isEqualTo(email);
 		assertThat(user.getNom()).isNotNull().isEqualTo(nom);
-		assertThat(user.getPassword()).isNotNull().isEqualTo(password);
+
+		// Le mot de passe ne doit pas etre retourné
+		assertThat(user.getPassword()).isNull();
 	}
 
 	@Test

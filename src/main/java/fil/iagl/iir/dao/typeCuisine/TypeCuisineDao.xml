@@ -14,6 +14,11 @@
 		FROM TYPE_CUISINE
 	</sql>
 	
+	<select id="getById" resultMap="Type_Cuisine_ResultMap">
+		<include refid="select_all_columns_type_cuisine"/>
+		WHERE typ_id = #{id}
+	</select>
+	
 	<select id="getAll" resultMap="Type_Cuisine_ResultMap">
 		<include refid="select_all_columns_type_cuisine"/>
 	</select>
