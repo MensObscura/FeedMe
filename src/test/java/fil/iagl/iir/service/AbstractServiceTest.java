@@ -8,11 +8,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import fil.iagl.iir.AbstractFeedMeTest;
+import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.service.impl.OffreServiceImpl;
 import fil.iagl.iir.service.impl.ReservationServiceImpl;
 import fil.iagl.iir.service.impl.UtilisateurServiceImpl;
 
@@ -24,11 +26,17 @@ public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 	@InjectMocks
 	protected ReservationServiceImpl reservationService;
 
+	@InjectMocks
+	protected OffreServiceImpl offreService;
+
 	@Mock
 	protected UtilisateurDao utilisateurDao;
 
 	@Mock
 	protected ReservationDao reservationDao;
+
+	@Mock
+	protected OffreDao offreDao;
 
 	@Before
 	public void initMocks() {
