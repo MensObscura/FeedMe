@@ -131,7 +131,7 @@
 
 	<label for="age">Tranche d'âge : </label>
 	<input type="number" name="agemin" ng-model="agemin" ng-min="18" placeholder="min." ng-required="false"> - 
-	<input type="number" name="agemax" ng-model="agemax" ng-min="18" placeholder="max." pw-check="agemin" ng-required="false">
+	<input type="number" name="agemax" ng-model="agemax" ng-min="18" placeholder="max." ensure-expression="agemin <= agemax" ng-required="false">
 	<span style="color:red" ng-show="offerForm.agemin.$invalid && !offerForm.agemin.$pristine">
 	  <span ng-show="offerForm.agemin.$error.number">Veuillez saisir un nombre.</span>
 	  <span ng-show="offerForm.agemin.$error.min">L'âge minimal est de 18 ans.</span>
@@ -139,6 +139,7 @@
 	<span style="color:red" ng-show="offerForm.agemax.$invalid && !offerForm.agemax.$pristine">
 	  <span ng-show="offerForm.agemax.$error.number">Veuillez saisir un nombre.</span>
 	  <span ng-show="offerForm.agemax.$error.min">L'âge minimal est de 18 ans.</span>
+	  <span ng-show="offerForm.agemax.$error.badages">La tranche d'âge n'est pas valide.</span>
 	</span>
 	<br>
 	
@@ -156,6 +157,18 @@
     <script type="text/javascript">
 
       var validationApp = angular.module('validationOfferApp', []);
+
+	validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
+    		return {
+        	require: 'ngModel',
+       		 link: function(scope, ele, attrs, ngModelController) {
+            	scope.$watch(attrs.ngModel, function(value) {
+                var booleanResult = $parse(attrs.ensureExpression)(scope);
+                ngModelController.$setValidity('badages', booleanResult);
+            });
+        	}
+   	 };
+	}]);
 
       $('#datetimepicker').datetimepicker({
       minDate:'+1970/01/2',
