@@ -1,3 +1,4 @@
+
 package fil.iagl.iir.entite;
 
 import lombok.Getter;
@@ -11,8 +12,6 @@ public class Utilisateur {
 
 	private String nom;
 
-	private String password;
-
 	private String mail;
-	
+
 }

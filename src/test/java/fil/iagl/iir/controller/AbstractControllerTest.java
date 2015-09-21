@@ -8,16 +8,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import fil.iagl.iir.AbstractFeedMeTest;
 
-public abstract class AbstractControllerTest extends AbstractFeedMeTest{
+public abstract class AbstractControllerTest extends AbstractFeedMeTest {
 
 	protected MockMvc mockMvc;
 
 	@Autowired
 	private WebApplicationContext wac;
-	
+
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 	}
-	
+
 }

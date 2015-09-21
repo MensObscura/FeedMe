@@ -2,12 +2,14 @@ package fil.iagl.iir.dao;
 
 import java.time.LocalDateTime;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.fest.assertions.api.Assertions;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.AbstractFeedMeTest;
+import fil.iagl.iir.dao.authentification.AuthentificationDao;
 import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.pays.PaysDao;
@@ -15,14 +17,19 @@ import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.dao.typeCuisine.TypeCuisineDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Adresse;
+import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Pays;
+import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.entite.TypeCuisine;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.entite.Ville;
 import fil.iagl.iir.outils.SQLCODE;
 
 public abstract class AbstractDaoTest extends AbstractFeedMeTest {
+
+	@Autowired
+	protected AuthentificationDao authentificationDao;
 
 	@Autowired
 	protected UtilisateurDao utilisateurDao;
@@ -95,6 +102,28 @@ public abstract class AbstractDaoTest extends AbstractFeedMeTest {
 		offre.setHote(hote);
 
 		return offre;
+	}
+
+	protected Authentification createAuthentification() {
+		Integer idUtilisateur = 2;
+		String mail = "foo.bar@gmail.com";
+		String nom = "foo";
+
+		String password = RandomStringUtils.random(RANDOM_STRING_SIZE);
+		Role role = Role.PARTICULIER;
+
+		Utilisateur utilisateur = new Utilisateur();
+
+		utilisateur.setIdUtilisateur(idUtilisateur);
+		utilisateur.setMail(mail);
+		utilisateur.setNom(nom);
+
+		Authentification authentification = new Authentification();
+		authentification.setUtilisateur(utilisateur);
+		authentification.setPassword(password);
+		authentification.setRole(role);
+
+		return authentification;
 	}
 
 }

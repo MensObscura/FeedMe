@@ -1,5 +1,6 @@
 -- RESET BDD CONTENT
-TRUNCATE 
+TRUNCATE
+AUTHENTIFICATION,
 UTILISATEUR,
 PARTICULIER,
 VILLE,
@@ -20,16 +21,22 @@ ALTER SEQUENCE reservation_res_id_seq RESTART WITH 1;
 -- ---------------------------
 -- Table UTILISATEUR
 -- ---------------------------
-INSERT INTO UTILISATEUR ( usr_nom, usr_password, usr_mail ) VALUES 
-( 'toto', 'tata', 'toto.toto@gmail.com'), -- ID 1
-( 'foo', 'bar', 'foo.bar@gmail.com'), -- ID 2
-( 'jean', 'bomber', 'jambon-beurre@gmail.com'); -- ID 3
+INSERT INTO UTILISATEUR ( usr_nom, usr_mail ) VALUES 
+( 'toto', 'toto.toto@gmail.com'), -- ID 1
+( 'foo', 'foo.bar@gmail.com'), -- ID 2
+( 'jean', 'jambon-beurre@gmail.com'); -- ID 3
 
 -- ---------------------------
 -- Table PARTICULIER
 -- ---------------------------
 INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES 
 ( 'titi', '2015-01-31', 1); -- ID 1
+
+-- ---------------------------
+-- Table AUTHENTIFICATION
+-- ---------------------------
+INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
+(1, '21a4ed0a0cf807e77e93ee7604e2cc1ad07757c5', 1);
 
 -- ---------------------------
 -- Table VILLE

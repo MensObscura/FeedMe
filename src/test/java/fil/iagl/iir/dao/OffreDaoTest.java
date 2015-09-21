@@ -90,9 +90,6 @@ public class OffreDaoTest extends AbstractDaoTest {
 		Assertions.assertThat(offre.getHote().getNom()).isNotNull().isEqualTo(nom);
 		Assertions.assertThat(offre.getHote().getMail()).isNotNull().isEqualTo(mail);
 
-		// Ne doit pas etre chargé
-		Assertions.assertThat(offre.getHote().getPassword()).isNull();
-
 	}
 
 	@Test

@@ -16,7 +16,6 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 	public void getByIdTestSucces() throws Exception {
 		Integer idUtilisateur = 1;
 		String nom = "toto";
-		String password = "tata";
 		String mail = "toto.toto@gmail.com";
 
 		Integer idParticulier = 1;
@@ -28,7 +27,6 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 		Assertions.assertThat(particulier).isNotNull();
 		Assertions.assertThat(particulier.getIdUtilisateur()).isNotNull().isEqualTo(idUtilisateur);
 		Assertions.assertThat(particulier.getNom()).isNotNull().isEqualTo(nom);
-		Assertions.assertThat(particulier.getPassword()).isNotNull().isEqualTo(password);
 		Assertions.assertThat(particulier.getMail()).isNotNull().isEqualTo(mail);
 
 		Assertions.assertThat(particulier.getIdParticulier()).isNotNull().isEqualTo(idParticulier);

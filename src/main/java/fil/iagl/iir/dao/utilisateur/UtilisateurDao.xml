@@ -6,28 +6,22 @@
 	<resultMap type="fil.iagl.iir.entite.Utilisateur" id="Utilisateur_ResultMap">
 		<id property="idUtilisateur" column="usr_id"/>
 		<result property="nom" column="usr_nom"/>
-		<result property="password" column="usr_password"/>
 		<result property="mail" column="usr_mail"/>
 	</resultMap>
 
 
 	<sql id="select_all_columns_utilisateur">
-		SELECT usr_id, usr_nom, usr_password, usr_mail
-		FROM UTILISATEUR
-	</sql>
-	
-	<sql id="select_all_columns_without_password_utilisateur">
 		SELECT usr_id, usr_nom, usr_mail
 		FROM UTILISATEUR
 	</sql>
-
+	
 	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="usr_id" keyProperty="utilisateur.idUtilisateur"> 
-		INSERT INTO UTILISATEUR ( usr_nom, usr_password, usr_mail ) 
-		VALUES ( #{utilisateur.nom}, #{utilisateur.password}, #{utilisateur.mail});
+		INSERT INTO UTILISATEUR ( usr_nom, usr_mail ) 
+		VALUES ( #{utilisateur.nom}, #{utilisateur.mail});
 	</insert>
 
 	<select id="getById" resultMap="Utilisateur_ResultMap">
-		<include refid="select_all_columns_without_password_utilisateur"/>
+		<include refid="select_all_columns_utilisateur"/>
 		WHERE usr_id = #{id}
 	</select>
 

@@ -44,11 +44,9 @@ public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 	}
 
 	protected Reservation createReservation() {
-		Integer idUtilisateur = 1;
 		Integer idOffre = 1;
 
 		Utilisateur convive = new Utilisateur();
-		convive.setIdUtilisateur(idUtilisateur);
 
 		Offre offre = new Offre();
 		offre.setId(idOffre);
