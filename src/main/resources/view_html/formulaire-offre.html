@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="fr">
   <head>
     <meta charset="utf-8">
@@ -107,103 +106,6 @@
 	
 	<label for="complementary">Compléments : </label>
 	<input type="text" name="complementary" placeholder="Compléments." ng-required="false"><br>
-=======
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Proposer une offre</title>
-	<script src="basicjs.js"></script>
-	<script src="angular.min.js"></script> 
-	<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
-	<script src="angular.min.js"></script>
-</head>
-<body ng-app>
-	<div ng-include="'header.html'"></div>
-
-	<h2>Votre offre :</h2>
-	  
-	<form ng-app="AddOffer" ng-controller="OfferCtrl" method="post">
-	    
-		<fieldset>
-	    	<legend>Le repas</legend>
-	      
-		<label for="title">Titre* : </label>
-	    	<input type="text" id="title" placeholder="Titre de l'offre." required><br>
-	    
-	    	<label for="nb_persons">Nombre de convives* : </label>
-	    	<input type="number" id="nb_persons" placeholder="Nombre de couverts." required><br>
-	    
-	    	<label for="price">Prix* : </label>
-	    	<input type="number" step="0.01" id="price" placeholder="Prix par convive." required><br>
-	      
-		<label for="cooktype">Type de cuisine* : </label>
-	    	<select type="select" id="cooktype">
-	     		<option>A</option>
-	      		<option>B</option>
-	      		<option>C</option>
-	      		<option>D</option>
-	      	</select><br>
-	      
-		<label for="menu">Menu* : </label>
-	    	<input type="text" id="menu" placeholder="Votre menu." required><br>
-	      
-	     	<label for="date">Date* : </label>
-		<input type="datetime" ng-model="datetime" id="datetimepicker" required><br>
-	      
-		<label for="time">Durée : </label>
-	   		<input type="number" id="time" placeholder="Durée prévisionnelle.">
-
-	  	</fieldset>
-	    
-	    	<fieldset>
-	    	<legend>Lieu</legend>
-	      
-	      	<label for="num">N°* : </label>
-	   		<input type="number" id="num" placeholder="Numéro de voirie." required><br>
-	      
-	      	<label for="street">Rue* : </label>
-	    	<input type="text" id="street" placeholder="Nom de voirie." required><br>
-	      
-	      	<label for="complementary">Compléments : </label>
-	    	<input type="text" id="complementary" placeholder="Compléments."><br>
-	      
-	      	<label for="town">Ville* : </label>
-	   		<input type="text" id="town" placeholder="Votre ville." required><br>
-	      
-	      	<label for="cp">Code Postal* : </label>
-	    	<input type="number" id="cp" placeholder="Votre code postal." required><br>
-	      
-	    </fieldset>
-	    
-	    
-	    <fieldset>
-	    	<legend>Divers</legend>
-	      
-	      	<label for="age">Tranche d'âge : </label>
-	    	<input type="number" id="age-min" placeholder="min.">-
-	      	<input type="number" id="age-min" placeholder="max."><br>
-	    
-		<input type="checkbox" name="animal" value="yes"> Présence d'un animal.<br>
-	    
-	    	<label for="note">Note : </label>
-	    	<input type="text" id="note" placeholder="Informations complémentaires."><br>
-	      
-	      
-	    </fieldset>
-	 
-	    <input type="submit" value="Valider">
-	    
-	  </form>
-
-	<script type="text/javascript">
-		var app = angular.module('AddOffer',[]);
-
-		app.controller('OfferCtrl', function($scope) {
-			today = new Date();
-			$scope.datetime = today.toLocaleDateString("en-ZA")+" "+today.toLocaleTimeString("en-GB");
->>>>>>> 6e069575f891b901ea075f75f89ea0d9c7999278
 	
 	<label for="town">Ville* : </label>
 	<input type="text" name="town" ng-model="town" placeholder="Votre ville." ng-required="true">
@@ -271,13 +173,6 @@
       });
 
     </script>
-
-<<<<<<< HEAD
     
   </body>
-=======
-<div ng-include="'footer.html'"></div>
-	  
-</body>
->>>>>>> 6e069575f891b901ea075f75f89ea0d9c7999278
 </html>
