@@ -60,6 +60,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -82,6 +83,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -106,6 +108,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -130,6 +133,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
 		}
@@ -154,6 +158,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
 		}
@@ -162,7 +167,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 	@Test
 	public void sauvegarderTestEchec_TupleUnique() throws Exception {
 		Integer idOffre = 1;
-		Integer idConvive = 3;
+		Integer idConvive = 1;
 		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
 
 		Offre offre = new Offre();
@@ -178,6 +183,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.UNIQUE_VIOLATION);
 		}

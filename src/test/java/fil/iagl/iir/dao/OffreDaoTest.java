@@ -122,6 +122,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -134,6 +135,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -146,6 +148,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -158,6 +161,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -170,6 +174,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -182,6 +187,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -194,6 +200,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -206,6 +213,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -218,6 +226,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -230,6 +239,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
@@ -242,6 +252,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
 		}
@@ -254,6 +265,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
 		}
@@ -266,6 +278,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
 		try {
 			offreDao.sauvegarder(offre);
+			Assertions.fail("Doit soulever une exception");
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
 		}
