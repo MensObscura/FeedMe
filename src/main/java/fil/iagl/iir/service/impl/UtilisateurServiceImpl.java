@@ -7,21 +7,18 @@ import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.service.UtilisateurService;
 
-
 @Service
-public class UtilisateurServiceImpl implements UtilisateurService{
+public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Autowired
 	private UtilisateurDao utilisateurDao;
-	
+
 	@Override
 	public Utilisateur getById(Integer id) {
-		if ( id == null ){
-			throw new RuntimeException("trololo");
+		if (id == null) {
+			throw new RuntimeException("Parametre null");
 		}
 		return utilisateurDao.getById(id);
 	}
 
-	
-	
 }

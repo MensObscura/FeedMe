@@ -1,11 +1,10 @@
-package fil.iagl.iir.service.utilisateur;
+package fil.iagl.iir.service;
 
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import fil.iagl.iir.entite.Utilisateur;
-import fil.iagl.iir.service.AbstractServiceTest;
 
 public class UtilisateurServiceTest extends AbstractServiceTest {
 
