@@ -12,7 +12,7 @@
 
 	<sql id="select_all_columns_particulier_utilisateur">
 		SELECT 	
-				usr_id, usr_nom, usr_password, usr_mail,
+				usr_id, usr_nom, usr_mail,
 				prt_id, prt_prenom, prt_date_naissance
 		FROM 
 				UTILISATEUR 

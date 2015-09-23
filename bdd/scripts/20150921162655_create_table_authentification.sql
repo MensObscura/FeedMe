@@ -1,0 +1,13 @@
+-- // create_table_authentification
+-- Migration SQL that makes the change goes here.
+CREATE TABLE AUTHENTIFICATION (
+  AUT_PASSWORD VARCHAR(60) NOT NULL,
+  AUT_USR_ID INTEGER NOT NULL UNIQUE REFERENCES UTILISATEUR(USR_ID),
+  AUT_ROL_ID INTEGER NOT NULL REFERENCES ROLE(ROL_ID)
+);
+
+
+-- //@UNDO
+-- SQL to undo the change goes here.
+DROP TABLE AUTHENTIFICATION;
+
