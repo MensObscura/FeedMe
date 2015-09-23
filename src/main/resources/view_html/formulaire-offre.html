@@ -12,13 +12,13 @@
 	    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
 
   	</head>
-  	<body>
+  	<body ng-app="validationOfferApp" >
 
   	<div ng-include="'header.html'"></div>
 
     <h2>Votre offre :</h2>
     
-    <form name="offerForm" ng-app="validationOfferApp" ng-controller="OfferController" ng-submit="submitForm()" novalidate>
+    <form name="offerForm" ng-controller="OfferController" ng-submit="submitForm()" novalidate>
       
       	<fieldset>
 			<legend>Le repas</legend>

@@ -12,13 +12,13 @@
     <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
   </head>
 
-  <body>
+  <body ng-app="InscriptionApp">
 
     <div ng-include="'header.html'"></div>
 
     <h2>Inscription :</h2>
 
-    <form name="InscriptionForm" ng-app="InscriptionApp" ng-controller="InscriptionController" ng-submit="submitForm()" novalidate>
+    <form name="InscriptionForm" ng-controller="InscriptionController" ng-submit="submitForm()" novalidate>
       <label for="lastname">Nom* : </label>
       <input type="text" name="lastname" ng-model="lastname" ng-required="true" placeholder="Nom">
       <span style="color:red" ng-show="InscriptionForm.lastname.$invalid && !InscriptionForm.lastname.$pristine">
