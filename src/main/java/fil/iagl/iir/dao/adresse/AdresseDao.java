@@ -19,4 +19,10 @@ public interface AdresseDao {
 	 */
 	Adresse getById(@Param("id") Integer id);
 
+	/**
+	 * Sauvegarde une adresse
+	 * @param adresse l'adresse a sauvegarder
+	 * @return 
+	 */
+	Integer sauvegarder(@Param("adresse") Adresse adresse);
 }

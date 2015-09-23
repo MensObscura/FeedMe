@@ -43,4 +43,9 @@
 		WHERE A.adr_id = #{id}
 	</select>
 
+	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="adr_id" keyProperty="adresse.id">
+		INSERT INTO ADRESSE (adr_voie, adr_vil_id)
+		VALUES (#{adresse.voie}, #{adresse.ville.id});
+	</insert>
+
 </mapper>
