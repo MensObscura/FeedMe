@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -21,7 +22,25 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().anonymous();
+		// Desactiver le certificat pour autoriser PUT/POST/DELETE
+		http.csrf().disable();
+
+		// L'accès au autre ressources est sécurisé
+		http.authorizeRequests().anyRequest().authenticated();
+
+		// Redirection en cas de tentative non identifié
+		http.formLogin().loginPage("/signin").passwordParameter("password").usernameParameter("username").permitAll();
+
+	}
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		// Autoriser l'accès au ressources sans etre authentifier
+		web.ignoring().antMatchers("/");
+		web.ignoring().antMatchers("/signin");
+		web.ignoring().antMatchers("/*.html");
+		web.ignoring().antMatchers("/js/**");
+		web.ignoring().antMatchers("/css/**");
 	}
 
 	@Autowired
