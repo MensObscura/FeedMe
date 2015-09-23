@@ -20,7 +20,5 @@ public class UtilisateurController {
 	public String afficherProfil(@PathVariable("id") Integer id){
 		return new JSONObject(utilisateurService.getById(id)).toString();
 	}
-	
-
-	
+		
 }
