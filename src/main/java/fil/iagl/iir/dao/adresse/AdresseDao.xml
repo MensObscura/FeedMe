@@ -22,7 +22,6 @@
 		<result property="nom" column="pay_nom" />
 	</resultMap>
 
-	<!-- FIXME : Faire une jointure avec le mot clef 'JOIN' ....-->
 	<select id="getById" resultMap="Adresse_ResultMap">
 		SELECT
 		A.adr_id,
@@ -33,10 +32,15 @@
 		P.pay_id,
 		P.pay_code_pays,
 		P.pay_nom
-		FROM ADRESSE A, VILLE V, PAYS P
+		FROM
+			ADRESSE A
+		INNER JOIN 
+			VILLE V
+		ON (A.adr_vil_id = V.vil_id)
+		INNER JOIN
+			PAYS P
+		ON (V.vil_pay_id = P.pay_id)
 		WHERE A.adr_id = #{id}
-		AND A.adr_vil_id = V.vil_id
-		AND V.vil_pay_id = P.pay_id
 	</select>
 
 </mapper>
