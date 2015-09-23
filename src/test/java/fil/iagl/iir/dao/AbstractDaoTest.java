@@ -24,6 +24,7 @@ import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.entite.TypeCuisine;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.entite.Ville;
+import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.outils.SQLCODE;
 
 public abstract class AbstractDaoTest extends AbstractFeedMeTest {
@@ -45,6 +46,9 @@ public abstract class AbstractDaoTest extends AbstractFeedMeTest {
 
 	@Autowired
 	protected TypeCuisineDao typeCuisineDao;
+	
+	@Autowired
+	protected VilleDao villeDao;
 
 	@Autowired
 	protected OffreDao offreDao;
