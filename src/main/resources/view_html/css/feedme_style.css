@@ -12,11 +12,11 @@ On retouchera ça par la suite, c'est pour le mvp
 
 
 body {
-	margin: 0;
-	padding: 0;
+	margin: 0%;
+	padding: 0%;
 	text-align: left;
 	font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
-	font-size: 13px;
+	font-size: 1em;
 	color: #061C37;
 	background-image: url("../content/dinner_drinks.jpg");
 	background-repeat: no-repeat;
@@ -24,29 +24,30 @@ body {
 }
 
 *   {
-    margin: 0 auto 0 auto;
+    margin: 0% auto 0% auto;
     text-align:left;
 }
 
 h1  {
-    font-size:25px;
-    margin-bottom:10px;
-    padding-top:18px;
-    margin-left:15px;
-    margin-top:15px;
+    font-size:1.5em;
+    margin-bottom:0.7em;
+    padding-top:1.2em;
+    margin-left:1em;
+    margin-top:1em;
     color:#1F1603;
 }
 
 footer {
     text-align: center;
-    height: 15px;
-    border-radius: 15px;
-    font-size:9px;
+    height: 1em;
+    border-radius: 1em;
+    font-size:1em;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #C87002;
-    max-width: 500px;
+    max-width: 50%;
+    max-height: 5%;
     position: relative;
-    margin-top: 250px;
+    margin-top: 15%;
 }
 
 
@@ -54,27 +55,30 @@ footer a  {
     vertical-align: middle;
     text-align: center;
     color: #ABABAB;
-    font-size:10px;
+    font-size:0.7em;
+    margin: 0.1em 0.5em 0.1em 0.5em;
 }
 
 header  {
-    border-radius: 25px;
+    border-radius: 1.5em;
     background-color: chocolate;
-    margin-top: 15px;
+    margin-top: 1em;
     height: auto;
-    max-width: 650px;
-    margin-bottom: 150px;
+    max-width: 50%;
+    margin-bottom: 15%;
+    text-align: center;
 }
 
 header a    {
     color: white;
     font-size: 15px;
+    text-aligne: center;
+    margin: 0.1em 0.5em 0.1em 0.5em;
 }
 
 a   {
     color:#C87002;
     text-decoration:none;
-    margin-left: 50px;
 }
 
 a:hover {
@@ -101,8 +105,8 @@ p {text-align: left;}
 	border-radius: 5px;
     border: 2px solid;
 	background-color: #d4021d;
-	height: 200px;
-	width: 340px;
+	height: 12em;
+	width: 21em;
     line-height:200px;
 	text-align: center;
     display: inline-block;
@@ -110,6 +114,6 @@ p {text-align: left;}
 }
 
 .big_button:hover, .big_button:focus {
-	text-decoration: none;
+	text-decoration: overline underline;
     border: 2px solid white;
 }
