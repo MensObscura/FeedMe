@@ -42,10 +42,10 @@
      <br>
 
      <label for="password">Confirmez le mot de passe* : </label>
-     <input type="password" name="confirm" ng-model="confirm" ng-required="true" placeholder="Mot de passe" ensure-expression="password == confirm && password">
+     <input type="password" name="confirm" ng-model="confirm" ng-required="true" placeholder="Mot de passe" ensure-expression="password == confirm">
      <span style="color:red" ng-show="InscriptionForm.confirm.$invalid && !InscriptionForm.confirm.$pristine">
        <span ng-show="InscriptionForm.confirm.$error.required">Veuillez confirmer le mot de passe.</span>
-       <span ng-show="InscriptionForm.confirm.$error.badpwd">Les mots de passe sont différents.</span>
+       <span ng-show="InscriptionForm.confirm.$error.badpwd && !InscriptionForm.confirm.$error.required && !InscriptionForm.password.$error.required">Les mots de passe sont différents.</span>
      </span>
      <br>
 
