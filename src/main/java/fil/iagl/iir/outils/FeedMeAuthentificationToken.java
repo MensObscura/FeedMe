@@ -10,6 +10,8 @@ import lombok.Getter;
 
 public class FeedMeAuthentificationToken extends UsernamePasswordAuthenticationToken {
 
+	private static final long serialVersionUID = -2623091003191330984L;
+
 	@Getter
 	private Authentification authentification;
 
