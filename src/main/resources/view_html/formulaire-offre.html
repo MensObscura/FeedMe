@@ -70,7 +70,7 @@
 			<br>
 
 			<label for="date">Date* : </label>
-			<input type="datetime" name="datetime" ng-model="datetime" id="datetimepicker" ng-required="true">
+			<input type="text" name="datetime" ng-model="datetime" id="datetimepicker" ng-required="true" readonly>
 			<span style="color:red" ng-show="offerForm.datetime.$invalid && !offerForm.datetime.$pristine">
 			  <span ng-show="offerForm.datetime.$error.required">Veuillez saisir une date.</span>
 			</span>
