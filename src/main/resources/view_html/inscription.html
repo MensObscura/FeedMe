@@ -56,7 +56,7 @@
      <br>
 
      <label for="birthday">Date de naissance* : </label>
-     <input type="date" name="date" g-model="date" id="datetimepicker" ng-required="true">
+     <input readonly="readonly" type="text" name="date" g-model="date" id="datetimepicker" ng-required="true" >
      <span style="color:red" ng-show="InscriptionForm.date.$invalid && !InscriptionForm.date.$pristine">
        <span ng-show="InscriptionForm.date.$error.required">Veuillez saisir votre date de naissance.</span>
        <span ng-show="InscriptionForm.date.$error.date">Veuillez saisir une date.</span>
