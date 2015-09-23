@@ -1,103 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Inscription</title>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Inscription</title>
     <script src="basicjs.js"></script>
     <script src="angular.min.js"></script>
     <script src="jquery-2.1.4.min.js"></script>
     <script src="jquery.datetimepicker.js"></script>
+    <script src="js/script-inscription.js"></script>
     <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
-</head>
-<body>
-    
-  <h2>Inscription :</h2>
+  </head>
 
-  <form name="InscriptionForm" ng-app="InscriptionApp" ng-controller="InscriptionController" ng-submit="submitForm()" novalidate>
-    <label for="lastname">Nom* : </label>
-    <input type="text" name="lastname" ng-model="lastname" ng-required="true" placeholder="Nom">
-	<span style="color:red" ng-show="InscriptionForm.lastname.$invalid && !InscriptionForm.lastname.$pristine">
-	  <span ng-show="InscriptionForm.lastname.$error.required">Veuillez saisir votre nom.</span>
-	</span>
-	<br>
-    
-    <label for="firstname">Prénom* : </label>
-    <input type="text" name="firstname" ng-model="firstname" ng-required="true" placeholder="Prénom">
-	<span style="color:red" ng-show="InscriptionForm.firstname.$invalid && !InscriptionForm.firstname.$pristine">
-	  <span ng-show="InscriptionForm.firstname.$error.required">Veuillez saisir votre prénom.</span>
-	</span>
-	<br>
-    
-    <label for="password">Mot de passe* : </label>
-    <input type="password" name="password" ng-model="password" ng-required="true" placeholder="Mot de passe">
-	<span style="color:red" ng-show="InscriptionForm.password.$invalid && !InscriptionForm.password.$pristine">
-	  <span ng-show="InscriptionForm.password.$error.required">Veuillez saisir un mot de passe.</span>
-	</span>
-	<br>
-    
-    <label for="password">Confirmez le mot de passe* : </label>
-    <input type="password" name="confirm" ng-model="confirm" ng-required="true" placeholder="Mot de passe" ensure-expression="password == confirm">
-	<span style="color:red" ng-show="InscriptionForm.confirm.$invalid && !InscriptionForm.confirm.$pristine">
-	  <span ng-show="InscriptionForm.confirm.$error.required">Veuillez confirmer le mot de passe.</span>
-	  <span ng-show="InscriptionForm.confirm.$error.badpwd">Les mots de passe sont différents.</span>
-	</span>
-	<br>
-    
-    <label for="user_email">Adresse mail* : </label>
-    <input type="email" name="user_email" ng-model="user_email" ng-required="true" placeholder="Adresse mail">
-	<span style="color:red" ng-show="InscriptionForm.user_email.$invalid && !InscriptionForm.user_email.$pristine">
-	  <span ng-show="InscriptionForm.user_email.$error.required">Veuillez saisir votre email.</span>
-	  <span ng-show="InscriptionForm.user_email.$error.email">Votre email est invalide.</span>
-	</span>
-	<br>
-    
-    <label for="birthday">Date de naissance* : </label>
-    <input type="date" name="date" g-model="date" id="datetimepicker" ng-required="true">
-	<span style="color:red" ng-show="InscriptionForm.date.$invalid && !InscriptionForm.date.$pristine">
-	  <span ng-show="InscriptionForm.date.$error.required">Veuillez saisir votre date de naissance.</span>
-	  <span ng-show="InscriptionForm.date.$error.date">Veuillez saisir une date.</span>
-	</span>
-	<br>
-    
-   <button type="submit" ng-disabled="InscriptionForm.$invalid">Confirmer</button>
-    
-  </form>
+  <body>
 
- <script type="text/javascript">
+    <div ng-include="'header.html'"></div>
 
-      var validationApp = angular.module('InscriptionApp', []);
+    <h2>Inscription :</h2>
 
-	validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
-    		return {
-        	require: 'ngModel',
-       		 link: function(scope, ele, attrs, ngModelController) {
-            	scope.$watch(attrs.ngModel, function(value) {
-                var booleanResult = $parse(attrs.ensureExpression)(scope);
-                ngModelController.$setValidity('badpwd', booleanResult);
-            });
-        	}
-   	 };
-	}]);
+    <form name="InscriptionForm" ng-app="InscriptionApp" ng-controller="InscriptionController" ng-submit="submitForm()" novalidate>
+      <label for="lastname">Nom* : </label>
+      <input type="text" name="lastname" ng-model="lastname" ng-required="true" placeholder="Nom">
+      <span style="color:red" ng-show="InscriptionForm.lastname.$invalid && !InscriptionForm.lastname.$pristine">
+       <span ng-show="InscriptionForm.lastname.$error.required">Veuillez saisir votre nom.</span>
+     </span>
+     <br>
 
-      $('#datetimepicker').datetimepicker({
-	format: "Y/m/d",
- 	timepicker: false,
-	});
+     <label for="firstname">Prénom* : </label>
+     <input type="text" name="firstname" ng-model="firstname" ng-required="true" placeholder="Prénom">
+     <span style="color:red" ng-show="InscriptionForm.firstname.$invalid && !InscriptionForm.firstname.$pristine">
+       <span ng-show="InscriptionForm.firstname.$error.required">Veuillez saisir votre prénom.</span>
+     </span>
+     <br>
 
-      validationApp.controller('InscriptionController', function($scope) {  
+     <label for="password">Mot de passe* : </label>
+     <input type="password" name="password" ng-model="password" ng-required="true" placeholder="Mot de passe">
+     <span style="color:red" ng-show="InscriptionForm.password.$invalid && !InscriptionForm.password.$pristine">
+       <span ng-show="InscriptionForm.password.$error.required">Veuillez saisir un mot de passe.</span>
+     </span>
+     <br>
 
-      $scope.submitForm = function() {
-      if ($scope.InscriptionForm.$valid) {
-      	console.log("good");
-      }
+     <label for="password">Confirmez le mot de passe* : </label>
+     <input type="password" name="confirm" ng-model="confirm" ng-required="true" placeholder="Mot de passe" ensure-expression="password == confirm && password">
+     <span style="color:red" ng-show="InscriptionForm.confirm.$invalid && !InscriptionForm.confirm.$pristine">
+       <span ng-show="InscriptionForm.confirm.$error.required">Veuillez confirmer le mot de passe.</span>
+       <span ng-show="InscriptionForm.confirm.$error.badpwd">Les mots de passe sont différents.</span>
+     </span>
+     <br>
 
-      };
-      });
+     <label for="user_email">Adresse mail* : </label>
+     <input type="email" name="user_email" ng-model="user_email" ng-required="true" placeholder="Adresse mail">
+     <span style="color:red" ng-show="InscriptionForm.user_email.$invalid && !InscriptionForm.user_email.$pristine">
+       <span ng-show="InscriptionForm.user_email.$error.required">Veuillez saisir votre email.</span>
+       <span ng-show="InscriptionForm.user_email.$error.email">Votre email est invalide.</span>
+     </span>
+     <br>
 
-    </script>
-  
-    <div ng-include="'footer.html'"></div>
-</body>
+     <label for="birthday">Date de naissance* : </label>
+     <input type="date" name="date" g-model="date" id="datetimepicker" ng-required="true">
+     <span style="color:red" ng-show="InscriptionForm.date.$invalid && !InscriptionForm.date.$pristine">
+       <span ng-show="InscriptionForm.date.$error.required">Veuillez saisir votre date de naissance.</span>
+       <span ng-show="InscriptionForm.date.$error.date">Veuillez saisir une date.</span>
+     </span>
+     <br>
+
+     <button type="submit" ng-disabled="InscriptionForm.$invalid">Confirmer</button>
+
+   </form>
+
+   <div ng-include="'footer.html'"></div>
+
+  </body>
 </html>
