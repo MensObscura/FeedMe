@@ -1,0 +1,115 @@
+/*
+!! Ceci est un .css dégueulasse.
+    - Non responsive
+    - Peu optimisé
+
+On retouchera ça par la suite, c'est pour le mvp
+
+
+    - Eviter les positions absolues
+    - Largeur et hauteur à adapter à l'écran
+*/
+
+
+body {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
+	font-size: 13px;
+	color: #061C37;
+	background-image: url("../content/dinner_drinks.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+}
+
+*   {
+    margin: 0 auto 0 auto;
+    text-align:left;
+}
+
+h1  {
+    font-size:25px;
+    margin-bottom:10px;
+    padding-top:18px;
+    margin-left:15px;
+    margin-top:15px;
+    color:#1F1603;
+}
+
+footer {
+    text-align: center;
+    height: 15px;
+    border-radius: 15px;
+    font-size:9px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #C87002;
+    max-width: 500px;
+    position: relative;
+    margin-top: 250px;
+}
+
+
+footer a  {
+    vertical-align: middle;
+    text-align: center;
+    color: #ABABAB;
+    font-size:10px;
+}
+
+header  {
+    border-radius: 25px;
+    background-color: chocolate;
+    margin-top: 15px;
+    height: auto;
+    max-width: 650px;
+    margin-bottom: 150px;
+}
+
+header a    {
+    color: white;
+    font-size: 15px;
+}
+
+a   {
+    color:#C87002;
+    text-decoration:none;
+    margin-left: 50px;
+}
+
+a:hover {
+    color:#793C06
+    text-decoration:none;
+    border-bottom:dotted 2px;
+}
+
+a:visited   {
+    color:#793C06;
+}
+
+p {text-align: left;}
+
+#main   {
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Buttons */
+
+.big_button {
+	border-radius: 5px;
+    border: 2px solid;
+	background-color: #d4021d;
+	height: 200px;
+	width: 340px;
+    line-height:200px;
+	text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.big_button:hover, .big_button:focus {
+	text-decoration: none;
+    border: 2px solid white;
+}
