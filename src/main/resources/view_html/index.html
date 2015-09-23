@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="css/feedme_style.css" />
-<title>Index</title>
-    <script src="js/angular.min.js"></script>
-</head>
-<body ng-app>
-<a href="inscription.html" target="_blank"><button class="big_button" type="button">Inscription</button></a>
-<a href="login.html" target="_blank"><button class="big_button" type="button">Connexion</button></a>
-    
-    <div ng-include="'footer.html'"></div>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="stylesheet" type="text/css" href="css/feedme_style.css" />
+		<title>Index</title>
+		<script src="js/angular.min.js"></script>
+	</head>
+	<body ng-app>
+		<div id="main">
+			<a onclick="window.location='inscription.html'"><button class="big_button" type="button">Inscription</button></a>
+			<a onclick="window.location='login.html'"><button class="big_button" type="button">Connexion</button></a>
+		</div>
+		<div ng-include="'footer.html'"></div>
+	</body>
 </html>

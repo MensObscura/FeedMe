@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="css/feedme_style.css" />
-<title>Accueil</title>
-<script src="js/angular.min.js"></script>
-</head>
-    
-<body ng-app>
-    <div ng-include="'header.html'"></div>
-    
-    <div id="main">
-        <a onclick="window.location='offre.html'"><div class="big_button">Proposer un repas</div></a>
-        <a onclick="window.location='liste_offres.html'"><div class="big_button">Reserver un couvert</div></a>
-    </div>
-    
-    <div ng-include="'footer.html'"></div>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="stylesheet" type="text/css" href="css/feedme_style.css" />
+		<title>Accueil</title>
+		<script src="js/angular.min.js"></script>
+	</head>
+	<body ng-app>
+		<div ng-include="'header.html'"></div>
+		<div id="main">
+			<a onclick="window.location='offre.html'"><div class="big_button">Proposer un repas</div></a>
+			<a onclick="window.location='liste_offres.html'"><div class="big_button">Reserver un couvert</div></a>
+		</div>
+		<div ng-include="'footer.html'"></div>
+	</body>
 </html>
