@@ -11,4 +11,5 @@ public class AccueilController {
 	public String home() {
 		return "redirect:/resources/index.html";
 	}
+
 }

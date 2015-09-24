@@ -33,7 +33,7 @@ public class OffreServiceTest extends AbstractServiceTest {
 	@Test(expected = RuntimeException.class)
 	public void sauvegarderTestEchec() throws Exception {
 		offreService.sauvegarder(null);
-		Mockito.verify(offreDao, Mockito.times(0)).sauvegarder(null);
+		Mockito.verify(offreDao, Mockito.never()).sauvegarder(Mockito.any());
 	}
 
 	@Test
