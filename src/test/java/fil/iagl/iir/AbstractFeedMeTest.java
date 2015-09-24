@@ -3,6 +3,7 @@ package fil.iagl.iir;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,10 +15,12 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -47,6 +50,9 @@ public abstract class AbstractFeedMeTest {
 
 	protected static final String USERNAME_TEST_USER = "toto.toto@gmail.com";
 
+	protected static final MediaType FEED_ME_MEDIA_TYPE = new MediaType(MediaType.APPLICATION_JSON.getType(),
+			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+
 	private static Boolean hasBeenReset = Boolean.FALSE;
 
 	@Autowired
@@ -72,7 +78,10 @@ public abstract class AbstractFeedMeTest {
 			}
 		}
 
+		MockitoAnnotations.initMocks(this);
+
 		this.fausseConnection(USERNAME_TEST_USER, Optional.empty());
+
 	}
 
 	private void fausseConnection(String username, Optional<Role> role) {

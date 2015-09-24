@@ -1,9 +1,7 @@
 package fil.iagl.iir.service;
 
-import org.junit.Before;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import fil.iagl.iir.AbstractFeedMeTest;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
@@ -40,10 +38,5 @@ public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 
 	@Mock
 	protected OffreDao offreDao;
-
-	@Before
-	public void initMocks() {
-		MockitoAnnotations.initMocks(this);
-	}
 
 }
