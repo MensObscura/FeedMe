@@ -3,13 +3,14 @@ package fil.iagl.iir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +30,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().authenticated();
 
 		// Redirection en cas de tentative non identifié
-		http.formLogin().defaultSuccessUrl("/resouces/accueil.html").permitAll();
+		http.formLogin().defaultSuccessUrl("/resources/accueil.html").permitAll();
 
 		/*
 		 * 
@@ -54,7 +55,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
-		final ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+		final PasswordEncoder encoder = new BCryptPasswordEncoder();
 		auth.userDetailsService(this.authenticationService).passwordEncoder(encoder);
 	}
 

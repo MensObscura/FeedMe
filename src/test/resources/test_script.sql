@@ -36,7 +36,7 @@ INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES
 -- Table AUTHENTIFICATION
 -- ---------------------------
 INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
-(1, 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 1); -- MDP : test
+(1, '$2a$10$z9Ka6HSwJN/YDqZsC8a3Y.VVxC1DPQNZegHH4mXzRU/hDfetKNEvG', 1); -- MDP : test
 
 -- ---------------------------
 -- Table VILLE
