@@ -15,41 +15,47 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableWebSecurity
 public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Lazy
-    @Autowired
-    UserDetailsService authenticationService;
+	@Lazy
+	@Autowired
+	UserDetailsService authenticationService;
 
-    @Override
-    protected void configure( final HttpSecurity http ) throws Exception {
+	@Override
+	protected void configure(final HttpSecurity http) throws Exception {
 
-        // Desactiver le certificat pour autoriser PUT/POST/DELETE
-        http.csrf().disable();
+		// Desactiver le certificat pour autoriser PUT/POST/DELETE
+		http.csrf().disable();
 
-        // L'accès au autre ressources est sécurisé
-        http.authorizeRequests().anyRequest().authenticated();
+		// L'accès au autre ressources est sécurisé
+		http.authorizeRequests().anyRequest().authenticated();
 
-        // Redirection en cas de tentative non identifié
-        http.formLogin().defaultSuccessUrl( "/accueil.html" ).permitAll();
+		// Redirection en cas de tentative non identifié
+		http.formLogin().defaultSuccessUrl("/resouces/accueil.html").permitAll();
 
-    }
+		/*
+		 * 
+		 * TODO : Voir comment faire une custom login page avec Angular
+		 * 
+		 * https://spring.io/guides/tutorials/spring-security-and-angular-js/
+		 * https://spring.io/blog/2015/01/12/the-login-page-angular-js-and-
+		 * spring-security-part-ii
+		 * 
+		 */
+	}
 
-    @Override
-    public void configure( final WebSecurity web ) throws Exception {
-        super.configure( web );
+	@Override
+	public void configure(final WebSecurity web) throws Exception {
+		super.configure(web);
 
-        // Autoriser l'accès au ressources sans etre authentifier
-        web.ignoring().antMatchers( "/" );
-        web.ignoring().antMatchers( "/index.html" );
-        web.ignoring().antMatchers( "/login.html" );
-        web.ignoring().antMatchers( "/inscription.html" );
-        web.ignoring().antMatchers( "/js/**" );
-        web.ignoring().antMatchers( "/css/**" );
-    }
+		// Autoriser l'accès au ressources sans etre authentifier
+		web.ignoring().antMatchers("/");
+		web.ignoring().antMatchers("/resources/**");
 
-    @Autowired
-    public void configureGlobal( final AuthenticationManagerBuilder auth ) throws Exception {
-        final ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-        auth.userDetailsService( this.authenticationService ).passwordEncoder( encoder );
-    }
+	}
+
+	@Autowired
+	public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
+		final ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+		auth.userDetailsService(this.authenticationService).passwordEncoder(encoder);
+	}
 
 }
