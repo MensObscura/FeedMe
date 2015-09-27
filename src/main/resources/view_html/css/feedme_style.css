@@ -9,7 +9,13 @@ On retouchera ça par la suite, c'est pour le mvp
     - Eviter les positions absolues
     - Largeur et hauteur à adapter à l'écran
 */
-
+html    {
+    background: url("../content/dinner_drinks.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
 body {
 	margin: 0%;
@@ -18,9 +24,6 @@ body {
 	font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
 	font-size: 1em;
 	color: #061C37;
-	background-image: url("../content/dinner_drinks.jpg");
-	background-repeat: no-repeat;
-    background-size: cover;
 }
 
 *   {
@@ -38,16 +41,23 @@ h1  {
 }
 
 footer {
+    /* Position */
+    position: absolute;
+    bottom: 0.4em;
+    left: 25%;
+    right: 25%;
+    
+    /* Text positionning */
     text-align: center;
-    height: 1em;
-    border-radius: 1em;
     font-size:1em;
     font-family: Arial, Helvetica, sans-serif;
+    
+    /* Box style */
     background-color: #C87002;
+    border-radius: 1em;
+    height: 1.1em;
+    width: 25em;
     max-width: 50%;
-    max-height: 5%;
-    position: relative;
-    margin-top: 15%;
 }
 
 
@@ -60,13 +70,23 @@ footer a  {
 }
 
 header  {
-    border-radius: 1.5em;
-    background-color: chocolate;
-    margin-top: 1em;
-    height: auto;
-    max-width: 50%;
-    margin-bottom: 15%;
+    /* Position */
+    position: absolute;
+    top: 0.4em;
+    left: 10%;
+    right: 10%;
+    
+    /* Text positionning */
     text-align: center;
+    font-size:1em;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    /* Box style */
+    background-color: #C87002;
+    border-radius: 1em;
+    height: 1.1em;
+    width: 30em;
+    max-width: 80%;
 }
 
 header a    {
@@ -87,10 +107,6 @@ a:hover {
     border-bottom:dotted 2px;
 }
 
-a:visited   {
-    color:#793C06;
-}
-
 p {text-align: left;}
 
 #main   {
@@ -100,17 +116,30 @@ p {text-align: left;}
 }
 
 /* Buttons */
+#bigButtonsWrapper  {
+    /* Position */
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    /* Elements position */
+    text-align:center;
+}
 
 .big_button {
-	border-radius: 5px;
-    border: 2px solid;
-	background-color: #d4021d;
+    /* Text position */
 	height: 12em;
 	width: 21em;
     line-height:200px;
 	text-align: center;
     display: inline-block;
     vertical-align: middle;
+    
+    /* Box style */
+    border-radius: 5px;
+    border: 2px solid;
+	background-color: #d4021d;
+    width: 40%;
 }
 
 .big_button:hover, .big_button:focus {

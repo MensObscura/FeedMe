@@ -9,9 +9,9 @@
 		<script src="js/angular.min.js"></script>
 	</head>
 	<body ng-app>
-		<div id="main">
-			<a onclick="window.location='inscription.html'"><button class="big_button" type="button">Inscription</button></a>
-			<a onclick="window.location='login.html'"><button class="big_button" type="button">Connexion</button></a>
+		<div id="bigButtonsWrapper">
+            <a onclick="window.location='inscription.html'"><div class="big_button">Inscription</div></a>
+            <a onclick="window.location='login.html'"><div class="big_button">Connexion</div></a>
 		</div>
 		<div ng-include="'footer.html'"></div>
 	</body>
