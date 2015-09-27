@@ -1,13 +1,16 @@
-/*
-!! Ceci est un .css dégueulasse.
-    - Non responsive
-    - Peu optimisé
+/**
+    DONE:
+        accueil.html
+        index.html
 
-On retouchera ça par la suite, c'est pour le mvp
-
-
-    - Eviter les positions absolues
-    - Largeur et hauteur à adapter à l'écran
+    TODO:
+        offre
+        profil
+        liste_offre
+        inscription
+        visualiser_profil
+        liens footer
+        login
 */
 html    {
     background: url("../content/dinner_drinks.jpg") no-repeat center center fixed;
@@ -41,18 +44,15 @@ h1  {
 }
 
 footer {
-    /* Position */
     position: absolute;
     bottom: 0.4em;
     left: 25%;
     right: 25%;
     
-    /* Text positionning */
     text-align: center;
     font-size:1em;
     font-family: Arial, Helvetica, sans-serif;
     
-    /* Box style */
     background-color: #C87002;
     border-radius: 1em;
     height: 1.1em;
@@ -70,18 +70,15 @@ footer a  {
 }
 
 header  {
-    /* Position */
     position: absolute;
     top: 0.4em;
     left: 10%;
     right: 10%;
     
-    /* Text positionning */
     text-align: center;
     font-size:1em;
     font-family: Arial, Helvetica, sans-serif;
     
-    /* Box style */
     background-color: #C87002;
     border-radius: 1em;
     height: 1.1em;
@@ -115,19 +112,19 @@ p {text-align: left;}
     text-align: center;
 }
 
-/* Buttons */
+
+
+
 #bigButtonsWrapper  {
-    /* Position */
     position: absolute;
     top: 30%;
     left: 10%;
     width: 80%;
-    /* Elements position */
+
     text-align:center;
 }
 
 .big_button {
-    /* Text position */
 	height: 12em;
 	width: 21em;
     line-height:200px;
@@ -135,7 +132,6 @@ p {text-align: left;}
     display: inline-block;
     vertical-align: middle;
     
-    /* Box style */
     border-radius: 5px;
     border: 2px solid;
 	background-color: #d4021d;
