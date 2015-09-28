@@ -5,13 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>Inscription</title>
-		<script src="js/angular.min.js"></script>
-		<script src="js/jquery-2.1.4.min.js"></script>
-		<script src="js/jquery.datetimepicker.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
+		<script src="/ressources/js/angular.min.js"></script>
+		<script src="/ressources/js/jquery-2.1.4.min.js"></script>
+		<script src="/ressources/js/jquery.datetimepicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="/ressources/css/jquery.datetimepicker.css"/ >
 	</head>
 	<body ng-app="InscriptionApp">
-		<div ng-include="'header.html'"></div>
+		<div ng-include="'/ressources/header.html'"></div>
 		<h2>Inscription :</h2>
 		<form name="InscriptionForm" ng-controller="InscriptionController" ng-submit="submitForm()" novalidate>
 			<label for="lastname">Nom* : </label>
@@ -48,7 +48,7 @@
 		</form>
 		
 
-		<script src="js/script-inscription.js"></script>
-		<div ng-include="'footer.html'"></div>
+		<script src="/ressources/js/script-inscription.js"></script>
+		<div ng-include="'/ressources/footer.html'"></div>
 	</body>
 </html>
