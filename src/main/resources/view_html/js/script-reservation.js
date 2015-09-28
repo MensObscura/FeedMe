@@ -6,7 +6,14 @@ validationApp.controller('ReservationController', function($scope) {
 
   $scope.submitForm = function() {
     if ($scope.ReservationForm.$valid) {
-      console.log("je suis content !");
+     
+    	 var data = {
+		    	nombre : $scope.place,
+		    };
+
+		    $http.put('/reservations', data);
+
+
     }
 
   };
