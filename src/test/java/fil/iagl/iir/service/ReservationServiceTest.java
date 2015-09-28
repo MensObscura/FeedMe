@@ -29,7 +29,7 @@ public class ReservationServiceTest extends AbstractServiceTest {
 	@Test(expected = RuntimeException.class)
 	public void sauvegarderTestEchec() throws Exception {
 		reservationService.sauvegarder(null);
-		Mockito.verify(reservationDao, Mockito.times(0)).sauvegarder(null);
+		Mockito.verify(reservationDao, Mockito.never()).sauvegarder(Mockito.any());
 	}
 
 }

@@ -8,25 +8,43 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
+import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.service.AuthentificationService;
 
+@Service
 public class AuthentificationServiceImpl implements AuthentificationService {
 
 	@Autowired
 	private AuthentificationDao authentificationDao;
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Authentification auth = authentificationDao.getByUsername(username);
-		GrantedAuthority authority = new SimpleGrantedAuthority(auth.getRole().name());
+	@Autowired
+	private UtilisateurDao utilisateurDao;
 
-		UserDetails userDetails = new User(auth.getUtilisateur().getMail(), auth.getPassword(),
+	@Override
+	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+		final Authentification auth = this.authentificationDao.getByUsername(username);
+		if (auth == null) {
+			throw new UsernameNotFoundException("Username non existant");
+		}
+		final GrantedAuthority authority = new SimpleGrantedAuthority(auth.getRole().name());
+
+		final UserDetails userDetails = new User(auth.getUtilisateur().getMail(), auth.getPassword(),
 				Arrays.asList(authority));
 
 		return userDetails;
+	}
+
+	@Override
+	public void inscription(Authentification authentification) {
+		if (authentification == null) {
+			throw new RuntimeException("Parametre null");
+		}
+		utilisateurDao.sauvegarder(authentification.getUtilisateur());
+		authentificationDao.sauvegarder(authentification);
 	}
 
 }

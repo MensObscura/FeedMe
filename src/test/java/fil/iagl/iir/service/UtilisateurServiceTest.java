@@ -29,7 +29,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
 	@Test(expected = RuntimeException.class)
 	public void getByIdTestEchec() throws Exception {
 		utilisateurService.getById(null);
-		Mockito.verify(utilisateurDao, Mockito.times(0)).getById(null);
+		Mockito.verify(utilisateurDao, Mockito.never()).getById(Mockito.any());
 	}
 
 }

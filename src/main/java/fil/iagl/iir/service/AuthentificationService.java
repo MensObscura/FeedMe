@@ -1,9 +1,11 @@
 package fil.iagl.iir.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
 
-@Service
+import fil.iagl.iir.entite.Authentification;
+
 public interface AuthentificationService extends UserDetailsService {
+
+	public void inscription(Authentification authentification);
 
 }

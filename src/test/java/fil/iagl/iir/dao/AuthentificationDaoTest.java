@@ -13,7 +13,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void getByUsernameTestSucces() throws Exception {
-		String password = "21a4ed0a0cf807e77e93ee7604e2cc1ad07757c5";
+		String password = "$2a$10$z9Ka6HSwJN/YDqZsC8a3Y.VVxC1DPQNZegHH4mXzRU/hDfetKNEvG";
 		Authentification authentification = this.authentificationDao.getByUsername(USERNAME_TEST_USER);
 
 		Assertions.assertThat(authentification).isNotNull();
