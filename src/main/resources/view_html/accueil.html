@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<title>Accueil</title>
+<script src="angular.min.js">
+</script>
+</head>
+<body ng-app>
+    <div ng-include="'header.html'"></div>
+    <div class="center-div">
+        <a onclick="window.location='offre.html'"><div id="button_left">Proposer un repas</div></a>
+        <a onclick="window.location='liste_offres.html'"><div id="button_right">Reserver un couvert</div></a>
+    </div>
+    <div class="row">
+        <div class="large-16 columns text-center">
+            <p class="credits">
+                <a href="cgu.html" class="marge">Conditions générales</a>
+				<a href="contact.html" class="marge">Nous contacter</a>
+                <a href="mentions.html" class="marge">Mentions légales</a>
+        </div>
+    </div>
+    <div ng-include="'footer.html'"></div>
+</body>
+</html>

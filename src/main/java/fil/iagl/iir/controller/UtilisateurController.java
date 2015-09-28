@@ -1,12 +1,12 @@
 package fil.iagl.iir.controller;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.service.UtilisateurService;
 
 @RestController
@@ -14,11 +14,11 @@ import fil.iagl.iir.service.UtilisateurService;
 public class UtilisateurController {
 
 	@Autowired
-	private UtilisateurService utilisateurService;	
-	
+	private UtilisateurService utilisateurService;
+
 	@RequestMapping(value = "/particulier/{id}", method = RequestMethod.GET)
-	public String afficherProfil(@PathVariable("id") Integer id){
-		return new JSONObject(utilisateurService.getById(id)).toString();
+	public Utilisateur afficherProfil(@PathVariable("id") Integer id) {
+		return utilisateurService.getById(id);
 	}
-		
+
 }
