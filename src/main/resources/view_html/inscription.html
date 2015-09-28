@@ -22,6 +22,9 @@
 			<input type="text" name="firstname" ng-model="firstname" ng-required="true" placeholder="Prénom">
 			<span style="color:red" ng-show="InscriptionForm.firstname.$invalid && !InscriptionForm.firstname.$pristine"><span ng-show="InscriptionForm.firstname.$error.required">Veuillez saisir votre prénom.</span></span>
 			<br>
+			<label for="birthday">Date de naissance* : </label>
+			<input type="text" name="birthday" ng-model="birthday" id="birthday" ng-readonly="true" placeholder="Date de naissance">
+			<br>
 			<label for="password">Mot de passe* : </label>
 			<input type="password" name="password" ng-model="password" ng-required="true" placeholder="Mot de passe">
 			<span style="color:red" ng-show="InscriptionForm.password.$invalid && !InscriptionForm.password.$pristine"><span ng-show="InscriptionForm.password.$error.required">Veuillez saisir un mot de passe.</span></span>
@@ -40,15 +43,11 @@
 				<span ng-show="InscriptionForm.user_email.$error.email">Votre email est invalide.</span>
 			</span>
 			<br>
-			<label for="birthday">Date de naissance* : </label>
-			<input readonly="readonly" type="text" name="date" g-model="date" id="datetimepicker" ng-required="true" >
-			<span style="color:red" ng-show="InscriptionForm.date.$invalid && !InscriptionForm.date.$pristine">
-				<span ng-show="InscriptionForm.date.$error.required">Veuillez saisir votre date de naissance.</span>
-				<span ng-show="InscriptionForm.date.$error.date">Veuillez saisir une date.</span>
-			</span>
-			<br>
-			<button type="submit" ng-disabled="InscriptionForm.$invalid">Confirmer</button>
+				
+			<button type="submit" ng-disabled="disbutton()">Confirmer</button>
 		</form>
+		
+
 		<script src="js/script-inscription.js"></script>
 		<div ng-include="'footer.html'"></div>
 	</body>

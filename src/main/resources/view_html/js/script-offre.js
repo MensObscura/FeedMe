@@ -19,7 +19,11 @@ $('#datetimepicker').datetimepicker({
 });
 
 
-validationApp.controller('OfferController', function($scope) {  
+validationApp.controller('OfferController', function($scope) {
+
+  $scope.disbutton = function() {
+	return $scope.offerForm.$invalid || $('#datetimepicker').val() == "";
+  };
 
 	$scope.submitForm = function() {
 		if ($scope.offerForm.$valid) {
@@ -39,7 +43,7 @@ validationApp.controller('OfferController', function($scope) {
 		    	ageMin : parseInt($scope.agemin), //optionnel
 		    	ageMax : parseInt($scope.agemax), //optionnel
 		    	animaux : Boolean($scope.animal),
-		    	adresse : ???????,
+		    	//adresse : ???????,
 		    	typeCuisine : $scope.cooktype,
 		    };
 

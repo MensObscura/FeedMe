@@ -12,16 +12,23 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
   };
  }]);
 
-$('#datetimepicker').datetimepicker({
+ 
+ 
+$('#birthday').datetimepicker({
   format: "Y/m/d",
   timepicker: false,
+  maxDate:'0',
 });
 
 validationApp.controller('InscriptionController', function($scope) {  
 
+  $scope.disbutton = function() {
+	return $scope.InscriptionForm.$invalid || $('#birthday').val() == "";
+  };
+
   $scope.submitForm = function() {
     if ($scope.InscriptionForm.$valid) {
-      console.log("good");
+      console.log($('#birthday').val()+" "+$scope.user_email);
     }
 
   };
