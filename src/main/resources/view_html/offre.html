@@ -5,12 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>My Example</title>
-		<script src="/ressources/js/angular.min.js"></script>
+		<script src="js/angular.min.js"></script>
 	</head>
-	<body ng-app>
-		<div ng-include="'/ressources/header.html'"></div>
+	<body ng-app="ReservationApp">
+		<div ng-include="'header.html'"></div>
 		<h2>Titre </h2>
-		<form method="post">
+		<form name="ReservationForm" ng-controller="ReservationController" ng-submit="submitForm()" novalidate>
 			<fieldset>
 				<legend>
 					Le repas
@@ -51,11 +51,21 @@
 					Notes : bla bla bla
 				</p>
 			</fieldset>
-			<div ng-app="" ng-init="max=5">
-				<label for="nb_places">Reserver <input type="number" step="0" min="1" max="{{max}}" id="Nbplace" value="n"> couvert </label>
-				<input type="submit" value="Reserver">
+			<div ng-init="max=5"> <!-- ATTENTION MAX A MODIFIER A L'AVENIR !!!!-->
+				<label for="nb_places">Reserver
+					<input type="number" name="place" ng-model="place" step="0" ng-required="true" ng-min="1" ng-max="{{max}}" id="Nbplace" value="n"> couvert(s)
+					<span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
+						<span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
+						<span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
+						<span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span>
+						<span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span>
+					</span>
+				</label>
+				<input type="submit" ng-disabled="ReservationForm.$invalid" value="Reserver">
 			</div>
 		</form>
-		<div ng-include="'/ressources/footer.html'"></div>
+
+		<script src="js/script-reservation.js"></script>
+		<div ng-include="'footer.html'"></div>
 	</body>
 </html>
