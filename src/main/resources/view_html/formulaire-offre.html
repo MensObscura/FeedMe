@@ -5,15 +5,15 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta http-equiv="x-ua-compatible" content="ie=edge">
 	    <title>Proposer une offre</title>
-	    <script src="js/angular.min.js"></script>
-	    <script src="js/jquery-2.1.4.min.js"></script>
-	    <script src="js/jquery.datetimepicker.js"></script>
-	    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
+	    <script src="/ressources/js/angular.min.js"></script>
+	    <script src="/ressources/js/jquery-2.1.4.min.js"></script>
+	    <script src="/ressources/js/jquery.datetimepicker.js"></script>
+	    <link rel="stylesheet" type="text/css" href="/ressources/css/jquery.datetimepicker.css"/ >
 
   	</head>
   	<body ng-app="validationOfferApp" >
 
-  	<div ng-include="'header.html'"></div>
+  	<div ng-include="'/ressources/header.html'"></div>
 
     <h2>Votre offre :</h2>
     
@@ -108,7 +108,7 @@
 			<label for="town">Ville* : </label>
 			<input type="text" name="town" ng-model="town" placeholder="Votre ville." ng-required="true">
 			<span style="color:red" ng-show="offerForm.town.$invalid && !offerForm.town.$pristine">
-			  <span ng-show="offerForm.town.$error.required">Veuillez saisir une ville.</span>
+			  <span ng-show="offerForm.town.$error.required">Veuillez saisir votre ville.</span>
 			</span>
 			<br>
 
@@ -117,6 +117,13 @@
 			<span style="color:red" ng-show="offerForm.cp.$invalid && !offerForm.cp.$pristine">
 			  <span ng-show="offerForm.cp.$error.required">Veuillez saisir un code postal.</span>
 			  <span ng-show="offerForm.cp.$error.pattern">Le code postal saisit est incorrect.</span>
+			</span>
+			<br>
+
+			<label for="country">Pays* : </label>
+			<input type="text" name="country" ng-model="country" placeholder="Votre pays." ng-required="true">
+			<span style="color:red" ng-show="offerForm.country.$invalid && !offerForm.country.$pristine">
+			  <span ng-show="offerForm.country.$error.required">Veuillez saisir votre pays.</span>
 			</span>
 			<br>
 
@@ -151,8 +158,8 @@
 	      
 	</form>
 
-	<script src="js/script-offre.js"></script>
-	<div ng-include="'footer.html'"></div>
+	<script src="/ressources/js/script-offre.js"></script>
+	<div ng-include="'/ressources/footer.html'"></div>
 	    
 	</body>
 </html>

@@ -1,4 +1,4 @@
-
+ 
 var validationApp = angular.module('validationOfferApp', []);
 
 validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
@@ -31,6 +31,18 @@ validationApp.controller('OfferController', function($scope) {
 			var date_string = $scope.date;
 			var date_repas = new Date(date_string);
 
+			var data_ville = {
+				nom : $scope.town,
+				cp : $scope.cp,
+				pays : $scope.country,
+			};
+
+			var adresse = {
+				voie : $scope.num + " " + $scope.street + " " + $scope.complementary,
+				ville : data_ville,
+			};
+
+
 		    var data = {
 		    	dateCreation : new Date().toLocaleString(),
 		    	titre : $scope.title,
@@ -43,7 +55,7 @@ validationApp.controller('OfferController', function($scope) {
 		    	ageMin : parseInt($scope.agemin), //optionnel
 		    	ageMax : parseInt($scope.agemax), //optionnel
 		    	animaux : Boolean($scope.animal),
-		    	//adresse : ???????,
+		    	adresse : adresse,
 		    	typeCuisine : $scope.cooktype,
 		    };
 
