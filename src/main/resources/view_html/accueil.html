@@ -4,16 +4,16 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<link rel="stylesheet" type="text/css" href="css/feedme_style.css" />
+		<link rel="stylesheet" type="text/css" href="/ressources/css/feedme_style.css" />
 		<title>Accueil</title>
-		<script src="js/angular.min.js"></script>
+		<script src="/ressources/js/angular.min.js"></script>
 	</head>
 	<body ng-app>
-		<div ng-include="'header.html'"></div>
+		<div ng-include="'/ressources/header.html'"></div>
 		<div id="bigButtonsWrapper">
-			<a onclick="window.location='offre.html'"><div class="big_button">Proposer un repas</div></a>
-			<a onclick="window.location='liste_offres.html'"><div class="big_button">Reserver un couvert</div></a>
+			<a onclick="window.location='/ressources/offre.html'"><div class="big_button">Proposer un repas</div></a>
+			<a onclick="window.location='/ressources/liste_offres.html'"><div class="big_button">Reserver un couvert</div></a>
 		</div>
-		<div ng-include="'footer.html'"></div>
+		<div ng-include="'/ressources/footer.html'"></div>
 	</body>
 </html>
