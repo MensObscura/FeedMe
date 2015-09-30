@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import fil.iagl.iir.entite.Authentification;
+import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
 
 public class AuthentificationServiceTest extends AbstractServiceTest {
@@ -52,23 +53,25 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
 
 	@Test
 	public void inscriptionTestSucces() throws Exception {
-		Authentification auth = createAuthentificationParticulier();
+		Authentification<Particulier> auth = createAuthentificationParticulier();
 
 		authentificationService.inscription(auth);
 
-		InOrder order = Mockito.inOrder(utilisateurDao, authentificationDao);
+		InOrder order = Mockito.inOrder(utilisateurDao, particulierDao, authentificationDao);
 
 		order.verify(utilisateurDao).sauvegarder(auth.getUtilisateur());
+		order.verify(particulierDao).sauvegarder(auth.getUtilisateur());
 		order.verify(authentificationDao).sauvegarder(auth);
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void inscriptionTestEchec() throws Exception {
-		Authentification auth = null;
+		Authentification<Particulier> auth = null;
 
 		authentificationService.inscription(auth);
 
 		Mockito.verify(utilisateurDao, Mockito.never()).sauvegarder(Mockito.any());
+		Mockito.verify(particulierDao, Mockito.never()).sauvegarder(Mockito.any());
 		Mockito.verify(authentificationDao, Mockito.never()).sauvegarder(Mockito.any());
 	}
 }

@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import fil.iagl.iir.AbstractFeedMeTest;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
 import fil.iagl.iir.dao.offre.OffreDao;
+import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.service.impl.AuthentificationServiceImpl;
@@ -32,6 +33,9 @@ public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 
 	@Mock
 	protected UtilisateurDao utilisateurDao;
+
+	@Mock
+	protected ParticulierDao particulierDao;
 
 	@Mock
 	protected ReservationDao reservationDao;
