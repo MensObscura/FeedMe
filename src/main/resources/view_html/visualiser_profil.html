@@ -5,12 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>FeedMe - Profil</title>
         <meta name="description" content="Visualisation du profil FeedMe">
-        <script src="ressources/js/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+        <script src="/ressources/js/angular.min.js"></script>
     </head>
     
     <body ng-app="ProfilApp">
-        <div ng-include="'ressources/header.html'"></div>
+        <div ng-include="'/ressources/header.html'"></div>
         
         <div id="profil" ng-controller="ProfilCtrl">
             <p>Nom: {{profil.nom}}<br/>
@@ -20,7 +19,7 @@
             
             Notes: Je suis très content d'être ici !</p>
         </div>
-        <script src="ressources/js/script-profil.js"></script>
-        <div ng-include="'ressources/footer.html'"></div>
+        <script src="/ressources/js/script-profil.js"></script>
+        <div ng-include="'/ressources/footer.html'"></div>
     </body>
 </html>
