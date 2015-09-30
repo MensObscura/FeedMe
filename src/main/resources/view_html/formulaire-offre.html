@@ -5,15 +5,15 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta http-equiv="x-ua-compatible" content="ie=edge">
 	    <title>Proposer une offre</title>
-	    <script src="ressources/js/angular.min.js"></script>
-	    <script src="ressources/js/jquery-2.1.4.min.js"></script>
-	    <script src="ressources/js/jquery.datetimepicker.js"></script>
+	    <script src="/ressources/js/angular.min.js"></script>
+	    <script src="/ressources/js/jquery-2.1.4.min.js"></script>
+	    <script src="/ressources/js/jquery.datetimepicker.js"></script>
 	    <link rel="stylesheet" type="text/css" href="ressources/css/jquery.datetimepicker.css"/ >
 
   	</head>
   	<body ng-app="validationOfferApp" >
 
-  	<div ng-include="'ressources/header.html'"></div>
+  	<div ng-include="'/ressources/header.html'"></div>
 
     <h2>Votre offre :</h2>
     
@@ -113,7 +113,7 @@
 			<br>
 
 			<label for="cp">Code Postal* : </label>
-			<input type="text" name="cp" ng-model="cp" ng-pattern="/[1-9][0-9A-B][0-9]{3}/" placeholder="Votre code postal." ng-required="true">
+			<input type="text" name="cp" ng-model="cp" ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/" placeholder="Votre code postal." ng-required="true">
 			<span style="color:red" ng-show="offerForm.cp.$invalid && !offerForm.cp.$pristine">
 			  <span ng-show="offerForm.cp.$error.required">Veuillez saisir un code postal.</span>
 			  <span ng-show="offerForm.cp.$error.pattern">Le code postal saisit est incorrect.</span>
@@ -158,8 +158,8 @@
 	      
 	</form>
 
-	<script src="ressources/js/script-offre.js"></script>
-	<div ng-include="'ressources/footer.html'"></div>
+	<script src="/ressources/js/script-offre.js"></script>
+	<div ng-include="'/ressources/footer.html'"></div>
 	    
 	</body>
 </html>
