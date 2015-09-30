@@ -11,7 +11,17 @@ validationApp.controller('ReservationController', function($scope) {
 		    	nombre : $scope.place,
 		    };
 
-		    $http.put('/reservations', data);
+		  $http({
+			url: 'http://localhost:8080/reservations',dataType: 'json',method: 'POST',data: data}
+
+			).success(function(response)
+			{
+				$scope.response = response;
+			}
+			).error(function(error)
+			{
+				$scope.error = error;
+			}
 
 
     }
