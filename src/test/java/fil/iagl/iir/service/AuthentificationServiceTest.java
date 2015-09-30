@@ -16,7 +16,7 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
 
 	@Test
 	public void loadUserByUsernameTestSucces() throws Exception {
-		Authentification auth = this.createAuthentification();
+		Authentification auth = this.createAuthentificationParticulier();
 
 		String username = auth.getUtilisateur().getMail();
 		String password = auth.getPassword();
@@ -52,7 +52,7 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
 
 	@Test
 	public void inscriptionTestSucces() throws Exception {
-		Authentification auth = createAuthentification();
+		Authentification auth = createAuthentificationParticulier();
 
 		authentificationService.inscription(auth);
 

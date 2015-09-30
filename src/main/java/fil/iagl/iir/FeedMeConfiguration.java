@@ -10,8 +10,14 @@ import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import fil.iagl.iir.entite.Role;
+import fil.iagl.iir.outils.JsonRoleDeserializer;
 
 @Configuration
 @MapperScan("fil.iagl.iir.dao")
@@ -32,6 +38,15 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 
 		sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
 		return sessionFactory.getObject();
+	}
+
+	@Bean
+	public Jackson2ObjectMapperBuilder jacksonBuilder() {
+		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+		builder.indentOutput(true);
+		builder.deserializerByType(Role.class, new JsonRoleDeserializer());
+		builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+		return builder;
 	}
 
 }

@@ -30,7 +30,9 @@ import org.springframework.transaction.annotation.Transactional;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
 import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Authentification;
+import fil.iagl.iir.entite.AuthentificationParticulier;
 import fil.iagl.iir.entite.Offre;
+import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Pays;
 import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.entite.Role;
@@ -173,21 +175,27 @@ public abstract class AbstractFeedMeTest {
 		return offre;
 	}
 
-	protected Authentification createAuthentification() {
+	protected Authentification<Particulier> createAuthentificationParticulier() {
 		Integer idUtilisateur = 2;
+		Integer idParticulier = 2;
 		String mail = "foo.bar@gmail.com";
 		String nom = "foo";
+		String prenom = "bar";
+		LocalDate dateNaissance = LocalDate.now().minusYears(20);
 
 		String password = RandomStringUtils.random(RANDOM_STRING_SIZE);
 		Role role = Role.PARTICULIER;
 
-		Utilisateur utilisateur = new Utilisateur();
+		Particulier utilisateur = new Particulier();
 
 		utilisateur.setIdUtilisateur(idUtilisateur);
+		utilisateur.setIdParticulier(idParticulier);
 		utilisateur.setMail(mail);
 		utilisateur.setNom(nom);
+		utilisateur.setPrenom(prenom);
+		utilisateur.setDateNaissance(dateNaissance);
 
-		Authentification authentification = new Authentification();
+		Authentification<Particulier> authentification = new AuthentificationParticulier();
 		authentification.setUtilisateur(utilisateur);
 		authentification.setPassword(password);
 		authentification.setRole(role);
