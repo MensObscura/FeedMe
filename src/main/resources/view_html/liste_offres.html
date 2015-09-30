@@ -5,10 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>Liste des réservations</title>
-		<script src="/ressources/js/angular.min.js"></script>
-		<script src="/ressources/js/script_list_offre.js"></script>
+		<script src="ressources/js/angular.min.js"></script>
+		<script src="ressources/js/script_list_offre.js"></script>
 		<body ng-app="ListApp">
-			<div ng-include="'/ressources/header.html'"></div>
+			<div ng-include="'ressources/header.html'"></div>
 			<div ng-controller="ListCtrl">
 			<ul ng-repeat="item in list">
 				<li>
@@ -24,7 +24,7 @@
 							{{item.prix}}
 						</p>
 						<p>
-							{{item.nombrePersonne}}
+							{{item.nombreRestant}}
 						</p>
 						<p>
 							{{item.dateRepas}}
@@ -33,6 +33,6 @@
 				</li>
 			</ul>
 			</div>
-			<div ng-include="'/ressources/footer.html'"></div>
+			<div ng-include="'ressources/footer.html'"></div>
 		</body>
 	</html>

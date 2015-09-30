@@ -5,55 +5,56 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>My Example</title>
-		<script src="/ressources/js/angular.min.js"></script>
+		<script src="ressources/js/angular.min.js"></script>
 	</head>
-	<body ng-app="ReservationApp">
-		<div ng-include="'/ressources/header.html'"></div>
-		<h2>Titre </h2>
-		<form name="ReservationForm" ng-controller="ReservationController" ng-submit="submitForm()" novalidate>
+	<body ng-app="ListApp">
+		<div ng-include="'ressources/header.html'"></div>
+		<div ng-controller="ReservationController">
+		<h2>{{offre.titre}} </h2>
+		<form name="ReservationForm" ng-submit="submitForm()" novalidate>
 			<fieldset>
 				<legend>
 					Le repas
 				</legend>
-				<h3>Prénom Nom </h3>
+				<h3>{{offre.hote.prenom}} {{offre.hote.nom}}</h3>
 				<fieldset>
 					<legend>
 						Lieu
 					</legend>
-					<h3>Ville</h3>
+					<h3>{{offre.addresse.ville.nom}}</h3>
 					<p>
-						N° Rue 
+						{{offre.adresse.voie}}
 					</p>
 					<p>
-						Compléments :  bal bla bla bla bla
+						Compléments :  
 					</p>
 				</fieldset>
-				<label for="price">Prix XX € </label>
+				<label for="price">Prix {{offre.prix}} € </label>
 				<br/>
-				<label for="date">Date : "jj/mm/aaaa hh:mm"</label>
+				<label for="date">Date : {{offre.dateRepas}}</label>
 				<p for="menu">
-					Menu : 
+					Menu : {{offre.menu}}
 				</p>
-				<label for="cooktype">Type de cuisine  </label>
+				<label for="cooktype">Type de cuisine : {{offre.typeCuisine}}  </label>
 				<br/>
-				<label for="nb_persons">Nombre de couverts : Restant/Nombre de couverts.</label>
+				<label for="nb_persons">Nombre de couverts : {{offre.nombreRestant}}/{{offre.nombrePersonne}}.</label>
 				<br/>
-				<label for="time">Durée XX h </label>
+				<label for="time">Durée {{offre.dureeMinute}} h </label>
 			</fieldset>
 			<fieldset>
 				<legend>
 					Divers
 				</legend>
-				<label for="animal">Présence d'un animal </label>
+				<label for="animal">Présence d'un animal {{offre.animaux}} </label>
 				<br/>
-				<label for="tranche_age">Tranche d'age : XX-XX </label>
+				<label for="tranche_age">Tranche d'age : {{offre.ageMin}}-{{offre.ageMax}} </label>
 				<p for="notes">
-					Notes : bla bla bla
+					Notes : {{offre.note}}
 				</p>
 			</fieldset>
-			<div ng-init="max=5"> <!-- ATTENTION MAX A MODIFIER A L'AVENIR !!!!-->
+			<div "> 
 				<label for="nb_places">Reserver
-					<input type="number" name="place" ng-model="place" step="0" ng-required="true" ng-min="1" ng-max="{{max}}" id="Nbplace" value="n"> couvert(s)
+					<input type="number" name="place" ng-model="place" step="0" ng-required="true" ng-min="1" ng-max="{{offre.nombreRestant}}" id="Nbplace" value="n"> couvert(s)
 					<span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
 						<span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
 						<span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
@@ -64,8 +65,9 @@
 				<input type="submit" ng-disabled="ReservationForm.$invalid" value="Reserver">
 			</div>
 		</form>
-
-		<script src="/ressources/js/script-reservation.js"></script>
-		<div ng-include="'/ressources/footer.html'"></div>
+		</div>
+		<script src="ressources/js/script_list_offre.js"></script>
+		<script src="ressources/js/script-reservation.js"></script>
+		<div ng-include="'ressources/footer.html'"></div>
 	</body>
 </html>
