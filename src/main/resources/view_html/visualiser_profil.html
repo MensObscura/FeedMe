@@ -8,16 +8,18 @@
         <script src="/ressources/js/angular.min.js"></script>
     </head>
     
-    <body ng-app>
+    <body ng-app="ProfilApp">
         <div ng-include="'/ressources/header.html'"></div>
         
-        <p>Nom: Jean<br/>
-        Prénom: Dupotager<br />
-        Âge: 31 ans<br />
-        e-m@il: jean.dupotager@leposte.com<br/>
-        
-        Notes: Je suis très content d'être ici !</p>
-        
+        <div id="profil" ng-controller="ProfilCtrl">
+            <p>Nom: {{profil.nom}}<br/>
+            Prénom: {{profil.prenom}}<br />
+            Âge: {{profil.age}}<br />
+            e-m@il: {{profil.email}}<br/>
+            
+            Notes: Je suis très content d'être ici !</p>
+        </div>
+        <script src="/ressources/js/script-profil.js"></script>
         <div ng-include="'/ressources/footer.html'"></div>
     </body>
 </html>
