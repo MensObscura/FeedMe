@@ -18,6 +18,9 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
 
 	@InjectMocks
 	protected UtilisateurController utilisateurController;
+	
+	@InjectMocks
+	protected ReservationController reservationController;
 
 	@Autowired
 	protected WebApplicationContext wac;

@@ -33,5 +33,6 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 		sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
 		return sessionFactory.getObject();
 	}
+	
 
 }

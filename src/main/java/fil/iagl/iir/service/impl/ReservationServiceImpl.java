@@ -1,5 +1,7 @@
 package fil.iagl.iir.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,13 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.getConvive().setIdUtilisateur(FeedMeSession.getIdUtilisateurConnecte());
 
 		this.reservationDao.sauvegarder(reservation);
+	}
+
+	public List<Reservation> getAllReservationByOffre(Integer offreId) {
+		if (offreId == null) {
+			throw new RuntimeException("Parametre null");
+		}
+		return reservationDao.getAllByIdOffre(offreId);
 	}
 
 }

@@ -2,8 +2,10 @@ package fil.iagl.iir.dao;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 import org.fest.assertions.api.Assertions;
+import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -14,8 +16,11 @@ import fil.iagl.iir.outils.SQLCODE;
 
 public class ReservationDaoTest extends AbstractDaoTest {
 
-	private static final int NB_RESERVATION_OFFRE_ID_1 = 1;
-
+	private static final Integer OFFRE_ID_1 = 1;
+	private static final Integer OFFRE_ID_4 = 4;
+	private static final Integer NB_RESERVATION_OFFRE_ID_1 = 1;
+	private static final Integer NB_RESERVATION_OFFRE_ID_4 = 2;
+	
 	@Test
 	public void sauvegarderTestSucces() throws Exception {
 		Integer idOffre = 1;
@@ -191,9 +196,16 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void getAllByIdOffreTestSucces() throws Exception {
-		Integer idOffre = 1;
-		Assertions.assertThat(this.reservationDao.getAllByIdOffre(idOffre)).isNotEmpty()
-				.hasSize(NB_RESERVATION_OFFRE_ID_1);
+		List<Reservation> reservations = this.reservationDao.getAllByIdOffre(OFFRE_ID_4);
+		Assertions.assertThat(reservations).isNotEmpty()
+				.hasSize(NB_RESERVATION_OFFRE_ID_4);
+		
+		Assertions.assertThat(reservations).are(new Condition<Reservation>() {
+			@Override
+			public boolean matches(Reservation reseration) {
+				return reseration.getOffre().getId().equals(OFFRE_ID_4);
+			}
+		});
 	}
 
 	@Test

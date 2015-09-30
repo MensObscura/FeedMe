@@ -8,6 +8,7 @@ import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeSession;
 
+
 public class ReservationServiceTest extends AbstractServiceTest {
 
 	@Mock
@@ -28,8 +29,22 @@ public class ReservationServiceTest extends AbstractServiceTest {
 
 	@Test(expected = RuntimeException.class)
 	public void sauvegarderTestEchec() throws Exception {
+
 		reservationService.sauvegarder(null);
 		Mockito.verify(reservationDao, Mockito.never()).sauvegarder(Mockito.any());
+	}
+	
+	@Test
+	public void getAllReservationByOffreIdTestSuccess() throws Exception {
+		Integer idOffre = 4;
+		reservationService.getAllReservationByOffre(idOffre);
+		Mockito.verify(reservationDao, Mockito.times(1)).getAllByIdOffre(idOffre);
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void getAllReservationByOffreIdFail() throws Exception {
+		reservationService.getAllReservationByOffre(null);
+		Mockito.verify(reservationDao, Mockito.never()).getAllByIdOffre(Mockito.any());
 	}
 
 }

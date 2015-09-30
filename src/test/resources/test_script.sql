@@ -41,28 +41,32 @@ INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
 -- ---------------------------
 -- Table VILLE
 -- ---------------------------
-INSERT INTO VILLE (vil_nom, vil_cp, vil_pay_id) VALUES ('Lille', '59000', 1); -- ID 1
+INSERT INTO VILLE (vil_nom, vil_cp, vil_pay_id) VALUES
+('Lille', '59000', 1), -- ID 1
+('Lille', '59000', 1); -- ID 2
 
 -- ---------------------------
 -- Table ADRESSE
 -- ---------------------------
-INSERT INTO ADRESSE (adr_voie, adr_vil_id) VALUES ('4 rue guillaume apollinaire', 1);
+INSERT INTO ADRESSE (adr_voie, adr_vil_id) VALUES
+('4 rue guillaume apollinaire', 1), -- ID 1
+('4 rue guillaume apollinaire', 1); -- ID 2
 
-
--- Donnees pour AdresseDao
-INSERT INTO VILLE (vil_nom, vil_cp, vil_pay_id)
-VALUES ('Lille', '59000', 1);
-
-INSERT INTO ADRESSE (adr_voie, adr_vil_id)
-VALUES ('4 rue guillaume apollinaire', 1);
+-- ---------------------------
+-- Table OFFRE
+-- ---------------------------
 
 INSERT INTO offre(off_date_creation, off_titre, off_prix, off_nombre_personne, off_duree_minute, off_date_repas, off_menu, off_animaux, off_note, off_age_min, off_age_max, off_adr_id, off_typ_id, off_usr_id) VALUES
-('2015-01-01', 'MonTitre', 999, 5, 120, '2015-02-01 19:45:00', 'DescriptionDuMenu', FALSE, 0, 20, 30, 1, 3, 1),
-('2015-02-01', 'MonTitre2', 999, 5, 120, '2015-03-01 21:00:00', 'DescriptionDuMenu', FALSE, 0, 30, 50, 1, 3, 2),
-('2015-03-01', 'MonTitre3', 999, 5, 120, '2015-04-01 20:30:00', 'DescriptionDuMenu', FALSE, 0, 20, 99, 1, 3, 3);
+('2015-01-01', 'MonTitre', 999, 5, 120, '2015-02-01 19:45:00', 'DescriptionDuMenu', FALSE, 0, 20, 30, 1, 3, 1), -- ID 1
+('2015-02-01', 'MonTitre2', 999, 5, 120, '2015-03-01 21:00:00', 'DescriptionDuMenu', FALSE, 0, 30, 50, 1, 3, 2), -- ID 2
+('2015-03-01', 'MonTitre3', 999, 5, 120, '2015-04-01 20:30:00', 'DescriptionDuMenu', FALSE, 0, 20, 99, 1, 3, 3), -- ID 3
+('2015-01-01', 'MonTitre', 999, 5, 120, '2015-02-01 19:45:00', 'DescriptionDuMenu', FALSE, 0, 20, 30, 1, 3, 1); -- ID 4
 
 -- ---------------------------
 -- Table RESERVATION
 -- ---------------------------
 INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation) VALUES
-(1, 1, CURRENT_TIMESTAMP );
+(1, 1, CURRENT_TIMESTAMP ), -- ID 1
+(4, 1, CURRENT_TIMESTAMP ), -- ID 2
+(4, 2, CURRENT_TIMESTAMP ); -- ID 3
+
