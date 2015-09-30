@@ -32,7 +32,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 	@Test
 	public void sauvegarderTestSucces() throws Exception {
 
-		Authentification authentification = this.createAuthentification();
+		Authentification authentification = this.createAuthentificationParticulier();
 
 		this.authentificationDao.sauvegarder(authentification);
 
@@ -42,7 +42,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void sauvegarderTestEchec_IdUtilisateurNull() throws Exception {
-		Authentification authentification = this.createAuthentification();
+		Authentification authentification = this.createAuthentificationParticulier();
 		authentification.getUtilisateur().setIdUtilisateur(null);
 
 		try {
@@ -55,7 +55,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void sauvegarderTestEchec_PasswordNull() throws Exception {
-		Authentification authentification = this.createAuthentification();
+		Authentification authentification = this.createAuthentificationParticulier();
 		authentification.setPassword(null);
 
 		try {
@@ -68,7 +68,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void sauvegarderTestEchec_RoleNull() throws Exception {
-		Authentification authentification = this.createAuthentification();
+		Authentification authentification = this.createAuthentificationParticulier();
 		authentification.setRole(null);
 
 		try {
@@ -81,7 +81,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void sauvegarderTestEchec_IdUtilisateurNonExistant() throws Exception {
-		Authentification authentification = this.createAuthentification();
+		Authentification authentification = this.createAuthentificationParticulier();
 		authentification.getUtilisateur().setIdUtilisateur(Integer.MAX_VALUE);
 
 		try {
@@ -95,7 +95,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 	@Test
 	public void sauvegarderTestEchec_UsernameUnique() throws Exception {
 		Integer idUtilisateur = 1;
-		Authentification authentification = this.createAuthentification();
+		Authentification authentification = this.createAuthentificationParticulier();
 		authentification.getUtilisateur().setIdUtilisateur(idUtilisateur);
 
 		try {

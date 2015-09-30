@@ -11,8 +11,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
+import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Authentification;
+import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.service.AuthentificationService;
 
 @Service
@@ -23,6 +25,9 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 
 	@Autowired
 	private UtilisateurDao utilisateurDao;
+
+	@Autowired
+	private ParticulierDao particulierDao;
 
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
@@ -39,11 +44,12 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 	}
 
 	@Override
-	public void inscription(Authentification authentification) {
+	public void inscription(Authentification<Particulier> authentification) {
 		if (authentification == null) {
 			throw new RuntimeException("Parametre null");
 		}
 		utilisateurDao.sauvegarder(authentification.getUtilisateur());
+		particulierDao.sauvegarder(authentification.getUtilisateur());
 		authentificationDao.sauvegarder(authentification);
 	}
 
