@@ -20,7 +20,7 @@ $('#birthday').datetimepicker({
   maxDate:'0',
 });
 
-validationApp.controller('InscriptionController', function($scope) {  
+validationApp.controller('InscriptionController', function($scope, $http) {  
 
   $scope.disbutton = function() {
 	return $scope.InscriptionForm.$invalid || $('#birthday').val() == "";
@@ -28,7 +28,6 @@ validationApp.controller('InscriptionController', function($scope) {
 
   $scope.submitForm = function() {
     if ($scope.InscriptionForm.$valid) {
-      console.log($('#birthday').val()+" "+$scope.user_email);
       
       var data = {
       	nom : $scope.lastname,
@@ -38,7 +37,21 @@ validationApp.controller('InscriptionController', function($scope) {
       	dateNaissance : $scope.birthday,
       };
       
-      $http.put('/inscription', data);
+     $http(
+	{
+	url: 'http://localhost:8080/inscription',dataType: 'json',method: 'POST',data: data}
+
+	).success(function(response)
+	{
+		$scope.response = response;
+	}
+
+	).error(function(error)
+	{
+		$scope.error = error;
+	}
+
+	);
     }
 
   };

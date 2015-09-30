@@ -19,7 +19,7 @@ $('#datetimepicker').datetimepicker({
 });
 
 
-validationApp.controller('OfferController', function($scope) {
+validationApp.controller('OfferController', function($scope,$http) {
 
   $scope.disbutton = function() {
 	return $scope.offerForm.$invalid || $('#datetimepicker').val() == "";
@@ -46,7 +46,7 @@ validationApp.controller('OfferController', function($scope) {
 		    var data = {
 		    	dateCreation : new Date().toLocaleString(),
 		    	titre : $scope.title,
-		    	prix : Double.parseDouble($scope.price),
+		    	prix : parseFloat($scope.price),
 		    	nombrePersonne : parseInt($scope.nbpers),
 		    	dureeMinute : parseInt($scope.time), // optionnel
 		    	dateRepas : date_repas.toUTCString() ,
@@ -59,7 +59,22 @@ validationApp.controller('OfferController', function($scope) {
 		    	typeCuisine : $scope.cooktype,
 		    };
 
-		    $http.put('/offres', data);
+		    $http(
+		{
+		url: 'http://localhost:8080/offres',dataType: 'json',method: 'POST',data: data}
+
+		).success(function(response)
+		{
+			$scope.response = response;
+		}
+
+		).error(function(error)
+		{
+			$scope.error = error;
+		}
+
+		);
+
 
 		}
 
