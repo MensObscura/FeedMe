@@ -29,6 +29,16 @@ validationApp.controller('InscriptionController', function($scope) {
   $scope.submitForm = function() {
     if ($scope.InscriptionForm.$valid) {
       console.log($('#birthday').val()+" "+$scope.user_email);
+      
+      var data = {
+      	nom : $scope.lastname,
+      	prenom : $scope.firstname,
+      	password : $scope.password,
+      	mail : $scope.user_email,
+      	dateNaissance : $scope.birthday,
+      };
+      
+      $http.put('/inscription', data);
     }
 
   };
