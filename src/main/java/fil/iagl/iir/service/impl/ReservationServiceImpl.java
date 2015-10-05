@@ -17,13 +17,14 @@ public class ReservationServiceImpl implements ReservationService {
 	private ReservationDao reservationDao;
 
 	@Override
-	public void sauvegarder(Reservation reservation) {
+	public Integer sauvegarder(Reservation reservation) {
 		if (reservation == null) {
 			throw new RuntimeException("Parametre null");
 		}
 		reservation.getConvive().setIdUtilisateur(FeedMeSession.getIdUtilisateurConnecte());
 
-		this.reservationDao.sauvegarder(reservation);
+		return this.reservationDao.sauvegarder(reservation);
+		
 	}
 
 	public List<Reservation> getAllReservationByOffre(Integer offreId) {

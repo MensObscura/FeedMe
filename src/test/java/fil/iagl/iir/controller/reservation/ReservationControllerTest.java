@@ -2,7 +2,11 @@ package fil.iagl.iir.controller.reservation;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.LocalDate;
 
 import org.json.JSONObject;
 import org.junit.Before;
@@ -18,26 +22,32 @@ import fil.iagl.iir.entite.Utilisateur;
 
 
 public class ReservationControllerTest extends AbstractControllerTest{
-	
+
 	@Before
 	public void init(){
 		MockitoAnnotations.initMocks(this);
 		this.mockMvc = MockMvcBuilders.standaloneSetup(this.reservationController).setMessageConverters(new MappingJackson2HttpMessageConverter()).build();
-
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac)
+				.build();
 	}
-	
+
 	@Test
 	public void enregistrerReservationTestSuccess() throws Exception{
-		Reservation r = this.createReservation();		
-		mockMvc.perform(put("/reservation").contentType(FEED_ME_MEDIA_TYPE).content("{ \"convive\" : {\"nom\" : \"toto\", \"mail\" : \"monemail@toto.fr\" }}"))
-			    .andDo(print())
-			    .andExpect(status().isOk());
+		Reservation r = this.createReservation();
+		JSONObject json = new JSONObject(r);
+		mockMvc.perform(put("/reservation").contentType(FEED_ME_MEDIA_TYPE).content(json.toString()))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+		.andExpect(jsonPath("$.id").value(4))
+		.andExpect(jsonPath("$.offre.id").value(2))
+		.andExpect(jsonPath("$.dateReservation").value(LocalDate.now().toString()))
+		.andExpect(jsonPath("$.convive.idUtilisateur").value(1));
 	}
-	
+
 	@Test
 	public void enregistrerReservationTestFail() throws Exception {
-		Reservation r = this.createReservation();
-//		mockMvc.perform(put("/reservation").contentType(FEED_ME_MEDIA_TYPE).content());
+		mockMvc.perform(put("/reservation")).andExpect(status().isBadRequest());	
 	}
 
 }

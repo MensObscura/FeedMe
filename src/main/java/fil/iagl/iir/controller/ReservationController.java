@@ -17,8 +17,8 @@ public class ReservationController {
 	private ReservationService reservation;
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public boolean reserver	(@RequestBody Reservation res){
+	public Reservation reserver	(@RequestBody Reservation res){
 		reservation.sauvegarder(res);
-		return true;
+		return res;
 	}
 }
