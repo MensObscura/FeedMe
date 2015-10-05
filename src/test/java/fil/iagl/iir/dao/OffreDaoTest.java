@@ -12,7 +12,7 @@ import fil.iagl.iir.outils.SQLCODE;
 
 public class OffreDaoTest extends AbstractDaoTest {
 
-	private static final int NB_OFFRE = 3;
+	private static final int NB_OFFRE = 4;
 
 	@Test
 	public void getAllTestSucces() throws Exception {
