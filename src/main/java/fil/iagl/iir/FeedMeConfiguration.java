@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -35,6 +36,10 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
+
+
+		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+		sessionFactory.setMapperLocations(resolver.getResources("classpath*:**/mapper/*.xml"));
 
 		sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
 		return sessionFactory.getObject();
