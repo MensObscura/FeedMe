@@ -2,8 +2,8 @@ var app = angular.module("ListApp", []);
 var page_data;
 
 app.controller("ListCtrl", function($scope, $http, $location,srvShareData) {
-	/*$http.get('http://localhost:8080/offres').success(*/
-	$http.get('ressources/js/list.json').success(
+	$http.get('http://localhost:8080/offres').success(
+	/*$http.get('ressources/js/list.json').success(*/
 		function(data) {
 			$scope.list = data;
 		}
