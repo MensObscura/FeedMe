@@ -5,10 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>My Example</title>
-		<script src="/ressources/js/angular.min.js"></script>
+		<script src="/public/resources/js/angular.min.js"></script>
 	</head>
 	<body ng-app="ListApp">
-		<div ng-include="'/ressources/header.html'"></div>
+		<div ng-include="'/public/resources/header.html'"></div>
 		<div ng-controller="ReservationController">
 		<h2>{{offre.titre}} </h2>
 		<form name="ReservationForm" ng-submit="submitForm()" novalidate>
@@ -66,8 +66,8 @@
 			</div>
 		</form>
 		</div>
-		<script src="/ressources/js/script_list_offre.js"></script>
-		<script src="/ressources/js/script-reservation.js"></script>
-		<div ng-include="'/ressources/footer.html'"></div>
+		<script src="/public/resources/js/script_list_offre.js"></script>
+		<script src="/public/resources/js/script-reservation.js"></script>
+		<div ng-include="'/public/resources/footer.html'"></div>
 	</body>
 </html>
