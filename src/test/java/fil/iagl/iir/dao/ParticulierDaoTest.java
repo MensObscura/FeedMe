@@ -39,6 +39,32 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 		Assertions.assertThat(particulierDao.getById(null)).isNull();
 		Assertions.assertThat(particulierDao.getById(Integer.MAX_VALUE)).isNull();
 	}
+	
+	@Test
+	public void getParticulierByUtilisateurIdTestSuccess() throws Exception {
+		Integer idUtilisateur=1;
+		String nom="toto";
+		String mail="toto.toto@gmail.com";
+		
+		Integer idParticulier=1;
+		String prenom="titi";
+		LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 31);
+
+		Particulier p = particulierDao.getParticulierByUtilisateurId(idUtilisateur);
+		Assertions.assertThat(p).isNotNull();
+		Assertions.assertThat(p.getIdParticulier()).isPositive().isNotNull().isEqualTo(idParticulier);
+		Assertions.assertThat(p.getNom()).isNotNull().isEqualTo(nom);
+		Assertions.assertThat(p.getMail()).isNotNull().isEqualTo(mail);
+		Assertions.assertThat(p.getIdParticulier()).isNotNull().isPositive().isEqualTo(idParticulier);
+		Assertions.assertThat(p.getPrenom()).isNotNull().isEqualTo(prenom);
+		Assertions.assertThat(p.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
+	}
+	
+	@Test
+	public void getParticulierByUtilisateurIdTestFail() throws Exception {
+		Assertions.assertThat(particulierDao.getParticulierByUtilisateurId(null)).isNull();
+		Assertions.assertThat(particulierDao.getParticulierByUtilisateurId(Integer.MAX_VALUE)).isNull();
+	}
 
 	@Test
 	public void sauvegarderTestSucces() throws Exception {
