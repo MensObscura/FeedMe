@@ -8,8 +8,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 import fil.iagl.iir.AbstractFeedMeTest;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
+import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.service.AuthentificationService;
+import fil.iagl.iir.service.OffreService;
 import fil.iagl.iir.service.UtilisateurService;
 
 public abstract class AbstractControllerTest extends AbstractFeedMeTest {
@@ -23,6 +25,12 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
 	protected AuthentificationService authentificationService;
 
 	@Mock
+	protected OffreService offreService;
+
+	@Mock
+	protected OffreDao offreDao;
+
+	@Mock
 	protected UtilisateurDao utilisateurDao;
 
 	@Mock
@@ -33,6 +41,9 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
 	
 	@InjectMocks
 	protected ReservationController reservationController;
+
+	@InjectMocks
+	protected OffreController offreController;
 
 	@Autowired
 	protected WebApplicationContext wac;

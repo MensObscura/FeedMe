@@ -3,12 +3,14 @@ package fil.iagl.iir.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.service.OffreService;
 
+@Service
 public class OffreServiceImpl implements OffreService {
 
 	@Autowired

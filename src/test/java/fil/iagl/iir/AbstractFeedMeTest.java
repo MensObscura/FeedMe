@@ -133,7 +133,7 @@ public abstract class AbstractFeedMeTest {
 		Integer prix = 999;
 		Integer nombrePersonne = 5;
 		Integer dureeMinute = 120;
-		LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 00);
+		LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 0);
 		String menu = "DescriptionDuMenu";
 		Boolean animaux = Boolean.FALSE;
 
@@ -155,6 +155,7 @@ public abstract class AbstractFeedMeTest {
 		Adresse adresse = new Adresse();
 		adresse.setId(idAdresse);
 		adresse.setVille(ville);
+		adresse.setVoie("Voie");
 
 		TypeCuisine typeCuisine = new TypeCuisine();
 		typeCuisine.setId(idTypeCuisine);
