@@ -30,5 +30,10 @@
 		<include refid="select_all_columns_particulier_utilisateur"/>
 		WHERE prt_id = #{id}
 	</select>
+	
+	<select id="getParticulierByUtilisateurId" resultMap="Particulier_ResultMap">
+		<include refid="select_all_columns_particulier_utilisateur"/>
+		WHERE usr_id = #{id}
+	</select>
 
 </mapper>

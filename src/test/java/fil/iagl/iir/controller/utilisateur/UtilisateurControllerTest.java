@@ -1,5 +1,6 @@
 package fil.iagl.iir.controller.utilisateur;
 
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -95,6 +96,28 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 	@Test
 	public void inscriptionTestEchec() throws Exception {
 		mockMvc.perform(put("/utilisateur/particulier")).andExpect(status().isBadRequest());
+	}
+	
+	@Test
+	public void afficherProfilEnSessionSuccess() throws Exception {
+		Utilisateur utilisateur = createUtilisateur();
+		Particulier particulier = new Particulier();
+		String prenom = "titi";
+		LocalDate dateNaissance = LocalDate.of(2015, 01, 31);
+		particulier.setDateNaissance(dateNaissance);
+		particulier.setIdParticulier(1);
+		particulier.setIdUtilisateur(utilisateur.getIdUtilisateur());
+		particulier.setMail(utilisateur.getMail());
+		particulier.setNom(utilisateur.getNom());
+		particulier.setPrenom(prenom);
+		
+		mockMvc.perform(get("/utilisateur/particulier/profil")).andExpect(status().isOk())
+		.andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+		.andExpect(jsonPath("$.nom").value(utilisateur.getNom()))
+		.andExpect(jsonPath("$.mail").value(utilisateur.getMail()))
+		.andExpect(jsonPath("$.idUtilisateur").value(utilisateur.getIdUtilisateur()))
+		.andExpect(jsonPath("$.prenom").value(prenom))
+		.andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()));
 	}
 
 }
