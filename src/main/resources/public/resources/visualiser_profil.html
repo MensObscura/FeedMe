@@ -5,19 +5,21 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>FeedMe - Profil</title>
         <meta name="description" content="Visualisation du profil FeedMe">
-        <script src="js/angular.min.js"></script>
+        <script src="/ressources/js/angular.min.js"></script>
     </head>
     
-    <body ng-app>
-        <div ng-include="'header.html'"></div>
+    <body ng-app="ProfilApp">
+        <div ng-include="'/ressources/header.html'"></div>
         
-        <p>Nom: Jean<br/>
-        Prénom: Dupotager<br />
-        Âge: 31 ans<br />
-        e-m@il: jean.dupotager@leposte.com<br/>
-        
-        Notes: Je suis très content d'être ici !</p>
-        
-        <div ng-include="'footer.html'"></div>
+        <div id="profil" ng-controller="ProfilCtrl">
+            <p>Nom: {{profil.nom}}<br/>
+            Prénom: {{profil.prenom}}<br />
+            Âge: {{profil.age}}<br />
+            e-m@il: {{profil.email}}<br/>
+            
+            Notes: Je suis très content d'être ici !</p>
+        </div>
+        <script src="/ressources/js/script-profil.js"></script>
+        <div ng-include="'/ressources/footer.html'"></div>
     </body>
 </html>

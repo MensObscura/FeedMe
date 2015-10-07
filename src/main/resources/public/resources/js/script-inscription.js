@@ -12,16 +12,46 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
   };
  }]);
 
-$('#datetimepicker').datetimepicker({
+ 
+ 
+$('#birthday').datetimepicker({
   format: "Y/m/d",
   timepicker: false,
+  maxDate:'0',
 });
 
-validationApp.controller('InscriptionController', function($scope) {  
+validationApp.controller('InscriptionController', function($scope, $http) {  
+
+  $scope.disbutton = function() {
+	return $scope.InscriptionForm.$invalid || $('#birthday').val() == "";
+  };
 
   $scope.submitForm = function() {
     if ($scope.InscriptionForm.$valid) {
-      console.log("good");
+      
+      var data = {
+      	nom : $scope.lastname,
+      	prenom : $scope.firstname,
+      	password : $scope.password,
+      	mail : $scope.user_email,
+      	dateNaissance : $scope.birthday,
+      };
+      
+     $http(
+	{
+	url: 'http://localhost:8080/inscription',dataType: 'json',method: 'POST',data: data}
+
+	).success(function(response)
+	{
+		$scope.response = response;
+	}
+
+	).error(function(error)
+	{
+		$scope.error = error;
+	}
+
+	);
     }
 
   };
