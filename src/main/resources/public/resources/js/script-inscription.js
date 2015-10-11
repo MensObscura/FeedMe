@@ -37,21 +37,16 @@ validationApp.controller('InscriptionController', function($scope, $http) {
       	dateNaissance : $scope.birthday,
       };
       
-     $http(
-	{
-	url: 'http://localhost:8080/inscription',dataType: 'json',method: 'POST',data: data}
 
-	).success(function(response)
-	{
-		$scope.response = response;
-	}
 
-	).error(function(error)
-	{
-		$scope.error = error;
-	}
+       $http.put('http://localhost:8080/utilisateur/particulier',data)
+         .success(function (data, status, headers) {
+            $scope.ServerResponse = data;
+          })
+          .error(function (data, status, header, config) {
 
-	);
+          });
+
     }
 
   };

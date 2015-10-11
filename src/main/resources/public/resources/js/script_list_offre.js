@@ -3,7 +3,6 @@ var page_data;
 
 app.controller("ListCtrl", function($scope, $http, $location,srvShareData) {
 	$http.get('http://localhost:8080/offres').success(
-	/*$http.get('ressources/js/list.json').success(*/
 		function(data) {
 			$scope.list = data;
 		}
@@ -58,20 +57,16 @@ app.controller('ReservationController', function($scope, $http, srvShareData) {
      
     	 var data = {
 		    	nombre : $scope.place,
+                offre : $scope.offre,
 		    };
 
-		  $http({
-			url: 'http://localhost:8080/reservations',dataType: 'json',method: 'POST',data: data}
+        $http.put('http://localhost:8080/reservation',data)
+            .success(function (data, status, headers) {
+                $scope.ServerResponse = data;
+            })
+            .error(function (data, status, header, config) {
 
-			).success(function(response)
-			{
-				$scope.response = response;
-			}
-			).error(function(error)
-			{
-				$scope.error = error;
-			})
-
+            });
 
     }
 

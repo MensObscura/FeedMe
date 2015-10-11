@@ -31,15 +31,23 @@ validationApp.controller('OfferController', function($scope,$http) {
 			var date_string = $scope.date;
 			var date_repas = new Date(date_string);
 
+			var pays = {
+				nom : $scope.country,
+			};
+
 			var data_ville = {
 				nom : $scope.town,
 				cp : $scope.cp,
-				pays : $scope.country,
+				pays : pays,
 			};
 
 			var adresse = {
 				voie : $scope.num + " " + $scope.street + " " + $scope.complementary,
 				ville : data_ville,
+			};
+
+			var typeCuisine = {
+				typeCuisine : $scope.cooktype,
 			};
 
 
@@ -56,24 +64,16 @@ validationApp.controller('OfferController', function($scope,$http) {
 		    	ageMax : parseInt($scope.agemax), //optionnel
 		    	animaux : Boolean($scope.animal),
 		    	adresse : adresse,
-		    	typeCuisine : $scope.cooktype,
+		    	typeCuisine : typeCuisine,
 		    };
 
-		    $http(
-		{
-		url: 'http://localhost:8080/offres',dataType: 'json',method: 'POST',data: data}
+			$http.put('http://localhost:8080/offres',data)
+            .success(function (data, status, headers) {
+                $scope.ServerResponse = data;
+            })
+            .error(function (data, status, header, config) {
 
-		).success(function(response)
-		{
-			$scope.response = response;
-		}
-
-		).error(function(error)
-		{
-			$scope.error = error;
-		}
-
-		);
+            });
 
 
 		}
