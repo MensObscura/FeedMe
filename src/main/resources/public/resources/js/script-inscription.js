@@ -15,7 +15,7 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
  
  
 $('#birthday').datetimepicker({
-  format: "Y/m/d",
+  format: "Y-m-d",
   timepicker: false,
   maxDate:'0',
 });
@@ -37,20 +37,23 @@ validationApp.controller('InscriptionController', function($scope, $http) {
         dateNaissance : $('#birthday').val(),
       };
 
-      var data = {
+      var data_user = {
         utilisateur : utilisateur,
         password : $scope.password,
+        role : ??,
       };
-      
 
+      $http({
+        method: 'PUT',
+        url: 'http://localhost:8080/utilisateur/particulier',
+        contentType: "application/json",
+        data: data_user
+     }).success(function(response, status, headers, config){
+           console.log(response);
+      }).error(function(err, status, headers, config){
+           console.log(err.message);
+      });
 
-       $http.put('http://localhost:8080/utilisateur/particulier',data)
-         .success(function (data, status, headers) {
-            $scope.ServerResponse = data;
-          })
-          .error(function (data, status, header, config) {
-
-          });
 
     }
 

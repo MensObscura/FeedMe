@@ -14,12 +14,14 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 }]);
 
 $('#datetimepicker').datetimepicker({
-	minDate:'+1970/01/2',
+	minDate:'+1970-01-2 00:00',
 	step: 15,
 });
 
 
 validationApp.controller('OfferController', function($scope,$http) {
+
+  $scope.cooktype = "A";
 
   $scope.disbutton = function() {
 	return $scope.offerForm.$invalid || $('#datetimepicker').val() == "";
@@ -28,8 +30,15 @@ validationApp.controller('OfferController', function($scope,$http) {
 	$scope.submitForm = function() {
 		if ($scope.offerForm.$valid) {
 
-			var date_string = $scope.date;
-			var date_repas = new Date(date_string);
+			var date_repas = new Date($('#datetimepicker').val());
+			var today = new Date();
+			var date = "";
+
+			if ((today.getMonth()+1) < 10)
+		    	date = today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate();
+		    else
+		    	date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
 
 			var pays = {
 				nom : $scope.country,
@@ -52,12 +61,12 @@ validationApp.controller('OfferController', function($scope,$http) {
 
 
 		    var data = {
-		    	dateCreation : new Date().toLocaleString(),
+		    	dateCreation : date,
 		    	titre : $scope.title,
 		    	prix : parseFloat($scope.price),
 		    	nombrePersonne : parseInt($scope.nbpers),
 		    	dureeMinute : parseInt($scope.time), // optionnel
-		    	dateRepas : date_repas.toUTCString() ,
+		    	dateRepas : date_repas.toISOString().substr(0,22),
 		    	note : $scope.complementary, //optionnel
 		    	menu : $scope.menu,
 		    	ageMin : parseInt($scope.agemin), //optionnel
@@ -67,13 +76,16 @@ validationApp.controller('OfferController', function($scope,$http) {
 		    	typeCuisine : typeCuisine,
 		    };
 
-			$http.put('http://localhost:8080/offres',data)
-            .success(function (data, status, headers) {
-                $scope.ServerResponse = data;
-            })
-            .error(function (data, status, header, config) {
-
-            });
+            $http({
+        		method: 'PUT',
+        		url: 'http://localhost:8080/offres',
+        		contentType: "application/json",
+        		data: data
+     		}).success(function(response, status, headers, config){
+           		console.log(response);
+      		}).error(function(err, status, headers, config){
+           		console.log(err.message);
+     		 });
 
 
 		}
