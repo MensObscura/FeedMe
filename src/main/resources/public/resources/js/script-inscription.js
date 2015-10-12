@@ -29,12 +29,17 @@ validationApp.controller('InscriptionController', function($scope, $http) {
   $scope.submitForm = function() {
     if ($scope.InscriptionForm.$valid) {
       
+
+      var utilisateur = {
+        nom : $scope.lastname,
+        prenom : $scope.firstname,
+        mail : $scope.user_email,
+        dateNaissance : $('#birthday').val(),
+      };
+
       var data = {
-      	nom : $scope.lastname,
-      	prenom : $scope.firstname,
-      	password : $scope.password,
-      	mail : $scope.user_email,
-      	dateNaissance : $scope.birthday,
+        utilisateur : utilisateur,
+        password : $scope.password,
       };
       
 
