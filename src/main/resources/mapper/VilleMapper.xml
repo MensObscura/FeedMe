@@ -14,11 +14,11 @@
 	<sql id="select_ville_by_id">
 		SELECT vil_id, vil_nom, vil_cp, vil_pay_id
 		FROM VILLE
-		WHERE vil_id = #{id}
 	</sql>
 
 	<select id="getById" resultMap="Ville_ResultMap">
 		<include refid="select_ville_by_id"/>
+		WHERE vil_id = #{id}
 	</select>
 
 	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="vil_id"
