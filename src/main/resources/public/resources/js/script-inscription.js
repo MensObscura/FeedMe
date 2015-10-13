@@ -40,7 +40,7 @@ validationApp.controller('InscriptionController', function($scope, $http) {
       var data_user = {
         utilisateur : utilisateur,
         password : $scope.password,
-        role : ??,
+        role : {"id":1},
       };
 
       $http({
