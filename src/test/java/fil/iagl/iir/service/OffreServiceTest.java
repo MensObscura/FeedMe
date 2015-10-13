@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Utilisateur;
-import fil.iagl.iir.outils.FeedMeSession;
+import fil.iagl.iir.entite.Ville;
 
 public class OffreServiceTest extends AbstractServiceTest {
 
@@ -20,14 +22,24 @@ public class OffreServiceTest extends AbstractServiceTest {
 	@Mock
 	private Utilisateur hote;
 
+	@Mock
+	private Adresse adresse;
+
+	@Mock
+	private Ville ville;
+
 	@Test
 	public void sauvegarderTestSucces() throws Exception {
-		Mockito.when(offre.getHote()).thenReturn(hote);
+		Mockito.when(offre.getAdresse()).thenReturn(adresse);
+		Mockito.when(adresse.getVille()).thenReturn(ville);
 
 		this.offreService.sauvegarder(offre);
 
-		Mockito.verify(hote, Mockito.times(1)).setIdUtilisateur(FeedMeSession.getIdUtilisateurConnecte());
-		Mockito.verify(offreDao, Mockito.times(1)).sauvegarder(offre);
+		InOrder order = Mockito.inOrder(villeDao, adresseDao, offreDao);
+		order.verify(villeDao, Mockito.times(1)).sauvegarder(ville);
+		order.verify(adresseDao, Mockito.times(1)).sauvegarder(adresse);
+		order.verify(offreDao, Mockito.times(1)).sauvegarder(offre);
+
 	}
 
 	@Test(expected = RuntimeException.class)

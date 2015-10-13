@@ -8,6 +8,14 @@ import lombok.Setter;
 @Setter
 public class Utilisateur {
 
+	public Utilisateur(Integer idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
+	}
+
+	public Utilisateur() {
+
+	}
+
 	private Integer idUtilisateur;
 
 	private String nom;

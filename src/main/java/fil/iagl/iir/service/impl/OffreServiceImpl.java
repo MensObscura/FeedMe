@@ -5,8 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fil.iagl.iir.dao.adresse.AdresseDao;
 import fil.iagl.iir.dao.offre.OffreDao;
+import fil.iagl.iir.dao.pays.PaysDao;
+import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.entite.Offre;
+import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.service.OffreService;
 
@@ -16,13 +20,26 @@ public class OffreServiceImpl implements OffreService {
 	@Autowired
 	private OffreDao offreDao;
 
+	@Autowired
+	private AdresseDao adresseDao;
+
+	@Autowired
+	private VilleDao villeDao;
+
+	@Autowired
+	private PaysDao paysDao;
+
 	@Override
 	public void sauvegarder(Offre offre) {
 		if (offre == null) {
 			throw new RuntimeException("Parametre null");
 		}
 
-		offre.getHote().setIdUtilisateur(FeedMeSession.getIdUtilisateurConnecte());
+		offre.setHote(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
+
+		// TODO : Creer un adresse service
+		this.villeDao.sauvegarder(offre.getAdresse().getVille());
+		this.adresseDao.sauvegarder(offre.getAdresse());
 
 		this.offreDao.sauvegarder(offre);
 	}
