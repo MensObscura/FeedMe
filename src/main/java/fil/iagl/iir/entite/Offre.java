@@ -24,7 +24,7 @@ public class Offre {
 
 	private LocalDateTime dateRepas;
 
-	private Integer note;
+	private String note;
 
 	private String menu;
 

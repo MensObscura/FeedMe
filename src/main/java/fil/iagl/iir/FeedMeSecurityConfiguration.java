@@ -29,6 +29,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// L'accès au autre ressources est sécurisé
 		http.authorizeRequests().anyRequest().authenticated();
 
+		
 		// Redirection en cas de tentative non identifié
 		http.formLogin().defaultSuccessUrl("/resources/accueil.html").permitAll();
 
