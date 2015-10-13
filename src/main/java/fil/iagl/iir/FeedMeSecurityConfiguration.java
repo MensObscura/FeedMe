@@ -8,9 +8,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import fil.iagl.iir.service.AuthentificationService;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +19,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Lazy
 	@Autowired
-	UserDetailsService authenticationService;
+	AuthentificationService authenticationService;
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
@@ -29,7 +30,6 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// L'accès au autre ressources est sécurisé
 		http.authorizeRequests().anyRequest().authenticated();
 
-		
 		// Redirection en cas de tentative non identifié
 		http.formLogin().defaultSuccessUrl("/resources/accueil.html").permitAll();
 
