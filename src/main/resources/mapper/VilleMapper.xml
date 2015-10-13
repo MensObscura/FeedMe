@@ -16,6 +16,10 @@
 		FROM VILLE
 	</sql>
 
+	<select id="getAll" resultMap="Ville_ResultMap"> 
+		<include refid="select_ville_by_id"/>
+	</select>
+
 	<select id="getById" resultMap="Ville_ResultMap">
 		<include refid="select_ville_by_id"/>
 		WHERE vil_id = #{id}
