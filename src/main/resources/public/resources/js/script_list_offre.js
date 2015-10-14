@@ -52,6 +52,8 @@ app.service('srvShareData', function($window) {
 app.controller('ReservationController', function($scope, $http, srvShareData) {  
 	
 	$scope.offre = srvShareData.getData();
+
+	 $scope.nombreRestant = $scope.offre.nombrePersonne - $scope.offre.reservations.length;
 	
   $scope.submitForm = function() {
     if ($scope.ReservationForm.$valid) {
