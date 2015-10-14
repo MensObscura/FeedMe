@@ -53,7 +53,7 @@ validationApp.controller('OfferController', function($scope,$http) {
 
 
 			var pays = {
-				nom : $scope.country,
+				id : $scope.country,
 			};
 
 			var data_ville = {
@@ -68,7 +68,7 @@ validationApp.controller('OfferController', function($scope,$http) {
 			};
 
 			var typeCuisine = {
-				typeCuisine : $scope.cooktype,
+				id : $scope.cooktype,
 			};
 
 
