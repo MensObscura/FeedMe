@@ -7,10 +7,12 @@
 		<title>Liste des réservations</title>
 		<script src="/resources/js/angular.min.js"></script>
 		<script src="/resources/js/script_list_offre.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="/resources/css/list_style.css" />
 		<body ng-app="ListApp">
 			<div ng-include="'/resources/header.html'"></div>  
 			<div ng-controller="ListCtrl">
-			<ul ng-repeat="item in list">
+			<ul class="big_button" ng-repeat="item in list">
 				<li>
 					<div ng-click="visualize(item)">
 						<h2>{{item.titre}}</h2>
@@ -21,7 +23,7 @@
 							{{item.typeCuisine.typeCuisine}}
 						</p>
 						<p>
-							{{item.prix}}
+							{{item.prix}} €
 						</p>
 						<p>
 							{{item.nombreRestant}}

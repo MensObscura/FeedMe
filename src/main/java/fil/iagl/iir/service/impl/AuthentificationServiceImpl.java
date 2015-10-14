@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
@@ -15,6 +16,7 @@ import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.Particulier;
+import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.service.AuthentificationService;
 
 @Service
@@ -48,6 +50,9 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 		if (authentification == null) {
 			throw new RuntimeException("Parametre null");
 		}
+		authentification.setRole(Role.PARTICULIER);
+		authentification.setPassword(new BCryptPasswordEncoder().encode(authentification.getPassword()));
+
 		utilisateurDao.sauvegarder(authentification.getUtilisateur());
 		particulierDao.sauvegarder(authentification.getUtilisateur());
 		authentificationDao.sauvegarder(authentification);

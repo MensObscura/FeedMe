@@ -51,6 +51,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// Autoriser l'accès au ressources sans etre authentifier
 		web.ignoring().antMatchers("/");
 		web.ignoring().antMatchers("/resources/**");
+		web.ignoring().antMatchers("/utilisateur/particulier");
 
 	}
 
