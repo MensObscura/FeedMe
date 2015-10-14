@@ -1,0 +1,11 @@
+.big_button {
+
+    border-radius: 5px;
+    border: 1px solid white;
+	background-color: #D2CAEC;
+    width: 40%;
+}
+
+.big_button:hover, .big_button:focus {
+    border: 2px solid black;
+}
