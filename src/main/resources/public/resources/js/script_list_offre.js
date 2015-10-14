@@ -20,6 +20,7 @@ $scope.dataToShare = [];
 });
 
 
+
 app.service('srvShareData', function($window) {
         var KEY = 'App.SelectedValue';
 
