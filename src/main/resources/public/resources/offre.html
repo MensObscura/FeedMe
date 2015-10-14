@@ -37,7 +37,7 @@
 				</p>
 				<label for="cooktype">Type de cuisine : {{offre.typeCuisine.typeCuisine}}  </label>
 				<br/>
-				<label for="nb_persons">Nombre de couverts : {{offre.nombreRestant}}/{{offre.nombrePersonne}}.</label>
+				<label for="nb_persons">Nombre de couverts : {{nombreRestant}}/{{offre.nombrePersonne}}.</label>
 				<br/>
 				<label for="time">Durée {{offre.dureeMinute}} h </label>
 			</fieldset>
@@ -54,7 +54,7 @@
 			</fieldset>
 			<div "> 
 				<label for="nb_places">Reserver
-					<input type="number" name="place" ng-model="place" step="0" ng-required="true" ng-min="1" ng-max="{{offre.nombreRestant}}" id="Nbplace" value="n"> couvert(s)
+					<input type="number" name="place" ng-model="place" step="0" ng-required="true" ng-min="1" ng-max="{{nombreRestant}}" id="Nbplace" value="n"> couvert(s)
 					<span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
 						<span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
 						<span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
