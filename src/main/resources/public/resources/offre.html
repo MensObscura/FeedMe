@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>My Example</title>
+		<title>Offre</title>
 		<script src="/resources/js/angular.min.js"></script>
 	</head>
-	<body ng-app="ListApp">
+	<body ng-app="OffreApp">
 		<div ng-include="'/resources/header.html'"></div>
 		<div ng-controller="ReservationController">
 		<h2>{{offre.titre}} </h2>
@@ -52,7 +52,7 @@
 					Notes : {{offre.note}}
 				</p>
 			</fieldset>
-			<div "> 
+			<div > 
 				<label for="nb_places">Reserver
 					<input type="number" name="place" ng-model="place" step="0" ng-required="true" ng-min="1" ng-max="{{nombreRestant}}" id="Nbplace" value="n"> couvert(s)
 					<span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
@@ -66,8 +66,7 @@
 			</div>
 		</form>
 		</div>
-		<script src="/resources/js/script_list_offre.js"></script>
-		<script src="/resources/js/script-reservation.js"></script>
+		<script src="/resources/js/script-offre.js"></script>
 		<div ng-include="'/resources/footer.html'"></div>
 	</body>
 </html>

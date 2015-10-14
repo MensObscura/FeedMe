@@ -1,106 +1,41 @@
- 
-var validationApp = angular.module('validationOfferApp', []);
-
-validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
-	return {
-	    require: 'ngModel',
-	    link: function(scope, ele, attrs, ngModelController) {
-	    scope.$watch(attrs.ngModel, function(value) {
-	    	var booleanResult = $parse(attrs.ensureExpression)(scope);
-	    	ngModelController.$setValidity('badages', booleanResult);
-	    });
-	    }
-	};
-}]);
-
-$('#datetimepicker').datetimepicker({
-	minDate:'+1970-01-2 00:00',
-	step: 15,
-});
+var app = angular.module("OffreApp", []);
 
 
-validationApp.controller('OfferController', function($scope, $http) {
 
- 
-	$http.get('http://localhost:8080/settings/typescuisines').success(
+app.controller('ReservationController', function($scope, $http, $location) {  
+
+
+	$scope.$location = $location;
+	$scope.$location.url(window.location);
+	var id = $scope.$location.search().id ;  
+	var route = 'http://localhost:8080/offres/'+id;
+
+	$http.get(route).success(
 			function(data) {
-				 $scope.cook = data;
-			}
-		);
-	
-	$http.get('http://localhost:8080/settings/pays').success(
-			function(data) {
-				 $scope.count = data;
-			}
-		);
+				$scope.offre = data;
+				$scope.nombreRestant = $scope.offre.nombrePersonne - $scope.offre.reservations.length;
 
-
-  $scope.disbutton = function() {
-	return $scope.offerForm.$invalid || $('#datetimepicker').val() == "";
-  };
+			}
+	);
 
 	$scope.submitForm = function() {
-		if ($scope.offerForm.$valid) {
+		if ($scope.ReservationForm.$valid) {
 
-			var date_repas = new Date($('#datetimepicker').val());
-			var today = new Date();
-			var date = "";
-
-			if ((today.getMonth()+1) < 10)
-		    	date = today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate();
-		    else
-		    	date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-
-
-			var pays = {
-				id : $scope.country,
+			var data = {
+					nombre : $scope.place,
+					offre : $scope.offre,
 			};
 
-			var data_ville = {
-				nom : $scope.town,
-				cp : $scope.cp,
-				pays : pays,
-			};
+			$http.put('http://localhost:8080/reservation',data)
+			.success(function (data, status, headers) {
+				$scope.ServerResponse = data;
+			})
+			.error(function (data, status, header, config) {
 
-			var adresse = {
-				voie : $scope.num + " " + $scope.street + " " + $scope.complementary,
-				ville : data_ville,
-			};
-
-			var typeCuisine = {
-				id : $scope.cooktype,
-			};
-
-
-		    var data = {
-		    	dateCreation : date,
-		    	titre : $scope.title,
-		    	prix : parseFloat($scope.price),
-		    	nombrePersonne : parseInt($scope.nbpers),
-		    	dureeMinute : parseInt($scope.time), // optionnel
-		    	dateRepas : date_repas.toISOString().substr(0,22),
-		    	note : $scope.complementary, //optionnel
-		    	menu : $scope.menu,
-		    	ageMin : parseInt($scope.agemin), //optionnel
-		    	ageMax : parseInt($scope.agemax), //optionnel
-		    	animaux : Boolean($scope.animal),
-		    	adresse : adresse,
-		    	typeCuisine : typeCuisine,
-		    };
-
-            $http({
-        		method: 'PUT',
-        		url: 'http://localhost:8080/offres',
-        		contentType: "application/json",
-        		data: data
-     		}).success(function(response, status, headers, config){
-           		window.location.href = '/resources/accueil.html';
-      		}).error(function(err, status, headers, config){
-           		console.log(err.message);
-     		 });
-
+			});
 
 		}
 
 	};
+
 });

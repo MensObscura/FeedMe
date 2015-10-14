@@ -12,12 +12,11 @@
 		<body ng-app="ListApp">
 			<div ng-include="'/resources/header.html'"></div>  
 			<div ng-controller="ListCtrl">
-			<ul class="big_button" ng-repeat="item in list">
+			<ul class="big_button" ng-repeat="item in list track by item.id">
 				<li>
 					<div ng-click="visualize(item)">
 						<h2>{{item.titre}}</h2>
 						<p>
-							{{item.ville}}
 						</p>
 						<p>
 							{{item.typeCuisine.typeCuisine}}
