@@ -130,6 +130,7 @@ public abstract class AbstractFeedMeTest {
 
 	protected Offre createOffre() {
 		String titre = "MonTitre";
+		String note = "Note";
 		Integer prix = 999;
 		Integer nombrePersonne = 5;
 		Integer dureeMinute = 120;
@@ -175,6 +176,7 @@ public abstract class AbstractFeedMeTest {
 		offre.setAdresse(adresse);
 		offre.setTypeCuisine(typeCuisine);
 		offre.setHote(hote);
+		offre.setNote(note);
 
 		return offre;
 	}
@@ -206,5 +208,4 @@ public abstract class AbstractFeedMeTest {
 
 		return authentification;
 	}
-
 }

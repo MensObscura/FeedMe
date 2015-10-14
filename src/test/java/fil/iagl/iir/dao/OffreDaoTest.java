@@ -30,7 +30,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 		LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 00);
 		String menu = "DescriptionDuMenu";
 		Boolean animaux = Boolean.FALSE;
-		Integer note = 0;
+		String note = "Note";
 		Integer ageMin = 20;
 		Integer ageMax = 30;
 
