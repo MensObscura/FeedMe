@@ -58,19 +58,32 @@ app.controller('ReservationController', function($scope, $http, srvShareData) {
 	
   $scope.submitForm = function() {
     if ($scope.ReservationForm.$valid) {
+
+        var today = new Date();
+        var date = "";
+
+        if ((today.getMonth()+1) < 10)
+            date = today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate();
+         else
+            date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
      
     	 var data = {
-		    	nombre : $scope.place,
+		    	//nombre : $scope.place,
                 offre : $scope.offre,
+                dateReservation : date,
 		    };
 
-        $http.put('http://localhost:8080/reservation',data)
-            .success(function (data, status, headers) {
-                $scope.ServerResponse = data;
-            })
-            .error(function (data, status, header, config) {
 
-            });
+      $http({
+        method: 'PUT',
+        url: 'http://localhost:8080/reservation',
+        contentType: "application/json",
+        data: data
+     }).success(function(response, status, headers, config){
+           console.log(response);
+      }).error(function(err, status, headers, config){
+           console.log(err.message);
+      });
 
     }
 
