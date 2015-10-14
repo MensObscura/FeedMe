@@ -72,6 +72,7 @@ validationApp.controller('OfferController', function($scope,$http) {
 			};
 
 
+			alert($scope.cooktype);
 		    var data = {
 		    	dateCreation : date,
 		    	titre : $scope.title,
