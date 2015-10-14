@@ -2,13 +2,10 @@ var app = angular.module("ListApp", []);
 var page_data;
 
 app.controller("ListCtrl", function($scope, $http, $location,srvShareData) {
-
-	
 	$http.get('http://localhost:8080/offres').success(
 		function(data) {
 			$scope.list = data;
 		}
-		
 	);
 	
 $scope.dataToShare = [];
@@ -21,6 +18,7 @@ $scope.dataToShare = [];
     window.location.href = "offre.html";
   }
 });
+
 
 app.service('srvShareData', function($window) {
         var KEY = 'App.SelectedValue';
