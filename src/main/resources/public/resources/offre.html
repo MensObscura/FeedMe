@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>My Example</title>
-<script src="js/angular.min.js"></script>
-</head>
-<body ng-app>
-
-    <div ng-include="'header.html'"></div>
-    
-  <h2>Titre </h2>
-  
-  <form method="post">
-    
-    <fieldset>
-    	<legend>Le repas</legend>
-      
-      	<h3>Prénom Nom </h3>
-      
-              <fieldset>
-    	<legend>Lieu</legend>
-                
-         <h3>Ville</h3>
-          
-      	<p>N° Rue </p>
-      
-      	<p>Compléments :  bal bla bla bla bla</p>
-    
-      
-    </fieldset>
-   
-    
-    	<label for="price">Prix XX € </label>
-		<br/>
-        <label for="date">Date : "jj/mm/aaaa hh:mm"</label>
-      
-        <p for="menu">Menu : </p>
-      	<label for="cooktype">Type de cuisine  </label>
-      	<br/>
-      
-       	<label for="nb_persons">Nombre de couverts : Restant/Nombre de couverts.</label>
-      	<br/>
-        <label for="time">Durée XX h </label>
-
-  	</fieldset>    
-    
-    <fieldset>
-    	<legend>Divers</legend>
-      
-     
-    
-        <label for="animal">Présence d'un animal </label>
-    	<br/>
-        <label for="tranche_age">Tranche d'age : XX-XX </label>
-    	
-    	<p for="notes">Notes : bla bla bla</p>
-      
-      
-    </fieldset>
-<div ng-app="" ng-init="max=5">
-
-    	<label for="nb_places">Reserver <input type="number" step="0" min="1" max="{{max}}" id="Nbplace" value="n"> couvert </label> 
-  <input type="submit" value="Reserver">
-
-</div>  
-    
-  </form>
-  
-    <div ng-include="'footer.html'"></div>
-    
-</body>
-
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>My Example</title>
+		<script src="/resources/js/angular.min.js"></script>
+	</head>
+	<body ng-app="ListApp">
+		<div ng-include="'/resources/header.html'"></div>
+		<div ng-controller="ReservationController">
+		<h2>{{offre.titre}} </h2>
+		<form name="ReservationForm" ng-submit="submitForm()" novalidate>
+			<fieldset>
+				<legend>
+					Le repas
+				</legend>
+				<h3>{{offre.hote.prenom}} {{offre.hote.nom}}</h3>
+				<fieldset>
+					<legend>
+						Lieu
+					</legend>
+					<h3>{{offre.addresse.ville.nom}}</h3>
+					<p>
+						{{offre.adresse.voie}}
+					</p>
+					<p>
+						Compléments :  
+					</p>
+				</fieldset>
+				<label for="price">Prix {{offre.prix}} € </label>
+				<br/>
+				<label for="date">Date : {{offre.dateRepas}}</label>
+				<p for="menu">
+					Menu : {{offre.menu}}
+				</p>
+				<label for="cooktype">Type de cuisine : {{offre.typeCuisine.typeCuisine}}  </label>
+				<br/>
+				<label for="nb_persons">Nombre de couverts : {{nombreRestant}}/{{offre.nombrePersonne}}.</label>
+				<br/>
+				<label for="time">Durée {{offre.dureeMinute}} h </label>
+			</fieldset>
+			<fieldset>
+				<legend>
+					Divers
+				</legend>
+				<label for="animal">Présence d'un animal {{offre.animaux}} </label>
+				<br/>
+				<label for="tranche_age">Tranche d'age : {{offre.ageMin}}-{{offre.ageMax}} </label>
+				<p for="notes">
+					Notes : {{offre.note}}
+				</p>
+			</fieldset>
+			<div "> 
+				<label for="nb_places">Reserver
+					<input type="number" name="place" ng-model="place" step="0" ng-required="true" ng-min="1" ng-max="{{nombreRestant}}" id="Nbplace" value="n"> couvert(s)
+					<span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
+						<span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
+						<span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
+						<span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span>
+						<span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span>
+					</span>
+				</label>
+				<input type="submit" ng-disabled="ReservationForm.$invalid" value="Reserver">
+			</div>
+		</form>
+		</div>
+		<script src="/resources/js/script_list_offre.js"></script>
+		<script src="/resources/js/script-reservation.js"></script>
+		<div ng-include="'/resources/footer.html'"></div>
+	</body>
 </html>

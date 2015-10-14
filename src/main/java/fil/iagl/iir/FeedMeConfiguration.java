@@ -22,7 +22,7 @@ import fil.iagl.iir.outils.JsonRoleDeserializer;
 
 @Configuration
 @MapperScan("fil.iagl.iir.dao")
-@ComponentScan({ "fil.iagl.iir.service", "fil.iagl.iir.controller" })
+@ComponentScan({ "fil.iagl.iir.service", "fil.iagl.iir.controller", "fil.iagl.iir.outils" })
 @EnableAutoConfiguration
 @EnableWebMvc
 public class FeedMeConfiguration extends WebMvcAutoConfiguration {

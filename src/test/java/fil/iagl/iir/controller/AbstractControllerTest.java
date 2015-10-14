@@ -9,7 +9,9 @@ import org.springframework.web.context.WebApplicationContext;
 import fil.iagl.iir.AbstractFeedMeTest;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
 import fil.iagl.iir.dao.offre.OffreDao;
+import fil.iagl.iir.dao.typeCuisine.TypeCuisineDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
+import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.service.AuthentificationService;
 import fil.iagl.iir.service.OffreService;
 import fil.iagl.iir.service.UtilisateurService;
@@ -34,13 +36,22 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
 	protected UtilisateurDao utilisateurDao;
 
 	@Mock
+	protected VilleDao villeDao;
+
+	@Mock
+	protected TypeCuisineDao typeCuisineDao;
+
+	@Mock
 	protected AuthentificationDao authentificationDao;
 
 	@InjectMocks
 	protected UtilisateurController utilisateurController;
-	
+
 	@InjectMocks
 	protected ReservationController reservationController;
+
+	@InjectMocks
+	protected ParametrageController parametrageController;
 
 	@InjectMocks
 	protected OffreController offreController;

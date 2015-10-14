@@ -34,6 +34,9 @@ public class OffreControllerTest extends AbstractControllerTest {
 		Offre offre = createOffre();
 		JSONObject jo = new JSONObject(offre);
 
+		Integer idAdresse = 9;
+		Integer idVille = 7;
+
 		mockMvc.perform(
 				put("/offres/").contentType(FEED_ME_MEDIA_TYPE).content(jo.toString()))
 				.andExpect(status().isOk())
@@ -59,8 +62,8 @@ public class OffreControllerTest extends AbstractControllerTest {
 				.andExpect(jsonPath("$.note").value(offre.getNote()))
 				.andExpect(jsonPath("$.menu").value(offre.getMenu()))
 				.andExpect(jsonPath("$.animaux").value(offre.getAnimaux()))
-				.andExpect(jsonPath("$.adresse.id").value(offre.getAdresse().getId()))
-				.andExpect(jsonPath("$.adresse.ville.id").value(offre.getAdresse().getVille().getId()))
+				.andExpect(jsonPath("$.adresse.id").value(idAdresse))
+				.andExpect(jsonPath("$.adresse.ville.id").value(idVille))
 				.andExpect(jsonPath("$.adresse.ville.pays.id").value(offre.getAdresse().getVille().getPays().getId()))
 				.andExpect(jsonPath("$.adresse.voie").value(offre.getAdresse().getVoie()))
 				.andExpect(jsonPath("$.typeCuisine.id").value(offre.getTypeCuisine().getId()))

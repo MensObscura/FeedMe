@@ -140,6 +140,8 @@ public abstract class AbstractFeedMeTest {
 
 		Integer idAdresse = 1;
 		Integer idVille = 1;
+		String nomVille = "FeedMeTown";
+		String cp = "45678";
 		Integer idPays = 1;
 
 		Integer idTypeCuisine = 3;
@@ -152,6 +154,8 @@ public abstract class AbstractFeedMeTest {
 		Ville ville = new Ville();
 		ville.setId(idVille);
 		ville.setPays(pays);
+		ville.setNom(nomVille);
+		ville.setCp(cp);
 
 		Adresse adresse = new Adresse();
 		adresse.setId(idAdresse);

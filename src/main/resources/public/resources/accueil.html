@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<title>Accueil</title>
-<script src="angular.min.js">
-</script>
-</head>
-<body ng-app>
-    <div ng-include="'header.html'"></div>
-    <div class="center-div">
-        <a onclick="window.location='offre.html'"><div id="button_left">Proposer un repas</div></a>
-        <a onclick="window.location='liste_offres.html'"><div id="button_right">Reserver un couvert</div></a>
-    </div>
-    <div class="row">
-        <div class="large-16 columns text-center">
-            <p class="credits">
-                <a href="cgu.html" class="marge">Conditions générales</a>
-				<a href="contact.html" class="marge">Nous contacter</a>
-                <a href="mentions.html" class="marge">Mentions légales</a>
-        </div>
-    </div>
-    <div ng-include="'footer.html'"></div>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="stylesheet" type="text/css" href="/resources/css/feedme_style.css" />
+		<title>Accueil</title>
+		<script src="/resources/js/angular.min.js"></script>
+	</head>
+	<body ng-app>
+		<div ng-include="'/resources/header.html'"></div>
+		<div id="bigButtonsWrapper">
+			<a onclick="window.location='/resources/formulaire-offre.html'"><div class="big_button">Proposer un repas</div></a>
+			<a onclick="window.location='/resources/liste_offres.html'"><div class="big_button">Reserver un couvert</div></a>
+		</div>
+		<div ng-include="'/resources/footer.html'"></div>
+	</body>
 </html>

@@ -1,59 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Authentification</title>
-<script src="/js/angular.min.js"></script>
-<script> 
-			var email =  angular.module('email', []);
-			email.controller('EmailController', function($scope) {
-				$scope.email = {
-					text: 'me@example.com'
-				};
-			});
-			 var password = angular.module('pwd', []);
-			 password.controller('PassWController', function($scope) {
-				$scope.pwd = {
-					text: 'password'
-				};
-			});
-			angular.module("PluryModule", ["email", "pwd"]);
- 		</script>
-</head>
-<body ng-app="PluryModule">
-	<div ng-include="'/header.html'"></div>
-	<div>
-		<h1>Authentification</h1>
-		<form name="form" method="POST">
-			<div ng-controller="EmailController">
-				<p>
-					<input type="email" name="input" ng-model="email.text" required>
-				</p>
-				<div ng-show="form.$submitted || form.input.$touched" role="alert">
-					<span class="error" ng-show="form.input.$error.required">Requis!</span>
-					<span class="error" ng-show="form.input.$error.email">Format
-						d'e-mail invalide</span>
-				</div>
-			</div>
-			<div ng-controller="PassWController">
-				<p>
-					<input type="password" name="passwordInput" ng-model="pwd.text"
-						required>
-				</p>
-				<div ng-show="form.$submitted || form.passwordInput.$touched"
-					role="alert">
-					<span class="error" ng-show="form.passwordInput.$error.required">Requis!</span>
-				</div>
-			</div>
-			<input type="submit" name="boutonConfirmation" value="Confirmer" />
-		</form>
-	</div>
-	<div ng-include="'/footer.html'"></div>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Authentification</title>
+		<script src="/resources/js/angular.min.js"></script>
+		<script src="/resources/js/login.js"></script>
+	</head>
+	<body ng-app="login">
+		<div ng-include="'/resources/header.html'"></div>
+	
+			<h1>Authentification</h1>
+		
+			<form name="form" ng-submit="confirm()" ng-controller="LoginController">
+			
+					<p>
+						<input type="email" name="email" ng-model="email" required>
+					</p>
+					<div ng-show="form.$submitted || form.email.$touched" role="alert">
+						<span class="error" ng-show="form.email.$error.required">Requis!</span>
+						<span class="error" ng-show="form.email.$error.email">Format d'e-mail invalide</span>
+					</div>
+				
+					<p>
+						<input type="password" name="passwordInput" ng-model="pwd" required>
+					</p>
+					<div ng-show="form.$submitted || form.passwordInput.$touched"  role="alert">
+						<span class="error" ng-show="form.passwordInput.$error.required">Requis!</span>
+					</div>
+				
+				<input type="submit" name="boutonConfirmation" value="Confirmer"  />
+			</form>
+			
+		
+		<div ng-include="'/resources/footer.html'"></div>
+	</body>
 </html>
-
-
 
 

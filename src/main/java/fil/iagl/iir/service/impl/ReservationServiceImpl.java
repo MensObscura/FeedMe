@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.entite.Reservation;
+import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.service.ReservationService;
 
@@ -21,7 +22,7 @@ public class ReservationServiceImpl implements ReservationService {
 		if (reservation == null) {
 			throw new RuntimeException("Parametre null");
 		}
-		reservation.getConvive().setIdUtilisateur(FeedMeSession.getIdUtilisateurConnecte());
+		reservation.setConvive(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
 		return this.reservationDao.sauvegarder(reservation);
 		

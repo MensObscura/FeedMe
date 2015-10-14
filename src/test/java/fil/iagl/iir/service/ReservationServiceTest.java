@@ -6,8 +6,6 @@ import org.mockito.Mockito;
 
 import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.entite.Utilisateur;
-import fil.iagl.iir.outils.FeedMeSession;
-
 
 public class ReservationServiceTest extends AbstractServiceTest {
 
@@ -23,7 +21,6 @@ public class ReservationServiceTest extends AbstractServiceTest {
 
 		this.reservationService.sauvegarder(reservation);
 
-		Mockito.verify(utilisateur, Mockito.times(1)).setIdUtilisateur(FeedMeSession.getIdUtilisateurConnecte());
 		Mockito.verify(reservationDao, Mockito.times(1)).sauvegarder(reservation);
 	}
 
@@ -33,14 +30,14 @@ public class ReservationServiceTest extends AbstractServiceTest {
 		reservationService.sauvegarder(null);
 		Mockito.verify(reservationDao, Mockito.never()).sauvegarder(Mockito.any());
 	}
-	
+
 	@Test
 	public void getAllReservationByOffreIdTestSuccess() throws Exception {
 		Integer idOffre = 4;
 		reservationService.getAllReservationByOffre(idOffre);
 		Mockito.verify(reservationDao, Mockito.times(1)).getAllByIdOffre(idOffre);
 	}
-	
+
 	@Test(expected = RuntimeException.class)
 	public void getAllReservationByOffreIdFail() throws Exception {
 		reservationService.getAllReservationByOffre(null);
