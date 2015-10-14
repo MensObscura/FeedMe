@@ -50,12 +50,10 @@
 
 
 			<label for="cooktype">Type de cuisine* : </label>
-			<select type="select" name="cooktype" ng-model="cooktype" ng-required="true">
-			  <option value="A">A</option>
-			  <option value="B">B</option>
-			  <option value="C">C</option>
-			  <option value="D">D</option>
-			</select>
+			<select type="select" name="cooktype" ng-model="cooktype" ng-required="true" >
+			  
+			  <option ng-repeat="item in cook" value="{{item.typeCuisine}}">{{item.typeCuisine}}</option>
+			 	</select>
 			<span style="color:red" ng-show="offerForm.cooktype.$invalid && !offerForm.cooktype.$pristine">
 			  <span ng-show="offerForm.cooktype.$error.required">Veuillez choisir un type de cuisine.</span>
 			</span>
@@ -120,12 +118,16 @@
 			</span>
 			<br>
 
+			
+			
 			<label for="country">Pays* : </label>
-			<input type="text" name="country" ng-model="country" placeholder="Votre pays." ng-required="true">
+			<select type="select" name="country" ng-model="country" ng-required="true" >
+			  
+			  <option ng-repeat="item in count" value="{{item.nom}">{{item.nom}}</option>
+			 	</select>
 			<span style="color:red" ng-show="offerForm.country.$invalid && !offerForm.country.$pristine">
 			  <span ng-show="offerForm.country.$error.required">Veuillez saisir votre pays.</span>
 			</span>
-			<br>
 
 	    </fieldset>
 

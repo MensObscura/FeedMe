@@ -21,7 +21,19 @@ $('#datetimepicker').datetimepicker({
 
 validationApp.controller('OfferController', function($scope,$http) {
 
-  $scope.cooktype = "A";
+ 
+	$http.get('http://localhost:8080/settings/typescuisines').success(
+			function(data) {
+				 $scope.cook = data;
+			}
+		);
+	
+	$http.get('http://localhost:8080/settings/pays').success(
+			function(data) {
+				 $scope.count = data;
+			}
+		);
+
 
   $scope.disbutton = function() {
 	return $scope.offerForm.$invalid || $('#datetimepicker').val() == "";
