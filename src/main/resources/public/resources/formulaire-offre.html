@@ -71,9 +71,10 @@
 			<input type="text" name="datetime" ng-model="datetime" id="datetimepicker" ng-readonly="true" placeholder="Date du repas.">
 			<br>
 
-			<label for="time">Durée (en min) : </label>
-			<input type="number" ng-model="time" name="time" ng-min="60" placeholder="Durée prévisionnelle.">
+			<label for="time">Durée* (en min) : </label>
+			<input type="number" ng-model="time" name="time" ng-min="60" placeholder="Durée prévisionnelle." ng-required="true">
 			<span style="color:red" ng-show="offerForm.time.$invalid && !offerForm.time.$pristine">
+			  <span ng-show="offerForm.num.$error.required">Veuillez saisir une durée.</span>
 			  <span ng-show="offerForm.time.$error.number">Veuillez saisir un nombre.</span>
 			  <span ng-show="offerForm.time.$error.min">Veuillez saisir une durée supérieur à 60 min.</span>
 			</span>

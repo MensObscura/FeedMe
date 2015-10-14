@@ -19,7 +19,7 @@ $('#datetimepicker').datetimepicker({
 });
 
 
-validationApp.controller('OfferController', function($scope,$http) {
+validationApp.controller('OfferController', function($scope, $http) {
 
  
 	$http.get('http://localhost:8080/settings/typescuisines').success(
@@ -94,7 +94,7 @@ validationApp.controller('OfferController', function($scope,$http) {
         		contentType: "application/json",
         		data: data
      		}).success(function(response, status, headers, config){
-           		console.log(response);
+           		window.location.href = '/resources/accueil.html';
       		}).error(function(err, status, headers, config){
            		console.log(err.message);
      		 });
