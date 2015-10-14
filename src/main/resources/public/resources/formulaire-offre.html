@@ -123,7 +123,6 @@
 			<label for="country">Pays* : </label>
 			<select type="select" name="country" ng-model="country" ng-required="true" >
 			  
-			  <option ng-repeat="item in count" value="{{item.id}}">{{item.nom}}</option>
 			 	</select>
 			<span style="color:red" ng-show="offerForm.country.$invalid && !offerForm.country.$pristine">
 			  <span ng-show="offerForm.country.$error.required">Veuillez saisir votre pays.</span>
