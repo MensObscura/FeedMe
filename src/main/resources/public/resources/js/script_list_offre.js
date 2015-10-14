@@ -17,6 +17,3 @@ app.controller("ListCtrl", function($scope, $http, $location) {
 });
 
 
-
-
-
