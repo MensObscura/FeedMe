@@ -49,7 +49,7 @@ validationApp.controller('InscriptionController', function($scope, $http) {
         contentType: "application/json",
         data: data_user
      }).success(function(response, status, headers, config){
-           window.location.href = '/resources/accueil.html';
+           window.location.href = '/resources/index.html';
       }).error(function(err, status, headers, config){
            console.log(err.message);
       });
