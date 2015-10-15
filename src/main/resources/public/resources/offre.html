@@ -1,59 +1,66 @@
+<!-- 
+©Copyright 2015 - FeedMe
+Page de visualisation d'une offre
+ -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Offre</title>
+		<title>Visualiser une offre</title>
 		<script src="/resources/js/angular.min.js"></script>
 	</head>
+	
 	<body ng-app="OffreApp">
+		<!-- Menu -->
 		<div ng-include="'/resources/header.html'"></div>
+		
+		<!-- Visualisation des détails de l'offre -->
 		<div ng-controller="ReservationController">
-		<h2>{{offre.titre}} </h2>
-		<form name="ReservationForm" ng-submit="submitForm()" novalidate>
-			<fieldset>
-				<legend>
-					Le repas
-				</legend>
-				<h3>{{offre.hote.prenom}} {{offre.hote.nom}}</h3>
+			<h2>{{offre.titre}}</h2>
+			<h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
+			<form name="ReservationForm" ng-submit="submitForm()" novalidate>
 				<fieldset>
-					<legend>
-						Lieu
-					</legend>
-					<h3>{{offre.addresse.ville.nom}}</h3>
-					<p>
-						{{offre.adresse.voie}}
-					</p>
-					<p>
-						Compléments :  
-					</p>
+				<legend>L'offre de repas</legend>
+				
+				<!-- Présentation de l'hôte, du lieu -->
+				<fieldset>
+				<legend>L'hôte</legend>
+					<h3>Identité :</h3>
+					{{offre.hote.prenom}} {{offre.hote.nom}}
+					<h3>Lieu :</h3>
+					{{offre.adresse.voie}} <br>
+					{{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
+					<h3>Prix par convive :</h3>
+					{{offre.prix}} €
 				</fieldset>
-				<label for="price">Prix {{offre.prix}} € </label>
-				<br/>
-				<label for="date">Date : {{offre.dateRepas}}</label>
-				<p for="menu">
-					Menu : {{offre.menu}}
-				</p>
-				<label for="cooktype">Type de cuisine : {{offre.typeCuisine.typeCuisine}}  </label>
-				<br/>
-				<label for="nb_persons">Nombre de couverts : {{nombreRestant}}/{{offre.nombrePersonne}}.</label>
-				<br/>
-				<label for="time">Durée {{offre.dureeMinute}} h </label>
-			</fieldset>
-			<fieldset>
-				<legend>
-					Divers
-				</legend>
-				<label for="animal">Présence d'un animal {{offre.animaux}} </label>
-				<br/>
-				<label for="tranche_age">Tranche d'age : {{offre.ageMin}}-{{offre.ageMax}} </label>
-				<p for="notes">
-					Notes : {{offre.note}}
-				</p>
-			</fieldset>
-			<div > 
-				<label for="nb_places">Reserver
+				
+				<!-- Présentation du menu -->
+				<fieldset>
+				<legend>Le menu</legend>
+					<h3>Type de cuisine :</h3>
+					{{offre.typeCuisine.typeCuisine}}
+					<h3>Au menu :</h3>
+					{{offre.menu}}
+					<h3>Nombre de couverts restants :</h3>
+					{{nombreRestant}} sur {{offre.nombrePersonne}}
+					<h3>Durée prévisionnelle :</h3>
+					{{offre.dureeMinute}} min.
+				</fieldset>
+			
+				<!-- Informations diverses (et optionnelles) -->
+				<fieldset>
+				<legend>Divers</legend>
+				{{animaux}}<br>
+				{{age}}<br>
+				{{note}}
+				</fieldset>
+			
+				<!-- Réservation de places -->		
+				<div > 
+				Réserver
 					<input type="number" name="place" ng-model="place" step="0" ng-required="true" min="1" max="{{nombreRestant}}" id="Nbplace" value="n"/> couvert(s)
 					<span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
 						<span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
@@ -62,11 +69,13 @@
 						<span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span>
 					</span>
 				</label>
-				<input type="submit" ng-disabled="ReservationForm.$invalid" value="Reserver">
+				<input type="submit" ng-disabled="ReservationForm.$invalid" value="Réserver">
 			</div>
 		</form>
 		</div>
+		
 		<script src="/resources/js/script-offre.js"></script>
+		<!-- Pied de page -->
 		<div ng-include="'/resources/footer.html'"></div>
 	</body>
 </html>

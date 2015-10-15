@@ -21,6 +21,8 @@ $('#dateRepas').datetimepicker({
 
 validationApp.controller('OffreCtrl', function($scope, $http) {
 
+	$scope.duree = 60;
+	$scope.prix = 1;
  
 	$http.get('http://localhost:8080/settings/typescuisines').success(
 			function(data) {
