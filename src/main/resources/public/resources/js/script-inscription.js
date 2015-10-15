@@ -57,7 +57,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http) {
 				data: authentification
 			}).success(function(response, status, headers, config){
 				// ICI JE VEUX UN TOASTER !!!!!!!!
-				window.location.href = '/resources/index.html';
+				window.location.href = '/index.html';
 			}).error(function(err, status, headers, config){
 				// ICI JE VEUX AUSSI UN TOASTER (POUR ERREUR) !!!!
 			});

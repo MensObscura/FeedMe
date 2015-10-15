@@ -109,7 +109,7 @@ validationApp.controller('OffreCtrl', function($scope, $http) {
         		data: data
      		}).success(function(response, status, headers, config){
      			// UN TOASTER ICI !!!!!!
-           		window.location.href = '/resources/accueil.html';
+           		window.location.href = '/accueil.html';
       		}).error(function(err, status, headers, config){
       			// UN TOASTER ICI !!!!!!
      		});
