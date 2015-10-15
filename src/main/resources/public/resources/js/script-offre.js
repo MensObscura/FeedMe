@@ -42,9 +42,12 @@ app.controller('ReservationController', function($scope, $http, $location, $filt
 				data: data
 			}).success(function(response, status, headers, config){
 				console.log(response);
+				window.location.href = "liste_offres.html";
 			}).error(function(err, status, headers, config){
 				console.log(err.message);
 			});
+			
+			 
 
 		}
 

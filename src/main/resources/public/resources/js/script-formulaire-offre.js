@@ -1,5 +1,5 @@
  
-var validationApp = angular.module('validationOfferApp', []);
+var validationApp = angular.module('validationOffre', []);
 
 validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
 	return {
@@ -13,13 +13,13 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 	};
 }]);
 
-$('#datetimepicker').datetimepicker({
+$('#dateRepas').datetimepicker({
 	minDate:'+1970-01-2 00:00',
 	step: 15,
 });
 
 
-validationApp.controller('OfferController', function($scope, $http) {
+validationApp.controller('OffreCtrl', function($scope, $http) {
 
  
 	$http.get('http://localhost:8080/settings/typescuisines').success(
@@ -35,14 +35,14 @@ validationApp.controller('OfferController', function($scope, $http) {
 		);
 
 
-  $scope.disbutton = function() {
-	return $scope.offerForm.$invalid || $('#datetimepicker').val() == "";
+  $scope.nonValide = function() {
+	return $scope.OffreForm.$invalid || $('#dateRepas').val() == "";
   };
 
 	$scope.submitForm = function() {
-		if ($scope.offerForm.$valid) {
+		if ($scope.OffreForm.$valid) {
 
-			var date_repas = new Date($('#datetimepicker').val());
+			var date_repas = new Date($('#dateRepas').val());
 			var today = new Date();
 			var date = "";
 
@@ -53,33 +53,33 @@ validationApp.controller('OfferController', function($scope, $http) {
 
 
 			var pays = {
-				id : $scope.country,
+				id : $scope.pays,
 			};
 
 			var data_ville = {
-				nom : $scope.town,
+				nom : $scope.ville,
 				cp : $scope.cp,
 				pays : pays,
 			};
 
 			var adresse = {
-				voie : $scope.num + " " + $scope.street + " " + $scope.complementary,
+				voie : $scope.numero + " " + $scope.rue + "" + $scope.complement,
 				ville : data_ville,
 			};
 
 			var typeCuisine = {
-				id : $scope.cooktype,
+				id : $scope.typeCuisine,
 			};
 
 
 		    var data = {
 		    	dateCreation : date,
-		    	titre : $scope.title,
-		    	prix : parseFloat($scope.price),
+		    	titre : $scope.titre,
+		    	prix : parseFloat($scope.prix),
 		    	nombrePersonne : parseInt($scope.nbpers),
-		    	dureeMinute : parseInt($scope.time), // optionnel
+		    	dureeMinute : parseInt($scope.duree), // optionnel
 		    	dateRepas : date_repas.toISOString().substr(0,22),
-		    	note : $scope.complementary, //optionnel
+		    	note : $scope.note, //optionnel
 		    	menu : $scope.menu,
 		    	ageMin : parseInt($scope.agemin), //optionnel
 		    	ageMax : parseInt($scope.agemax), //optionnel
