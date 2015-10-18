@@ -8,10 +8,29 @@ import fil.iagl.iir.entite.Offre;
 
 public interface OffreDao {
 
+	/**
+	 * Recupere la liste de toutes les offres enregistrées.
+	 * 
+	 * @return Une liste d'offres
+	 */
 	List<Offre> getAll();
 
+	/**
+	 * Recupere une offre par son ID.
+	 * 
+	 * @param id
+	 *            l'ID de l'offre a recuperer
+	 * @return Une Offre
+	 */
 	Offre getById(@Param("id") Integer id);
 
+	/**
+	 * Enregistre une offre.
+	 * 
+	 * @param offre
+	 *            l'offre a sauvegarder
+	 * @return Le nombre de ligne inserees
+	 */
 	Integer sauvegarder(@Param("offre") Offre offre);
 
 }
