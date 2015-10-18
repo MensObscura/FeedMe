@@ -14,9 +14,13 @@ public class TypeCuisineDaoTest extends AbstractDaoTest{
 
 	@Test
 	public void testGetAll() throws Exception{
+		// Etant donne des types de cuisine definis en base
+		// Quand on recupere la liste des typeCuisine existants
 		List<TypeCuisine> list = typeCuisineDao.getAll();
 		
+		// Alors on verifie que l'on recupere le bon nombre de typeCuisine
 		Assertions.assertThat(list).isNotNull().isNotEmpty().hasSize(NB_TYPE_CUISINE);
+		// et que chaque type de cuisine n'est pas null et a son ID > 0
 		Assertions.assertThat(list).have(new Condition<TypeCuisine>() {
 
 			@Override
