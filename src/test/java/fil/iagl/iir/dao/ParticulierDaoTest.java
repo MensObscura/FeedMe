@@ -12,6 +12,10 @@ import fil.iagl.iir.outils.SQLCODE;
 
 public class ParticulierDaoTest extends AbstractDaoTest {
 
+	public static final String PARTICULIER_PRENOM = "titi";
+	public static final LocalDate PARTICULIER_DDN = LocalDate.of(2015, Month.JANUARY, 2);
+	public static final Integer UTILISATEUR_ID = 1;
+
 	@Test
 	public void getByIdTestSucces() throws Exception {
 		// Etant donne un particulier enregistre en base avec un ID = 1
@@ -94,37 +98,24 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 	public void sauvegarderTestSucces() throws Exception {
 		// Etant donne un particulier associe a un utilisateur
 		// n'ayant pas d'ID particulier encore defini
-		Particulier particulier = new Particulier();
-		String prenom = "titi";
-		LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 2);
-		Integer idUtilisateur = 1;
-
-		particulier.setPrenom(prenom);
-		particulier.setDateNaissance(dateNaissance);
-		particulier.setIdUtilisateur(idUtilisateur);
+		Particulier particulier = buildParticulier();
 
 		// Quand on enregiste ce particulier en base
 		particulierDao.sauvegarder(particulier);
 
 		// Alors l'ID de ce particulier a bien ete genere
 		Assertions.assertThat(particulier.getIdParticulier()).isNotNull().isPositive();
-		Assertions.assertThat(particulier.getPrenom()).isNotNull().isEqualTo(prenom);
-		Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
-		Assertions.assertThat(particulier.getIdUtilisateur()).isNotNull().isEqualTo(idUtilisateur);
+		Assertions.assertThat(particulier.getPrenom()).isNotNull().isEqualTo(PARTICULIER_PRENOM);
+		Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(PARTICULIER_DDN);
+		Assertions.assertThat(particulier.getIdUtilisateur()).isNotNull().isEqualTo(UTILISATEUR_ID);
 
 	}
 
 	@Test
 	public void sauvegarderTestEchec_PrenomNull() throws Exception {
 		// Etant donne un particulier n'ayant pas de prenom
-		Particulier particulier = new Particulier();
-		String prenom = null;
-		LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 2);
-		Integer idUtilisateur = 1;
-
-		particulier.setPrenom(prenom);
-		particulier.setDateNaissance(dateNaissance);
-		particulier.setIdUtilisateur(idUtilisateur);
+		Particulier particulier = buildParticulier();
+		particulier.setPrenom(null);
 
 		try {
 			// Quand on enregistre ce particulier en base
@@ -140,14 +131,8 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 	@Test
 	public void sauvegarderTestEchec_DateNaissanceNull() throws Exception {
 		// Etant donne un particulier n'ayant pas de date de naissance
-		Particulier particulier = new Particulier();
-		String prenom = "titi";
-		LocalDate dateNaissance = null;
-		Integer idUtilisateur = 1;
-
-		particulier.setPrenom(prenom);
-		particulier.setDateNaissance(dateNaissance);
-		particulier.setIdUtilisateur(idUtilisateur);
+		Particulier particulier = buildParticulier();
+		particulier.setDateNaissance(null);
 
 		try {
 			// Quand on enregistre ce particulier en base
@@ -164,14 +149,8 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 	public void sauvegarderTestEchec_IdUtilisateurNull() throws Exception {
 		// Etant donne un particulier n'ayant pas d'ID utilisateur pour
 		// l'associer a un utilisateur
-		Particulier particulier = new Particulier();
-		String prenom = "titi";
-		LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 2);
-		Integer idUtilisateur = null;
-
-		particulier.setPrenom(prenom);
-		particulier.setDateNaissance(dateNaissance);
-		particulier.setIdUtilisateur(idUtilisateur);
+		Particulier particulier = buildParticulier();
+		particulier.setIdUtilisateur(null);
 
 		try {
 			// Quand on enegistre ce particulier en base
@@ -187,14 +166,8 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 	@Test
 	public void sauvegarderTestEchec_IdUtilisateurNonExistant() throws Exception {
 		// Etant donne un particulier associe a un utilisateur inexistant
-		Particulier particulier = new Particulier();
-		String prenom = "titi";
-		LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 2);
-		Integer idUtilisateur = Integer.MAX_VALUE;
-
-		particulier.setPrenom(prenom);
-		particulier.setDateNaissance(dateNaissance);
-		particulier.setIdUtilisateur(idUtilisateur);
+		Particulier particulier = buildParticulier();
+		particulier.setIdUtilisateur(Integer.MAX_VALUE);
 
 		try {
 			// Quand on enregistre ce particulier en base
@@ -207,4 +180,14 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 		}
 	}
 
+	/* *********************** BUILDS ************************/
+
+	public Particulier buildParticulier() {
+		Particulier particulier = new Particulier();
+		particulier.setPrenom(PARTICULIER_PRENOM);
+		particulier.setDateNaissance(PARTICULIER_DDN);
+		particulier.setIdUtilisateur(UTILISATEUR_ID);
+
+		return particulier;
+	}
 }
