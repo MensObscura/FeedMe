@@ -12,7 +12,9 @@ import fil.iagl.iir.outils.SQLCODE;
 
 public class VilleDaoTest extends AbstractDaoTest {
 
-	private static final int NB_VILLE = 2;
+	private static final Integer PAYS_ID = 1;
+	private static final String VILLE_NOM = "villeName";
+	private static final String VILLE_CP = "59770";
 
 	@Test
 	public void testGetByIdSuccess() throws Exception {
@@ -50,16 +52,7 @@ public class VilleDaoTest extends AbstractDaoTest {
 	@Test
 	public void testSauvegardeVilleSuccess() throws Exception {
 		// Etant donne une ville avec un pays associe
-		Ville ville = new Ville();
-		String nom = "villeName";
-		String cp = "59770";
-		Pays pays = new Pays();
-		Integer idPays = 1;
-		pays.setId(idPays);
-
-		ville.setNom(nom);
-		ville.setCp(cp);
-		ville.setPays(pays);
+		Ville ville = buildVille();
 
 		// n'ayant pas son ID encore defini
 		Assertions.assertThat(ville.getId()).isNull();
@@ -69,24 +62,19 @@ public class VilleDaoTest extends AbstractDaoTest {
 
 		// Alors on verifie que l'ID de la ville a bien ete genere
 		Assertions.assertThat(ville.getId()).isNotNull().isPositive();
-		Assertions.assertThat(ville.getNom()).isNotNull().isEqualTo(nom);
-		Assertions.assertThat(ville.getCp()).isNotNull().isEqualTo(cp);
+		// et que les informations sont conformes
+		Assertions.assertThat(ville.getNom()).isNotNull().isEqualTo(VILLE_NOM);
+		Assertions.assertThat(ville.getCp()).isNotNull().isEqualTo(VILLE_CP);
 		Assertions.assertThat(ville.getPays()).isNotNull();
-		Assertions.assertThat(ville.getPays().getId()).isNotNull().isPositive().isEqualTo(idPays);
+		Assertions.assertThat(ville.getPays().getId()).isNotNull().isPositive().isEqualTo(PAYS_ID);
 
 	}
 
 	@Test
 	public void testSauvegardeVilleFailNomNull() throws Exception {
 		// Etant donne une ville n'ayant pas de nom
-		Ville ville = new Ville();
-		String nom = null;
-		String cp = "59770";
-		Pays pays = new Pays();
-
-		ville.setNom(nom);
-		ville.setCp(cp);
-		ville.setPays(pays);
+		Ville ville = buildVille();
+		ville.setNom(null);
 
 		try {
 			// Quand on enregistre cette ville en base
@@ -102,14 +90,8 @@ public class VilleDaoTest extends AbstractDaoTest {
 	@Test
 	public void testSauvegardeVilleFailCpNull() throws Exception {
 		// Etant donne une ville n'ayant pas de code postal
-		Ville ville = new Ville();
-		String nom = "villeName";
-		String cp = null;
-		Pays pays = new Pays();
-
-		ville.setNom(nom);
-		ville.setCp(cp);
-		ville.setPays(pays);
+		Ville ville = buildVille();
+		ville.setCp(null);
 
 		try {
 			// Quand on enregistre cette ville en base
@@ -125,14 +107,8 @@ public class VilleDaoTest extends AbstractDaoTest {
 	@Test
 	public void testSauvegardeVilleFailPaysNull() throws Exception {
 		// Etant donne une ville n'ayant pas de pays associe
-		Ville ville = new Ville();
-		String nom = "villeName";
-		String cp = "59770";
-		Pays pays = null;
-
-		ville.setNom(nom);
-		ville.setCp(cp);
-		ville.setPays(pays);
+		Ville ville = buildVille();
+		ville.setPays(null);
 
 		try {
 			// Quand on enegistre cette ville en base
@@ -143,6 +119,22 @@ public class VilleDaoTest extends AbstractDaoTest {
 		} catch (DataIntegrityViolationException dive) {
 			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
 		}
+	}
+
+	/* **************************** BUILDS **************************/
+
+	public Ville buildVille() {
+		// Construction du pays
+		Pays pays = new Pays();
+		pays.setId(PAYS_ID);
+
+		// Construction de la ville
+		Ville ville = new Ville();
+		ville.setNom(VILLE_NOM);
+		ville.setCp(VILLE_CP);
+		ville.setPays(pays);
+
+		return ville;
 	}
 
 }
