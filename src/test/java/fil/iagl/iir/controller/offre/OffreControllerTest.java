@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.hamcrest.core.IsNull;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,36 +35,25 @@ public class OffreControllerTest extends AbstractControllerTest {
 		Offre offre = createOffre();
 		JSONObject jo = new JSONObject(offre);
 
-		Integer idAdresse = 9;
-		Integer idVille = 7;
+		offre.setId(null);
+		offre.getAdresse().setId(null);
+		offre.getAdresse().getVille().setId(null);
 
 		mockMvc.perform(
 				put("/offres/").contentType(FEED_ME_MEDIA_TYPE).content(jo.toString()))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+				.andExpect(jsonPath("$.id").value(IsNull.notNullValue()))
 				.andExpect(jsonPath("$.titre").value(offre.getTitre()))
 				.andExpect(jsonPath("$.prix").value(offre.getPrix()))
 				.andExpect(jsonPath("$.nombrePersonne").value(offre.getNombrePersonne()))
 				.andExpect(jsonPath("$.dureeMinute").value(offre.getDureeMinute()))
-				// TODO : Trouver pourquoi le serializer JSON vire les secondes
-				// lorsqu'elles sont null
-				// .andExpect(jsonPath("$.dateRepas").value(offre.getDateRepas()
-				// .format(
-				// new DateTimeFormatterBuilder()
-				// .appendText(ChronoField.YEAR).appendLiteral("-")
-				// .appendText(ChronoField.MONTH_OF_YEAR).appendLiteral("-")
-				// .appendText(ChronoField.DAY_OF_MONTH).appendLiteral("T")
-				// .appendText(ChronoField.HOUR_OF_DAY).appendLiteral(":")
-				// .appendText(ChronoField.MINUTE_OF_HOUR).optionalStart().appendLiteral(":")
-				// .appendText(ChronoField.SECOND_OF_MINUTE,
-				// TextStyle.SHORT).optionalEnd()
-				// .toFormatter()
-				// )))
+				.andExpect(jsonPath("$.dateRepas").value(offre.getDateRepas().toString()))
 				.andExpect(jsonPath("$.note").value(offre.getNote()))
 				.andExpect(jsonPath("$.menu").value(offre.getMenu()))
 				.andExpect(jsonPath("$.animaux").value(offre.getAnimaux()))
-				.andExpect(jsonPath("$.adresse.id").value(idAdresse))
-				.andExpect(jsonPath("$.adresse.ville.id").value(idVille))
+				.andExpect(jsonPath("$.adresse.id").value(IsNull.notNullValue()))
+				.andExpect(jsonPath("$.adresse.ville.id").value(IsNull.notNullValue()))
 				.andExpect(jsonPath("$.adresse.ville.pays.id").value(offre.getAdresse().getVille().getPays().getId()))
 				.andExpect(jsonPath("$.adresse.voie").value(offre.getAdresse().getVoie()))
 				.andExpect(jsonPath("$.typeCuisine.id").value(offre.getTypeCuisine().getId()))

@@ -1,6 +1,5 @@
 package fil.iagl.iir.controller.utilisateur;
 
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -13,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.hamcrest.core.IsNull;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -86,6 +86,8 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+				.andExpect(jsonPath("$.idUtilisateur").value(IsNull.notNullValue()))
+				.andExpect(jsonPath("$.idParticulier").value(IsNull.notNullValue()))
 				.andExpect(jsonPath("$.nom").value(nom))
 				.andExpect(jsonPath("$.prenom").value(prenom))
 				.andExpect(jsonPath("$.mail").value(mail))
@@ -97,7 +99,7 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 	public void inscriptionTestEchec() throws Exception {
 		mockMvc.perform(put("/utilisateur/particulier")).andExpect(status().isBadRequest());
 	}
-	
+
 	@Test
 	public void afficherProfilEnSessionSuccess() throws Exception {
 		Utilisateur utilisateur = createUtilisateur();
@@ -110,14 +112,14 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 		particulier.setMail(utilisateur.getMail());
 		particulier.setNom(utilisateur.getNom());
 		particulier.setPrenom(prenom);
-		
+
 		mockMvc.perform(get("/utilisateur/particulier/profil")).andExpect(status().isOk())
-		.andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-		.andExpect(jsonPath("$.nom").value(utilisateur.getNom()))
-		.andExpect(jsonPath("$.mail").value(utilisateur.getMail()))
-		.andExpect(jsonPath("$.idUtilisateur").value(utilisateur.getIdUtilisateur()))
-		.andExpect(jsonPath("$.prenom").value(prenom))
-		.andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()));
+				.andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+				.andExpect(jsonPath("$.nom").value(utilisateur.getNom()))
+				.andExpect(jsonPath("$.mail").value(utilisateur.getMail()))
+				.andExpect(jsonPath("$.idUtilisateur").value(utilisateur.getIdUtilisateur()))
+				.andExpect(jsonPath("$.prenom").value(prenom))
+				.andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()));
 	}
 
 }
