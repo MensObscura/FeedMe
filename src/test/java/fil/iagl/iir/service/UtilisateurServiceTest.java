@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.outils.FeedMeException;
 
 public class UtilisateurServiceTest extends AbstractServiceTest {
 
@@ -26,7 +27,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
 
   }
 
-  @Test(expected = RuntimeException.class)
+  @Test(expected = FeedMeException.class)
   public void getByIdTestEchec() throws Exception {
     utilisateurService.getById(null);
     Mockito.verify(utilisateurDao, Mockito.never()).getById(Mockito.any());

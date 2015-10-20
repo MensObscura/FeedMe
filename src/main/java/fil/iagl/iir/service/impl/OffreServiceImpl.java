@@ -10,6 +10,7 @@ import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.service.OffreService;
 
@@ -28,7 +29,7 @@ public class OffreServiceImpl implements OffreService {
   @Override
   public void sauvegarder(Offre offre) {
     if (offre == null) {
-      throw new RuntimeException("Parametre null");
+      throw new FeedMeException("Parametre null");
     }
 
     offre.setHote(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
@@ -43,7 +44,7 @@ public class OffreServiceImpl implements OffreService {
   @Override
   public Offre afficher(Integer id) {
     if (id == null) {
-      throw new RuntimeException("Parametre null");
+      throw new FeedMeException("Parametre null");
     }
 
     return this.offreDao.getById(id);

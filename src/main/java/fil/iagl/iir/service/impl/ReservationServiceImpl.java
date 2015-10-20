@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.service.ReservationService;
 
@@ -20,7 +21,7 @@ public class ReservationServiceImpl implements ReservationService {
   @Override
   public Integer sauvegarder(Reservation reservation) {
     if (reservation == null) {
-      throw new RuntimeException("Parametre null");
+      throw new FeedMeException("Parametre null");
     }
     reservation.setConvive(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
@@ -30,7 +31,7 @@ public class ReservationServiceImpl implements ReservationService {
 
   public List<Reservation> getAllReservationByOffre(Integer offreId) {
     if (offreId == null) {
-      throw new RuntimeException("Parametre null");
+      throw new FeedMeException("Parametre null");
     }
     return reservationDao.getAllByIdOffre(offreId);
   }

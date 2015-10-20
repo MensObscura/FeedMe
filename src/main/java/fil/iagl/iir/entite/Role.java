@@ -2,6 +2,8 @@ package fil.iagl.iir.entite;
 
 import java.io.Serializable;
 
+import fil.iagl.iir.outils.FeedMeException;
+
 public enum Role implements Serializable {
 
   PARTICULIER(1);
@@ -18,7 +20,7 @@ public enum Role implements Serializable {
         return role;
       }
     }
-    throw new RuntimeException("No Enum Found for ID : " + id);
+    throw new FeedMeException("No Enum Found for ID : " + id);
   }
 
   public Integer getId() {

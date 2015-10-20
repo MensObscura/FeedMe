@@ -40,6 +40,7 @@ import fil.iagl.iir.entite.TypeCuisine;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.entite.Ville;
 import fil.iagl.iir.outils.FeedMeAuthentificationToken;
+import fil.iagl.iir.outils.FeedMeException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FeedMeConfiguration.class)
@@ -73,7 +74,7 @@ public abstract class AbstractFeedMeTest {
         runner = new ScriptRunner(dataSource.getConnection());
         runner.runScript(new FileReader(reset));
       } catch (IOException | SQLException e) {
-        throw new RuntimeException(e);
+        throw new FeedMeException(e);
       } finally {
         runner.closeConnection();
         hasBeenReset = Boolean.TRUE;

@@ -7,6 +7,7 @@ import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.service.UtilisateurService;
 
 @Service
@@ -21,7 +22,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
   @Override
   public Utilisateur getById(Integer id) {
     if (id == null) {
-      throw new RuntimeException("Parametre null");
+      throw new FeedMeException("Parametre null");
     }
     return utilisateurDao.getById(id);
   }
@@ -29,7 +30,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
   @Override
   public Particulier getParticulierByUtilisisateurId(Integer id) {
     if (id == null) {
-      throw new RuntimeException("parametre null");
+      throw new FeedMeException("parametre null");
     }
     return particulierDao.getParticulierByUtilisateurId(id);
   }

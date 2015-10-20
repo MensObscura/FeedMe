@@ -13,6 +13,7 @@ import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.entite.Ville;
+import fil.iagl.iir.outils.FeedMeException;
 
 public class OffreServiceTest extends AbstractServiceTest {
 
@@ -42,7 +43,7 @@ public class OffreServiceTest extends AbstractServiceTest {
 
   }
 
-  @Test(expected = RuntimeException.class)
+  @Test(expected = FeedMeException.class)
   public void sauvegarderTestEchec() throws Exception {
     offreService.sauvegarder(null);
     Mockito.verify(offreDao, Mockito.never()).sauvegarder(Mockito.any());
@@ -58,7 +59,7 @@ public class OffreServiceTest extends AbstractServiceTest {
 
   }
 
-  @Test(expected = RuntimeException.class)
+  @Test(expected = FeedMeException.class)
   public void afficherTestEchec() throws Exception {
     offreService.afficher(null);
     Mockito.verify(offreDao, Mockito.times(0)).getById(null);

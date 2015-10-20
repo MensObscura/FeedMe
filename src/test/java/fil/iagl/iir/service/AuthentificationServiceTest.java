@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
+import fil.iagl.iir.outils.FeedMeException;
 
 public class AuthentificationServiceTest extends AbstractServiceTest {
 
@@ -64,7 +65,7 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
     order.verify(authentificationDao).sauvegarder(auth);
   }
 
-  @Test(expected = RuntimeException.class)
+  @Test(expected = FeedMeException.class)
   public void inscriptionTestEchec() throws Exception {
     Authentification<Particulier> auth = null;
 

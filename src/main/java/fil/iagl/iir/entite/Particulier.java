@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class Particulier extends Utilisateur {
 
+  private static final long serialVersionUID = 4888546925876818875L;
+
   private Integer idParticulier;
 
   private String prenom;
