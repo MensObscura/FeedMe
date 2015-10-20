@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.service.AuthentificationService;
 
 @Configuration
@@ -22,31 +23,30 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
   AuthentificationService authenticationService;
 
   @Override
-  protected void configure(final HttpSecurity http) throws Exception {
+  protected void configure(final HttpSecurity http) {
 
-    // Desactiver le certificat pour autoriser PUT/POST/DELETE
-    http.csrf().disable();
+    try {
+      // Desactiver le certificat pour autoriser PUT/POST/DELETE
+      http.csrf().disable();
 
-    // L'accès au autre ressources est sécurisé
-    http.authorizeRequests().anyRequest().authenticated();
+      // L'accès au autre ressources est sécurisé
+      http.authorizeRequests().anyRequest().authenticated();
 
-    // Redirection en cas de tentative non identifié
-    http.formLogin().defaultSuccessUrl("/resources/accueil.html").permitAll();
+      // Redirection en cas de tentative non identifié
+      http.formLogin().defaultSuccessUrl("/resources/accueil.html").permitAll();
+    } catch (Exception e) {
+      throw new FeedMeException(e);
+    }
 
-    /*
-     * 
-     * TODO : Voir comment faire une custom login page avec Angular
-     * 
-     * https://spring.io/guides/tutorials/spring-security-and-angular-js/
-     * https://spring.io/blog/2015/01/12/the-login-page-angular-js-and-
-     * spring-security-part-ii
-     * 
-     */
   }
 
   @Override
-  public void configure(final WebSecurity web) throws Exception {
-    super.configure(web);
+  public void configure(final WebSecurity web) {
+    try {
+      super.configure(web);
+    } catch (Exception e) {
+      throw new FeedMeException(e);
+    }
 
     // Autoriser l'accès au ressources sans etre authentifier
     web.ignoring().antMatchers("/");
@@ -56,9 +56,13 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
   }
 
   @Autowired
-  public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
+  public void configureGlobal(final AuthenticationManagerBuilder auth) {
     final PasswordEncoder encoder = new BCryptPasswordEncoder();
-    auth.userDetailsService(this.authenticationService).passwordEncoder(encoder);
+    try {
+      auth.userDetailsService(this.authenticationService).passwordEncoder(encoder);
+    } catch (Exception e) {
+      throw new FeedMeException(e);
+    }
   }
 
 }

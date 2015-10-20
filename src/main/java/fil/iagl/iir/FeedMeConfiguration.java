@@ -1,5 +1,7 @@
 package fil.iagl.iir;
 
+import java.io.IOException;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import fil.iagl.iir.entite.Role;
+import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.JsonRoleDeserializer;
 
 @Configuration
@@ -33,7 +36,7 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
   }
 
   @Bean
-  public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+  public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws IOException {
     SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
     sessionFactory.setDataSource(dataSource);
 
@@ -41,7 +44,11 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
     sessionFactory.setMapperLocations(resolver.getResources("classpath*:**/mapper/*Mapper.xml"));
 
     sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
-    return sessionFactory.getObject();
+    try {
+      return sessionFactory.getObject();
+    } catch (Exception e) {
+      throw new FeedMeException(e);
+    }
   }
 
   @Bean
