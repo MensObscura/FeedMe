@@ -29,6 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
 
   }
 
+  @Override
   public List<Reservation> getAllReservationByOffre(Integer offreId) {
     if (offreId == null) {
       throw new FeedMeException("Parametre null");
