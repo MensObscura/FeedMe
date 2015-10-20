@@ -7,4 +7,6 @@ import lombok.Setter;
 @Setter
 public class AuthentificationParticulier extends Authentification<Particulier> {
 
+	private static final long serialVersionUID = 2783774988507160859L;
+
 }

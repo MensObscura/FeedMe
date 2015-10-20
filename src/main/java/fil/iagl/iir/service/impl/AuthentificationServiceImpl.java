@@ -17,6 +17,7 @@ import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
+import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.service.AuthentificationService;
 
 @Service
@@ -33,7 +34,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-		final Authentification auth = this.authentificationDao.getByUsername(username);
+		final Authentification<? extends Utilisateur> auth = this.authentificationDao.getByUsername(username);
 		if (auth == null) {
 			throw new UsernameNotFoundException("Username non existant");
 		}

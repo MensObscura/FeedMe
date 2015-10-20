@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.dao.adresse.AdresseDao;
 import fil.iagl.iir.dao.offre.OffreDao;
-import fil.iagl.iir.dao.pays.PaysDao;
 import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Utilisateur;
@@ -25,9 +24,6 @@ public class OffreServiceImpl implements OffreService {
 
 	@Autowired
 	private VilleDao villeDao;
-
-	@Autowired
-	private PaysDao paysDao;
 
 	@Override
 	public void sauvegarder(Offre offre) {

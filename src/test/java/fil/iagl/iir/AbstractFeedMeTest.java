@@ -87,7 +87,7 @@ public abstract class AbstractFeedMeTest {
 	}
 
 	private void fausseConnection(String username, Optional<Role> role) {
-		Authentification auth = authentificationDao.getByUsername(username);
+		Authentification<? extends Utilisateur> auth = authentificationDao.getByUsername(username);
 		if (role.isPresent()) {
 			auth.setRole(role.get());
 		}

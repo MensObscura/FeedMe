@@ -17,12 +17,12 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
 
 	@Test
 	public void loadUserByUsernameTestSucces() throws Exception {
-		Authentification auth = this.createAuthentificationParticulier();
+		Authentification<Particulier> auth = this.createAuthentificationParticulier();
 
 		String username = auth.getUtilisateur().getMail();
 		String password = auth.getPassword();
 
-		Mockito.when(authentificationDao.getByUsername(username)).thenReturn(auth);
+		Mockito.doReturn(auth).when(authentificationDao).getByUsername(username);
 
 		UserDetails user = authentificationService.loadUserByUsername(username);
 

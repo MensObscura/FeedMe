@@ -6,7 +6,9 @@ import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.entite.Authentification;
+import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
+import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.SQLCODE;
 
 public class AuthentificationDaoTest extends AbstractDaoTest {
@@ -14,7 +16,8 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 	@Test
 	public void getByUsernameTestSucces() throws Exception {
 		String password = "$2a$10$z9Ka6HSwJN/YDqZsC8a3Y.VVxC1DPQNZegHH4mXzRU/hDfetKNEvG";
-		Authentification authentification = this.authentificationDao.getByUsername(USERNAME_TEST_USER);
+		Authentification<? extends Utilisateur> authentification = this.authentificationDao
+				.getByUsername(USERNAME_TEST_USER);
 
 		Assertions.assertThat(authentification).isNotNull();
 		Assertions.assertThat(authentification.getUtilisateur().getMail()).isNotNull().isEqualTo(USERNAME_TEST_USER);
@@ -32,7 +35,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 	@Test
 	public void sauvegarderTestSucces() throws Exception {
 
-		Authentification authentification = this.createAuthentificationParticulier();
+		Authentification<Particulier> authentification = this.createAuthentificationParticulier();
 
 		this.authentificationDao.sauvegarder(authentification);
 
@@ -42,7 +45,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void sauvegarderTestEchec_IdUtilisateurNull() throws Exception {
-		Authentification authentification = this.createAuthentificationParticulier();
+		Authentification<Particulier> authentification = this.createAuthentificationParticulier();
 		authentification.getUtilisateur().setIdUtilisateur(null);
 
 		try {
@@ -55,7 +58,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void sauvegarderTestEchec_PasswordNull() throws Exception {
-		Authentification authentification = this.createAuthentificationParticulier();
+		Authentification<Particulier> authentification = this.createAuthentificationParticulier();
 		authentification.setPassword(null);
 
 		try {
@@ -68,7 +71,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void sauvegarderTestEchec_RoleNull() throws Exception {
-		Authentification authentification = this.createAuthentificationParticulier();
+		Authentification<Particulier> authentification = this.createAuthentificationParticulier();
 		authentification.setRole(null);
 
 		try {
@@ -81,7 +84,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
 	@Test
 	public void sauvegarderTestEchec_IdUtilisateurNonExistant() throws Exception {
-		Authentification authentification = this.createAuthentificationParticulier();
+		Authentification<Particulier> authentification = this.createAuthentificationParticulier();
 		authentification.getUtilisateur().setIdUtilisateur(Integer.MAX_VALUE);
 
 		try {
@@ -95,7 +98,7 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 	@Test
 	public void sauvegarderTestEchec_UsernameUnique() throws Exception {
 		Integer idUtilisateur = 1;
-		Authentification authentification = this.createAuthentificationParticulier();
+		Authentification<Particulier> authentification = this.createAuthentificationParticulier();
 		authentification.getUtilisateur().setIdUtilisateur(idUtilisateur);
 
 		try {
