@@ -23,40 +23,40 @@ import fil.iagl.iir.service.AuthentificationService;
 @Service
 public class AuthentificationServiceImpl implements AuthentificationService {
 
-	@Autowired
-	private AuthentificationDao authentificationDao;
+  @Autowired
+  private AuthentificationDao authentificationDao;
 
-	@Autowired
-	private UtilisateurDao utilisateurDao;
+  @Autowired
+  private UtilisateurDao utilisateurDao;
 
-	@Autowired
-	private ParticulierDao particulierDao;
+  @Autowired
+  private ParticulierDao particulierDao;
 
-	@Override
-	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-		final Authentification<? extends Utilisateur> auth = this.authentificationDao.getByUsername(username);
-		if (auth == null) {
-			throw new UsernameNotFoundException("Username non existant");
-		}
-		final GrantedAuthority authority = new SimpleGrantedAuthority(auth.getRole().name());
+  @Override
+  public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+    final Authentification<? extends Utilisateur> auth = this.authentificationDao.getByUsername(username);
+    if (auth == null) {
+      throw new UsernameNotFoundException("Username non existant");
+    }
+    final GrantedAuthority authority = new SimpleGrantedAuthority(auth.getRole().name());
 
-		final UserDetails userDetails = new User(auth.getUtilisateur().getMail(), auth.getPassword(),
-				Arrays.asList(authority));
+    final UserDetails userDetails = new User(auth.getUtilisateur().getMail(), auth.getPassword(),
+      Arrays.asList(authority));
 
-		return userDetails;
-	}
+    return userDetails;
+  }
 
-	@Override
-	public void inscription(Authentification<Particulier> authentification) {
-		if (authentification == null) {
-			throw new RuntimeException("Parametre null");
-		}
-		authentification.setRole(Role.PARTICULIER);
-		authentification.setPassword(new BCryptPasswordEncoder().encode(authentification.getPassword()));
+  @Override
+  public void inscription(Authentification<Particulier> authentification) {
+    if (authentification == null) {
+      throw new RuntimeException("Parametre null");
+    }
+    authentification.setRole(Role.PARTICULIER);
+    authentification.setPassword(new BCryptPasswordEncoder().encode(authentification.getPassword()));
 
-		utilisateurDao.sauvegarder(authentification.getUtilisateur());
-		particulierDao.sauvegarder(authentification.getUtilisateur());
-		authentificationDao.sauvegarder(authentification);
-	}
+    utilisateurDao.sauvegarder(authentification.getUtilisateur());
+    particulierDao.sauvegarder(authentification.getUtilisateur());
+    authentificationDao.sauvegarder(authentification);
+  }
 
 }

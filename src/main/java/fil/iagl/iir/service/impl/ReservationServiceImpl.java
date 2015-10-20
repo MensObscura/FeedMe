@@ -14,25 +14,25 @@ import fil.iagl.iir.service.ReservationService;
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
-	@Autowired
-	private ReservationDao reservationDao;
+  @Autowired
+  private ReservationDao reservationDao;
 
-	@Override
-	public Integer sauvegarder(Reservation reservation) {
-		if (reservation == null) {
-			throw new RuntimeException("Parametre null");
-		}
-		reservation.setConvive(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
+  @Override
+  public Integer sauvegarder(Reservation reservation) {
+    if (reservation == null) {
+      throw new RuntimeException("Parametre null");
+    }
+    reservation.setConvive(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
-		return this.reservationDao.sauvegarder(reservation);
-		
-	}
+    return this.reservationDao.sauvegarder(reservation);
 
-	public List<Reservation> getAllReservationByOffre(Integer offreId) {
-		if (offreId == null) {
-			throw new RuntimeException("Parametre null");
-		}
-		return reservationDao.getAllByIdOffre(offreId);
-	}
+  }
+
+  public List<Reservation> getAllReservationByOffre(Integer offreId) {
+    if (offreId == null) {
+      throw new RuntimeException("Parametre null");
+    }
+    return reservationDao.getAllByIdOffre(offreId);
+  }
 
 }

@@ -16,22 +16,22 @@ import fil.iagl.iir.service.OffreService;
 @RequestMapping("/offres")
 public class OffreController {
 
-	@Autowired
-	private OffreService offreservice;
+  @Autowired
+  private OffreService offreservice;
 
-	@RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
-	public Offre sauvegarder(@RequestBody Offre offre) {
-		offreservice.sauvegarder(offre);
-		return offre;
-	}
+  @RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+  public Offre sauvegarder(@RequestBody Offre offre) {
+    offreservice.sauvegarder(offre);
+    return offre;
+  }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Offre afficher(@PathVariable("id") Integer id) {
-		return offreservice.afficher(id);
-	}
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  public Offre afficher(@PathVariable("id") Integer id) {
+    return offreservice.afficher(id);
+  }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Offre> afficher() {
-		return offreservice.lister();
-	}
+  @RequestMapping(method = RequestMethod.GET)
+  public List<Offre> afficher() {
+    return offreservice.lister();
+  }
 }

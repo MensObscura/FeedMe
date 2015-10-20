@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 public class Particulier extends Utilisateur {
 
-	private Integer idParticulier;
-	
-	private String prenom;
-	
-	private LocalDate dateNaissance;
-	
+  private Integer idParticulier;
+
+  private String prenom;
+
+  private LocalDate dateNaissance;
+
 }

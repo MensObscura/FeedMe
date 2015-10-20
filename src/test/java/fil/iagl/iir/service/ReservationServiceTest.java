@@ -9,39 +9,39 @@ import fil.iagl.iir.entite.Utilisateur;
 
 public class ReservationServiceTest extends AbstractServiceTest {
 
-	@Mock
-	private Reservation reservation;
+  @Mock
+  private Reservation reservation;
 
-	@Mock
-	private Utilisateur utilisateur;
+  @Mock
+  private Utilisateur utilisateur;
 
-	@Test
-	public void sauvegarderTestSucces() throws Exception {
-		Mockito.when(reservation.getConvive()).thenReturn(utilisateur);
+  @Test
+  public void sauvegarderTestSucces() throws Exception {
+    Mockito.when(reservation.getConvive()).thenReturn(utilisateur);
 
-		this.reservationService.sauvegarder(reservation);
+    this.reservationService.sauvegarder(reservation);
 
-		Mockito.verify(reservationDao, Mockito.times(1)).sauvegarder(reservation);
-	}
+    Mockito.verify(reservationDao, Mockito.times(1)).sauvegarder(reservation);
+  }
 
-	@Test(expected = RuntimeException.class)
-	public void sauvegarderTestEchec() throws Exception {
+  @Test(expected = RuntimeException.class)
+  public void sauvegarderTestEchec() throws Exception {
 
-		reservationService.sauvegarder(null);
-		Mockito.verify(reservationDao, Mockito.never()).sauvegarder(Mockito.any());
-	}
+    reservationService.sauvegarder(null);
+    Mockito.verify(reservationDao, Mockito.never()).sauvegarder(Mockito.any());
+  }
 
-	@Test
-	public void getAllReservationByOffreIdTestSuccess() throws Exception {
-		Integer idOffre = 4;
-		reservationService.getAllReservationByOffre(idOffre);
-		Mockito.verify(reservationDao, Mockito.times(1)).getAllByIdOffre(idOffre);
-	}
+  @Test
+  public void getAllReservationByOffreIdTestSuccess() throws Exception {
+    Integer idOffre = 4;
+    reservationService.getAllReservationByOffre(idOffre);
+    Mockito.verify(reservationDao, Mockito.times(1)).getAllByIdOffre(idOffre);
+  }
 
-	@Test(expected = RuntimeException.class)
-	public void getAllReservationByOffreIdFail() throws Exception {
-		reservationService.getAllReservationByOffre(null);
-		Mockito.verify(reservationDao, Mockito.never()).getAllByIdOffre(Mockito.any());
-	}
+  @Test(expected = RuntimeException.class)
+  public void getAllReservationByOffreIdFail() throws Exception {
+    reservationService.getAllReservationByOffre(null);
+    Mockito.verify(reservationDao, Mockito.never()).getAllByIdOffre(Mockito.any());
+  }
 
 }

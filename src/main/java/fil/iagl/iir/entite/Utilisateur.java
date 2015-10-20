@@ -8,18 +8,18 @@ import lombok.Setter;
 @Setter
 public class Utilisateur {
 
-	public Utilisateur(Integer idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
+  public Utilisateur(Integer idUtilisateur) {
+    this.idUtilisateur = idUtilisateur;
+  }
 
-	public Utilisateur() {
+  public Utilisateur() {
 
-	}
+  }
 
-	private Integer idUtilisateur;
+  private Integer idUtilisateur;
 
-	private String nom;
+  private String nom;
 
-	private String mail;
+  private String mail;
 
 }

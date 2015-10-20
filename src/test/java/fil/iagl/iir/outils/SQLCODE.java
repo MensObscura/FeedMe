@@ -2,16 +2,16 @@ package fil.iagl.iir.outils;
 
 public enum SQLCODE {
 
-	NOT_NULL_VIOLATION("23502"), FOREIGN_KEY_VIOLATION("23503"), UNIQUE_VIOLATION("23505");
+  NOT_NULL_VIOLATION("23502"), FOREIGN_KEY_VIOLATION("23503"), UNIQUE_VIOLATION("23505");
 
-	private String code;
+  private String code;
 
-	SQLCODE(String code) {
-		this.code = code;
-	}
+  SQLCODE(String code) {
+    this.code = code;
+  }
 
-	public String getSqlCode() {
-		return this.code;
-	}
+  public String getSqlCode() {
+    return this.code;
+  }
 
 }

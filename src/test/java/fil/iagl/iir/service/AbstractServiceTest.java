@@ -18,37 +18,37 @@ import fil.iagl.iir.service.impl.UtilisateurServiceImpl;
 
 public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 
-	@InjectMocks
-	protected AuthentificationServiceImpl authentificationService;
+  @InjectMocks
+  protected AuthentificationServiceImpl authentificationService;
 
-	@InjectMocks
-	protected UtilisateurServiceImpl utilisateurService;
+  @InjectMocks
+  protected UtilisateurServiceImpl utilisateurService;
 
-	@InjectMocks
-	protected ReservationServiceImpl reservationService;
+  @InjectMocks
+  protected ReservationServiceImpl reservationService;
 
-	@InjectMocks
-	protected OffreServiceImpl offreService;
+  @InjectMocks
+  protected OffreServiceImpl offreService;
 
-	@Mock
-	protected AuthentificationDao authentificationDao;
+  @Mock
+  protected AuthentificationDao authentificationDao;
 
-	@Mock
-	protected UtilisateurDao utilisateurDao;
+  @Mock
+  protected UtilisateurDao utilisateurDao;
 
-	@Mock
-	protected ParticulierDao particulierDao;
+  @Mock
+  protected ParticulierDao particulierDao;
 
-	@Mock
-	protected ReservationDao reservationDao;
+  @Mock
+  protected ReservationDao reservationDao;
 
-	@Mock
-	protected OffreDao offreDao;
+  @Mock
+  protected OffreDao offreDao;
 
-	@Mock
-	protected AdresseDao adresseDao;
+  @Mock
+  protected AdresseDao adresseDao;
 
-	@Mock
-	protected VilleDao villeDao;
+  @Mock
+  protected VilleDao villeDao;
 
 }

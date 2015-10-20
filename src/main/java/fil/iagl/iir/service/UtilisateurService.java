@@ -8,10 +8,8 @@ import fil.iagl.iir.entite.Utilisateur;
 @Service
 public interface UtilisateurService {
 
-	Utilisateur getById(Integer id);
-	
-	Particulier getParticulierByUtilisisateurId(Integer id);
-	
+  Utilisateur getById(Integer id);
 
+  Particulier getParticulierByUtilisisateurId(Integer id);
 
 }

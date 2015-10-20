@@ -12,26 +12,26 @@ import fil.iagl.iir.service.UtilisateurService;
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
 
-	@Autowired
-	private UtilisateurDao utilisateurDao;
-	
-	@Autowired
-	private ParticulierDao particulierDao;
+  @Autowired
+  private UtilisateurDao utilisateurDao;
 
-	@Override
-	public Utilisateur getById(Integer id) {
-		if (id == null) {
-			throw new RuntimeException("Parametre null");
-		}
-		return utilisateurDao.getById(id);
-	}
+  @Autowired
+  private ParticulierDao particulierDao;
 
-	@Override
-	public Particulier getParticulierByUtilisisateurId(Integer id) {
-		if(id==null){
-			throw new RuntimeException("parametre null");
-		}
-		return particulierDao.getParticulierByUtilisateurId(id);
-	}
+  @Override
+  public Utilisateur getById(Integer id) {
+    if (id == null) {
+      throw new RuntimeException("Parametre null");
+    }
+    return utilisateurDao.getById(id);
+  }
+
+  @Override
+  public Particulier getParticulierByUtilisisateurId(Integer id) {
+    if (id == null) {
+      throw new RuntimeException("parametre null");
+    }
+    return particulierDao.getParticulierByUtilisateurId(id);
+  }
 
 }

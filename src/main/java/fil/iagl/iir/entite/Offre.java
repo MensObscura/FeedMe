@@ -11,36 +11,36 @@ import lombok.Setter;
 @Setter
 public class Offre {
 
-	private Integer id;
+  private Integer id;
 
-	private LocalDate dateCreation;
+  private LocalDate dateCreation;
 
-	private String titre;
+  private String titre;
 
-	private Integer prix;
+  private Integer prix;
 
-	private Integer nombrePersonne;
+  private Integer nombrePersonne;
 
-	private Integer dureeMinute;
+  private Integer dureeMinute;
 
-	private LocalDateTime dateRepas;
+  private LocalDateTime dateRepas;
 
-	private String note;
+  private String note;
 
-	private String menu;
+  private String menu;
 
-	private Integer ageMin;
+  private Integer ageMin;
 
-	private Integer ageMax;
+  private Integer ageMax;
 
-	private Boolean animaux;
+  private Boolean animaux;
 
-	private Adresse adresse;
+  private Adresse adresse;
 
-	private TypeCuisine typeCuisine;
+  private TypeCuisine typeCuisine;
 
-	private Utilisateur hote;
-	
-	private List<Reservation> reservations;
+  private Utilisateur hote;
+
+  private List<Reservation> reservations;
 
 }

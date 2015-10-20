@@ -18,51 +18,51 @@ import fil.iagl.iir.service.UtilisateurService;
 @RequestMapping("/utilisateur")
 public class UtilisateurController {
 
-	@Autowired
-	private UtilisateurService utilisateurService;
+  @Autowired
+  private UtilisateurService utilisateurService;
 
-	@Autowired
-	private AuthentificationService authentificationService;
+  @Autowired
+  private AuthentificationService authentificationService;
 
-	@RequestMapping(value = "/particulier/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public Utilisateur afficherProfil(@PathVariable("id") Integer id) {
-		return utilisateurService.getById(id);
-	}
+  @RequestMapping(value = "/particulier/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+  public Utilisateur afficherProfil(@PathVariable("id") Integer id) {
+    return utilisateurService.getById(id);
+  }
 
-	@RequestMapping(value = "/particulier", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
-	public Particulier inscription(@RequestBody AuthentificationParticulier auth) {
-		authentificationService.inscription(auth);
-		return auth.getUtilisateur();
-	}
-	
-	@RequestMapping(value="/particulier/profil", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public Particulier afficherSonProfil(){
-		Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
-		return utilisateurService.getParticulierByUtilisisateurId(idSession);
-	}
+  @RequestMapping(value = "/particulier", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+  public Particulier inscription(@RequestBody AuthentificationParticulier auth) {
+    authentificationService.inscription(auth);
+    return auth.getUtilisateur();
+  }
 
-	/*
-	 * Example de controller REST
-	 *
-	 */
+  @RequestMapping(value = "/particulier/profil", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+  public Particulier afficherSonProfil() {
+    Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
+    return utilisateurService.getParticulierByUtilisisateurId(idSession);
+  }
 
-	/*
-	 * 
-	 * 
-	 * Coté Front ( en jQuery, trouver l'équivalent en Angular ) :
-	 * 
-	 * data = { "nom" : "toto", "mail" : "monemail@toto.fr" };
-	 * 
-	 * $.ajax({ type: "PUT", url: "/utilisateur/test", contentType:
-	 * 'application/json', mimeType: 'application/json', data:
-	 * JSON.stringify(data) });
-	 * 
-	 * 
-	 * Coté Spring :
-	 * 
-	 * @RequestMapping(value = "/test", method = RequestMethod.PUT) public void
-	 * test(@RequestBody Utilisateur utilisateur) { // Faire le traitement }
-	 * 
-	 */
+  /*
+   * Example de controller REST
+   *
+   */
+
+  /*
+   * 
+   * 
+   * Coté Front ( en jQuery, trouver l'équivalent en Angular ) :
+   * 
+   * data = { "nom" : "toto", "mail" : "monemail@toto.fr" };
+   * 
+   * $.ajax({ type: "PUT", url: "/utilisateur/test", contentType:
+   * 'application/json', mimeType: 'application/json', data:
+   * JSON.stringify(data) });
+   * 
+   * 
+   * Coté Spring :
+   * 
+   * @RequestMapping(value = "/test", method = RequestMethod.PUT) public void
+   * test(@RequestBody Utilisateur utilisateur) { // Faire le traitement }
+   * 
+   */
 
 }

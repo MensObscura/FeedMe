@@ -16,42 +16,42 @@ import fil.iagl.iir.service.OffreService;
 @Service
 public class OffreServiceImpl implements OffreService {
 
-	@Autowired
-	private OffreDao offreDao;
+  @Autowired
+  private OffreDao offreDao;
 
-	@Autowired
-	private AdresseDao adresseDao;
+  @Autowired
+  private AdresseDao adresseDao;
 
-	@Autowired
-	private VilleDao villeDao;
+  @Autowired
+  private VilleDao villeDao;
 
-	@Override
-	public void sauvegarder(Offre offre) {
-		if (offre == null) {
-			throw new RuntimeException("Parametre null");
-		}
+  @Override
+  public void sauvegarder(Offre offre) {
+    if (offre == null) {
+      throw new RuntimeException("Parametre null");
+    }
 
-		offre.setHote(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
+    offre.setHote(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
-		// TODO : Creer un adresse service
-		this.villeDao.sauvegarder(offre.getAdresse().getVille());
-		this.adresseDao.sauvegarder(offre.getAdresse());
+    // TODO : Creer un adresse service
+    this.villeDao.sauvegarder(offre.getAdresse().getVille());
+    this.adresseDao.sauvegarder(offre.getAdresse());
 
-		this.offreDao.sauvegarder(offre);
-	}
+    this.offreDao.sauvegarder(offre);
+  }
 
-	@Override
-	public Offre afficher(Integer id) {
-		if (id == null) {
-			throw new RuntimeException("Parametre null");
-		}
+  @Override
+  public Offre afficher(Integer id) {
+    if (id == null) {
+      throw new RuntimeException("Parametre null");
+    }
 
-		return this.offreDao.getById(id);
-	}
+    return this.offreDao.getById(id);
+  }
 
-	@Override
-	public List<Offre> lister() {
-		return offreDao.getAll();
-	}
+  @Override
+  public List<Offre> lister() {
+    return offreDao.getAll();
+  }
 
 }

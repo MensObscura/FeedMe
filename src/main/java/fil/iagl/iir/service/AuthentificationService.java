@@ -7,6 +7,6 @@ import fil.iagl.iir.entite.Particulier;
 
 public interface AuthentificationService extends UserDetailsService {
 
-	public void inscription(Authentification<Particulier> authentification);
+  public void inscription(Authentification<Particulier> authentification);
 
 }
