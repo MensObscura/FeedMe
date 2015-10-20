@@ -11,7 +11,6 @@ import org.mockito.Mockito;
 
 import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Offre;
-import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.entite.Ville;
 import fil.iagl.iir.outils.FeedMeException;
 
@@ -19,9 +18,6 @@ public class OffreServiceTest extends AbstractServiceTest {
 
   @Mock
   private Offre offre;
-
-  @Mock
-  private Utilisateur hote;
 
   @Mock
   private Adresse adresse;

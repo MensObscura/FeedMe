@@ -32,7 +32,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     Integer prix = 999;
     Integer nombrePersonne = 5;
     Integer dureeMinute = 120;
-    LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 00);
+    LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 0);
     String menu = "DescriptionDuMenu";
     Boolean animaux = Boolean.FALSE;
     String note = "Note";
