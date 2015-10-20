@@ -4,18 +4,18 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class FeedMeApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	@Override
-	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { FeedMeConfiguration.class };
-	}
+  @Override
+  protected Class<?>[] getRootConfigClasses() {
+    return new Class[] {FeedMeConfiguration.class};
+  }
 
-	@Override
-	protected Class<?>[] getServletConfigClasses() {
-		return null;
-	}
+  @Override
+  protected Class<?>[] getServletConfigClasses() {
+    return null;
+  }
 
-	@Override
-	protected String[] getServletMappings() {
-		return new String[] { "/" };
-	}
+  @Override
+  protected String[] getServletMappings() {
+    return new String[] {"/"};
+  }
 }

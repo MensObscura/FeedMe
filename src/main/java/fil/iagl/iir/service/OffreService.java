@@ -6,9 +6,9 @@ import fil.iagl.iir.entite.Offre;
 
 public interface OffreService {
 
-	void sauvegarder(Offre offre);
+  void sauvegarder(Offre offre);
 
-	Offre afficher(Integer id);
+  Offre afficher(Integer id);
 
-	List<Offre> lister();
+  List<Offre> lister();
 }

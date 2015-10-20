@@ -18,44 +18,44 @@ import fil.iagl.iir.service.UtilisateurService;
 
 public abstract class AbstractControllerTest extends AbstractFeedMeTest {
 
-	protected MockMvc mockMvc;
+  protected MockMvc mockMvc;
 
-	@Mock
-	protected UtilisateurService utilisateurService;
+  @Mock
+  protected UtilisateurService utilisateurService;
 
-	@Mock
-	protected AuthentificationService authentificationService;
+  @Mock
+  protected AuthentificationService authentificationService;
 
-	@Mock
-	protected OffreService offreService;
+  @Mock
+  protected OffreService offreService;
 
-	@Mock
-	protected OffreDao offreDao;
+  @Mock
+  protected OffreDao offreDao;
 
-	@Mock
-	protected UtilisateurDao utilisateurDao;
+  @Mock
+  protected UtilisateurDao utilisateurDao;
 
-	@Mock
-	protected VilleDao villeDao;
+  @Mock
+  protected VilleDao villeDao;
 
-	@Mock
-	protected TypeCuisineDao typeCuisineDao;
+  @Mock
+  protected TypeCuisineDao typeCuisineDao;
 
-	@Mock
-	protected AuthentificationDao authentificationDao;
+  @Mock
+  protected AuthentificationDao authentificationDao;
 
-	@InjectMocks
-	protected UtilisateurController utilisateurController;
+  @InjectMocks
+  protected UtilisateurController utilisateurController;
 
-	@InjectMocks
-	protected ReservationController reservationController;
+  @InjectMocks
+  protected ReservationController reservationController;
 
-	@InjectMocks
-	protected ParametrageController parametrageController;
+  @InjectMocks
+  protected ParametrageController parametrageController;
 
-	@InjectMocks
-	protected OffreController offreController;
+  @InjectMocks
+  protected OffreController offreController;
 
-	@Autowired
-	protected WebApplicationContext wac;
+  @Autowired
+  protected WebApplicationContext wac;
 }

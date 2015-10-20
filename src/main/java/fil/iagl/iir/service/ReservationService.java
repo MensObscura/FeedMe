@@ -9,7 +9,8 @@ import fil.iagl.iir.entite.Reservation;
 @Service
 public interface ReservationService {
 
-	Integer sauvegarder(Reservation reservation);
-	List<Reservation> getAllReservationByOffre(Integer offreId);
+  Integer sauvegarder(Reservation reservation);
+
+  List<Reservation> getAllReservationByOffre(Integer offreId);
 
 }

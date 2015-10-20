@@ -18,33 +18,33 @@ import fil.iagl.iir.outils.SQLCODE;
 
 public abstract class AbstractDaoTest extends AbstractFeedMeTest {
 
-	@Autowired
-	protected AuthentificationDao authentificationDao;
+  @Autowired
+  protected AuthentificationDao authentificationDao;
 
-	@Autowired
-	protected UtilisateurDao utilisateurDao;
+  @Autowired
+  protected UtilisateurDao utilisateurDao;
 
-	@Autowired
-	protected ParticulierDao particulierDao;
+  @Autowired
+  protected ParticulierDao particulierDao;
 
-	@Autowired
-	protected ReservationDao reservationDao;
+  @Autowired
+  protected ReservationDao reservationDao;
 
-	@Autowired
-	protected PaysDao paysDao;
+  @Autowired
+  protected PaysDao paysDao;
 
-	@Autowired
-	protected TypeCuisineDao typeCuisineDao;
+  @Autowired
+  protected TypeCuisineDao typeCuisineDao;
 
-	@Autowired
-	protected VilleDao villeDao;
+  @Autowired
+  protected VilleDao villeDao;
 
-	@Autowired
-	protected OffreDao offreDao;
+  @Autowired
+  protected OffreDao offreDao;
 
-	protected void assertSQLCode(DataIntegrityViolationException dive, SQLCODE sqlCode) {
-		Assertions.assertThat(dive.getCause()).isInstanceOf(PSQLException.class);
-		Assertions.assertThat(((PSQLException) (dive.getCause())).getSQLState()).isEqualTo(sqlCode.getSqlCode());
-	}
+  protected void assertSQLCode(DataIntegrityViolationException dive, SQLCODE sqlCode) {
+    Assertions.assertThat(dive.getCause()).isInstanceOf(PSQLException.class);
+    Assertions.assertThat(((PSQLException) (dive.getCause())).getSQLState()).isEqualTo(sqlCode.getSqlCode());
+  }
 
 }

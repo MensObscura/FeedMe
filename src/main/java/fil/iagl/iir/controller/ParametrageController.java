@@ -16,20 +16,20 @@ import fil.iagl.iir.entite.TypeCuisine;
 @RequestMapping("/settings")
 public class ParametrageController {
 
-	@Autowired
-	private TypeCuisineDao typeCuisineDao;
+  @Autowired
+  private TypeCuisineDao typeCuisineDao;
 
-	@Autowired
-	private PaysDao paysDao;
+  @Autowired
+  private PaysDao paysDao;
 
-	@RequestMapping(value = "/pays", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public List<Pays> villes() {
-		return paysDao.getAll();
-	}
+  @RequestMapping(value = "/pays", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+  public List<Pays> villes() {
+    return paysDao.getAll();
+  }
 
-	@RequestMapping(value = "/typescuisines", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public List<TypeCuisine> typescuisines() {
-		return typeCuisineDao.getAll();
-	}
+  @RequestMapping(value = "/typescuisines", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+  public List<TypeCuisine> typescuisines() {
+    return typeCuisineDao.getAll();
+  }
 
 }

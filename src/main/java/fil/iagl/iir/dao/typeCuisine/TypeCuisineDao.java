@@ -5,7 +5,12 @@ import java.util.List;
 import fil.iagl.iir.entite.TypeCuisine;
 
 public interface TypeCuisineDao {
-	
-	List<TypeCuisine> getAll();
+
+  /**
+   * Recupere la liste de tous les TypeCuisine.
+   * 
+   * @return La liste des TypeCuisine
+   */
+  List<TypeCuisine> getAll();
 
 }

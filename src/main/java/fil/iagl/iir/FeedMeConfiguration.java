@@ -1,5 +1,7 @@
 package fil.iagl.iir;
 
+import java.io.IOException;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -18,39 +20,44 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import fil.iagl.iir.entite.Role;
+import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.JsonRoleDeserializer;
 
 @Configuration
 @MapperScan("fil.iagl.iir.dao")
-@ComponentScan({ "fil.iagl.iir.service", "fil.iagl.iir.controller", "fil.iagl.iir.outils" })
+@ComponentScan({"fil.iagl.iir.service", "fil.iagl.iir.controller", "fil.iagl.iir.outils"})
 @EnableAutoConfiguration
 @EnableWebMvc
 public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 
-	@Bean
-	public DataSourceTransactionManager transactionManager(DataSource dataSource) {
-		return new DataSourceTransactionManager(dataSource);
-	}
+  @Bean
+  public DataSourceTransactionManager transactionManager(DataSource dataSource) {
+    return new DataSourceTransactionManager(dataSource);
+  }
 
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
+  @Bean
+  public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws IOException {
+    SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+    sessionFactory.setDataSource(dataSource);
 
-		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		sessionFactory.setMapperLocations(resolver.getResources("classpath*:**/mapper/*Mapper.xml"));
+    PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+    sessionFactory.setMapperLocations(resolver.getResources("classpath*:**/mapper/*Mapper.xml"));
 
-		sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
-		return sessionFactory.getObject();
-	}
+    sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
+    try {
+      return sessionFactory.getObject();
+    } catch (Exception e) {
+      throw new FeedMeException(e);
+    }
+  }
 
-	@Bean
-	public Jackson2ObjectMapperBuilder jacksonBuilder() {
-		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-		builder.indentOutput(true);
-		builder.deserializerByType(Role.class, new JsonRoleDeserializer());
-		builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-		return builder;
-	}
+  @Bean
+  public Jackson2ObjectMapperBuilder jacksonBuilder() {
+    Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+    builder.indentOutput(true);
+    builder.deserializerByType(Role.class, new JsonRoleDeserializer());
+    builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    return builder;
+  }
 
 }

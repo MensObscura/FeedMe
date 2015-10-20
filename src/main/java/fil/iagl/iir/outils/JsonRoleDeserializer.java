@@ -12,10 +12,10 @@ import fil.iagl.iir.entite.Role;
 
 public class JsonRoleDeserializer extends JsonDeserializer<Role> {
 
-	@Override
-	public Role deserialize(JsonParser jp, DeserializationContext ctx) throws IOException, JsonProcessingException {
-		JsonNode node = jp.getCodec().readTree(jp);
-		return Role.findById((Integer) node.get("id").numberValue());
-	}
+  @Override
+  public Role deserialize(JsonParser jp, DeserializationContext ctx) throws IOException, JsonProcessingException {
+    JsonNode node = jp.getCodec().readTree(jp);
+    return Role.findById((Integer) node.get("id").numberValue());
+  }
 
 }

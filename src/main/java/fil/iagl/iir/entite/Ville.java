@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class Ville {
 
-	private Integer id;
-	private String nom;
-	private String cp;
-	private Pays pays;
+  private Integer id;
+  private String nom;
+  private String cp;
+  private Pays pays;
 }

@@ -8,7 +8,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class FeedMeApplication {
 
-    public static void main( final String[] args ) {
-        SpringApplication.run( FeedMeApplication.class, args );
-    }
+  public static void main(final String[] args) {
+    SpringApplication.run(FeedMeApplication.class, args);
+  }
 }
