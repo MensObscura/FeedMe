@@ -15,13 +15,12 @@ public class AuthentificationDaoTest extends AbstractDaoTest {
 
   @Test
   public void getByUsernameTestSucces() throws Exception {
-    String password = "$2a$10$z9Ka6HSwJN/YDqZsC8a3Y.VVxC1DPQNZegHH4mXzRU/hDfetKNEvG";
     Authentification<? extends Utilisateur> authentification = this.authentificationDao
       .getByUsername(USERNAME_TEST_USER);
 
     Assertions.assertThat(authentification).isNotNull();
     Assertions.assertThat(authentification.getUtilisateur().getMail()).isNotNull().isEqualTo(USERNAME_TEST_USER);
-    Assertions.assertThat(authentification.getPassword()).isNotNull().isEqualTo(password);
+    Assertions.assertThat(authentification.getPassword()).isNotNull();
     Assertions.assertThat(authentification.getRole()).isNotNull().isEqualTo(Role.PARTICULIER);
   }
 
