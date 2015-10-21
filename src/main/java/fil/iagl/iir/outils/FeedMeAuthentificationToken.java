@@ -9,6 +9,11 @@ import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.Utilisateur;
 import lombok.Getter;
 
+/**
+ * @author RMS
+ *
+ * Token d'authentification pour l'application FeedMe ( sera stocké en session )
+ */
 public class FeedMeAuthentificationToken extends UsernamePasswordAuthenticationToken {
 
   private static final long serialVersionUID = -2623091003191330984L;
@@ -16,6 +21,11 @@ public class FeedMeAuthentificationToken extends UsernamePasswordAuthenticationT
   @Getter
   private Authentification<? extends Utilisateur> authentification;
 
+  /**
+   * Crée un token en fonction d'une connection
+   * 
+   * @param authentification La representation d'une connection
+   */
   public FeedMeAuthentificationToken(Authentification<? extends Utilisateur> authentification) {
     super(authentification.getUtilisateur().getMail(), authentification.getPassword(),
       Arrays.asList(new SimpleGrantedAuthority(authentification.getRole().name())));

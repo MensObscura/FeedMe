@@ -6,6 +6,11 @@ import org.springframework.stereotype.Component;
 
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
 
+/**
+ * @author RMS
+ * 
+ * Reprensente une session utilisateur
+ */
 @Component
 public class FeedMeSession {
 
