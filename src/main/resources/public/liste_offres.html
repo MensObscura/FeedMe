@@ -1,0 +1,48 @@
+<!-- 
+©Copyright 2015 - FeedMe
+Page de visualisation des offres de repas.
+ -->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Liste des réservations</title>
+		<script src="/resources/js/angular.min.js"></script>
+		<script src="/resources/js/script_list_offre.js"></script>
+		<link rel="stylesheet" type="text/css" href="/resources/css/list_style.css" />
+	</head>
+		
+		<body ng-app="ListeApp">
+			<!-- Menu -->
+			<div ng-include="'/resources/header.html'"></div>
+			
+			<!-- Liste de toutes les offres -->
+			<div ng-controller="ListeCtrl">
+				<ul class="big_button" ng-repeat="item in list track by item.id">
+					<li>
+						<div ng-click="visualize(item)">
+							<h2>{{item.titre}}</h2>
+							<p>
+								{{item.typeCuisine.typeCuisine}}
+							</p>
+							<p>
+								{{item.prix}} €
+							</p>
+							<p>
+								{{item.nombreRestant}}
+							</p>
+							<p>
+								{{item.dateRepas}}
+							</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			
+			<!-- Pied de page -->
+			<div ng-include="'/resources/footer.html'"></div>
+		</body>
+	</html>

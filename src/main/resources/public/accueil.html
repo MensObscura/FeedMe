@@ -1,5 +1,10 @@
+<!-- 
+©Copyright 2015 - FeedMe
+Page d'accueil pour utilisateur connecté.
+ -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,12 +13,19 @@
 		<title>Accueil</title>
 		<script src="/resources/js/angular.min.js"></script>
 	</head>
+	
 	<body ng-app>
+		<!-- Menu -->
 		<div ng-include="'/resources/header.html'"></div>
+		
+		<!-- Corps de la page -->
 		<div id="bigButtonsWrapper">
-			<a onclick="window.location='/resources/formulaire-offre.html'"><div class="big_button">Proposer un repas</div></a>
-			<a onclick="window.location='/resources/liste_offres.html'"><div class="big_button">Reserver un couvert</div></a>
+			<a onclick="window.location='/formulaire-offre.html'"><div class="big_button">Proposer un repas</div></a>
+			<a onclick="window.location='/liste_offres.html'"><div class="big_button">Reserver un couvert</div></a>
 		</div>
+		
+		<!-- Pied de page -->
 		<div ng-include="'/resources/footer.html'"></div>
 	</body>
+	
 </html>

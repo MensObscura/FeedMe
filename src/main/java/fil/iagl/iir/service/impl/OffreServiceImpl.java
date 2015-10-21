@@ -26,6 +26,9 @@ public class OffreServiceImpl implements OffreService {
   @Autowired
   private VilleDao villeDao;
 
+  /**
+   * @see OffreService#sauvegarder(Offre)
+   */
   @Override
   public void sauvegarder(Offre offre) {
     if (offre == null) {
@@ -41,6 +44,9 @@ public class OffreServiceImpl implements OffreService {
     this.offreDao.sauvegarder(offre);
   }
 
+  /**
+   * @see OffreService#afficher(Integer)
+   */
   @Override
   public Offre afficher(Integer id) {
     if (id == null) {
@@ -50,6 +56,9 @@ public class OffreServiceImpl implements OffreService {
     return this.offreDao.getById(id);
   }
 
+  /**
+   * @see OffreService#lister()
+   */
   @Override
   public List<Offre> lister() {
     return offreDao.getAll();

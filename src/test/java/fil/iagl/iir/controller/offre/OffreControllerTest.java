@@ -79,10 +79,7 @@ public class OffreControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.prix").value(offre.getPrix()))
       .andExpect(jsonPath("$.nombrePersonne").value(offre.getNombrePersonne()))
       .andExpect(jsonPath("$.dureeMinute").value(offre.getDureeMinute()))
-      /*
-       * voir ici aussi pour les dates car soucis identique que
-       * ci-dessus
-       */
+      .andExpect(jsonPath("$.dateRepas").value(offre.getDateRepas().toString()))
       .andExpect(jsonPath("$.note").value(offre.getNote()))
       .andExpect(jsonPath("$.menu").value(offre.getMenu()))
       .andExpect(jsonPath("$.animaux").value(offre.getAnimaux()))

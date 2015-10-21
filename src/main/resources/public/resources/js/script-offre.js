@@ -1,106 +1,87 @@
- 
-var validationApp = angular.module('validationOfferApp', []);
+// Chargement du module "OffreApp"
+var app = angular.module("OffreApp", []);
 
-validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
-	return {
-	    require: 'ngModel',
-	    link: function(scope, ele, attrs, ngModelController) {
-	    scope.$watch(attrs.ngModel, function(value) {
-	    	var booleanResult = $parse(attrs.ensureExpression)(scope);
-	    	ngModelController.$setValidity('badages', booleanResult);
-	    });
-	    }
-	};
-}]);
+//Création du controller "ReservationController"
+app.controller('ReservationController', function($scope, $http, $location, $filter) {  
 
-$('#datetimepicker').datetimepicker({
-	minDate:'+1970-01-2 00:00',
-	step: 15,
-});
-
-
-validationApp.controller('OfferController', function($scope, $http) {
-
- 
-	$http.get('http://localhost:8080/settings/typescuisines').success(
-			function(data) {
-				 $scope.cook = data;
-			}
-		);
+	// On récupère l'identifiant de l'offre à afficher
+	$scope.$location = $location;
+	$scope.$location.url(window.location);
+	var id = $scope.$location.search().id ; 
 	
-	$http.get('http://localhost:8080/settings/pays').success(
+	// On en déduit la route sur laquelle se connecter
+	var route = 'http://localhost:8080/offres/'+id;
+
+	// On se branche dessus
+	$http.get(route).success(
 			function(data) {
-				 $scope.count = data;
-			}
-		);
+				// On transfert dans "offre" les données
+				$scope.offre = data;
+				// On calcule le nombre de places restantes, que l'on transfert aussi à la vue
+				$scope.nombreRestant = $scope.offre.nombrePersonne - $scope.offre.reservations.length;
+				
+				// On met à jour la rubrique "animal" s'il existe des données
+				if (data.animaux)
+					$scope.animaux = "Un animal de compagnie sera présent lors du repas.";
+				
+				// On met à jour la rubrique "age" s'il existe des données
+				var age = "Ce repas s'adresse aux ";
+				if (data.ageMin) {
+					if (data.ageMax) {
+						// Les deux bornes sont remplies.
+						$scope.age = age + data.ageMin + "-" + data.ageMax + " ans.";
+					}
+					else {
+						// On a juste l'âge minimum.
+						$scope.age = age + "plus de " + data.ageMin + " ans.";
+					}
+				}
+				else {
+					if (data.ageMax) {
+						// On a juste l'âge maximum.
+						$scope.age = age + "moins de " + data.ageMin + " ans.";
+					}
+				}
+				// On met à jour la rubrique "note" s'il existe des données
+				if (data.note)
+					$scope.note = data.note;
+				}
+	);
 
-
-  $scope.disbutton = function() {
-	return $scope.offerForm.$invalid || $('#datetimepicker').val() == "";
-  };
-
+	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
-		if ($scope.offerForm.$valid) {
-
-			var date_repas = new Date($('#datetimepicker').val());
-			var today = new Date();
+		if ($scope.ReservationForm.$valid) {
+			
+			// Première étape : convertir la date est la mettre sous la bonne forme
+			var aujourdhui = new Date();
 			var date = "";
+			if ((aujourdhui.getMonth()+1) < 10)
+				date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
+			else
+				date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
 
-			if ((today.getMonth()+1) < 10)
-		    	date = today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate();
-		    else
-		    	date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-
-
-			var pays = {
-				id : $scope.country,
+			// On constitue les données
+			var data = {
+					//nombre : $scope.place,     !!!!!!! 
+					offre : $scope.offre,
+					dateReservation : date,
 			};
 
-			var data_ville = {
-				nom : $scope.town,
-				cp : $scope.cp,
-				pays : pays,
-			};
-
-			var adresse = {
-				voie : $scope.num + " " + $scope.street + " " + $scope.complementary,
-				ville : data_ville,
-			};
-
-			var typeCuisine = {
-				id : $scope.cooktype,
-			};
-
-
-		    var data = {
-		    	dateCreation : date,
-		    	titre : $scope.title,
-		    	prix : parseFloat($scope.price),
-		    	nombrePersonne : parseInt($scope.nbpers),
-		    	dureeMinute : parseInt($scope.time), // optionnel
-		    	dateRepas : date_repas.toISOString().substr(0,22),
-		    	note : $scope.complementary, //optionnel
-		    	menu : $scope.menu,
-		    	ageMin : parseInt($scope.agemin), //optionnel
-		    	ageMax : parseInt($scope.agemax), //optionnel
-		    	animaux : Boolean($scope.animal),
-		    	adresse : adresse,
-		    	typeCuisine : typeCuisine,
-		    };
-
-            $http({
-        		method: 'PUT',
-        		url: 'http://localhost:8080/offres',
-        		contentType: "application/json",
-        		data: data
-     		}).success(function(response, status, headers, config){
-           		window.location.href = '/resources/accueil.html';
-      		}).error(function(err, status, headers, config){
-           		console.log(err.message);
-     		 });
-
-
+			// On les envoieS
+			$http({
+				method: 'PUT',
+				url: 'http://localhost:8080/reservation',
+				contentType: "application/json",
+				data: data
+			}).success(function(response, status, headers, config){
+				// UN TOASTER ICI !!!!
+				window.location.href = "/liste_offres.html";
+			}).error(function(err, status, headers, config){
+				// UN TOASTER ICI !!!!
+			});
+			
 		}
 
 	};
+
 });

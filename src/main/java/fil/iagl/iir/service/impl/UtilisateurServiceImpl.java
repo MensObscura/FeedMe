@@ -19,6 +19,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
   @Autowired
   private ParticulierDao particulierDao;
 
+  /**
+   * @see UtilisateurService#getById(Integer)
+   */
   @Override
   public Utilisateur getById(Integer id) {
     if (id == null) {
@@ -27,6 +30,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     return utilisateurDao.getById(id);
   }
 
+  /**
+   * @see UtilisateurService#getParticulierByUtilisisateurId(Integer)
+   */
   @Override
   public Particulier getParticulierByUtilisisateurId(Integer id) {
     if (id == null) {
