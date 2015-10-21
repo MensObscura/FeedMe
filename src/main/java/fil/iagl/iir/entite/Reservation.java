@@ -16,5 +16,7 @@ public class Reservation {
 	private Utilisateur convive;
 
 	private LocalDate dateReservation;
+	
+	private Integer nb_places;
 
 }
