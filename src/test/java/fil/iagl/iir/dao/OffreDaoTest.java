@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.entite.Offre;
+import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.SQLCODE;
 
 public class OffreDaoTest extends AbstractDaoTest {
@@ -171,10 +172,20 @@ public class OffreDaoTest extends AbstractDaoTest {
     }
   }
 
-  /*
-   * TODO : on ne devrait pas pouvoir creer une offre avec un nombre de
-   * convive = 0
-   */
+  @Test
+  public void sauvegarderTestEchec_NombrePersonneEgalZero() throws Exception {
+    // Etant donne une offre ayant un nombre d'invite a zero
+    Offre offre = createOffre();
+    offre.setNombrePersonne(0);
+
+    try {
+      // Quand on enregistre cette offre
+      offreDao.sauvegarder(offre);
+    } catch (Exception e) {
+      // Alors on s'attend a ce qu'une exception soit lancee
+      Assertions.assertThat(e).isInstanceOf(FeedMeException.class).hasMessage("Nombre de convive pour l'offre ne doit pas être égal à 0");
+    }
+  }
 
   @Test
   public void sauvegarderTestEchec_NombrePersonneNull() throws Exception {
