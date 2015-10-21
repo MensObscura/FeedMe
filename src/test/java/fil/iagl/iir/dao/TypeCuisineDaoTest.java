@@ -24,8 +24,8 @@ public class TypeCuisineDaoTest extends AbstractDaoTest {
     Assertions.assertThat(list).have(new Condition<TypeCuisine>() {
 
       @Override
-      public boolean matches(TypeCuisine type) {
-        return type.getId() != null && type.getId() > 0 && type.getTypeCuisine() != null && !type.getTypeCuisine().isEmpty();
+      public boolean matches(TypeCuisine typeCuisine) {
+        return typeCuisine.getId() != null && typeCuisine.getId() > 0 && typeCuisine.getType() != null && !typeCuisine.getType().isEmpty();
       }
     });
 

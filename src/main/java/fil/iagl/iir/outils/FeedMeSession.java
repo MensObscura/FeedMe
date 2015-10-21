@@ -12,7 +12,7 @@ public class FeedMeSession {
   private static AuthentificationDao authentificationDao;
 
   @Autowired
-  public FeedMeSession(AuthentificationDao authentificationDao) {
+  public FeedMeSession(AuthentificationDao authentificationDao) { // NOSONAR
     FeedMeSession.authentificationDao = authentificationDao;
   }
 

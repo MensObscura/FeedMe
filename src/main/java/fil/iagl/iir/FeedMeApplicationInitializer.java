@@ -1,5 +1,6 @@
 package fil.iagl.iir;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class FeedMeApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -11,7 +12,7 @@ public class FeedMeApplicationInitializer extends AbstractAnnotationConfigDispat
 
   @Override
   protected Class<?>[] getServletConfigClasses() {
-    return null;
+    return ArrayUtils.EMPTY_CLASS_ARRAY;
   }
 
   @Override

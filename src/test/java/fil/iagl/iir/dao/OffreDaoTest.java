@@ -51,7 +51,7 @@ public class OffreDaoTest extends AbstractDaoTest {
 
     // les informations sur le type de cuisine de cette offre
     Integer idTypeCuisine = 3;
-    String typeCuisine = "Steak House";
+    String type = "Steak House";
 
     // les informations sur l'hote de cette offre
     Integer idUtilisateur = 1;
@@ -98,7 +98,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     // celles attendues
     Assertions.assertThat(offre.getTypeCuisine()).isNotNull();
     Assertions.assertThat(offre.getTypeCuisine().getId()).isNotNull().isEqualTo(idTypeCuisine);
-    Assertions.assertThat(offre.getTypeCuisine().getTypeCuisine()).isNotNull().isEqualTo(typeCuisine);
+    Assertions.assertThat(offre.getTypeCuisine().getType()).isNotNull().isEqualTo(type);
 
     // que les informations sur l'hote de l'offre sont celles attendues
     Assertions.assertThat(offre.getHote()).isNotNull();

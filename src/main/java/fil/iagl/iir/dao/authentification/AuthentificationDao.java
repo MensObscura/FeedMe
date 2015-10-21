@@ -7,7 +7,7 @@ import fil.iagl.iir.entite.Utilisateur;
 
 public interface AuthentificationDao {
 
-  Authentification<? extends Utilisateur> getByUsername(@Param("username") String username);
+  Authentification<? extends Utilisateur> getByUsername(@Param("username") String username); // NOSONAR
 
   Integer sauvegarder(@Param("authentification") Authentification<? extends Utilisateur> authentification);
 

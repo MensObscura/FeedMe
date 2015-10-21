@@ -40,11 +40,8 @@ public class AuthentificationServiceImpl implements AuthentificationService {
       throw new UsernameNotFoundException("Username non existant");
     }
     final GrantedAuthority authority = new SimpleGrantedAuthority(auth.getRole().name());
-
-    final UserDetails userDetails = new User(auth.getUtilisateur().getMail(), auth.getPassword(),
+    return new User(auth.getUtilisateur().getMail(), auth.getPassword(),
       Arrays.asList(authority));
-
-    return userDetails;
   }
 
   @Override

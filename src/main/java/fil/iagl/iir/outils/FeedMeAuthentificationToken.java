@@ -31,7 +31,7 @@ public class FeedMeAuthentificationToken extends UsernamePasswordAuthenticationT
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(Object obj) { // NOSONAR
     if (this == obj)
       return true;
     if (!super.equals(obj))

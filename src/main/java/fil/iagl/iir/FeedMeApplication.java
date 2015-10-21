@@ -6,6 +6,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @SpringBootApplication
 @WebAppConfiguration
+@SuppressWarnings("squid:S1118") // Spring à besoin d'un constructeur public, il est impossible de le rendre privé
 public class FeedMeApplication {
 
   public static void main(final String[] args) {
