@@ -39,29 +39,4 @@ public class UtilisateurController {
     Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
     return utilisateurService.getParticulierByUtilisisateurId(idSession);
   }
-
-  /*
-   * Example de controller REST
-   *
-   */
-
-  /*
-   * 
-   * 
-   * Coté Front ( en jQuery, trouver l'équivalent en Angular ) :
-   * 
-   * data = { "nom" : "toto", "mail" : "monemail@toto.fr" };
-   * 
-   * $.ajax({ type: "PUT", url: "/utilisateur/test", contentType:
-   * 'application/json', mimeType: 'application/json', data:
-   * JSON.stringify(data) });
-   * 
-   * 
-   * Coté Spring :
-   * 
-   * @RequestMapping(value = "/test", method = RequestMethod.PUT) public void
-   * test(@RequestBody Utilisateur utilisateur) { // Faire le traitement }
-   * 
-   */
-
 }
