@@ -69,7 +69,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   /**
    * Defini comment le mot de passe doit etre crypter avant de tester la valeur en base de donnée
-   * @param Le Gestion d'authentification
+   * @param auth le gestionnaire d'authentification
    */
   @Autowired
   public void configureGlobal(final AuthenticationManagerBuilder auth) {
