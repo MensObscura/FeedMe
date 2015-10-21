@@ -24,17 +24,36 @@ public class UtilisateurController {
   @Autowired
   private AuthentificationService authentificationService;
 
+  /**
+   * Retourne l'utilisateur correspondant à l'id donné
+   * 
+   * @param id
+   *            d'un utilisateur
+   * @return l'utilisateur correspondant à l'id
+   */
   @RequestMapping(value = "/particulier/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
   public Utilisateur afficherProfil(@PathVariable("id") Integer id) {
     return utilisateurService.getById(id);
   }
 
+  /**
+   * 
+   * @param auth
+   *            Authenfication désignant un particulier qui souhaite
+   *            s'inscrire sur FeedMe
+   * @return Le particulier tel qu'inscrit dans la base de données
+   */
   @RequestMapping(value = "/particulier", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
   public Particulier inscription(@RequestBody AuthentificationParticulier auth) {
     authentificationService.inscription(auth);
     return auth.getUtilisateur();
   }
 
+  /**
+   * Retourne le profil de l'utilisateur connecté
+   * 
+   * @return Le profil de l'utilisateur connecté
+   */
   @RequestMapping(value = "/particulier/profil", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
   public Particulier afficherSonProfil() {
     Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
