@@ -42,8 +42,10 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 
   /**
    * Creation de la Bean "transactionManager"
-   * 
    * Spring va appeler cette method avec la Bean "dataSource" defini dans application.yml
+   * 
+   * @param dataSource Representation de la base de donnée
+   * @return La bean "transactionManager"
    */
   @Bean
   public DataSourceTransactionManager transactionManager(DataSource dataSource) {
@@ -52,8 +54,11 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 
   /**
    * Creation de la Bean "sqlSessionFactory" pour MyBatis
-   * 
    * Spring va appeler cette method avec la Bean "dataSource" defini dans application.yml
+   * 
+   * @throws IOException Si le revolver ne trouve rien dans le classpath
+   * @param dataSource Representation de la base de donnée
+   * @return La bean "sqlSessionFactory"
    */
   @Bean
   public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws IOException {
@@ -73,6 +78,8 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 
   /**
    * Creation de la Bean "jacksonBuilder" pour Jackson
+   *
+   * @return La bean "jacksonBuilder"
    */
   @Bean
   public Jackson2ObjectMapperBuilder jacksonBuilder() {
