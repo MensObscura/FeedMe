@@ -1,4 +1,4 @@
-package fil.iagl.iir;
+package fil.iagl.iir.conf;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

@@ -1,4 +1,4 @@
-package fil.iagl.iir;
+package fil.iagl.iir.conf;
 
 import java.io.IOException;
 

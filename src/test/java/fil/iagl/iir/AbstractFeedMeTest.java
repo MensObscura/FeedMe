@@ -27,6 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import fil.iagl.iir.conf.FeedMeConfiguration;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
 import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Authentification;

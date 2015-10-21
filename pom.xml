@@ -146,7 +146,13 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<configuration>
-					<append>true</append>
+					<excludes>
+						<exclude>**/FeedMeApplication*</exclude>
+						<exclude>**/*conf/*</exclude>
+						<exclude>**/*entite/*</exclude>
+						<exclude>**/*outils/*</exclude>
+						<exclude>**/*typehandler/*</exclude>
+					</excludes>
 				</configuration>
 				<executions>
 					<execution>

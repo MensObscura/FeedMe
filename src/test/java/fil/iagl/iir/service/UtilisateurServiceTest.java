@@ -7,6 +7,9 @@ import org.mockito.Mockito;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
 
+/*
+ * TODO : Tester l'exception dans getParticulierByUtilisisateurId
+ */
 public class UtilisateurServiceTest extends AbstractServiceTest {
 
   @Test

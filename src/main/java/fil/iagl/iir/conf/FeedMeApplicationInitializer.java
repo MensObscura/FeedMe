@@ -1,4 +1,4 @@
-package fil.iagl.iir;
+package fil.iagl.iir.conf;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
