@@ -32,17 +32,12 @@ public class ReservationControllerTest extends AbstractControllerTest {
 
   @Test
   public void enregistrerReservationTestSuccess() throws Exception {
-    // Etant donne une reservation que l'on souhaite sauvegarder et qui n'a pas encore d'ID
     Reservation r = this.createReservation();
     JSONObject json = new JSONObject(r);
-    
-    // Quand on sauvegarde la reservation par la route /reservation avec le verbe PUT
     mockMvc.perform(put("/reservation").contentType(FEED_ME_MEDIA_TYPE).content(json.toString()))
       .andDo(print())
-      // Alors on s'assure que le code de retour vaut 200 (OK)
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      // que l'ID de la reservation a bien ete genere
       .andExpect(jsonPath("$.id").value(IsNull.notNullValue()))
       .andExpect(jsonPath("$.offre.id").value(IsNull.notNullValue()))
       .andExpect(jsonPath("$.dateReservation").value(LocalDate.now().toString()))
@@ -51,9 +46,6 @@ public class ReservationControllerTest extends AbstractControllerTest {
 
   @Test
   public void enregistrerReservationTestFail() throws Exception {
-    // Quand on accede a la route /reservation avec le verbe PUT 
-    // sans aucun parametre de type reservation
-    // Alors on s'assure que le code de retour vaut 400
     mockMvc.perform(put("/reservation")).andExpect(status().isBadRequest());
   }
 
