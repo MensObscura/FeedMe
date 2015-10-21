@@ -18,6 +18,9 @@ public class ReservationServiceImpl implements ReservationService {
   @Autowired
   private ReservationDao reservationDao;
 
+  /**
+   * @see ReservationService#sauvegarder(Reservation)
+   */
   @Override
   public Integer sauvegarder(Reservation reservation) {
     if (reservation == null) {
@@ -29,6 +32,9 @@ public class ReservationServiceImpl implements ReservationService {
 
   }
 
+  /**
+   * @see ReservationService#getAllReservationByOffre(Integer)
+   */
   @Override
   public List<Reservation> getAllReservationByOffre(Integer offreId) {
     if (offreId == null) {

@@ -8,11 +8,11 @@ import fil.iagl.iir.entite.Utilisateur;
 @Service
 public interface UtilisateurService {
 
-	/**
-	 * Permet de récupérer un utilisateur selon son ID
-	 * @param id L'ID de l'utilisateur a récupérer
-	 * @return Un utilisateur
-	 */
+  /**
+   * Permet de récupérer un utilisateur selon son ID
+   * @param id L'ID de l'utilisateur a récupérer
+   * @return Un utilisateur
+   */
   Utilisateur getById(Integer id);
 
   /**

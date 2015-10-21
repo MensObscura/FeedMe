@@ -6,11 +6,11 @@ import fil.iagl.iir.entite.Offre;
 
 public interface OffreService {
 
-	/**
-	 * Enregistre l'offre
-	 * @param offre L'offre a enregistrer
-	 *
-	 */
+  /**
+   * Enregistre l'offre
+   * @param offre L'offre a enregistrer
+   *
+   */
   void sauvegarder(Offre offre);
 
   /**
@@ -20,9 +20,9 @@ public interface OffreService {
    */
   Offre afficher(Integer id);
 
-/**
- * Permet de récupérer la liste de toutes les offres
- * @return La liste de toutes les offres
- */
+  /**
+   * Permet de récupérer la liste de toutes les offres
+   * @return La liste de toutes les offres
+   */
   List<Offre> lister();
 }
