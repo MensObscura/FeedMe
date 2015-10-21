@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Elegance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/normal.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+</head>
+
+<body ng-app>
+
+  <div class="slidersection">
+  <div ng-include="'header.html'"></div>
+    <div class="sp-slideshow">
+      
+         <input id="button-1" type="radio" name="radio-set" class="sp-selector-1" checked="checked" />
+        <label for="button-1" class="button-label-1"></label>
+        
+        <input id="button-2" type="radio" name="radio-set" class="sp-selector-2" />
+        <label for="button-2" class="button-label-2"></label>
+
+	<input id="button-3" type="radio" name="radio-set" class="sp-selector-3" />
+	<label for="button-3" class="button-label-3"></label>
+
+        
+        <label for="button-1" class="sp-arrow sp-a1"></label>
+        <label for="button-2" class="sp-arrow sp-a2"></label>
+	<label for="button-3" class="sp-arrow sp-a3"></label>
+
+        
+        <div class="sp-content">
+          <div class="sp-parallax-bg"></div>
+          <ul class="sp-slider clearfix">
+            <li><div><div id="bigButtonsWrapper">
+            <a onclick="window.location='/inscription.html'"><div class="big_button">Inscription</div></a>
+            <a onclick="window.location='/login'"><div class="big_button">Connexion</div></a>
+		</div></div></li>
+	    <li><h1>SALUT JE SUIS AU MILIEU</h1></li>	
+
+            <li><h2>Inscription :</h2>
+		<form name="InscriptionForm" ng-controller="InscriptionCtrl" ng-submit="submitForm()" novalidate>
+			
+			<label for="nom">Nom* : </label>
+			<input type="text" name="nom" ng-model="nom" ng-required="true" placeholder="Nom">
+			<span style="color:red" ng-show="InscriptionForm.nom.$invalid && !InscriptionForm.nom.$pristine"><span ng-show="InscriptionForm.nom.$error.required">Veuillez saisir votre nom.</span></span>
+			<br>
+			
+			<label for="prenom">Prénom* : </label>
+			<input type="text" name="prenom" ng-model="prenom" ng-required="true" placeholder="Prénom">
+			<span style="color:red" ng-show="InscriptionForm.prenom.$invalid && !InscriptionForm.prenom.$pristine"><span ng-show="InscriptionForm.prenom.$error.required">Veuillez saisir votre prénom.</span></span>
+			<br>
+			
+			<label for="anniversaire">Date de naissance* : </label>
+			<input type="text" name="anniversaire" ng-model="anniversaire" id="anniversaire" ng-readonly="true" placeholder="Date de naissance">
+			<br>
+			
+			<label for="mdp">Mot de passe* : </label>
+			<input type="password" name="mdp" ng-model="mdp" ng-required="true" placeholder="Mot de passe">
+			<span style="color:red" ng-show="InscriptionForm.mdp.$invalid && !InscriptionForm.mdp.$pristine"><span ng-show="InscriptionForm.mdp.$error.required">Veuillez saisir un mot de passe.</span></span>
+			<br>
+			
+			<label for="cmdp">Confirmez le mot de passe* : </label>
+			<input type="password" name="cmdp" ng-model="cmdp" ng-required="true" placeholder="Mot de passe" ensure-expression="mdp == cmdp">
+			<span style="color:red" ng-show="InscriptionForm.cmdp.$invalid && !InscriptionForm.cmdp.$pristine">
+				<span ng-show="InscriptionForm.cmdp.$error.required">Veuillez confirmer le mot de passe.</span>
+				<span ng-show="InscriptionForm.cmdp.$error.mauvaismdp && !InscriptionForm.cmdp.$error.required && !InscriptionForm.mdp.$error.required">Les mots de passe sont différents.</span>
+			</span>
+			<br>
+			
+			<label for="email">Adresse mail* : </label>
+			<input type="email" name="email" ng-model="email" ng-required="true" placeholder="Adresse mail">
+			<span style="color:red" ng-show="InscriptionForm.email.$invalid && !InscriptionForm.email.$pristine">
+				<span ng-show="InscriptionForm.email.$error.required">Veuillez saisir votre email.</span>
+				<span ng-show="InscriptionForm.email.$error.email">Votre email est invalide.</span>
+			</span>
+			<br>
+			<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
+			<button type="submit" ng-disabled="nonValide()">Confirmer</button>
+		</form></li>
+          </ul>
+        </div><!-- sp-content -->
+        
+      </div><!-- sp-slideshow -->
+  </div>
+
+  <div ng-include="'footer.html'"></div>
+</body>
+</html>
