@@ -3,6 +3,11 @@ package fil.iagl.iir;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+/**
+ * @author RMS
+ *
+ * On defini que la configuration Web ( pour les controllers ) est en faite contenu dans celle du core 
+ */
 public class FeedMeApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
   @Override

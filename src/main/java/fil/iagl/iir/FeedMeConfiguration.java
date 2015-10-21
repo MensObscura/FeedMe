@@ -23,6 +23,16 @@ import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.JsonRoleDeserializer;
 
+/**
+ * @author RMS
+ * 
+ * Configuration du projet
+ * Permet à Spring de faire l'injection de dependences
+ * Permet à Spring de definir la DataSource ( connection avec la base de donnée )
+ * Permet à MyBatis de trouver les mappers ( .xml )
+ * Permet à Jackson de definir comment serializer/deserialize du JSON
+ */
+
 @Configuration
 @MapperScan("fil.iagl.iir.dao")
 @ComponentScan({"fil.iagl.iir.service", "fil.iagl.iir.controller", "fil.iagl.iir.outils"})
@@ -30,11 +40,21 @@ import fil.iagl.iir.outils.JsonRoleDeserializer;
 @EnableWebMvc
 public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 
+  /**
+   * Creation de la Bean "transactionManager"
+   * 
+   * Spring va appeler cette method avec la Bean "dataSource" defini dans application.yml
+   */
   @Bean
   public DataSourceTransactionManager transactionManager(DataSource dataSource) {
     return new DataSourceTransactionManager(dataSource);
   }
 
+  /**
+   * Creation de la Bean "sqlSessionFactory" pour MyBatis
+   * 
+   * Spring va appeler cette method avec la Bean "dataSource" defini dans application.yml
+   */
   @Bean
   public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws IOException {
     SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
@@ -51,6 +71,9 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
     }
   }
 
+  /**
+   * Creation de la Bean "jacksonBuilder" pour Jackson
+   */
   @Bean
   public Jackson2ObjectMapperBuilder jacksonBuilder() {
     Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();

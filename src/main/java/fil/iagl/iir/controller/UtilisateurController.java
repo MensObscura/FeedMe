@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fil.iagl.iir.entite.AuthentificationParticulier;
 import fil.iagl.iir.entite.Particulier;
-import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.service.AuthentificationService;
 import fil.iagl.iir.service.UtilisateurService;
@@ -32,8 +31,8 @@ public class UtilisateurController {
    * @return l'utilisateur correspondant à l'id
    */
   @RequestMapping(value = "/particulier/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-  public Utilisateur afficherProfil(@PathVariable("id") Integer id) {
-    return utilisateurService.getById(id);
+  public Particulier afficherProfil(@PathVariable("id") Integer id) {
+    return utilisateurService.getParticulierByUtilisisateurId(id);
   }
 
   /**
@@ -59,5 +58,4 @@ public class UtilisateurController {
     Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
     return utilisateurService.getParticulierByUtilisisateurId(idSession);
   }
-
 }
