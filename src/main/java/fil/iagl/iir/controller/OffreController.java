@@ -22,8 +22,8 @@ public class OffreController {
   /**
    * Sauvegarde l'offre dans la base de données
    * 
-   * @param offre
-   * @return offre avec son id
+   * @param offre à sauvegarder dans la base
+   * @return offre avec son id tel qu'elle est enregistrée dans la base
    */
   @RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
   public Offre sauvegarder(@RequestBody Offre offre) {
@@ -34,7 +34,7 @@ public class OffreController {
   /**
    * Retourne l'offre correspondant à un id donné
    * 
-   * @param id
+   * @param id d'une offre
    * @return L'offre correspondant à l'id.
    */
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
