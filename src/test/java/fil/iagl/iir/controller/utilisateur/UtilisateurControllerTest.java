@@ -24,7 +24,6 @@ import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.AuthentificationParticulier;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
-import fil.iagl.iir.entite.Utilisateur;
 
 public class UtilisateurControllerTest extends AbstractControllerTest {
 
@@ -37,29 +36,36 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 
   @Test
   public void afficherProfilTestSucces() throws Exception {
-    Utilisateur utilisateur = createUtilisateur();
-    int id = utilisateur.getIdUtilisateur();
-    String nom = utilisateur.getNom();
-    String mail = utilisateur.getMail();
+    // Etant donne qu'il existe un particulier
+    Particulier particulier = createParticulier();
 
-    mockMvc.perform(get("/utilisateur/particulier/{id}", id))
+    // Quand on accede au profil d'un particulier par la route /utilisateur/particulier/{id} avec le verbe GET
+    mockMvc.perform(get("/utilisateur/particulier/{id}", particulier.getIdUtilisateur()))
+      // Alors on s'assure que le code de retour vaut 200 (OK)
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      .andExpect(jsonPath("$.idUtilisateur").value(id))
-      .andExpect(jsonPath("$.nom").value(nom)).andExpect(jsonPath("$.mail").value(mail));
+      // et que les informations recuperees au format JSON sont bien celles attendues
+      .andExpect(jsonPath("$.idUtilisateur").value(particulier.getIdUtilisateur()))
+      .andExpect(jsonPath("$.idParticulier").value(particulier.getIdParticulier()))
+      .andExpect(jsonPath("$.nom").value(particulier.getNom()))
+      .andExpect(jsonPath("$.prenom").value(particulier.getPrenom()))
+      .andExpect(jsonPath("$.mail").value(particulier.getMail()))
+      .andExpect(jsonPath("$.dateNaissance").value(particulier.getDateNaissance().format(DateTimeFormatter.ISO_DATE)));
 
   }
 
   @Test
   public void afficherProfilTestEchec() throws Exception {
+    // Quand on accede a la route /utilisateur/particulier avec le verbe GET
+    // sans passer l'ID d'un utilisateur en parametre
     mockMvc.perform(get("/utilisateur/particulier"))
-      .andExpect(status().isMethodNotAllowed()); // Correspond à la
-    // route PUT mais en
-    // GET sans json
+      // Alors on s'assure que le code de retour vaut 405
+      .andExpect(status().isMethodNotAllowed());
   }
 
   @Test
   public void inscriptionTestSucces() throws Exception {
+    // Etant donne un particulier a sauvegarder
     Authentification<Particulier> auth = new AuthentificationParticulier();
     Particulier utilisateur = new Particulier();
 
@@ -81,45 +87,46 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 
     JSONObject json = new JSONObject(auth);
 
+    // Quand on sauvegarde ce particulier par la route /utilisateur/particulier avec le verbe PUT
     mockMvc.perform(
       put("/utilisateur/particulier").contentType(FEED_ME_MEDIA_TYPE).content(json.toString()))
       .andDo(print())
+      // Alors on s'assure que le code de retour vaut 200(OK)
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+      // et que les informations retournees apres la sauvegarde au format JSON sont celles que l'on souhaitait sauvegarder.
       .andExpect(jsonPath("$.idUtilisateur").value(IsNull.notNullValue()))
       .andExpect(jsonPath("$.idParticulier").value(IsNull.notNullValue()))
       .andExpect(jsonPath("$.nom").value(nom))
       .andExpect(jsonPath("$.prenom").value(prenom))
       .andExpect(jsonPath("$.mail").value(mail))
       .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)));
-
   }
 
   @Test
   public void inscriptionTestEchec() throws Exception {
-    mockMvc.perform(put("/utilisateur/particulier")).andExpect(status().isBadRequest());
+    // Quand on sauvegarde un particulier par la route /utilisateur/particulier avec el verbe PUT
+    // sans qu'aucun particulier ne soit passe en parametre
+    mockMvc.perform(put("/utilisateur/particulier"))
+      // Alors on s'assure que le code de retour vaut 400 (Mauvaise syntaxe de la requete)
+      .andExpect(status().isBadRequest());
   }
 
   @Test
   public void afficherProfilEnSessionSuccess() throws Exception {
-    Utilisateur utilisateur = createUtilisateur();
-    Particulier particulier = new Particulier();
-    String prenom = "titi";
-    LocalDate dateNaissance = LocalDate.of(2015, 1, 31);
-    particulier.setDateNaissance(dateNaissance);
-    particulier.setIdParticulier(1);
-    particulier.setIdUtilisateur(utilisateur.getIdUtilisateur());
-    particulier.setMail(utilisateur.getMail());
-    particulier.setNom(utilisateur.getNom());
-    particulier.setPrenom(prenom);
+    // Etant donne un particulier
+    Particulier particulier = createParticulier();
 
-    mockMvc.perform(get("/utilisateur/particulier/profil")).andExpect(status().isOk())
+    // Quand on accede au profil d'un particulier en session par la route /utilisateur/particulier/profil avec le verbe GET
+    mockMvc.perform(get("/utilisateur/particulier/profil"))
+      // Alors on s'assure que le code de retour vaut 200 (OK)
+      .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      .andExpect(jsonPath("$.nom").value(utilisateur.getNom()))
-      .andExpect(jsonPath("$.mail").value(utilisateur.getMail()))
-      .andExpect(jsonPath("$.idUtilisateur").value(utilisateur.getIdUtilisateur()))
-      .andExpect(jsonPath("$.prenom").value(prenom))
-      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()));
+      .andExpect(jsonPath("$.nom").value(particulier.getNom()))
+      .andExpect(jsonPath("$.mail").value(particulier.getMail()))
+      .andExpect(jsonPath("$.idUtilisateur").value(particulier.getIdUtilisateur()))
+      .andExpect(jsonPath("$.prenom").value(particulier.getPrenom()))
+      .andExpect(jsonPath("$.dateNaissance").value(particulier.getDateNaissance().toString()));
   }
 
 }

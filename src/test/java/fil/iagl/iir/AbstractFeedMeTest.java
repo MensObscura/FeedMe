@@ -108,6 +108,18 @@ public abstract class AbstractFeedMeTest {
     return utilisateur;
   }
 
+  // Particulier associe a createUtilisateur
+  protected Particulier createParticulier() {
+    Particulier particulier = new Particulier();
+    particulier.setIdParticulier(1);
+    particulier.setPrenom("titi");
+    particulier.setDateNaissance(LocalDate.of(2015, 01, 31));
+    particulier.setIdUtilisateur(1);
+    particulier.setMail("toto.toto@gmail.com");
+    particulier.setNom("toto");
+    return particulier;
+  }
+
   protected Reservation createReservation() {
     Integer idOffre = 2;
     Integer idUtilisateur = 2;
