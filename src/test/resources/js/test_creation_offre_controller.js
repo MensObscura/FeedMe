@@ -27,7 +27,11 @@ describe('OffreCtrl', function() {
 +'<span ng-show="OffreForm.prix.$error.number">Veuillez saisir un nombre.</span>'
 +'<span ng-show="OffreForm.prix.$error.min">Veuillez saisir un prix supérieur à 1.00.</span>'
 +'</span>'
-+'<span ng-show="OffreForm.typeCuisine.$error.required">Veuillez choisir un type de cuisine.</span>'
++'<select type="select" name="typeCuisine" ng-model="typeCuisine" ng-required="true">'
++'<option ng-repeat="item in cook" value="{{item.id}}">{{item.typeCuisine}}</option>'
++'</select>'
++'<span style="color:red" ng-show="OffreForm.typeCuisine.$invalid">'
++'<span ng-show="OffreForm.typeCuisine.$error.required">Veuillez selectionner un type de cuisine.</span>'
 +'</span>'
 +'<input type="text" name="menu" ng-model="menu" placeholder="Votre menu." ng-required="true">'
 +'<span style="color:red" ng-show="OffreForm.menu.$invalid && !OffreForm.menu.$pristine">'
@@ -59,8 +63,11 @@ describe('OffreCtrl', function() {
 +'<span ng-show="OffreForm.cp.$error.required">Veuillez saisir un code postal.</span>'
 +'<span ng-show="OffreForm.cp.$error.pattern">Le code postal saisit est incorrect.</span>'
 +'</span>'
-+'<span style="color:red" ng-show="OffreForm.pays.$invalid && !OffreForm.pays.$pristine">'
-+'<span ng-show="OffreForm.pays.$error.required">Veuillez saisir votre pays.</span>'
++'<select type="select" name="pays" ng-model="pays" ng-required="true">'
++'<option ng-repeat="item in count" value="{{item.id}}">{{item.nom}}</option>'
++'</select>'
++'<span style="color:red" ng-show="OffreForm.pays.$invalid">'
++'<span ng-show="OffreForm.pays.$error.required">Veuillez selectionner un pays.</span>'
 +'</span>'
 +'<input type="number" name="agemin" ng-model="agemin" ng-min="18" placeholder="min."> - '
 +'<input type="number" name="agemax" ng-model="agemax" ng-min="18" placeholder="max." ensure-expression="(agemin == null && agemax == null) || (agemin == null && agemax >= 18) || (agemax == null && agemin >= 18) || agemin <= agemax">'
@@ -109,8 +116,8 @@ describe('OffreCtrl', function() {
 		$httpBackend.whenGET('/settings/pays').respond(pays);
 		$httpBackend.flush();
 
-		expect($scope.cook).toEqual(typeCuisine);
-		expect($scope.count).toEqual(pays);
+		expect($scope.cook.length).toEqual(2);
+		expect($scope.count.length).toEqual(2);
 	}));
 
 	it('test du validateur : le titre est requis', inject(function($httpBackend) {
@@ -413,6 +420,46 @@ describe('OffreCtrl', function() {
 		expect(form.$valid).toBe(false);
 	}));
 
+	it('test du validateur :  aucune selection pays', inject(function($httpBackend) {
+		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
+		$httpBackend.whenGET('/settings/pays').respond(pays);
+
+		form.pays.$setViewValue('');
+
+		expect(form.pays.$invalid).toBe(true);
+		expect(form.$valid).toBe(false);
+	}));
+
+	it('test du validateur : selection pays', inject(function($httpBackend) {
+		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
+		$httpBackend.whenGET('/settings/pays').respond(pays);
+
+		form.pays.$setViewValue('France');
+
+		expect(form.pays.$valid).toBe(true);
+		expect(form.$valid).toBe(false);
+	}));
+
+	it('test du validateur :  aucune selection type de cuisine', inject(function($httpBackend) {
+		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
+		$httpBackend.whenGET('/settings/pays').respond(pays);
+
+		form.typeCuisine.$setViewValue('');
+
+		expect(form.typeCuisine.$invalid).toBe(true);
+		expect(form.$valid).toBe(false);
+	}));
+
+	it('test du validateur : selection type de cuisine', inject(function($httpBackend) {
+		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
+		$httpBackend.whenGET('/settings/pays').respond(pays);
+
+		form.typeCuisine.$setViewValue('Bretonne');
+
+		expect(form.typeCuisine.$valid).toBe(true);
+		expect(form.$valid).toBe(false);
+	}));
+
 	it('test du validateur : l\'âge minimal n\'est pas rempli', inject(function($httpBackend) {
 		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
 		$httpBackend.whenGET('/settings/pays').respond(pays);
@@ -560,6 +607,7 @@ describe('OffreCtrl', function() {
 		expect(form.$valid).toBe(false);
 	}));
 
+	/*
 	it('test de bonne inscription', inject(function($httpBackend) {
 		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
 		$httpBackend.whenGET('/settings/pays').respond(pays);
@@ -581,6 +629,6 @@ describe('OffreCtrl', function() {
 		$httpBackend.flush();
 		expect(windowMock.location.href).toEqual('/accueil.html');
 
-	}));
+	}));*/
 
 });
