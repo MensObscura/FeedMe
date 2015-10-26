@@ -104,7 +104,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 		    	adresse : adresse,
 		    	typeCuisine : typeCuisine,
 		    };
-		    console.log(donnees);
+
 		    // On envoie les données
             $http({
         		method: 'PUT',
@@ -115,7 +115,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
      			// DECLENCHEMENT D'UN TOASTER ICI : Offre ajoutée
            		$window.location.href = '/accueil.html';
       		}).error(function(err, status, headers, config){
-     			console.log(err.message);
       			// DECLENCHEMENT D'UN TOASTER ICI : Erreur interne
      		});
 
