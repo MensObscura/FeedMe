@@ -63,6 +63,33 @@ Page proposant le formulaire d'inscription.
 		</form>
 		
 		<script src="/resources/js/script-inscription.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			var aujourdhui = new Date();
+			var date = "";
+			// On créé la date d'aujourd'hui sous le bon format
+			if ((aujourdhui.getMonth()+1) < 10) {
+				if ((aujourdhui.getDate()+1) < 10)
+					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
+				else
+					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
+			}
+		    else {
+				if ((aujourdhui.getDate()+1) < 10)
+					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
+				else
+					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
+		    }
+			// On pré-rempli le champs avec la date du jour.
+			$('#anniversaire').val(date);
+			// On charge le "DateTimePicker" que l'on incruste dans la division "anniversaire"
+			$('#anniversaire').datetimepicker({
+				format: "Y-m-d", // Format de la date
+				timepicker: false, // Le choix de l'heure n'est pas utilisé
+				maxDate:'0', // = On ne peut pas choisir une date supérieures à celle d'aujourd'hui
+			});
+		});
+		</script>
 		
 		<!-- Pied de page -->
 		<div ng-include="'/resources/footer.html'"></div>

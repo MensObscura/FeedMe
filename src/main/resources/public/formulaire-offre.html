@@ -105,7 +105,7 @@ Page proposant le formulaire de création d'offres.
 			<br>
 
 			<label for="complement">Compléments : </label>
-			<input type="text" name="complement" placeholder="Compléments."><br>
+			<input type="text" name="complement" ng-model="complement" placeholder="Compléments."><br>
 			
 			<label for="ville">Ville* : </label>
 			<input type="text" name="ville" ng-model="ville" placeholder="Votre ville." ng-required="true">
@@ -150,10 +150,10 @@ Page proposant le formulaire de création d'offres.
 			</span>
 			<br>
 			
-			<input type="checkbox" name="animal" value="true"> Présence d'un animal.<br>
+			<input type="checkbox" name="animal" ng-model="animal" value="true"> Présence d'un animal.<br>
 			
 			<label for="note">Note : </label>
-			<input type="text" name="note" placeholder="Informations complémentaires."><br>
+			<input type="text" name="note" ng-model="note" placeholder="Informations complémentaires."><br>
 		
 	    </fieldset>
 		<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
@@ -162,6 +162,15 @@ Page proposant le formulaire de création d'offres.
 	</form>
 
 	<script src="/resources/js/script-formulaire-offre.js"></script>
+	<script type="text/javascript">
+	// On installe le calendrier sur la division consacrée
+	$('#dateRepas').datetimepicker({
+		minDate:'+1970-01-2 00:00',
+		step: 15,
+	});
+
+	
+	</script>
 	
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
