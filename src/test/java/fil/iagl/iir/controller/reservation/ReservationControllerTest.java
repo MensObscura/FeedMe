@@ -42,7 +42,8 @@ public class ReservationControllerTest extends AbstractControllerTest{
 		.andExpect(jsonPath("$.id").value(4))
 		.andExpect(jsonPath("$.offre.id").value(2))
 		.andExpect(jsonPath("$.dateReservation").value(LocalDate.now().toString()))
-		.andExpect(jsonPath("$.convive.idUtilisateur").value(1));
+		.andExpect(jsonPath("$.convive.idUtilisateur").value(1))
+		.andExpect(jsonPath("$.nb_places").value(3));
 	}
 
 	@Test

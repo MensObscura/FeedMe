@@ -31,7 +31,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().authenticated();
 
 		// Redirection en cas de tentative non identifié
-		http.formLogin().defaultSuccessUrl("/resources/accueil.html").permitAll();
+		http.formLogin().defaultSuccessUrl("/accueil.html").permitAll();
 
 		/*
 		 * 

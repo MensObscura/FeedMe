@@ -37,6 +37,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 		reservation.setOffre(offre);
 		reservation.setConvive(convive);
 		reservation.setDateReservation(dateReservation);
+		reservation.setNb_places(1);
 
 		this.reservationDao.sauvegarder(reservation);
 
@@ -46,6 +47,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 		Assertions.assertThat(reservation.getOffre()).isNotNull();
 		Assertions.assertThat(reservation.getOffre().getId()).isNotNull().isEqualTo(idOffre);
 		Assertions.assertThat(reservation.getDateReservation()).isNotNull().isEqualTo(dateReservation);
+		Assertions.assertThat(reservation.getNb_places()).isNotNull().isEqualTo(1);
 	}
 
 	@Test
@@ -124,6 +126,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 		Integer idOffre = Integer.MAX_VALUE;
 		Integer idConvive = 2;
 		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
+		Integer nb_places = 2;
 
 		Offre offre = new Offre();
 		offre.setId(idOffre);
@@ -135,6 +138,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 		reservation.setOffre(offre);
 		reservation.setConvive(convive);
 		reservation.setDateReservation(dateReservation);
+		reservation.setNb_places(nb_places);
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
@@ -149,6 +153,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 		Integer idOffre = 1;
 		Integer idConvive = Integer.MAX_VALUE;
 		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
+		Integer nb_places = 2;
 
 		Offre offre = new Offre();
 		offre.setId(idOffre);
@@ -160,6 +165,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 		reservation.setOffre(offre);
 		reservation.setConvive(convive);
 		reservation.setDateReservation(dateReservation);
+		reservation.setNb_places(nb_places);
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
@@ -174,6 +180,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 		Integer idOffre = 1;
 		Integer idConvive = 1;
 		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
+		Integer nb_places = 2;
 
 		Offre offre = new Offre();
 		offre.setId(idOffre);
@@ -185,6 +192,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 		reservation.setOffre(offre);
 		reservation.setConvive(convive);
 		reservation.setDateReservation(dateReservation);
+		reservation.setNb_places(nb_places);
 
 		try {
 			this.reservationDao.sauvegarder(reservation);
