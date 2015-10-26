@@ -54,11 +54,11 @@ Page proposant le formulaire de création d'offres.
 			<br>
 
 			<label for="typeCuisine">Type de cuisine* : </label>
-			<select type="select" name="typeCuisine" ng-model="typeCuisine" ng-required="true" >
+			<select type="select" name="typeCuisine" ng-model="typeCuisine" ng-required="true">
 				<option ng-repeat="item in cook" value="{{item.id}}">{{item.typeCuisine}}</option>
 			</select>
-			<span style="color:red" ng-show="OffreForm.typeCuisine.$invalid && !OffreForm.typeCuisine.$pristine">
-				<span ng-show="OffreForm.typeCuisine.$error.required">Veuillez choisir un type de cuisine.</span>
+			<span style="color:red" ng-show="OffreForm.typeCuisine.$invalid">
+			  	<span ng-show="OffreForm.typeCuisine.$error.required">Veuillez selectionner un type de cuisine.</span>
 			</span>
 			<br>
 
@@ -123,11 +123,11 @@ Page proposant le formulaire de création d'offres.
 			<br>
 
 			<label for="pays">Pays* : </label>
-			<select type="select" name="pays" ng-model="pays" ng-required="true" >
+			<select type="select" name="pays" ng-model="pays" ng-required="true">
 			  	<option ng-repeat="item in count" value="{{item.id}}">{{item.nom}}</option>
 			</select>
-			<span style="color:red" ng-show="OffreForm.pays.$invalid && !OffreForm.pays.$pristine">
-			  	<span ng-show="OffreForm.pays.$error.required">Veuillez saisir votre pays.</span>
+			<span style="color:red" ng-show="OffreForm.pays.$invalid">
+			  	<span ng-show="OffreForm.pays.$error.required">Veuillez selectionner un pays.</span>
 			</span>
 
 	    </fieldset>
@@ -163,13 +163,31 @@ Page proposant le formulaire de création d'offres.
 
 	<script src="/resources/js/script-formulaire-offre.js"></script>
 	<script type="text/javascript">
-	// On installe le calendrier sur la division consacrée
-	$('#dateRepas').datetimepicker({
-		minDate:'+1970-01-2 00:00',
-		step: 15,
+	$(document).ready(function(){
+		var aujourdhui = new Date();
+		var date = "";
+		// On créé la date d'aujourd'hui sous le bon format
+		if ((aujourdhui.getMonth()+1) < 10) {
+			if ((aujourdhui.getDate()+1) < 10)
+				date = aujourdhui.getFullYear()+'/0'+(aujourdhui.getMonth()+1)+'/0'+aujourdhui.getDate()+' '+aujourdhui.toLocaleTimeString().substring(0,5);
+			else
+				date = aujourdhui.getFullYear()+'/0'+(aujourdhui.getMonth()+1)+'/'+aujourdhui.getDate()+' '+aujourdhui.toLocaleTimeString().substring(0,5);
+		}
+	    else {
+			if ((aujourdhui.getDate()+1) < 10)
+				date = aujourdhui.getFullYear()+'/'+(aujourdhui.getMonth()+1)+'/0'+aujourdhui.getDate()+' '+aujourdhui.toLocaleTimeString().substring(0,5);
+			else
+				date = aujourdhui.getFullYear()+'/'+(aujourdhui.getMonth()+1)+'/'+aujourdhui.getDate()+' '+aujourdhui.toLocaleTimeString().substring(0,5);
+	    }
+		// On pré-rempli le champs avec la date du jour.
+		$('#dateRepas').val(date);
+		
+		// On installe le calendrier sur la division consacrée
+		$('#dateRepas').datetimepicker({
+			minDate:'+1970-01-2 00:00',
+			step: 15,
+		});
 	});
-
-	
 	</script>
 	
 	<!-- Pied de page -->
