@@ -23,7 +23,6 @@ public class ReservationServiceTest extends AbstractServiceTest {
 
 		this.reservationService.sauvegarder(reservation);
 
-		Mockito.verify(utilisateur, Mockito.times(1)).setIdUtilisateur(FeedMeSession.getIdUtilisateurConnecte());
 		Mockito.verify(reservationDao, Mockito.times(1)).sauvegarder(reservation);
 	}
 
