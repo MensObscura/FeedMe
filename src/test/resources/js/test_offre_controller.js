@@ -1,4 +1,4 @@
-// Test du controller script-profil.js
+// Test du controller script-offre.js
 describe('ReservationController', function() {
 	// Variables pour le scope et le controller
 	var $scope, controller, form;
@@ -27,7 +27,7 @@ describe('ReservationController', function() {
 		hote: { idUtilisateur : 1, nom: 'Me', mail: 'feed.me@univ-lille1.fr'}, reservations: [{id: 2,
 		offre: {id: 1}, convive: { idUtilisateur: 1}, dateReservation: '2015-10-16', nb_places: 2} ]};
 
-	// On se place dans le module Profil
+	// On se place dans le module OffreApp
 	beforeEach(module('OffreApp'));
 
 	// Initialisation du scope et du controller

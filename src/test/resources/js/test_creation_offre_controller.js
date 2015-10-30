@@ -1,4 +1,4 @@
-// Test du controller script-profil.js
+// Test du controller script-formulaire-offre.js
 describe('OffreCtrl', function() {
 	// Variables pour le scope et le controller
 	var $scope, controller, form;
@@ -89,7 +89,7 @@ describe('OffreCtrl', function() {
 	var windowMock = {location: {href: ''}};
 
 
-	// On se place dans le module Profil
+	// On se place dans le module validationOffre
 	beforeEach(module('validationOffre'));
 
 	// Initialisation du scope et du controller
@@ -105,13 +105,13 @@ describe('OffreCtrl', function() {
 
 	}));
 
-	it('la route /settings/typescuisines doit être appelée', inject(function($httpBackend) {
+	it('les routes /settings/pays et /settings/typescuisines doivent être appelées', inject(function($httpBackend) {
 		$httpBackend.expectGET('/settings/typescuisines').respond(typeCuisine);
 		$httpBackend.expectGET('/settings/pays').respond(pays);
 		$httpBackend.flush();
 	}));
 
-	it('les offres renvoyées par la route doivent être stockées dans list', inject(function($httpBackend) {
+	it('les pays et les types de cuisine renvoyées par les routes doivent être stockées dans cook et count', inject(function($httpBackend) {
 		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
 		$httpBackend.whenGET('/settings/pays').respond(pays);
 		$httpBackend.flush();
@@ -607,8 +607,7 @@ describe('OffreCtrl', function() {
 		expect(form.$valid).toBe(false);
 	}));
 
-	/*
-	it('test de bonne inscription', inject(function($httpBackend) {
+	it('test de bonne création d\'offre', inject(function($httpBackend) {
 		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
 		$httpBackend.whenGET('/settings/pays').respond(pays);
 
@@ -621,6 +620,8 @@ describe('OffreCtrl', function() {
 		form.rue.$setViewValue('rue de la paix');
 		form.ville.$setViewValue('Wayward-Pines');
 		form.cp.$setViewValue('55555');
+		form.typeCuisine.$setViewValue('Bretonne');
+		form.pays.$setViewValue('France');
 
 		expect(form.$valid).toBe(true);
 		
@@ -629,6 +630,6 @@ describe('OffreCtrl', function() {
 		$httpBackend.flush();
 		expect(windowMock.location.href).toEqual('/accueil.html');
 
-	}));*/
+	}));
 
 });

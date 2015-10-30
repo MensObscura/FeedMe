@@ -1,4 +1,4 @@
-// Test du controller script-profil.js
+// Test du controller script-inscription.js
 describe('InscriptionCtrl', function() {
 	// Variables pour le scope et le controller
 	var $scope, controller, form;
@@ -33,7 +33,7 @@ describe('InscriptionCtrl', function() {
 	var windowMock = {location: {href: ''}};
 
 
-	// On se place dans le module Profil
+	// On se place dans le module Inscription
 	beforeEach(module('Inscription'));
 
 	// Initialisation du scope et du controller
