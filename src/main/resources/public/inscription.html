@@ -13,55 +13,74 @@ Page proposant le formulaire d'inscription.
 		<script src="/resources/js/angular.min.js"></script>
 		<script src="/resources/js/jquery-2.1.4.min.js"></script>
 		<script src="/resources/js/jquery.datetimepicker.js"></script>
+        
+        <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
+         <link rel="stylesheet" type="text/css"  href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="/resources/css/jquery.datetimepicker.css"/ >
 	</head>
 	
 	<body ng-app="Inscription">
 		<!-- Menu -->
-		<div ng-include="'/resources/header.html'"></div>
 		
-		<!-- Formulaire d'inscription -->
+    <div id="formStyle" class="text-center">
+        <div class="overlay">
+            <div class="content">
+
+                <!-- Formulaire d'inscription -->
 		<h2>Inscription :</h2>
-		<form name="InscriptionForm" ng-controller="InscriptionCtrl" ng-submit="submitForm()" novalidate>
+		<form name="InscriptionForm" class="text-center" ng-controller="InscriptionCtrl" ng-submit="submitForm()" novalidate>
 			
+  
 			<label for="nom">Nom* : </label>
-			<input type="text" name="nom" ng-model="nom" ng-required="true" placeholder="Nom">
+			<input type="text" id="info-field" name="nom" ng-model="nom" ng-required="true" placeholder="Nom">
 			<span style="color:red" ng-show="InscriptionForm.nom.$invalid && !InscriptionForm.nom.$pristine"><span ng-show="InscriptionForm.nom.$error.required">Veuillez saisir votre nom.</span></span>
-			<br>
 			
 			<label for="prenom">Prénom* : </label>
-			<input type="text" name="prenom" ng-model="prenom" ng-required="true" placeholder="Prénom">
-			<span style="color:red" ng-show="InscriptionForm.prenom.$invalid && !InscriptionForm.prenom.$pristine"><span ng-show="InscriptionForm.prenom.$error.required">Veuillez saisir votre prénom.</span></span>
-			<br>
+			<input type="text" id="info-field" name="prenom" ng-model="prenom" ng-required="true" placeholder="Prénom">
+			<span style="color:red" ng-show="InscriptionForm.prenom.$invalid && !InscriptionForm.prenom.$pristine"><span ng-show="InscriptionForm.prenom.$error.required">Veuillez saisir votre prénom.</span></span><br/>
+			
 			
 			<label for="anniversaire">Date de naissance* : </label>
-			<input type="text" name="anniversaire" ng-model="anniversaire" id="anniversaire" ng-readonly="true" placeholder="Date de naissance">
-			<br>
+			<input type="text" id="info-field" name="anniversaire" ng-model="anniversaire" id="anniversaire" ng-readonly="true" placeholder="Date de naissance"><br/>
+			
 			
 			<label for="mdp">Mot de passe* : </label>
-			<input type="password" name="mdp" ng-model="mdp" ng-required="true" placeholder="Mot de passe">
-			<span style="color:red" ng-show="InscriptionForm.mdp.$invalid && !InscriptionForm.mdp.$pristine"><span ng-show="InscriptionForm.mdp.$error.required">Veuillez saisir un mot de passe.</span></span>
-			<br>
+			<input type="password" id="info-field" name="mdp" ng-model="mdp" ng-required="true" placeholder="Mot de passe">
+			<span style="color:red" ng-show="InscriptionForm.mdp.$invalid && !InscriptionForm.mdp.$pristine"><br/><span ng-show="InscriptionForm.mdp.$error.required">Veuillez saisir un mot de passe.</span></span><br/>
+			
+			
 			
 			<label for="cmdp">Confirmez le mot de passe* : </label>
-			<input type="password" name="cmdp" ng-model="cmdp" ng-required="true" placeholder="Mot de passe" ensure-expression="mdp == cmdp">
+			<input type="password" id="info-field" name="cmdp" ng-model="cmdp" ng-required="true" placeholder="Mot de passe" ensure-expression="mdp == cmdp">
 			<span style="color:red" ng-show="InscriptionForm.cmdp.$invalid && !InscriptionForm.cmdp.$pristine">
 				<span ng-show="InscriptionForm.cmdp.$error.required">Veuillez confirmer le mot de passe.</span>
-				<span ng-show="InscriptionForm.cmdp.$error.mauvaismdp && !InscriptionForm.cmdp.$error.required && !InscriptionForm.mdp.$error.required">Les mots de passe sont différents.</span>
-			</span>
-			<br>
+				<span ng-show="InscriptionForm.cmdp.$error.mauvaismdp && !InscriptionForm.cmdp.$error.required && !InscriptionForm.mdp.$error.required">Les mots de passe sont différents.</span><br/>
+			
 			
 			<label for="email">Adresse mail* : </label>
-			<input type="email" name="email" ng-model="email" ng-required="true" placeholder="Adresse mail">
+			<input type="email" id="info-field" name="email" ng-model="email" ng-required="true" placeholder="Adresse mail">
 			<span style="color:red" ng-show="InscriptionForm.email.$invalid && !InscriptionForm.email.$pristine">
 				<span ng-show="InscriptionForm.email.$error.required">Veuillez saisir votre email.</span>
 				<span ng-show="InscriptionForm.email.$error.email">Votre email est invalide.</span>
-			</span>
-			<br>
+			</span><br/>
+			
 			<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
 			<button type="submit" ng-disabled="nonValide()">Confirmer</button>
 		</form>
+                
+            </div>
+        </div>
+    </div>
 		
+		
+        
+        
 		<script src="/resources/js/script-inscription.js"></script>
 		<script type="text/javascript">
 		$(document).ready(function(){

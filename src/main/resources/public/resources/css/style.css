@@ -117,7 +117,7 @@ font-weight: 900;
 	}
 /* Home Style */
 #tf-home{
-	background: url(../img/01.jpg);
+	background: url(../img/index/01.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -180,7 +180,7 @@ ul.about-list li span{
 
 /* Team Section */
 #tf-team{
-	background: url(../img/03.jpg);
+	background: url(../img/index/03.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -404,9 +404,10 @@ ol.type li a.active { font-weight: 700; }
 	margin: 30px 0;
 	color: #d1d1d1;
 }
+
 /* Contact Section */
 #tf-contact{
-    background: url(../img/05.jpg);
+    background: url(../img/index/05.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -427,12 +428,14 @@ ol.type li a.active { font-weight: 700; }
 }
 
 label {
+    display: block;
 	float: left;
 	font-size: 12px;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
 }
-#tf-contact .form-control {
+
+#tf-contact .contact-form {
 	display: block;
 	width: 100%;
 	padding: 6px 12px;
@@ -450,7 +453,7 @@ label {
 	transition: none;
 }
 
-#tf-contact .form-control:focus {
+#tf-contact .contact-form:focus {
 	border-color: inherit;
 	outline: 0;
 	-webkit-box-shadow: transparent;
@@ -513,3 +516,85 @@ nav#footer p{
 	background: #FCAC45;
 	border-color: #FCAC45;
 	color: #ffffff;
+}
+    
+    
+/* Début du tri du CSS à partir d'ici:
+    ajouts et tri d'éléments avec commentaring
+    */
+    
+    
+#formStyle {
+	background: url(../img/forms/inscription.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+}
+
+#formStyle .overlay {
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.8)), color-stop(17%,rgba(0,0,0,0.73)), color-stop(35%,rgba(0,0,0,0.66)), color-stop(62%,rgba(0,0,0,0.55)), color-stop(100%,rgba(0,0,0,0.4))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
+	height: 750px;
+	background-attachment: fixed;
+}
+
+#formStyle p.lead{
+	color: #e3e3e3;
+}
+
+#tf-contact .contact-form {
+	display: block;
+	width: 100%;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+#tf-contact .contact-form:focus {
+	border-color: inherit;
+	outline: 0;
+	-webkit-box-shadow: transparent;
+	box-shadow: transparent;
+}
+
+#info-field {
+	display: block;
+	width: 20%;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+#info-field:focus {
+	border-color: inherit;
+	outline: 0;
+	-webkit-box-shadow: transparent;
+	box-shadow: transparent;
+}
