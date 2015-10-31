@@ -5,15 +5,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>Authentification</title>
-		<script src="/resources/js/angular.min.js"></script>
+        
+       <script src="/resources/js/angular.min.js"></script>
+		<script src="/resources/js/jquery-2.1.4.min.js"></script>
+		<script src="/resources/js/jquery.datetimepicker.js"></script>
+        
+        <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css"  href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="/resources/css/jquery.datetimepicker.css"/ >
 		<script src="/resources/js/login.js"></script>
 	</head>
+    
 	<body ng-app="login">
 		<div ng-include="'/resources/header.html'"></div>
 	
-			<h1>Authentification</h1>
+        <div id="StyleFormulaireLogin" class="text-center">
+            <div class="overlay">
+                <div class="general-form">
+			     <h1>Authentification</h1>
 		
-			<form name="form" ng-submit="confirm()" ng-controller="LoginController">
+			     <form name="form" ng-submit="confirm()" ng-controller="LoginController">
 			
 					<p>
 						<input type="email" name="email" ng-model="email" required>
@@ -32,6 +49,9 @@
 				
 				<input type="submit" name="boutonConfirmation" value="Confirmer"  />
 			</form>
+                </div>
+            </div>
+        </div>
 			
 		
 		<div ng-include="'/resources/footer.html'"></div>
