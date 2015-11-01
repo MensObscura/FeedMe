@@ -577,7 +577,7 @@ nav#footer p{
 	box-shadow: transparent;
 }
 
-#info-field {
+.info-field {
 	display: block;
 	width: 20%;
 	padding: 6px 12px;
@@ -595,7 +595,7 @@ nav#footer p{
 	transition: none;
 }
 
-#info-field:focus {
+.info-field:focus {
 	border-color: inherit;
 	outline: 0;
 	-webkit-box-shadow: transparent;
