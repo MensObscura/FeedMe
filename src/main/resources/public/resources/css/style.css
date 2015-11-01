@@ -634,3 +634,14 @@ nav#footer p{
 #StyleFormulaireLogin p.lead{
 	color: #e3e3e3;
 }
+
+#vue-offre  {
+    background: url(../img/liste-offre/background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+    height: 100%;
+    margin: 0;
+}
