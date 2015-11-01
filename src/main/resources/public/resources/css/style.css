@@ -430,6 +430,8 @@ ol.type li a.active { font-weight: 700; }
 
 label {
     display: block;
+    width: 200px;
+    text-align: left;
 	float: left;
 	font-size: 12px;
 	font-weight: 400;
@@ -644,4 +646,57 @@ nav#footer p{
 	color: #cfcfcf;
     height: 100%;
     margin: 0;
+}
+
+/* Style Formulaire Offre */
+
+#StyleFormulaireOffre {
+	background: url(../img/forms/offre.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+    height: 100%;
+    margin: 0;
+}
+
+
+#StyleFormulaireOffre .overlay {
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.8)), color-stop(17%,rgba(0,0,0,0.73)), color-stop(35%,rgba(0,0,0,0.66)), color-stop(62%,rgba(0,0,0,0.55)), color-stop(100%,rgba(0,0,0,0.4))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
+	background-attachment: fixed;
+    height: 100%;
+}
+
+#StyleFormulaireOffre p.lead{
+	color: #e3e3e3;
+}
+
+fieldset
+{
+	max-width:1000px;
+	padding:16px;	
+	margin:auto;
+}
+
+legend
+{
+	color:inherit;
+	text-align:left;
+}
+
+button.form {
+	float: center;
+	background: #FCAC45;
+	border: 0;
+	border-radius: 0;
+	padding: 10px 40px;
+	color: #ffffff;
+	text-transform: uppercase;
 }
