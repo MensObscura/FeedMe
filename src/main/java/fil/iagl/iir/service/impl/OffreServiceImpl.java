@@ -12,6 +12,7 @@ import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.FeedMeSession;
+import fil.iagl.iir.service.AdresseService;
 import fil.iagl.iir.service.OffreService;
 
 @Service
@@ -26,8 +27,13 @@ public class OffreServiceImpl implements OffreService {
   @Autowired
   private VilleDao villeDao;
 
-  /**
-   * @see OffreService#sauvegarder(Offre)
+  @Autowired
+  private AdresseService adresseService;
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.OffreService#sauvegarder(fil.iagl.iir.entite.Offre)
    */
   @Override
   public void sauvegarder(Offre offre) {
@@ -40,15 +46,14 @@ public class OffreServiceImpl implements OffreService {
 
     offre.setHote(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
-    // TODO : Creer un adresse service
-    this.villeDao.sauvegarder(offre.getAdresse().getVille());
-    this.adresseDao.sauvegarder(offre.getAdresse());
-
+    this.adresseService.sauvegarder(offre.getAdresse());
     this.offreDao.sauvegarder(offre);
   }
 
-  /**
-   * @see OffreService#afficher(Integer)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.OffreService#afficher(java.lang.Integer)
    */
   @Override
   public Offre afficher(Integer id) {
@@ -59,8 +64,10 @@ public class OffreServiceImpl implements OffreService {
     return this.offreDao.getById(id);
   }
 
-  /**
-   * @see OffreService#lister()
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.OffreService#lister()
    */
   @Override
   public List<Offre> lister() {

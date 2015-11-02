@@ -18,8 +18,10 @@ public class ReservationServiceImpl implements ReservationService {
   @Autowired
   private ReservationDao reservationDao;
 
-  /**
-   * @see ReservationService#sauvegarder(Reservation)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.ReservationService#sauvegarder(fil.iagl.iir.entite.Reservation)
    */
   @Override
   public Integer sauvegarder(Reservation reservation) {
@@ -32,8 +34,10 @@ public class ReservationServiceImpl implements ReservationService {
 
   }
 
-  /**
-   * @see ReservationService#getAllReservationByOffre(Integer)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.ReservationService#getAllReservationByOffre(java.lang.Integer)
    */
   @Override
   public List<Reservation> getAllReservationByOffre(Integer offreId) {

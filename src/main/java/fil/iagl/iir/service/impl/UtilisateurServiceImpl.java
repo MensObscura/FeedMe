@@ -19,8 +19,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
   @Autowired
   private ParticulierDao particulierDao;
 
-  /**
-   * @see UtilisateurService#getById(Integer)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.UtilisateurService#getById(java.lang.Integer)
    */
   @Override
   public Utilisateur getById(Integer id) {
@@ -30,8 +32,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     return utilisateurDao.getById(id);
   }
 
-  /**
-   * @see UtilisateurService#getParticulierByUtilisisateurId(Integer)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.UtilisateurService#getParticulierByUtilisisateurId(java.lang.Integer)
    */
   @Override
   public Particulier getParticulierByUtilisisateurId(Integer id) {

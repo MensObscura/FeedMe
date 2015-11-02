@@ -29,12 +29,12 @@ public class OffreServiceTest extends AbstractServiceTest {
   public void sauvegarderTestSucces() throws Exception {
     Mockito.when(offre.getAdresse()).thenReturn(adresse);
     Mockito.when(adresse.getVille()).thenReturn(ville);
+    Mockito.when(offre.getNombrePersonne()).thenReturn(2);
 
     this.offreService.sauvegarder(offre);
 
-    InOrder order = Mockito.inOrder(villeDao, adresseDao, offreDao);
-    order.verify(villeDao, Mockito.times(1)).sauvegarder(ville);
-    order.verify(adresseDao, Mockito.times(1)).sauvegarder(adresse);
+    InOrder order = Mockito.inOrder(adresseServiceMock, offreDao);
+    order.verify(adresseServiceMock, Mockito.times(1)).sauvegarder(adresse);
     order.verify(offreDao, Mockito.times(1)).sauvegarder(offre);
 
   }

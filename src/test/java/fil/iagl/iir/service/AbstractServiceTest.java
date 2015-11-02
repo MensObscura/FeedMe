@@ -11,6 +11,7 @@ import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.dao.ville.VilleDao;
+import fil.iagl.iir.service.impl.AdresseServiceImpl;
 import fil.iagl.iir.service.impl.AuthentificationServiceImpl;
 import fil.iagl.iir.service.impl.OffreServiceImpl;
 import fil.iagl.iir.service.impl.ReservationServiceImpl;
@@ -29,6 +30,9 @@ public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 
   @InjectMocks
   protected OffreServiceImpl offreService;
+
+  @InjectMocks
+  protected AdresseServiceImpl adresseService;
 
   @Mock
   protected AuthentificationDao authentificationDao;
@@ -50,5 +54,8 @@ public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 
   @Mock
   protected VilleDao villeDao;
+
+  @Mock
+  protected AdresseService adresseServiceMock;
 
 }
