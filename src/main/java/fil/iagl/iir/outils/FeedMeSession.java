@@ -6,13 +6,18 @@ import org.springframework.stereotype.Component;
 
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
 
+/**
+ * @author RMS
+ * 
+ * Reprensente une session utilisateur
+ */
 @Component
 public class FeedMeSession {
 
   private static AuthentificationDao authentificationDao;
 
   @Autowired
-  public FeedMeSession(AuthentificationDao authentificationDao) {
+  public FeedMeSession(AuthentificationDao authentificationDao) { // NOSONAR
     FeedMeSession.authentificationDao = authentificationDao;
   }
 

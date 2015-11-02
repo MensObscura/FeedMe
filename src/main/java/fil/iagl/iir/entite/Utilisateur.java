@@ -23,7 +23,7 @@ public class Utilisateur implements Serializable {
   }
 
   public Utilisateur() {
-
+    // Constructeur par default utilisé par MyBatis
   }
 
 }

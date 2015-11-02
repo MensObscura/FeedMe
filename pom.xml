@@ -114,60 +114,91 @@
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
 			<version>1.2.0</version>
 		</dependency>
 		<dependency>
-		  <groupId>org.json</groupId>
-		  <artifactId>json</artifactId>
-		  <version>20141113</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20141113</version>
 		</dependency>
 	</dependencies>
 
 	<build>
-	  <resources>
-	    <resource>
-	      <directory>src/main/resources</directory>
-	    </resource>
-	  </resources>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-			  <groupId>org.mybatis.maven</groupId>
-			  <artifactId>migrations-maven-plugin</artifactId>
-			  <version>1.1.2</version>
-			  <configuration>
-			    <repository>bdd/</repository>
-			    <force>true</force>
-			    <skip>${maven.test.skip}</skip>
-			  </configuration>
-			  <executions>
-			    <execution>
-			      <id>migration-test-up</id>
-			      <phase>process-test-resources</phase>
-			      <goals>
-				<goal>bootstrap</goal>
-				<goal>up</goal>
-			      </goals>
-			      <configuration>
-				<environment>test</environment>
-				<force>true</force>
-			      </configuration>
-			    </execution>
-			  </executions>
-			  <dependencies>
-			    <dependency>
-			      <groupId>org.postgresql</groupId>
-			      <artifactId>postgresql</artifactId>
-			      <version>9.4-1201-jdbc41</version>
-			    </dependency>
-			  </dependencies>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/FeedMeApplication*</exclude>
+						<exclude>**/*conf/*</exclude>
+						<exclude>**/*entite/*</exclude>
+						<exclude>**/*outils/*</exclude>
+						<exclude>**/*typehandler/*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.mybatis.maven</groupId>
+				<artifactId>migrations-maven-plugin</artifactId>
+				<version>1.1.2</version>
+				<configuration>
+					<repository>bdd/</repository>
+					<force>true</force>
+					<skip>${maven.test.skip}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>migration-test-up</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>bootstrap</goal>
+							<goal>up</goal>
+						</goals>
+						<configuration>
+							<environment>test</environment>
+							<force>true</force>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>9.4-1201-jdbc41</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

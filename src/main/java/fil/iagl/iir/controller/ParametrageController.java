@@ -22,11 +22,21 @@ public class ParametrageController {
   @Autowired
   private PaysDao paysDao;
 
+  /**
+   * Retourne tous les pays de la base de données
+   * 
+   * @return la liste de tous les pays
+   */
   @RequestMapping(value = "/pays", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
   public List<Pays> villes() {
     return paysDao.getAll();
   }
 
+  /**
+   * Retourne tous les types de cuisine de la base de données
+   * 
+   * @return la liste de tous les types de cuisine
+   */
   @RequestMapping(value = "/typescuisines", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
   public List<TypeCuisine> typescuisines() {
     return typeCuisineDao.getAll();

@@ -10,7 +10,7 @@ var login =  angular.module('login', []);
 		var dataLogin = new Object();
 		dataLogin.email = $scope.email;
 		dataLogin.password = $scope.pwd;
-		alert(dataLogin.email);
+		alert("L'e-mail doit être de la forme : " + dataLogin.email);
 		$http(
 		{
 		url: 'http://localhost:8080/login',dataType: 'json',method: 'POST',data: dataLogin}

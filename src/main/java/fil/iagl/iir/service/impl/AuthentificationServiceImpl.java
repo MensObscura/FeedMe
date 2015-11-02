@@ -33,6 +33,11 @@ public class AuthentificationServiceImpl implements AuthentificationService {
   @Autowired
   private ParticulierDao particulierDao;
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
+   */
   @Override
   public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
     final Authentification<? extends Utilisateur> auth = this.authentificationDao.getByUsername(username);
@@ -40,13 +45,15 @@ public class AuthentificationServiceImpl implements AuthentificationService {
       throw new UsernameNotFoundException("Username non existant");
     }
     final GrantedAuthority authority = new SimpleGrantedAuthority(auth.getRole().name());
-
-    final UserDetails userDetails = new User(auth.getUtilisateur().getMail(), auth.getPassword(),
+    return new User(auth.getUtilisateur().getMail(), auth.getPassword(),
       Arrays.asList(authority));
-
-    return userDetails;
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.AuthentificationService#inscription(fil.iagl.iir.entite.Authentification)
+   */
   @Override
   public void inscription(Authentification<Particulier> authentification) {
     if (authentification == null) {

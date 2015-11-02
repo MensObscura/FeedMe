@@ -1,5 +1,11 @@
 package fil.iagl.iir.outils;
 
+/**
+ * @author RMS
+ *
+ * Une exception specifique à l'application
+ * Etend @see java.lang.RuntimeException
+ */
 public class FeedMeException extends RuntimeException {
 
   private static final long serialVersionUID = -1374905127904717607L;

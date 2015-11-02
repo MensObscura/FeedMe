@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class TypeCuisine {
   private Integer id;
-  private String typeCuisine;
+  private String type;
 }

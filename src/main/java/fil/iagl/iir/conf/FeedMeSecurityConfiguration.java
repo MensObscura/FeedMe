@@ -1,4 +1,4 @@
-package fil.iagl.iir;
+package fil.iagl.iir.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.service.AuthentificationService;
 
+/**
+ * @author RMS
+ *
+ * Configuration pour la Securité ( Spring Security )
+ */
+
 @Configuration
 @EnableWebSecurity
 public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -22,6 +28,9 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   AuthentificationService authenticationService;
 
+  /**
+   * Configuration global de la sécurité
+   */
   @Override
   protected void configure(final HttpSecurity http) {
 
@@ -40,6 +49,9 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   }
 
+  /**
+   * Defini les routes accessibles sans etre authentifié
+   */
   @Override
   public void configure(final WebSecurity web) {
     try {
@@ -55,6 +67,10 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   }
 
+  /**
+   * Defini comment le mot de passe doit etre crypter avant de tester la valeur en base de donnée
+   * @param auth le gestionnaire d'authentification
+   */
   @Autowired
   public void configureGlobal(final AuthenticationManagerBuilder auth) {
     final PasswordEncoder encoder = new BCryptPasswordEncoder();

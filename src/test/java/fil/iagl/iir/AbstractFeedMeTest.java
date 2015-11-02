@@ -27,6 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import fil.iagl.iir.conf.FeedMeConfiguration;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
 import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Authentification;
@@ -111,6 +112,7 @@ public abstract class AbstractFeedMeTest {
   protected Reservation createReservation() {
     Integer idOffre = 2;
     Integer idUtilisateur = 2;
+    Integer nb_places = 3;
 
     Utilisateur convive = new Utilisateur();
     convive.setIdUtilisateur(idUtilisateur);
@@ -125,6 +127,7 @@ public abstract class AbstractFeedMeTest {
     reservation.setConvive(convive);
     reservation.setDateReservation(dateReservation);
     reservation.setOffre(offre);
+    reservation.setNb_places(nb_places);
 
     return reservation;
   }

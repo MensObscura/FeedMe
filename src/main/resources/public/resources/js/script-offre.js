@@ -2,15 +2,23 @@
 var app = angular.module("OffreApp", []);
 
 //Création du controller "ReservationController"
-app.controller('ReservationController', function($scope, $http, $location, $filter) {  
+app.controller('ReservationController', function($scope, $http, $window) {  
+
+	// Fonction permettant de récupérer les paramètres de l'url.
+	$scope.getUrlVars = function() {
+		var vars = {};
+	    var parts = $window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+	    function(m,cle,valeur) {
+	      vars[cle] = valeur;
+	    });
+	    return vars;
+	}
 
 	// On récupère l'identifiant de l'offre à afficher
-	$scope.$location = $location;
-	$scope.$location.url(window.location);
-	var id = $scope.$location.search().id ; 
+	var id = $scope.getUrlVars()["id"];
 	
 	// On en déduit la route sur laquelle se connecter
-	var route = 'http://localhost:8080/offres/'+id;
+	var route = '/offres/'+id;
 
 	// On se branche dessus
 	$http.get(route).success(
@@ -18,7 +26,19 @@ app.controller('ReservationController', function($scope, $http, $location, $filt
 				// On transfert dans "offre" les données
 				$scope.offre = data;
 				// On calcule le nombre de places restantes, que l'on transfert aussi à la vue
-				$scope.nombreRestant = $scope.offre.nombrePersonne - $scope.offre.reservations.length;
+				var place_reservees = 0;
+				for (i = 0; i < data.reservations.length; i++) {
+					place_reservees += data.reservations[i].nb_places;
+				}
+				$scope.nombreRestant = data.nombrePersonne - place_reservees;
+				
+				// Si le nombre de places restantes est 0, on affiche "complet"
+				if ($scope.nombreRestant == 0) {
+					$scope.couverts_restants = "COMPLET"
+				}
+				else {
+					$scope.couverts_restants = $scope.nombreRestant+" sur "+data.nombrePersonne;
+				}
 				
 				// On met à jour la rubrique "animal" s'il existe des données
 				if (data.animaux)
@@ -39,7 +59,7 @@ app.controller('ReservationController', function($scope, $http, $location, $filt
 				else {
 					if (data.ageMax) {
 						// On a juste l'âge maximum.
-						$scope.age = age + "moins de " + data.ageMin + " ans.";
+						$scope.age = age + "moins de " + data.ageMax + " ans.";
 					}
 				}
 				// On met à jour la rubrique "note" s'il existe des données
@@ -61,23 +81,23 @@ app.controller('ReservationController', function($scope, $http, $location, $filt
 				date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
 
 			// On constitue les données
-			var data = {
-					//nombre : $scope.place,     !!!!!!! 
+			var donnees = {
+					nb_places : $scope.place, 
 					offre : $scope.offre,
 					dateReservation : date,
 			};
 
-			// On les envoieS
+			// On les envoies
 			$http({
 				method: 'PUT',
-				url: 'http://localhost:8080/reservation',
+				url: '/reservation',
 				contentType: "application/json",
-				data: data
+				data: donnees
 			}).success(function(response, status, headers, config){
-				// UN TOASTER ICI !!!!
-				window.location.href = "/liste_offres.html";
+				// DECLENCHEMENT D'UN TOASTER ICI : Votre réservation a été enregistrée
+				$window.location.href = "/liste_offres.html";
 			}).error(function(err, status, headers, config){
-				// UN TOASTER ICI !!!!
+				// DECLENCHEMENT D'UN TOASTER ICI : Vous avez déja reservé une place pour cette offre
 			});
 			
 		}

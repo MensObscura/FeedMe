@@ -65,8 +65,8 @@ INSERT INTO offre(off_date_creation, off_titre, off_prix, off_nombre_personne, o
 -- ---------------------------
 -- Table RESERVATION
 -- ---------------------------
-INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation) VALUES
-(1, 1, CURRENT_TIMESTAMP ), -- ID 1
-(4, 1, CURRENT_TIMESTAMP ), -- ID 2
-(4, 2, CURRENT_TIMESTAMP ); -- ID 3
+INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation, res_nb_places) VALUES
+(1, 1, CURRENT_TIMESTAMP, 2), -- ID 1
+(4, 1, CURRENT_TIMESTAMP, 1), -- ID 2
+(4, 2, CURRENT_TIMESTAMP, 1); -- ID 3
 
