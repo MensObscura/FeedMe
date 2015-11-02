@@ -17,4 +17,6 @@ public class Reservation {
 
   private LocalDate dateReservation;
 
+  private Integer nb_places;
+
 }

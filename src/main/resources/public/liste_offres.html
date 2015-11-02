@@ -10,6 +10,25 @@ Page de visualisation des offres de repas.
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>Liste des réservations</title>
+        
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
+
+        <!-- Slider ================================================== -->
+        <link href="resources/css/owl.carousel.css" rel="stylesheet" media="screen">
+        <link href="resources/css/owl.theme.css" rel="stylesheet" media="screen">
+
+        <!-- Stylesheet================================================== -->
+        <link rel="stylesheet" type="text/css"  href="resources/css/style.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
+
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+        <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
+        <script src="/resources/js/angular.min.js"></script>
+        
 		<script src="/resources/js/angular.min.js"></script>
 		<script src="/resources/js/script_list_offre.js"></script>
 		<link rel="stylesheet" type="text/css" href="/resources/css/list_style.css" />
@@ -20,7 +39,7 @@ Page de visualisation des offres de repas.
 			<div ng-include="'/resources/header.html'"></div>
 			
 			<!-- Liste de toutes les offres -->
-			<div ng-controller="ListeCtrl">
+			<div id ="vue-offre" ng-controller="ListeCtrl">
 				<ul class="big_button" ng-repeat="item in list track by item.id">
 					<li>
 						<div ng-click="visualize(item)">

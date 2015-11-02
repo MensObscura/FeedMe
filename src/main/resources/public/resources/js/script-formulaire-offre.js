@@ -16,31 +16,27 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 	};
 }]);
 
-// On installe le calendrier sur la division consacrée
-$('#dateRepas').datetimepicker({
-	minDate:'+1970-01-2 00:00',
-	step: 15,
-});
-
 //Création du controller "OffreCtrl"
-validationApp.controller('OffreCtrl', function($scope, $http) {
-	// On pre-remplissage des champs 'durée' et 'prix' par le minimum attendu
-	$scope.duree = 60;
-	$scope.prix = 1;
+validationApp.controller('OffreCtrl', function($scope, $http, $window) {
  
 	// On va rechercher toutes les types de cuisine en se connectant à la route consacrée
-	$http.get('http://localhost:8080/settings/typescuisines').success(
-			function(data) {
-				 $scope.cook = data;
+	$http.get('/settings/typescuisines').success(
+			function(donnees) {
+				 $scope.cook = donnees;
 			}
 		);
 	
 	// On va rechercher toutes les pays en se connectant à la route consacrée
-	$http.get('http://localhost:8080/settings/pays').success(
-			function(data) {
-				 $scope.count = data;
+	$http.get('/settings/pays').success(
+			function(donnees) {
+				 $scope.count = donnees;
 			}
 		);
+	
+	// On pre-remplissage des champs 'durée', 'nbpers' et 'prix' par le minimum attendu
+	$scope.duree = 60;
+	$scope.prix = 1;
+	$scope.nbpers = 1;
 
 	// Fonction permettant la disponibilité (ou non) du bouton de validation
 	$scope.nonValide = function() {
@@ -55,12 +51,20 @@ validationApp.controller('OffreCtrl', function($scope, $http) {
 			var date_repas = new Date($('#dateRepas').val());
 			var aujourdhui = new Date();
 			var date = "";
-			// On créé la date de réservarion (que l'on met sous le bon format)
-			if ((aujourdhui.getMonth()+1) < 10)
-		    	date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-		    else
-		    	date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-
+			// On créé la date de réservartion (que l'on met sous le bon format)
+			if ((aujourdhui.getMonth()+1) < 10) {
+				if ((aujourdhui.getDate()+1) < 10)
+					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
+				else
+					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
+			}
+		    else {
+				if ((aujourdhui.getDate()+1) < 10)
+					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
+				else
+					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
+		    }
+		    	
 			// On créé on objet pays
 			var pays = {
 				id : $scope.pays,
@@ -85,7 +89,7 @@ validationApp.controller('OffreCtrl', function($scope, $http) {
 			};
 
 			// Enfin on peut créer les données que l'on souhaite envoyer
-		    var data = {
+		    var donnees = {
 		    	dateCreation : date,
 		    	titre : $scope.titre,
 		    	prix : parseFloat($scope.prix),
@@ -104,14 +108,14 @@ validationApp.controller('OffreCtrl', function($scope, $http) {
 		    // On envoie les données
             $http({
         		method: 'PUT',
-        		url: 'http://localhost:8080/offres',
+        		url: '/offres',
         		contentType: "application/json",
-        		data: data
+        		data: donnees
      		}).success(function(response, status, headers, config){
-     			// UN TOASTER ICI !!!!!!
-           		window.location.href = '/accueil.html';
+     			// DECLENCHEMENT D'UN TOASTER ICI : Offre ajoutée
+           		$window.location.href = '/accueil.html';
       		}).error(function(err, status, headers, config){
-      			// UN TOASTER ICI !!!!!!
+      			// DECLENCHEMENT D'UN TOASTER ICI : Erreur interne
      		});
 
 		}

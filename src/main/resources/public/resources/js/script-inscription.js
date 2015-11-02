@@ -16,16 +16,8 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 	};
  }]);
 
- 
-// On charge le "DateTimePicker" que l'on incruste dans la division "anniversaire"
-$('#anniversaire').datetimepicker({
-	format: "Y-m-d", // Format de la date
-	timepicker: false, // Le choix de l'heure n'est pas utilisé
-	maxDate:'0', // = On ne peut pas choisir une date supérieures à celle d'aujourd'hui
-});
-
 //Création du controller "InscriptionCtrl"
-validationApp.controller('InscriptionCtrl', function($scope, $http) {  
+validationApp.controller('InscriptionCtrl', function($scope, $http, $window) {  
 	// Fonction permettant la disponibilité (ou non) du bouton de validation
 	$scope.nonValide = function() {
 		// Le formulaire est invalide quand les champs sont invalides et que la date n'a pas été renseignée
@@ -52,14 +44,14 @@ validationApp.controller('InscriptionCtrl', function($scope, $http) {
 			// Envoi de ces données sur la route consacrée (PUT)
 			$http({
 				method: 'PUT',
-				url: 'http://localhost:8080/utilisateur/particulier',
+				url: '/utilisateur/particulier',
 				contentType: "application/json",
 				data: authentification
 			}).success(function(response, status, headers, config){
-				// ICI JE VEUX UN TOASTER !!!!!!!!
-				window.location.href = '/index.html';
+				// DECLENCHEMENT D'UN TOASTER ICI : Inscription OK
+				$window.location.href = '/index.html';
 			}).error(function(err, status, headers, config){
-				// ICI JE VEUX AUSSI UN TOASTER (POUR ERREUR) !!!!
+				// DECLENCHEMENT D'UN TOASTER ICI : Adresse mail deja utilisée
 			});
 
 

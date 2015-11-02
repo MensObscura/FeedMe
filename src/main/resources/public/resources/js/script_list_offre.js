@@ -2,19 +2,20 @@
 var app = angular.module("ListeApp", []);
 
 // Création du controller "ListeCtrl"
-app.controller("ListeCtrl", function($scope, $http, $location) {
+app.controller("ListeCtrl", function($scope, $http, $window) {
 	// On se connecte à la route consacrée pour récupèrer les offres
-	$http.get('http://localhost:8080/offres').success(
-		function(data) {
-			$scope.list = data;
+	$http.get('/offres').success(
+		function(donnees) {
+			$scope.list = donnees;
 		}
 	);
 	
 	// Permet de créer un listener qui va rediriger vers la visualisation de l'offre cliquée
 	$scope.visualize = function (valeur) {
-		   window.location.href = "/offre.html?id="+valeur.id;
+		   $window.location.href = "/offre.html?id="+valeur.id;
 	};
-  
+ 
+	
 });
 
 

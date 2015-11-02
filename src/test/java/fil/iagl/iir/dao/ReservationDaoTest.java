@@ -30,6 +30,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
     // Quand on enregistre la reservation
     this.reservationDao.sauvegarder(reservation);
+    reservation.setNb_places(1);
 
     // Alors on verifie que l'ID de la reservation a bien ete genere
     Assertions.assertThat(reservation.getId()).isNotNull().isPositive();
@@ -39,6 +40,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
     Assertions.assertThat(reservation.getOffre()).isNotNull();
     Assertions.assertThat(reservation.getOffre().getId()).isNotNull().isEqualTo(OFFRE_ID_DEFAULT);
     Assertions.assertThat(reservation.getDateReservation()).isNotNull().isEqualTo(DATE_DEFAULT);
+    Assertions.assertThat(reservation.getNb_places()).isNotNull().isEqualTo(1);
   }
 
   @Test
@@ -166,18 +168,9 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
   @Test
   public void getAllByIdOffreTestEchec() throws Exception {
-    // Etant donne qu'aucune reservation n'est enregistree avec un ID nul
-    // Quand on recupere une reservation avec un ID nul
-    // Alors la reservation retournee est nulle
     Assertions.assertThat(this.reservationDao.getAllByIdOffre(null)).isEmpty();
-
-    // Etant donne qu'aucune reservation n'est enregistree avec cet ID
-    // Quand on recupere une reservation avec cet ID
-    // Alors la reservation retournee est nulle
     Assertions.assertThat(this.reservationDao.getAllByIdOffre(Integer.MAX_VALUE)).isEmpty();
   }
-
-  /* **************************** BUILDS ***********************************/
 
   public Reservation buildReservation(Integer idOffre, Integer idConvive, LocalDate dateReservation) {
     // Creation d'une offre
@@ -187,11 +180,13 @@ public class ReservationDaoTest extends AbstractDaoTest {
     // Creation d'un convive
     Utilisateur convive = new Utilisateur();
     convive.setIdUtilisateur(idConvive);
+    Integer nb_places = 2;
 
     Reservation reservation = new Reservation();
     reservation.setOffre(offre);
     reservation.setConvive(convive);
     reservation.setDateReservation(dateReservation);
+    reservation.setNb_places(nb_places);
 
     return reservation;
   }
