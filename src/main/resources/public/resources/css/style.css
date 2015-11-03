@@ -438,6 +438,7 @@ label {
     width: 200px;
     text-align: left;
 	float: left;
+	color: rgba(70, 70, 70, 1);
 	font-size: 12px;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
@@ -688,13 +689,14 @@ nav#footer p{
 fieldset
 {
 	max-width:1000px;
-	padding:16px;	
+	padding:16px;
+	background-color: rgba(207, 207, 207, 0.5);	
 	margin:auto;
 }
 
 legend
 {
-	color:inherit;
+	color: rgba(70, 70, 70, 1);
 	text-align:left;
 }
 
