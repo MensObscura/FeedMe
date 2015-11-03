@@ -18,7 +18,7 @@ h1 strong{
 
 h2{
 	text-transform: uppercase;
-	line-height: 20px;
+	line-height: 25px;
 	margin:  0;
     margin-bottom: 2%;
 }
@@ -728,7 +728,6 @@ button.form {
 
 .item-view:hover    {
     background-color: rgba(122,122,122, 0.5);
-    border: 1px solid black;
 }
 
 .ligne-tab  {
@@ -742,17 +741,13 @@ ul  {
 .page-accueil   {
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: flex;
-    height: 93%;
-    margin-top: 7%;
-    
     background: url(../img/accueil/accueil.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-    height: 100%;
+    height: auto;
     margin: 0;
 }
 
@@ -762,7 +757,7 @@ ul  {
     flex: 1;
     
     padding: 20% 10% 20% 15%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .choice:hover   {
@@ -817,7 +812,18 @@ ul  {
 }
 
 
-.offre-container  {
+/* .offre-container  {
     height: auto;
     border: 2px solid black;
+} */
+
+.une-offre-body {
+    background: url(../img/offre/background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+    height: auto;
+    margin: 0;
 }
