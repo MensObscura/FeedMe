@@ -79,7 +79,7 @@ ul, ol{
 	transition: all 0.8s;
 }
 #tf-menu.navbar-default {
-	background-color: rgba(248, 248, 248, 0);
+	background-color: rgba(0, 0, 0, 0.75);
 	border-color: rgba(231, 231, 231, 0);
 }
 #tf-menu a.navbar-brand {
@@ -789,4 +789,29 @@ ul  {
     float: left;
     width:32px;
     height:32px;
+}
+
+.containerProfil    {
+    background: url(../img/profil/background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+    height: 100%;
+    margin: 0;
+}
+
+
+.profil {
+    position:relative;
+    height: 50%;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10%;
+    padding: 5%;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    line-height: 35px;
 }
