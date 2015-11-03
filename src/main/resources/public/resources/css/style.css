@@ -739,10 +739,14 @@ ul  {
     list-style-type: none;
 }
 
-/* Style Formulaire Offre */
-
-#StyleAcceuil {
-	background: url(../img/acceuil/acceuil.jpg);
+.page-accueil   {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    height: 93%;
+    margin-top: 7%;
+    
+    background: url(../img/accueil/accueil.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -752,50 +756,28 @@ ul  {
     margin: 0;
 }
 
-
-#StyleAcceuil .overlay {
-	background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.8)), color-stop(17%,rgba(0,0,0,0.73)), color-stop(35%,rgba(0,0,0,0.66)), color-stop(62%,rgba(0,0,0,0.55)), color-stop(100%,rgba(0,0,0,0.4))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
-	background-attachment: fixed;
-    height: 100%;
-}
-
-#StyleAcceuil p.lead{
-	color: #e3e3e3;
-}
-
-#bigButtonsWrapper  {
-    position: absolute;
-    top: 30%;
-    left: 10%;
-    width: 80%;
-
-    text-align:center;
-}
-
-.big_button {
-	height: 12em;
-	width: 21em;
-    line-height:200px;
-	text-align: center;
-    display: inline-block;
-    vertical-align: middle;
+.choice {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
     
-    border-radius: 5px;
-    border: 2px solid;
-	background-color: #FCAC45;
-    width: 40%;
+    padding: 20% 10% 20% 15%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
-    /*float: center;
-	background: #FCAC45;
-	border: 0;
-	border-radius: 0;
-	padding: 10px 40px;*/
-	color: #ffffff;
-	text-transform: uppercase;
+.choice:hover   {
+    background-color: rgba(122,122,122, 0.5);
+}
+
+.choice-text    {
+    font-size: 2em;
+    color: rgba(255,255,255, 1);
+	margin: 12px 0 0;
+	line-height: 48px;
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    height: 50px;
+    padding: 15px 15px;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
