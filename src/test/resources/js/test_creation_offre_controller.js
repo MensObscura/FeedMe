@@ -27,12 +27,9 @@ describe('OffreCtrl', function() {
 +'<span ng-show="OffreForm.prix.$error.number">Veuillez saisir un nombre.</span>'
 +'<span ng-show="OffreForm.prix.$error.min">Veuillez saisir un prix supérieur à 1.00.</span>'
 +'</span>'
-+'<select type="select" name="typeCuisine" ng-model="typeCuisine" ng-required="true">'
-+'<option ng-repeat="item in cook" value="{{item.id}}">{{item.typeCuisine}}</option>'
++'<select type="select" name="typeCuisine" ng-model="typeCuisine">'
++'<option ng-repeat="item in cook" value="{{item.id}}" ng-selected="item.id==1">{{item.typeCuisine}}</option>'
 +'</select>'
-+'<span style="color:red" ng-show="OffreForm.typeCuisine.$invalid">'
-+'<span ng-show="OffreForm.typeCuisine.$error.required">Veuillez selectionner un type de cuisine.</span>'
-+'</span>'
 +'<input type="text" name="menu" ng-model="menu" placeholder="Votre menu." ng-required="true">'
 +'<span style="color:red" ng-show="OffreForm.menu.$invalid && !OffreForm.menu.$pristine">'
 +'<span ng-show="OffreForm.menu.$error.required">Veuillez saisir votre menu.</span>'
@@ -63,12 +60,9 @@ describe('OffreCtrl', function() {
 +'<span ng-show="OffreForm.cp.$error.required">Veuillez saisir un code postal.</span>'
 +'<span ng-show="OffreForm.cp.$error.pattern">Le code postal saisit est incorrect.</span>'
 +'</span>'
-+'<select type="select" name="pays" ng-model="pays" ng-required="true">'
-+'<option ng-repeat="item in count" value="{{item.id}}">{{item.nom}}</option>'
++'<select type="select" name="pays" ng-model="pays">'
++'<option ng-repeat="item in count" value="{{item.id}}" ng-selected="item.id==1">{{item.nom}}</option>'
 +'</select>'
-+'<span style="color:red" ng-show="OffreForm.pays.$invalid">'
-+'<span ng-show="OffreForm.pays.$error.required">Veuillez selectionner un pays.</span>'
-+'</span>'
 +'<input type="number" name="agemin" ng-model="agemin" ng-min="18" placeholder="min."> - '
 +'<input type="number" name="agemax" ng-model="agemax" ng-min="18" placeholder="max." ensure-expression="(agemin == null && agemax == null) || (agemin == null && agemax >= 18) || (agemax == null && agemin >= 18) || agemin <= agemax">'
 +'<span style="color:red" ng-show="OffreForm.agemin.$invalid && !OffreForm.agemin.$pristine">'
@@ -420,16 +414,6 @@ describe('OffreCtrl', function() {
 		expect(form.$valid).toBe(false);
 	}));
 
-	it('test du validateur :  aucune selection pays', inject(function($httpBackend) {
-		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
-		$httpBackend.whenGET('/settings/pays').respond(pays);
-
-		form.pays.$setViewValue('');
-
-		expect(form.pays.$invalid).toBe(true);
-		expect(form.$valid).toBe(false);
-	}));
-
 	it('test du validateur : selection pays', inject(function($httpBackend) {
 		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
 		$httpBackend.whenGET('/settings/pays').respond(pays);
@@ -437,16 +421,6 @@ describe('OffreCtrl', function() {
 		form.pays.$setViewValue('France');
 
 		expect(form.pays.$valid).toBe(true);
-		expect(form.$valid).toBe(false);
-	}));
-
-	it('test du validateur :  aucune selection type de cuisine', inject(function($httpBackend) {
-		$httpBackend.whenGET('/settings/typescuisines').respond(typeCuisine);
-		$httpBackend.whenGET('/settings/pays').respond(pays);
-
-		form.typeCuisine.$setViewValue('');
-
-		expect(form.typeCuisine.$invalid).toBe(true);
 		expect(form.$valid).toBe(false);
 	}));
 
