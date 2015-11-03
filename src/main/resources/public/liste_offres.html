@@ -8,7 +8,6 @@ Page de visualisation des offres de repas.
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>Liste des réservations</title>
         
         <!-- Bootstrap -->
@@ -40,9 +39,11 @@ Page de visualisation des offres de repas.
 			
 			<!-- Liste de toutes les offres -->
 			<div id ="vue-offre" ng-controller="ListeCtrl">
-				<ul class="big_button" ng-repeat="item in list track by item.id">
-					<li>
-						<div ng-click="visualize(item)">
+                <!-- Hack à régler -->
+                <br/>
+				<ul ng-repeat="item in list track by item.id">
+					<li class="ligne-tab">
+						<div class="item-view" ng-click="visualize(item)">
 							<h2>{{item.titre}}</h2>
 							<p>
 								{{item.typeCuisine.typeCuisine}}

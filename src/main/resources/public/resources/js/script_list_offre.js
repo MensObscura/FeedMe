@@ -15,7 +15,6 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		   $window.location.href = "/offre.html?id="+valeur.id;
 	};
  
-	
 });
 
 
