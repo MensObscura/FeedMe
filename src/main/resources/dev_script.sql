@@ -35,7 +35,7 @@ INSERT INTO ADRESSE(adr_voie, adr_vil_id) VALUES
 -- Table OFFRE
 -- ---------------------------
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_MENU, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID) VALUES
-('2012-10-13','Tomates nordique',12,5,123,'2012-10-19 03:14:07','Des tomates délicieuses','Entrée : Salade composée. Plat Principal : Tomates Farcies, riz à la crème fraiche et au vin blanc. Dessert : Poires belle Hélène',10,45,'true',1,1,1);
+('2012-10-13','Tomates nordiques',12,5,123,'2012-10-19 03:14:07','Des tomates délicieuses','Entrée : Salade composée. Plat Principal : Tomates Farcies, riz à la crème fraiche et au vin blanc. Dessert : Poires belle Hélène',10,45,'true',1,1,1);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_MENU, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID) VALUES
 ('2012-10-13','Poulet subsaharien',19,4,168,'2012-10-19 03:14:07','Attention les arachides sont un allergène','Entrée : Buffet froid ,Plat : Poulet aux arachides, riz, carottes, piment. Dessert : Kakis et autres fruits exotiques',18,29,'true',2,1,1);
