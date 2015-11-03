@@ -74,12 +74,19 @@ app.controller('ReservationController', function($scope, $http, $window) {
 			
 			// Première étape : convertir la date est la mettre sous la bonne forme
 			var aujourdhui = new Date();
-			var date = "";
-			if ((aujourdhui.getMonth()+1) < 10)
-				date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-			else
-				date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-
+			var date = "";			
+			if ((aujourdhui.getMonth()+1) < 10) {
+				if ((aujourdhui.getDate()+1) < 10)
+					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
+				else
+					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
+			}
+		    else {
+				if ((aujourdhui.getDate()+1) < 10)
+					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
+				else
+					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
+		    }
 			// On constitue les données
 			var donnees = {
 					nb_places : $scope.place, 
