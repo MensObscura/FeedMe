@@ -19,7 +19,7 @@
 		<script src="/resources/js/login.js"></script>
 	</head>
     
-	<body ng-app="login">
+	<body >
         
         <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -31,14 +31,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html"><img class="logo" src="img/icon.gif" /> FeedMe</a>
+          <a class="navbar-brand" href="index.html"><img class="logo" src="/resources/img/icon.gif" /> FeedMe</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../index.html">Retour à l'accueil</a></li>
-            <li><a href="../inscription.html">S'inscrire</a></li>
+            <li><a href="index.html">Retour à l'accueil</a></li>
+            <li><a href="inscription.html">S'inscrire</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -50,22 +50,15 @@
                 <div class="general-form">
 			     <h1>Authentification</h1>
 		
-			     <form name="form" ng-submit="confirm()" ng-controller="LoginController">
+			     <form name="form">
 			
 					<p>
-						<input type="email" name="email" ng-model="email" required>
+						<input placeholder="Nom du compte"  type="email" name="username" required>
 					</p>
-					<div ng-show="form.$submitted || form.email.$touched" role="alert">
-						<span class="error" ng-show="form.email.$error.required">Requis!</span>
-						<span class="error" ng-show="form.email.$error.email">Format d'e-mail invalide</span>
-					</div>
 				
 					<p>
-						<input type="password" name="passwordInput" ng-model="pwd" required>
+						<input placeholder="Mot de passe" type="password" name="password" required>
 					</p>
-					<div ng-show="form.$submitted || form.passwordInput.$touched"  role="alert">
-						<span class="error" ng-show="form.passwordInput.$error.required">Requis!</span>
-					</div>
 				
 				<input type="submit" name="boutonConfirmation" value="Confirmer"  />
 			</form>
@@ -76,6 +69,14 @@
 		
 		<div ng-include="'/resources/footer.html'"></div>
 	</body>
+	
+	<script text="text/javascript">
+		$('form').on('submit', function(e){
+			e.preventDefault();
+			window.location = "/accueil.html";
+		});
+	
+	</script>
 </html>
 
 
