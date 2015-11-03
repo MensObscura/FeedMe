@@ -23,6 +23,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 	$http.get('/settings/typescuisines').success(
 			function(donnees) {
 				 $scope.cook = donnees;
+				 $scope.typeCuisine= $scope.cook[0].id;
 			}
 		);
 	
@@ -30,6 +31,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 	$http.get('/settings/pays').success(
 			function(donnees) {
 				 $scope.count = donnees;
+				 $scope.pays= $scope.count[0].id;
 			}
 		);
 	
@@ -102,7 +104,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 		    	ageMax : parseInt($scope.agemax), //optionnel
 		    	animaux : Boolean($scope.animal),
 		    	adresse : adresse,
-		    	type : typeCuisine,
+		    	typeCuisine : typeCuisine,
 		    };
 
 		    // On envoie les données

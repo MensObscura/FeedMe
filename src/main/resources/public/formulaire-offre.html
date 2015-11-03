@@ -84,12 +84,9 @@ Page proposant le formulaire de création d'offres.
 							<br>
 
 							<label for="typeCuisine">Type de cuisine* : </label>
-							<select type="select" name="typeCuisine" ng-model="typeCuisine" ng-required="true">
-								<option ng-repeat="item in cook" value="{{item.id}}">{{item.type}}</option>
+							<select type="select" name="typeCuisine" ng-model="typeCuisine">
+								<option ng-repeat="item in cook" value="{{item.id}}" ng-selected="item.id==1">{{item.type}}</option>
 							</select>
-							<span style="color:red" ng-show="OffreForm.typeCuisine.$invalid">
-							  	<span ng-show="OffreForm.typeCuisine.$error.required">Veuillez selectionner un type de cuisine.</span>
-							</span>
 							<br>
 
 							<label for="menu">Menu* : </label>
@@ -152,12 +149,9 @@ Page proposant le formulaire de création d'offres.
 							<br>
 
 							<label for="pays">Pays* : </label>
-							<select type="select" name="pays" ng-model="pays" ng-required="true">
-							  	<option ng-repeat="item in count" value="{{item.id}}">{{item.nom}}</option>
+							<select type="select" name="pays" ng-model="pays">
+							  	<option ng-repeat="item in count" value="{{item.id}}" ng-selected="item.id==1">{{item.nom}}</option>
 							</select>
-							<span style="color:red" ng-show="OffreForm.pays.$invalid">
-							  	<span ng-show="OffreForm.pays.$error.required">Veuillez selectionner un pays.</span>
-							</span>
 
 					    </fieldset>
 
