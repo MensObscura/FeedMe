@@ -815,3 +815,9 @@ ul  {
     color: white;
     line-height: 35px;
 }
+
+
+.offre-container  {
+    height: auto;
+    border: 2px solid black;
+}
