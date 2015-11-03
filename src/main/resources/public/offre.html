@@ -35,11 +35,10 @@ Page de visualisation d'une offre
 	</head>
 	
 	<body ng-app="OffreApp">
-		<!-- Menu -->
-		<div ng-include="'/resources/header.html'"></div>
-		
+		<div ng-include="'/resources/header.html'"></div>	
 		<!-- Visualisation des détails de l'offre -->
-            <div class="une-offre-body" ng-controller="ReservationController">
+        <div class="une-offre-body">
+            <div class="offre-display" ng-controller="ReservationController">
                 <h2>{{offre.titre}}</h2>
                 <h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
                 <form name="ReservationForm" ng-submit="submitForm()" novalidate>
@@ -95,7 +94,7 @@ Page de visualisation d'une offre
                 </div>
             </form>
             </div>
-		
+		</div>
 		<script src="/resources/js/script-offre.js"></script>
 		<!-- Pied de page -->
 		<div ng-include="'/resources/footer.html'"></div>
