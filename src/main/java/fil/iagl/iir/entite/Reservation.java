@@ -9,14 +9,14 @@ import lombok.Setter;
 @Setter
 public class Reservation {
 
-	private Integer id;
+  private Integer id;
 
-	private Offre offre;
+  private Offre offre;
 
-	private Utilisateur convive;
+  private Utilisateur convive;
 
-	private LocalDate dateReservation;
-	
-	private Integer nb_places;
+  private LocalDate dateReservation;
+
+  private Integer nb_places;
 
 }

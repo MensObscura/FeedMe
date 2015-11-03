@@ -11,6 +11,7 @@ import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.dao.ville.VilleDao;
+import fil.iagl.iir.service.impl.AdresseServiceImpl;
 import fil.iagl.iir.service.impl.AuthentificationServiceImpl;
 import fil.iagl.iir.service.impl.OffreServiceImpl;
 import fil.iagl.iir.service.impl.ReservationServiceImpl;
@@ -18,37 +19,43 @@ import fil.iagl.iir.service.impl.UtilisateurServiceImpl;
 
 public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 
-	@InjectMocks
-	protected AuthentificationServiceImpl authentificationService;
+  @InjectMocks
+  protected AuthentificationServiceImpl authentificationService;
 
-	@InjectMocks
-	protected UtilisateurServiceImpl utilisateurService;
+  @InjectMocks
+  protected UtilisateurServiceImpl utilisateurService;
 
-	@InjectMocks
-	protected ReservationServiceImpl reservationService;
+  @InjectMocks
+  protected ReservationServiceImpl reservationService;
 
-	@InjectMocks
-	protected OffreServiceImpl offreService;
+  @InjectMocks
+  protected OffreServiceImpl offreService;
 
-	@Mock
-	protected AuthentificationDao authentificationDao;
+  @InjectMocks
+  protected AdresseServiceImpl adresseService;
 
-	@Mock
-	protected UtilisateurDao utilisateurDao;
+  @Mock
+  protected AuthentificationDao authentificationDao;
 
-	@Mock
-	protected ParticulierDao particulierDao;
+  @Mock
+  protected UtilisateurDao utilisateurDao;
 
-	@Mock
-	protected ReservationDao reservationDao;
+  @Mock
+  protected ParticulierDao particulierDao;
 
-	@Mock
-	protected OffreDao offreDao;
+  @Mock
+  protected ReservationDao reservationDao;
 
-	@Mock
-	protected AdresseDao adresseDao;
+  @Mock
+  protected OffreDao offreDao;
 
-	@Mock
-	protected VilleDao villeDao;
+  @Mock
+  protected AdresseDao adresseDao;
+
+  @Mock
+  protected VilleDao villeDao;
+
+  @Mock
+  protected AdresseService adresseServiceMock;
 
 }

@@ -5,7 +5,7 @@
 
 	<resultMap type="fil.iagl.iir.entite.TypeCuisine" id="Type_Cuisine_ResultMap">
 		<id property="id" column="typ_id"/>
-		<result property="typeCuisine" column="typ_cuisine"/>
+		<result property="type" column="typ_cuisine"/>
 	</resultMap>
 
 

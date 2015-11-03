@@ -13,12 +13,20 @@ import fil.iagl.iir.service.ReservationService;
 @RequestMapping("/reservation")
 public class ReservationController {
 
-	@Autowired
-	private ReservationService reservation;
-	
-	@RequestMapping(method = RequestMethod.PUT)
-	public Reservation reserver	(@RequestBody Reservation res){
-		reservation.sauvegarder(res);
-		return res;
-	}
+  @Autowired
+  private ReservationService reservation;
+
+  /**
+   * Sauvegarde une réservation dans la base de données
+   * 
+   * @param res
+   *            une réservation
+   * @return la réservation telle qu'elle est enregistrée dans la base de
+   *         données
+   */
+  @RequestMapping(method = RequestMethod.PUT)
+  public Reservation reserver(@RequestBody Reservation res) {
+    reservation.sauvegarder(res);
+    return res;
+  }
 }

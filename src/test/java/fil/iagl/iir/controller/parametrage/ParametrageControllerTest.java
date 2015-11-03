@@ -15,24 +15,24 @@ import fil.iagl.iir.controller.AbstractControllerTest;
 
 public class ParametrageControllerTest extends AbstractControllerTest {
 
-	@Before
-	public void init() {
-		MockitoAnnotations.initMocks(this);
-		this.mockMvc = MockMvcBuilders.standaloneSetup(this.parametrageController)
-				.setMessageConverters(new MappingJackson2HttpMessageConverter()).build();
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
+  @Before
+  public void init() {
+    MockitoAnnotations.initMocks(this);
+    this.mockMvc = MockMvcBuilders.standaloneSetup(this.parametrageController)
+      .setMessageConverters(new MappingJackson2HttpMessageConverter()).build();
+    this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+  }
 
-	@Test
-	public void getVillesTestSucces() throws Exception {
-		mockMvc.perform(get("/settings/pays")).andExpect(status().isOk())
-				.andExpect(content().contentType(FEED_ME_MEDIA_TYPE)).andExpect(jsonPath("$").isArray());
-	}
+  @Test
+  public void getVillesTestSucces() throws Exception {
+    mockMvc.perform(get("/settings/pays")).andExpect(status().isOk())
+      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE)).andExpect(jsonPath("$").isArray());
+  }
 
-	@Test
-	public void getTypesCuisinesTestSucces() throws Exception {
-		mockMvc.perform(get("/settings/typescuisines")).andExpect(status().isOk())
-				.andExpect(content().contentType(FEED_ME_MEDIA_TYPE)).andExpect(jsonPath("$").isArray());
-	}
+  @Test
+  public void getTypesCuisinesTestSucces() throws Exception {
+    mockMvc.perform(get("/settings/typescuisines")).andExpect(status().isOk())
+      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE)).andExpect(jsonPath("$").isArray());
+  }
 
 }

@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class Pays {
 
-	private Integer id;
+  private Integer id;
 
-	private String codePays;
+  private String codePays;
 
-	private String nom;
+  private String nom;
 
 }

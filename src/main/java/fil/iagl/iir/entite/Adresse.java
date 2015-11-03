@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class Adresse {
 
-	private Integer id;
-	private String voie;
-	private Ville ville;
+  private Integer id;
+  private String voie;
+  private Ville ville;
 }

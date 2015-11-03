@@ -4,11 +4,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+/** 
+ * @author Maxime CLEMENT
+ *
+ * Class représentant l'application dans son ensemble, c'est le point d'entré pour Spring
+ */
+
 @SpringBootApplication
 @WebAppConfiguration
+@SuppressWarnings("squid:S1118") // Spring à besoin d'un constructeur public, il est impossible de le rendre privé
 public class FeedMeApplication {
 
-    public static void main( final String[] args ) {
-        SpringApplication.run( FeedMeApplication.class, args );
-    }
+  public static void main(final String[] args) {
+    SpringApplication.run(FeedMeApplication.class, args);
+  }
 }

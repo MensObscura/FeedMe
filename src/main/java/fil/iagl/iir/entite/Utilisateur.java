@@ -1,25 +1,29 @@
 
 package fil.iagl.iir.entite;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Utilisateur {
+public class Utilisateur implements Serializable {
 
-	public Utilisateur(Integer idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
+  private static final long serialVersionUID = -1993291509496155748L;
 
-	public Utilisateur() {
+  private Integer idUtilisateur;
 
-	}
+  private String nom;
 
-	private Integer idUtilisateur;
+  private String mail;
 
-	private String nom;
+  public Utilisateur(Integer idUtilisateur) {
+    this.idUtilisateur = idUtilisateur;
+  }
 
-	private String mail;
+  public Utilisateur() {
+    // Constructeur par default utilisé par MyBatis
+  }
 
 }

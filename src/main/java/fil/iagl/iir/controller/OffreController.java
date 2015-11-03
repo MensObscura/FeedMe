@@ -16,22 +16,39 @@ import fil.iagl.iir.service.OffreService;
 @RequestMapping("/offres")
 public class OffreController {
 
-	@Autowired
-	private OffreService offreservice;
+  @Autowired
+  private OffreService offreservice;
 
-	@RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
-	public Offre sauvegarder(@RequestBody Offre offre) {
-		offreservice.sauvegarder(offre);
-		return offre;
-	}
+  /**
+   * Sauvegarde l'offre dans la base de données
+   * 
+   * @param offre à sauvegarder dans la base
+   * @return offre avec son id tel qu'elle est enregistrée dans la base
+   */
+  @RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+  public Offre sauvegarder(@RequestBody Offre offre) {
+    offreservice.sauvegarder(offre);
+    return offre;
+  }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Offre afficher(@PathVariable("id") Integer id) {
-		return offreservice.afficher(id);
-	}
+  /**
+   * Retourne l'offre correspondant à un id donné
+   * 
+   * @param id d'une offre
+   * @return L'offre correspondant à l'id.
+   */
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  public Offre afficher(@PathVariable("id") Integer id) {
+    return offreservice.afficher(id);
+  }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Offre> afficher() {
-		return offreservice.lister();
-	}
+  /**
+   * Retourne toutes les offres de la base de données
+   * 
+   * @return la liste de toutes les offres
+   */
+  @RequestMapping(method = RequestMethod.GET)
+  public List<Offre> afficher() {
+    return offreservice.lister();
+  }
 }
