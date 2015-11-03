@@ -85,7 +85,7 @@ Page proposant le formulaire de création d'offres.
 
 							<label for="typeCuisine">Type de cuisine* : </label>
 							<select type="select" name="typeCuisine" ng-model="typeCuisine" ng-required="true">
-								<option ng-repeat="item in cook" value="{{item.id}}">{{item.typeCuisine}}</option>
+								<option ng-repeat="item in cook" value="{{item.id}}">{{item.type}}</option>
 							</select>
 							<span style="color:red" ng-show="OffreForm.typeCuisine.$invalid">
 							  	<span ng-show="OffreForm.typeCuisine.$error.required">Veuillez selectionner un type de cuisine.</span>
