@@ -742,8 +742,7 @@ button.form {
 
 .item-view:hover    {
     cursor:pointer;
-    background-color: rgba(0, 0, 0, 0.75);
-    box-shadow: 3px 3px 3px 3px white;
+    background-color: rgba(0, 0, 0, 0.65);
 }
 
 .ligne-tab  {
