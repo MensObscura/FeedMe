@@ -438,7 +438,7 @@ label {
     width: 200px;
     text-align: left;
 	float: left;
-	color: rgba(70, 70, 70, 1);
+	color: rgba(255, 255, 255, 1);
 	font-size: 12px;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
@@ -653,6 +653,7 @@ nav#footer p{
 	background-repeat: no-repeat;
 	color: #cfcfcf;
     height: auto;
+    min-height: 112%;
     padding-top: 5%;
     margin-bottom: -5%;
     padding-bottom: 5%;
@@ -667,7 +668,7 @@ nav#footer p{
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-    height: 100%;
+    height: auto;
     margin: 0;
 }
 
@@ -691,15 +692,19 @@ nav#footer p{
 fieldset
 {
 	max-width:1000px;
-	padding:16px;
-	background-color: rgba(207, 207, 207, 0.5);	
-	margin:auto;
+    width: 70%;
+	margin-left:15%;
+    margin-right:15%;
+    padding: 5%;
+    height: auto;
+	background-color: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 1);
 }
 
 legend
 {
-	color: rgba(70, 70, 70, 1);
-	text-align:left;
+	color: rgba(255, 255, 255, 1);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 button.form {
