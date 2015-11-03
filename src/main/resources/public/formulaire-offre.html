@@ -67,7 +67,7 @@ Page proposant le formulaire de création d'offres.
 							<select type="select" name="typeCuisine" ng-model="typeCuisine">
 								<option ng-repeat="item in cook" value="{{item.id}}" ng-selected="item.id==1">{{item.type}}</option>
 							</select>
-							<br>
+							<br><br>
 
 							<label for="menu">Menu* : </label>
 							<input type="text" name="menu" ng-model="menu" placeholder="Votre menu." ng-required="true">
