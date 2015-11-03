@@ -753,6 +753,7 @@ ul  {
     margin: 0;
     display: -ms-flexbox;
     display: -webkit-flex;
+    display: -moz-box-flex;
 }
 
 .choice {
