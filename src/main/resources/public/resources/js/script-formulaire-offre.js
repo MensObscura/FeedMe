@@ -102,7 +102,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 		    	ageMax : parseInt($scope.agemax), //optionnel
 		    	animaux : Boolean($scope.animal),
 		    	adresse : adresse,
-		    	type : typeCuisine,
+		    	typeCuisine : typeCuisine,
 		    };
 
 		    // On envoie les données
