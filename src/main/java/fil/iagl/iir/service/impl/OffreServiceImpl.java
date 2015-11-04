@@ -35,6 +35,10 @@ public class OffreServiceImpl implements OffreService {
       throw new FeedMeException("Parametre null");
     }
 
+    if (offre.getNombrePersonne().equals(0)) {
+      throw new FeedMeException("Nombre de convives egal a zero");
+    }
+
     offre.setHote(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
     // TODO : Creer un adresse service

@@ -171,11 +171,6 @@ public class OffreDaoTest extends AbstractDaoTest {
     }
   }
 
-  /*
-   * TODO : on ne devrait pas pouvoir creer une offre avec un nombre de
-   * convive = 0
-   */
-
   @Test
   public void sauvegarderTestEchec_NombrePersonneNull() throws Exception {
     // Etant donne une offre ayant son nombre de convives a nul
