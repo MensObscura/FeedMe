@@ -18,6 +18,6 @@ public class AccueilController {
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String home() {
     return "redirect:index.html";
-  }
 
+  }
 }
