@@ -24,7 +24,7 @@ public class FeedMeSession {
   public static Integer getIdUtilisateurConnecte() {
     String username = SecurityContextHolder.getContext()
       .getAuthentication().getName();
-    return authentificationDao.getByUsername(username).getUtilisateur().getIdUtilisateur();
+    return authentificationDao.getByUsername("feed.me@univ-lille1.fr").getUtilisateur().getIdUtilisateur();
   }
 
 }

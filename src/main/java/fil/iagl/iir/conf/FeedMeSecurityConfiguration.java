@@ -36,7 +36,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		try {
 			// Desactiver le certificat pour autoriser PUT/POST/DELETE
-			// http.csrf().disable();
+			http.csrf().disable();
 
 			// L'accès au autre ressources est sécurisé
 			// http.authorizeRequests().anyRequest().authenticated();
