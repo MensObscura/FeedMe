@@ -18,7 +18,7 @@ h1 strong{
 
 h2{
 	text-transform: uppercase;
-	line-height: 20px;
+	line-height: 25px;
 	margin:  0;
     margin-bottom: 2%;
 }
@@ -79,9 +79,12 @@ ul, ol{
 	transition: all 0.8s;
 }
 #tf-menu.navbar-default {
-	background-color: rgba(248, 248, 248, 0);
+	background-color: rgba(0, 0, 0, 1);
+    /* A dé-commenter pour le prochain jallon MVP */
+    /* background-color: rgba(0, 0, 0, 0.75); */
 	border-color: rgba(231, 231, 231, 0);
 }
+
 #tf-menu a.navbar-brand {
 text-transform: uppercase;
 font-size: 22px;
@@ -263,7 +266,7 @@ img.img-circle.team-img {
 	-webkit-border-radius: 0;
 	-moz-border-radius: 20px;
 	border-radius: 0;
-	background: #FFFFFF;
+	background: #CCCCCC;
 	transition: all 0.5s;
 }
 
@@ -435,6 +438,7 @@ label {
     width: 200px;
     text-align: left;
 	float: left;
+	color: rgba(255, 255, 255, 1);
 	font-size: 12px;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
@@ -538,6 +542,7 @@ nav#footer p{
 	color: #cfcfcf;
     height: 100%;
     margin: 0;
+    padding-top: 25px;
 }
 
 #StyleFormulaireInscription .overlay {
@@ -647,8 +652,11 @@ nav#footer p{
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-    height: 100%;
-    margin: 0;
+    height: auto;
+    min-height: 112%;
+    padding-top: 5%;
+    margin-bottom: -5%;
+    padding-bottom: 5%;
 }
 
 /* Style Formulaire Offre */
@@ -660,7 +668,7 @@ nav#footer p{
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-    height: 100%;
+    height: auto;
     margin: 0;
 }
 
@@ -684,14 +692,19 @@ nav#footer p{
 fieldset
 {
 	max-width:1000px;
-	padding:16px;	
-	margin:auto;
+    width: 70%;
+	margin-left:15%;
+    margin-right:15%;
+    padding: 5%;
+    height: auto;
+	background-color: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 1);
 }
 
 legend
 {
-	color:inherit;
-	text-align:left;
+	color: rgba(255, 255, 255, 1);
+    padding-top: 5%;
 }
 
 button.form {
@@ -700,7 +713,7 @@ button.form {
 	border: 0;
 	border-radius: 0;
 	padding: 10px 40px;
-	color: #ffffff;
+	color: #000000;
 	text-transform: uppercase;
 }
 
@@ -719,7 +732,8 @@ button.form {
 
 
 .item-view  {
-    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    background-color: rgba(0, 0, 0, 0.9);
     margin-left: 20%;
     margn-right: 20%;
     padding: 25px;
@@ -727,8 +741,8 @@ button.form {
 }
 
 .item-view:hover    {
-    background-color: rgba(122,122,122, 0.5);
-    border: 1px solid black;
+    cursor:pointer;
+    background-color: rgba(0, 0, 0, 0.65);
 }
 
 .ligne-tab  {
@@ -740,33 +754,31 @@ ul  {
 }
 
 .page-accueil   {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    height: 93%;
-    margin-top: 7%;
-    
     background: url(../img/accueil/accueil.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-    height: 100%;
+    height: auto;
     margin: 0;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box-flex;
 }
 
 .choice {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    
+    cursor:pointer;
     padding: 20% 10% 20% 15%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .choice:hover   {
     background-color: rgba(122,122,122, 0.5);
+    font-style: 
 }
 
 .choice-text    {
@@ -790,3 +802,55 @@ ul  {
     width:32px;
     height:32px;
 }
+
+.containerProfil    {
+    background: url(../img/profil/background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+    height: 100%;
+    margin: 0;
+}
+
+
+.profil {
+    position:relative;
+    height: 50%;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10%;
+    padding: 5%;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    line-height: 35px;
+}
+
+
+/* .offre-container  {
+    height: auto;
+    border: 2px solid black;
+} */
+
+.une-offre-body {
+    background: url(../img/offre/background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+    height: auto;
+    margin: 0;
+    padding: 5%;
+}
+
+.offre-display {
+    position: relative;
+    background: rgba(0,0,0,0.85);
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 6%;
+    padding: 20px;
+}   

@@ -9,7 +9,7 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 			$scope.list = donnees;
 		}
 	);
-	
+    
 	// Permet de créer un listener qui va rediriger vers la visualisation de l'offre cliquée
 	$scope.visualize = function (valeur) {
 		   $window.location.href = "/offre.html?id="+valeur.id;
