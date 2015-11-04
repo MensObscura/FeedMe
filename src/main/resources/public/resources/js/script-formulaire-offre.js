@@ -89,6 +89,13 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 			var typeCuisine = {
 				id : $scope.typeCuisine,
 			};
+			
+			var menu {
+				entree: $scope.entree,
+				plat: $scope.plat,
+				dessert: $scope.dessert,
+				boisson: $scope.boisson
+			};
 
 			// Enfin on peut créer les données que l'on souhaite envoyer
 		    var donnees = {
@@ -99,7 +106,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 		    	dureeMinute : parseInt($scope.duree), // optionnel
 		    	dateRepas : date_repas.toISOString().substr(0,22),
 		    	note : $scope.note, //optionnel
-		    	menu : $scope.menu,
+		    	menu : menu,
 		    	ageMin : parseInt($scope.agemin), //optionnel
 		    	ageMax : parseInt($scope.agemax), //optionnel
 		    	animaux : Boolean($scope.animal),

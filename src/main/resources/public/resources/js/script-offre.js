@@ -39,7 +39,7 @@ app.controller('ReservationController', function($scope, $http, $window) {
 				else {
 					$scope.couverts_restants = $scope.nombreRestant+" sur "+data.nombrePersonne;
 				}
-				
+								
 				// On met à jour la rubrique "animal" s'il existe des données
 				if (data.animaux)
 					$scope.animaux = "Un animal de compagnie sera présent lors du repas.";
@@ -86,7 +86,8 @@ app.controller('ReservationController', function($scope, $http, $window) {
 					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
 				else
 					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-		    }
+		    }		
+			
 			// On constitue les données
 			var donnees = {
 					nb_places : $scope.place, 

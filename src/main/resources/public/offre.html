@@ -62,8 +62,15 @@ Page de visualisation d'une offre
                     <legend>Le menu</legend>
                         <h3>Type de cuisine :</h3>
                         {{offre.typeCuisine.type}}
-                        <h3>Au menu :</h3>
-                        {{offre.menu}}
+                        <h3>Dans votre assiette :</h3>
+                        <h4>Entrée(s) :</h4>
+                        {{offre.entree || "aucunes entrées"}}
+                        <h4>Plat :</h4>
+                        {{offre.plat}}
+                        <h4>Dessert(s) :</h4>
+                        {{offre.dessert || "aucuns desserts"}}
+                        <h4>Carte des boissons :</h4>
+                        {{offre.boisson || "aucunes boissons particulières"}}
                         <h3>Nombre de couverts restants :</h3>
                         <!-- soit x sur y soit COMPLET -->
                         {{couverts_restants}}
@@ -74,8 +81,8 @@ Page de visualisation d'une offre
                     <!-- Informations diverses (et optionnelles) -->
                     <fieldset>
                     <legend>Divers</legend>
-                    {{animaux}}<br>
-                    {{age}}<br>
+                    {{animaux}}
+                    {{age}}
                     {{note}}
                     </fieldset>
 

@@ -69,13 +69,6 @@ Page proposant le formulaire de création d'offres.
 							</select>
 							<br><br>
 
-							<label for="menu">Menu* : </label>
-							<input type="text" name="menu" ng-model="menu" placeholder="Votre menu." ng-required="true">
-							<span style="color:red" ng-show="OffreForm.menu.$invalid && !OffreForm.menu.$pristine">
-								<span ng-show="OffreForm.menu.$error.required">Veuillez saisir votre menu.</span>
-							</span>
-							<br><br>
-
 							<label for="date">Date* : </label>
 							<input type="text" name="dateRepas" ng-model="dateRepas" id="dateRepas" ng-readonly="true" placeholder="Date du repas.">
 							<br><br>
@@ -87,9 +80,33 @@ Page proposant le formulaire de création d'offres.
 							  	<span ng-show="OffreForm.duree.$error.number">Veuillez saisir un nombre.</span>
 							  	<span ng-show="OffreForm.duree.$error.min">Veuillez saisir une durée supérieur à 60 min.</span>
 							</span>
-							
-
+						
 					    </fieldset>	
+					    
+					    <!-- détails sur le menu -->
+					    <fieldset>
+					    	<legend>La carte</legend>
+					    	
+					    	<label for="entree">Entrée(s) : </label>
+							<textarea name="entree" ng-model="entree" placeholder="Entrées du repas."></textarea>
+							<br>
+							
+							<label for="plat">Plat principal* : </label>
+							<textarea name="plat" ng-model="plat" placeholder="Votre plat." ng-required="true"></textarea>
+							<span style="color:red" ng-show="OffreForm.plat.$invalid && !OffreForm.plat.$pristine">
+							  	<span ng-show="OffreForm.plat.$error.required">Veuillez saisir un plat.</span>
+							</span><br>
+							
+							<label for="dessert">Dessert(s) : </label>
+							<textarea name="dessert" ng-model="dessert" placeholder="Desserts du repas."></textarea>
+							<br>
+							
+							<label for="boisson">Boisson(s) : </label>
+							<textarea name="boisson" ng-model="boisson" placeholder="Boissons du repas."></textarea>
+							<br>
+					    
+					    </fieldset>
+					    
 						<!-- Details sur le lieu de rendez-vous -->
 					    <fieldset>
                             <div class="splitter"></div>
