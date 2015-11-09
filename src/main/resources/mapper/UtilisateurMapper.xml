@@ -7,17 +7,26 @@
 		<id property="idUtilisateur" column="usr_id"/>
 		<result property="nom" column="usr_nom"/>
 		<result property="mail" column="usr_mail"/>
+		<association property="adresse" column="usr_adr_id" select="fil.iagl.iir.dao.adresse.AdresseDao.getById" />
 	</resultMap>
 
 
 	<sql id="select_all_columns_utilisateur">
-		SELECT usr_id, usr_nom, usr_mail
+		SELECT usr_id, usr_nom, usr_mail, usr_adr_id
 		FROM UTILISATEUR
 	</sql>
 	
+	
 	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="usr_id" keyProperty="utilisateur.idUtilisateur"> 
-		INSERT INTO UTILISATEUR ( usr_nom, usr_mail ) 
-		VALUES ( #{utilisateur.nom}, #{utilisateur.mail});
+		INSERT INTO UTILISATEUR ( 
+			usr_nom, 
+			usr_mail <if test="#{utilisateur.adresse} != null">, 
+			usr_adr_id </if>
+		) 
+		VALUES ( 
+			#{utilisateur.nom}, 
+			#{utilisateur.mail} <if test="#{utilisateur.adresse} != null">, 
+			#{utilisateur.adresse.id})</if>;
 	</insert>
 
 	<select id="getById" resultMap="Utilisateur_ResultMap">
