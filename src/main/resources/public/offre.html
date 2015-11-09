@@ -35,67 +35,66 @@ Page de visualisation d'une offre
 	</head>
 	
 	<body ng-app="OffreApp">
-		<!-- Menu -->
-		<div ng-include="'/resources/header.html'"></div>
-		
+		<div ng-include="'/resources/header.html'"></div>	
 		<!-- Visualisation des détails de l'offre -->
-		<div ng-controller="ReservationController">
-			<h2>{{offre.titre}}</h2>
-			<h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
-			<form name="ReservationForm" ng-submit="submitForm()" novalidate>
-				<fieldset>
-				<legend>L'offre de repas</legend>
-				
-				<!-- Présentation de l'hôte, du lieu -->
-				<fieldset>
-				<legend>L'hôte</legend>
-					<h3>Identité :</h3>
-					{{offre.hote.prenom}} {{offre.hote.nom}}
-					<h3>Lieu :</h3>
-					{{offre.adresse.voie}} <br>
-					{{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
-					<h3>Prix par convive :</h3>
-					{{offre.prix}} €
-				</fieldset>
-				
-				<!-- Présentation du menu -->
-				<fieldset>
-				<legend>Le menu</legend>
-					<h3>Type de cuisine :</h3>
-					{{offre.typeCuisine.typeCuisine}}
-					<h3>Au menu :</h3>
-					{{offre.menu}}
-					<h3>Nombre de couverts restants :</h3>
-					<!-- soit x sur y soit COMPLET -->
-					{{couverts_restants}}
-					<h3>Durée prévisionnelle :</h3>
-					{{offre.dureeMinute}} min.
-				</fieldset>
-			
-				<!-- Informations diverses (et optionnelles) -->
-				<fieldset>
-				<legend>Divers</legend>
-				{{animaux}}<br>
-				{{age}}<br>
-				{{note}}
-				</fieldset>
-			
-				<!-- Réservation de places -->		
-				<div > 
-				Réserver
-					<input type="number" name="place" ng-model="place" step="0" ng-required="true" min="1" max="{{nombreRestant}}" id="Nbplace" value="n"/> couvert(s)
-					<span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
-						<span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
-						<span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
-						<span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span>
-						<span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span>
-					</span>
-				</label>
-				<input type="submit" ng-disabled="ReservationForm.$invalid" value="Réserver">
-			</div>
-		</form>
+        <div class="une-offre-body">
+            <div class="offre-display" ng-controller="ReservationController">
+                <h2>{{offre.titre}}</h2>
+                <h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
+                <form name="ReservationForm" ng-submit="submitForm()" novalidate>
+                    <fieldset>
+                    <legend>L'offre de repas</legend>
+
+                    <!-- Présentation de l'hôte, du lieu -->
+                    <fieldset>
+                    <legend>L'hôte</legend>
+                        <h3>Identité :</h3>
+                        {{offre.hote.prenom}} {{offre.hote.nom}}
+                        <h3>Lieu :</h3>
+                        {{offre.adresse.voie}} <br>
+                        {{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
+                        <h3>Prix par convive :</h3>
+                        {{offre.prix}} €
+                    </fieldset>
+
+                    <!-- Présentation du menu -->
+                    <fieldset>
+                    <legend>Le menu</legend>
+                        <h3>Type de cuisine :</h3>
+                        {{offre.typeCuisine.type}}
+                        <h3>Au menu :</h3>
+                        {{offre.menu}}
+                        <h3>Nombre de couverts restants :</h3>
+                        <!-- soit x sur y soit COMPLET -->
+                        {{couverts_restants}}
+                        <h3>Durée prévisionnelle :</h3>
+                        {{offre.dureeMinute}} min.
+                    </fieldset>
+
+                    <!-- Informations diverses (et optionnelles) -->
+                    <fieldset>
+                    <legend>Divers</legend>
+                    {{animaux}}<br>
+                    {{age}}<br>
+                    {{note}}
+                    </fieldset>
+
+                    <!-- Réservation de places -->		
+                    <div > 
+                    Réserver
+                        <input type="number" name="place" ng-model="place" step="0" ng-required="true" min="1" max="{{nombreRestant}}" id="Nbplace" value="n"/> couvert(s)
+                        <span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
+                            <span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
+                            <span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
+                            <span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span>
+                            <span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span>
+                        </span>
+                    </label>
+                    <input type="submit" ng-disabled="ReservationForm.$invalid" value="Réserver">
+                </div>
+            </form>
+            </div>
 		</div>
-		
 		<script src="/resources/js/script-offre.js"></script>
 		<!-- Pied de page -->
 		<div ng-include="'/resources/footer.html'"></div>
