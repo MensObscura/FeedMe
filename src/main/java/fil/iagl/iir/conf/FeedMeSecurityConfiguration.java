@@ -50,8 +50,9 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(final HttpSecurity http) {
 
     try {
-      http.httpBasic().and().authorizeRequests()
-        .antMatchers("/index.html", "/inscription.html", "/login.html", "/").permitAll().anyRequest()
+      http.httpBasic()
+        .and()
+        .authorizeRequests().antMatchers("/index.html", "/inscription.html", "/login.html", "/").permitAll().anyRequest()
         .authenticated().and().csrf()
         .csrfTokenRepository(csrfTokenRepository()).and()
         .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
@@ -60,7 +61,6 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
       // http.csrf().disable();
       //
       // // L'accès au autre ressources est sécurisé
-      // http.authorizeRequests().anyRequest().authenticated();
       //
       // // Redirection en cas de tentative non identifié
       // http.formLogin().defaultSuccessUrl("/resources/accueil.html").permitAll();
@@ -112,6 +112,8 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     // Autoriser l'accès au ressources sans etre authentifier
     web.ignoring().antMatchers("/");
+    web.ignoring().antMatchers("/login");
+    web.ignoring().antMatchers("/utilisateur/particulier");
     web.ignoring().antMatchers("/resources/**");
     // web.ignoring().antMatchers("/utilisateur/particulier");
 

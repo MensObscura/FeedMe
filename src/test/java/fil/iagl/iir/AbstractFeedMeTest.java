@@ -127,7 +127,7 @@ public abstract class AbstractFeedMeTest {
     reservation.setConvive(convive);
     reservation.setDateReservation(dateReservation);
     reservation.setOffre(offre);
-    reservation.setNb_places(nb_places);
+    reservation.setNbPlaces(nb_places);
 
     return reservation;
   }

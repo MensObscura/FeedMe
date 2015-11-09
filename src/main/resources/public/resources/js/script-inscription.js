@@ -49,7 +49,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window) {
 				data: authentification
 			}).success(function(response, status, headers, config){
 				// DECLENCHEMENT D'UN TOASTER ICI : Inscription OK
-				$window.location.href = '/index.html';
+				$window.location.href = '/login.html';
 			}).error(function(err, status, headers, config){
 				// DECLENCHEMENT D'UN TOASTER ICI : Adresse mail deja utilisée
 			});

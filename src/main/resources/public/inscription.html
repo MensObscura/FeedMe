@@ -43,7 +43,7 @@ Page proposant le formulaire d'inscription.
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.html">Retour à l'accueil</a></li>
-            <li><a href="resources/login.html">Se connecter</a></li>
+            <li><a href="login.html">Se connecter</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -111,20 +111,8 @@ Page proposant le formulaire d'inscription.
 		<script type="text/javascript">
 		$(document).ready(function(){
 			var aujourdhui = new Date();
-			var date = "";
-			// On créé la date d'aujourd'hui sous le bon format
-			if ((aujourdhui.getMonth()+1) < 10) {
-				if ((aujourdhui.getDate()+1) < 10)
-					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
-				else
-					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-			}
-		    else {
-				if ((aujourdhui.getDate()+1) < 10)
-					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
-				else
-					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-		    }
+			var date = aujourdhui.toLocaleFormat('%Y-%m-%d');
+			
 			// On pré-rempli le champs avec la date du jour.
 			$('#anniversaire').val(date);
 			// On charge le "DateTimePicker" que l'on incruste dans la division "anniversaire"

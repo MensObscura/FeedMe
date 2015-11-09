@@ -50,20 +50,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 			// On récupère la date du repas
 			var date_repas = new Date($('#dateRepas').val());
 			var aujourdhui = new Date();
-			var date = "";
-			// On créé la date de réservartion (que l'on met sous le bon format)
-			if ((aujourdhui.getMonth()+1) < 10) {
-				if ((aujourdhui.getDate()+1) < 10)
-					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
-				else
-					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-			}
-		    else {
-				if ((aujourdhui.getDate()+1) < 10)
-					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
-				else
-					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-		    }
+			var date = aujourdhui.toLocaleFormat('%Y-%m-%d');
 		    	
 			// On créé on objet pays
 			var pays = {

@@ -30,7 +30,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
 
     // Quand on enregistre la reservation
     this.reservationDao.sauvegarder(reservation);
-    reservation.setNb_places(1);
+    reservation.setNbPlaces(1);
 
     // Alors on verifie que l'ID de la reservation a bien ete genere
     Assertions.assertThat(reservation.getId()).isNotNull().isPositive();
@@ -40,7 +40,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
     Assertions.assertThat(reservation.getOffre()).isNotNull();
     Assertions.assertThat(reservation.getOffre().getId()).isNotNull().isEqualTo(OFFRE_ID_DEFAULT);
     Assertions.assertThat(reservation.getDateReservation()).isNotNull().isEqualTo(DATE_DEFAULT);
-    Assertions.assertThat(reservation.getNb_places()).isNotNull().isEqualTo(1);
+    Assertions.assertThat(reservation.getNbPlaces()).isNotNull().isEqualTo(1);
   }
 
   @Test
@@ -186,7 +186,7 @@ public class ReservationDaoTest extends AbstractDaoTest {
     reservation.setOffre(offre);
     reservation.setConvive(convive);
     reservation.setDateReservation(dateReservation);
-    reservation.setNb_places(nb_places);
+    reservation.setNbPlaces(nb_places);
 
     return reservation;
   }
