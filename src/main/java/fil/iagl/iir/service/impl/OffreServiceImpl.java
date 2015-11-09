@@ -44,6 +44,10 @@ public class OffreServiceImpl implements OffreService {
       throw new FeedMeException("Nombre de convive pour l'offre ne doit pas être égal à 0");
     }
 
+    if (offre.getNombrePersonne().equals(0)) {
+      throw new FeedMeException("Nombre de convives egal a zero");
+    }
+
     offre.setHote(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
     this.adresseService.sauvegarder(offre.getAdresse());
