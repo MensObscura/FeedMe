@@ -18,6 +18,8 @@ public class Utilisateur implements Serializable {
 
   private String mail;
 
+  private Adresse adresse;
+
   public Utilisateur(Integer idUtilisateur) {
     this.idUtilisateur = idUtilisateur;
   }

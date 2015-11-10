@@ -852,4 +852,10 @@ ul  {
     margin-right: 20%;
     margin-top: 6%;
     padding: 20px;
-}   
+} 
+
+.validation-messages {
+    font-size: 11px;
+    color: #F44336;
+    margin: 10px 0 0 25px; 
+   }
