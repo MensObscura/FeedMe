@@ -1,235 +1,306 @@
-<!-- 
-©Copyright 2015 - FeedMe
-Page proposant le formulaire de création d'offres.
- -->
-
 <!DOCTYPE html>
 <html lang="fr">
-  	<head>
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta http-equiv="x-ua-compatible" content="ie=edge">
-	    <title>Proposer une offre</title>
-	    <script src="/resources/js/angular.min.js"></script>
-		<script src="/resources/js/jquery-2.1.4.min.js"></script>
-	    <link rel='stylesheet' href='/resources/css/md-date-time.css'>
-	    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
-    	<link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
-    	<link rel="stylesheet" type="text/css"  href="resources/css/style.css">
-    	<link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
-		<link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
-		<link rel="stylesheet" type='text/css' href="/resources/css/angular-material.min.css">
-  	</head>
-  	
-  	<body ng-app="validationOffre" >
-		<!-- Menu -->
-		<div ng-include="'/resources/header.html'"></div>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Proposer une offre</title>
+<script src="/resources/js/angular.min.js"></script>
+<script src="/resources/js/jquery-2.1.4.min.js"></script>
+<link rel='stylesheet' href='/resources/css/md-date-time.css'>
+<link rel="stylesheet" type="text/css"
+	href="resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/responsive.css">
+<link rel='stylesheet' type='text/css'
+	href='resources/fonts/general-font.css'>
+<link rel="stylesheet" type='text/css'
+	href="/resources/css/angular-material.min.css">
+</head>
 
-      	
-		<!-- Formulaire de création -->
-    	<div id="StyleFormulaireOffre" class="text-center">
-        	<div class="container">
-            	<div class="general-form">
-            		<h2>Votre offre :</h2>
-    	<form name="OffreForm" ng-controller="OffreCtrl" ng-submit="submitForm()" novalidate>
+<body ng-app="validationOffre">
+	<!-- Menu -->
+	<div ng-include="'/resources/header.html'"></div>
 
-		<!-- Détails du repas proposé -->
-						<fieldset>
-							<legend>Le repas</legend>
-														
-							<md-content layout-padding>
-							<div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="titre">Titre de l'offre :</label>
-							      <input type="text" name="titre" ng-model="titre" ng-required="true" placeholder="Titre de l'offre." >
-							        <div ng-messages="OffreForm.titre.$error">
-							          <div ng-message="required">Veuillez saisir un titre pour l'offre.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							      <label for="typeCuisine">Type de cuisine :</label>
-							      <md-select name="typeCuisine" ng-model="typeCuisine" style="min-width: 200px;">
-      								<md-option ng-value="{{item.id}}" ng-selected="item.id==1" ng-repeat="item in cook">{{item.type}}</md-option>      								
-   								  </md-select>
-							    </md-input-container>
-							 </div>
-							 <div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="nbpers">Nombre de convives :</label>
-							      <input type="number" name="nbpers" ng-model="nbpers" ng-min="1" ng-required="true" placeholder="Nombre de couverts.">
-							        <div ng-messages="OffreForm.nbpers.$error">
-							          <div ng-message="min">Veuillez saisir un nombre supérieur à 1.</div>
-							          <div ng-message="required">Veuillez saisir un nombre de convives.</div>
-							          <div ng-message="number">Veuillez saisir un nombre.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							      <label for="prix">Prix par convive :</label>
-							      <input type="number" step="0.1" name="prix" ng-model="prix" ng-min="1.00" ng-required="true" placeholder="Prix par convive.">
-							        <div ng-messages="OffreForm.prix.$error">						        
-							          <div ng-message="min">Veuillez saisir un prix supérieur à 1.00.</div>
-							          <div ng-message="required">Veuillez saisir un prix.</div>
-							          <div ng-message="number">Veuillez saisir un nombre.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							      <label for="duree">Durée du repas :</label>
-							      <input type="number" ng-model="duree" name="duree" ng-min="60" ng-required="true" placeholder="Durée prévisionnelle.">
-							        <div ng-messages="OffreForm.duree.$error">						        						        
-							          <div ng-message="min">Veuillez saisir une durée supérieur à 60 min.</div>
-							          <div ng-message="required">Veuillez saisir une durée.</div>
-							          <div ng-message="number">Veuillez saisir un nombre.</div>
-							        </div>
-							    </md-input-container>
-							 </div>
-							 <div layout layout-sm="column">
-							 	<label for="date">Date</label>
-							 	<time-date-picker name="date" ng-model="date"></time-date-picker>
-							 </div>
-							</md-content>
-						
-					    </fieldset>	
-					    
-					    <!-- détails sur le menu -->
-					    <fieldset>
-					    	<legend>La carte</legend>
-					    	
-					    	<md-content layout-padding>
-							<div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="entree">Entrée(s) :</label>
-							      <textarea name="entree" ng-model="entree" placeholder="Entrées du repas."></textarea>
-							    </md-input-container>
-							 </div>
-							 <div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="plat">Plat principal :</label>
-							      <textarea name="plat" ng-model="plat" placeholder="Votre plat." ng-required="true"></textarea>
-							   		<div ng-messages="OffreForm.plat.$error">						        						        
-							          <div ng-message="required">Votre menu doit contenir au moins un plat.</div>
-							        </div>
-							    </md-input-container>
-							 </div>
-							 <div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="dessert">Dessert(s) :</label>
-							      <textarea name="dessert" ng-model="dessert" placeholder="Desserts du repas."></textarea>
-							    </md-input-container>
-							 </div>
-							 <div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="boisson">Boisson(s) :</label>
-							      <textarea name="boisson" ng-model="boisson" placeholder="Boissons du repas."></textarea>
-							    </md-input-container>
-							 </div>
-							</md-content>
-					    						    
-					    </fieldset>
-					    
-						<!-- Details sur le lieu de rendez-vous -->
-					    <fieldset>
-					      <legend>Lieu</legend>
-					    
-                          <md-content layout-padding>
-							<div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="numero">Numéro :</label>
-							      <input type="number" ng-model="numero" name="numero" ng-min="1" placeholder="Numéro de voirie." ng-required="true">
-							        <div ng-messages="OffreForm.numero.$error">
-							          <div ng-message="min">Veuillez saisir un numéro valide.</div>
-							          <div ng-message="required">Veuillez saisir un numéro de voirie.</div>
-							          <div ng-message="number">Veuillez saisir un nombre.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							   		<label for="rue">Rue : </label>
-									<input type="text" ng-model="rue" name="rue" placeholder="Nom de voirie." ng-required="true">
-							        <div ng-messages="OffreForm.rue.$error">
-							          <div ng-message="required">Veuillez saisir un nom de rue.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							   		<label for="complement">Complément : </label>
-									<input type="text" name="complement" ng-model="complement" placeholder="Compléments.">
-							    </md-input-container>
 
-							 </div>
-							 <div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="ville">Ville :</label>
-							      <input type="text" name="ville" ng-model="ville" placeholder="Votre ville." ng-required="true">
-							        <div ng-messages="OffreForm.ville.$error">
-							          <div ng-message="required">Veuillez saisir votre ville.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							      <label for="cp">Code postal :</label>
-							      <input type="text" name="cp" ng-model="cp" ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/" placeholder="Votre code postal." ng-required="true">
-							        <div ng-messages="OffreForm.cp.$error">						        
-							          <div ng-message="pattern">Le code postal saisit est incorrect.</div>
-							          <div ng-message="required">Veuillez saisir un code postal.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							      <label for="pays">Pays :</label>
-							      <md-select name="pays" ng-model="pays" style="min-width: 200px;">
-      								<md-option ng-value="{{item.id}}" ng-selected="item.id==1" ng-repeat="item in count">{{item.nom}}</md-option>      								
-   								  </md-select>
-							    </md-input-container>
-							 </div>
-							</md-content>
+	<!-- Formulaire de création -->
+	<div id="StyleFormulaireOffre" class="text-center">
+		<div class="containerFormOffre">
+			<div class="general-form">
+				<h2>Votre offre :</h2>
+				<form name="OffreForm" ng-controller="OffreCtrl"
+					ng-submit="submitForm()" novalidate>
 
-					    </fieldset>
+					<div layout="row">
+						<div flex>
+							<!-- Détails du repas proposé -->
+							<fieldset>
+								<legend>Le repas</legend>
 
-						<!-- Informations optionnelles que peut renseigner l'utilisateur -->
-					    <fieldset>
-							<legend>Divers</legend>
+								<md-content layout-padding>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="titre">Titre de l'offre :</label> <input type="text"
+										name="titre" ng-model="titre" ng-required="true"
+										placeholder="Titre de l'offre.">
+									<div ng-messages="OffreForm.titre.$error">
+										<div ng-message="required">Veuillez saisir un titre pour
+											l'offre.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label
+										for="typeCuisine">Type de cuisine :</label> <md-select
+										name="typeCuisine" ng-model="typeCuisine"
+										style="min-width: 200px;"> <md-option
+										ng-value="{{item.id}}" ng-selected="item.id==1"
+										ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
+								</div>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="nbpers">Nombre de convives :</label> <input type="number"
+										name="nbpers" ng-model="nbpers" ng-min="1" ng-required="true"
+										placeholder="Nombre de couverts.">
+									<div ng-messages="OffreForm.nbpers.$error">
+										<div ng-message="min">Veuillez saisir un nombre
+											supérieur à 1.</div>
+										<div ng-message="required">Veuillez saisir un nombre de
+											convives.</div>
+										<div ng-message="number">Veuillez saisir un nombre.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label
+										for="prix">Prix par convive :</label> <input type="number"
+										step="0.1" name="prix" ng-model="prix" ng-min="1.00"
+										ng-required="true" placeholder="Prix par convive.">
+									<div ng-messages="OffreForm.prix.$error">
+										<div ng-message="min">Veuillez saisir un prix supérieur
+											à 1.00.</div>
+										<div ng-message="required">Veuillez saisir un prix.</div>
+										<div ng-message="number">Veuillez saisir un nombre.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label
+										for="duree">Durée du repas :</label> <input type="number"
+										ng-model="duree" name="duree" ng-min="60" ng-required="true"
+										placeholder="Durée prévisionnelle.">
+									<div ng-messages="OffreForm.duree.$error">
+										<div ng-message="min">Veuillez saisir une durée
+											supérieur à 60 min.</div>
+										<div ng-message="required">Veuillez saisir une durée.</div>
+										<div ng-message="number">Veuillez saisir un nombre.</div>
+									</div>
+									</md-input-container>
+								</div>
+								<div layout layout-sm="column">
+									<label for="date">Date</label>
+									<time-date-picker name="date" ng-model="date" ></time-date-picker>
+								</div>
+								</md-content>
 
-					    	<md-content layout-padding>
+							</fieldset>
 
-							<label for="age">Tranche d'âge : </label>
-							<input type="number" name="agemin" ng-model="agemin" ng-min="18" placeholder="min."> - 
-							<input type="number" name="agemax" ng-model="agemax" ng-min="18" placeholder="max." ensure-expression="(agemin == null && agemax == null) || (agemin == null && agemax >= 18) || (agemax == null && agemin >= 18) || agemin <= agemax">
-							<span style="color:red" ng-show="OffreForm.agemin.$invalid && !OffreForm.agemin.$pristine">
-							  	<span ng-show="OffreForm.agemin.$error.number">Veuillez saisir un nombre.</span>
-							  	<span ng-show="OffreForm.agemin.$error.min">L'âge minimal est de 18 ans.</span>
-							</span>
-							<span style="color:red" ng-show="OffreForm.agemax.$invalid && !OffreForm.agemax.$pristine">
-							  	<span ng-show="OffreForm.agemax.$error.number">Veuillez saisir un nombre.</span>
-							  	<span ng-show="OffreForm.agemax.$error.min">L'âge minimal est de 18 ans.</span>
-							  	<span ng-show="OffreForm.agemax.$error.mauvaisetranche">La tranche d'âge n'est pas valide.</span>
-							</span>
+							<!-- détails sur le menu -->
+							<fieldset>
+								<legend>La carte</legend>
 
-							 <div layout layout-sm="column">
-        						<md-checkbox ng-model="animal" aria-label="animal">Présence d'un animal.</md-checkbox>
-							 </div>
-							 <div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label for="note">Remarques :</label>
-							      <textarea name="note" ng-model="note" placeholder="Informations complémentaires."></textarea>
-							    </md-input-container>
-							 </div>
-							</md-content>					
-						
-					    </fieldset>
+								<md-content layout-padding>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="entree">Entrée(s) :</label> <textarea name="entree"
+										ng-model="entree" placeholder="Entrées du repas."></textarea>
+									</md-input-container>
+								</div>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="plat">Plat principal :</label> <textarea name="plat"
+										ng-model="plat" placeholder="Votre plat." ng-required="true"></textarea>
+									<div ng-messages="OffreForm.plat.$error">
+										<div ng-message="required">Votre menu doit contenir au
+											moins un plat.</div>
+									</div>
+									</md-input-container>
+								</div>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="dessert">Dessert(s) :</label> <textarea name="dessert"
+										ng-model="dessert" placeholder="Desserts du repas."></textarea>
+									</md-input-container>
+								</div>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="boisson">Boisson(s) :</label> <textarea name="boisson"
+										ng-model="boisson" placeholder="Boissons du repas."></textarea>
+									</md-input-container>
+								</div>
+								</md-content>
 
-		<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-		<md-button type="submit" ng-disabled="OffreForm.$invalid" class="form">Ajouter</md-button>
-	      
-		</form>
-				</div>
+							</fieldset>
+
+							<!-- Details sur le lieu de rendez-vous -->
+							<fieldset>
+								<legend>Lieu</legend>
+
+								<md-content layout-padding>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="numero">Numéro :</label> <input type="number"
+										ng-model="numero" name="numero" ng-min="1"
+										placeholder="Numéro de voirie." ng-required="true">
+									<div ng-messages="OffreForm.numero.$error">
+										<div ng-message="min">Veuillez saisir un numéro valide.</div>
+										<div ng-message="required">Veuillez saisir un numéro de
+											voirie.</div>
+										<div ng-message="number">Veuillez saisir un nombre.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label for="rue">Rue
+										: </label> <input type="text" ng-model="rue" name="rue"
+										placeholder="Nom de voirie." ng-required="true">
+									<div ng-messages="OffreForm.rue.$error">
+										<div ng-message="required">Veuillez saisir un nom de
+											rue.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label
+										for="complement">Complément : </label> <input type="text"
+										name="complement" ng-model="complement"
+										placeholder="Compléments."> </md-input-container>
+
+								</div>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="ville">Ville :</label> <input type="text" name="ville"
+										ng-model="ville" placeholder="Votre ville." ng-required="true">
+									<div ng-messages="OffreForm.ville.$error">
+										<div ng-message="required">Veuillez saisir votre ville.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label for="cp">Code
+										postal :</label> <input type="text" name="cp" ng-model="cp"
+										ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
+										placeholder="Votre code postal." ng-required="true">
+									<div ng-messages="OffreForm.cp.$error">
+										<div ng-message="pattern">Le code postal saisit est
+											incorrect.</div>
+										<div ng-message="required">Veuillez saisir un code
+											postal.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label
+										for="pays">Pays :</label> <md-select name="pays"
+										ng-model="pays" style="min-width: 200px;"> <md-option
+										ng-value="{{item.id}}" ng-selected="item.id==1"
+										ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
+								</div>
+								</md-content>
+
+							</fieldset>
+
+							<!-- Informations optionnelles que peut renseigner l'utilisateur -->
+							<fieldset>
+								<legend>Divers</legend>
+
+								<md-content layout-padding> <label for="age">Tranche
+									d'âge : </label> <input type="number" name="agemin" ng-model="agemin"
+									ng-min="18" placeholder="min."> - <input type="number"
+									name="agemax" ng-model="agemax" ng-min="18" placeholder="max."
+									ensure-expression="(agemin == null && agemax == null) || (agemin == null && agemax >= 18) || (agemax == null && agemin >= 18) || agemin <= agemax">
+								<span style="color: red"
+									ng-show="OffreForm.agemin.$invalid && !OffreForm.agemin.$pristine">
+									<span ng-show="OffreForm.agemin.$error.number">Veuillez
+										saisir un nombre.</span> <span ng-show="OffreForm.agemin.$error.min">L'âge
+										minimal est de 18 ans.</span>
+								</span> <span style="color: red"
+									ng-show="OffreForm.agemax.$invalid && !OffreForm.agemax.$pristine">
+									<span ng-show="OffreForm.agemax.$error.number">Veuillez
+										saisir un nombre.</span> <span ng-show="OffreForm.agemax.$error.min">L'âge
+										minimal est de 18 ans.</span> <span
+									ng-show="OffreForm.agemax.$error.mauvaisetranche">La
+										tranche d'âge n'est pas valide.</span>
+								</span>
+
+								<div layout layout-sm="column">
+									<md-checkbox ng-model="animal" aria-label="animal">Présence
+									d'un animal.</md-checkbox>
+								</div>
+								<div layout layout-sm="column">
+									<md-input-container flex> <label
+										for="note">Remarques :</label> <textarea name="note"
+										ng-model="note" placeholder="Informations complémentaires."></textarea>
+									</md-input-container>
+								</div>
+								</md-content>
+
+							</fieldset>
+
+							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
+							<md-button type="submit" ng-disabled="OffreForm.$invalid"
+								class="form">Ajouter</md-button>
+						</div>
+						<div flex>
+							<h2>{{titre}}</h2>
+							<h3 >Repas organisé le {{date}}.</h3>
+
+							<fieldset>
+								<legend>L'offre de repas</legend>
+
+								<!-- Présentation de l'hôte, du lieu -->
+								<fieldset>
+									<legend>L'hôte</legend>
+									<h3>Identité :</h3>
+									{{offre.hote.prenom}} {{offre.hote.nom}}
+									<h3>Lieu :</h3>
+									{{numero}} {{rue}} {{complement}}<br> {{cp}} {{ville}}
+									({{pays}})
+									<h3>Prix par convive :</h3>
+									{{prix}} €
+								</fieldset>
+
+								<!-- Présentation du menu -->
+								<fieldset>
+									<legend>Le menu</legend>
+									<h3>Type de cuisine :</h3>
+									{{typeCuisine}}
+									<h3>Au menu :</h3>
+									Entrée : <br>{{entree}} <br> <br> Plat : <br>{{plat}}
+									<br> <br> Dessert :<br> {{dessert}} <br> <br>
+									Boisson : <br>{{boisson}}
+
+									<h3>Nombre de couverts restants :</h3>
+									<!-- soit x sur y soit COMPLET -->
+									{{nbpers}} sur {{nbpers}}
+									<h3>Durée prévisionnelle :</h3>
+									{{duree}} min.
+								</fieldset>
+
+								<!-- Informations diverses (et optionnelles) -->
+								<fieldset>
+									<legend>Divers</legend>
+									{{animal}}<br> {{agemin}} - {{agemax}}<br> {{note}}
+								</fieldset>
+							</fieldset>
+						</div>
+					</div>
+
+
+
+				</form>
 			</div>
 		</div>
-		
+	</div>
+
 	<script src="/resources/js/angular-animate.min.js"></script>
-    <script src="/resources/js/angular-aria.min.js"></script>
-    <script src="/resources/js/angular-material.min.js"></script>
-    <script src="/resources/js/angular-messages.js"></script>
-    <script src='/resources/js/md-date-time.js'></script>
-    <script src="/resources/js/script-formulaire-offre.js"></script>
-    	
+	<script src="/resources/js/angular-aria.min.js"></script>
+	<script src="/resources/js/angular-material.min.js"></script>
+	<script src="/resources/js/angular-messages.js"></script>
+	<script src='/resources/js/md-date-time.js'></script>
+	<script src="/resources/js/script-formulaire-offre.js"></script>
+
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
-	    
-	</body>
+
+</body>
 </html>
