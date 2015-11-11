@@ -1,13 +1,12 @@
-var login = angular
-		.module('login', [ 'ngRoute' ])
-		.config(
-				function($routeProvider, $httpProvider) {
+var login = angular.module('login', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
-					$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+login.config(
+		function($routeProvider, $httpProvider) {
+			$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-				}).controller(
-				'LoginController',
-				function($rootScope, $scope, $http, $location) {
+});
+
+login.controller('LoginController', function($rootScope, $scope, $http, $location) {
 
 					var authenticate = function(credentials, callback) {
 
@@ -64,4 +63,4 @@ var login = angular
 						});
 					}
 
-				});
+});

@@ -868,3 +868,8 @@ md-toast {
   margin-left: auto;
   margin-right: auto;
 }
+
+#connexion-form {
+	width: 50%;
+	margin: auto;
+}

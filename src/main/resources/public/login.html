@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/responsive.css">
+<link rel="stylesheet" type='text/css' href="/resources/css/angular-material.min.css">
 
 <link
 	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic'
@@ -35,7 +36,7 @@
 }
 </style>
 
-<body ng-app="login" ng-controller="LoginController" ng-cloak
+<body ng-app="login" ng-cloak
 	class="ng-cloak">
 
 	
@@ -64,23 +65,37 @@
 	</nav>
 	<div id="StyleFormulaireLogin" class="text-center">
 		<div class="overlay">
-			<div class="general-form">
+			<div class="general-form" ng-controller="LoginController">
 				<h1>Authentification</h1>
-				<div class="alert alert-danger" ng-show="error">There was a
-		problem logging in. Please try again.</div>
-				<form role="form" ng-submit="login()">
-						<input placeholder="Nom du compte" type="email"
-							id="username" name="username" ng-model="credentials.username" />
-						<input placeholder="Mot de passe" type="password"
-							id="password" name="password" ng-model="credentials.password" />
-					<button type="submit" class="btn btn-primary">Connexion</button>
+				<div class="alert alert-danger" ng-show="error">Ce compte n'existe pas, veuillez réessayer.</div>
+				<form name="ConnexionForm" id="connexion-form" role="form" ng-submit="login()" novalide>
+					<md-content layout-padding>
+							<div layout layout-sm="column">
+							    <md-input-container flex>
+							      <label for="mail">Adresse email :</label>
+							      <input placeholder="Email du compte" ng-required="true" type="email" id="username" name="username" ng-model="credentials.username" />
+									<div ng-messages="ConnexionForm.username.$error">
+							          <div ng-message="email">Veuillez saisir une adresse email valide.</div>
+							        </div>
+							    </md-input-container>
+							    <md-input-container flex>
+							      <label for="password">Mot de passe :</label>
+							      <input placeholder="Mot de passe" ng-required="true" type="password" id="password" name="password" ng-model="credentials.password" />
+							    </md-input-container>
+							    <md-button type="submit" ng-disabled="ConnexionForm.$invalid" class="md-raised md-primary">Connexion</md-button>
+							 </div>
+					</md-content>				
 				</form>
 			</div>
 		</div>
 	</div>
+	
 	<script src="/resources/js/angular.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+	<script src="/resources/js/angular-animate.min.js"></script>
+	<script src="/resources/js/angular-aria.min.js"></script>
+	<script src="/resources/js/angular-material.min.js"></script>
+	<script src="/resources/js/angular-messages.js"></script>
 	<script src="/resources/js/login.js"></script>
 
 	<div ng-include="'/resources/footer.html'"></div>
