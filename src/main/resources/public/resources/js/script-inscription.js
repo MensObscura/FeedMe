@@ -17,19 +17,10 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
  }]);
 
 //Création du controller "InscriptionCtrl"
-validationApp.controller('InscriptionCtrl', function($scope, $http, $window) {
+validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
 	
-	// Fonction permettant la disponibilité (ou non) du bouton de validation
-	$scope.nonValide = function() {
-		// Le formulaire est invalide quand les champs sont invalides et que la date n'a pas été renseignée
-		return $scope.InscriptionForm.$invalid;
-	};
-
-	var date = new Date();
-	$scope.maxDate = new Date(
-		      date.getFullYear()-18,
-		      date.getMonth(),
-		      date.getDate());
+	var date = new Date(); // A CHANGER
+	$scope.maxDate = new Date(date.getFullYear()-18, date.getMonth(), date.getDate());
 	
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
@@ -54,10 +45,10 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window) {
 				contentType: "application/json",
 				data: authentification
 			}).success(function(response, status, headers, config){
-				// DECLENCHEMENT D'UN TOASTER ICI : Inscription OK
+				$mdToast.show($mdToast.simple().position('bottom left right').content('Votre compte a bien été enregistré, vous pouvez vous connecter.'));
 				$window.location.href = '/login.html';
 			}).error(function(err, status, headers, config){
-				// DECLENCHEMENT D'UN TOASTER ICI : Adresse mail deja utilisée
+				 $mdToast.show($mdToast.simple().position('bottom left right').content('Cette adresse email est déja enregistrée par un utilisateur.'));
 			});
 
 

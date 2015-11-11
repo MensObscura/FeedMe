@@ -94,7 +94,7 @@ Page proposant le formulaire d'inscription.
 								        <div ng-message="maxdate">Vous devez avoir plus de 18 ans.</div>
       								</div>
 							 </div>
-
+							 <div layout layout-sm="column">
 							    <md-input-container flex>
 							      <label for="mdp">Mot de passe : </label>
 							      <input type="password" name="mdp" ng-model="mdp" ng-required="true" placeholder="Mot de passe">
@@ -105,17 +105,16 @@ Page proposant le formulaire d'inscription.
 							    <md-input-container flex>
 							      <label for="cmdp">Confirmez le mot de passe : </label>
 							      <input type="password" name="cmdp" ng-model="cmdp" ng-required="true" placeholder="Mot de passe" ensure-expression="mdp == cmdp">
-							        <div ng-messages="InscriptionForm.duree.$error">						        						        
+							        <div ng-messages="InscriptionForm.cmdp.$error">
+							          <div ng-message="required">Veuillez confirmer le mot de passe.</div>						        						        
 							          <div ng-message="mauvaismdp">Les mots de passe sont différents.</div>
-							          <div ng-message="required">Veuillez confirmer le mot de passe.</div>
 							        </div>
 							    </md-input-container>
 							 </div>
+							    <!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
+							    <md-button type="submit" ng-disabled="InscriptionForm.$invalid" class="md-raised md-primary">Confirmer</md-button>
 							 </md-content>
 				</div>
-
-                <!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-                <button type="submit" ng-disabled="nonValide()">Confirmer</button>
             </form>
               </div>  
             </div>

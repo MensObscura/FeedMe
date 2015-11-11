@@ -40,12 +40,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window,$mdToast) 
 	$scope.prix = 1;
 	$scope.nbpers = 1;
 
-	// Fonction permettant la disponibilité (ou non) du bouton de validation
-	$scope.nonValide = function() {
-		// Le formulaire est invalide quand les champs sont invalides et que la date n'a pas été renseignée
-		return $scope.OffreForm.$invalid || $('#dateRepas').val() == "";
-	};
-
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
 		if ($scope.OffreForm.$valid) {

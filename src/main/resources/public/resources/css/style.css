@@ -859,3 +859,12 @@ ul  {
     color: #F44336;
     margin: 10px 0 0 25px; 
    }
+   
+.layout-padding {
+	 border-radius: 10px;
+}
+
+md-toast {
+  margin-left: auto;
+  margin-right: auto;
+}
