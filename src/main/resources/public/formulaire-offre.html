@@ -96,7 +96,7 @@
 								</div>
 								<div layout layout-sm="column">
 									<label for="date">Date</label>
-									<time-date-picker name="date" ng-model="date" ></time-date-picker>
+									<time-date-picker name="date" ng-model="date"></time-date-picker>
 								</div>
 								</md-content>
 
@@ -242,7 +242,7 @@
 						</div>
 						<div flex>
 							<h2>{{titre}}</h2>
-							<h3 >Repas organisé le {{date}}.</h3>
+							<h3>Repas organisé le {{date}}.</h3>
 
 							<fieldset>
 								<legend>L'offre de repas</legend>
@@ -264,11 +264,20 @@
 									<legend>Le menu</legend>
 									<h3>Type de cuisine :</h3>
 									{{typeCuisine}}
-									<h3>Au menu :</h3>
-									Entrée : <br>{{entree}} <br> <br> Plat : <br>{{plat}}
-									<br> <br> Dessert :<br> {{dessert}} <br> <br>
-									Boisson : <br>{{boisson}}
+									<h3>Dans votre assiette :</h3>
+									<br>
+									<h4>Entrée(s) :</h4>
 
+									{{entree || "aucunes entrées"}} <br>
+									<h4>Plat :</h4>
+									{{plat}} <br>
+									<h4>Dessert(s) :</h4>
+
+									{{dessert || "aucuns desserts"}} <br>
+									<h4>Carte des boissons :</h4>
+
+									{{boisson || "aucunes boissons particulières"}} <br>
+									<br>
 									<h3>Nombre de couverts restants :</h3>
 									<!-- soit x sur y soit COMPLET -->
 									{{nbpers}} sur {{nbpers}}
