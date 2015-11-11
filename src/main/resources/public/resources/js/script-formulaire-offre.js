@@ -1,5 +1,5 @@
 // Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', []);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages', 'mdDateTime']);
 
 //On ajoute une directive qui va se charger de de contrôler l'expression régulière contenue dans le formulaire
 validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
@@ -17,8 +17,8 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 }]);
 
 //Création du controller "OffreCtrl"
-validationApp.controller('OffreCtrl', function($scope, $http, $window) {
- 
+validationApp.controller('OffreCtrl', function($scope, $http, $window,$mdToast) {
+	   
 	// On va rechercher toutes les types de cuisine en se connectant à la route consacrée
 	$http.get('/settings/typescuisines').success(
 			function(donnees) {
@@ -40,32 +40,13 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 	$scope.prix = 1;
 	$scope.nbpers = 1;
 
-	// Fonction permettant la disponibilité (ou non) du bouton de validation
-	$scope.nonValide = function() {
-		// Le formulaire est invalide quand les champs sont invalides et que la date n'a pas été renseignée
-		return $scope.OffreForm.$invalid || $('#dateRepas').val() == "";
-	};
-
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
 		if ($scope.OffreForm.$valid) {
 			// On récupère la date du repas
-			var date_repas = new Date($('#dateRepas').val());
+			var date_repas = new Date();
 			var aujourdhui = new Date();
-			var date = "";
-			// On créé la date de réservartion (que l'on met sous le bon format)
-			if ((aujourdhui.getMonth()+1) < 10) {
-				if ((aujourdhui.getDate()+1) < 10)
-					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
-				else
-					date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-			}
-		    else {
-				if ((aujourdhui.getDate()+1) < 10)
-					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-0'+aujourdhui.getDate();
-				else
-					date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-		    }
+			var date = aujourdhui.toLocaleFormat('%Y-%m-%d');
 		    	
 			// On créé on objet pays
 			var pays = {
@@ -113,7 +94,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 		    	adresse : adresse,
 		    	typeCuisine : typeCuisine,
 		    };
-
+/*
 		    // On envoie les données
             $http({
         		method: 'PUT',
@@ -126,7 +107,8 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
       		}).error(function(err, status, headers, config){
       			// DECLENCHEMENT D'UN TOASTER ICI : Erreur interne
      		});
-
+*/	
+		    console.log(donnees);
 		}
 	};
 });

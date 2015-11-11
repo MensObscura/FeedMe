@@ -18,25 +18,6 @@ ALTER SEQUENCE reservation_res_id_seq RESTART WITH 1;
 
 -- DONNEES DE TEST
 
--- ---------------------------
--- Table UTILISATEUR
--- ---------------------------
-INSERT INTO UTILISATEUR ( usr_nom, usr_mail ) VALUES 
-( 'toto', 'toto.toto@gmail.com'), -- ID 1
-( 'foo', 'foo.bar@gmail.com'), -- ID 2
-( 'jean', 'jambon-beurre@gmail.com'); -- ID 3
-
--- ---------------------------
--- Table PARTICULIER
--- ---------------------------
-INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES 
-( 'titi', '2015-01-31', 1); -- ID 1
-
--- ---------------------------
--- Table AUTHENTIFICATION
--- ---------------------------
-INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
-(1, '$2a$10$z9Ka6HSwJN/YDqZsC8a3Y.VVxC1DPQNZegHH4mXzRU/hDfetKNEvG', 1); -- MDP : test
 
 -- ---------------------------
 -- Table VILLE
@@ -51,6 +32,29 @@ INSERT INTO VILLE (vil_nom, vil_cp, vil_pay_id) VALUES
 INSERT INTO ADRESSE (adr_voie, adr_vil_id) VALUES
 ('4 rue guillaume apollinaire', 1), -- ID 1
 ('4 rue guillaume apollinaire', 1); -- ID 2
+
+-- ---------------------------
+-- Table UTILISATEUR
+-- ---------------------------
+INSERT INTO UTILISATEUR ( usr_nom, usr_mail ) VALUES 
+( 'toto', 'toto.toto@gmail.com'), -- ID 1
+( 'foo', 'foo.bar@gmail.com'), -- ID 2
+( 'jean', 'jambon-beurre@gmail.com'); -- ID 3
+
+INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id) VALUES
+( 'hall', 'kolick@gmail.com', 1); -- ID 4
+
+-- ---------------------------
+-- Table PARTICULIER
+-- ---------------------------
+INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES 
+( 'titi', '2015-01-31', 1); -- ID 1
+
+-- ---------------------------
+-- Table AUTHENTIFICATION
+-- ---------------------------
+INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
+(1, '$2a$10$z9Ka6HSwJN/YDqZsC8a3Y.VVxC1DPQNZegHH4mXzRU/hDfetKNEvG', 1); -- MDP : test
 
 -- ---------------------------
 -- Table OFFRE

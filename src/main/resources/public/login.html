@@ -1,99 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Authentification</title>
-        
-       <script src="/resources/js/angular.min.js"></script>
-		<script src="/resources/js/jquery-2.1.4.min.js"></script>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Authentification</title>
 
-        <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css"  href="/resources/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/resources/fonts/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css"  href="/resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/responsive.css">
+<script src="/resources/js/jquery-2.1.4.min.js"></script>
 
-    <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
-		<script src="/resources/js/login.js"></script>
-	</head>
-    
-	<body >
-        
-        <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html"><img class="logo" src="/resources/img/icon.png" /> FeedME</a>
-        </div>
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/responsive.css">
+<link rel="stylesheet" type='text/css' href="/resources/css/angular-material.min.css">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.html">Retour à l'accueil</a></li>
-            <li><a href="inscription.html">S'inscrire</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-        
+<link
+	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400'
+	rel='stylesheet' type='text/css'>
+
+</head>
+
+
+
+
+
+<style>
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}
+</style>
+
+<body ng-app="login" ng-cloak
+	class="ng-cloak">
+
 	
-        <div id="StyleFormulaireLogin" class="text-center">
-            <div class="overlay">
-                <div class="general-form">
-			     <h1>Authentification</h1>
-		
-			     <form name="form">
-					<p>
-						<input placeholder="Nom du compte"  type="email" name="username" required>
-					</p>
-				
-					<p>
-						<input placeholder="Mot de passe" type="password" name="password" required>
-					</p>
-				
-				<input type="submit" name="boutonConfirmation" value="Confirmer"  />
-			</form>
-                </div>
-            </div>
-        </div>
-			
-		<!-- <div ng-include="'/resources/footer.html'"></div> -->
-		<div id="tf-contact" class="text-center">
-    </div>
 
-    <nav id="footer">
-        <div class="container">
-            <div class="pull-left fnav">
-                <p>TOUS DROITS RESERVES. COPYRIGHT © 2014. Design original par <a href="https://dribbble.com/shots/1817781--FREEBIE-Spirit8-Digital-agency-one-page-template">Robert Berki</a> modifié par <a href="https://github.com/MensObscura/FeedMe">l'équipe FeedMe</a></p>
-            </div>
-            <div class="pull-right fnav">
-                <ul class="footer-social">
-                    <li><a href="index.html#tf-contact" class="marge">Nous contacter</a></li>
-                    <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-	</body>
+
+	<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">FeedMe</a>
+			</div>
+
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.html">Retour à l'accueil</a></li>
+					<li><a href="inscription.html">S'inscrire</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="StyleFormulaireLogin" class="text-center">
+		<div class="overlay">
+			<div class="general-form" ng-controller="LoginController">
+				<h1>Authentification</h1>
+				<div class="alert alert-danger" ng-show="error">Ce compte n'existe pas, veuillez réessayer.</div>
+				<form name="ConnexionForm" id="connexion-form" role="form" ng-submit="login()" novalide>
+					<md-content layout-padding>
+							<div layout layout-sm="column">
+							    <md-input-container flex>
+							      <label for="mail">Adresse email :</label>
+							      <input placeholder="Email du compte" ng-required="true" type="email" id="username" name="username" ng-model="credentials.username" />
+									<div ng-messages="ConnexionForm.username.$error">
+							          <div ng-message="email">Veuillez saisir une adresse email valide.</div>
+							        </div>
+							    </md-input-container>
+							    <md-input-container flex>
+							      <label for="password">Mot de passe :</label>
+							      <input placeholder="Mot de passe" ng-required="true" type="password" id="password" name="password" ng-model="credentials.password" />
+							    </md-input-container>
+							    <md-button type="submit" ng-disabled="ConnexionForm.$invalid" class="md-raised md-primary">Connexion</md-button>
+							 </div>
+					</md-content>				
+				</form>
+			</div>
+		</div>
+	</div>
 	
-	<script text="text/javascript">
-		$('form').on('submit', function(e){
-			e.preventDefault();
-			window.location = "/accueil.html";
-		});
-	
-	</script>
+	<script src="/resources/js/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+	<script src="/resources/js/angular-animate.min.js"></script>
+	<script src="/resources/js/angular-aria.min.js"></script>
+	<script src="/resources/js/angular-material.min.js"></script>
+	<script src="/resources/js/angular-messages.js"></script>
+	<script src="/resources/js/login.js"></script>
+
+	<div ng-include="'/resources/footer.html'"></div>
+</body>
+
 </html>
-
 

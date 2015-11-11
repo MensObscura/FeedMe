@@ -27,6 +27,7 @@ public class OffreServiceTest extends AbstractServiceTest {
 
   @Test
   public void sauvegarderTestSucces() throws Exception {
+    Mockito.when(offre.getNombrePersonne()).thenReturn(1);
     Mockito.when(offre.getAdresse()).thenReturn(adresse);
     Mockito.when(adresse.getVille()).thenReturn(ville);
     Mockito.when(offre.getNombrePersonne()).thenReturn(2);
@@ -42,6 +43,15 @@ public class OffreServiceTest extends AbstractServiceTest {
   @Test(expected = FeedMeException.class)
   public void sauvegarderTestEchec() throws Exception {
     offreService.sauvegarder(null);
+    Mockito.verify(offreDao, Mockito.never()).sauvegarder(Mockito.any());
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void sauvegarderTestEchec_NombreConvivesZero() throws Exception {
+    Mockito.when(offre.getNombrePersonne()).thenReturn(0);
+
+    this.offreService.sauvegarder(offre);
+
     Mockito.verify(offreDao, Mockito.never()).sauvegarder(Mockito.any());
   }
 
