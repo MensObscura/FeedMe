@@ -80,7 +80,7 @@ ul, ol{
 }
 #tf-menu.navbar-default {
 	background-color: rgba(0, 0, 0, 1);
-    /* A dÃ©-commenter pour le prochain jallon MVP */
+    /* A dé-commenter pour le prochain jallon MVP */
     /* background-color: rgba(0, 0, 0, 0.75); */
 	border-color: rgba(231, 231, 231, 0);
 }
@@ -528,8 +528,8 @@ nav#footer p{
 }
     
     
-/* DÃ©but du tri du CSS Ã  partir d'ici:
-    ajouts et tri d'Ã©lÃ©ments avec commentaring
+/* Début du tri du CSS à partir d'ici:
+    ajouts et tri d'éléments avec commentaring
     */
     
     
@@ -662,16 +662,26 @@ nav#footer p{
 /* Style Formulaire Offre */
 
 #StyleFormulaireOffre {
+
+	
+  
+	color: #cfcfcf;
 	background: url(../img/forms/offre.jpg);
-	background-size: cover;
-	background-position: center;
+    background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	color: #cfcfcf;
-    height: auto;
+	background-size: cover;
+	  
     margin: 0;
+    
+
 }
 
+.containerFormOffre    {
+   width: 100%;
+	
+ 
+}
 
 #StyleFormulaireOffre .overlay {
 	background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
@@ -699,6 +709,13 @@ fieldset
     height: auto;
 	background-color: rgba(0, 0, 0, 0.7);
     color: rgba(255, 255, 255, 1);
+}
+
+.field-button
+{
+	padding: 1%;
+	background-color: rgba(0, 0, 0, 0);
+ 
 }
 
 legend
@@ -815,6 +832,7 @@ ul  {
 }
 
 
+
 .profil {
     position:relative;
     height: 50%;
@@ -848,6 +866,7 @@ ul  {
 
 .offre-display {
     position: relative;
+    background: rgba(0,0,0,0.85);
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 6%;

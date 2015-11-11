@@ -90,7 +90,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window) {
 				id : $scope.typeCuisine,
 			};
 			
-			var menu {
+			var menu = {
 				entree: $scope.entree,
 				plat: $scope.plat,
 				dessert: $scope.dessert,
