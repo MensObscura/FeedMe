@@ -55,7 +55,7 @@
 										for="typeCuisine">Type de cuisine :</label> <md-select
 										name="typeCuisine" ng-model="typeCuisine"
 										style="min-width: 200px;"> <md-option
-										ng-value="{{item.id}}" ng-selected="item.id==1"
+										ng-value="{{item}}" ng-selected="item.id==1"
 										ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
@@ -141,14 +141,18 @@
 
 							<!-- Details sur le lieu de rendez-vous -->
 							<fieldset>
+						
 								<legend>Lieu</legend>
-
-								<md-content layout-padding>
+									<md-content layout-padding>
+								<div layout layout-sm="column">
+									<md-checkbox ng-model="home" aria-label="home" ng-change="homeAction()">A votre domicile</md-checkbox>
+								</div>
+								
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
 										for="numero">Numéro :</label> <input type="number"
-										ng-model="numero" name="numero" ng-min="1"
-										placeholder="Numéro de voirie." ng-required="true">
+										ng-model="numero" name="numero" ng-min="1" 
+										placeholder="Numéro de voirie." ng-required="!home" ng-disabled="home">
 									<div ng-messages="OffreForm.numero.$error">
 										<div ng-message="min">Veuillez saisir un numéro valide.</div>
 										<div ng-message="required">Veuillez saisir un numéro de
@@ -157,8 +161,8 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label for="rue">Rue
-										: </label> <input type="text" ng-model="rue" name="rue"
-										placeholder="Nom de voirie." ng-required="true">
+										: </label> <input type="text" ng-model="rue" name="rue" 
+										placeholder="Nom de voirie." ng-required="!home"  ng-disabled="home">
 									<div ng-messages="OffreForm.rue.$error">
 										<div ng-message="required">Veuillez saisir un nom de
 											rue.</div>
@@ -167,13 +171,13 @@
 									<md-input-container flex> <label
 										for="complement">Complément : </label> <input type="text"
 										name="complement" ng-model="complement"
-										placeholder="Compléments."> </md-input-container>
+										placeholder="Compléments."  ng-disabled="home"> </md-input-container>
 
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
 										for="ville">Ville :</label> <input type="text" name="ville"
-										ng-model="ville" placeholder="Votre ville." ng-required="true">
+										ng-model="ville" placeholder="Votre ville." ng-required="!home"  ng-disabled="home">
 									<div ng-messages="OffreForm.ville.$error">
 										<div ng-message="required">Veuillez saisir votre ville.</div>
 									</div>
@@ -181,7 +185,7 @@
 									<md-input-container flex> <label for="cp">Code
 										postal :</label> <input type="text" name="cp" ng-model="cp"
 										ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
-										placeholder="Votre code postal." ng-required="true">
+										placeholder="Votre code postal." ng-required="!home" ng-disabled="home">
 									<div ng-messages="OffreForm.cp.$error">
 										<div ng-message="pattern">Le code postal saisit est
 											incorrect.</div>
@@ -192,8 +196,8 @@
 									<md-input-container flex> <label
 										for="pays">Pays :</label> <md-select name="pays"
 										ng-model="pays" style="min-width: 200px;"> <md-option
-										ng-value="{{item.id}}" ng-selected="item.id==1"
-										ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
+										ng-value="{{item}}" ng-selected="item.id==1"
+										ng-repeat="item in count" ng-disabled="home" >{{item.nom}}</md-option> </md-select> </md-input-container>
 								</div>
 								</md-content>
 
@@ -242,7 +246,7 @@
 						</div>
 						<div flex>
 							<h2>{{titre}}</h2>
-							<h3>Repas organisé le {{date}}.</h3>
+							<h3>Repas organisé le <span ng-bind="date"></span>.</h3>
 
 							<fieldset>
 								<legend>L'offre de repas</legend>
@@ -251,10 +255,10 @@
 								<fieldset>
 									<legend>L'hôte</legend>
 									<h3>Identité :</h3>
-									{{offre.hote.prenom}} {{offre.hote.nom}}
+									{{profil.prenom}} {{profil.nom}}
 									<h3>Lieu :</h3>
 									{{numero}} {{rue}} {{complement}}<br> {{cp}} {{ville}}
-									({{pays}})
+									({{pays.nom}})
 									<h3>Prix par convive :</h3>
 									{{prix}} €
 								</fieldset>
@@ -263,7 +267,7 @@
 								<fieldset>
 									<legend>Le menu</legend>
 									<h3>Type de cuisine :</h3>
-									{{typeCuisine}}
+									{{typeCuisine.nom}}
 									<h3>Dans votre assiette :</h3>
 									<br>
 									<h4>Entrée(s) :</h4>
@@ -279,7 +283,7 @@
 									{{boisson || "aucunes boissons particulières"}} <br>
 									<br>
 									<h3>Nombre de couverts restants :</h3>
-									<!-- soit x sur y soit COMPLET -->
+									<!--  x sur y  -->
 									{{nbpers}} sur {{nbpers}}
 									<h3>Durée prévisionnelle :</h3>
 									{{duree}} min.
