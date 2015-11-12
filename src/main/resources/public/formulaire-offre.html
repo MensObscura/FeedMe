@@ -20,7 +20,7 @@
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular-material.min.css">
 	<link rel="stylesheet" type='text/css'
-	href="/resources/css/bootstrap-slider.css">
+	href="/resources/css/angular.rangeSlider.css">
 </head>
 
 <body ng-app="validationOffre">
@@ -157,7 +157,7 @@
 								<legend>Lieu</legend>
 									<md-content layout-padding>
 								<div layout layout-sm="column">
-									<md-checkbox ng-model="home" aria-label="home" ng-change="homeAction()">A votre domicile</md-checkbox>
+									<md-checkbox ng-model="home" aria-label="home" ng-change="homeAction()" ng-disabled="profil.adresse == null">A votre domicile</md-checkbox>
 								</div>
 								
 								<div layout layout-sm="column">
@@ -224,8 +224,8 @@
 								<md-content layout-padding>
 								
 								<div layout layout-sm="column">
-									<div id="tranches-ages">Tranche d'âges :</div>
-									<input id="slider" type="text" class="span2" value="" data-slider-min="18" data-slider-max="100" data-slider-step="1" data-slider-value="[18,100]"/>
+									<div id="tranches-ages">Tranche d'âges :</div><br>
+									<div range-slider min="18" max="100" model-min="min" model-max="max"></div>
 								</div>
 
 								<div layout layout-sm="column">
@@ -294,7 +294,7 @@
 								<!-- Informations diverses (et optionnelles) -->
 								<fieldset>
 									<legend>Divers</legend>
-									{{animal}}<br><div id="affichage-ages"></div><br> {{note}}
+									<div ng-if="animal" >Présence d'un animal de compagnie</div><br><div id="affichage-ages">de {{min}} à {{max}} ans</div><br> {{note}}
 								</fieldset>
 							</fieldset>
 						</div>
@@ -315,7 +315,7 @@
 	<script src="/resources/js/moment.js"></script>
 	<script src="/resources/js/bootstrap.js"></script>
 	<script src="/resources/js/datetimepicker.js"></script>
-	<script src="/resources/js/bootstrap-slider.js"></script>
+	<script src="/resources/js/angular.rangeSlider.js"></script>
 	<script src="/resources/js/ui-bootstrap-tpls.min.js"></script>
 	<script src="/resources/js/script-formulaire-offre.js"></script>
 	

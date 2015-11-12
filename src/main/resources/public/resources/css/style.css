@@ -895,7 +895,14 @@ md-toast {
 }
 
 .input-group {
-	width: 115%;
+	width: 100%;
+	
+}
+@-moz-document url-prefix() {
+    .input-group {
+	
+	    width: 115%;
+	}
 }
 
 #tranches-ages {

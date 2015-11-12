@@ -1,5 +1,5 @@
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages', 'ui.bootstrap.datetimepicker']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ui.bootstrap.datetimepicker']);
 
 //On ajoute une directive qui va se charger de de contrôler l'expression régulière contenue dans le formulaire
 validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
@@ -19,6 +19,8 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
+
+
 
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
@@ -73,7 +75,9 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.nbpers = 1;
 	$scope.date = new Date();
 	$scope.minDate = new Date();
-	$("#slider").slider({});
+	$scope.min = 18;
+	$scope.max = 100;
+
 
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
