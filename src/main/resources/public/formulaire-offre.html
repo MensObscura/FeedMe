@@ -7,7 +7,7 @@
 <title>Proposer une offre</title>
 <script src="/resources/js/angular.min.js"></script>
 <script src="/resources/js/jquery-2.1.4.min.js"></script>
-<link rel='stylesheet' href='/resources/css/md-date-time.css'>
+<link rel="stylesheet" href="/resources/css/datetimepicker.css"/>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -83,7 +83,7 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
-										for="duree">Durée du repas :</label> <input type="number"
+										for="duree">Durée du repas (en min) :</label> <input type="number"
 										ng-model="duree" name="duree" ng-min="60" ng-required="true"
 										placeholder="Durée prévisionnelle.">
 									<div ng-messages="OffreForm.duree.$error">
@@ -94,12 +94,22 @@
 									</div>
 									</md-input-container>
 								</div>
-								<div layout layout-sm="column">
-									<label for="date">Date</label>
-									<time-date-picker name="date" ng-model="date"></time-date-picker>
-								</div>
-								</md-content>
-
+								<md-input-container flex>
+								<label for="date">Date :</label>
+								<div class="dropdown">
+							      <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+							        <div class="input-group">
+							        <input placeholder="Date du repas." readonly="true" type="text" class="form-control" data-ng-model="date">
+							        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							        </div>
+							      </a>
+							      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							        <datetimepicker data-ng-model="date" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+							      </ul>
+							    </div>
+							    </md-input-container>
+							   	</md-content>
+								
 							</fieldset>
 
 							<!-- détails sur le menu -->
@@ -248,7 +258,7 @@
 						</div>
 						<div flex>
 							<h2>{{titre}}</h2>
-							<h3>Repas organisé le <span ng-bind="date"></span>.</h3>
+							<h3>Repas organisé le {{date}}.</h3>
 
 							<fieldset>
 								<legend>L'offre de repas</legend>
@@ -312,6 +322,10 @@
 	<script src="/resources/js/angular-material.min.js"></script>
 	<script src="/resources/js/angular-messages.js"></script>
 	<script src='/resources/js/md-date-time.js'></script>
+	<script src="/resources/js/moment.js"></script>
+	<script src="/resources/js/bootstrap.js"></script>
+	<script src="/resources/js/datetimepicker.js"></script>
+	<script src="/resources/js/ui-bootstrap-tpls.min.js"></script>
 	<script src="/resources/js/script-formulaire-offre.js"></script>
 
 	<!-- Pied de page -->

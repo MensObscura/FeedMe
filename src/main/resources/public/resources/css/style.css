@@ -881,6 +881,7 @@ ul  {
    
 .layout-padding {
 	 border-radius: 10px;
+	 overflow: visible;
 }
 
 md-toast {
