@@ -893,3 +893,11 @@ md-toast {
 	width: 50%;
 	margin: auto;
 }
+
+.input-group {
+	width: 115%;
+}
+
+#tranches-ages {
+	margin-right: 5%;
+}

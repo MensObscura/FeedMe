@@ -19,6 +19,8 @@
 	href='resources/fonts/general-font.css'>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular-material.min.css">
+	<link rel="stylesheet" type='text/css'
+	href="/resources/css/bootstrap-slider.css">
 </head>
 
 <body ng-app="validationOffre">
@@ -99,7 +101,7 @@
 								<div class="dropdown">
 							      <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
 							        <div class="input-group">
-							        <input placeholder="Date du repas." readonly="true" type="text" class="form-control" data-ng-model="date">
+							        <input datepicker-popup="yyyy-MM-dd" placeholder="Date du repas." readonly="true" type="text" min-date="minDate" class="form-control" data-ng-model="date">
 							        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 							        </div>
 							      </a>
@@ -219,24 +221,12 @@
 							<fieldset>
 								<legend>Divers</legend>
 
-								<md-content layout-padding> <label for="age">Tranche
-									d'âge : </label> <input type="number" name="agemin" ng-model="agemin"
-									ng-min="18" placeholder="min."> - <input type="number"
-									name="agemax" ng-model="agemax" ng-min="18" placeholder="max."
-									ensure-expression="(agemin == null && agemax == null) || (agemin == null && agemax >= 18) || (agemax == null && agemin >= 18) || agemin <= agemax">
-								<span style="color: red"
-									ng-show="OffreForm.agemin.$invalid && !OffreForm.agemin.$pristine">
-									<span ng-show="OffreForm.agemin.$error.number">Veuillez
-										saisir un nombre.</span> <span ng-show="OffreForm.agemin.$error.min">L'âge
-										minimal est de 18 ans.</span>
-								</span> <span style="color: red"
-									ng-show="OffreForm.agemax.$invalid && !OffreForm.agemax.$pristine">
-									<span ng-show="OffreForm.agemax.$error.number">Veuillez
-										saisir un nombre.</span> <span ng-show="OffreForm.agemax.$error.min">L'âge
-										minimal est de 18 ans.</span> <span
-									ng-show="OffreForm.agemax.$error.mauvaisetranche">La
-										tranche d'âge n'est pas valide.</span>
-								</span>
+								<md-content layout-padding>
+								
+								<div layout layout-sm="column">
+									<div id="tranches-ages">Tranche d'âges :</div>
+									<input id="slider" type="text" class="span2" value="" data-slider-min="18" data-slider-max="100" data-slider-step="1" data-slider-value="[18,100]"/>
+								</div>
 
 								<div layout layout-sm="column">
 									<md-checkbox ng-model="animal" aria-label="animal">Présence
@@ -258,7 +248,7 @@
 						</div>
 						<div flex>
 							<h2>{{titre}}</h2>
-							<h3>Repas organisé le {{date}}.</h3>
+							<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
 
 							<fieldset>
 								<legend>L'offre de repas</legend>
@@ -304,7 +294,7 @@
 								<!-- Informations diverses (et optionnelles) -->
 								<fieldset>
 									<legend>Divers</legend>
-									{{animal}}<br> {{agemin}} - {{agemax}}<br> {{note}}
+									{{animal}}<br><div id="affichage-ages"></div><br> {{note}}
 								</fieldset>
 							</fieldset>
 						</div>
@@ -325,9 +315,10 @@
 	<script src="/resources/js/moment.js"></script>
 	<script src="/resources/js/bootstrap.js"></script>
 	<script src="/resources/js/datetimepicker.js"></script>
+	<script src="/resources/js/bootstrap-slider.js"></script>
 	<script src="/resources/js/ui-bootstrap-tpls.min.js"></script>
 	<script src="/resources/js/script-formulaire-offre.js"></script>
-
+	
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
 

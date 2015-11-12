@@ -72,12 +72,15 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.prix = 1;
 	$scope.nbpers = 1;
 	$scope.date = new Date();
+	$scope.minDate = new Date();
+	$("#slider").slider({});
 
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
 		if ($scope.OffreForm.$valid) {
+			
 			// On récupère la date du repas
-			var date_repas = new Date();   // A CHANGER !
+			var date_repas = $scope.date;
 			var aujourdhui = new Date();
 			var date = aujourdhui.toLocaleFormat('%Y-%m-%d');
 
@@ -103,13 +106,13 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			var typeCuisine = {
 					id : $scope.typeCuisine.id,
 			};
-
+			/*
 			var menu = {
 					entree: $scope.entree,
 					plat: $scope.plat,
 					dessert: $scope.dessert,
 					boisson: $scope.boisson
-			};
+			};*/
 
 			// Enfin on peut créer les données que l'on souhaite envoyer
 			var donnees = {
@@ -120,14 +123,15 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					dureeMinute : parseInt($scope.duree), // optionnel
 					dateRepas : date_repas.toISOString().substr(0,22),
 					note : $scope.note, //optionnel
-					menu : menu,
-					ageMin : parseInt($scope.agemin), //optionnel
-					ageMax : parseInt($scope.agemax), //optionnel
+					//menu : menu,
+					menu : "test",
+					ageMin : $("#slider").val().split(",")[0],
+					ageMax : $("#slider").val().split(",")[1],
 					animaux : Boolean($scope.animal),
 					adresse : adresse,
 					typeCuisine : typeCuisine,
 			};
-			/*
+			
 		    // On envoie les données
             $http({
         		method: 'PUT',
@@ -140,8 +144,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
       		}).error(function(err, status, headers, config){
       			$mdToast.show($mdToast.simple().position('bottom left right').content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.'));
      		});
-			 */	
-			console.log(donnees);
+
 		}
 	};
 });
