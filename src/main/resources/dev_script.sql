@@ -1,21 +1,4 @@
 -- ---------------------------
--- Table UTILISATEUR
--- ---------------------------
-INSERT INTO UTILISATEUR ( usr_nom, usr_mail ) VALUES 
-( 'Me', 'feed.me@univ-lille1.fr');
-
--- ---------------------------
--- Table PARTICULIER
--- ---------------------------
-INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES 
-( 'Feed', '2015-01-31', 1); -- ID 1
-
--- ---------------------------
--- Table AUTHENTIFICATION
--- ---------------------------
-INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
-(1, '$2a$10$L00YE3VqyxIvn43zvWbxkut6WNqKAp0WA0XRZGMriRzIRV04qxkqi', 1); -- MDP : feedme
--- ---------------------------
 -- Table VILLE
 -- ---------------------------
 INSERT INTO VILLE(VIL_NOM, VIL_CP, VIL_PAY_ID) VALUES
@@ -31,6 +14,25 @@ INSERT INTO ADRESSE(adr_voie, adr_vil_id) VALUES
 ('45 Rue des sacres',1);
 INSERT INTO ADRESSE(adr_voie, adr_vil_id) VALUES
 ('21 Avenue des champs',2);
+
+-- ---------------------------
+-- Table UTILISATEUR
+-- ---------------------------
+INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id ) VALUES 
+( 'Me', 'feed.me@univ-lille1.fr',1);
+
+-- ---------------------------
+-- Table PARTICULIER
+-- ---------------------------
+INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES 
+( 'Feed', '2015-01-31', 1); -- ID 1
+
+-- ---------------------------
+-- Table AUTHENTIFICATION
+-- ---------------------------
+INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
+(1, '$2a$10$L00YE3VqyxIvn43zvWbxkut6WNqKAp0WA0XRZGMriRzIRV04qxkqi', 1); -- MDP : feedme
+
 -- ---------------------------
 -- Table OFFRE
 -- ---------------------------
