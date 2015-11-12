@@ -1,5 +1,5 @@
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages', 'mdDateTime']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages']);
 
 //On ajoute une directive qui va se charger de de contrôler l'expression régulière contenue dans le formulaire
 validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
@@ -17,10 +17,8 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 }]);
 
 
-
-
 //Création du controller "OffreCtrl"
-validationApp.controller('OffreCtrl', function($scope, $http, $window,$mdToast) {
+validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
 
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
@@ -28,7 +26,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window,$mdToast) 
 				$scope.profil = donnees;
 			}
 	);
-
 
 	$scope.homeAction = function() {
 
@@ -58,7 +55,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window,$mdToast) 
 	$http.get('/settings/typescuisines').success(
 			function(donnees) {
 				$scope.cook = donnees;
-				$scope.typeCuisine= $scope.cook[0];
 			}
 	);
 
@@ -68,7 +64,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window,$mdToast) 
 	$http.get('/settings/pays').success(
 			function(donnees) {
 				$scope.count = donnees;
-				$scope.pays= $scope.count[0];
 			}
 	);
 
@@ -81,7 +76,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window,$mdToast) 
 	$scope.submitForm = function() {
 		if ($scope.OffreForm.$valid) {
 			// On récupère la date du repas
-			var date_repas = new Date();
+			var date_repas = new Date();   // A CHANGER !
 			var aujourdhui = new Date();
 			var date = aujourdhui.toLocaleFormat('%Y-%m-%d');
 
@@ -139,10 +134,10 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window,$mdToast) 
         		contentType: "application/json",
         		data: donnees
      		}).success(function(response, status, headers, config){
-     			// DECLENCHEMENT D'UN TOASTER ICI : Offre ajoutée
+     			$mdToast.show($mdToast.simple().position('bottom left right').content('Votre offre a bien été enregistrée.'));
            		$window.location.href = '/accueil.html';
       		}).error(function(err, status, headers, config){
-      			// DECLENCHEMENT D'UN TOASTER ICI : Erreur interne
+      			$mdToast.show($mdToast.simple().position('bottom left right').content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.'));
      		});
 			 */	
 			console.log(donnees);

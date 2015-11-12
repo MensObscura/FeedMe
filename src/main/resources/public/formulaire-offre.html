@@ -195,9 +195,11 @@
 									</md-input-container>
 									<md-input-container flex> <label
 										for="pays">Pays :</label> <md-select name="pays"
-										ng-model="pays" style="min-width: 200px;"> <md-option
+										ng-model="pays" style="min-width: 200px;" ng-disabled="home">
+										<md-option
 										ng-value="{{item}}" ng-selected="item.id==1"
-										ng-repeat="item in count" ng-disabled="home" >{{item.nom}}</md-option> </md-select> </md-input-container>
+										ng-repeat="item in count" >{{item.nom}}
+										</md-option> </md-select> </md-input-container>
 								</div>
 								</md-content>
 
