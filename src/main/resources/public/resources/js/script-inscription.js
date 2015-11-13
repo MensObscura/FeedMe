@@ -19,7 +19,6 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 //Création du controller "InscriptionCtrl"
 validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
 	
-	var date = new Date(); // A CHANGER
 	$scope.maxDate = new Date(date.getFullYear()-18, date.getMonth(), date.getDate());
 	
 	// Fonction utilisé lors de la validation du formulaire
@@ -45,7 +44,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 				contentType: "application/json",
 				data: authentification
 			}).success(function(response, status, headers, config){
-				$mdToast.show($mdToast.simple().position('bottom left right').content('Votre compte a bien été enregistré, vous pouvez vous connecter.').hideDelay(23000));
+				$mdToast.show($mdToast.simple().position('bottom left right').content('Votre compte a bien été enregistré, vous pouvez vous connecter.').hideDelay(2000));
 				setTimeout(function() {$window.location.href = '/login.html';},2000);
 			}).error(function(err, status, headers, config){
 				 $mdToast.show($mdToast.simple().position('bottom left right').content('Cette adresse email est déja enregistrée par un utilisateur.').hideDelay(2000));

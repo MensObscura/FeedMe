@@ -36,7 +36,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.homeAction = function() {
 
 		if($scope.home){
-
 			$scope.rue = $scope.profil.adresse.voie;
 			$scope.ville = $scope.profil.adresse.ville.nom;
 			$scope.cp = $scope.profil.adresse.ville.cp;
@@ -60,8 +59,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			}
 	);
 
-
-
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
@@ -74,13 +71,14 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.prix = 1;
 	$scope.nbpers = 1;
 	$scope.date = new Date();
-	$scope.minDate = new Date();
-
-
 
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
 		if ($scope.OffreForm.$valid) {
+			
+			if ($scope.date < new Date()) {
+				$mdToast.show($mdToast.simple().position('bottom left right').content('Cette date est passée !').hideDelay(2000));
+			}
 			
 			// On récupère la date du repas
 			var date_repas = $scope.date;
@@ -134,7 +132,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					adresse : adresse,
 					typeCuisine : typeCuisine,
 			};
-			
+						
 		    // On envoie les données
             $http({
         		method: 'PUT',
@@ -142,10 +140,10 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
         		contentType: "application/json",
         		data: donnees
      		}).success(function(response, status, headers, config){
-     			$mdToast.show($mdToast.simple().position('bottom left right').content('Votre offre a bien été enregistrée.'));
-           		$window.location.href = '/accueil.html';
+     			$mdToast.show($mdToast.simple().position('bottom left right').content('Votre offre a bien été enregistrée.').hideDelay(2000));
+           		//setTimeout(function() {$window.location.href = '/accueil.html';},2000);
       		}).error(function(err, status, headers, config){
-      			$mdToast.show($mdToast.simple().position('bottom left right').content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.'));
+      			$mdToast.show($mdToast.simple().position('bottom left right').content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
      		});
 
 		}

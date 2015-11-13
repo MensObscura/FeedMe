@@ -5,24 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Proposer une offre</title>
-
-	<script src="/resources/js/jquery-2.1.4.min.js"></script>
-	<script src="/resources/js/angular.min.js"></script>
-
-<link rel="stylesheet" href="/resources/css/datetimepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/fonts/font-awesome/css/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/responsive.css">
-<link rel='stylesheet' type='text/css'
-	href='resources/fonts/general-font.css'>
-<link rel="stylesheet" type='text/css'
-	href="/resources/css/angular-material.min.css">
-<link rel="stylesheet" type='text/css'
-	href="/resources/css/angular.rangeSlider.css">
+<link rel="stylesheet" type='text/css' href="/resources/css/angular-material.min.css">
+<link rel="stylesheet" type='text/css' href="/resources/css/datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/resources/fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/responsive.css">
+<link rel='stylesheet' type='text/css' href='/resources/fonts/general-font.css'>
+<link rel="stylesheet" type='text/css' href="/resources/css/angular.rangeSlider.css">
 </head>
 
 <body ng-app="validationOffre">
@@ -51,8 +41,7 @@
 										name="titre" ng-model="titre" ng-required="true"
 										placeholder="Titre de l'offre.">
 									<div ng-messages="OffreForm.titre.$error">
-										<div ng-message="required">Veuillez saisir un titre pour
-											l'offre.</div>
+										<div ng-message="required">Veuillez saisir un titre pour l'offre.</div>
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
@@ -100,13 +89,14 @@
 								</div>
 								<md-input-container flex> <label for="date">Date
 									:</label>
+
 								<div class="dropdown">
 									<a class="dropdown-toggle" id="dropdown2" role="button"
 										data-toggle="dropdown" data-target="#" href="#">
 										<div class="input-group">
-											<input datepicker-popup="yyyy-MM-dd"
+											<input
 												placeholder="Date du repas." readonly="true" type="text"
-												min-date="minDate" class="form-control" data-ng-model="date">
+												min="minDate" class="form-control" data-ng-model="date">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span>
 										</div>
@@ -116,6 +106,7 @@
 											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
 									</ul>
 								</div>
+								
 								</md-input-container> </md-content>
 
 							</fieldset>
@@ -322,17 +313,21 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<script src="/resources/js/jquery-2.1.4.min.js"></script>
+	<script src="/resources/js/angular.min.js"></script>
+	
+	<script src="/resources/js/angular-material.min.js"></script>
 	<script src="/resources/js/angular-animate.min.js"></script>
 	<script src="/resources/js/angular-aria.min.js"></script>
-	<script src="/resources/js/angular-material.min.js"></script>
 	<script src="/resources/js/angular-messages.js"></script>
-
+	
 	<script src="/resources/js/moment.js"></script>
 	<script src="/resources/js/bootstrap.js"></script>
 	<script src="/resources/js/datetimepicker.js"></script>
 	<script src="/resources/js/angular.rangeSlider.js"></script>
 	<script src="/resources/js/ui-bootstrap-tpls.min.js"></script>
+
 	<script src="/resources/js/script-formulaire-offre.js"></script>
 
 	<!-- Pied de page -->

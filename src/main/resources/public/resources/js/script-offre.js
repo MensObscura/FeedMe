@@ -1,8 +1,8 @@
 // Chargement du module "OffreApp"
-var app = angular.module("OffreApp", []);
+var app = angular.module("OffreApp", ['ngMaterial']);
 
 //Création du controller "ReservationController"
-app.controller('ReservationController', function($scope, $http, $window) {  
+app.controller('ReservationController', function($scope, $http, $window, $mdToast) {  
 
 	// Fonction permettant de récupérer les paramètres de l'url.
 	$scope.getUrlVars = function() {
@@ -90,10 +90,11 @@ app.controller('ReservationController', function($scope, $http, $window) {
 				contentType: "application/json",
 				data: donnees
 			}).success(function(response, status, headers, config){
-				// DECLENCHEMENT D'UN TOASTER ICI : Votre réservation a été enregistrée
+				$mdToast.show($mdToast.simple().position('bottom left right').content('Votre réservation a été enregistrée.').hideDelay(2000));
+				setTimeout(function() {$window.location.href = '/login.html';},2000);
 				$window.location.href = "/liste_offres.html";
 			}).error(function(err, status, headers, config){
-				// DECLENCHEMENT D'UN TOASTER ICI : Vous avez déja reservé une place pour cette offre
+				$mdToast.show($mdToast.simple().position('bottom left right').content('Vous avez déja réservé une place pour cette offre.').hideDelay(2000));
 			});
 			
 		}
