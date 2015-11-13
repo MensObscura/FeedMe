@@ -20,15 +20,11 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
-
 	
-		// just some values for the sliders
-		$scope.age = {
-			min: 18,
-			max: 100
-		};
-		
-	
+	$scope.age = {
+		min: 18,
+		max: 100
+	};
 
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
@@ -37,8 +33,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			}
 	);
 	
-	
-
 	$scope.homeAction = function() {
 
 		if($scope.home){
@@ -59,10 +53,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 
 	};
 
-
-
-
-
 	// On va rechercher toutes les types de cuisine en se connectant à la route consacrée
 	$http.get('/settings/typescuisines').success(
 			function(donnees) {
@@ -79,7 +69,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			}
 	);
 
-	// On pre-remplissage des champs 'durée', 'nbpers' et 'prix' par le minimum attendu
+	// pré-remplissage des champs 'durée', 'nbpers' et 'prix' par le minimum attendu
 	$scope.duree = 60;
 	$scope.prix = 1;
 	$scope.nbpers = 1;

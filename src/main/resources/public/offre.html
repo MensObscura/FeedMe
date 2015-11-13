@@ -49,7 +49,7 @@ Page de visualisation d'une offre
                     <fieldset>
                     <legend>L'hôte</legend>
                         <h3>Identité :</h3>
-                        {{offre.hote.prenom}} {{offre.hote.nom}}
+                        <!-- Un hôte est un utilisateur : pas de prénom  {{offre.hote.prenom}} -->{{offre.hote.nom}}
                         <h3>Lieu :</h3>
                         {{offre.adresse.voie}} <br>
                         {{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
@@ -81,9 +81,9 @@ Page de visualisation d'une offre
                     <!-- Informations diverses (et optionnelles) -->
                     <fieldset>
                     <legend>Divers</legend>
-                    {{animaux}}
-                    {{age}}<br>
-                    {{note}}<br>
+                    <div ng-if="animaux">{{animaux}}</div>
+                    <div ng-if="age">{{age}}</div>
+                    <div ng-if="note">{{note}}</div>
                     </fieldset>
 
                     <!-- Réservation de places -->		

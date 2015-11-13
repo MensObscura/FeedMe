@@ -6,6 +6,9 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Proposer une offre</title>
 
+	<script src="/resources/js/jquery-2.1.4.min.js"></script>
+	<script src="/resources/js/angular.min.js"></script>
+
 <link rel="stylesheet" href="/resources/css/datetimepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/bootstrap.css">
@@ -233,22 +236,21 @@
 								<div layout layout-sm="column">
 					
 									<md-input-container flex>
-									<div id="tranches-ages">Tranche d'âges : de {{age.min}} à {{age.max}} ans</div>
-									 <div range-slider min="18" max="100" model-min="age.min"
+									<label>Tranche d'âges : de {{age.min}} à {{age.max}} ans</label>
+									<input id="hidden" type="text" placeholder="Tranche d'âges." />
+									 <div id="tranches-ages" range-slider min="18" max="100" model-min="age.min"
 										model-max="age.max"></div>
-
 									</md-input-container>
-
-								</div>
-								<div layout layout-sm="column">
-									<md-checkbox ng-model="animal" aria-label="animal">Présence
-									d'un animal.</md-checkbox>
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
 										for="note">Remarques :</label> <textarea name="note"
 										ng-model="note" placeholder="Informations complémentaires."></textarea>
 									</md-input-container>
+								</div>
+								<div layout layout-sm="column">
+									<md-checkbox ng-model="animal" aria-label="animal">Présence
+									d'un animal de compagnie</md-checkbox>
 								</div>
 								</md-content>
 
@@ -260,9 +262,8 @@
 						</div>
 
 						<div flex>
-							<h2>{{titre}}</h2>
-							<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à'
-								hh'h'mm"}}.</h3>
+							<h2>{{titre || "Titre non complété"}}</h2>
+							<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
 
 							<fieldset>
 								<legend>L'offre de repas</legend>
@@ -290,7 +291,7 @@
 
 									{{entree || "aucunes entrées"}} <br>
 									<h4>Plat :</h4>
-									{{plat}} <br>
+									{{plat || "Plat non complété"}} <br>
 									<h4>Dessert(s) :</h4>
 
 									{{dessert || "aucuns desserts"}} <br>
@@ -307,10 +308,9 @@
 								<!-- Informations diverses (et optionnelles) -->
 								<fieldset>
 									<legend>Divers</legend>
-									<div ng-if="animal">Présence d'un animal de compagnie</div>
-									<br>
-									<div id="affichage-ages">De {{age.min}} à {{age.max}} ans</div>
-									<br> {{note}}
+									<div ng-if="animal">Un animal de compagnie sera présent lors du repas.<br></div>
+									<div ng-if="age">Ce repas s'adresse aux {{age.min}}-{{age.max}} ans.<br></div>
+									<div ng-if="note">{{note}}</div>
 								</fieldset>
 							</fieldset>
 
@@ -323,14 +323,11 @@
 		</div>
 	</div>
 
-
-	<script src="/resources/js/jquery-2.1.4.min.js"></script>
-	<script src="/resources/js/angular.min.js"></script>
 	<script src="/resources/js/angular-animate.min.js"></script>
 	<script src="/resources/js/angular-aria.min.js"></script>
 	<script src="/resources/js/angular-material.min.js"></script>
 	<script src="/resources/js/angular-messages.js"></script>
-	<script src='/resources/js/md-date-time.js'></script>
+
 	<script src="/resources/js/moment.js"></script>
 	<script src="/resources/js/bootstrap.js"></script>
 	<script src="/resources/js/datetimepicker.js"></script>

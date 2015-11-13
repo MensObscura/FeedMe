@@ -905,6 +905,10 @@ md-toast {
 	}
 }
 
+#hidden {
+	display : none;
+}
+
 #tranches-ages {
-	margin-right: 5%;
+	margin-bottom: -5%;
 }
