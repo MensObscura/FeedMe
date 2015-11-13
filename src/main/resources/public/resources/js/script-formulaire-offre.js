@@ -129,8 +129,8 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					note : $scope.note, //optionnel
 					//menu : menu,
 					menu : "test",
-					ageMin : $("#slider").val().split(",")[0],
-					ageMax : $("#slider").val().split(",")[1],
+					ageMin : $scope.min,
+					ageMax : $scope.max,
 					animaux : Boolean($scope.animal),
 					adresse : adresse,
 					typeCuisine : typeCuisine,
