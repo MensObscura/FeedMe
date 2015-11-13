@@ -17,10 +17,18 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 }]);
 
 
+
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
 
-
+	
+		// just some values for the sliders
+		$scope.age = {
+			min: 18,
+			max: 100
+		};
+		
+	
 
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
@@ -28,6 +36,8 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 				$scope.profil = donnees;
 			}
 	);
+	
+	
 
 	$scope.homeAction = function() {
 
@@ -75,8 +85,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.nbpers = 1;
 	$scope.date = new Date();
 	$scope.minDate = new Date();
-	$scope.min = 18;
-	$scope.max = 100;
+
 
 
 	// Fonction utilisé lors de la validation du formulaire
@@ -129,8 +138,8 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					note : $scope.note, //optionnel
 					//menu : menu,
 					menu : "test",
-					ageMin : $scope.min,
-					ageMax : $scope.max,
+					ageMin : $scope.age.min,
+					ageMax : $scope.age.max,
 					animaux : Boolean($scope.animal),
 					adresse : adresse,
 					typeCuisine : typeCuisine,

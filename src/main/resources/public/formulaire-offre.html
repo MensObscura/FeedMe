@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Proposer une offre</title>
-<script src="/resources/js/angular.min.js"></script>
-<script src="/resources/js/jquery-2.1.4.min.js"></script>
-<link rel="stylesheet" href="/resources/css/datetimepicker.css"/>
+
+<link rel="stylesheet" href="/resources/css/datetimepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -19,7 +18,7 @@
 	href='resources/fonts/general-font.css'>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular-material.min.css">
-	<link rel="stylesheet" type='text/css'
+<link rel="stylesheet" type='text/css'
 	href="/resources/css/angular.rangeSlider.css">
 </head>
 
@@ -85,9 +84,9 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
-										for="duree">Durée du repas (en min) :</label> <input type="number"
-										ng-model="duree" name="duree" ng-min="60" ng-required="true"
-										placeholder="Durée prévisionnelle.">
+										for="duree">Durée du repas (en min) :</label> <input
+										type="number" ng-model="duree" name="duree" ng-min="60"
+										ng-required="true" placeholder="Durée prévisionnelle.">
 									<div ng-messages="OffreForm.duree.$error">
 										<div ng-message="min">Veuillez saisir une durée
 											supérieur à 60 min.</div>
@@ -96,22 +95,26 @@
 									</div>
 									</md-input-container>
 								</div>
-								<md-input-container flex>
-								<label for="date">Date :</label>
+								<md-input-container flex> <label for="date">Date
+									:</label>
 								<div class="dropdown">
-							      <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
-							        <div class="input-group">
-							        <input datepicker-popup="yyyy-MM-dd" placeholder="Date du repas." readonly="true" type="text" min-date="minDate" class="form-control" data-ng-model="date">
-							        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-							        </div>
-							      </a>
-							      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-							        <datetimepicker data-ng-model="date" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
-							      </ul>
-							    </div>
-							    </md-input-container>
-							   	</md-content>
-								
+									<a class="dropdown-toggle" id="dropdown2" role="button"
+										data-toggle="dropdown" data-target="#" href="#">
+										<div class="input-group">
+											<input datepicker-popup="yyyy-MM-dd"
+												placeholder="Date du repas." readonly="true" type="text"
+												min-date="minDate" class="form-control" data-ng-model="date">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span>
+										</div>
+									</a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+										<datetimepicker data-ng-model="date"
+											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+									</ul>
+								</div>
+								</md-input-container> </md-content>
+
 							</fieldset>
 
 							<!-- détails sur le menu -->
@@ -153,18 +156,21 @@
 
 							<!-- Details sur le lieu de rendez-vous -->
 							<fieldset>
-						
+
 								<legend>Lieu</legend>
-									<md-content layout-padding>
+								<md-content layout-padding>
 								<div layout layout-sm="column">
-									<md-checkbox ng-model="home" aria-label="home" ng-change="homeAction()" ng-disabled="profil.adresse == null">A votre domicile</md-checkbox>
+									<md-checkbox ng-model="home" aria-label="home"
+										ng-change="homeAction()" ng-disabled="profil.adresse == null">A
+									votre domicile</md-checkbox>
 								</div>
-								
+
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
 										for="numero">Numéro :</label> <input type="number"
-										ng-model="numero" name="numero" ng-min="1" 
-										placeholder="Numéro de voirie." ng-required="!home" ng-disabled="home">
+										ng-model="numero" name="numero" ng-min="1"
+										placeholder="Numéro de voirie." ng-required="!home"
+										ng-disabled="home">
 									<div ng-messages="OffreForm.numero.$error">
 										<div ng-message="min">Veuillez saisir un numéro valide.</div>
 										<div ng-message="required">Veuillez saisir un numéro de
@@ -173,8 +179,9 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label for="rue">Rue
-										: </label> <input type="text" ng-model="rue" name="rue" 
-										placeholder="Nom de voirie." ng-required="!home"  ng-disabled="home">
+										: </label> <input type="text" ng-model="rue" name="rue"
+										placeholder="Nom de voirie." ng-required="!home"
+										ng-disabled="home">
 									<div ng-messages="OffreForm.rue.$error">
 										<div ng-message="required">Veuillez saisir un nom de
 											rue.</div>
@@ -183,13 +190,14 @@
 									<md-input-container flex> <label
 										for="complement">Complément : </label> <input type="text"
 										name="complement" ng-model="complement"
-										placeholder="Compléments."  ng-disabled="home"> </md-input-container>
+										placeholder="Compléments." ng-disabled="home"> </md-input-container>
 
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
 										for="ville">Ville :</label> <input type="text" name="ville"
-										ng-model="ville" placeholder="Votre ville." ng-required="!home"  ng-disabled="home">
+										ng-model="ville" placeholder="Votre ville."
+										ng-required="!home" ng-disabled="home">
 									<div ng-messages="OffreForm.ville.$error">
 										<div ng-message="required">Veuillez saisir votre ville.</div>
 									</div>
@@ -197,7 +205,8 @@
 									<md-input-container flex> <label for="cp">Code
 										postal :</label> <input type="text" name="cp" ng-model="cp"
 										ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
-										placeholder="Votre code postal." ng-required="!home" ng-disabled="home">
+										placeholder="Votre code postal." ng-required="!home"
+										ng-disabled="home">
 									<div ng-messages="OffreForm.cp.$error">
 										<div ng-message="pattern">Le code postal saisit est
 											incorrect.</div>
@@ -208,10 +217,8 @@
 									<md-input-container flex> <label
 										for="pays">Pays :</label> <md-select name="pays"
 										ng-model="pays" style="min-width: 200px;" ng-disabled="home">
-										<md-option
-										ng-value="{{item}}" ng-selected="item.id==1"
-										ng-repeat="item in count" >{{item.nom}}
-										</md-option> </md-select> </md-input-container>
+									<md-option ng-value="{{item}}" ng-selected="item.id==1"
+										ng-repeat="item in count">{{item.nom}} </md-option> </md-select> </md-input-container>
 								</div>
 								</md-content>
 
@@ -222,12 +229,22 @@
 								<legend>Divers</legend>
 
 								<md-content layout-padding>
-								
-								<div layout layout-sm="column">
-									<div id="tranches-ages">Tranche d'âges :</div><br>
-									<div range-slider min="18" max="100" model-min="min" model-max="max"></div>
-								</div>
 
+								<div layout layout-sm="column">
+									<div id="tranches-ages">Tranche d'âges :</div>
+									<br>
+
+									<md-input-container flex>
+									<div range-slider min="18" max="100" model-min="age.min"
+										model-max="age.max"></div>
+
+									</md-input-container>
+
+
+
+
+
+								</div>
 								<div layout layout-sm="column">
 									<md-checkbox ng-model="animal" aria-label="animal">Présence
 									d'un animal.</md-checkbox>
@@ -246,9 +263,11 @@
 							<md-button type="submit" ng-disabled="OffreForm.$invalid"
 								class="form">Ajouter</md-button>
 						</div>
+
 						<div flex>
 							<h2>{{titre}}</h2>
-							<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
+							<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à'
+								hh'h'mm"}}.</h3>
 
 							<fieldset>
 								<legend>L'offre de repas</legend>
@@ -282,8 +301,7 @@
 									{{dessert || "aucuns desserts"}} <br>
 									<h4>Carte des boissons :</h4>
 
-									{{boisson || "aucunes boissons particulières"}} <br>
-									<br>
+									{{boisson || "aucunes boissons particulières"}} <br> <br>
 									<h3>Nombre de couverts restants :</h3>
 									<!--  x sur y  -->
 									{{nbpers}} sur {{nbpers}}
@@ -294,19 +312,25 @@
 								<!-- Informations diverses (et optionnelles) -->
 								<fieldset>
 									<legend>Divers</legend>
-									<div ng-if="animal" >Présence d'un animal de compagnie</div><br><div id="affichage-ages">de {{min}} à {{max}} ans</div><br> {{note}}
+									<div ng-if="animal">Présence d'un animal de compagnie</div>
+									<br>
+									<div id="affichage-ages">de {{age.min}} à {{age.max}} ans</div>
+									<br> {{note}}
 								</fieldset>
 							</fieldset>
+
 						</div>
 					</div>
 
-
-
 				</form>
+
 			</div>
 		</div>
 	</div>
 
+
+	<script src="/resources/js/jquery-2.1.4.min.js"></script>
+	<script src="/resources/js/angular.min.js"></script>
 	<script src="/resources/js/angular-animate.min.js"></script>
 	<script src="/resources/js/angular-aria.min.js"></script>
 	<script src="/resources/js/angular-material.min.js"></script>
@@ -318,7 +342,7 @@
 	<script src="/resources/js/angular.rangeSlider.js"></script>
 	<script src="/resources/js/ui-bootstrap-tpls.min.js"></script>
 	<script src="/resources/js/script-formulaire-offre.js"></script>
-	
+
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
 
