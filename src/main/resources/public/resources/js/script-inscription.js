@@ -45,10 +45,10 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 				contentType: "application/json",
 				data: authentification
 			}).success(function(response, status, headers, config){
-				$mdToast.show($mdToast.simple().position('bottom left right').content('Votre compte a bien été enregistré, vous pouvez vous connecter.'));
-				$window.location.href = '/login.html';
+				$mdToast.show($mdToast.simple().position('bottom left right').content('Votre compte a bien été enregistré, vous pouvez vous connecter.').hideDelay(23000));
+				setTimeout(function() {$window.location.href = '/login.html';},2000);
 			}).error(function(err, status, headers, config){
-				 $mdToast.show($mdToast.simple().position('bottom left right').content('Cette adresse email est déja enregistrée par un utilisateur.'));
+				 $mdToast.show($mdToast.simple().position('bottom left right').content('Cette adresse email est déja enregistrée par un utilisateur.').hideDelay(2000));
 			});
 
 
