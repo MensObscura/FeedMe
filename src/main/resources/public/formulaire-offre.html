@@ -231,18 +231,13 @@
 								<md-content layout-padding>
 
 								<div layout layout-sm="column">
-									<div id="tranches-ages">Tranche d'âges :</div>
-									<br>
-
+					
 									<md-input-container flex>
-									<div range-slider min="18" max="100" model-min="age.min"
+									<div id="tranches-ages">Tranche d'âges : de {{age.min}} à {{age.max}} ans</div>
+									 <div range-slider min="18" max="100" model-min="age.min"
 										model-max="age.max"></div>
 
 									</md-input-container>
-
-
-
-
 
 								</div>
 								<div layout layout-sm="column">
@@ -314,7 +309,7 @@
 									<legend>Divers</legend>
 									<div ng-if="animal">Présence d'un animal de compagnie</div>
 									<br>
-									<div id="affichage-ages">de {{age.min}} à {{age.max}} ans</div>
+									<div id="affichage-ages">De {{age.min}} à {{age.max}} ans</div>
 									<br> {{note}}
 								</fieldset>
 							</fieldset>
