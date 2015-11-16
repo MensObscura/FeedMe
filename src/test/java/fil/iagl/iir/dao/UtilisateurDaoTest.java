@@ -66,11 +66,11 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(utilisateurToCheck.getNom()).isNotNull().isEqualTo(nom);
     assertThat(utilisateurToCheck.getAdresse()).isNotNull();
     // Alors les donnees de l'adresse sont celles attendues
-    assertThat(adresse.getId()).isEqualTo(adresseId);
-    assertThat(adresse.getVoie()).isEqualTo(rue);
+    assertThat(utilisateurToCheck.getAdresse().getId()).isEqualTo(adresseId);
+    assertThat(utilisateurToCheck.getAdresse().getVoie()).isEqualTo(rue);
     // les donnees de la ville sont celles attendues
-    assertThat(adresse.getVille().getNom()).isEqualTo(ville.getNom());
-    assertThat(adresse.getVille().getCp()).isEqualTo(codePostal);
+    assertThat(utilisateurToCheck.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
+    assertThat(utilisateurToCheck.getAdresse().getVille().getCp()).isEqualTo(codePostal);
   }
 
   @Test

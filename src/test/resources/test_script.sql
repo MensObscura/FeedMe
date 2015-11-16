@@ -48,7 +48,8 @@ INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id) VALUES
 -- Table PARTICULIER
 -- ---------------------------
 INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES 
-( 'titi', '2015-01-31', 1); -- ID 1
+( 'titi', '2015-01-31', 1), -- ID 1
+( 'toto', '2015-01-31', 4); -- ID 2
 
 -- ---------------------------
 -- Table AUTHENTIFICATION
