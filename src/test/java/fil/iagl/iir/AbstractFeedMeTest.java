@@ -32,6 +32,7 @@ import fil.iagl.iir.dao.authentification.AuthentificationDao;
 import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.AuthentificationParticulier;
+import fil.iagl.iir.entite.Menu;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Pays;
@@ -108,7 +109,7 @@ public abstract class AbstractFeedMeTest {
     utilisateur.setNom("toto");
     return utilisateur;
   }
-  
+
   protected Particulier createParticulier() {
     Particulier particulier = new Particulier();
     particulier.setIdUtilisateur(1);
@@ -150,7 +151,6 @@ public abstract class AbstractFeedMeTest {
     Integer nombrePersonne = 5;
     Integer dureeMinute = 120;
     LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 0);
-    String menu = "DescriptionDuMenu";
     Boolean animaux = Boolean.FALSE;
 
     Integer idAdresse = 1;
@@ -182,6 +182,16 @@ public abstract class AbstractFeedMeTest {
 
     Utilisateur hote = new Utilisateur();
     hote.setIdUtilisateur(idUtilisateur);
+
+    Menu menu = new Menu();
+    String boisson = "MaBoisson";
+    String dessert = "MonDessert";
+    String entree = "MonEntree";
+    String plat = "MonPlat";
+    menu.setBoisson(boisson);
+    menu.setDessert(dessert);
+    menu.setEntree(entree);
+    menu.setPlat(plat);
 
     Offre offre = new Offre();
 

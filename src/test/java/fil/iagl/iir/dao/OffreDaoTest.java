@@ -7,6 +7,7 @@ import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import fil.iagl.iir.entite.Menu;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.SQLCODE;
@@ -34,7 +35,6 @@ public class OffreDaoTest extends AbstractDaoTest {
     Integer nombrePersonne = 5;
     Integer dureeMinute = 120;
     LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 0);
-    String menu = "DescriptionDuMenu";
     Boolean animaux = Boolean.FALSE;
     String note = "Note";
     Integer ageMin = 20;
@@ -59,6 +59,16 @@ public class OffreDaoTest extends AbstractDaoTest {
     String nom = "toto";
     String mail = "toto.toto@gmail.com";
 
+    Menu menu = new Menu();
+    String boisson = "MaBoisson";
+    String dessert = "MonDessert";
+    String entree = "MonEntree";
+    String plat = "MonPlat";
+    menu.setBoisson(boisson);
+    menu.setDessert(dessert);
+    menu.setEntree(entree);
+    menu.setPlat(plat);
+
     // Quand on recupere l'offre associee a cet ID
     Offre offre = offreDao.getById(idOffre);
 
@@ -72,7 +82,11 @@ public class OffreDaoTest extends AbstractDaoTest {
     Assertions.assertThat(offre.getNombrePersonne()).isNotNull().isEqualTo(nombrePersonne);
     Assertions.assertThat(offre.getDureeMinute()).isNotNull().isEqualTo(dureeMinute);
     Assertions.assertThat(offre.getDateRepas()).isNotNull().isEqualTo(dateRepas);
-    Assertions.assertThat(offre.getMenu()).isNotNull().isEqualTo(menu);
+    Assertions.assertThat(offre.getMenu()).isNotNull();
+    Assertions.assertThat(offre.getMenu().getBoisson()).isNotNull().isEqualTo(boisson);
+    Assertions.assertThat(offre.getMenu().getDessert()).isNotNull().isEqualTo(dessert);
+    Assertions.assertThat(offre.getMenu().getEntree()).isNotNull().isEqualTo(entree);
+    Assertions.assertThat(offre.getMenu().getPlat()).isNotNull().isEqualTo(plat);
     Assertions.assertThat(offre.getAnimaux()).isNotNull().isEqualTo(animaux);
     Assertions.assertThat(offre.getNote()).isNotNull().isEqualTo(note);
     Assertions.assertThat(offre.getAgeMin()).isNotNull().isEqualTo(ageMin);
@@ -243,6 +257,24 @@ public class OffreDaoTest extends AbstractDaoTest {
     // Etant donne une offre ayant son menu nul
     Offre offre = this.createOffre();
     offre.setMenu(null);
+
+    try {
+      // Quand on enregistre cette offre
+      offreDao.sauvegarder(offre);
+
+      // Alors on attend a ce qu'une exception soit lancee
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void sauvegarderTestEchec_PlatNull() throws Exception {
+    // Etant donne une offre ayant son menu nul
+    Offre offre = this.createOffre();
+    offre.getMenu().setPlat(null);
+    ;
 
     try {
       // Quand on enregistre cette offre

@@ -12,7 +12,10 @@
 		<result property="dureeMinute" column="off_duree_minute"/>
 		<result property="dateRepas" column="off_date_repas"/>
 		<result property="note" column="off_note"/>
-		<result property="menu" column="off_menu"/>
+		<result property="menu.plat" column="off_plat"/>
+		<result property="menu.dessert" column="off_dessert"/>
+		<result property="menu.boisson" column="off_boisson"/>
+		<result property="menu.entree" column="off_entree"/>
 		<result property="ageMin" column="off_age_min"/>
 		<result property="ageMax" column="off_age_max"/>
 		<result property="animaux" column="off_animaux"/>
@@ -35,7 +38,10 @@
 	       	off_duree_minute, 
 	       	off_date_repas, 
 	       	off_note, 
-	       	off_menu, 
+            off_plat, 
+            off_dessert, 
+            off_entree, 
+            off_boisson,
 	       	off_age_min, 
 	       	off_age_max, 
 	       	off_animaux, 
@@ -63,7 +69,10 @@
             off_duree_minute, 
             off_date_repas, 
             off_note, 
-            off_menu, 
+            off_plat, 
+            off_dessert, 
+            off_entree, 
+            off_boisson, 
             off_age_min, 
             off_age_max, 
             off_animaux, 
@@ -79,7 +88,10 @@
 	    	#{offre.dureeMinute},
 	    	#{offre.dateRepas},
 	    	#{offre.note},
-	    	#{offre.menu},
+	    	#{offre.menu.plat},
+	    	#{offre.menu.dessert},
+	    	#{offre.menu.entree},
+	    	#{offre.menu.boisson},
 	    	#{offre.ageMin},
 	    	#{offre.ageMax},
 	    	#{offre.animaux},
