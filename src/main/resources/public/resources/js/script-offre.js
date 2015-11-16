@@ -75,7 +75,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 			
 			// Première étape : convertir la date est la mettre sous la bonne forme
 			var aujourdhui = new Date();
-			var date = aujourdhui.toLocaleFormat('%Y-%m-%d');
+			var date = moment(aujourdhui).format('YYYY-MM-DD');
 
 			// On constitue les données
 			var donnees = {

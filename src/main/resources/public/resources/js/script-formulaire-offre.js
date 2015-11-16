@@ -85,7 +85,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			// On récupère la date du repas
 			var date_repas = $scope.date;
 			var aujourdhui = new Date();
-			var date = aujourdhui.toLocaleFormat('%Y-%m-%d');
+			var date = moment(aujourdhui).format('YYYY-MM-DD');
 
 			// On créé on objet pays
 			var pays = {

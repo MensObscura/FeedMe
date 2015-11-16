@@ -31,7 +31,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 					nom : $scope.nom,
 					prenom : $scope.prenom,
 					mail : $scope.email,
-					dateNaissance : $scope.anniversaire.toLocaleFormat('%Y-%m-%d'),
+					dateNaissance : moment($scope.anniversaire).format('YYYY-MM-DD')
 			};
 			// On créé un objet authentification
 			var authentification = {
