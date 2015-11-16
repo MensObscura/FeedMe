@@ -27,7 +27,7 @@ public class Offre {
 
   private String note;
 
-  private String menu;
+  private Menu menu;
 
   private Integer ageMin;
 
