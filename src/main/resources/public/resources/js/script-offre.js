@@ -90,11 +90,11 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				contentType: "application/json",
 				data: donnees
 			}).success(function(response, status, headers, config){
-				$mdToast.show($mdToast.simple().position('bottom left right').content('Votre réservation a été enregistrée.').hideDelay(2000));
-				setTimeout(function() {$window.location.href = '/login.html';},2000);
-				$window.location.href = "/liste_offres.html";
+				//$mdToast.show($mdToast.simple().position('bottom left right').content('Votre réservation a été enregistrée.').hideDelay(2000));
+				//setTimeout(function() {$window.location.href = '/login.html';},2000);
+				//$window.location.href = "/liste_offres.html";
 			}).error(function(err, status, headers, config){
-				$mdToast.show($mdToast.simple().position('bottom left right').content('Vous avez déja réservé une place pour cette offre.').hideDelay(2000));
+				//$mdToast.show($mdToast.simple().position('bottom left right').content('Vous avez déja réservé une place pour cette offre.').hideDelay(2000));
 			});
 			
 		}
