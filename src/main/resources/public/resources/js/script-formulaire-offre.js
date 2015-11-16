@@ -140,7 +140,8 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
         		data: donnees
      		}).success(function(response, status, headers, config){
      			//$mdToast.show($mdToast.simple().position('bottom left right').content('Votre offre a bien été enregistrée.').hideDelay(2000));
-      		}).error(function(err, status, headers, config){
+     			$window.location.href = "/liste_offres.html";
+     		}).error(function(err, status, headers, config){
       			//$mdToast.show($mdToast.simple().position('bottom left right').content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
      		});
 

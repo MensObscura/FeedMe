@@ -47,6 +47,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 			}).success(function(response, status, headers, config){
 				//$mdToast.show($mdToast.simple().position('bottom left right').content('Votre compte a bien été enregistré, vous pouvez vous connecter.').hideDelay(2000));
 				//setTimeout(function() {$window.location.href = '/login.html';},2000);
+				$window.location.href = '/login.html';
 			}).error(function(err, status, headers, config){
 				 //$mdToast.show($mdToast.simple().position('bottom left right').content('Cette adresse email est déja enregistrée par un utilisateur.').hideDelay(2000));
 			});
