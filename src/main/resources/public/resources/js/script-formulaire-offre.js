@@ -28,7 +28,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
-				console.log(donnees);
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 				$scope.profil = donnees;
 			}
@@ -40,7 +39,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			$scope.rue = $scope.profil.adresse.voie;
 			$scope.ville = $scope.profil.adresse.ville.nom;
 			$scope.cp = $scope.profil.adresse.ville.cp;
-			$scope.pays= $scope.profil.adresse.ville.cp.pays;
+			$scope.pays= $scope.profil.adresse.ville.pays;
 
 		}else{
 
