@@ -5,14 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Proposer une offre</title>
-<link rel="stylesheet" type='text/css' href="/resources/css/angular-material.min.css">
-<link rel="stylesheet" type='text/css' href="/resources/css/datetimepicker.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="/resources/fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type='text/css'
+	href="/resources/css/angular-material.min.css">
+<link rel="stylesheet" type='text/css'
+	href="/resources/css/datetimepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/fonts/font-awesome/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/responsive.css">
-<link rel='stylesheet' type='text/css' href='/resources/fonts/general-font.css'>
-<link rel="stylesheet" type='text/css' href="/resources/css/angular.rangeSlider.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/responsive.css">
+<link rel='stylesheet' type='text/css'
+	href='/resources/fonts/general-font.css'>
+<link rel="stylesheet" type='text/css'
+	href="/resources/css/angular.rangeSlider.css">
 </head>
 
 <body ng-app="validationOffre">
@@ -27,7 +34,16 @@
 				<h2>Votre offre :</h2>
 				<form name="OffreForm" ng-controller="OffreCtrl"
 					ng-submit="submitForm()" novalidate>
+					<div class="Aligner">
+						<div class="item-view text-left Aligner-item">
+							<h2>{{titre}}</h2>
+							<p>{{typeCuisine.type}}</p>
+							<p>{{prix}} €</p>
+							<p>{{nbpers}}</p>
+							<p>{{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}</p>
+						</div>
 
+					</div>
 					<div layout="row">
 						<div flex>
 							<!-- Détails du repas proposé -->
@@ -39,9 +55,10 @@
 									<md-input-container flex> <label
 										for="titre">Titre de l'offre :</label> <input type="text"
 										name="titre" ng-model="titre" ng-required="true"
-										placeholder="Titre de l'offre.">
+										placeholder="Titre de l'offre." maxlength="18">
 									<div ng-messages="OffreForm.titre.$error">
-										<div ng-message="required">Veuillez saisir un titre pour l'offre.</div>
+										<div ng-message="required">Veuillez saisir un titre pour
+											l'offre.</div>
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
@@ -94,10 +111,10 @@
 									<a class="dropdown-toggle" id="dropdown2" role="button"
 										data-toggle="dropdown" data-target="#" href="#">
 										<div class="input-group">
-											<input
-												placeholder="Date du repas." readonly="true" type="text"
-												min="minDate" class="form-control" data-ng-model="date">
-											<span class="input-group-addon"><i
+											<input placeholder="Date du repas." readonly="true"
+												type="text" min="minDate" class="form-control"
+												data-ng-model="date"> <span
+												class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span>
 										</div>
 									</a>
@@ -106,7 +123,7 @@
 											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
 									</ul>
 								</div>
-								
+
 								</md-input-container> </md-content>
 
 							</fieldset>
@@ -225,12 +242,12 @@
 								<md-content layout-padding>
 
 								<div layout layout-sm="column">
-					
-									<md-input-container flex>
-									<label>Tranche d'âges : de {{age.min}} à {{age.max}} ans</label>
-									<input id="hidden" type="text" placeholder="Tranche d'âges." />
-									 <div id="tranches-ages" range-slider min="18" max="100" model-min="age.min"
-										model-max="age.max"></div>
+
+									<md-input-container flex> <label>Tranche
+										d'âges : de {{age.min}} à {{age.max}} ans</label> <input id="hidden"
+										type="text" placeholder="Tranche d'âges." />
+									<div id="tranches-ages" range-slider min="18" max="100"
+										model-min="age.min" model-max="age.max"></div>
 									</md-input-container>
 								</div>
 								<div layout layout-sm="column">
@@ -253,57 +270,67 @@
 						</div>
 
 						<div flex>
-							<h2>{{titre || "Titre non complété"}}</h2>
-							<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
-
+							<br> <br>
 							<fieldset>
-								<legend>L'offre de repas</legend>
 
-								<!-- Présentation de l'hôte, du lieu -->
+								<h2>{{titre || "Titre non complété"}}</h2>
+								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à'
+									hh'h'mm"}}.</h3>
+
 								<fieldset>
-									<legend>L'hôte</legend>
-									<h3>Identité :</h3>
-									{{profil.prenom}} {{profil.nom}}
-									<h3>Lieu :</h3>
-									{{numero}} {{rue}} {{complement}}<br> {{cp}} {{ville}}
-									({{pays.nom}})
-									<h3>Prix par convive :</h3>
-									{{prix}} €
-								</fieldset>
+									<legend>L'offre de repas</legend>
 
-								<!-- Présentation du menu -->
-								<fieldset>
-									<legend>Le menu</legend>
-									<h3>Type de cuisine :</h3>
-									{{typeCuisine.type}}
-									<h3>Dans votre assiette :</h3>
-									<br>
-									<h4>Entrée(s) :</h4>
+									<!-- Présentation de l'hôte, du lieu -->
+									<fieldset>
+										<legend>L'hôte</legend>
+										<h3>Identité :</h3>
+										{{profil.prenom}} {{profil.nom}}
+										<h3>Lieu :</h3>
+										{{numero}} {{rue}} {{complement}}<br> {{cp}} {{ville}}
+										({{pays.nom}})
+										<h3>Prix par convive :</h3>
+										{{prix}} €
+									</fieldset>
 
-									{{entree || "aucunes entrées"}} <br>
-									<h4>Plat :</h4>
-									{{plat || "Plat non complété"}} <br>
-									<h4>Dessert(s) :</h4>
+									<!-- Présentation du menu -->
+									<fieldset>
+										<legend>Le menu</legend>
+										<h3>Type de cuisine :</h3>
+										{{typeCuisine.type}}
+										<h3>Dans votre assiette :</h3>
+										<br>
+										<h4>Entrée(s) :</h4>
 
-									{{dessert || "aucuns desserts"}} <br>
-									<h4>Carte des boissons :</h4>
+										{{entree || "aucunes entrées"}} <br>
+										<h4>Plat :</h4>
+										{{plat || "Plat non complété"}} <br>
+										<h4>Dessert(s) :</h4>
 
-									{{boisson || "aucunes boissons particulières"}} <br> <br>
-									<h3>Nombre de couverts restants :</h3>
-									<!--  x sur y  -->
-									{{nbpers}} sur {{nbpers}}
-									<h3>Durée prévisionnelle :</h3>
-									{{duree}} min.
-								</fieldset>
+										{{dessert || "aucuns desserts"}} <br>
+										<h4>Carte des boissons :</h4>
 
-								<!-- Informations diverses (et optionnelles) -->
-								<fieldset>
-									<legend>Divers</legend>
-									<div ng-if="animal">Un animal de compagnie sera présent lors du repas.<br></div>
-									<div ng-if="age">Ce repas s'adresse aux {{age.min}}-{{age.max}} ans.<br></div>
-									<div ng-if="note">{{note}}</div>
+										{{boisson || "aucunes boissons particulières"}} <br> <br>
+										<h3>Nombre de couverts restants :</h3>
+										<!--  x sur y  -->
+										{{nbpers}} sur {{nbpers}}
+										<h3>Durée prévisionnelle :</h3>
+										{{duree}} min.
+									</fieldset>
+
+									<!-- Informations diverses (et optionnelles) -->
+									<fieldset>
+										<legend>Divers</legend>
+										<div ng-if="animal">
+											Un animal de compagnie sera présent lors du repas.<br>
+										</div>
+										<div ng-if="age">
+											Ce repas s'adresse aux {{age.min}}-{{age.max}} ans.<br>
+										</div>
+										<div ng-if="note">{{note}}</div>
+									</fieldset>
 								</fieldset>
 							</fieldset>
+
 
 						</div>
 					</div>
@@ -313,15 +340,15 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script src="/resources/js/jquery-2.1.4.min.js"></script>
 	<script src="/resources/js/angular.min.js"></script>
-	
+
 	<script src="/resources/js/angular-material.min.js"></script>
 	<script src="/resources/js/angular-animate.min.js"></script>
 	<script src="/resources/js/angular-aria.min.js"></script>
 	<script src="/resources/js/angular-messages.js"></script>
-	
+
 	<script src="/resources/js/moment.js"></script>
 	<script src="/resources/js/bootstrap.js"></script>
 	<script src="/resources/js/datetimepicker.js"></script>
