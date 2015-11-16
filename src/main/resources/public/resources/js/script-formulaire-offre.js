@@ -28,6 +28,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
+				console.log(donnees);
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 				$scope.profil = donnees;
 			}
@@ -71,6 +72,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.prix = 1;
 	$scope.nbpers = 1;
 	$scope.date = new Date();
+	$scope.complement = "";
 
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
