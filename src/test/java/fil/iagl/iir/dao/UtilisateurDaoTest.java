@@ -21,12 +21,6 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     String nom = "toto";
     String email = "toto.toto@gmail.com";
 
-    String rue = "4 rue guillaume apollinaire";
-    Integer adresseId = 1;
-    Integer villeId = 1;
-    String ville = "Lille";
-    String codePostal = "59000";
-
     // Quand on recupere l'utilisateur associe a cet ID
     Utilisateur user = utilisateurDao.getById(id);
 
@@ -36,6 +30,47 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(user.getMail()).isNotNull().isEqualTo(email);
     assertThat(user.getNom()).isNotNull().isEqualTo(nom);
     Assertions.assertThat(user.getAdresse()).isNull();
+  }
+
+  @Test
+  public void testGetUtilisateurAdresseSucess() throws Exception {
+    // Etant donne un utilisateur
+    int idUtilisateur = 4;
+    Utilisateur utilisateur = new Utilisateur();
+    String nom = "hall";
+    String mail = "kolick@gmail.com";
+    String rue = "4 rue guillaume apollinaire";
+    Integer adresseId = 1;
+    String villeName = "Lille";
+    String codePostal = "59000";
+    Integer villeId = 1;
+    Ville ville = new Ville();
+    ville.setId(villeId);
+    ville.setCp(codePostal);
+    ville.setNom(villeName);
+    Adresse adresse = new Adresse();
+    adresse.setId(adresseId);
+    adresse.setVoie(rue);
+    adresse.setVille(ville);
+
+    utilisateur.setMail(mail);
+    utilisateur.setNom(nom);
+    utilisateur.setAdresse(adresse);
+
+    // n'ayant pas encore son ID
+    Assertions.assertThat(utilisateur.getIdUtilisateur()).isNull();
+
+    Utilisateur utilisateurToCheck = utilisateurDao.getById(idUtilisateur);
+    assertThat(utilisateurToCheck.getIdUtilisateur()).isNotNull().isPositive().isEqualTo(idUtilisateur);
+    assertThat(utilisateurToCheck.getMail()).isNotNull().isEqualTo(mail);
+    assertThat(utilisateurToCheck.getNom()).isNotNull().isEqualTo(nom);
+    assertThat(utilisateurToCheck.getAdresse()).isNotNull();
+    // Alors les donnees de l'adresse sont celles attendues
+    assertThat(utilisateurToCheck.getAdresse().getId()).isEqualTo(adresseId);
+    assertThat(utilisateurToCheck.getAdresse().getVoie()).isEqualTo(rue);
+    // les donnees de la ville sont celles attendues
+    assertThat(utilisateurToCheck.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
+    assertThat(utilisateurToCheck.getAdresse().getVille().getCp()).isEqualTo(codePostal);
   }
 
   @Test

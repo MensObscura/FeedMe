@@ -1,5 +1,7 @@
 package fil.iagl.iir.dao;
 
+import static org.fest.assertions.api.Assertions.assertThat;
+
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -7,7 +9,10 @@ import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Particulier;
+import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.entite.Ville;
 import fil.iagl.iir.outils.SQLCODE;
 
 public class ParticulierDaoTest extends AbstractDaoTest {
@@ -39,6 +44,50 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(particulier.getPrenom()).isNotNull().isEqualTo(prenom);
     Assertions.assertThat(particulier.getMail()).isNotNull().isEqualTo(mail);
     Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
+  }
+
+  @Test
+  public void testGetAdresseSuccess() throws Exception {
+    Utilisateur utilisateur = new Utilisateur();
+    int idUtilisateur = 4;
+    String nom = "hall";
+    String mail = "kolick@gmail.com";
+    String rue = "4 rue guillaume apollinaire";
+    Integer adresseId = 1;
+    String villeName = "Lille";
+    String codePostal = "59000";
+    Integer villeId = 1;
+    Ville ville = new Ville();
+    ville.setId(villeId);
+    ville.setCp(codePostal);
+    ville.setNom(villeName);
+    Adresse adresse = new Adresse();
+    adresse.setId(adresseId);
+    adresse.setVoie(rue);
+    adresse.setVille(ville);
+
+    utilisateur.setMail(mail);
+    utilisateur.setNom(nom);
+    utilisateur.setAdresse(adresse);
+
+    Integer idParticulier = 2;
+    String prenom = "toto";
+    LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 31);
+
+    Particulier particulier = particulierDao.getById(idParticulier);
+
+    Assertions.assertThat(particulier).isNotNull();
+    Assertions.assertThat(particulier.getIdUtilisateur()).isNotNull().isEqualTo(idUtilisateur);
+    Assertions.assertThat(particulier.getIdParticulier()).isNotNull().isEqualTo(idParticulier);
+    Assertions.assertThat(particulier.getNom()).isNotNull().isEqualTo(nom);
+    Assertions.assertThat(particulier.getPrenom()).isNotNull().isEqualTo(prenom);
+    Assertions.assertThat(particulier.getMail()).isNotNull().isEqualTo(mail);
+    Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
+    Assertions.assertThat(particulier.getAdresse()).isNotNull();
+    assertThat(particulier.getAdresse().getId()).isEqualTo(adresseId);
+    assertThat(particulier.getAdresse().getVoie()).isEqualTo(rue);
+    assertThat(particulier.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
+    assertThat(particulier.getAdresse().getVille().getCp()).isEqualTo(codePostal);
   }
 
   @Test
