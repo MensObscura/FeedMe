@@ -2,7 +2,7 @@
 var app = angular.module("Index", []);
 
 // Création du controller "MenuCtrl"
-app.controller("MenuCtrl", function($scope) {
+app.controller("MenuCtrl", function($scope, $http) {
 
 	$scope.connecte = true;
 

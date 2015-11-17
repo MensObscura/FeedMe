@@ -35,7 +35,6 @@
     <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
 
     <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
-    <script src="/resources/js/angular.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +45,6 @@
   </head>
   <body ng-app="Index">
       
-      <div ng-include="'/resources/header.html'"></div>
     <!-- Navigation
     ==========================================-->
     <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
@@ -70,9 +68,9 @@
             <li><a href="#tf-team" class="page-scroll">L'équipe</a></li>
             <li><a href="#tf-testimonials" class="page-scroll">Témoignages</a></li>
             <li><a href="#tf-contact" class="page-scroll">Contact</a></li>
-            <li ng-if="{{connecte}}"><a href="login.html">Se connecter</a></li>
-            <li ng-if="{{connecte}}"><a href="inscription.html">S'inscrire</a></li>
-	    <li ng-if="{{!connecte}}"><a href="">Se déconnecter</a></li>
+            <li ng-if="connecte"><a href="login.html">Se connecter</a></li>
+            <li ng-if="connecte"><a href="inscription.html">S'inscrire</a></li>
+	    <li ng-if="!connecte"><a href="">Se déconnecter</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
