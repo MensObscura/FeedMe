@@ -7,6 +7,7 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	$http.get('/offres').success(
 		function(donnees) {
 			$scope.list = donnees;
+						
 		}
 	);
     

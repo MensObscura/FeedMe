@@ -11494,6 +11494,7 @@ md-select[disabled]:hover {
 
 md-select:not ([disabled] ):hover {
 	cursor: pointer
+		
 }
 
 md-select:not ([disabled] ).ng-invalid.ng-dirty .md-select-value {
@@ -11505,6 +11506,8 @@ md-select:not ([disabled] ):focus .md-select-value {
 	border-bottom-width: 2px;
 	border-bottom-style: solid;
 	padding-bottom: 0
+	color: rgb(250, 250, 250);
+	background-color: rgba(238, 238, 238, 0);
 }
 
 .md-select-value {
