@@ -11,7 +11,7 @@ body, html {
 	text-rendering: optimizeLegibility !important;
 	-webkit-font-smoothing: antialiased !important;
 	color: #5a5a5a;
-	height: 94%;
+	height: 100%;
 }
 
 h1 {
@@ -106,7 +106,7 @@ ul, ol {
 
 #tf-menu.navbar-default {
 	background-color: rgba(0, 0, 0, 1);
-	/* A dé-commenter pour le prochain jallon MVP */
+	/* A dÃ©commenter pour le prochain jallon MVP */
 	/* background-color: rgba(0, 0, 0, 0.75); */
 	border-color: rgba(231, 231, 231, 0);
 }
@@ -158,6 +158,7 @@ ul, ol {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
+    height: 70em;
 }
 
 #tf-home .overlay {
@@ -183,7 +184,7 @@ ul, ol {
 		62%, rgba(0, 0, 0, 0.4) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000',
 		endColorstr='#66000000', GradientType=0); /* IE6-9 */
-	height: 750px;
+	height: 70em;
 	background-attachment: fixed;
 }
 
@@ -652,8 +653,8 @@ nav#footer p {
 	color: #ffffff;
 }
 
-/* Début du tri du CSS à partir d'ici:
-    ajouts et tri d'éléments avec commentaring
+/* DÃ©but du tri du CSS Ã  partir d'ici:
+    ajouts et tri d'Ã©lÃ©ments avec commentaring
     */
 #StyleFormulaireInscription {
 	background: url(../img/forms/inscription.jpg);
