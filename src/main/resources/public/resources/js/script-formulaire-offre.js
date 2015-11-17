@@ -1,23 +1,6 @@
 //Chargement du module "validationOffre"
 var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ui.bootstrap.datetimepicker']);
 
-//On ajoute une directive qui va se charger de de contrôler l'expression régulière contenue dans le formulaire
-validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
-	return {
-		require: 'ngModel',
-		link: function(scope, ele, attrs, ngModelController) {
-			scope.$watch(attrs.ngModel, function(value) {
-				// On calcule le résultat de l'expression
-				var resultat = $parse(attrs.ensureExpression)(scope);
-				// On informe la vue du résultat
-				ngModelController.$setValidity('mauvaisetranche', resultat);
-			});
-		}
-	};
-}]);
-
-
-
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
 	
