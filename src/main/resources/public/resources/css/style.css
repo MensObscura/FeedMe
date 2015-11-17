@@ -951,7 +951,8 @@ ul {
 	-ms-flex: 1;
 	flex: 1;
 	cursor: pointer;
-	padding: 10% 10% 10% 15%;
+	padding: 10% 7% 10% 7%;
+	margin: 5% 5% 5% 5%;
 	background-color: rgba(0, 0, 0, 0.3);
 	margin-top: 12.1%;
 	margin-bottom: 12.1%;
@@ -1005,6 +1006,10 @@ ul {
 	background: rgba(0, 0, 0, 0.85);
 	color: white;
 	line-height: 35px;
+}
+
+.profil h2 {
+	margin-top: -1.5em;
 }
 
 .offre-container {

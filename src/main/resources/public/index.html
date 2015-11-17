@@ -10,7 +10,7 @@
     <meta name="description" content="FeedMe est une application de rencontres centré sur la cuisine: vous cuisinez pour des amis à vous, ou de parfaits inconnus, qui quant à eux paient pour venir déguster votre repas.">
     <meta name="keywords" content="cuisine, réseau social, partage, commerce, repas, manger, nourriture, rencontre, aliments, cercle d'amis">
     <meta name="author" content="Team FeedMe">
-    
+        
     <!-- Favicons
     ================================================== -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -70,7 +70,8 @@
             <li><a href="#tf-contact" class="page-scroll">Contact</a></li>
             <li ng-if="!connecte"><a href="login.html">Se connecter</a></li>
             <li ng-if="!connecte"><a href="inscription.html">S'inscrire</a></li>
-	    <li ng-if="connecte"><a href="">Se déconnecter</a></li>
+            <li ng-if="connecte"><a href="accueil.html">Revenir sur la page principale</a></li>
+	    	<li ng-if="connecte"><a href="">Se déconnecter</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -343,6 +344,7 @@
 
     <!-- Javascripts
     ================================================== -->
+    
     <script type="text/javascript" src="resources/js/main.js"></script>
     <script src="/resources/js/angular.min.js"></script>
     <script src="/resources/js/script-index.js"></script>

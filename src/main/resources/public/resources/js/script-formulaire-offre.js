@@ -105,7 +105,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					titre : $scope.titre,
 					prix : parseFloat($scope.prix),
 					nombrePersonne : parseInt($scope.nbpers),
-					dureeMinute : parseInt($scope.duree), // optionnel
+					dureeMinute : parseInt($scope.duree),
 					dateRepas : date_repas.toISOString().substr(0,22),
 					note : $scope.note, //optionnel
 					menu : menu,
