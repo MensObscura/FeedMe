@@ -65,8 +65,7 @@
 									</md-input-container>
 									<md-input-container flex> <label
 										id="white" for="typeCuisine">Type de cuisine :</label> <md-select
-										id="select_white" name="typeCuisine" ng-model="typeCuisine"
-										style="min-width: 200px;" tabIndex="-1"> <md-option
+										id="select_white" name="typeCuisine" ng-model="typeCuisine"> <md-option
 										id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
 										ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
 								</div>
@@ -245,7 +244,7 @@
 									<md-input-container flex> <label
 										id="white" for="pays">Pays :</label> <md-select
 										id="select_white" name="pays" ng-model="pays"
-										style="min-width: 200px;" ng-disabled="home"> <md-option
+										ng-disabled="home"> <md-option
 										id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
 										ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
 								</div>
@@ -297,7 +296,7 @@
 
 								<fieldset class="white preview ">
 									<legend>L'offre de repas</legend>
-									<div>
+									<div class="general-form">
 										<!-- Présentation de l'hôte, du lieu -->
 										<fieldset class="white preview ">
 											<legend>L'hôte</legend>
@@ -330,7 +329,7 @@
 											<br>
 											<h4>Carte des boissons :</h4>
 
-											<pre class="white word_respect ">{{boisson || "aucunes boissons particulières"}}</pre>
+											<div class="white word_respect ">{{boisson || "aucunes boissons particulières"}}</div>
 											<br> <br>
 											<h3>Nombre de couverts restants :</h3>
 											<!--  x sur y  -->
