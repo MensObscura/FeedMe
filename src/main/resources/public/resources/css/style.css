@@ -951,9 +951,10 @@ ul {
 	-ms-flex: 1;
 	flex: 1;
 	cursor: pointer;
-	padding: 20% 10% 20% 15%;
+	padding: 10% 10% 10% 15%;
 	background-color: rgba(0, 0, 0, 0.3);
-
+	margin-top: 12.1%;
+	margin-bottom: 12.1%;
 }
 
 .choice:hover {
