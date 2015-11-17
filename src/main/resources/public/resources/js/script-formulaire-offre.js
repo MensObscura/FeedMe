@@ -25,7 +25,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 		min: 18,
 		max: 100
 	};
-
+	$scope.submited =false;
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)

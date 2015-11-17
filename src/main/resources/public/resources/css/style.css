@@ -1107,10 +1107,14 @@ md-toast {
 #form_button_offre {
 	width: 70%;
 	margin-left: 15%;
-	heigh: 100px;
+	height: 50%;
 	margin-right: 15%;
 }
 
-#form_button_form:hover {
-	color: rgb(250, 250, 250);
+#form_button_offre:hover {
+	background-color: #FC7845;
+}
+
+:required{
+	color: rgb(2, 250, 250);
 }

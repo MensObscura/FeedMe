@@ -53,11 +53,11 @@
 								<md-content layout-padding>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
-										id="white" for="titre">Titre de l'offre :</label> <input
+										id="white" for="titre">Titre de l'offre* :</label> <input
 										id="white" type="text" name="titre" ng-model="titre"
 										ng-required="true" placeholder="Titre de l'offre."
 										maxlength="18">
-									<div ng-messages="OffreForm.titre.$error">
+									<div ng-messages="OffreForm.titre.$error"  ng-show="(OffreForm.titre.$touched   || submited)">
 										<div ng-message="required">Veuillez saisir un titre pour
 											l'offre.</div>
 									</div>
@@ -71,11 +71,11 @@
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
-										id="white" for="nbpers">Nombre de convives :</label> <input
+										id="white" for="nbpers">Nombre de convives* :</label> <input
 										id="white" type="number" name="nbpers" ng-model="nbpers"
 										ng-min="1" ng-required="true"
 										placeholder="Nombre de couverts.">
-									<div ng-messages="OffreForm.nbpers.$error">
+									<div ng-messages="OffreForm.nbpers.$error" ng-show="( OffreForm.nbpers.$touched  || submited)">
 										<div ng-message="min">Veuillez saisir un nombre
 											supérieur à 1.</div>
 										<div ng-message="required">Veuillez saisir un nombre de
@@ -84,11 +84,11 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
-										id="white" for="prix">Prix par convive :</label> <input
+										id="white" for="prix">Prix par convive* :</label> <input
 										id="white" type="number" step="0.1" name="prix"
 										ng-model="prix" ng-min="1.00" ng-required="true"
 										placeholder="Prix par convive.">
-									<div ng-messages="OffreForm.prix.$error">
+									<div ng-messages="OffreForm.prix.$error" ng-show="(OffreForm.prix.$touched   || submited)">
 										<div ng-message="min">Veuillez saisir un prix supérieur
 											à 1.00.</div>
 										<div ng-message="required">Veuillez saisir un prix.</div>
@@ -96,11 +96,11 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
-										id="white" for="duree">Durée du repas (en min) :</label> <input
+										id="white" for="duree">Durée du repas(min)* :</label> <input
 										id="white" type="number" ng-model="duree" name="duree"
 										ng-min="60" ng-required="true"
 										placeholder="Durée prévisionnelle.">
-									<div ng-messages="OffreForm.duree.$error">
+									<div ng-messages="OffreForm.duree.$error" ng-show="(OffreForm.duree.$touched   || submited)">
 										<div ng-message="min">Veuillez saisir une durée
 											supérieur à 60 min.</div>
 										<div ng-message="required">Veuillez saisir une durée.</div>
@@ -109,7 +109,7 @@
 									</md-input-container>
 								</div>
 								<md-input-container flex> <label id="white"
-									for="date">Date :</label>
+									for="date">Date* :</label>
 
 								<div class="dropdown">
 									<a class="dropdown-toggle" id="dropdown2" role="button"
@@ -145,10 +145,10 @@
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
-										id="white" for="plat">Plat principal :</label> <textarea
+										id="white" for="plat">Plat principal* :</label> <textarea
 										id="white" name="plat" ng-model="plat"
 										placeholder="Votre plat." ng-required="true"></textarea>
-									<div ng-messages="OffreForm.plat.$error">
+									<div ng-messages="OffreForm.plat.$error" ng-show="(OffreForm.plat.$touched   || submited)">
 										<div ng-message="required">Votre menu doit contenir au
 											moins un plat.</div>
 									</div>
@@ -183,11 +183,11 @@
 
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
-										id="white" for="numero">Numéro :</label> <input id="white"
+										id="white" for="numero">Numéro*  :</label> <input id="white"
 										type="number" ng-model="numero" name="numero" ng-min="1"
 										placeholder="Numéro de voirie." ng-required="!home"
 										ng-disabled="home">
-									<div ng-messages="OffreForm.numero.$error">
+									<div ng-messages="OffreForm.numero.$error" ng-show="(OffreForm.numero.$touched  || submited)">
 										<div ng-message="min">Veuillez saisir un numéro valide.</div>
 										<div ng-message="required">Veuillez saisir un numéro de
 											voirie.</div>
@@ -195,11 +195,11 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
-										id="white" for="rue">Rue : </label> <input id="white"
+										id="white" for="rue">Rue* : </label> <input id="white"
 										type="text" ng-model="rue" name="rue"
 										placeholder="Nom de voirie." ng-required="!home"
 										ng-disabled="home">
-									<div ng-messages="OffreForm.rue.$error">
+									<div ng-messages="OffreForm.rue.$error" ng-show="(OffreForm.rue.$touched  || submited)">
 										<div ng-message="required">Veuillez saisir un nom de
 											rue.</div>
 									</div>
@@ -212,21 +212,21 @@
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
-										id="white" for="ville">Ville :</label> <input id="white"
+										id="white" for="ville">Ville* :</label> <input id="white"
 										type="text" name="ville" ng-model="ville"
 										placeholder="Votre ville." ng-required="!home"
 										ng-disabled="home">
-									<div ng-messages="OffreForm.ville.$error">
+									<div ng-messages="OffreForm.ville.$error" ng-show="(OffreForm.ville.$touched || submited)">
 										<div ng-message="required">Veuillez saisir votre ville.</div>
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
-										id="white" for="cp">Code postal :</label> <input id="white"
+										id="white" for="cp">Code postal* :</label> <input id="white"
 										type="text" name="cp" ng-model="cp"
 										ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
 										placeholder="Votre code postal." ng-required="!home"
 										ng-disabled="home">
-									<div ng-messages="OffreForm.cp.$error">
+									<div ng-messages="OffreForm.cp.$error" ng-show="(OffreForm.cp.$touched   || submited)">
 										<div ng-message="pattern">Le code postal saisit est
 											incorrect.</div>
 										<div ng-message="required">Veuillez saisir un code
@@ -345,8 +345,8 @@
 							</fieldset>
 							<br>
 							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-							<md-button id="form_button_offre" type="submit"
-								ng-disabled="OffreForm.$invalid" class="form">Ajouter</md-button>
+							<md-button id="form_button_offre" type="submit" ng-click="submited=true"
+								class="form">Ajouter</md-button>
 						</div>
 					</div>
 
