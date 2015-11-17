@@ -73,8 +73,8 @@
 					ng-submit="login()" novalide>
 					<md-content layout-padding>
 					<div layout layout-sm="column">
-						<md-input-container flex><label for="mail">Adresse
-							email :</label> <input class="form" placeholder="Email du compte" ng-required="true"
+						<md-input-container flex><label id="white" for="mail">Adresse
+							email :</label> <input  class="form" placeholder="Email du compte" ng-required="true"
 							type="email" id="username" name="username"
 							ng-model="credentials.username" />
 							<div ng-messages="ConnexionForm.username.$error">
@@ -84,7 +84,7 @@
 							</md-input-container>
 						
 						
-						<md-input-container flex> <label
+						<md-input-container flex> <label id="white"
 							for="password">Mot de passe :</label> <input
 							placeholder="Mot de passe" ng-required="true" type="password"
 							id="password" name="password" ng-model="credentials.password" />

@@ -60,14 +60,14 @@ Page proposant le formulaire d'inscription.
 						<md-content layout-padding>
 							<div layout layout-sm="column">
 							    <md-input-container flex>
-							      <label for="nom">Nom :</label>
+							      <label id="white" for="nom">Nom :</label>
 							      <input type="text" name="nom" ng-model="nom" ng-required="true" placeholder="Votre nom.">
 							        <div ng-messages="InscriptionForm.nom.$error">
 							          <div ng-message="required">Veuillez saisir votre nom.</div>
 							        </div>
 							    </md-input-container>
 							    <md-input-container flex>
-							      <label for="prenom">Prénom :</label>
+							      <label id="white" for="prenom">Prénom :</label>
 							      <input type="text" name="prenom" ng-model="prenom" ng-required="true" placeholder="Votre prénom.">
 							        <div ng-messages="InscriptionForm.prenom.$error">
 							          <div ng-message="required">Veuillez saisir votre prénom.</div>
@@ -77,22 +77,23 @@ Page proposant le formulaire d'inscription.
 							 
 							 <div layout layout-sm="column">
 							        <md-input-container flex>
-							          <label for="email">Email :</label>
+							          <label id="white" for="email">Email :</label>
 							          <input type="email" name="email" ng-model="email" ng-required="true" placeholder="Adresse mail">
 							          <div ng-messages="InscriptionForm.email.$error">						        						        
 								          <div ng-message="required">Veuillez saisir votre email.</div>
 								          <div ng-message="email">Votre email est invalide.</div>
 							        </div>
-							        </md-input-container>
-							        <md-datepicker ng-required="true" ng-model="anniversaire" md-max-date="maxDate" md-placeholder="Date de naissance" name="anniversaire"></md-datepicker>
+							        </md-input-container flex>
+							        <label id="white" for="email">Date de naissance :</label>
+							        <md-datepicker id="date" ng-required="true" ng-model="anniversaire" md-max-date="maxDate" md-placeholder="Date de naissance" name="anniversaire"></md-datepicker>
 							        <div class="validation-messages" ng-messages="InscriptionForm.anniversaire.$error">
 								        <div ng-message="required">Veuillez selectionner votre date de naissance.</div>
 								        <div ng-message="maxdate">Vous devez avoir plus de 18 ans.</div>
       								</div>
 							 </div>
-							 <div layout layout-sm="column">
+							 <div id="white" layout layout-sm="column">
 							    <md-input-container flex>
-							      <label for="mdp">Mot de passe : </label>
+							      <label id="white" for="mdp">Mot de passe : </label>
 							      <input type="password" name="mdp" ng-model="mdp" ng-required="true" placeholder="Mot de passe">
 							        <div ng-messages="InscriptionForm.mdp.$error">						        
 							          <div ng-message="required">Veuillez saisir un mot de passe.</div>
@@ -100,7 +101,7 @@ Page proposant le formulaire d'inscription.
 							    </md-input-container>
 							    <md-input-container flex>
 							      <label for="cmdp">Confirmez le mot de passe : </label>
-							      <input type="password" name="cmdp" ng-model="cmdp" ng-required="true" placeholder="Mot de passe" ensure-expression="mdp == cmdp">
+							      <input id="white" type="password" name="cmdp" ng-model="cmdp" ng-required="true" placeholder="Mot de passe" ensure-expression="mdp == cmdp">
 							        <div ng-messages="InscriptionForm.cmdp.$error">
 							          <div ng-message="required">Veuillez confirmer le mot de passe.</div>						        						        
 							          <div ng-message="mauvaismdp">Les mots de passe sont différents.</div>
@@ -108,7 +109,7 @@ Page proposant le formulaire d'inscription.
 							    </md-input-container>
 							 </div>
 							    <!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-							    <md-button type="submit" ng-disabled="InscriptionForm.$invalid" class="md-raised md-primary">Confirmer</md-button>
+							    <md-button type="submit" ng-disabled="InscriptionForm.$invalid" class="form">Confirmer</md-button>
 							 </md-content>
 				</div>
             </form>
