@@ -18,4 +18,4 @@ Une application centrée nutrition !
   
   Jean-Baptiste Delaeter
   
-  Jordan Piorun
+  Jordan Piorun (Piorunj)
