@@ -40,7 +40,7 @@ Page de visualisation d'une offre
 		<div ng-include="'/resources/header.html'"></div>	
 		<!-- Visualisation des détails de l'offre -->
         <div class="une-offre-body">
-            <div class="offre-display" ng-controller="ReservationController">
+            <div class="offre-display text-center" ng-controller="ReservationController">
                 <h2>{{offre.titre}}</h2>
                 <h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
                 <form name="ReservationForm" ng-submit="submitForm()" novalidate>
@@ -66,13 +66,13 @@ Page de visualisation d'une offre
                         {{offre.typeCuisine.type}}
                         <h3>Dans votre assiette :</h3>
                         <h4>Entrée(s) :</h4>
-                        {{offre.menu.entree || "aucunes entrées"}}
+                       <pre class="white" > {{offre.menu.entree || "aucunes entrées"}}</pre>
                         <h4>Plat :</h4>
-                        {{offre.menu.plat}}
+                        <pre class="white" >{{offre.menu.plat}}</pre>
                         <h4>Dessert(s) :</h4>
-                        {{offre.menu.dessert || "aucuns desserts"}}
+                       <pre class="white" > {{offre.menu.dessert || "aucuns desserts"}}</pre>
                         <h4>Carte des boissons :</h4>
-                        {{offre.menu.boisson || "aucunes boissons particulières"}}
+                        <pre class="white" >{{offre.menu.boisson || "aucunes boissons particulières"}}</pre>
                         <h3>Nombre de couverts restants :</h3>
                         <!-- soit x sur y soit COMPLET -->
                         {{couverts_restants}}

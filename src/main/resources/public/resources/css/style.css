@@ -1080,4 +1080,16 @@ md-toast {
 
 #white{
 	color: rgb(250,250,250);
+	border-color: rgb(250,250,250);
+}
+#back_white{
+    background-color: rgb(250,250,250);
+    	color: rgb(0,0,0);
+}
+.white{
+	color: rgb(250,250,250);
+	 background-color: rgba(238, 238, 238, 0);
+	
+}	
+	
 }

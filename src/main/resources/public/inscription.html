@@ -5,129 +5,155 @@ Page proposant le formulaire d'inscription.
 
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Inscription</title>
-		
-		<link rel="stylesheet" type='text/css' href="/resources/css/angular-material.min.css">
-                
-        <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css"  href="resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Inscription</title>
 
-    <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
+<link rel="stylesheet" type='text/css'
+	href="/resources/css/angular-material.min.css">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"
+	href="resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/fonts/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/responsive.css">
+
+<link rel='stylesheet' type='text/css'
+	href='resources/fonts/general-font.css'>
 </head>
-	
-	<body ng-app="Inscription">
-        
-        <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html"><img class="logo" src="resources/img/icon.png" /> FeedMe</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.html">Retour à l'accueil</a></li>
-            <li><a href="login.html">Se connecter</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-		<!-- Menu -->
-    <div id="StyleFormulaireInscription" class="text-center">
-        <div class="overlay">
-            <div class="general-form">
+<body ng-app="Inscription">
 
-                <!-- Formulaire d'inscription -->
-        <div class="inscriptionForm">
-            <h2>Inscription</h2>
-            
-            <form name="InscriptionForm" class="text-center" ng-controller="InscriptionCtrl" ng-submit="submitForm()" novalidate>
-                <div class="textAndInput">
-						<md-content layout-padding>
+	<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img class="logo"
+					src="resources/img/icon.png" /> FeedMe</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.html">Retour à l'accueil</a></li>
+					<li><a href="login.html">Se connecter</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<!-- Menu -->
+	<div id="StyleFormulaireInscription" class="text-center">
+		<div class="overlay">
+			<div class="general-form">
+
+				<!-- Formulaire d'inscription -->
+				<div class="inscriptionForm">
+					<h2>Inscription</h2>
+
+					<form name="InscriptionForm" class="text-center"
+						ng-controller="InscriptionCtrl" ng-submit="submitForm()"
+						novalidate>
+						<div class="textAndInput">
+							<md-content layout-padding>
 							<div layout layout-sm="column">
-							    <md-input-container flex>
-							      <label id="white" for="nom">Nom :</label>
-							      <input type="text" name="nom" ng-model="nom" ng-required="true" placeholder="Votre nom.">
-							        <div ng-messages="InscriptionForm.nom.$error">
-							          <div ng-message="required">Veuillez saisir votre nom.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							      <label id="white" for="prenom">Prénom :</label>
-							      <input type="text" name="prenom" ng-model="prenom" ng-required="true" placeholder="Votre prénom.">
-							        <div ng-messages="InscriptionForm.prenom.$error">
-							          <div ng-message="required">Veuillez saisir votre prénom.</div>
-							        </div>
-							    </md-input-container>
-							 </div>
-							 
-							 <div layout layout-sm="column">
-							        <md-input-container flex>
-							          <label id="white" for="email">Email :</label>
-							          <input type="email" name="email" ng-model="email" ng-required="true" placeholder="Adresse mail">
-							          <div ng-messages="InscriptionForm.email.$error">						        						        
-								          <div ng-message="required">Veuillez saisir votre email.</div>
-								          <div ng-message="email">Votre email est invalide.</div>
-							        </div>
-							        </md-input-container flex>
-							        <label id="white" for="email">Date de naissance :</label>
-							        <md-datepicker id="date" ng-required="true" ng-model="anniversaire" md-max-date="maxDate" md-placeholder="Date de naissance" name="anniversaire"></md-datepicker>
-							        <div class="validation-messages" ng-messages="InscriptionForm.anniversaire.$error">
-								        <div ng-message="required">Veuillez selectionner votre date de naissance.</div>
-								        <div ng-message="maxdate">Vous devez avoir plus de 18 ans.</div>
-      								</div>
-							 </div>
-							 <div id="white" layout layout-sm="column">
-							    <md-input-container flex>
-							      <label id="white" for="mdp">Mot de passe : </label>
-							      <input type="password" name="mdp" ng-model="mdp" ng-required="true" placeholder="Mot de passe">
-							        <div ng-messages="InscriptionForm.mdp.$error">						        
-							          <div ng-message="required">Veuillez saisir un mot de passe.</div>
-							        </div>
-							    </md-input-container>
-							    <md-input-container flex>
-							      <label for="cmdp">Confirmez le mot de passe : </label>
-							      <input id="white" type="password" name="cmdp" ng-model="cmdp" ng-required="true" placeholder="Mot de passe" ensure-expression="mdp == cmdp">
-							        <div ng-messages="InscriptionForm.cmdp.$error">
-							          <div ng-message="required">Veuillez confirmer le mot de passe.</div>						        						        
-							          <div ng-message="mauvaismdp">Les mots de passe sont différents.</div>
-							        </div>
-							    </md-input-container>
-							 </div>
-							    <!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-							    <md-button type="submit" ng-disabled="InscriptionForm.$invalid" class="form">Confirmer</md-button>
-							 </md-content>
+								<md-input-container flex> <label id="white"
+									for="nom">Nom :</label> <input id="white" type="text"
+									name="nom" ng-model="nom" ng-required="true"
+									placeholder="Votre nom.">
+								<div ng-messages="InscriptionForm.nom.$error">
+									<div ng-message="required">Veuillez saisir votre nom.</div>
+								</div>
+								</md-input-container>
+								<md-input-container flex> <label id="white"
+									for="prenom">Prénom :</label> <input id="white" type="text"
+									name="prenom" ng-model="prenom" ng-required="true"
+									placeholder="Votre prénom.">
+								<div ng-messages="InscriptionForm.prenom.$error">
+									<div ng-message="required">Veuillez saisir votre prénom.</div>
+								</div>
+								</md-input-container>
+							</div>
+
+							<div layout layout-sm="column">
+								<md-input-container flex> <label id="white"
+									for="email">Email :</label> <input id="white" type="email"
+									name="email" ng-model="email" ng-required="true"
+									placeholder="Adresse mail">
+								<div ng-messages="InscriptionForm.email.$error">
+									<div ng-message="required">Veuillez saisir votre email.</div>
+									<div ng-message="email">Votre email est invalide.</div>
+								</div>
+								</md-input-container>
+								
+								
+								<md-datepicker flex id="date" ng-required="true"
+									ng-model="anniversaire" md-max-date="maxDate"
+									md-placeholder="Date de naissance" name="anniversaire"></md-datepicker>
+								<div class="validation-messages"
+									ng-messages="InscriptionForm.anniversaire.$error">
+									<div ng-message="required">Veuillez selectionner votre
+										date de naissance.</div>
+									<div ng-message="maxdate">Vous devez avoir plus de 18
+										ans.</div>
+								</div>
+								
+							</div>
+							<div layout layout-sm="column">
+								<md-input-container flex> <label id="white"
+									for="mdp">Mot de passe : </label> <input id="white"
+									type="password" name="mdp" ng-model="mdp" ng-required="true"
+									placeholder="Mot de passe">
+								<div ng-messages="InscriptionForm.mdp.$error">
+									<div ng-message="required">Veuillez saisir un mot de
+										passe.</div>
+								</div>
+								</md-input-container>
+								<md-input-container flex> <label  id="white" for="cmdp">Confirmez
+									le mot de passe : </label> <input id="white" type="password"
+									name="cmdp" ng-model="cmdp" ng-required="true"
+									placeholder="Mot de passe" ensure-expression="mdp == cmdp">
+								<div ng-messages="InscriptionForm.cmdp.$error">
+									<div ng-message="required">Veuillez confirmer le mot de
+										passe.</div>
+									<div ng-message="mauvaismdp">Les mots de passe sont
+										différents.</div>
+								</div>
+								</md-input-container>
+							</div>
+							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
+							<md-button type="submit" ng-disabled="InscriptionForm.$invalid"
+								class="form">Confirmer</md-button> </md-content>
+						</div>
+					</form>
 				</div>
-            </form>
-              </div>  
-            </div>
-        </div>
-    </div>
-    
-        <script src="/resources/js/angular.min.js"></script>
-		<script src="/resources/js/jquery-2.1.4.min.js"></script>
-   		<script src="/resources/js/moment.js"></script>
-		<script src="/resources/js/angular-animate.min.js"></script>
-	    <script src="/resources/js/angular-aria.min.js"></script>
-	    <script src="/resources/js/angular-material.min.js"></script>
-	    <script src="/resources/js/angular-messages.js"></script>
-		<script src="/resources/js/script-inscription.js"></script>
-				
-		<!-- Pied de page -->
-		<div ng-include="'/resources/footer.html'"></div>
-	</body>
+			</div>
+		</div>
+	</div>
+
+	<script src="/resources/js/angular.min.js"></script>
+	<script src="/resources/js/jquery-2.1.4.min.js"></script>
+	<script src="/resources/js/moment.js"></script>
+	<script src="/resources/js/angular-animate.min.js"></script>
+	<script src="/resources/js/angular-aria.min.js"></script>
+	<script src="/resources/js/angular-material.min.js"></script>
+	<script src="/resources/js/angular-messages.js"></script>
+	<script src="/resources/js/script-inscription.js"></script>
+
+	<!-- Pied de page -->
+	<div ng-include="'/resources/footer.html'"></div>
+</body>
 </html>

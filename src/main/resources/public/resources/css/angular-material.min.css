@@ -6774,7 +6774,9 @@ md-checkbox .md-container {
 	width: 18px;
 	height: 18px;
 	left: 0;
-	right: auto
+	right: auto;
+	background-color: rgb(250,250,250);
+	
 }
 
 body[dir=rtl] md-checkbox .md-container, html[dir=rtl] md-checkbox .md-container
@@ -8044,7 +8046,10 @@ md-icon {
 	vertical-align: middle;
 	fill: currentColor;
 	height: 24px;
-	width: 24px
+	width: 24px;
+	background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 md-icon svg {

@@ -53,7 +53,7 @@
 								<md-content layout-padding>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="titre">Titre de l'offre :</label> <input type="text"
+										for="titre">Titre de l'offre :</label> <input id="white"  type="text"
 										name="titre" ng-model="titre" ng-required="true"
 										placeholder="Titre de l'offre." maxlength="18">
 									<div ng-messages="OffreForm.titre.$error">
@@ -62,15 +62,15 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label id="white"
-										for="typeCuisine">Type de cuisine :</label> <md-select
+										for="typeCuisine">Type de cuisine :</label> <md-select class="white" 
 										name="typeCuisine" ng-model="typeCuisine"
-										style="min-width: 200px;"> <md-option
+										style="min-width: 200px;"> <md-option  id="back_white"
 										ng-value="{{item}}" ng-selected="item.id==1"
 										ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="nbpers">Nombre de convives :</label> <input type="number"
+										for="nbpers">Nombre de convives :</label> <input id="white" type="number"
 										name="nbpers" ng-model="nbpers" ng-min="1" ng-required="true"
 										placeholder="Nombre de couverts.">
 									<div ng-messages="OffreForm.nbpers.$error">
@@ -82,7 +82,7 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label id="white"
-										for="prix">Prix par convive :</label> <input type="number"
+										for="prix">Prix par convive :</label> <input id="white" type="number"
 										step="0.1" name="prix" ng-model="prix" ng-min="1.00"
 										ng-required="true" placeholder="Prix par convive.">
 									<div ng-messages="OffreForm.prix.$error">
@@ -93,7 +93,7 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label id="white"
-										for="duree">Durée du repas (en min) :</label> <input
+										for="duree">Durée du repas (en min) :</label> <input id="white" 
 										type="number" ng-model="duree" name="duree" ng-min="60"
 										ng-required="true" placeholder="Durée prévisionnelle.">
 									<div ng-messages="OffreForm.duree.$error">
@@ -135,13 +135,13 @@
 								<md-content layout-padding>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="entree">Entrée(s) :</label> <textarea name="entree"
+										for="entree">Entrée(s) :</label> <textarea id="white"  name="entree"
 										ng-model="entree" placeholder="Entrées du repas."></textarea>
 									</md-input-container>
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="plat">Plat principal :</label> <textarea name="plat"
+										for="plat">Plat principal :</label> <textarea id="white" name="plat"
 										ng-model="plat" placeholder="Votre plat." ng-required="true"></textarea>
 									<div ng-messages="OffreForm.plat.$error">
 										<div ng-message="required">Votre menu doit contenir au
@@ -151,13 +151,13 @@
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="dessert">Dessert(s) :</label> <textarea name="dessert"
+										for="dessert">Dessert(s) :</label> <textarea id="white" name="dessert"
 										ng-model="dessert" placeholder="Desserts du repas."></textarea>
 									</md-input-container>
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="boisson">Boisson(s) :</label> <textarea name="boisson"
+										for="boisson">Boisson(s) :</label> <textarea name="boisson" id="white" 
 										ng-model="boisson" placeholder="Boissons du repas."></textarea>
 									</md-input-container>
 								</div>
@@ -178,7 +178,7 @@
 
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="numero">Numéro :</label> <input type="number"
+										for="numero">Numéro :</label> <input id="white" type="number"
 										ng-model="numero" name="numero" ng-min="1"
 										placeholder="Numéro de voirie." ng-required="!home"
 										ng-disabled="home">
@@ -190,7 +190,7 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label id="white" for="rue">Rue
-										: </label> <input type="text" ng-model="rue" name="rue"
+										: </label> <input id="white" type="text" ng-model="rue" name="rue"
 										placeholder="Nom de voirie." ng-required="!home"
 										ng-disabled="home">
 									<div ng-messages="OffreForm.rue.$error">
@@ -199,14 +199,14 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label id="white"
-										for="complement">Complément : </label> <input type="text"
+										for="complement">Complément : </label> <input id="white"  type="text"
 										name="complement" ng-model="complement"
 										placeholder="Compléments." ng-disabled="home"> </md-input-container>
 
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="ville">Ville :</label> <input type="text" name="ville"
+										for="ville">Ville :</label> <input id="white" type="text" name="ville"
 										ng-model="ville" placeholder="Votre ville."
 										ng-required="!home" ng-disabled="home">
 									<div ng-messages="OffreForm.ville.$error">
@@ -214,7 +214,7 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label id="white" for="cp">Code
-										postal :</label> <input type="text" name="cp" ng-model="cp"
+										postal :</label> <input id="white" type="text" name="cp" ng-model="cp"
 										ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
 										placeholder="Votre code postal." ng-required="!home"
 										ng-disabled="home">
@@ -226,10 +226,10 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label id="white"
-										for="pays">Pays :</label> <md-select name="pays"
+										for="pays">Pays :</label> <md-select id="white" name="pays"
 										ng-model="pays" style="min-width: 200px;" ng-disabled="home">
-									<md-option ng-value="{{item}}" ng-selected="item.id==1"
-										ng-repeat="item in count">{{item.nom}} </md-option> </md-select> </md-input-container>
+									<md-option id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
+										ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
 								</div>
 								</md-content>
 
@@ -250,9 +250,10 @@
 										model-min="age.min" model-max="age.max"></div>
 									</md-input-container>
 								</div>
+								<br>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label id="white"
-										for="note">Remarques :</label> <textarea name="note"
+										for="note">Remarques :</label> <textarea id="white" name="note"
 										ng-model="note" placeholder="Informations complémentaires."></textarea>
 									</md-input-container>
 								</div>
@@ -274,8 +275,7 @@
 							<fieldset>
 
 								<h2>{{titre || "Titre non complété"}}</h2>
-								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à'
-									hh'h'mm"}}.</h3>
+								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
 
 								<fieldset>
 									<legend>L'offre de repas</legend>
@@ -301,15 +301,15 @@
 										<br>
 										<h4>Entrée(s) :</h4>
 
-										{{entree || "aucunes entrées"}} <br>
+										<pre class="white" >{{entree || "aucunes entrées"}}</pre> <br>
 										<h4>Plat :</h4>
-										{{plat || "Plat non complété"}} <br>
+										<pre class="white" >{{plat || "Plat non complété"}}</pre> <br>
 										<h4>Dessert(s) :</h4>
 
-										{{dessert || "aucuns desserts"}} <br>
+										<pre class="white" >{{dessert || "aucuns desserts"}} </pre><br>
 										<h4>Carte des boissons :</h4>
 
-										{{boisson || "aucunes boissons particulières"}} <br> <br>
+										<pre class="white" >{{boisson || "aucunes boissons particulières"}}</pre> <br> <br>
 										<h3>Nombre de couverts restants :</h3>
 										<!--  x sur y  -->
 										{{nbpers}} sur {{nbpers}}

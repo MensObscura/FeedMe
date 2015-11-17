@@ -74,7 +74,7 @@
 					<md-content layout-padding>
 					<div layout layout-sm="column">
 						<md-input-container flex><label id="white" for="mail">Adresse
-							email :</label> <input  class="form" placeholder="Email du compte" ng-required="true"
+							email :</label> <input id="white" class="form" placeholder="Email du compte" ng-required="true"
 							type="email" id="username" name="username"
 							ng-model="credentials.username" />
 							<div ng-messages="ConnexionForm.username.$error">
@@ -85,7 +85,7 @@
 						
 						
 						<md-input-container flex> <label id="white"
-							for="password">Mot de passe :</label> <input
+							for="password">Mot de passe :</label> <input id="white"
 							placeholder="Mot de passe" ng-required="true" type="password"
 							id="password" name="password" ng-model="credentials.password" />
 						</md-input-container>
