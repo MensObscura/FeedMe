@@ -1008,6 +1008,10 @@ ul {
 	line-height: 35px;
 }
 
+.profil h2 {
+	margin-top: -1.5em;
+}
+
 .offre-container {
 	height: auto;
 	display: inline-block;
