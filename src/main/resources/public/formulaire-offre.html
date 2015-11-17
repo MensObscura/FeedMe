@@ -64,7 +64,7 @@
 									</md-input-container>
 									<md-input-container flex> <label
 										id="white" for="typeCuisine">Type de cuisine :</label> <md-select
-										class="white" name="typeCuisine" ng-model="typeCuisine"
+										id="select_white" name="typeCuisine" ng-model="typeCuisine"
 										style="min-width: 200px;" tabIndex="-1"> <md-option
 										id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
 										ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
@@ -234,7 +234,7 @@
 									</div>
 									</md-input-container>
 									<md-input-container flex> <label
-										id="white" for="pays">Pays :</label> <md-select id="white"
+										id="white" for="pays">Pays :</label> <md-select id="select_white"
 										name="pays" ng-model="pays" style="min-width: 200px;"
 										ng-disabled="home"> <md-option id="back_white"
 										ng-value="{{item}}" ng-selected="item.id==1"

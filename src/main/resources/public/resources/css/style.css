@@ -1104,7 +1104,7 @@ md-toast {
 	background-color: rgba(238, 238, 238, 0);
 }
 
-#select_white:focus {
+#select_white:not([disabled]):focus {
 	color: rgb(250, 250, 250);
 	background-color: rgba(238, 238, 238, 0);
 }
