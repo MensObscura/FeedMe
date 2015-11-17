@@ -912,10 +912,8 @@ button.form {
 }
 
 .item-view {
-	display: block;
 	background-color: rgba(0, 0, 0, 0.9);
-	margin-left: 20%;
-	margin-right: 20%;
+	margin: 20%;
 	padding: 25px;
 	width: 400px;
 }
@@ -1008,10 +1006,11 @@ ul {
 	line-height: 35px;
 }
 
-/* .offre-container  {
+.offre-container  {
     height: auto;
-    border: 2px solid black;
-} */
+    display: table-cell;
+    margin: 3em;
+}
 .une-offre-body {
 	background: url(../img/offre/background.jpg);
 	background-size: cover;
