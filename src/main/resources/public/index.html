@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FeedMe - Une application centrée nutrition !</title>
+    <meta name="description" content="FeedMe est une application de rencontres centré sur la cuisine: vous cuisinez pour des amis à vous, ou de parfaits inconnus, qui quant à eux paient pour venir déguster votre repas.">
+    <meta name="keywords" content="cuisine, réseau social, partage, commerce, repas, manger, nourriture, rencontre, aliments, cercle d'amis">
+    <meta name="author" content="Team FeedMe">
+    
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
+
+    <!-- Slider
+    ================================================== -->
+    <link href="resources/css/owl.carousel.css" rel="stylesheet" media="screen">
+    <link href="resources/css/owl.theme.css" rel="stylesheet" media="screen">
+
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css"  href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
+
+    <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
+
+    <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
+    <script src="/resources/js/angular.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      
+      <div ng-include="'/resources/header.html'"></div>
+    <!-- Navigation
+    ==========================================-->
+    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><img class="logo" src="resources/img/icon.png" /> FeedME</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#tf-home" class="page-scroll">Accueil</a></li>
+            <li><a href="#tf-about" class="page-scroll">A propos</a></li>
+            <li><a href="#tf-team" class="page-scroll">L'équipe</a></li>
+            <li><a href="#tf-testimonials" class="page-scroll">Témoignages</a></li>
+            <li><a href="#tf-contact" class="page-scroll">Contact</a></li>
+            <li><a href="login.html">Se connecter</a></li>
+            <li><a href="inscription.html">S'inscrire</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- Home Page
+    ==========================================-->
+    <div id="tf-home" class="text-center">
+        <div class="overlay">
+            <div class="content">
+                <h1>Bienvenue sur <strong><span class="color">FeedMe !</span></strong></h1>
+                <p class="lead">Vous avez les <strong>ingrédients</strong>, nous avons les <strong>convives !</strong></p>
+                <a href="#tf-about" class="fa fa-angle-down page-scroll"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Page
+    ==========================================-->
+    <div id="tf-about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="resources/img/index/02.png" class="img-responsive">
+                </div>
+                <div class="col-md-6">
+                    <div class="about-text">
+                        <div class="section-title">
+                            <h4>Que sommes-nous ?</h4>
+                            <h2>Quelques mots sur <strong>notre service</strong></h2>
+                            <hr>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p class="intro">Vous aimez cuisiner, seulement il est souvent plus agréable de partager le fruit de votre labeur avec autrui. C'est à ce moment que nous entrons en scène: vous postez une annonce de repas, et pouvez ensuite reçevoir les invités intéressés de votre choix.</p>
+                        <ul class="about-list">
+                            <li>
+                                <span class="fa fa-dot-circle-o"></span>
+                                <strong>Convivialité</strong> - <em>Invitez vos amis ou faites de nouvelles rencontres !</em>
+                            </li>
+                            <li>
+                                <span class="fa fa-dot-circle-o"></span>
+                                <strong>Proximité</strong> - <em>Filtrez par tranche d'âge, allergies, distance ...</em>
+                            </li>
+                            <li>
+                                <span class="fa fa-dot-circle-o"></span>
+                                <strong>Sécurité</strong> - <em>Paiement et acceptation sont sous votre contrôle.</em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Page
+    ==========================================-->
+    <div id="tf-team" class="text-center">
+        <div class="overlay">
+            <div class="container">
+                <div class="section-title center">
+                    <h2><strong>L'équipe</strong> FeedMe</h2>
+                    <div class="line">
+                        <hr>
+                    </div>
+                </div>
+
+                <div id="team" class="owl-carousel owl-theme row">
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="resources/img/team/rosa.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Thibault Rosa</h3>
+                                <p>Coordinateur</p>
+                                <p>"Vous ignorez qui est Julie, mais vous devriez la connaître !"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="resources/img/team/clement.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Maxime Clément</h3>
+                                <p>Responsable architecture</p>
+                                <p>"L'important n'est pas le nombre de commits, mais leur contenu !"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="resources/img/team/badache.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Yassine Badache</h3>
+                                <p>Responsable design</p>
+                                <p>"On ne se moque pas, c'est très bien le orange !"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="resources/img/team/dessingue.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Pauline Dessingué</h3>
+                                <p>Développeur architecture</p>
+                                <p>"On fait un daily ?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="resources/img/team/jb.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Jean-Baptiste Delaeter</h3>
+                                <p>Développeur design</p>
+                                <p>"Le design, j'en fais mon affaire ... Si je ne suis pas malade."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="resources/img/team/piorun.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Jordan Piorun</h3>
+                                <p>Développeur architecture</p>
+                                <p>"Il est fait le CSS ?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="resources/img/team/verbaere.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Thibaud Verbaere</h3>
+                                <p>Développeur design</p>
+                                <p>"C'était mon idée, enfin après je m'en fiche moi je la trouve pas terrible de toute manière ..."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="resources/img/team/missing.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Etienne Wattebled</h3>
+                                <p>Développeur architecture</p>
+                                <p>"J'ai eu un problème dans le métro, alors j'ai pris le bus !"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Portfolio Section
+    ==========================================-->
+    <div id="tf-testimonials" class="text-center">
+        <div class="container">
+                <div class="section-title center">
+                    <h2><strong>Nos clients</strong> témoignent</h2>
+                    <div class="line">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div id="testimonial" class="owl-carousel owl-theme">
+                            <div class="item">
+                                <h5>Moi j'achète vraiment, j'y crois à ce truc, on est allés chez un collègue, il nous a sorti un plat totalement funky, c'était en open-space ... Non franchement vachement chouette comme concept.</h5>
+                                <p><strong>Martin Monperrus</strong>, enseignant-chercheur.</p>
+                            </div>
+
+                            <div class="item">
+                                <h5>Au début j'ai eu du mal, mais après le premier repas j'ai vite été à l'aise avec le concept et la plateforme, et depuis mon cercle d'amis ne cesse de grandir !</h5>
+                                <p><strong>Jeanne Valmaux</strong>, animatrice.</p>
+                            </div>
+
+                            <div class="item">
+                                <h5>Rien à redire, le concept est top et la limite d'âge permet de rencontrer des gens matures, j'adhère !</h5>
+                                <p><strong>Abdel Babel Ouacif</strong>, étudiant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Testimonials Section
+    ==========================================-->
+    <div id="tf-contact" class="text-center">
+        <div class="overlay">
+            <div class="container">
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="section-title center">
+                        <h2>Vous souhaitez <strong>nous contacter</strong></h2>
+                        <div class="line">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <small><em>Si vous avez une demande, un problème à faire remonter, une critique, un compliment à transmettre, laissez-nous un message et nous vous répondrons dans les plus brefs délais, sous réserve d'un motif valable de réponse, bien entendu !</em></small>            
+                    </div>
+
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Adresse mail</label>
+                                    <input type="email" class="contact-form" id="exampleInputEmail1" placeholder="Enter email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Message</label>
+                            <textarea class="contact-form" rows="3"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn tf-btn btn-default">Envoyer !</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+    <!-- Contact Section
+    ==========================================-->
+    <div id="tf-contact" class="text-center">
+        
+    </div>
+
+    <nav id="footer">
+        <div class="container">
+            <div class="pull-left fnav">
+                <p>TOUS DROITS RESERVES. COPYRIGHT © 2014. Design original par <a href="https://dribbble.com/shots/1817781--FREEBIE-Spirit8-Digital-agency-one-page-template">Robert Berki</a> modifié par <a href="https://github.com/MensObscura/FeedMe">l'équipe FeedMe</a></p>
+            </div>
+            <div class="pull-right fnav">
+                <ul class="footer-social">
+                    <li><a href="https://www.facebook.com/brandfeedme/"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery.1.11.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="resources/js/bootstrap.js"></script>
+    <script type="text/javascript" src="resources/js/SmoothScroll.js"></script>
+    <script type="text/javascript" src="resources/js/jquery.isotope.js"></script>
+
+    <script src="resources/js/owl.carousel.js"></script>
+
+    <!-- Javascripts
+    ================================================== -->
+    <script type="text/javascript" src="resources/js/main.js"></script>
+
+  </body>
+</html>

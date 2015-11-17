@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fil.iagl.iir.dao.pays.PaysDao">
+
+	<resultMap type="fil.iagl.iir.entite.Pays" id="Pays_ResultMap">
+		<id property="id" column="pay_id"/>
+		<result property="codePays" column="pay_code_pays"/>
+		<result property="nom" column="pay_nom"/>
+	</resultMap>
+
+
+	<sql id="select_all_columns_pays">
+		SELECT pay_id, pay_code_pays, pay_nom
+		FROM PAYS
+	</sql>
+	
+	<select id="getById" resultMap="Pays_ResultMap">
+		<include refid="select_all_columns_pays"/>
+		WHERE pay_id = #{id}
+	</select>
+	
+	<select id="getAll" resultMap="Pays_ResultMap">
+		<include refid="select_all_columns_pays"/>
+	</select>
+
+</mapper>
