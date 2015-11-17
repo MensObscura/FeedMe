@@ -52,7 +52,7 @@
 
 								<md-content layout-padding>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="titre">Titre de l'offre :</label> <input type="text"
 										name="titre" ng-model="titre" ng-required="true"
 										placeholder="Titre de l'offre." maxlength="18">
@@ -61,7 +61,7 @@
 											l'offre.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="typeCuisine">Type de cuisine :</label> <md-select
 										name="typeCuisine" ng-model="typeCuisine"
 										style="min-width: 200px;"> <md-option
@@ -69,7 +69,7 @@
 										ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="nbpers">Nombre de convives :</label> <input type="number"
 										name="nbpers" ng-model="nbpers" ng-min="1" ng-required="true"
 										placeholder="Nombre de couverts.">
@@ -81,7 +81,7 @@
 										<div ng-message="number">Veuillez saisir un nombre.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="prix">Prix par convive :</label> <input type="number"
 										step="0.1" name="prix" ng-model="prix" ng-min="1.00"
 										ng-required="true" placeholder="Prix par convive.">
@@ -92,7 +92,7 @@
 										<div ng-message="number">Veuillez saisir un nombre.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="duree">Durée du repas (en min) :</label> <input
 										type="number" ng-model="duree" name="duree" ng-min="60"
 										ng-required="true" placeholder="Durée prévisionnelle.">
@@ -104,21 +104,21 @@
 									</div>
 									</md-input-container>
 								</div>
-								<md-input-container flex> <label for="date">Date
+								<md-input-container flex> <label id="white" for="date">Date
 									:</label>
 
 								<div class="dropdown">
 									<a class="dropdown-toggle" id="dropdown2" role="button"
 										data-toggle="dropdown" data-target="#" href="#">
 										<div class="input-group">
-											<input placeholder="Date du repas." readonly="true"
+											<input id="date" placeholder="Date du repas." readonly="true"
 												type="text" min="minDate" class="form-control"
 												data-ng-model="date"> <span
 												class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span>
 										</div>
 									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+									<ul  class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 										<datetimepicker data-ng-model="date"
 											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
 									</ul>
@@ -134,13 +134,13 @@
 
 								<md-content layout-padding>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="entree">Entrée(s) :</label> <textarea name="entree"
 										ng-model="entree" placeholder="Entrées du repas."></textarea>
 									</md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="plat">Plat principal :</label> <textarea name="plat"
 										ng-model="plat" placeholder="Votre plat." ng-required="true"></textarea>
 									<div ng-messages="OffreForm.plat.$error">
@@ -150,13 +150,13 @@
 									</md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="dessert">Dessert(s) :</label> <textarea name="dessert"
 										ng-model="dessert" placeholder="Desserts du repas."></textarea>
 									</md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="boisson">Boisson(s) :</label> <textarea name="boisson"
 										ng-model="boisson" placeholder="Boissons du repas."></textarea>
 									</md-input-container>
@@ -177,7 +177,7 @@
 								</div>
 
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="numero">Numéro :</label> <input type="number"
 										ng-model="numero" name="numero" ng-min="1"
 										placeholder="Numéro de voirie." ng-required="!home"
@@ -189,7 +189,7 @@
 										<div ng-message="number">Veuillez saisir un nombre.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label for="rue">Rue
+									<md-input-container flex> <label id="white" for="rue">Rue
 										: </label> <input type="text" ng-model="rue" name="rue"
 										placeholder="Nom de voirie." ng-required="!home"
 										ng-disabled="home">
@@ -198,14 +198,14 @@
 											rue.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="complement">Complément : </label> <input type="text"
 										name="complement" ng-model="complement"
 										placeholder="Compléments." ng-disabled="home"> </md-input-container>
 
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="ville">Ville :</label> <input type="text" name="ville"
 										ng-model="ville" placeholder="Votre ville."
 										ng-required="!home" ng-disabled="home">
@@ -213,7 +213,7 @@
 										<div ng-message="required">Veuillez saisir votre ville.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label for="cp">Code
+									<md-input-container flex> <label id="white" for="cp">Code
 										postal :</label> <input type="text" name="cp" ng-model="cp"
 										ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
 										placeholder="Votre code postal." ng-required="!home"
@@ -225,7 +225,7 @@
 											postal.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="pays">Pays :</label> <md-select name="pays"
 										ng-model="pays" style="min-width: 200px;" ng-disabled="home">
 									<md-option ng-value="{{item}}" ng-selected="item.id==1"
@@ -243,7 +243,7 @@
 
 								<div layout layout-sm="column">
 
-									<md-input-container flex> <label>Tranche
+									<md-input-container flex> <label id="white" >Tranche 
 										d'âges : de {{age.min}} à {{age.max}} ans</label> <input id="hidden"
 										type="text" placeholder="Tranche d'âges." />
 									<div id="tranches-ages" range-slider min="18" max="100"
@@ -251,7 +251,7 @@
 									</md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label
+									<md-input-container flex> <label id="white"
 										for="note">Remarques :</label> <textarea name="note"
 										ng-model="note" placeholder="Informations complémentaires."></textarea>
 									</md-input-container>
