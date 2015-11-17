@@ -913,9 +913,10 @@ button.form {
 
 .item-view {
 	background-color: rgba(0, 0, 0, 0.9);
-	margin: 20%;
+	margin: 3%;
 	padding: 25px;
 	width: 400px;
+	border-radius: 15px 0px 15px 0px;
 }
 
 .item-view:hover {
@@ -1008,9 +1009,11 @@ ul {
 
 .offre-container  {
     height: auto;
-    display: table-cell;
-    margin: 3em;
+    display: inline-block;
+    float: left;
+    margin: 0% 1.5% 0% 1.5%;
 }
+
 .une-offre-body {
 	background: url(../img/offre/background.jpg);
 	background-size: cover;
