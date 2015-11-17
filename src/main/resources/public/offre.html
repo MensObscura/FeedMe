@@ -44,12 +44,12 @@ Page de visualisation d'une offre
                 <h2>{{offre.titre}}</h2>
                 <h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
                 <form name="ReservationForm" ng-submit="submitForm()" novalidate>
-                    <fieldset>
+                    <fieldset class="white">
                     <legend>L'offre de repas</legend>
 
                     <!-- Présentation de l'hôte, du lieu -->
-                    <fieldset>
-                    <legend>L'hôte</legend>
+                    <fieldset class="white">
+                    <legend class="white">L'hôte</legend>
                         <h3>Identité :</h3>
                         <!-- Un hôte est un utilisateur : pas de prénom  {{offre.hote.prenom}} -->{{offre.hote.nom}}
                         <h3>Lieu :</h3>
@@ -57,11 +57,11 @@ Page de visualisation d'une offre
                         {{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
                         <h3>Prix par convive :</h3>
                         {{offre.prix}} €
-                    </fieldset>
+                    </fieldset class="white">
 
                     <!-- Présentation du menu -->
-                    <fieldset>
-                    <legend>Le menu</legend>
+                    <fieldset class="white">
+                    <legend class="white">Le menu</legend>
                         <h3>Type de cuisine :</h3>
                         {{offre.typeCuisine.type}}
                         <h3>Dans votre assiette :</h3>
@@ -81,7 +81,7 @@ Page de visualisation d'une offre
                     </fieldset>
 
                     <!-- Informations diverses (et optionnelles) -->
-                    <fieldset>
+                    <fieldset class="white">
                     <legend>Divers</legend>
                     <div ng-if="animaux">{{animaux}}</div>
                     <div ng-if="age">{{age}}</div>
