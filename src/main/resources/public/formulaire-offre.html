@@ -286,11 +286,11 @@
 								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à'
 									hh'h'mm"}}.</h3>
 
-								<fieldset class="white">
+								<fieldset class="white preview ">
 									<legend>L'offre de repas</legend>
 
 									<!-- Présentation de l'hôte, du lieu -->
-									<fieldset class="white">
+									<fieldset class="white preview ">
 										<legend>L'hôte</legend>
 										<h3>Identité :</h3>
 										{{profil.prenom}} {{profil.nom}}
@@ -302,7 +302,7 @@
 									</fieldset>
 
 									<!-- Présentation du menu -->
-									<fieldset class="white">
+									<fieldset class="white preview ">
 										<legend>Le menu</legend>
 										<h3>Type de cuisine :</h3>
 										{{typeCuisine.type}}
@@ -310,18 +310,18 @@
 										<br>
 										<h4>Entrée(s) :</h4>
 
-										<pre class="white">{{entree || "aucunes entrées"}}</pre>
+										<pre class="white word_respect">{{entree || "aucunes entrées"}}</pre>
 										<br>
 										<h4>Plat :</h4>
-										<pre class="white">{{plat || "Plat non complété"}}</pre>
+										<pre class="white ">{{plat || "Plat non complété"}}</pre>
 										<br>
 										<h4>Dessert(s) :</h4>
 
-										<pre class="white">{{dessert || "aucuns desserts"}} </pre>
+										<pre class="white  ">{{dessert || "aucuns desserts"}} </pre>
 										<br>
 										<h4>Carte des boissons :</h4>
 
-										<pre class="white">{{boisson || "aucunes boissons particulières"}}</pre>
+										<pre class="white word_respect ">{{boisson || "aucunes boissons particulières"}}</pre>
 										<br> <br>
 										<h3>Nombre de couverts restants :</h3>
 										<!--  x sur y  -->
@@ -331,8 +331,8 @@
 									</fieldset>
 
 									<!-- Informations diverses (et optionnelles) -->
-									<fieldset class="white">
-										<legend class="white">Divers</legend>
+									<fieldset class="white preview ">
+										<legend class="white preview ">Divers</legend>
 										<div ng-if="animal">
 											Un animal de compagnie sera présent lors du repas.<br>
 										</div>
