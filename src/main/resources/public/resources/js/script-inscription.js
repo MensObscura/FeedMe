@@ -18,7 +18,7 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 
 //Création du controller "InscriptionCtrl"
 validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
-	
+	$scope.submited =false;
 	var date = new Date();
 	$scope.maxDate = new Date(date.getFullYear()-18, date.getMonth(), date.getDate());
 	

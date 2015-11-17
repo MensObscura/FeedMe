@@ -74,7 +74,7 @@ Page proposant le formulaire d'inscription.
 									for="nom">Nom :</label> <input id="white" type="text"
 									name="nom" ng-model="nom" ng-required="true"
 									placeholder="Votre nom.">
-								<div ng-messages="InscriptionForm.nom.$error" ng-show="InscriptionForm.nom.$touched">
+								<div ng-messages="InscriptionForm.nom.$error" ng-show="(InscriptionForm.nom.$touched  || submited)">
 									<div ng-message="required">Veuillez saisir votre nom.</div>
 								</div>
 								</md-input-container>
@@ -82,7 +82,7 @@ Page proposant le formulaire d'inscription.
 									for="prenom">Prénom :</label> <input id="white" type="text"
 									name="prenom" ng-model="prenom" ng-required="true"
 									placeholder="Votre prénom.">
-								<div ng-messages="InscriptionForm.prenom.$error" ng-show="InscriptionForm.prenom.$touched">
+								<div ng-messages="InscriptionForm.prenom.$error" ng-show="(InscriptionForm.prenom.$touched  || submited)">
 									<div ng-message="required">Veuillez saisir votre prénom.</div>
 								</div>
 								</md-input-container>
@@ -93,7 +93,7 @@ Page proposant le formulaire d'inscription.
 									for="email">Email :</label> <input id="white" type="email"
 									name="email" ng-model="email" ng-required="true"
 									placeholder="Adresse mail">
-								<div ng-messages="InscriptionForm.email.$error" ng-show="InscriptionForm.email.$touched">
+								<div ng-messages="InscriptionForm.email.$error" ng-show="(InscriptionForm.email.$touched || submited)">
 									<div ng-message="required">Veuillez saisir votre email.</div>
 									<div ng-message="email">Votre email est invalide.</div>
 								</div>
@@ -104,7 +104,7 @@ Page proposant le formulaire d'inscription.
 									ng-model="anniversaire" md-max-date="maxDate"
 									md-placeholder="Date de naissance" name="anniversaire"></md-datepicker>
 								<div class="validation-messages"
-									ng-messages="InscriptionForm.anniversaire.$error" ng-show="InscriptionForm.anniversaire.$touched">
+									ng-messages="InscriptionForm.anniversaire.$error" ng-show="(InscriptionForm.anniversaire.$touched || submited)">
 									<div ng-message="required">Veuillez selectionner votre
 										date de naissance.</div>
 									<div ng-message="maxdate">Vous devez avoir plus de 18
@@ -117,7 +117,7 @@ Page proposant le formulaire d'inscription.
 									for="mdp">Mot de passe : </label> <input id="white"
 									type="password" name="mdp" ng-model="mdp" ng-required="true"
 									placeholder="Mot de passe">
-								<div ng-messages="InscriptionForm.mdp.$error" ng-show="InscriptionForm.mdp.$touched">
+								<div ng-messages="InscriptionForm.mdp.$error" ng-show="(InscriptionForm.mdp.$touched    || submited)">
 									<div ng-message="required">Veuillez saisir un mot de
 										passe.</div>
 								</div>
@@ -126,7 +126,7 @@ Page proposant le formulaire d'inscription.
 									le mot de passe : </label> <input id="white" type="password"
 									name="cmdp" ng-model="cmdp" ng-required="true"
 									placeholder="Mot de passe" ensure-expression="mdp == cmdp">
-								<div ng-messages="InscriptionForm.cmdp.$error" ng-show="InscriptionForm.cmdp.$touched">
+								<div ng-messages="InscriptionForm.cmdp.$error" ng-show="(InscriptionForm.cmdp.$touched || submited)">
 									<div ng-message="required">Veuillez confirmer le mot de
 										passe.</div>
 									<div ng-message="mauvaismdp">Les mots de passe sont
@@ -135,7 +135,7 @@ Page proposant le formulaire d'inscription.
 								</md-input-container>
 							</div>
 							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-							<md-button type="submit" ng-disabled="InscriptionForm.$invalid"
+							<md-button id="form_button_log" type="submit" ng-click="submited=true"
 								class="form">Confirmer</md-button> </md-content>
 						</div>
 					</form>

@@ -1099,22 +1099,39 @@ md-toast {
 	background-color: rgba(238, 238, 238, 0);
 }
 
-.white:focus {
+#select_white {
 	color: rgb(250, 250, 250);
 	background-color: rgba(238, 238, 238, 0);
 }
 
-#form_button_offre {
+#select_white:focus {
+	color: rgb(250, 250, 250);
+	background-color: rgba(238, 238, 238, 0);
+}
+
+
+
+#form_button{
 	width: 70%;
 	margin-left: 15%;
 	height: 50%;
 	margin-right: 15%;
 }
 
-#form_button_offre:hover {
+#form_button:hover {
 	background-color: #FC7845;
 }
 
+#form_button_log{
+	width: auto;
+	margin-left: 15%;
+	height: auto;
+	margin-right: 15%;
+}
+
+#form_button_log:hover {
+	background-color: #FC7845;
+}
 :required{
 	color: rgb(2, 250, 250);
 }

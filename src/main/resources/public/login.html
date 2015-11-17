@@ -77,7 +77,8 @@
 							email :</label> <input id="white" class="form" placeholder="Email du compte" ng-required="true"
 							type="email" id="username" name="username"
 							ng-model="credentials.username" />
-							<div ng-messages="ConnexionForm.username.$error">
+							<div ng-messages="ConnexionForm.username.$error"  ng-show="(ConnexionForm.username.$touched|| submited)">
+							<div ng-message="required">Veuillez saisir une adresse email.</div>
 							<div ng-message="email">Veuillez saisir une adresse email
 								valide.</div>
 							</div>
@@ -88,12 +89,15 @@
 							for="password">Mot de passe :</label> <input id="white"
 							placeholder="Mot de passe" ng-required="true" type="password"
 							id="password" name="password" ng-model="credentials.password" />
+							<div ng-messages="ConnexionForm.password.$error"  ng-show="(ConnexionForm.password.$touched|| submited)">
+							<div ng-message="required">Veuillez saisir une adresse email.</div>
+							</div>
 						</md-input-container>
 
 
 					</div>
 					</md-content>
-					<md-button type="submit" ng-disabled="ConnexionForm.$invalid"
+					<md-button  id="form_button_log" type="submit" ng-click="submited=true"
 						class="form ">Connexion</md-button> 
 				</form>
 			</div>
