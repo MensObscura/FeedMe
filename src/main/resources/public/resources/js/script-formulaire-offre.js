@@ -9,12 +9,11 @@
                     min.setHours(min.getHours()+2); 
                     
                     var dtp = parent.datetimepicker({
-                        format: 'MM/DD/YYYY HH:mm',
-                        minDate: min,
-                        showTodayButton: true
+                        format: 'DD/MM/YYYY HH:mm',
+                        minDate: min
                     });
                     dtp.on("dp.change", function (e) {
-                        ngModelCtrl.$setViewValue(moment(e.date).format("MM/DD/YY HH:mm"));
+                        ngModelCtrl.$setViewValue(new Date(e.date));
                         scope.$apply();
                     });
                 }
@@ -26,14 +25,14 @@ var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages
 
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
-	
-	$scope.selectedDt = new Date();
 		
 	$scope.age = {
 		min: 18,
 		max: 100
 	};
+	
 	$scope.submited =false;
+	
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)

@@ -40,7 +40,7 @@
 							<p>{{typeCuisine.type}}</p>
 							<p>{{prix}} €</p>
 							<p>Place(s) restante(s) : {{nbpers}}</p>
-							<p>{{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}</p>
+							<p>{{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
 						</div>
 
 					</div>
@@ -113,10 +113,9 @@
 								</div>
 								<md-input-container flex> <label id="white"
 									for="date">Date* :</label>
-
 								<div class="form-group">
-									<div class='input-group date' id='datetimepicker1'>
-										<input type='text' class="form-control" ng-required="true" name="date" ng-model="date" data-date-time-picker/>
+									<div class='input-group date'>
+										<input ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/" type='text' class="form-control" ng-required="true" name="date" ng-model="date" data-date-time-picker/>
 										<span class="input-group-addon">
 											<span class="glyphicon glyphicon-calendar"></span>
 										</span>
@@ -125,6 +124,7 @@
 									<div ng-messages="OffreForm.date.$error"
 										ng-show="(OffreForm.date.$touched  || submited)">
 										<div ng-message="required">Veuillez seletionner une date.</div>
+										<div ng-message="pattern">Veuillez seletionner une date via le calendrier.</div>
 									</div>
 
 
@@ -288,7 +288,7 @@
 							<fieldset>
 
 								<h2>{{titre || "Titre non complété"}}</h2>
-								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
+								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}.</h3>
 
 								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
