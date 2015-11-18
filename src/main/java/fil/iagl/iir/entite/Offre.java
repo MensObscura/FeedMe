@@ -43,4 +43,6 @@ public class Offre {
 
   private List<Reservation> reservations;
 
+  private boolean offrePremium;
+
 }

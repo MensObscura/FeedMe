@@ -105,6 +105,7 @@ public abstract class AbstractFeedMeTest {
   protected Utilisateur createUtilisateur() {
     Utilisateur utilisateur = new Utilisateur();
     utilisateur.setIdUtilisateur(1);
+    utilisateur.setUtilisateurPremium(Boolean.FALSE);
     utilisateur.setMail("toto.toto@gmail.com");
     utilisateur.setNom("toto");
     return utilisateur;
@@ -114,6 +115,7 @@ public abstract class AbstractFeedMeTest {
     Particulier particulier = new Particulier();
     particulier.setIdUtilisateur(1);
     particulier.setIdParticulier(1);
+    particulier.setUtilisateurPremium(Boolean.FALSE);
     particulier.setNom("toto");
     particulier.setPrenom("tata");
     particulier.setMail("mail@gmail.com");
@@ -152,6 +154,7 @@ public abstract class AbstractFeedMeTest {
     Integer dureeMinute = 120;
     LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 0);
     Boolean animaux = Boolean.FALSE;
+    Boolean premium = Boolean.FALSE;
 
     Integer idAdresse = 1;
     Integer idVille = 1;
@@ -206,6 +209,7 @@ public abstract class AbstractFeedMeTest {
     offre.setTypeCuisine(typeCuisine);
     offre.setHote(hote);
     offre.setNote(note);
+    offre.setOffrePremium(premium);
 
     return offre;
   }
