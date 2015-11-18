@@ -7,8 +7,6 @@
 <title>Proposer une offre</title>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular-material.min.css">
-<link rel="stylesheet" type='text/css'
-	href="/resources/css/datetimepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -20,6 +18,8 @@
 	href='/resources/fonts/general-font.css'>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular.rangeSlider.css">
+	<link rel="stylesheet" type='text/css'
+	href="/resources/css/bootstrap-datetimepicker.css">
 </head>
 
 <body ng-app="validationOffre">
@@ -114,25 +114,20 @@
 								<md-input-container flex> <label id="white"
 									for="date">Date* :</label>
 
-								<div class="dropdown">
-									<a class="dropdown-toggle" id="dropdown2" role="button"
-										data-toggle="dropdown" data-target="#" href="#">
-										<div class="input-group">
-											<input id="date" placeholder="Date du repas." readonly="true"
-												type="text" class="form-control"
-												data-ng-model="date"> <span
-												class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span>
-										</div>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<datetimepicker data-ng-model="date"
-											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
-									</ul>
-								</div>
-									<div ng-messages="OffreForm.date.$error">
-										<div ng-message="mauvaisedate">Fail</div>
+								<div class="form-group">
+									<div class='input-group date' id='datetimepicker1'>
+										<input type='text' class="form-control" ng-required="true" name="date" ng-model="date" data-date-time-picker/>
+										<span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
 									</div>
+								</div>
+									<div ng-messages="OffreForm.date.$error"
+										ng-show="(OffreForm.date.$touched  || submited)">
+										<div ng-message="required">Veuillez seletionner une date.</div>
+									</div>
+
+
 								</md-input-container> </md-content>
 
 							</fieldset>
@@ -373,10 +368,9 @@
 	<script src="/resources/js/angular-animate.min.js"></script>
 	<script src="/resources/js/angular-aria.min.js"></script>
 	<script src="/resources/js/angular-messages.js"></script>
-
 	<script src="/resources/js/moment.js"></script>
+	<script src="/resources/js/bootstrap-datetimepicker.js"></script>
 	<script src="/resources/js/bootstrap.js"></script>
-	<script src="/resources/js/datetimepicker.js"></script>
 	<script src="/resources/js/angular.rangeSlider.js"></script>
 	<script src="/resources/js/ui-bootstrap-tpls.min.js"></script>
 

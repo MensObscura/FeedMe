@@ -1,9 +1,34 @@
+        var dateTimePicker = function() {
+            return {
+                restrict: "A",
+                require: "ngModel",
+                link: function (scope, element, attrs, ngModelCtrl) {
+                    var parent = $(element).parent();
+                    
+                    var min = new Date();
+                    min.setHours(min.getHours()+2); 
+                    
+                    var dtp = parent.datetimepicker({
+                        format: 'MM/DD/YYYY HH:mm',
+                        minDate: min,
+                        showTodayButton: true
+                    });
+                    dtp.on("dp.change", function (e) {
+                        ngModelCtrl.$setViewValue(moment(e.date).format("MM/DD/YY HH:mm"));
+                        scope.$apply();
+                    });
+                }
+            };
+        };
+    
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ui.bootstrap.datetimepicker']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider']);
 
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
 	
+	$scope.selectedDt = new Date();
+		
 	$scope.age = {
 		min: 18,
 		max: 100
@@ -19,13 +44,17 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.homeAction = function() {
 
 		if($scope.home){
-			$scope.rue = $scope.profil.adresse.voie;
+			var rue = $scope.profil.adresse.voie;
+			var num = rue.split(" ")[0];
+			
+			$scope.numero = parseInt(num);
+			$scope.rue = rue.substring(num.length+1,rue.length);
 			$scope.ville = $scope.profil.adresse.ville.nom;
 			$scope.cp = $scope.profil.adresse.ville.cp;
 			$scope.pays= $scope.profil.adresse.ville.pays;
 
 		}else{
-
+			$scope.numero = '';
 			$scope.rue = '';
 			$scope.ville ='';
 			$scope.cp = '';
@@ -53,18 +82,20 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.duree = 60;
 	$scope.prix = 1;
 	$scope.nbpers = 1;
-	$scope.date = new Date();
+
 	$scope.complement = "";
 
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
 					
-		if ($scope.OffreForm.$valid && $scope.date > new Date()) {
+		if ($scope.OffreForm.$valid) {
 						
 			// On récupère la date du repas
-			var date_repas = $scope.date;
+			var date_repas = new Date($scope.date);
 			var aujourdhui = new Date();
 			var date = moment(aujourdhui).format('YYYY-MM-DD');
+			
+			console.log(date_repas);
 
 			// On créé on objet pays
 			var pays = {
@@ -112,7 +143,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					adresse : adresse,
 					typeCuisine : typeCuisine,
 			};
-						
+									
 		    // On envoie les données
             $http({
         		method: 'PUT',
@@ -121,14 +152,12 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
         		data: donnees
      		}).success(function(response, status, headers, config){
      			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
-     			//$window.location.href = "/liste_offres.html";
+     			$window.location.href = "/liste_offres.html";
      		}).error(function(err, status, headers, config){
       			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
      		});
 
 		}
-		else {
-			//$mdToast.show($mdToast.simple().content('Il sera difficile de trouver des convives pour cette date !').hideDelay(2000));
-		}
 	};
-});
+}).directive('dateTimePicker', dateTimePicker);
+
