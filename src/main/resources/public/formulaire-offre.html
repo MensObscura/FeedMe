@@ -119,7 +119,7 @@
 										data-toggle="dropdown" data-target="#" href="#">
 										<div class="input-group">
 											<input id="date" placeholder="Date du repas." readonly="true"
-												type="text" min="minDate" class="form-control"
+												type="text" class="form-control"
 												data-ng-model="date"> <span
 												class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span>
@@ -130,7 +130,9 @@
 											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
 									</ul>
 								</div>
-
+									<div ng-messages="OffreForm.date.$error">
+										<div ng-message="mauvaisedate">Fail</div>
+									</div>
 								</md-input-container> </md-content>
 
 							</fieldset>

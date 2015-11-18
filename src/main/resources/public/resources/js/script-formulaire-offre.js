@@ -58,12 +58,9 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
-		if ($scope.OffreForm.$valid) {
-			
-			if ($scope.date < new Date()) {
-				//$mdToast.show($mdToast.simple().position('bottom left right').content('Cette date est passée !').hideDelay(2000));
-			}
-			
+					
+		if ($scope.OffreForm.$valid && $scope.date > new Date()) {
+						
 			// On récupère la date du repas
 			var date_repas = $scope.date;
 			var aujourdhui = new Date();
@@ -98,7 +95,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					dessert: $scope.dessert,
 					boisson: $scope.boisson
 			};
-
+			
 			// Enfin on peut créer les données que l'on souhaite envoyer
 			var donnees = {
 					dateCreation : date,
@@ -106,7 +103,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					prix : parseFloat($scope.prix),
 					nombrePersonne : parseInt($scope.nbpers),
 					dureeMinute : parseInt($scope.duree),
-					dateRepas : date_repas.toISOString().substr(0,22),
+					dateRepas : moment(date_repas).format('YYYY-MM-DDThh:mm:ss'),
 					note : $scope.note, //optionnel
 					menu : menu,
 					ageMin : $scope.age.min,
@@ -123,12 +120,15 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
         		contentType: "application/json",
         		data: donnees
      		}).success(function(response, status, headers, config){
-     			//$mdToast.show($mdToast.simple().position('bottom left right').content('Votre offre a bien été enregistrée.').hideDelay(2000));
-     			$window.location.href = "/liste_offres.html";
+     			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
+     			//$window.location.href = "/liste_offres.html";
      		}).error(function(err, status, headers, config){
-      			//$mdToast.show($mdToast.simple().position('bottom left right').content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
+      			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
      		});
 
+		}
+		else {
+			//$mdToast.show($mdToast.simple().content('Il sera difficile de trouver des convives pour cette date !').hideDelay(2000));
 		}
 	};
 });
