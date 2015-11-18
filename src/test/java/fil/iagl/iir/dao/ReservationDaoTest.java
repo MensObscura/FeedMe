@@ -130,24 +130,6 @@ public class ReservationDaoTest extends AbstractDaoTest {
   }
 
   @Test
-  public void sauvegarderTestEchec_TupleUnique() throws Exception {
-    Integer idConvive = 1;
-
-    // Etant donne une reservation qui existe deja en base
-    Reservation reservation = buildReservation(OFFRE_ID_DEFAULT, idConvive, DATE_DEFAULT);
-
-    try {
-      // Quand on enregistre cette reservation en base
-      this.reservationDao.sauvegarder(reservation);
-
-      // Alors on attend a ce qu'une exception soit lancee
-      Assertions.fail("Doit soulever une exception");
-    } catch (DataIntegrityViolationException dive) {
-      this.assertSQLCode(dive, SQLCODE.UNIQUE_VIOLATION);
-    }
-  }
-
-  @Test
   public void getAllByIdOffreTestSucces() throws Exception {
     // Etant donne qu'il existe plusieurs reservations pour une offre en
     // base
