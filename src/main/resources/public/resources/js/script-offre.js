@@ -73,7 +73,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 
 	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
-		if ($scope.ReservationForm.$valid) {
+		if ($scope.ReservationForm.$valid && $scope.place > 0 ) {
 			
 			// Première étape : convertir la date est la mettre sous la bonne forme
 			var aujourdhui = new Date();

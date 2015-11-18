@@ -1125,6 +1125,10 @@ md-toast {
 	background-color: #FC7845;
 }
 
+#form_button_log:disabled {
+	background-color: rgba(238, 238, 238,0.4)
+}
+
 #form_button_log {
 	width: auto;
 	margin-left: 15%;
@@ -1132,7 +1136,7 @@ md-toast {
 	margin-right: 15%;
 }
 
-#form_button_log:hover {
+#form_button_log:not([disabled]):hover {
 	background-color: #FC7845;
 }
 
