@@ -68,10 +68,10 @@
             <li><a href="#tf-team" class="page-scroll">L'équipe</a></li>
             <li><a href="#tf-testimonials" class="page-scroll">Témoignages</a></li>
             <li><a href="#tf-contact" class="page-scroll">Contact</a></li>
-            <li ng-if="!connecte"><a href="login.html">Se connecter</a></li>
-            <li ng-if="!connecte"><a href="inscription.html">S'inscrire</a></li>
-            <li ng-if="connecte"><a href="accueil.html">Revenir sur la page principale</a></li>
-	    	<li ng-if="connecte"><a href="">Se déconnecter</a></li>
+            <li ng-if="!authenticated"><a href="login.html">Se connecter</a></li>
+            <li ng-if="!authenticated"><a href="inscription.html">S'inscrire</a></li>
+            <li ng-if="authenticated"><a href="accueil.html">Revenir sur la page principale</a></li>
+	    	<li ng-if="authenticated"><a href="">Se déconnecter</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -347,6 +347,7 @@
     
     <script type="text/javascript" src="resources/js/main.js"></script>
     <script src="/resources/js/angular.min.js"></script>
+	<script src="/resources/js/angular-route.min.js"></script>
     <script src="/resources/js/script-index.js"></script>
 
   </body>
