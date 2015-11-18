@@ -31,6 +31,7 @@ public class OffreServiceTest extends AbstractServiceTest {
     Mockito.when(offre.getAdresse()).thenReturn(adresse);
     Mockito.when(adresse.getVille()).thenReturn(ville);
     Mockito.when(offre.getNombrePersonne()).thenReturn(2);
+    Mockito.when(offre.isOffrePremium()).thenReturn(Boolean.FALSE);
 
     this.offreService.sauvegarder(offre);
 

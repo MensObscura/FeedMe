@@ -41,11 +41,13 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     int id = utilisateur.getIdUtilisateur();
     String nom = utilisateur.getNom();
     String mail = utilisateur.getMail();
+    Boolean premium = utilisateur.isUtilisateurPremium();
 
     mockMvc.perform(get("/utilisateur/particulier/{id}", id))
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
       .andExpect(jsonPath("$.idUtilisateur").value(id))
+      .andExpect(jsonPath("$.utilisateurPremium").value(premium))
       .andExpect(jsonPath("$.nom").value(nom)).andExpect(jsonPath("$.mail").value(mail));
 
   }
@@ -69,11 +71,13 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     LocalDate dateNaissance = LocalDate.now().minusYears(RandomUtils.nextInt(20, 30));
     Role role = Role.PARTICULIER;
     String password = RandomStringUtils.random(30);
+    Boolean premium = Boolean.FALSE;
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
     utilisateur.setPrenom(prenom);
     utilisateur.setDateNaissance(dateNaissance);
+    utilisateur.setUtilisateurPremium(premium);
 
     auth.setUtilisateur(utilisateur);
     auth.setRole(role);
@@ -88,6 +92,7 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
       .andExpect(jsonPath("$.idUtilisateur").value(IsNull.notNullValue()))
       .andExpect(jsonPath("$.idParticulier").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.utilisateurPremium").value(premium))
       .andExpect(jsonPath("$.nom").value(nom))
       .andExpect(jsonPath("$.prenom").value(prenom))
       .andExpect(jsonPath("$.mail").value(mail))
@@ -112,12 +117,14 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     particulier.setMail(utilisateur.getMail());
     particulier.setNom(utilisateur.getNom());
     particulier.setPrenom(prenom);
+    particulier.setUtilisateurPremium(utilisateur.isUtilisateurPremium());
 
     mockMvc.perform(get("/utilisateur/particulier/profil")).andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
       .andExpect(jsonPath("$.nom").value(utilisateur.getNom()))
       .andExpect(jsonPath("$.mail").value(utilisateur.getMail()))
       .andExpect(jsonPath("$.idUtilisateur").value(utilisateur.getIdUtilisateur()))
+      .andExpect(jsonPath("$.utilisateurPremium").value(utilisateur.isUtilisateurPremium()))
       .andExpect(jsonPath("$.prenom").value(prenom))
       .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()));
   }
