@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fil.iagl.iir.dao.particulier.ParticulierDao">
+
+	<resultMap type="fil.iagl.iir.entite.Particulier" id="Particulier_ResultMap" extends="fil.iagl.iir.dao.utilisateur.UtilisateurDao.Utilisateur_ResultMap">
+		<id property="idParticulier" column="prt_id"/>
+		<result property="prenom" column="prt_prenom"/>
+		<result property="dateNaissance" column="prt_date_naissance"/>
+	</resultMap>
+
+
+	<sql id="select_all_columns_particulier_utilisateur">
+		SELECT 	
+				usr_id, usr_nom, usr_mail, usr_adr_id,
+				prt_id, prt_prenom, prt_date_naissance
+		FROM 
+				UTILISATEUR 
+		INNER JOIN 
+				PARTICULIER 
+		ON (usr_id = prt_usr_id)
+	</sql>
+
+	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="prt_id" keyProperty="particulier.idParticulier"> 
+		INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id ) 
+		VALUES ( #{particulier.prenom}, #{particulier.dateNaissance}, #{particulier.idUtilisateur});
+	</insert>
+
+	<select id="getById" resultMap="Particulier_ResultMap">
+		<include refid="select_all_columns_particulier_utilisateur"/>
+		WHERE prt_id = #{id}
+	</select>
+	
+	<select id="getParticulierByUtilisateurId" resultMap="Particulier_ResultMap">
+		<include refid="select_all_columns_particulier_utilisateur"/>
+		WHERE usr_id = #{id}
+	</select>
+
+</mapper>

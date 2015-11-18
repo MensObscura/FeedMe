@@ -1,13 +1,30 @@
 package fil.iagl.iir.outils;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
+import fil.iagl.iir.dao.authentification.AuthentificationDao;
+
+/**
+ * @author RMS
+ * 
+ * Reprensente une session utilisateur
+ */
+@Component
 public class FeedMeSession {
 
-	public static Integer getIdUtilisateurConnecte() {
-		FeedMeAuthentificationToken auth = (FeedMeAuthentificationToken) SecurityContextHolder.getContext()
-				.getAuthentication();
-		return auth.getAuthentification().getUtilisateur().getIdUtilisateur();
-	}
+  private static AuthentificationDao authentificationDao;
+
+  @Autowired
+  public FeedMeSession(AuthentificationDao authentificationDao) { // NOSONAR
+    FeedMeSession.authentificationDao = authentificationDao;
+  }
+
+  public static Integer getIdUtilisateurConnecte() {
+    String username = SecurityContextHolder.getContext()
+      .getAuthentication().getName();
+    return authentificationDao.getByUsername(username).getUtilisateur().getIdUtilisateur();
+  }
 
 }

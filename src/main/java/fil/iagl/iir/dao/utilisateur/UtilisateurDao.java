@@ -6,16 +6,22 @@ import fil.iagl.iir.entite.Utilisateur;
 
 public interface UtilisateurDao {
 
-	/**
-	 * @param id
-	 * @return
-	 */
-	Utilisateur getById(@Param("id") Integer id);
-	
-	/**
-	 * @param utilisateur
-	 * @return
-	 */
-	Integer sauvegarder(@Param("utilisateur") Utilisateur utilisateur);
+  /**
+   * Recupere un utilisateur par ID.
+   * 
+   * @param id
+   *            l'ID de l'utilisateur a recuperer
+   * @return l'Utilisateur associe a cet ID
+   */
+  Utilisateur getById(@Param("id") Integer id);
+
+  /**
+   * Enregistre un utilisateur
+   * 
+   * @param utilisateur
+   *            l'Utilisateur a enregister
+   * @return Le nombre de lignes inserees
+   */
+  Integer sauvegarder(@Param("utilisateur") Utilisateur utilisateur);
 
 }

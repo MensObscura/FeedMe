@@ -1,25 +1,30 @@
 package fil.iagl.iir.entite;
 
-import lombok.Getter;
+import java.io.Serializable;
 
-public enum Role {
+import fil.iagl.iir.outils.FeedMeException;
 
-	PARTICULIER(1);
+public enum Role implements Serializable {
 
-	@Getter
-	private Integer id;
+  PARTICULIER(1);
 
-	Role(Integer id) {
-		this.id = id;
-	}
+  private Integer id;
 
-	public static Role findById(Integer id) {
-		for (Role role : Role.values()) {
-			if (id.equals(role.getId())) {
-				return role;
-			}
-		}
-		throw new RuntimeException("No Enum Found for ID : " + id);
-	}
+  Role(Integer id) {
+    this.id = id;
+  }
+
+  public static Role findById(Integer id) {
+    for (Role role : Role.values()) {
+      if (id.equals(role.getId())) {
+        return role;
+      }
+    }
+    throw new FeedMeException("No Enum Found for ID : " + id);
+  }
+
+  public Integer getId() {
+    return id;
+  }
 
 }

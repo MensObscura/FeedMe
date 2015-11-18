@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fil.iagl.iir.dao.reservation.ReservationDao">
+
+	<resultMap type="fil.iagl.iir.entite.Reservation" id="Reservation_ResultMap">
+		<id property="id" column="res_id"/>
+		<result property="offre.id" column="res_off_id"/>
+		<result property="convive.idUtilisateur" column="res_con_id"/>
+		<result property="dateReservation" column="res_date_reservation"/>
+		<result property="nb_places" column="res_nb_places"/>
+	</resultMap>
+
+
+	<sql id="select_all_columns_reservation">
+		SELECT res_id, res_off_id, res_con_id, res_date_reservation, res_nb_places
+		FROM RESERVATION
+	</sql>
+
+	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="res_id" keyProperty="reservation.id"> 
+		INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation, res_nb_places)
+		VALUES ( #{reservation.offre.id}, #{reservation.convive.idUtilisateur}, #{reservation.dateReservation}, #{reservation.nb_places});
+	</insert>
+
+	<select id="getAllByIdOffre" resultMap="Reservation_ResultMap">
+		<include refid="select_all_columns_reservation"/>
+		WHERE res_off_id = #{id}
+	</select>
+
+</mapper>

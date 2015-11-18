@@ -1,23 +1,34 @@
+<!-- 
+©Copyright 2015 - FeedMe
+Page permettant une visualisation du profil d'un utilisateur.
+ -->
+
 <!DOCTYPE html>
+<html lang="fr">
 <html> 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>FeedMe - Profil</title>
+        <title>Mon profil</title>
         <meta name="description" content="Visualisation du profil FeedMe">
-        <script src="js/angular.min.js"></script>
+        <script src="/resources/js/angular.min.js"></script>
     </head>
     
-    <body ng-app>
-        <div ng-include="'header.html'"></div>
+    <body ng-app="Profil">
+    	<!-- Menu -->
+        <div ng-include="'/resources/header.html'"></div>
         
-        <p>Nom: Jean<br/>
-        Prénom: Dupotager<br />
-        Âge: 31 ans<br />
-        e-m@il: jean.dupotager@leposte.com<br/>
+        <!-- Affichage des éléments du profil de l'utilisateur connecté -->
+        <div id="profil" ng-controller="ProfilCtrl">
+            <p>Nom: {{profil.nom}}<br/>
+            Prénom: {{profil.prenom}}<br />
+            Date de naissance: {{profil.dateNaissance}}<br />
+            e-m@il: {{profil.mail}}<br/>
+        </div>
         
-        Notes: Je suis très content d'être ici !</p>
+        <script src="/resources/js/script-profil.js"></script>
         
-        <div ng-include="'footer.html'"></div>
+        <!-- Pied de page -->
+        <div ng-include="'/resources/footer.html'"></div>
     </body>
 </html>

@@ -2,8 +2,10 @@ package fil.iagl.iir.dao;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 import org.fest.assertions.api.Assertions;
+import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -14,191 +16,160 @@ import fil.iagl.iir.outils.SQLCODE;
 
 public class ReservationDaoTest extends AbstractDaoTest {
 
-	private static final int NB_RESERVATION_OFFRE_ID_1 = 1;
+  private static final Integer OFFRE_ID_DEFAULT = 1;
+  private static final Integer CONVIVE_ID_DEFAULT = 2;
+  private static final LocalDate DATE_DEFAULT = LocalDate.of(2015, Month.JANUARY, 15);
 
-	@Test
-	public void sauvegarderTestSucces() throws Exception {
-		Integer idOffre = 1;
-		Integer idConvive = 2;
-		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
+  private static final Integer OFFRE_ID_4 = 4;
+  private static final Integer NB_RESERVATION_OFFRE_ID_4 = 2;
 
-		Offre offre = new Offre();
-		offre.setId(idOffre);
+  @Test
+  public void sauvegarderTestSucces() throws Exception {
+    // Etant donne une reservation associee a une offre et a un convive
+    Reservation reservation = buildReservation(OFFRE_ID_DEFAULT, CONVIVE_ID_DEFAULT, DATE_DEFAULT);
 
-		Utilisateur convive = new Utilisateur();
-		convive.setIdUtilisateur(idConvive);
+    // Quand on enregistre la reservation
+    this.reservationDao.sauvegarder(reservation);
+    reservation.setNb_places(1);
 
-		Reservation reservation = new Reservation();
-		reservation.setOffre(offre);
-		reservation.setConvive(convive);
-		reservation.setDateReservation(dateReservation);
+    // Alors on verifie que l'ID de la reservation a bien ete genere
+    Assertions.assertThat(reservation.getId()).isNotNull().isPositive();
+    // et que les informations sont conformes
+    Assertions.assertThat(reservation.getConvive()).isNotNull();
+    Assertions.assertThat(reservation.getConvive().getIdUtilisateur()).isNotNull().isEqualTo(CONVIVE_ID_DEFAULT);
+    Assertions.assertThat(reservation.getOffre()).isNotNull();
+    Assertions.assertThat(reservation.getOffre().getId()).isNotNull().isEqualTo(OFFRE_ID_DEFAULT);
+    Assertions.assertThat(reservation.getDateReservation()).isNotNull().isEqualTo(DATE_DEFAULT);
+    Assertions.assertThat(reservation.getNb_places()).isNotNull().isEqualTo(1);
+  }
 
-		this.reservationDao.sauvegarder(reservation);
+  @Test
+  public void sauvegarderTestEchec_OffreNull() throws Exception {
+    // Etant donne une reservation
+    Reservation reservation = buildReservation(null, CONVIVE_ID_DEFAULT, DATE_DEFAULT);
+    // qui n'est associee a aucune offre
+    reservation.setOffre(null);
 
-		Assertions.assertThat(reservation.getId()).isNotNull().isPositive();
-		Assertions.assertThat(reservation.getConvive()).isNotNull();
-		Assertions.assertThat(reservation.getConvive().getIdUtilisateur()).isNotNull().isEqualTo(idConvive);
-		Assertions.assertThat(reservation.getOffre()).isNotNull();
-		Assertions.assertThat(reservation.getOffre().getId()).isNotNull().isEqualTo(idOffre);
-		Assertions.assertThat(reservation.getDateReservation()).isNotNull().isEqualTo(dateReservation);
-	}
+    try {
+      // Quand on enregistre cette reservation en base
+      this.reservationDao.sauvegarder(reservation);
 
-	@Test
-	public void sauvegarderTestEchec_OffreNull() throws Exception {
-		Integer idConvive = 2;
-		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
+      // Alors on attend a ce qu'une exception soit lancee
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
 
-		Offre offre = null;
+  @Test
+  public void sauvegarderTestEchec_ConviveNull() throws Exception {
+    // Etant donne une reservation
+    Reservation reservation = buildReservation(OFFRE_ID_DEFAULT, null, DATE_DEFAULT);
+    // qui n'est associee a aucun convive
+    reservation.setConvive(null);
 
-		Utilisateur convive = new Utilisateur();
-		convive.setIdUtilisateur(idConvive);
+    try {
+      // Quand on enregistre cette reservation en base
+      this.reservationDao.sauvegarder(reservation);
 
-		Reservation reservation = new Reservation();
-		reservation.setOffre(offre);
-		reservation.setConvive(convive);
-		reservation.setDateReservation(dateReservation);
+      // Alors on attend a ce qu'une exception soit lancee
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
 
-		try {
-			this.reservationDao.sauvegarder(reservation);
-			Assertions.fail("Doit soulever une exception");
-		} catch (DataIntegrityViolationException dive) {
-			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
-		}
-	}
+  @Test
+  public void sauvegarderTestEchec_DateReservationNull() throws Exception {
+    // Etant donne une reservation n'ayant aucune date de reservation
+    Reservation reservation = buildReservation(OFFRE_ID_DEFAULT, CONVIVE_ID_DEFAULT, null);
 
-	@Test
-	public void sauvegarderTestEchec_ConviveNull() throws Exception {
-		Integer idOffre = 1;
-		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
+    try {
+      // Quand on enregistre cette reservation en base
+      this.reservationDao.sauvegarder(reservation);
 
-		Offre offre = new Offre();
-		offre.setId(idOffre);
+      // Alors on attend a ce qu'une exception soit lancee
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
 
-		Utilisateur convive = null;
+  @Test
+  public void sauvegarderTestEchec_OffreNonExistant() throws Exception {
+    // Etant donne une reservation associee a une offre qui n'existe pas en
+    // base
+    Reservation reservation = buildReservation(Integer.MAX_VALUE, CONVIVE_ID_DEFAULT, DATE_DEFAULT);
 
-		Reservation reservation = new Reservation();
-		reservation.setOffre(offre);
-		reservation.setConvive(convive);
-		reservation.setDateReservation(dateReservation);
+    try {
+      // Quand on enregistre cette reservation en base
+      this.reservationDao.sauvegarder(reservation);
 
-		try {
-			this.reservationDao.sauvegarder(reservation);
-			Assertions.fail("Doit soulever une exception");
-		} catch (DataIntegrityViolationException dive) {
-			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
-		}
-	}
+      // Alors on attend a ce qu'une exception soit lancee
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
+    }
+  }
 
-	@Test
-	public void sauvegarderTestEchec_DateReservationNull() throws Exception {
-		Integer idOffre = 1;
-		Integer idConvive = 2;
-		LocalDate dateReservation = null;
+  @Test
+  public void sauvegarderTestEchec_ConviveNonExistant() throws Exception {
+    // Etant donne une reservation associee a un convive qui n'existe pas en
+    // base
+    Reservation reservation = buildReservation(OFFRE_ID_DEFAULT, Integer.MAX_VALUE, DATE_DEFAULT);
 
-		Offre offre = new Offre();
-		offre.setId(idOffre);
+    try {
+      // Quand on enregistre cette reservation en base
+      this.reservationDao.sauvegarder(reservation);
 
-		Utilisateur convive = new Utilisateur();
-		convive.setIdUtilisateur(idConvive);
+      // Alors on attend a ce qu'une exception soit lancee
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
+    }
+  }
 
-		Reservation reservation = new Reservation();
-		reservation.setOffre(offre);
-		reservation.setConvive(convive);
-		reservation.setDateReservation(dateReservation);
+  @Test
+  public void getAllByIdOffreTestSucces() throws Exception {
+    // Etant donne qu'il existe plusieurs reservations pour une offre en
+    // base
+    // Quand on recupere la liste des reservations associee a l'offre 4
+    List<Reservation> reservations = this.reservationDao.getAllByIdOffre(OFFRE_ID_4);
 
-		try {
-			this.reservationDao.sauvegarder(reservation);
-			Assertions.fail("Doit soulever une exception");
-		} catch (DataIntegrityViolationException dive) {
-			this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
-		}
-	}
+    // Alors on verifie le nombre de reservations retournees
+    Assertions.assertThat(reservations).isNotEmpty().hasSize(NB_RESERVATION_OFFRE_ID_4);
 
-	@Test
-	public void sauvegarderTestEchec_OffreNonExistant() throws Exception {
-		Integer idOffre = Integer.MAX_VALUE;
-		Integer idConvive = 2;
-		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
+    // et que pour chaque reservation, le bon ID d'offre est renseigne
+    Assertions.assertThat(reservations).are(new Condition<Reservation>() {
+      @Override
+      public boolean matches(Reservation reseration) {
+        return reseration.getOffre().getId().equals(OFFRE_ID_4);
+      }
+    });
+  }
 
-		Offre offre = new Offre();
-		offre.setId(idOffre);
+  @Test
+  public void getAllByIdOffreTestEchec() throws Exception {
+    Assertions.assertThat(this.reservationDao.getAllByIdOffre(null)).isEmpty();
+    Assertions.assertThat(this.reservationDao.getAllByIdOffre(Integer.MAX_VALUE)).isEmpty();
+  }
 
-		Utilisateur convive = new Utilisateur();
-		convive.setIdUtilisateur(idConvive);
+  public Reservation buildReservation(Integer idOffre, Integer idConvive, LocalDate dateReservation) {
+    // Creation d'une offre
+    Offre offre = new Offre();
+    offre.setId(idOffre);
 
-		Reservation reservation = new Reservation();
-		reservation.setOffre(offre);
-		reservation.setConvive(convive);
-		reservation.setDateReservation(dateReservation);
+    // Creation d'un convive
+    Utilisateur convive = new Utilisateur();
+    convive.setIdUtilisateur(idConvive);
+    Integer nb_places = 2;
 
-		try {
-			this.reservationDao.sauvegarder(reservation);
-			Assertions.fail("Doit soulever une exception");
-		} catch (DataIntegrityViolationException dive) {
-			this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
-		}
-	}
+    Reservation reservation = new Reservation();
+    reservation.setOffre(offre);
+    reservation.setConvive(convive);
+    reservation.setDateReservation(dateReservation);
+    reservation.setNb_places(nb_places);
 
-	@Test
-	public void sauvegarderTestEchec_ConviveNonExistant() throws Exception {
-		Integer idOffre = 1;
-		Integer idConvive = Integer.MAX_VALUE;
-		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
-
-		Offre offre = new Offre();
-		offre.setId(idOffre);
-
-		Utilisateur convive = new Utilisateur();
-		convive.setIdUtilisateur(idConvive);
-
-		Reservation reservation = new Reservation();
-		reservation.setOffre(offre);
-		reservation.setConvive(convive);
-		reservation.setDateReservation(dateReservation);
-
-		try {
-			this.reservationDao.sauvegarder(reservation);
-			Assertions.fail("Doit soulever une exception");
-		} catch (DataIntegrityViolationException dive) {
-			this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
-		}
-	}
-
-	@Test
-	public void sauvegarderTestEchec_TupleUnique() throws Exception {
-		Integer idOffre = 1;
-		Integer idConvive = 1;
-		LocalDate dateReservation = LocalDate.of(2015, Month.JANUARY, 15);
-
-		Offre offre = new Offre();
-		offre.setId(idOffre);
-
-		Utilisateur convive = new Utilisateur();
-		convive.setIdUtilisateur(idConvive);
-
-		Reservation reservation = new Reservation();
-		reservation.setOffre(offre);
-		reservation.setConvive(convive);
-		reservation.setDateReservation(dateReservation);
-
-		try {
-			this.reservationDao.sauvegarder(reservation);
-			Assertions.fail("Doit soulever une exception");
-		} catch (DataIntegrityViolationException dive) {
-			this.assertSQLCode(dive, SQLCODE.UNIQUE_VIOLATION);
-		}
-	}
-
-	@Test
-	public void getAllByIdOffreTestSucces() throws Exception {
-		Integer idOffre = 1;
-		Assertions.assertThat(this.reservationDao.getAllByIdOffre(idOffre)).isNotEmpty()
-				.hasSize(NB_RESERVATION_OFFRE_ID_1);
-	}
-
-	@Test
-	public void getAllByIdOffreTestEchec() throws Exception {
-		Assertions.assertThat(this.reservationDao.getAllByIdOffre(null)).isEmpty();
-		Assertions.assertThat(this.reservationDao.getAllByIdOffre(Integer.MAX_VALUE)).isEmpty();
-	}
+    return reservation;
+  }
 }

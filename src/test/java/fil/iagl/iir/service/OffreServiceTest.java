@@ -5,61 +5,81 @@ import java.util.List;
 
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Offre;
-import fil.iagl.iir.entite.Utilisateur;
-import fil.iagl.iir.outils.FeedMeSession;
+import fil.iagl.iir.entite.Ville;
+import fil.iagl.iir.outils.FeedMeException;
 
 public class OffreServiceTest extends AbstractServiceTest {
 
-	@Mock
-	private Offre offre;
+  @Mock
+  private Offre offre;
 
-	@Mock
-	private Utilisateur hote;
+  @Mock
+  private Adresse adresse;
 
-	@Test
-	public void sauvegarderTestSucces() throws Exception {
-		Mockito.when(offre.getHote()).thenReturn(hote);
+  @Mock
+  private Ville ville;
 
-		this.offreService.sauvegarder(offre);
+  @Test
+  public void sauvegarderTestSucces() throws Exception {
+    Mockito.when(offre.getNombrePersonne()).thenReturn(1);
+    Mockito.when(offre.getAdresse()).thenReturn(adresse);
+    Mockito.when(adresse.getVille()).thenReturn(ville);
+    Mockito.when(offre.getNombrePersonne()).thenReturn(2);
+    Mockito.when(offre.isOffrePremium()).thenReturn(Boolean.FALSE);
 
-		Mockito.verify(hote, Mockito.times(1)).setIdUtilisateur(FeedMeSession.getIdUtilisateurConnecte());
-		Mockito.verify(offreDao, Mockito.times(1)).sauvegarder(offre);
-	}
+    this.offreService.sauvegarder(offre);
 
-	@Test(expected = RuntimeException.class)
-	public void sauvegarderTestEchec() throws Exception {
-		offreService.sauvegarder(null);
-		Mockito.verify(offreDao, Mockito.times(0)).sauvegarder(null);
-	}
+    InOrder order = Mockito.inOrder(adresseServiceMock, offreDao);
+    order.verify(adresseServiceMock, Mockito.times(1)).sauvegarder(adresse);
+    order.verify(offreDao, Mockito.times(1)).sauvegarder(offre);
 
-	@Test
-	public void afficherTestSucces() throws Exception {
-		Integer idOffre = 1;
+  }
 
-		Mockito.when(offreDao.getById(idOffre)).thenReturn(offre);
+  @Test(expected = FeedMeException.class)
+  public void sauvegarderTestEchec() throws Exception {
+    offreService.sauvegarder(null);
+    Mockito.verify(offreDao, Mockito.never()).sauvegarder(Mockito.any());
+  }
 
-		Assertions.assertThat(this.offreService.afficher(idOffre)).isEqualTo(offre);
+  @Test(expected = FeedMeException.class)
+  public void sauvegarderTestEchec_NombreConvivesZero() throws Exception {
+    Mockito.when(offre.getNombrePersonne()).thenReturn(0);
 
-	}
+    this.offreService.sauvegarder(offre);
 
-	@Test(expected = RuntimeException.class)
-	public void afficherTestEchec() throws Exception {
-		offreService.afficher(null);
-		Mockito.verify(offreDao, Mockito.times(0)).getById(null);
-	}
+    Mockito.verify(offreDao, Mockito.never()).sauvegarder(Mockito.any());
+  }
 
-	@Test
-	public void listerTestSucces() throws Exception {
-		List<Offre> list = Arrays.asList(offre, offre, offre, offre);
-		Mockito.when(offreDao.getAll()).thenReturn(list);
+  @Test
+  public void afficherTestSucces() throws Exception {
+    Integer idOffre = 1;
 
-		Assertions.assertThat(offreService.lister()).isEqualTo(list);
+    Mockito.when(offreDao.getById(idOffre)).thenReturn(offre);
 
-		Mockito.verify(offreDao, Mockito.times(1)).getAll();
-	}
+    Assertions.assertThat(this.offreService.afficher(idOffre)).isEqualTo(offre);
+
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void afficherTestEchec() throws Exception {
+    offreService.afficher(null);
+    Mockito.verify(offreDao, Mockito.times(0)).getById(null);
+  }
+
+  @Test
+  public void listerTestSucces() throws Exception {
+    List<Offre> list = Arrays.asList(offre, offre, offre, offre);
+    Mockito.when(offreDao.getAll()).thenReturn(list);
+
+    Assertions.assertThat(offreService.lister()).isEqualTo(list);
+
+    Mockito.verify(offreDao, Mockito.times(1)).getAll();
+  }
 
 }
