@@ -45,9 +45,16 @@ Page de visualisation des offres de repas.
 							<p>
 								{{item.prix}} €
 							</p>
-							<p>
-								{{item.nombreRestant}}
+							<div id="nbplace" ng-init='getNbPlaces(item);'>
+							<p ng-if="!(item.nombrePersonne == 0)">
+							Place(s) restante(s) : {{item.nombrePersonne}}
+														
 							</p>
+							<p ng-if="item.nombrePersonne == 0">
+							Complet
+							</p>
+							
+							</div>
 							<p>
 								{{item.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}
 							</p>

@@ -39,7 +39,7 @@
 							<h2>{{titre}}</h2>
 							<p>{{typeCuisine.type}}</p>
 							<p>{{prix}} €</p>
-							<p>{{nbpers}}</p>
+							<p>Place(s) restante(s) : {{nbpers}}</p>
 							<p>{{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}</p>
 						</div>
 
@@ -52,28 +52,31 @@
 
 								<md-content layout-padding>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="titre">Titre de l'offre :</label> <input id="white"  type="text"
-										name="titre" ng-model="titre" ng-required="true"
-										placeholder="Titre de l'offre." maxlength="18">
-									<div ng-messages="OffreForm.titre.$error">
+									<md-input-container flex> <label
+										id="white" for="titre">Titre de l'offre* :</label> <input
+										id="white" type="text" name="titre" ng-model="titre"
+										ng-required="true" placeholder="Titre de l'offre."
+										maxlength="18">
+									<div ng-messages="OffreForm.titre.$error"
+										ng-show="(OffreForm.titre.$touched   || submited)">
 										<div ng-message="required">Veuillez saisir un titre pour
 											l'offre.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label id="white"
-										for="typeCuisine">Type de cuisine :</label> <md-select class="white" 
-										name="typeCuisine" ng-model="typeCuisine"
-										style="min-width: 200px;"> <md-option  id="back_white"
-										ng-value="{{item}}" ng-selected="item.id==1"
+									<md-input-container flex> <label
+										id="white" for="typeCuisine">Type de cuisine :</label> <md-select
+										id="select_white" name="typeCuisine" ng-model="typeCuisine"> <md-option
+										id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
 										ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="nbpers">Nombre de convives :</label> <input id="white" type="number"
-										name="nbpers" ng-model="nbpers" ng-min="1" ng-required="true"
+									<md-input-container flex> <label
+										id="white" for="nbpers">Nombre de convives* :</label> <input
+										id="white" type="number" name="nbpers" ng-model="nbpers"
+										ng-min="1" ng-required="true"
 										placeholder="Nombre de couverts.">
-									<div ng-messages="OffreForm.nbpers.$error">
+									<div ng-messages="OffreForm.nbpers.$error"
+										ng-show="( OffreForm.nbpers.$touched  || submited)">
 										<div ng-message="min">Veuillez saisir un nombre
 											supérieur à 1.</div>
 										<div ng-message="required">Veuillez saisir un nombre de
@@ -81,22 +84,26 @@
 										<div ng-message="number">Veuillez saisir un nombre.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label id="white"
-										for="prix">Prix par convive :</label> <input id="white" type="number"
-										step="0.1" name="prix" ng-model="prix" ng-min="1.00"
-										ng-required="true" placeholder="Prix par convive.">
-									<div ng-messages="OffreForm.prix.$error">
+									<md-input-container flex> <label
+										id="white" for="prix">Prix par convive* :</label> <input
+										id="white" type="number" step="0.1" name="prix"
+										ng-model="prix" ng-min="1.00" ng-required="true"
+										placeholder="Prix par convive.">
+									<div ng-messages="OffreForm.prix.$error"
+										ng-show="(OffreForm.prix.$touched   || submited)">
 										<div ng-message="min">Veuillez saisir un prix supérieur
 											à 1.00.</div>
 										<div ng-message="required">Veuillez saisir un prix.</div>
 										<div ng-message="number">Veuillez saisir un nombre.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label id="white"
-										for="duree">Durée du repas (en min) :</label> <input id="white" 
-										type="number" ng-model="duree" name="duree" ng-min="60"
-										ng-required="true" placeholder="Durée prévisionnelle.">
-									<div ng-messages="OffreForm.duree.$error">
+									<md-input-container flex> <label
+										id="white" for="duree">Durée du repas(min)* :</label> <input
+										id="white" type="number" ng-model="duree" name="duree"
+										ng-min="60" ng-required="true"
+										placeholder="Durée prévisionnelle.">
+									<div ng-messages="OffreForm.duree.$error"
+										ng-show="(OffreForm.duree.$touched   || submited)">
 										<div ng-message="min">Veuillez saisir une durée
 											supérieur à 60 min.</div>
 										<div ng-message="required">Veuillez saisir une durée.</div>
@@ -104,8 +111,8 @@
 									</div>
 									</md-input-container>
 								</div>
-								<md-input-container flex> <label id="white" for="date">Date
-									:</label>
+								<md-input-container flex> <label id="white"
+									for="date">Date* :</label>
 
 								<div class="dropdown">
 									<a class="dropdown-toggle" id="dropdown2" role="button"
@@ -118,7 +125,7 @@
 												class="glyphicon glyphicon-calendar"></i></span>
 										</div>
 									</a>
-									<ul  class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 										<datetimepicker data-ng-model="date"
 											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
 									</ul>
@@ -134,32 +141,34 @@
 
 								<md-content layout-padding>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="entree">Entrée(s) :</label> <textarea id="white"  name="entree"
-										ng-model="entree" placeholder="Entrées du repas."></textarea>
-									</md-input-container>
+									<md-input-container flex> <label
+										id="white" for="entree">Entrée(s) :</label> <textarea
+										id="white" name="entree" ng-model="entree"
+										placeholder="Entrées du repas."></textarea> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="plat">Plat principal :</label> <textarea id="white" name="plat"
-										ng-model="plat" placeholder="Votre plat." ng-required="true"></textarea>
-									<div ng-messages="OffreForm.plat.$error">
+									<md-input-container flex> <label
+										id="white" for="plat">Plat principal* :</label> <textarea
+										id="white" name="plat" ng-model="plat"
+										placeholder="Votre plat." ng-required="true"></textarea>
+									<div ng-messages="OffreForm.plat.$error"
+										ng-show="(OffreForm.plat.$touched   || submited)">
 										<div ng-message="required">Votre menu doit contenir au
 											moins un plat.</div>
 									</div>
 									</md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="dessert">Dessert(s) :</label> <textarea id="white" name="dessert"
-										ng-model="dessert" placeholder="Desserts du repas."></textarea>
-									</md-input-container>
+									<md-input-container flex> <label
+										id="white" for="dessert">Dessert(s) :</label> <textarea
+										id="white" name="dessert" ng-model="dessert"
+										placeholder="Desserts du repas."></textarea> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="boisson">Boisson(s) :</label> <textarea name="boisson" id="white" 
-										ng-model="boisson" placeholder="Boissons du repas."></textarea>
-									</md-input-container>
+									<md-input-container flex> <label
+										id="white" for="boisson">Boisson(s) :</label> <textarea
+										name="boisson" id="white" ng-model="boisson"
+										placeholder="Boissons du repas."></textarea> </md-input-container>
 								</div>
 								</md-content>
 
@@ -177,58 +186,66 @@
 								</div>
 
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="numero">Numéro :</label> <input id="white" type="number"
-										ng-model="numero" name="numero" ng-min="1"
+									<md-input-container flex> <label
+										id="white" for="numero">Numéro* :</label> <input id="white"
+										type="number" ng-model="numero" name="numero" ng-min="1"
 										placeholder="Numéro de voirie." ng-required="!home"
 										ng-disabled="home">
-									<div ng-messages="OffreForm.numero.$error">
+									<div ng-messages="OffreForm.numero.$error"
+										ng-show="(OffreForm.numero.$touched  || submited)">
 										<div ng-message="min">Veuillez saisir un numéro valide.</div>
 										<div ng-message="required">Veuillez saisir un numéro de
 											voirie.</div>
 										<div ng-message="number">Veuillez saisir un nombre.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label id="white" for="rue">Rue
-										: </label> <input id="white" type="text" ng-model="rue" name="rue"
+									<md-input-container flex> <label
+										id="white" for="rue">Rue* : </label> <input id="white"
+										type="text" ng-model="rue" name="rue"
 										placeholder="Nom de voirie." ng-required="!home"
 										ng-disabled="home">
-									<div ng-messages="OffreForm.rue.$error">
+									<div ng-messages="OffreForm.rue.$error"
+										ng-show="(OffreForm.rue.$touched  || submited)">
 										<div ng-message="required">Veuillez saisir un nom de
 											rue.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label id="white"
-										for="complement">Complément : </label> <input id="white"  type="text"
-										name="complement" ng-model="complement"
+									<md-input-container flex> <label
+										id="white" for="complement">Complément : </label> <input
+										id="white" type="text" name="complement" ng-model="complement"
 										placeholder="Compléments." ng-disabled="home"> </md-input-container>
 
 								</div>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="ville">Ville :</label> <input id="white" type="text" name="ville"
-										ng-model="ville" placeholder="Votre ville."
-										ng-required="!home" ng-disabled="home">
-									<div ng-messages="OffreForm.ville.$error">
+									<md-input-container flex> <label
+										id="white" for="ville">Ville* :</label> <input id="white"
+										type="text" name="ville" ng-model="ville"
+										placeholder="Votre ville." ng-required="!home"
+										ng-disabled="home">
+									<div ng-messages="OffreForm.ville.$error"
+										ng-show="(OffreForm.ville.$touched || submited)">
 										<div ng-message="required">Veuillez saisir votre ville.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label id="white" for="cp">Code
-										postal :</label> <input id="white" type="text" name="cp" ng-model="cp"
+									<md-input-container flex> <label
+										id="white" for="cp">Code postal* :</label> <input id="white"
+										type="text" name="cp" ng-model="cp"
 										ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
 										placeholder="Votre code postal." ng-required="!home"
 										ng-disabled="home">
-									<div ng-messages="OffreForm.cp.$error">
+									<div ng-messages="OffreForm.cp.$error"
+										ng-show="(OffreForm.cp.$touched   || submited)">
 										<div ng-message="pattern">Le code postal saisit est
 											incorrect.</div>
 										<div ng-message="required">Veuillez saisir un code
 											postal.</div>
 									</div>
 									</md-input-container>
-									<md-input-container flex> <label id="white"
-										for="pays">Pays :</label> <md-select id="white" name="pays"
-										ng-model="pays" style="min-width: 200px;" ng-disabled="home">
-									<md-option id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
+									<md-input-container flex> <label
+										id="white" for="pays">Pays :</label> <md-select
+										id="select_white" name="pays" ng-model="pays"
+										ng-disabled="home"> <md-option
+										id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
 										ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
 								</div>
 								</md-content>
@@ -243,19 +260,20 @@
 
 								<div layout layout-sm="column">
 
-									<md-input-container flex> <label id="white" >Tranche 
-										d'âges : de {{age.min}} à {{age.max}} ans</label> <input id="hidden"
-										type="text" placeholder="Tranche d'âges." />
+									<md-input-container flex> <label
+										id="white">Tranche d'âges : de {{age.min}} à
+										{{age.max}} ans</label> <input id="hidden" type="text"
+										placeholder="Tranche d'âges." />
 									<div id="tranches-ages" range-slider min="18" max="100"
 										model-min="age.min" model-max="age.max"></div>
 									</md-input-container>
 								</div>
 								<br>
 								<div layout layout-sm="column">
-									<md-input-container flex> <label id="white"
-										for="note">Remarques :</label> <textarea id="white" name="note"
-										ng-model="note" placeholder="Informations complémentaires."></textarea>
-									</md-input-container>
+									<md-input-container flex> <label
+										id="white" for="note">Remarques :</label> <textarea id="white"
+										name="note" ng-model="note"
+										placeholder="Informations complémentaires."></textarea> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
 									<md-checkbox ng-model="animal" aria-label="animal">Présence
@@ -265,9 +283,7 @@
 
 							</fieldset>
 
-							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-							<md-button type="submit" ng-disabled="OffreForm.$invalid"
-								class="form">Ajouter</md-button>
+							<br>
 						</div>
 
 						<div flex>
@@ -277,61 +293,68 @@
 								<h2>{{titre || "Titre non complété"}}</h2>
 								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
 
-								<fieldset>
+								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
+									<div class="general-form">
+										<!-- Présentation de l'hôte, du lieu -->
+										<fieldset class="inner ">
+											<legend>L'hôte</legend>
+											<h3>Identité :</h3>
+											{{profil.prenom}} {{profil.nom}}
+											<h3>Lieu :</h3>
+											{{numero}} {{rue}} {{complement}}<br> {{cp}} {{ville}}
+											({{pays.nom}})
+											<h3>Prix par convive :</h3>
+											{{prix}} €
+										</fieldset>
 
-									<!-- Présentation de l'hôte, du lieu -->
-									<fieldset>
-										<legend>L'hôte</legend>
-										<h3>Identité :</h3>
-										{{profil.prenom}} {{profil.nom}}
-										<h3>Lieu :</h3>
-										{{numero}} {{rue}} {{complement}}<br> {{cp}} {{ville}}
-										({{pays.nom}})
-										<h3>Prix par convive :</h3>
-										{{prix}} €
-									</fieldset>
+										<!-- Présentation du menu -->
+										<fieldset class="inner ">
+											<legend>Le menu</legend>
+											<h3>Type de cuisine :</h3>
+											{{typeCuisine.type}}
+											<h3>Dans votre assiette :</h3>
+											<br>
+											<h4>Entrée(s) :</h4>
 
-									<!-- Présentation du menu -->
-									<fieldset>
-										<legend>Le menu</legend>
-										<h3>Type de cuisine :</h3>
-										{{typeCuisine.type}}
-										<h3>Dans votre assiette :</h3>
-										<br>
-										<h4>Entrée(s) :</h4>
+											<pre class="white word_respect">{{entree || "aucunes entrées"}}</pre>
+											<br>
+											<h4>Plat :</h4>
+											<pre class="white word_respect">{{plat || "Plat non complété"}}</pre>
+											<br>
+											<h4>Dessert(s) :</h4>
 
-										<pre class="white" >{{entree || "aucunes entrées"}}</pre> <br>
-										<h4>Plat :</h4>
-										<pre class="white" >{{plat || "Plat non complété"}}</pre> <br>
-										<h4>Dessert(s) :</h4>
+											<pre class="white word_respect ">{{dessert || "aucuns desserts"}} </pre>
+											<br>
+											<h4>Carte des boissons :</h4>
 
-										<pre class="white" >{{dessert || "aucuns desserts"}} </pre><br>
-										<h4>Carte des boissons :</h4>
+											<pre class="white word_respect ">{{boisson || "aucunes boissons particulières"}}</pre>
+											<br> <br>
+											<h3>Nombre de couverts restants :</h3>
+											<!--  x sur y  -->
+											{{nbpers}} sur {{nbpers}}
+											<h3>Durée prévisionnelle :</h3>
+											{{duree}} min.
+										</fieldset>
 
-										<pre class="white" >{{boisson || "aucunes boissons particulières"}}</pre> <br> <br>
-										<h3>Nombre de couverts restants :</h3>
-										<!--  x sur y  -->
-										{{nbpers}} sur {{nbpers}}
-										<h3>Durée prévisionnelle :</h3>
-										{{duree}} min.
-									</fieldset>
-
-									<!-- Informations diverses (et optionnelles) -->
-									<fieldset>
-										<legend>Divers</legend>
-										<div ng-if="animal">
-											Un animal de compagnie sera présent lors du repas.<br>
-										</div>
-										<div ng-if="age">
-											Ce repas s'adresse aux {{age.min}}-{{age.max}} ans.<br>
-										</div>
-										<div ng-if="note">{{note}}</div>
-									</fieldset>
+										<!-- Informations diverses (et optionnelles) -->
+										<fieldset class="inner ">
+											<legend class="inner ">Divers</legend>
+											<div ng-if="animal">
+												Un animal de compagnie sera présent lors du repas.<br>
+											</div>
+											<div ng-if="age">
+												Ce repas s'adresse aux {{age.min}}-{{age.max}} ans.<br>
+											</div>
+											<div ng-if="note">{{note}}</div>
+										</fieldset>
+										<div>
 								</fieldset>
 							</fieldset>
-
-
+							<br>
+							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
+							<md-button id="form_button" type="submit"
+								ng-click="submited=true" class="form">Ajouter</md-button>
 						</div>
 					</div>
 

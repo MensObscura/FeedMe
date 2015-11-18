@@ -11,7 +11,7 @@ body, html {
 	text-rendering: optimizeLegibility !important;
 	-webkit-font-smoothing: antialiased !important;
 	color: #5a5a5a;
-	height: 94%;
+	height: 100%;
 }
 
 h1 {
@@ -106,7 +106,7 @@ ul, ol {
 
 #tf-menu.navbar-default {
 	background-color: rgba(0, 0, 0, 1);
-	/* A dé-commenter pour le prochain jallon MVP */
+	/* A dÃ©commenter pour le prochain jallon MVP */
 	/* background-color: rgba(0, 0, 0, 0.75); */
 	border-color: rgba(231, 231, 231, 0);
 }
@@ -158,6 +158,7 @@ ul, ol {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
+	height: 70em;
 }
 
 #tf-home .overlay {
@@ -183,7 +184,7 @@ ul, ol {
 		62%, rgba(0, 0, 0, 0.4) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000',
 		endColorstr='#66000000', GradientType=0); /* IE6-9 */
-	height: 750px;
+	height: 70em;
 	background-attachment: fixed;
 }
 
@@ -561,7 +562,7 @@ label {
 	text-align: left;
 	float: left;
 	color: rgba(255, 255, 255, 1);
-	font-size: 12px;
+	font-size: 1.1em;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -619,6 +620,7 @@ nav#footer {
 	background: #222222;
 	color: #ffffff;
 	padding: 23px 0 15px 0;
+	height: 6%;
 }
 
 nav#footer .fnav {
@@ -652,8 +654,8 @@ nav#footer p {
 	color: #ffffff;
 }
 
-/* Début du tri du CSS à partir d'ici:
-    ajouts et tri d'éléments avec commentaring
+/* DÃ©but du tri du CSS Ã  partir d'ici:
+    ajouts et tri d'Ã©lÃ©ments avec commentaring
     */
 #StyleFormulaireInscription {
 	background: url(../img/forms/inscription.jpg);
@@ -662,7 +664,7 @@ nav#footer p {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-	height: 100%;
+	height: 94%;
 	margin: 0;
 	padding-top: 25px;
 }
@@ -678,7 +680,7 @@ nav#footer p {
 		color-stop(100%, rgba(0, 0, 0, 0.4))); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%,
 		rgba(0, 0, 0, 0.73) 17%, rgba(0, 0, 0, 0.66) 35%, rgba(0, 0, 0, 0.55)
-		62%, rgba(0, 0, 0, 0.4) 100%); /* Chrome10+,Safari5.1+ */
+		62%, rgba(0, 0, 0.4) 100%); /* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%,
 		rgba(0, 0, 0, 0.73) 17%, rgba(0, 0, 0, 0.66) 35%, rgba(0, 0, 0, 0.55)
 		62%, rgba(0, 0, 0, 0.4) 100%); /* Opera 11.10+ */
@@ -761,7 +763,7 @@ nav#footer p {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-	height: 100%;
+	height: 94%;
 	margin: 0;
 }
 
@@ -804,9 +806,8 @@ nav#footer p {
 	background-repeat: no-repeat;
 	color: #cfcfcf;
 	height: auto;
-	min-height: 112%;
+	min-height: 94%;
 	padding-top: 5%;
-	margin-bottom: -5%;
 	padding-bottom: 5%;
 }
 
@@ -860,7 +861,7 @@ nav#footer p {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000',
 		endColorstr='#66000000', GradientType=0); /* IE6-9 */
 	background-attachment: fixed;
-	height: 100%;
+	height: 94%;
 }
 
 #StyleFormulaireOffre p.lead {
@@ -911,12 +912,11 @@ button.form {
 }
 
 .item-view {
-	display: block;
 	background-color: rgba(0, 0, 0, 0.9);
-	margin-left: 20%;
-	margin-right: 20%;
+	margin: 3%;
 	padding: 25px;
 	width: 400px;
+	border-radius: 15px 0px 15px 0px;
 }
 
 .item-view:hover {
@@ -939,7 +939,7 @@ ul {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-	height: auto;
+	height: 94%;
 	margin: 0;
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -951,7 +951,8 @@ ul {
 	-ms-flex: 1;
 	flex: 1;
 	cursor: pointer;
-	padding: 10% 10% 10% 15%;
+	padding: 10% 7% 10% 7%;
+	margin: 5% 5% 5% 5%;
 	background-color: rgba(0, 0, 0, 0.3);
 	margin-top: 12.1%;
 	margin-bottom: 12.1%;
@@ -990,7 +991,7 @@ ul {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-	height: 100%;
+	height: 94%;
 	margin: 0;
 }
 
@@ -1007,10 +1008,17 @@ ul {
 	line-height: 35px;
 }
 
-/* .offre-container  {
-    height: auto;
-    border: 2px solid black;
-} */
+.profil h2 {
+	margin-top: -1.5em;
+}
+
+.offre-container {
+	height: auto;
+	display: inline-block;
+	float: left;
+	margin: 0% 1.5% 0% 1.5%;
+}
+
 .une-offre-body {
 	background: url(../img/offre/background.jpg);
 	background-size: cover;
@@ -1069,27 +1077,91 @@ md-toast {
 
 #tranches-ages {
 	margin-bottom: -5%;
-	 background-color: rgba(238, 238, 238, 0);
-	 border:none;
+	background-color: rgba(238, 238, 238, 0);
+	border: none;
 }
 
-#date{
-	
-    background-color: rgba(238, 238, 238, 0);
+#date {
+	background-color: rgba(238, 238, 238, 0);
 }
 
-#white{
-	color: rgb(250,250,250);
-	border-color: rgb(250,250,250);
+#white {
+	color: rgb(250, 250, 250);
+	border-color: rgb(250, 250, 250);
 }
-#back_white{
-    background-color: rgb(250,250,250);
-    	color: rgb(0,0,0);
+
+#back_white {
+	background-color: rgb(250, 250, 250);
+	color: rgb(0, 0, 0);
 }
-.white{
-	color: rgb(250,250,250);
-	 background-color: rgba(238, 238, 238, 0);
-	
-}	
-	
+
+#back_white:hover {
+	background-color: rgb(224, 224, 224);
+}
+
+.white {
+	color: rgb(250, 250, 250);
+		background-color: rgba(238, 238, 238, 0);
+}
+
+#select_white {
+	color: rgb(250, 250, 250);
+	background-color: rgba(238, 238, 238, 0);
+}
+
+#select_white:not ([disabled] ):focus {
+	color: rgb(250, 250, 250);
+	background-color: rgba(238, 238, 238, 0);
+}
+
+#form_button {
+	width: 70%;
+	margin-left: 15%;
+	height: 4%;
+	margin-right: 15%;
+}
+
+#form_button:hover {
+	background-color: #FFC376
+}
+
+#form_button_log:disabled {
+	background-color: rgba(238, 238, 238, 0.4)
+}
+button#form_button{
+	width: 70%;
+	margin-left: 15%;
+	height: 4%;
+	margin-right: 15%;
+}
+#form_button_log {
+	width: auto;
+	margin-left: 15%;
+	height: auto;
+	margin-right: 15%;
+}
+
+button#form_button_log {
+	width: auto;
+	margin-left: 15%;
+	height: auto;
+	margin-right: 15%;
+}
+
+#form_button_log:not([disabled]):hover {
+	background-color: #FFC376
+}
+
+.inner {
+	padding: 1%;
+	background-color: rgba(238, 238, 238, 0);
+}
+
+.word_respect {
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: initial; /* Internet Explorer 5.5+ */
+	word-break: initial;
 }
