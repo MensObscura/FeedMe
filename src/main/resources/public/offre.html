@@ -29,7 +29,6 @@ Page de visualisation d'une offre
     ================================================== -->
     <link rel="stylesheet" type="text/css"  href="resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
-    <link rel='stylesheet' type='text/css' href='resources/fonts/general-fonts.css'>
     
 	<link rel="stylesheet" type='text/css' href="/resources/css/angular-material.min.css">
 	
@@ -87,20 +86,31 @@ Page de visualisation d'une offre
                     <div ng-if="age">{{age}}</div>
                     <div ng-if="note">{{note}}</div>
                     </fieldset>
-
+	<br>
                     <!-- Réservation de places -->		
-                    <div > 
-                    Réserver
-                        <input type="number" name="place" ng-model="place" step="0" ng-required="true" min="1" max="{{nombreRestant}}" id="Nbplace" value="n"/> couvert(s)
-                        <span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
+                   
+            
+
+						
+						
+									<md-content layout-padding>
+						<md-input-container  flex>
+						<label id="white" for="place">Nombre de place(s) à réserver* :</label> <input
+							id="white" type="number" name="place" ng-model="place"
+							 ng-required="true" ng-min="minCouvert" min="{{minCouvert}}" ng-max="nombreRestant" 
+							id="Nbplace" placeholder="Réserver" />
+						 <span style="color:red" ng-show="(ReservationForm.place.$invalid && !ReservationForm.place.$pristine) || submited">
                             <span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
                             <span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
                             <span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span>
                             <span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span>
-                        </span>
-                    </label>
-                    <input type="submit" ng-disabled="ReservationForm.$invalid" value="Réserver">
-                </div>
+						</md-input-container> </md-content>
+						
+
+						<md-button id="form_button_log" type="submit"
+							ng-click="submited=true" class="form ">Réserver</md-button>
+					
+              
             </form>
             </div>
 		</div>
