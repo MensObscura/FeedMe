@@ -3,7 +3,8 @@ var app = angular.module("OffreApp", ['ngMaterial']);
 
 //Création du controller "ReservationController"
 app.controller('ReservationController', function($scope, $http, $window, $mdToast) {  
-
+	$scope.submited =false;
+	$scope.minCouvert = 1;
 	// Fonction permettant de récupérer les paramètres de l'url.
 	$scope.getUrlVars = function() {
 		var vars = {};
@@ -36,6 +37,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				// Si le nombre de places restantes est 0, on affiche "complet"
 				if ($scope.nombreRestant == 0) {
 					$scope.couverts_restants = "COMPLET"
+						$scope.minCouvert = 0;
 				}
 				else {
 					$scope.couverts_restants = $scope.nombreRestant+" sur "+data.nombrePersonne;
@@ -71,7 +73,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 
 	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
-		if ($scope.ReservationForm.$valid) {
+		if ($scope.ReservationForm.$valid && $scope.place > 0 ) {
 			
 			// Première étape : convertir la date est la mettre sous la bonne forme
 			var aujourdhui = new Date();
