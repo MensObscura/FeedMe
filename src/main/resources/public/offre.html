@@ -43,12 +43,12 @@ Page de visualisation d'une offre
                 <h2>{{offre.titre}}</h2>
                 <h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
                 <form name="ReservationForm" ng-submit="submitForm()" novalidate>
-                    <fieldset class="white">
+                    <fieldset class="inner ">
                     <legend>L'offre de repas</legend>
 
                     <!-- Présentation de l'hôte, du lieu -->
-                    <fieldset class="white">
-                    <legend class="white">L'hôte</legend>
+                    <fieldset class="inner ">
+                    <legend class="inner ">L'hôte</legend>
                         <h3>Identité :</h3>
                         <!-- Un hôte est un utilisateur : pas de prénom  {{offre.hote.prenom}} -->{{offre.hote.nom}}
                         <h3>Lieu :</h3>
@@ -56,11 +56,11 @@ Page de visualisation d'une offre
                         {{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
                         <h3>Prix par convive :</h3>
                         {{offre.prix}} €
-                    </fieldset class="white">
+                    </fieldset class="inner ">
 
                     <!-- Présentation du menu -->
-                    <fieldset class="white">
-                    <legend class="white">Le menu</legend>
+                    <fieldset class="inner ">
+                    <legend class="inner ">Le menu</legend>
                         <h3>Type de cuisine :</h3>
                         {{offre.typeCuisine.type}}
                         <h3>Dans votre assiette :</h3>
@@ -80,7 +80,7 @@ Page de visualisation d'une offre
                     </fieldset>
 
                     <!-- Informations diverses (et optionnelles) -->
-                    <fieldset class="white">
+                    <fieldset class="inner ">
                     <legend>Divers</legend>
                     <div ng-if="animaux">{{animaux}}</div>
                     <div ng-if="age">{{age}}</div>
@@ -94,6 +94,7 @@ Page de visualisation d'une offre
 						
 						
 									<md-content layout-padding>
+										<br>
 						<md-input-container  flex>
 						<label id="white" for="place">Nombre de place(s) à réserver* :</label> <input
 							id="white" type="number" name="place" ng-model="place"

@@ -293,11 +293,11 @@
 								<h2>{{titre || "Titre non complété"}}</h2>
 								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
 
-								<fieldset class="white preview ">
+								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
 									<div class="general-form">
 										<!-- Présentation de l'hôte, du lieu -->
-										<fieldset class="white preview ">
+										<fieldset class="inner ">
 											<legend>L'hôte</legend>
 											<h3>Identité :</h3>
 											{{profil.prenom}} {{profil.nom}}
@@ -309,7 +309,7 @@
 										</fieldset>
 
 										<!-- Présentation du menu -->
-										<fieldset class="white preview ">
+										<fieldset class="inner ">
 											<legend>Le menu</legend>
 											<h3>Type de cuisine :</h3>
 											{{typeCuisine.type}}
@@ -338,8 +338,8 @@
 										</fieldset>
 
 										<!-- Informations diverses (et optionnelles) -->
-										<fieldset class="white preview ">
-											<legend class="white preview ">Divers</legend>
+										<fieldset class="inner ">
+											<legend class="inner ">Divers</legend>
 											<div ng-if="animal">
 												Un animal de compagnie sera présent lors du repas.<br>
 											</div>
