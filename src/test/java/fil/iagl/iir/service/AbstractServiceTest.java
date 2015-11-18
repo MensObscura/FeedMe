@@ -1,72 +1,69 @@
 package fil.iagl.iir.service;
 
-import java.time.LocalDate;
-
-import org.junit.Before;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import fil.iagl.iir.AbstractFeedMeTest;
+import fil.iagl.iir.dao.adresse.AdresseDao;
+import fil.iagl.iir.dao.authentification.AuthentificationDao;
+import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.offre.OffreDao;
+import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
-import fil.iagl.iir.entite.Offre;
-import fil.iagl.iir.entite.Reservation;
-import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.dao.ville.VilleDao;
+import fil.iagl.iir.service.impl.AdresseServiceImpl;
+import fil.iagl.iir.service.impl.AuthentificationServiceImpl;
+import fil.iagl.iir.service.impl.ImageServiceImpl;
 import fil.iagl.iir.service.impl.OffreServiceImpl;
 import fil.iagl.iir.service.impl.ReservationServiceImpl;
 import fil.iagl.iir.service.impl.UtilisateurServiceImpl;
 
 public abstract class AbstractServiceTest extends AbstractFeedMeTest {
 
-	@InjectMocks
-	protected UtilisateurServiceImpl utilisateurService;
+  @InjectMocks
+  protected AuthentificationServiceImpl authentificationService;
 
-	@InjectMocks
-	protected ReservationServiceImpl reservationService;
+  @InjectMocks
+  protected UtilisateurServiceImpl utilisateurService;
 
-	@InjectMocks
-	protected OffreServiceImpl offreService;
+  @InjectMocks
+  protected ReservationServiceImpl reservationService;
 
-	@Mock
-	protected UtilisateurDao utilisateurDao;
+  @InjectMocks
+  protected OffreServiceImpl offreService;
 
-	@Mock
-	protected ReservationDao reservationDao;
+  @InjectMocks
+  protected AdresseServiceImpl adresseService;
 
-	@Mock
-	protected OffreDao offreDao;
+  @InjectMocks
+  protected ImageServiceImpl imageService;
 
-	@Before
-	public void initMocks() {
-		MockitoAnnotations.initMocks(this);
-	}
+  @Mock
+  protected AuthentificationDao authentificationDao;
 
-	protected Utilisateur createUtilisateur() {
-		Utilisateur utilisateur = new Utilisateur();
-		utilisateur.setIdUtilisateur(1);
-		utilisateur.setMail("toto.toto@gmail.com");
-		utilisateur.setNom("toto");
-		return utilisateur;
-	}
+  @Mock
+  protected UtilisateurDao utilisateurDao;
 
-	protected Reservation createReservation() {
-		Integer idOffre = 1;
+  @Mock
+  protected ParticulierDao particulierDao;
 
-		Utilisateur convive = new Utilisateur();
+  @Mock
+  protected ReservationDao reservationDao;
 
-		Offre offre = new Offre();
-		offre.setId(idOffre);
+  @Mock
+  protected OffreDao offreDao;
 
-		LocalDate dateReservation = LocalDate.now();
+  @Mock
+  protected AdresseDao adresseDao;
 
-		Reservation reservation = new Reservation();
-		reservation.setConvive(convive);
-		reservation.setDateReservation(dateReservation);
-		reservation.setOffre(offre);
+  @Mock
+  protected VilleDao villeDao;
 
-		return reservation;
-	}
+  @Mock
+  protected AdresseService adresseServiceMock;
+
+  @Mock
+  protected ImageDao imageDao;
 
 }
