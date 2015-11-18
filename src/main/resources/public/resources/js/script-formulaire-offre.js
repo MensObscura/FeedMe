@@ -19,17 +19,19 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.homeAction = function() {
 
 		if($scope.home){
+			
 			$scope.rue = $scope.profil.adresse.voie;
 			$scope.ville = $scope.profil.adresse.ville.nom;
 			$scope.cp = $scope.profil.adresse.ville.cp;
-			$scope.pays= $scope.profil.adresse.ville.pays;
+			$scope.count= {0:$scope.profil.adresse.ville.pays};
+			
 
 		}else{
 
 			$scope.rue = '';
 			$scope.ville ='';
 			$scope.cp = '';
-			$scope.pays= '';
+			$scope.count = $scope.saveCountry;
 		}
 
 
@@ -46,6 +48,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$http.get('/settings/pays').success(
 			function(donnees) {
 				$scope.count = donnees;
+				$scope.saveCountry = $scope.count;
 			}
 	);
 
@@ -63,6 +66,8 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			if ($scope.date < new Date()) {
 				//$mdToast.show($mdToast.simple().position('bottom left right').content('Cette date est passée !').hideDelay(2000));
 			}
+			
+			
 			
 			// On récupère la date du repas
 			var date_repas = $scope.date;
