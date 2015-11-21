@@ -10,6 +10,10 @@ public class Image {
   private Integer id;
   private String path;
 
+  public Image() {
+
+  }
+
   @Override
   public String toString() {
     return "Image [id=" + id + ", path=" + path + "]";

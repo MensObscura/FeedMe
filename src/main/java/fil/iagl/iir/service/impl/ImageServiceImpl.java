@@ -3,10 +3,14 @@ package fil.iagl.iir.service.impl;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,7 +30,8 @@ public class ImageServiceImpl implements ImageService {
       throw new FeedMeException("Parametre null");
     }
 
-    if (extensions.stream().noneMatch(ext -> image.getOriginalFilename().endsWith(ext))) {
+    String imageExt = extensions.stream().filter(ext -> image.getOriginalFilename().endsWith(ext)).findAny().orElse(null);
+    if (imageExt == null) {
       throw new FeedMeException("N'est pas une image");
     }
 
@@ -34,28 +39,57 @@ public class ImageServiceImpl implements ImageService {
       throw new FeedMeException("Le fichier est vide");
     }
 
-    String orgName = image.getOriginalFilename();
     try {
       BufferedImage src = ImageIO.read(new ByteArrayInputStream(image.getBytes()));
 
-      String filePath = orgName;
-      File dest = new File(filePath);
+      String fileName = generateNewName();
+      String physiquePath = BASE_PREFIX + File.separatorChar + PUBLIC_LOCATION + File.separatorChar + fileName + imageExt;
+      String logiquePath = PUBLIC_LOCATION + File.separatorChar + fileName + imageExt;
 
-      ImageIO.write(src, "png", dest);
-    } catch (IllegalStateException e) {
-      e.printStackTrace();
-      System.out.println("File uploaded failed:" + orgName);
-    } catch (IOException e) {
-      e.printStackTrace();
-      System.out.println("File uploaded failed:" + orgName);
+      File dest = new File(physiquePath);
+      dest.createNewFile();
+
+      FileOutputStream output = new FileOutputStream(dest);
+      ImageIO.write(src, "gif", output);
+
+      output.close();
+
+      Image imageSauvegardee = new Image();
+      imageSauvegardee.setPath(logiquePath);
+      imageDao.sauvegarder(imageSauvegardee);
+      return imageSauvegardee;
+    } catch (IllegalStateException | IOException e) {
+      throw new FeedMeException("Le fichier n'a pas pu s'enregistrer" + image.getOriginalFilename(), e);
     }
-    System.out.println("File uploaded:" + orgName);
-    return null;
   }
 
-  private String instrumentFilename(MultipartFile image) {
-    String originalFilename = image.getOriginalFilename();
-    return originalFilename.substring(originalFilename.lastIndexOf(File.separatorChar));
+  @Override
+  public Image getById(Integer idImage) {
+    if (idImage == null) {
+      throw new FeedMeException("L'id de l'image est null");
+    }
+    return imageDao.getById(idImage);
+  }
+
+  /*
+   * Permet de générer un nom de fichier unique ( basé sur la date + timestamp + string random )
+   * 
+   * Format : randomAlphanumeric(16)_date_timestamp
+   * 
+   * Ca devrait etre assez robuste /o/
+   * 
+   * TODO: Utiliser date java8
+   */
+  private String generateNewName() {
+    String filename = "";
+    long millis = System.currentTimeMillis();
+    String datetime = DateFormat.getInstance().format(new Date());
+    datetime = datetime.replace(" ", "");
+    datetime = datetime.replace("/", "");
+    datetime = datetime.replace(":", "");
+    String rndchars = RandomStringUtils.randomAlphanumeric(16);
+    filename = rndchars + "_" + datetime + "_" + millis;
+    return filename;
   }
 
 }
