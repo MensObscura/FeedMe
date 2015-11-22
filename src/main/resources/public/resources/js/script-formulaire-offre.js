@@ -1,25 +1,25 @@
-        var dateTimePicker = function() {
-            return {
-                restrict: "A",
-                require: "ngModel",
-                link: function (scope, element, attrs, ngModelCtrl) {
-                    var parent = $(element).parent();
-                    
-                    var min = new Date();
-                    min.setHours(min.getHours()+2); 
-                    
-                    var dtp = parent.datetimepicker({
-                        format: 'DD/MM/YYYY HH:mm',
-                        ignoreReadonly: true,
-                        minDate: min
-                    });
-                    dtp.on("dp.change", function (e) {
-                        ngModelCtrl.$setViewValue(new Date(e.date));
-                        scope.$apply();
-                    });
-                }
-            };
-        };
+var dateTimePicker = function() {
+     return {
+        restrict: "A",
+        require: "ngModel",
+        link: function (scope, element, attrs, ngModelCtrl) {
+	        var parent = $(element).parent();
+	                    
+	        var min = new Date();
+	        min.setHours(min.getHours()+2); 
+	                    
+	        var dtp = parent.datetimepicker({
+	               format: 'DD/MM/YYYY HH:mm',
+	               ignoreReadonly: true,
+	               minDate: min
+	         });
+	        dtp.on("dp.change", function (e) {
+	               ngModelCtrl.$setViewValue(new Date(e.date));
+	               scope.$apply();
+	        });
+        }
+     };
+};
     
 //Chargement du module "validationOffre"
 var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider']);
@@ -51,14 +51,14 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			$scope.rue = rue.substring(num.length+1,rue.length);
 			$scope.ville = $scope.profil.adresse.ville.nom;
 			$scope.cp = $scope.profil.adresse.ville.cp;
-			$scope.pays= $scope.profil.adresse.ville.pays;
+			$scope.count= {0: $scope.profil.adresse.ville.pays};
 
 		}else{
 			$scope.numero = '';
 			$scope.rue = '';
 			$scope.ville ='';
 			$scope.cp = '';
-			$scope.pays= '';
+			$scope.count = $scope.saveCountry;
 		}
 
 
@@ -75,6 +75,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$http.get('/settings/pays').success(
 			function(donnees) {
 				$scope.count = donnees;
+				$scope.saveCountry = $scope.count;
 			}
 	);
 
