@@ -10,6 +10,7 @@
                     
                     var dtp = parent.datetimepicker({
                         format: 'DD/MM/YYYY HH:mm',
+                        ignoreReadonly: true,
                         minDate: min
                     });
                     dtp.on("dp.change", function (e) {

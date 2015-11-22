@@ -115,7 +115,7 @@
 									for="date">Date* :</label>
 								<div class="form-group">
 									<div class='input-group date'>
-										<input ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/" type='text' class="form-control" ng-required="true" name="date" ng-model="date" data-date-time-picker/>
+										<input ng-readonly="true" type='text' class="form-control" ng-required="true" name="date" ng-model="date" data-date-time-picker/>
 										<span class="input-group-addon">
 											<span class="glyphicon glyphicon-calendar"></span>
 										</span>
@@ -124,7 +124,6 @@
 									<div ng-messages="OffreForm.date.$error"
 										ng-show="(OffreForm.date.$touched  || submited)">
 										<div ng-message="required">Veuillez seletionner une date.</div>
-										<div ng-message="pattern">Veuillez seletionner une date via le calendrier.</div>
 									</div>
 
 
