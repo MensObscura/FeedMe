@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import fil.iagl.iir.dao.image.ImageDao;
@@ -19,6 +20,7 @@ import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.service.ImageService;
 
+@Service
 public class ImageServiceImpl implements ImageService {
 
   @Autowired

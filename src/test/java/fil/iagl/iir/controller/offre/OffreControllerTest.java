@@ -23,6 +23,7 @@ public class OffreControllerTest extends AbstractControllerTest {
   @Autowired
   private OffreDao offreDao;
 
+  @Override
   @Before
   public void setUp() {
     super.setUp();
