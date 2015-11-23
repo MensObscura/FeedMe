@@ -20,6 +20,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     Integer id = 1;
     String nom = "toto";
     String email = "toto.toto@gmail.com";
+    Boolean premium = true;
 
     // Quand on recupere l'utilisateur associe a cet ID
     Utilisateur user = utilisateurDao.getById(id);
@@ -30,6 +31,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(user.getMail()).isNotNull().isEqualTo(email);
     assertThat(user.getNom()).isNotNull().isEqualTo(nom);
     Assertions.assertThat(user.getAdresse()).isNull();
+    Assertions.assertThat(user.getPremium()).isNotNull().isTrue();
   }
 
   @Test
@@ -92,9 +94,11 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     Utilisateur utilisateur = new Utilisateur();
     String nom = "monnom";
     String mail = "monmail@mail.com";
+    Boolean premium = true;
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
+    utilisateur.setPremium(premium);
 
     // n'ayant pas encore son ID renseigne ni son adresse
     Assertions.assertThat(utilisateur.getIdUtilisateur()).isNull();
@@ -107,6 +111,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(utilisateur.getIdUtilisateur()).isNotNull().isPositive();
     assertThat(utilisateur.getMail()).isNotNull().isEqualTo(mail);
     assertThat(utilisateur.getNom()).isNotNull().isEqualTo(nom);
+    Assertions.assertThat(utilisateur.getPremium()).isNotNull().isTrue();
 
     // et que son adresse est nulle
     assertThat(utilisateur.getAdresse()).isNull();
@@ -118,6 +123,8 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     Utilisateur utilisateur = new Utilisateur();
     String nom = "hall";
     String mail = "kolick@mail.com";
+    Boolean premium = true;
+
     String rue = "4 rue guillaume apollinaire";
     Integer adresseId = 1;
     String villeName = "Lille";
@@ -134,6 +141,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
+    utilisateur.setPremium(premium);
     utilisateur.setAdresse(adresse);
 
     // n'ayant pas encore son ID
@@ -146,6 +154,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(utilisateur.getIdUtilisateur()).isNotNull().isPositive();
     assertThat(utilisateur.getMail()).isNotNull().isEqualTo(mail);
     assertThat(utilisateur.getNom()).isNotNull().isEqualTo(nom);
+    Assertions.assertThat(utilisateur.getPremium()).isNotNull().isTrue();
     assertThat(utilisateur.getAdresse()).isNotNull();
     assertThat(utilisateur.getAdresse().getId()).isNotNull().isPositive().isEqualTo(adresseId);
     assertThat(utilisateur.getAdresse().getVoie()).isNotNull().isEqualTo(rue);
@@ -162,9 +171,11 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     Utilisateur utilisateur = new Utilisateur();
     String nom = null;
     String mail = "monmail@mail.com";
+    Boolean premium = true;
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
+    utilisateur.setPremium(premium);
 
     try {
       // Quand on enregistre cet utilisateur en base
@@ -179,14 +190,40 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
   }
 
   @Test
+  public void sauvegarderTestEchec_PremiumNull() throws Exception {
+    // Etant donne un utilisateur n'ayant pas de status premium définis
+    Utilisateur utilisateur = new Utilisateur();
+    String nom = "monnom";
+    String mail = "monmail@mail.com";
+    Boolean premium = null;
+
+    utilisateur.setMail(mail);
+    utilisateur.setNom(nom);
+    utilisateur.setPremium(premium);
+
+    try {
+      // Quand on enregistre cet utilisateur
+      utilisateurDao.sauvegarder(utilisateur);
+
+      // Alors on s'attend à ce qu'une exception soit levée
+      fail("Doit lever une exception");
+    } catch (DataIntegrityViolationException dive) {
+
+      this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
   public void sauvegarderTestEchec_MailNull() throws Exception {
     // Etant donne un utilisateur n'ayant pas de mail renseigne
     Utilisateur utilisateur = new Utilisateur();
     String nom = "monnom";
     String mail = null;
+    Boolean premium = true;
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
+    utilisateur.setPremium(premium);
 
     try {
       // Quand on enregistre cet utilisateur en base
@@ -206,9 +243,11 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     String nom = "monnom";
     // ayant un email deja enregistre en base
     String mail = USERNAME_TEST_USER;
+    Boolean premium = true;
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
+    utilisateur.setPremium(premium);
 
     try {
       // Quand on enegistre cet utilisateur en base

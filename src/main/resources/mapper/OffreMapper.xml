@@ -19,6 +19,7 @@
 		<result property="ageMin" column="off_age_min"/>
 		<result property="ageMax" column="off_age_max"/>
 		<result property="animaux" column="off_animaux"/>
+		<result property="premium" column="off_premium"/>
 		
 		<association property="adresse" column="off_adr_id" select="fil.iagl.iir.dao.adresse.AdresseDao.getById" />
 		<association property="typeCuisine" column="off_typ_id" select="fil.iagl.iir.dao.typeCuisine.TypeCuisineDao.getById" />
@@ -47,7 +48,8 @@
 	       	off_animaux, 
 	       	off_adr_id, 
 	       	off_typ_id, 
-	       	off_usr_id
+	       	off_usr_id,
+	       	off_premium
 		FROM OFFRE
 	</sql>
 
@@ -78,7 +80,8 @@
             off_animaux, 
             off_adr_id, 
             off_typ_id, 
-            off_usr_id
+            off_usr_id,
+            off_premium
         )
 	    VALUES (
 	    	CURRENT_DATE,
@@ -97,7 +100,8 @@
 	    	#{offre.animaux},
 	    	#{offre.adresse.id},
 	    	#{offre.typeCuisine.id},
-	    	#{offre.hote.idUtilisateur}		
+	    	#{offre.hote.idUtilisateur},
+	    	#{offre.premium}
 	    );
 
 	</insert>

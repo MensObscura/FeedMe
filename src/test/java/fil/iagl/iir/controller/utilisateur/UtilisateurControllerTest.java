@@ -69,11 +69,13 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     LocalDate dateNaissance = LocalDate.now().minusYears(RandomUtils.nextInt(20, 30));
     Role role = Role.PARTICULIER;
     String password = RandomStringUtils.random(30);
+    Boolean premium = true;
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
     utilisateur.setPrenom(prenom);
     utilisateur.setDateNaissance(dateNaissance);
+    utilisateur.setPremium(premium);
 
     auth.setUtilisateur(utilisateur);
     auth.setRole(role);
@@ -91,6 +93,7 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.nom").value(nom))
       .andExpect(jsonPath("$.prenom").value(prenom))
       .andExpect(jsonPath("$.mail").value(mail))
+      .andExpect(jsonPath("$.premium").value(premium))
       .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)));
 
   }

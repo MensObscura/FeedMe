@@ -39,6 +39,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     String note = "Note";
     Integer ageMin = 20;
     Integer ageMax = 30;
+    Boolean premium = true;
 
     // les informations de l'adresse associee a cette offre
     Integer idAdresse = 1;
@@ -79,6 +80,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     Assertions.assertThat(offre.getDateCreation()).isNotNull().isEqualTo(dateCreation);
     Assertions.assertThat(offre.getTitre()).isNotNull().isEqualTo(titre);
     Assertions.assertThat(offre.getPrix()).isNotNull().isEqualTo(prix);
+    Assertions.assertThat(offre.getPremium()).isNotNull().isTrue();
     Assertions.assertThat(offre.getNombrePersonne()).isNotNull().isEqualTo(nombrePersonne);
     Assertions.assertThat(offre.getDureeMinute()).isNotNull().isEqualTo(dureeMinute);
     Assertions.assertThat(offre.getDateRepas()).isNotNull().isEqualTo(dateRepas);
@@ -91,6 +93,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     Assertions.assertThat(offre.getNote()).isNotNull().isEqualTo(note);
     Assertions.assertThat(offre.getAgeMin()).isNotNull().isEqualTo(ageMin);
     Assertions.assertThat(offre.getAgeMax()).isNotNull().isEqualTo(ageMax);
+    Assertions.assertThat(offre.getPremium()).isNotNull().isEqualTo(premium);
 
     // que les informations de l'adresse associee a l'offre sont celles
     // attendues
@@ -166,6 +169,23 @@ public class OffreDaoTest extends AbstractDaoTest {
       Assertions.fail("Doit soulever une exception");
     } catch (DataIntegrityViolationException dive) {
       this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void sauvegarderTestEchec_PremiumNull() throws Exception {
+    // Etant donne une offre n'ayant pas de status premium definis
+    Offre offre = this.createOffre();
+    offre.setPremium(null);
+
+    try {
+      // Quand on enregistre une offre
+      offreDao.sauvegarder(offre);
+
+      // Alors on s'attend à ce qu'une exception soit levée
+      Assertions.fail("Doit lever une exception");
+    } catch (DataIntegrityViolationException e) {
+      this.assertSQLCode(e, SQLCODE.NOT_NULL_VIOLATION);
     }
   }
 

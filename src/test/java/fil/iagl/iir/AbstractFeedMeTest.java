@@ -152,6 +152,7 @@ public abstract class AbstractFeedMeTest {
     Integer dureeMinute = 120;
     LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 0);
     Boolean animaux = Boolean.FALSE;
+    Boolean premium = Boolean.TRUE;
 
     Integer idAdresse = 1;
     Integer idVille = 1;
@@ -206,6 +207,7 @@ public abstract class AbstractFeedMeTest {
     offre.setTypeCuisine(typeCuisine);
     offre.setHote(hote);
     offre.setNote(note);
+    offre.setPremium(premium);
 
     return offre;
   }
