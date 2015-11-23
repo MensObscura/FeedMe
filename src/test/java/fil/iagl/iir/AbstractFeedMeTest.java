@@ -105,6 +105,7 @@ public abstract class AbstractFeedMeTest {
   protected Utilisateur createUtilisateur() {
     Utilisateur utilisateur = new Utilisateur();
     utilisateur.setIdUtilisateur(1);
+    utilisateur.setPremium(Boolean.TRUE);
     utilisateur.setMail("toto.toto@gmail.com");
     utilisateur.setNom("toto");
     return utilisateur;
@@ -114,6 +115,7 @@ public abstract class AbstractFeedMeTest {
     Particulier particulier = new Particulier();
     particulier.setIdUtilisateur(1);
     particulier.setIdParticulier(1);
+    particulier.setPremium(Boolean.TRUE);
     particulier.setNom("toto");
     particulier.setPrenom("tata");
     particulier.setMail("mail@gmail.com");

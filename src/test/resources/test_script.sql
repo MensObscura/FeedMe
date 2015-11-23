@@ -1,5 +1,6 @@
 -- RESET BDD CONTENT
 TRUNCATE
+IMAGE,
 AUTHENTIFICATION,
 UTILISATEUR,
 PARTICULIER,
@@ -15,8 +16,15 @@ ALTER SEQUENCE ville_vil_id_seq RESTART WITH 1;
 ALTER SEQUENCE adresse_adr_id_seq RESTART WITH 1;
 ALTER SEQUENCE offre_off_id_seq RESTART WITH 1;
 ALTER SEQUENCE reservation_res_id_seq RESTART WITH 1;
+ALTER SEQUENCE image_img_id_seq RESTART WITH 1;
 
 -- DONNEES DE TEST
+
+-- ---------------------------
+-- Table IMAGE
+-- ---------------------------
+INSERT INTO IMAGE ( img_path ) values
+('/monPath/0.jpg');
 
 
 -- ---------------------------

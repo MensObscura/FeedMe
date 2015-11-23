@@ -13,7 +13,7 @@
 	<sql id="select_all_columns_particulier_utilisateur">
 		SELECT 	
 				usr_id, usr_nom, usr_mail, usr_adr_id,
-				prt_id, prt_prenom, prt_date_naissance
+				prt_id, prt_prenom, prt_date_naissance, usr_premium
 		FROM 
 				UTILISATEUR 
 		INNER JOIN 
