@@ -44,13 +44,13 @@ INSERT INTO ADRESSE (adr_voie, adr_vil_id) VALUES
 -- ---------------------------
 -- Table UTILISATEUR
 -- ---------------------------
-INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_premium ) VALUES 
-( 'toto', 'toto.toto@gmail.com', true), -- ID 1
-( 'foo', 'foo.bar@gmail.com', true), -- ID 2
-( 'jean', 'jambon-beurre@gmail.com', true); -- ID 3
+INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_premium , usr_description) VALUES 
+( 'toto', 'toto.toto@gmail.com', true, 'ceci est la description de toto'), -- ID 1
+( 'foo', 'foo.bar@gmail.com', true, null), -- ID 2
+( 'jean', 'jambon-beurre@gmail.com', true, null); -- ID 3
 
-INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id, usr_premium) VALUES
-( 'hall', 'kolick@gmail.com', 1, true); -- ID 4
+INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description) VALUES
+( 'hall', 'kolick@gmail.com', 1, true, 'ceci est la description de hall'); -- ID 4
 
 -- ---------------------------
 -- Table PARTICULIER

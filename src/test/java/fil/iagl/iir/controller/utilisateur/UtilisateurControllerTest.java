@@ -42,13 +42,16 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     String nom = utilisateur.getNom();
     String mail = utilisateur.getMail();
     Boolean premium = utilisateur.getPremium();
+    String description = utilisateur.getDescription();
 
     mockMvc.perform(get("/utilisateur/particulier/{id}", id))
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
       .andExpect(jsonPath("$.idUtilisateur").value(id))
       .andExpect(jsonPath("$.premium").value(premium))
-      .andExpect(jsonPath("$.nom").value(nom)).andExpect(jsonPath("$.mail").value(mail));
+      .andExpect(jsonPath("$.nom").value(nom))
+      .andExpect(jsonPath("$.mail").value(mail))
+      .andExpect(jsonPath("$.description").value(description));
 
   }
 
@@ -65,19 +68,21 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     Authentification<Particulier> auth = new AuthentificationParticulier();
     Particulier utilisateur = new Particulier();
 
-    String mail = RandomStringUtils.random(10);
-    String nom = RandomStringUtils.random(8);
-    String prenom = RandomStringUtils.random(6);
+    String mail = RandomStringUtils.randomAlphanumeric(10);
+    String nom = RandomStringUtils.randomAlphanumeric(8);
+    String prenom = RandomStringUtils.randomAlphanumeric(6);
     LocalDate dateNaissance = LocalDate.now().minusYears(RandomUtils.nextInt(20, 30));
     Role role = Role.PARTICULIER;
-    String password = RandomStringUtils.random(30);
+    String password = RandomStringUtils.randomAlphanumeric(30);
     Boolean premium = true;
+    String description = RandomStringUtils.randomAlphanumeric(300);
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
     utilisateur.setPrenom(prenom);
     utilisateur.setDateNaissance(dateNaissance);
     utilisateur.setPremium(premium);
+    utilisateur.setDescription(description);
 
     auth.setUtilisateur(utilisateur);
     auth.setRole(role);
@@ -96,7 +101,51 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.prenom").value(prenom))
       .andExpect(jsonPath("$.mail").value(mail))
       .andExpect(jsonPath("$.premium").value(premium))
-      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)));
+      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)))
+      .andExpect(jsonPath("$.description").value(description));
+
+  }
+
+  @Test
+  public void inscriptionTestSuccesDescriptionNulle() throws Exception {
+    Authentification<Particulier> auth = new AuthentificationParticulier();
+    Particulier utilisateur = new Particulier();
+
+    String mail = RandomStringUtils.randomAlphanumeric(10);
+    String nom = RandomStringUtils.randomAlphanumeric(8);
+    String prenom = RandomStringUtils.randomAlphanumeric(6);
+    LocalDate dateNaissance = LocalDate.now().minusYears(RandomUtils.nextInt(20, 30));
+    Role role = Role.PARTICULIER;
+    String password = RandomStringUtils.randomAlphanumeric(30);
+    Boolean premium = true;
+    String description = null;
+
+    utilisateur.setMail(mail);
+    utilisateur.setNom(nom);
+    utilisateur.setPrenom(prenom);
+    utilisateur.setDateNaissance(dateNaissance);
+    utilisateur.setPremium(premium);
+    utilisateur.setDescription(description);
+
+    auth.setUtilisateur(utilisateur);
+    auth.setRole(role);
+    auth.setPassword(password);
+
+    JSONObject json = new JSONObject(auth);
+
+    mockMvc.perform(
+      put("/utilisateur/particulier").contentType(FEED_ME_MEDIA_TYPE).content(json.toString()))
+      .andDo(print())
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+      .andExpect(jsonPath("$.idUtilisateur").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.idParticulier").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.nom").value(nom))
+      .andExpect(jsonPath("$.prenom").value(prenom))
+      .andExpect(jsonPath("$.mail").value(mail))
+      .andExpect(jsonPath("$.premium").value(premium))
+      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)))
+      .andExpect(jsonPath("$.description").value(description));
 
   }
 
@@ -111,6 +160,7 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     Particulier particulier = new Particulier();
     String prenom = "titi";
     LocalDate dateNaissance = LocalDate.of(2015, 1, 31);
+
     particulier.setDateNaissance(dateNaissance);
     particulier.setIdParticulier(1);
     particulier.setIdUtilisateur(utilisateur.getIdUtilisateur());
@@ -118,6 +168,7 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     particulier.setNom(utilisateur.getNom());
     particulier.setPrenom(prenom);
     particulier.setPremium(utilisateur.getPremium());
+    particulier.setDescription(utilisateur.getDescription());
 
     mockMvc.perform(get("/utilisateur/particulier/profil")).andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
@@ -126,7 +177,8 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.idUtilisateur").value(utilisateur.getIdUtilisateur()))
       .andExpect(jsonPath("$.premium").value(utilisateur.getPremium()))
       .andExpect(jsonPath("$.prenom").value(prenom))
-      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()));
+      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()))
+      .andExpect(jsonPath("$.description").value(utilisateur.getDescription()));
   }
 
 }

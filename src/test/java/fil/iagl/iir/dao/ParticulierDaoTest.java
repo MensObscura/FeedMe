@@ -27,6 +27,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Integer idUtilisateur = 1;
     String nom = "toto";
     String mail = "toto.toto@gmail.com";
+    String description = "ceci est la description de toto";
 
     Integer idParticulier = 1;
     String prenom = "titi";
@@ -44,6 +45,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(particulier.getPrenom()).isNotNull().isEqualTo(prenom);
     Assertions.assertThat(particulier.getMail()).isNotNull().isEqualTo(mail);
     Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
+    Assertions.assertThat(particulier.getDescription()).isNotNull().isEqualTo(description);
   }
 
   @Test
@@ -53,6 +55,8 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     String nom = "hall";
     String mail = "kolick@gmail.com";
     String rue = "4 rue guillaume apollinaire";
+    String description = "ceci est la description de hall";
+
     Integer adresseId = 1;
     String villeName = "Lille";
     String codePostal = "59000";
@@ -88,6 +92,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     assertThat(particulier.getAdresse().getVoie()).isEqualTo(rue);
     assertThat(particulier.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
     assertThat(particulier.getAdresse().getVille().getCp()).isEqualTo(codePostal);
+    assertThat(particulier.getDescription()).isNotNull().isEqualTo(description);
   }
 
   @Test
@@ -109,6 +114,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Integer idUtilisateur = 1;
     String nom = "toto";
     String mail = "toto.toto@gmail.com";
+    String description = "ceci est la description de toto";
 
     Integer idParticulier = 1;
     String prenom = "titi";
@@ -126,6 +132,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(p.getIdParticulier()).isNotNull().isPositive().isEqualTo(idParticulier);
     Assertions.assertThat(p.getPrenom()).isNotNull().isEqualTo(prenom);
     Assertions.assertThat(p.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
+    Assertions.assertThat(p.getDescription()).isNotNull().isEqualTo(description);
   }
 
   @Test
@@ -157,7 +164,6 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(particulier.getPrenom()).isNotNull().isEqualTo(PARTICULIER_PRENOM);
     Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(PARTICULIER_DDN);
     Assertions.assertThat(particulier.getIdUtilisateur()).isNotNull().isEqualTo(UTILISATEUR_ID);
-
   }
 
   @Test

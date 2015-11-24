@@ -1,8 +1,8 @@
 -- ---------------------------
 -- Table UTILISATEUR
 -- ---------------------------
-INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_premium ) VALUES 
-( 'Me', 'feed.me@univ-lille1.fr', true);
+INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_premium, usr_description) VALUES 
+( 'Me', 'feed.me@univ-lille1.fr', true, 'La cuisine est ma passion !');
 
 -- ---------------------------
 -- Table PARTICULIER

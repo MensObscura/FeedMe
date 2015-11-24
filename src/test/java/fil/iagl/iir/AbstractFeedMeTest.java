@@ -108,6 +108,7 @@ public abstract class AbstractFeedMeTest {
     utilisateur.setPremium(Boolean.TRUE);
     utilisateur.setMail("toto.toto@gmail.com");
     utilisateur.setNom("toto");
+    utilisateur.setDescription("ceci est la description de toto");
     return utilisateur;
   }
 
@@ -120,6 +121,7 @@ public abstract class AbstractFeedMeTest {
     particulier.setPrenom("tata");
     particulier.setMail("mail@gmail.com");
     particulier.setDateNaissance(LocalDate.now().minusYears(20));
+    particulier.setDescription("ceci est la description de toto");
     return particulier;
   }
 

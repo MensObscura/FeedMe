@@ -22,6 +22,8 @@ public class Utilisateur implements Serializable {
 
   private Boolean premium;
 
+  private String description;
+
   public Utilisateur(Integer idUtilisateur) {
     this.idUtilisateur = idUtilisateur;
   }
