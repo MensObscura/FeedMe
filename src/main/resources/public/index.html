@@ -34,8 +34,6 @@
 
     <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
 
-    <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -68,10 +66,10 @@
             <li><a href="#tf-team" class="page-scroll">L'équipe</a></li>
             <li><a href="#tf-testimonials" class="page-scroll">Témoignages</a></li>
             <li><a href="#tf-contact" class="page-scroll">Contact</a></li>
-            <li ng-if="!connecte"><a href="login.html">Se connecter</a></li>
-            <li ng-if="!connecte"><a href="inscription.html">S'inscrire</a></li>
-            <li ng-if="connecte"><a href="accueil.html">Revenir sur la page principale</a></li>
-	    	<li ng-if="connecte"><a href="">Se déconnecter</a></li>
+            <li ng-if="!authenticated"><a href="login.html">Se connecter</a></li>
+            <li ng-if="!authenticated"><a href="inscription.html">S'inscrire</a></li>
+            <li ng-if="authenticated"><a href="accueil.html">Revenir sur la page principale</a></li>
+	    	<li ng-if="authenticated"><a href="">Se déconnecter</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -333,21 +331,20 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="resources/js/jquery.1.11.1.js"></script>
+    <script src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/jquery.1.11.1.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script type="text/javascript" src="resources/js/bootstrap.js"></script>
-    <script type="text/javascript" src="resources/js/SmoothScroll.js"></script>
-    <script type="text/javascript" src="resources/js/jquery.isotope.js"></script>
-
-    <script src="resources/js/owl.carousel.js"></script>
-
+    <script type="text/javascript" src="/resources/js/scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/SmoothScroll.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/jquery.isotope.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/owl.carousel.js"></script>
+    <script type="text/javascript" src="resources/js/scripts/modernizr.custom.js"></script>
     <!-- Javascripts
     ================================================== -->
-    
-    <script type="text/javascript" src="resources/js/main.js"></script>
-    <script src="/resources/js/angular.min.js"></script>
-    <script src="/resources/js/script-index.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/main.js"></script>
+    <script type="text/javascript"  src="/resources/js/scripts/angular.min.js"></script>
+    <script type="text/javascript"  src="/resources/js/scripts/angular-route.min.js"></script>
+    <script type="text/javascript"  src="/resources/js/controllers/controller_index.js"></script>
 
   </body>
 </html>

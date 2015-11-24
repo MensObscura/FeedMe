@@ -1,14 +1,39 @@
+var dateTimePicker = function() {
+     return {
+        restrict: "A",
+        require: "ngModel",
+        link: function (scope, element, attrs, ngModelCtrl) {
+	        var parent = $(element).parent();
+	                    
+	        var min = new Date();
+	        min.setHours(min.getHours()+2); 
+	                    
+	        var dtp = parent.datetimepicker({
+	               format: 'DD/MM/YYYY HH:mm',
+	               ignoreReadonly: true,
+	               minDate: min
+	         });
+	        dtp.on("dp.change", function (e) {
+	               ngModelCtrl.$setViewValue(new Date(e.date));
+	               scope.$apply();
+	        });
+        }
+     };
+};
+    
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ui.bootstrap.datetimepicker']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider']);
 
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
-	
+		
 	$scope.age = {
 		min: 18,
 		max: 100
 	};
+	
 	$scope.submited =false;
+	
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
@@ -19,15 +44,26 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.homeAction = function() {
 
 		if($scope.home){
+<<<<<<< HEAD:src/main/resources/public/resources/js/script-formulaire-offre.js
 			
 			$scope.rue = $scope.profil.adresse.voie;
 			$scope.ville = $scope.profil.adresse.ville.nom;
 			$scope.cp = $scope.profil.adresse.ville.cp;
 			$scope.count= {0:$scope.profil.adresse.ville.pays};
 			
+=======
+			var rue = $scope.profil.adresse.voie;
+			var num = rue.split(" ")[0];
+			
+			$scope.numero = parseInt(num);
+			$scope.rue = rue.substring(num.length+1,rue.length);
+			$scope.ville = $scope.profil.adresse.ville.nom;
+			$scope.cp = $scope.profil.adresse.ville.cp;
+			$scope.count= {0: $scope.profil.adresse.ville.pays};
+>>>>>>> origin/front-thibaud:src/main/resources/public/resources/js/controllers/controller_formulaire_offre.js
 
 		}else{
-
+			$scope.numero = '';
 			$scope.rue = '';
 			$scope.ville ='';
 			$scope.cp = '';
@@ -56,12 +92,14 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.duree = 60;
 	$scope.prix = 1;
 	$scope.nbpers = 1;
-	$scope.date = new Date();
+
 	$scope.complement = "";
 
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
+					
 		if ($scope.OffreForm.$valid) {
+<<<<<<< HEAD:src/main/resources/public/resources/js/script-formulaire-offre.js
 			
 			if ($scope.date < new Date()) {
 				//$mdToast.show($mdToast.simple().position('bottom left right').content('Cette date est passée !').hideDelay(2000));
@@ -69,10 +107,15 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			
 			
 			
+=======
+						
+>>>>>>> origin/front-thibaud:src/main/resources/public/resources/js/controllers/controller_formulaire_offre.js
 			// On récupère la date du repas
-			var date_repas = $scope.date;
+			var date_repas = new Date($scope.date);
 			var aujourdhui = new Date();
 			var date = moment(aujourdhui).format('YYYY-MM-DD');
+			
+			console.log(date_repas);
 
 			// On créé on objet pays
 			var pays = {
@@ -103,7 +146,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					dessert: $scope.dessert,
 					boisson: $scope.boisson
 			};
-
+			
 			// Enfin on peut créer les données que l'on souhaite envoyer
 			var donnees = {
 					dateCreation : date,
@@ -111,7 +154,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					prix : parseFloat($scope.prix),
 					nombrePersonne : parseInt($scope.nbpers),
 					dureeMinute : parseInt($scope.duree),
-					dateRepas : date_repas.toISOString().substr(0,22),
+					dateRepas : moment(date_repas).format('YYYY-MM-DDThh:mm:ss'),
 					note : $scope.note, //optionnel
 					menu : menu,
 					ageMin : $scope.age.min,
@@ -120,7 +163,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					adresse : adresse,
 					typeCuisine : typeCuisine,
 			};
-						
+									
 		    // On envoie les données
             $http({
         		method: 'PUT',
@@ -128,12 +171,13 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
         		contentType: "application/json",
         		data: donnees
      		}).success(function(response, status, headers, config){
-     			//$mdToast.show($mdToast.simple().position('bottom left right').content('Votre offre a bien été enregistrée.').hideDelay(2000));
+     			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
      			$window.location.href = "/liste_offres.html";
      		}).error(function(err, status, headers, config){
-      			//$mdToast.show($mdToast.simple().position('bottom left right').content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
+      			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
      		});
 
 		}
 	};
-});
+}).directive('dateTimePicker', dateTimePicker);
+

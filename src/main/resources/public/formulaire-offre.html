@@ -7,8 +7,6 @@
 <title>Proposer une offre</title>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular-material.min.css">
-<link rel="stylesheet" type='text/css'
-	href="/resources/css/datetimepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -20,6 +18,8 @@
 	href='/resources/fonts/general-font.css'>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular.rangeSlider.css">
+	<link rel="stylesheet" type='text/css'
+	href="/resources/css/bootstrap-datetimepicker.css">
 </head>
 
 <body ng-app="validationOffre">
@@ -40,7 +40,7 @@
 							<p>{{typeCuisine.type}}</p>
 							<p>{{prix}} €</p>
 							<p>Place(s) restante(s) : {{nbpers}}</p>
-							<p>{{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}</p>
+							<p>{{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
 						</div>
 
 					</div>
@@ -113,23 +113,19 @@
 								</div>
 								<md-input-container flex> <label id="white"
 									for="date">Date* :</label>
-
-								<div class="dropdown">
-									<a class="dropdown-toggle" id="dropdown2" role="button"
-										data-toggle="dropdown" data-target="#" href="#">
-										<div class="input-group">
-											<input id="date" placeholder="Date du repas." readonly="true"
-												type="text" min="minDate" class="form-control"
-												data-ng-model="date"> <span
-												class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span>
-										</div>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<datetimepicker data-ng-model="date"
-											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
-									</ul>
+								<div class="form-group">
+									<div class='input-group date'>
+										<input ng-readonly="true" type='text' class="form-control" ng-required="true" name="date" ng-model="date" data-date-time-picker/>
+										<span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
 								</div>
+									<div ng-messages="OffreForm.date.$error"
+										ng-show="(OffreForm.date.$touched  || submited)">
+										<div ng-message="required">Veuillez seletionner une date.</div>
+									</div>
+
 
 								</md-input-container> </md-content>
 
@@ -291,7 +287,7 @@
 							<fieldset>
 
 								<h2>{{titre || "Titre non complété"}}</h2>
-								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
+								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}.</h3>
 
 								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
@@ -364,21 +360,20 @@
 		</div>
 	</div>
 
-	<script src="/resources/js/jquery-2.1.4.min.js"></script>
-	<script src="/resources/js/angular.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
 
-	<script src="/resources/js/angular-material.min.js"></script>
-	<script src="/resources/js/angular-animate.min.js"></script>
-	<script src="/resources/js/angular-aria.min.js"></script>
-	<script src="/resources/js/angular-messages.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-material.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-animate.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-aria.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-messages.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/moment.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/bootstrap.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular.rangeSlider.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
 
-	<script src="/resources/js/moment.js"></script>
-	<script src="/resources/js/bootstrap.js"></script>
-	<script src="/resources/js/datetimepicker.js"></script>
-	<script src="/resources/js/angular.rangeSlider.js"></script>
-	<script src="/resources/js/ui-bootstrap-tpls.min.js"></script>
-
-	<script src="/resources/js/script-formulaire-offre.js"></script>
+	<script type="text/javascript" src="/resources/js/controllers/controller_formulaire_offre.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
