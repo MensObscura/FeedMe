@@ -31,15 +31,12 @@ public class ImageServiceImpl implements ImageService {
     if (image == null) {
       throw new FeedMeException("Parametre null");
     }
-
-    String imageExt = extensions.stream().filter(ext -> image.getOriginalFilename().endsWith(ext)).findAny().orElse(null);
-    if (imageExt == null) {
-      throw new FeedMeException("N'est pas une image");
-    }
-
     if (image.isEmpty()) {
       throw new FeedMeException("Le fichier est vide");
     }
+
+    String imageExt = extensions.stream().filter(ext -> image.getOriginalFilename().endsWith(ext)).findAny()
+      .orElseThrow(() -> new FeedMeException("Ne correspond à aucun format connu"));
 
     try {
       BufferedImage src = ImageIO.read(new ByteArrayInputStream(image.getBytes()));
@@ -52,7 +49,7 @@ public class ImageServiceImpl implements ImageService {
       dest.createNewFile();
 
       FileOutputStream output = new FileOutputStream(dest);
-      ImageIO.write(src, "gif", output);
+      ImageIO.write(src, imageExt.substring(1), output); // substring pour enlever le "." dans imageExt
 
       output.close();
 
