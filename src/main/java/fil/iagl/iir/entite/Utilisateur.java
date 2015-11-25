@@ -20,6 +20,12 @@ public class Utilisateur implements Serializable {
 
   private Adresse adresse;
 
+  private Boolean premium;
+
+  private String description;
+
+  private Boolean adresseVisible;
+
   public Utilisateur(Integer idUtilisateur) {
     this.idUtilisateur = idUtilisateur;
   }

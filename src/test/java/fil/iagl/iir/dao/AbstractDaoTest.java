@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.AbstractFeedMeTest;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
+import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.pays.PaysDao;
@@ -41,6 +42,9 @@ public abstract class AbstractDaoTest extends AbstractFeedMeTest {
 
   @Autowired
   protected OffreDao offreDao;
+
+  @Autowired
+  protected ImageDao imageDao;
 
   protected void assertSQLCode(DataIntegrityViolationException dive, SQLCODE sqlCode) {
     Assertions.assertThat(dive.getCause()).isInstanceOf(PSQLException.class);

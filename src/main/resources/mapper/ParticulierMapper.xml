@@ -13,7 +13,7 @@
 	<sql id="select_all_columns_particulier_utilisateur">
 		SELECT 	
 				usr_id, usr_nom, usr_mail, usr_adr_id,
-				prt_id, prt_prenom, prt_date_naissance
+				prt_id, prt_prenom, prt_date_naissance, usr_premium, usr_description, usr_adresse_visible
 		FROM 
 				UTILISATEUR 
 		INNER JOIN 
@@ -35,5 +35,13 @@
 		<include refid="select_all_columns_particulier_utilisateur"/>
 		WHERE usr_id = #{id}
 	</select>
+	
+	<update id="modifier">
+		UPDATE UTILISATEUR set
+		usr_adr_id = #{particulier.adresse.id},
+		usr_description = #{particulier.description},
+		usr_adresse_visible = #{particulier.adresseVisible}
+		WHERE usr_id = #{particulier.idUtilisateur}
+	</update>
 
 </mapper>

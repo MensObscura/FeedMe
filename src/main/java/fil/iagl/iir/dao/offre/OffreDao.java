@@ -33,4 +33,11 @@ public interface OffreDao {
    */
   Integer sauvegarder(@Param("offre") Offre offre);
 
+  /**
+   * Récupère la liste des offres Premium
+   * 
+   * @return La liste des offres Premium
+   */
+  List<Offre> getOffresPremium();
+
 }

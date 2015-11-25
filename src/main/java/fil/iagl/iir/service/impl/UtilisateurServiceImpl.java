@@ -45,4 +45,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     return particulierDao.getParticulierByUtilisateurId(id);
   }
 
+  @Override
+  public void modifierProfil(Particulier particulier) {
+    if (particulier == null) {
+      throw new FeedMeException("Parametre Particulier nul");
+    }
+    particulierDao.modifier(particulier);
+  }
+
 }

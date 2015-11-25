@@ -13,6 +13,7 @@ import fil.iagl.iir.dao.typeCuisine.TypeCuisineDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.service.AuthentificationService;
+import fil.iagl.iir.service.ImageService;
 import fil.iagl.iir.service.OffreService;
 import fil.iagl.iir.service.UtilisateurService;
 
@@ -39,6 +40,9 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
   protected VilleDao villeDao;
 
   @Mock
+  protected ImageService imageService;
+
+  @Mock
   protected TypeCuisineDao typeCuisineDao;
 
   @Mock
@@ -56,6 +60,10 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
   @InjectMocks
   protected OffreController offreController;
 
+  @InjectMocks
+  protected ImageController imageController;
+
   @Autowired
   protected WebApplicationContext wac;
+
 }

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fil.iagl.iir.constante.Premium;
 import fil.iagl.iir.dao.adresse.AdresseDao;
+import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.entite.Offre;
@@ -28,6 +30,9 @@ public class OffreServiceImpl implements OffreService {
   private VilleDao villeDao;
 
   @Autowired
+  private ImageDao imageDao;
+
+  @Autowired
   private AdresseService adresseService;
 
   /*
@@ -41,17 +46,19 @@ public class OffreServiceImpl implements OffreService {
       throw new FeedMeException("Parametre null");
     }
     if (offre.getNombrePersonne() == 0) {
-      throw new FeedMeException("Nombre de convive pour l'offre ne doit pas être égal à 0");
+      throw new FeedMeException("Nombre de convives pour l'offre ne doit pas être égal à 0");
     }
-
-    if (offre.getNombrePersonne().equals(0)) {
-      throw new FeedMeException("Nombre de convives egal a zero");
+    if (!offre.getPremium() && offre.getImages().size() > Premium.NB_IMAGE_PAR_OFFRE_NON_PREMIUM) {
+      throw new FeedMeException("Pour une offre non premium, une seule image seulement.");
     }
 
     offre.setHote(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
     this.adresseService.sauvegarder(offre.getAdresse());
     this.offreDao.sauvegarder(offre);
+    offre.getImages().forEach(img -> {
+      this.imageDao.sauvegarderPourOffre(img.getId(), offre.getId());
+    });
   }
 
   /*
@@ -76,6 +83,16 @@ public class OffreServiceImpl implements OffreService {
   @Override
   public List<Offre> lister() {
     return offreDao.getAll();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.OffreService#listerOffresPremium()
+   */
+  @Override
+  public List<Offre> listerOffresPremium() {
+    return offreDao.getOffresPremium();
   }
 
 }

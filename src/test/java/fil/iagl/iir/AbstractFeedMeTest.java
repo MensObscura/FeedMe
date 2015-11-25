@@ -7,6 +7,7 @@ import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.sql.DataSource;
@@ -32,6 +33,7 @@ import fil.iagl.iir.dao.authentification.AuthentificationDao;
 import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.AuthentificationParticulier;
+import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Menu;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Particulier;
@@ -105,8 +107,11 @@ public abstract class AbstractFeedMeTest {
   protected Utilisateur createUtilisateur() {
     Utilisateur utilisateur = new Utilisateur();
     utilisateur.setIdUtilisateur(1);
+    utilisateur.setPremium(Boolean.TRUE);
     utilisateur.setMail("toto.toto@gmail.com");
     utilisateur.setNom("toto");
+    utilisateur.setDescription("ceci est la description de toto");
+    utilisateur.setAdresseVisible(Boolean.TRUE);
     return utilisateur;
   }
 
@@ -114,10 +119,13 @@ public abstract class AbstractFeedMeTest {
     Particulier particulier = new Particulier();
     particulier.setIdUtilisateur(1);
     particulier.setIdParticulier(1);
+    particulier.setPremium(Boolean.TRUE);
     particulier.setNom("toto");
     particulier.setPrenom("tata");
     particulier.setMail("mail@gmail.com");
     particulier.setDateNaissance(LocalDate.now().minusYears(20));
+    particulier.setDescription("ceci est la description de toto");
+    particulier.setAdresseVisible(Boolean.TRUE);
     return particulier;
   }
 
@@ -152,6 +160,7 @@ public abstract class AbstractFeedMeTest {
     Integer dureeMinute = 120;
     LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 0);
     Boolean animaux = Boolean.FALSE;
+    Boolean premium = Boolean.TRUE;
 
     Integer idAdresse = 1;
     Integer idVille = 1;
@@ -206,6 +215,8 @@ public abstract class AbstractFeedMeTest {
     offre.setTypeCuisine(typeCuisine);
     offre.setHote(hote);
     offre.setNote(note);
+    offre.setPremium(premium);
+    offre.setImages(new ArrayList<Image>());
 
     return offre;
   }

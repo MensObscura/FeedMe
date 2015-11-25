@@ -23,6 +23,7 @@ public class OffreControllerTest extends AbstractControllerTest {
   @Autowired
   private OffreDao offreDao;
 
+  @Override
   @Before
   public void setUp() {
     super.setUp();
@@ -44,6 +45,7 @@ public class OffreControllerTest extends AbstractControllerTest {
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
       .andExpect(jsonPath("$.id").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.premium").value(offre.getPremium()))
       .andExpect(jsonPath("$.titre").value(offre.getTitre()))
       .andExpect(jsonPath("$.prix").value(offre.getPrix()))
       .andExpect(jsonPath("$.nombrePersonne").value(offre.getNombrePersonne()))
@@ -71,6 +73,13 @@ public class OffreControllerTest extends AbstractControllerTest {
   }
 
   @Test
+  public void testGetOffresPremiums() throws Exception {
+    mockMvc.perform(get("/offres/premium"))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$").isArray());
+  }
+
+  @Test
   public void testGetOffre() throws Exception {
     Integer id = 1;
     Offre offre = offreDao.getById(id);
@@ -78,6 +87,7 @@ public class OffreControllerTest extends AbstractControllerTest {
     mockMvc.perform(get("/offres/" + id))
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.id").value(offre.getId()))
+      .andExpect(jsonPath("$.premium").value(offre.getPremium()))
       .andExpect(jsonPath("$.titre").value(offre.getTitre()))
       .andExpect(jsonPath("$.prix").value(offre.getPrix()))
       .andExpect(jsonPath("$.nombrePersonne").value(offre.getNombrePersonne()))

@@ -4,17 +4,20 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.fest.assertions.api.Assertions;
+import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.entite.Menu;
 import fil.iagl.iir.entite.Offre;
+import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.SQLCODE;
 
 public class OffreDaoTest extends AbstractDaoTest {
 
   private static final int NB_OFFRES = 4;
+  private static final int NB_OFFRES_PREMIUM = 2;
 
   @Test
   public void getAllTestSucces() throws Exception {
@@ -22,6 +25,19 @@ public class OffreDaoTest extends AbstractDaoTest {
     // Quand on recupere la liste des offres existantes
     // Alors on veut une liste non vide avec le bon nombre d'offres
     Assertions.assertThat(offreDao.getAll()).isNotEmpty().hasSize(NB_OFFRES);
+    // et on vérifie que les offres sont bien triées par leur top Premium
+    Assertions.assertThat(offreDao.getAll().get(0).getPremium()).isTrue();
+    Assertions.assertThat(offreDao.getAll().get(1).getPremium()).isTrue();
+    Assertions.assertThat(offreDao.getAll().get(2).getPremium()).isFalse();
+    Assertions.assertThat(offreDao.getAll().get(3).getPremium()).isFalse();
+  }
+
+  @Test
+  public void getOffresPremiumTestSucces() throws Exception {
+    // Etand donne qu'il existe NB_OFFRES_PREMIUM en base
+    // Quand on recupere la liste des offres premium
+    // Alors on veut une liste non vide avec le bon nombre d'offres Premium
+    Assertions.assertThat(offreDao.getOffresPremium()).isNotEmpty().hasSize(NB_OFFRES_PREMIUM);
   }
 
   @Test
@@ -39,6 +55,9 @@ public class OffreDaoTest extends AbstractDaoTest {
     String note = "Note";
     Integer ageMin = 20;
     Integer ageMax = 30;
+    Boolean premium = true;
+    Integer nbReservation = 1;
+    Integer nbImage = 1;
 
     // les informations de l'adresse associee a cette offre
     Integer idAdresse = 1;
@@ -79,6 +98,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     Assertions.assertThat(offre.getDateCreation()).isNotNull().isEqualTo(dateCreation);
     Assertions.assertThat(offre.getTitre()).isNotNull().isEqualTo(titre);
     Assertions.assertThat(offre.getPrix()).isNotNull().isEqualTo(prix);
+    Assertions.assertThat(offre.getPremium()).isNotNull().isTrue();
     Assertions.assertThat(offre.getNombrePersonne()).isNotNull().isEqualTo(nombrePersonne);
     Assertions.assertThat(offre.getDureeMinute()).isNotNull().isEqualTo(dureeMinute);
     Assertions.assertThat(offre.getDateRepas()).isNotNull().isEqualTo(dateRepas);
@@ -91,6 +111,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     Assertions.assertThat(offre.getNote()).isNotNull().isEqualTo(note);
     Assertions.assertThat(offre.getAgeMin()).isNotNull().isEqualTo(ageMin);
     Assertions.assertThat(offre.getAgeMax()).isNotNull().isEqualTo(ageMax);
+    Assertions.assertThat(offre.getPremium()).isNotNull().isEqualTo(premium);
 
     // que les informations de l'adresse associee a l'offre sont celles
     // attendues
@@ -120,6 +141,16 @@ public class OffreDaoTest extends AbstractDaoTest {
     Assertions.assertThat(offre.getHote().getIdUtilisateur()).isNotNull().isEqualTo(idUtilisateur);
     Assertions.assertThat(offre.getHote().getNom()).isNotNull().isEqualTo(nom);
     Assertions.assertThat(offre.getHote().getMail()).isNotNull().isEqualTo(mail);
+
+    Assertions.assertThat(offre.getReservations()).isNotEmpty().hasSize(nbReservation);
+    Assertions.assertThat(offre.getReservations()).are(new Condition<Reservation>() {
+      @Override
+      public boolean matches(Reservation reservation) {
+        return reservation.getOffre().getId().equals(offre.getId());
+      }
+    });
+
+    Assertions.assertThat(offre.getImages()).isNotEmpty().hasSize(nbImage);
 
   }
 
@@ -166,6 +197,23 @@ public class OffreDaoTest extends AbstractDaoTest {
       Assertions.fail("Doit soulever une exception");
     } catch (DataIntegrityViolationException dive) {
       this.assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void sauvegarderTestEchec_PremiumNull() throws Exception {
+    // Etant donne une offre n'ayant pas de status premium definis
+    Offre offre = this.createOffre();
+    offre.setPremium(null);
+
+    try {
+      // Quand on enregistre une offre
+      offreDao.sauvegarder(offre);
+
+      // Alors on s'attend à ce qu'une exception soit levée
+      Assertions.fail("Doit lever une exception");
+    } catch (DataIntegrityViolationException e) {
+      this.assertSQLCode(e, SQLCODE.NOT_NULL_VIOLATION);
     }
   }
 
