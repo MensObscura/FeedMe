@@ -40,4 +40,5 @@
 		WHERE usr_id = #{id}
 	</select>
 
+
 </mapper>

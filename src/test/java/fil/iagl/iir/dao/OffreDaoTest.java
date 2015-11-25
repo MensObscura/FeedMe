@@ -25,6 +25,11 @@ public class OffreDaoTest extends AbstractDaoTest {
     // Quand on recupere la liste des offres existantes
     // Alors on veut une liste non vide avec le bon nombre d'offres
     Assertions.assertThat(offreDao.getAll()).isNotEmpty().hasSize(NB_OFFRES);
+    // et on vérifie que les offres sont bien triées par leur top Premium
+    Assertions.assertThat(offreDao.getAll().get(0).getPremium()).isTrue();
+    Assertions.assertThat(offreDao.getAll().get(1).getPremium()).isTrue();
+    Assertions.assertThat(offreDao.getAll().get(2).getPremium()).isFalse();
+    Assertions.assertThat(offreDao.getAll().get(3).getPremium()).isFalse();
   }
 
   @Test

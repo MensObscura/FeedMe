@@ -60,6 +60,7 @@
 
 	<select id="getAll" resultMap="Offre_ResultMap">
 		<include refid="select_all_columns_offre" />
+		ORDER BY off_premium DESC
 	</select>
 
 	<select id="getOffresPremium" resultMap="Offre_ResultMap">
