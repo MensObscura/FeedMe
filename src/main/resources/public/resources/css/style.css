@@ -1165,3 +1165,7 @@ button#form_button_log {
 	word-wrap: initial; /* Internet Explorer 5.5+ */
 	word-break: initial;
 }
+
+#input_3 {
+	color: black;
+}
