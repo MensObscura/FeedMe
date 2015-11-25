@@ -181,4 +181,37 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.description").value(utilisateur.getDescription()));
   }
 
+  @Test
+  public void modifierSonProfil() throws Exception {
+    AuthentificationParticulier authentificationParticulier = (AuthentificationParticulier) createAuthentificationParticulier();
+
+    LocalDate dateNaissance = LocalDate.now().minusYears(2).minusDays(3).minusMonths(4);
+    String voie = "Rue de Toto";
+    String description = "Titi";
+    String mail = "toto@titi.fr";
+    String nom = "Durand";
+    String prenom = "David";
+    Boolean prenium = !authentificationParticulier.getUtilisateur().getPremium();
+
+    authentificationParticulier.getUtilisateur().setDateNaissance(dateNaissance);
+    authentificationParticulier.getUtilisateur().setDescription(description);
+    authentificationParticulier.getUtilisateur().setMail(mail);
+    authentificationParticulier.getUtilisateur().setNom(nom);
+    authentificationParticulier.getUtilisateur().setPrenom(prenom);
+    authentificationParticulier.getUtilisateur().setPremium(prenium);
+    authentificationParticulier.getUtilisateur().getAdresse().setVoie(voie);
+
+    JSONObject jsonAuthenficationParticulier = new JSONObject(authentificationParticulier);
+
+    mockMvc.perform(put("/utilisateur/particulier/profil").contentType(FEED_ME_MEDIA_TYPE).content(jsonAuthenficationParticulier.toString()))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()))
+      .andExpect(jsonPath("$.description").value(description))
+      .andExpect(jsonPath("$.mail").value(mail))
+      .andExpect(jsonPath("$.nom").value(nom))
+      .andExpect(jsonPath("$.prenom").value(prenom))
+      .andExpect(jsonPath("$.premium").value(prenium))
+      .andExpect(jsonPath("$.adresse.voie").value(voie));
+  }
 }

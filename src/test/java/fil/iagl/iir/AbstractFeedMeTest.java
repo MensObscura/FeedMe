@@ -224,11 +224,15 @@ public abstract class AbstractFeedMeTest {
     String prenom = "bar";
     LocalDate dateNaissance = LocalDate.now().minusYears(20);
 
+    Adresse adresse = new Adresse();
+    adresse.setVoie("Turlututu");
     String password = RandomStringUtils.random(RANDOM_STRING_SIZE);
     Role role = Role.PARTICULIER;
 
     Particulier utilisateur = new Particulier();
 
+    utilisateur.setAdresse(adresse);
+    utilisateur.setPremium(false);
     utilisateur.setIdUtilisateur(idUtilisateur);
     utilisateur.setIdParticulier(idParticulier);
     utilisateur.setMail(mail);
