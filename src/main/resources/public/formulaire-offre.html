@@ -18,7 +18,7 @@
 	href='/resources/fonts/general-font.css'>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular.rangeSlider.css">
-	<link rel="stylesheet" type='text/css'
+<link rel="stylesheet" type='text/css'
 	href="/resources/css/bootstrap-datetimepicker.css">
 </head>
 
@@ -36,11 +36,25 @@
 					ng-submit="submitForm()" novalidate>
 					<div class="Aligner">
 						<div class="item-view text-left Aligner-item">
-							<h2>{{titre}}</h2>
-							<p>{{typeCuisine.type}}</p>
-							<p>{{prix}} €</p>
-							<p>Place(s) restante(s) : {{nbpers}}</p>
-							<p>{{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
+							<div class="Aligner-left">
+								<div class=" Aligner-item">
+									<h2>{{titre}}</h2>
+									<p>{{typeCuisine.type}}</p>
+									<p>{{prix}} €</p>
+									<p>Place(s) restante(s) : {{nbpers}}</p>
+									<p>{{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
+								</div>
+								<div class="Aligner-item">
+									<img src="resources/img/offre/premium.png"
+										class="img-circle img-tile" ng-show="premium">
+								</div>
+								<div class="Aligner-item">
+									<img src="resources/img/team/missing.jpg"
+										class="img-circle img-tile">
+
+								</div>
+
+							</div>
 						</div>
 
 					</div>
@@ -50,7 +64,12 @@
 							<fieldset>
 								<legend>Le repas</legend>
 
+
 								<md-content layout-padding>
+								<div layout layout-sm="column">
+									<md-checkbox ng-model="premium" aria-label="premium"
+										ng-disabled="profil.premium">Offre premium</md-checkbox>
+								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
 										id="white" for="titre">Titre de l'offre* :</label> <input
@@ -65,9 +84,10 @@
 									</md-input-container>
 									<md-input-container flex> <label
 										id="white" for="typeCuisine">Type de cuisine :</label> <md-select
-										id="select_white" name="typeCuisine" ng-model="typeCuisine"> <md-option
-										id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
-										ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
+										id="select_white" name="typeCuisine" ng-model="typeCuisine">
+									<md-option id="back_white" ng-value="{{item}}"
+										ng-selected="item.id==1" ng-repeat="item in cook">{{item.type}}</md-option>
+									</md-select> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
@@ -115,16 +135,17 @@
 									for="date">Date* :</label>
 								<div class="form-group">
 									<div class='input-group date'>
-										<input ng-readonly="true" type='text' class="form-control" ng-required="true" name="date" ng-model="date" data-date-time-picker/>
-										<span class="input-group-addon">
+										<input ng-readonly="true" type='text' class="form-control"
+											ng-required="true" name="date" ng-model="date"
+											data-date-time-picker /> <span class="input-group-addon">
 											<span class="glyphicon glyphicon-calendar"></span>
 										</span>
 									</div>
 								</div>
-									<div ng-messages="OffreForm.date.$error"
-										ng-show="(OffreForm.date.$touched  || submited)">
-										<div ng-message="required">Veuillez seletionner une date.</div>
-									</div>
+								<div ng-messages="OffreForm.date.$error"
+									ng-show="(OffreForm.date.$touched  || submited)">
+									<div ng-message="required">Veuillez seletionner une date.</div>
+								</div>
 
 
 								</md-input-container> </md-content>
@@ -240,8 +261,8 @@
 									<md-input-container flex> <label
 										id="white" for="pays">Pays :</label> <md-select
 										id="select_white" name="pays" ng-model="pays"
-										ng-disabled="home"> <md-option
-										id="back_white" ng-value="{{item}}" ng-selected="item.id==1"
+										ng-disabled="home"> <md-option id="back_white"
+										ng-value="{{item}}" ng-selected="item.id==1"
 										ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
 								</div>
 								</md-content>
@@ -287,7 +308,8 @@
 							<fieldset>
 
 								<h2>{{titre || "Titre non complété"}}</h2>
-								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}.</h3>
+								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à'
+									HH'h'mm"}}.</h3>
 
 								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
@@ -353,27 +375,36 @@
 								ng-click="submited=true" class="form">Ajouter</md-button>
 						</div>
 					</div>
-
 				</form>
 
 			</div>
 		</div>
 	</div>
 
-	<script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/angular.min.js"></script>
 
-	<script type="text/javascript" src="/resources/js/scripts/angular-material.min.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/angular-animate.min.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/angular-aria.min.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/angular-messages.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/angular-material.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/angular-animate.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/angular-aria.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/angular-messages.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/moment.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/bootstrap-datetimepicker.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/bootstrap.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/angular.rangeSlider.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/angular.rangeSlider.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
 
-	<script type="text/javascript" src="/resources/js/controllers/controller_formulaire_offre.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/controllers/controller_formulaire_offre.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>

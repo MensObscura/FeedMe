@@ -144,6 +144,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					animaux : Boolean($scope.animal),
 					adresse : adresse,
 					typeCuisine : typeCuisine,
+					premium : $scope.premium,
 			};
 									
 		    // On envoie les données
