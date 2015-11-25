@@ -19,7 +19,7 @@ public class ImageController {
   private ImageService imageService;
 
   @RequestMapping(method = RequestMethod.POST)
-  public Image upload(@RequestParam(value = "img") MultipartFile multipartFile) {
+  public Image upload(@RequestParam(value = "file") MultipartFile multipartFile) {
     return imageService.sauvegarder(multipartFile);
   }
 

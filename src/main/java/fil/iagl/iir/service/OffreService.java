@@ -25,4 +25,10 @@ public interface OffreService {
    * @return La liste de toutes les offres
    */
   List<Offre> lister();
+
+  /**
+   * Permet de récupérer la liste des offres Premium
+   * @return La liste des offres Premium
+   */
+  List<Offre> listerOffresPremium();
 }

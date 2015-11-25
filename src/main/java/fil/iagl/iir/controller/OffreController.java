@@ -51,4 +51,15 @@ public class OffreController {
   public List<Offre> afficher() {
     return offreservice.lister();
   }
+
+  /**
+   * Retourne les offres Premium de la base de données
+   * 
+   * @return La liste des offres Premium
+   */
+  @RequestMapping(value = "/premium", method = RequestMethod.GET)
+  public List<Offre> afficherOffresPremium() {
+    return offreservice.listerOffresPremium();
+  }
+
 }

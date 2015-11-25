@@ -11,7 +11,7 @@ import fil.iagl.iir.entite.Image;
 
 public interface ImageService {
 
-  public static final List<String> extensions = Arrays.asList(".jpg", ".bmp", ".svg", ".gif");
+  public static final List<String> extensions = Arrays.asList(".jpg", ".bmp", ".svg", ".gif", ".png");
 
   public static final String BASE_PREFIX = Arrays.asList("src", "main", "resources", "public").stream().collect(Collectors.joining("" + File.separatorChar));
 

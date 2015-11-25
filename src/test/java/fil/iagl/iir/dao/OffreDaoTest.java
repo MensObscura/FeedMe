@@ -15,6 +15,7 @@ import fil.iagl.iir.outils.SQLCODE;
 public class OffreDaoTest extends AbstractDaoTest {
 
   private static final int NB_OFFRES = 4;
+  private static final int NB_OFFRES_PREMIUM = 2;
 
   @Test
   public void getAllTestSucces() throws Exception {
@@ -22,6 +23,14 @@ public class OffreDaoTest extends AbstractDaoTest {
     // Quand on recupere la liste des offres existantes
     // Alors on veut une liste non vide avec le bon nombre d'offres
     Assertions.assertThat(offreDao.getAll()).isNotEmpty().hasSize(NB_OFFRES);
+  }
+
+  @Test
+  public void getOffresPremiumTestSucces() throws Exception {
+    // Etand donne qu'il existe NB_OFFRES_PREMIUM en base
+    // Quand on recupere la liste des offres premium
+    // Alors on veut une liste non vide avec le bon nombre d'offres Premium
+    Assertions.assertThat(offreDao.getOffresPremium()).isNotEmpty().hasSize(NB_OFFRES_PREMIUM);
   }
 
   @Test

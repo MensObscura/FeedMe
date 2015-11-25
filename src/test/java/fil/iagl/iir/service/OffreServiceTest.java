@@ -82,4 +82,15 @@ public class OffreServiceTest extends AbstractServiceTest {
     Mockito.verify(offreDao, Mockito.times(1)).getAll();
   }
 
+  @Test
+  public void listerOffresPremiumTestSucces() throws Exception {
+    offre.setPremium(Boolean.TRUE);
+    List<Offre> list = Arrays.asList(offre, offre, offre, offre);
+    Mockito.when(offreDao.getOffresPremium()).thenReturn(list);
+
+    Assertions.assertThat(offreService.listerOffresPremium()).isEqualTo(list);
+
+    Mockito.verify(offreDao, Mockito.times(1)).getOffresPremium();
+  }
+
 }
