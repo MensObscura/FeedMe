@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.entite.Image;
+import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.outils.SQLCODE;
 
 public class ImageDaoTest extends AbstractDaoTest {
@@ -51,6 +52,74 @@ public class ImageDaoTest extends AbstractDaoTest {
     } catch (DataIntegrityViolationException ex) {
       // On verifie que l'exception est bien du au "UNIQUE"
       assertSQLCode(ex, SQLCODE.UNIQUE_VIOLATION);
+    }
+  }
+
+  @Test
+  public void sauvegarderPourOffreTestSucces() throws Exception {
+    Integer idOffre = 1;
+    Integer idImage = 1;
+
+    Offre offre = offreDao.getById(idOffre);
+    Integer nbImageAvant = offre.getImages().size();
+
+    imageDao.sauvegarderPourOffre(idImage, idOffre);
+
+    Integer nbImageApres = offreDao.getById(idOffre).getImages().size();
+
+    Assertions.assertThat(nbImageApres).isEqualTo(nbImageAvant + 1);
+
+  }
+
+  @Test
+  public void sauvegarderPourOffreTestEchec_IdImageNull() throws Exception {
+    Integer idImage = null;
+    Integer idOffre = 1;
+
+    try {
+      this.imageDao.sauvegarderPourOffre(idImage, idOffre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException ex) {
+      assertSQLCode(ex, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void sauvegarderPourOffreTestEchec_IdOffreNull() throws Exception {
+    Integer idImage = 1;
+    Integer idOffre = null;
+
+    try {
+      this.imageDao.sauvegarderPourOffre(idImage, idOffre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException ex) {
+      assertSQLCode(ex, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void sauvegarderPourOffreTestEchec_IdImageNonExistant() throws Exception {
+    Integer idImage = Integer.MAX_VALUE;
+    Integer idOffre = 1;
+
+    try {
+      this.imageDao.sauvegarderPourOffre(idImage, idOffre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException ex) {
+      assertSQLCode(ex, SQLCODE.FOREIGN_KEY_VIOLATION);
+    }
+  }
+
+  @Test
+  public void sauvegarderPourOffreTestEchec_IdOffreNonExistant() throws Exception {
+    Integer idImage = 1;
+    Integer idOffre = Integer.MAX_VALUE;
+
+    try {
+      this.imageDao.sauvegarderPourOffre(idImage, idOffre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException ex) {
+      assertSQLCode(ex, SQLCODE.FOREIGN_KEY_VIOLATION);
     }
   }
 

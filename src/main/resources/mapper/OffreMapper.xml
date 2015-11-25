@@ -30,6 +30,8 @@
 
 		<collection property="reservations" column="off_id"
 			select="fil.iagl.iir.dao.reservation.ReservationDao.getAllByIdOffre"></collection>
+		<collection property="images" column="off_id"
+			select="fil.iagl.iir.dao.image.ImageDao.getAllByIdOffre"></collection>
 	</resultMap>
 
 	<sql id="select_all_columns_offre">

@@ -1,5 +1,6 @@
 -- RESET BDD CONTENT
 TRUNCATE
+IMAGE_OFFRE,
 IMAGE,
 AUTHENTIFICATION,
 UTILISATEUR,
@@ -24,7 +25,7 @@ ALTER SEQUENCE image_img_id_seq RESTART WITH 1;
 -- Table IMAGE
 -- ---------------------------
 INSERT INTO IMAGE ( img_path ) values
-('/monPath/0.jpg');
+('/monPath/0.jpg'); -- ID 1
 
 
 -- ---------------------------
@@ -60,7 +61,6 @@ INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES
 ( 'toto', '2015-01-31', 4); -- ID 2
 
 -- ---------------------------
-
 -- Table AUTHENTIFICATION
 -- ---------------------------
 INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
@@ -83,4 +83,10 @@ INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation, res_nb_pla
 (1, 1, CURRENT_TIMESTAMP, 2), -- ID 1
 (4, 1, CURRENT_TIMESTAMP, 1), -- ID 2
 (4, 2, CURRENT_TIMESTAMP, 1); -- ID 3
+
+-- ---------------------------
+-- Table IMAGE_OFFRE
+-- ---------------------------
+INSERT INTO image_offre(imo_off_id, imo_img_id) VALUES
+(1, 1);
 
