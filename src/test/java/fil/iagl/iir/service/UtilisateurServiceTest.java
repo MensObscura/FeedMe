@@ -65,4 +65,26 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     utilisateurService.getParticulierByUtilisisateurId(null);
     Mockito.verify(utilisateurDao, Mockito.never()).getById(Mockito.anyInt());
   }
+
+  @Test
+  public void modifierProfilTestSucces() throws Exception {
+    // Etant donné un particulier avec une adresse (voie) modifiée
+    Particulier particulier = this.createParticulier();
+
+    // Quand on appelle le service de modification de profil particulier
+    utilisateurService.modifierProfil(particulier);
+
+    // Alors on vérifie que l'utilisateurDao a bien été appelé
+    Mockito.verify(particulierDao, Mockito.times(1)).modifier(particulier);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void modifierProfilTestEchec() throws Exception {
+    // Etant donné un particulier nul
+    // Quand on appelle le service de modification de profil particulier
+    utilisateurService.modifierProfil(null);
+    // Alors une FeedMeException est lancée
+    // et on vérifie que l'utilisateurDao n'est jamais appelé
+    Mockito.verify(particulierDao, Mockito.never()).modifier(Mockito.any(Particulier.class));
+  }
 }
