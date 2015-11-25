@@ -44,14 +44,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.homeAction = function() {
 
 		if($scope.home){
-<<<<<<< HEAD:src/main/resources/public/resources/js/script-formulaire-offre.js
-			
-			$scope.rue = $scope.profil.adresse.voie;
-			$scope.ville = $scope.profil.adresse.ville.nom;
-			$scope.cp = $scope.profil.adresse.ville.cp;
-			$scope.count= {0:$scope.profil.adresse.ville.pays};
-			
-=======
+
 			var rue = $scope.profil.adresse.voie;
 			var num = rue.split(" ")[0];
 			
@@ -60,7 +53,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 			$scope.ville = $scope.profil.adresse.ville.nom;
 			$scope.cp = $scope.profil.adresse.ville.cp;
 			$scope.count= {0: $scope.profil.adresse.ville.pays};
->>>>>>> origin/front-thibaud:src/main/resources/public/resources/js/controllers/controller_formulaire_offre.js
 
 		}else{
 			$scope.numero = '';
@@ -99,17 +91,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.submitForm = function() {
 					
 		if ($scope.OffreForm.$valid) {
-<<<<<<< HEAD:src/main/resources/public/resources/js/script-formulaire-offre.js
 			
-			if ($scope.date < new Date()) {
-				//$mdToast.show($mdToast.simple().position('bottom left right').content('Cette date est passée !').hideDelay(2000));
-			}
-			
-			
-			
-=======
-						
->>>>>>> origin/front-thibaud:src/main/resources/public/resources/js/controllers/controller_formulaire_offre.js
 			// On récupère la date du repas
 			var date_repas = new Date($scope.date);
 			var aujourdhui = new Date();
