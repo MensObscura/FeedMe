@@ -36,7 +36,7 @@ public class ImageControllerTest extends AbstractControllerTest {
     image.setPath(path);
 
     // Etant donné un mock de fichié envoyé
-    MockMultipartFile mockMultipartFile = new MockMultipartFile("img", "some image".getBytes());
+    MockMultipartFile mockMultipartFile = new MockMultipartFile("file", "some image".getBytes());
 
     // Etant donné que le service nous renvoi cette image pour mock du fichier
     Mockito.when(imageService.sauvegarder(mockMultipartFile)).thenReturn(image);
