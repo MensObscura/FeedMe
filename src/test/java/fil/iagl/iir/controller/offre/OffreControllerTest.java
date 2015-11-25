@@ -73,6 +73,13 @@ public class OffreControllerTest extends AbstractControllerTest {
   }
 
   @Test
+  public void testGetOffresPremiums() throws Exception {
+    mockMvc.perform(get("/offres/premium"))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$").isArray());
+  }
+
+  @Test
   public void testGetOffre() throws Exception {
     Integer id = 1;
     Offre offre = offreDao.getById(id);

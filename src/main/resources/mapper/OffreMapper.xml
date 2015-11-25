@@ -4,107 +4,115 @@
 <mapper namespace="fil.iagl.iir.dao.offre.OffreDao">
 
 	<resultMap type="fil.iagl.iir.entite.Offre" id="Offre_ResultMap">
-		<id property="id" column="off_id"/>
-		<result property="dateCreation" column="off_date_creation"/>
-		<result property="titre" column="off_titre"/>
-		<result property="prix" column="off_prix"/>
-		<result property="nombrePersonne" column="off_nombre_personne"/>
-		<result property="dureeMinute" column="off_duree_minute"/>
-		<result property="dateRepas" column="off_date_repas"/>
-		<result property="note" column="off_note"/>
-		<result property="menu.plat" column="off_plat"/>
-		<result property="menu.dessert" column="off_dessert"/>
-		<result property="menu.boisson" column="off_boisson"/>
-		<result property="menu.entree" column="off_entree"/>
-		<result property="ageMin" column="off_age_min"/>
-		<result property="ageMax" column="off_age_max"/>
-		<result property="animaux" column="off_animaux"/>
-		<result property="premium" column="off_premium"/>
-		
-		<association property="adresse" column="off_adr_id" select="fil.iagl.iir.dao.adresse.AdresseDao.getById" />
-		<association property="typeCuisine" column="off_typ_id" select="fil.iagl.iir.dao.typeCuisine.TypeCuisineDao.getById" />
-		<association property="hote" column="off_usr_id" select="fil.iagl.iir.dao.utilisateur.UtilisateurDao.getById" />
-	
-		<collection property="reservations" column="off_id" select="fil.iagl.iir.dao.reservation.ReservationDao.getAllByIdOffre"></collection>
+		<id property="id" column="off_id" />
+		<result property="dateCreation" column="off_date_creation" />
+		<result property="titre" column="off_titre" />
+		<result property="prix" column="off_prix" />
+		<result property="nombrePersonne" column="off_nombre_personne" />
+		<result property="dureeMinute" column="off_duree_minute" />
+		<result property="dateRepas" column="off_date_repas" />
+		<result property="note" column="off_note" />
+		<result property="menu.plat" column="off_plat" />
+		<result property="menu.dessert" column="off_dessert" />
+		<result property="menu.boisson" column="off_boisson" />
+		<result property="menu.entree" column="off_entree" />
+		<result property="ageMin" column="off_age_min" />
+		<result property="ageMax" column="off_age_max" />
+		<result property="animaux" column="off_animaux" />
+		<result property="premium" column="off_premium" />
+
+		<association property="adresse" column="off_adr_id"
+			select="fil.iagl.iir.dao.adresse.AdresseDao.getById" />
+		<association property="typeCuisine" column="off_typ_id"
+			select="fil.iagl.iir.dao.typeCuisine.TypeCuisineDao.getById" />
+		<association property="hote" column="off_usr_id"
+			select="fil.iagl.iir.dao.utilisateur.UtilisateurDao.getById" />
+
+		<collection property="reservations" column="off_id"
+			select="fil.iagl.iir.dao.reservation.ReservationDao.getAllByIdOffre"></collection>
 	</resultMap>
 
-
 	<sql id="select_all_columns_offre">
-		SELECT 
-			off_id, 
-			off_date_creation, 
-			off_titre, 
-			off_prix, 
-			off_nombre_personne, 
-	       	off_duree_minute, 
-	       	off_date_repas, 
-	       	off_note, 
-            off_plat, 
-            off_dessert, 
-            off_entree, 
-            off_boisson,
-	       	off_age_min, 
-	       	off_age_max, 
-	       	off_animaux, 
-	       	off_adr_id, 
-	       	off_typ_id, 
-	       	off_usr_id,
-	       	off_premium
+		SELECT
+		off_id,
+		off_date_creation,
+		off_titre,
+		off_prix,
+		off_nombre_personne,
+		off_duree_minute,
+		off_date_repas,
+		off_note,
+		off_plat,
+		off_dessert,
+		off_entree,
+		off_boisson,
+		off_age_min,
+		off_age_max,
+		off_animaux,
+		off_adr_id,
+		off_typ_id,
+		off_usr_id,
+		off_premium
 		FROM OFFRE
 	</sql>
 
 	<select id="getAll" resultMap="Offre_ResultMap">
-		<include refid="select_all_columns_offre"/>
+		<include refid="select_all_columns_offre" />
 	</select>
-	
+
+	<select id="getOffresPremium" resultMap="Offre_ResultMap">
+		<include refid="select_all_columns_offre" />
+		WHERE off_premium = TRUE
+	</select>
+
 	<select id="getById" resultMap="Offre_ResultMap">
-		<include refid="select_all_columns_offre"/>
+		<include refid="select_all_columns_offre" />
 		WHERE off_id = #{id}
 	</select>
-	
-	<insert id="sauvegarder" parameterType="fil.iagl.iir.entite.Offre" useGeneratedKeys="true" keyProperty="offre.id" keyColumn="off_id">
-		INSERT INTO offre(
-            off_date_creation, 
-            off_titre, 
-            off_prix, 
-            off_nombre_personne, 
-            off_duree_minute, 
-            off_date_repas, 
-            off_note, 
-            off_plat, 
-            off_dessert, 
-            off_entree, 
-            off_boisson, 
-            off_age_min, 
-            off_age_max, 
-            off_animaux, 
-            off_adr_id, 
-            off_typ_id, 
-            off_usr_id,
-            off_premium
-        )
-	    VALUES (
-	    	CURRENT_DATE,
-	    	#{offre.titre},
-	    	#{offre.prix},
-	    	#{offre.nombrePersonne},
-	    	#{offre.dureeMinute},
-	    	#{offre.dateRepas},
-	    	#{offre.note},
-	    	#{offre.menu.plat},
-	    	#{offre.menu.dessert},
-	    	#{offre.menu.entree},
-	    	#{offre.menu.boisson},
-	    	#{offre.ageMin},
-	    	#{offre.ageMax},
-	    	#{offre.animaux},
-	    	#{offre.adresse.id},
-	    	#{offre.typeCuisine.id},
-	    	#{offre.hote.idUtilisateur},
-	    	#{offre.premium}
-	    );
 
+	<insert id="sauvegarder" parameterType="fil.iagl.iir.entite.Offre"
+		useGeneratedKeys="true" keyProperty="offre.id" keyColumn="off_id">
+		INSERT INTO
+		offre(
+		off_date_creation,
+		off_titre,
+		off_prix,
+		off_nombre_personne,
+		off_duree_minute,
+		off_date_repas,
+		off_note,
+		off_plat,
+		off_dessert,
+		off_entree,
+		off_boisson,
+		off_age_min,
+		off_age_max,
+		off_animaux,
+		off_adr_id,
+		off_typ_id,
+		off_usr_id,
+		off_premium
+		)
+		VALUES (
+		CURRENT_DATE,
+		#{offre.titre},
+		#{offre.prix},
+		#{offre.nombrePersonne},
+		#{offre.dureeMinute},
+		#{offre.dateRepas},
+		#{offre.note},
+		#{offre.menu.plat},
+		#{offre.menu.dessert},
+		#{offre.menu.entree},
+		#{offre.menu.boisson},
+		#{offre.ageMin},
+		#{offre.ageMax},
+		#{offre.animaux},
+		#{offre.adresse.id},
+		#{offre.typeCuisine.id},
+		#{offre.hote.idUtilisateur},
+		#{offre.premium}
+		);
 	</insert>
-
 
 </mapper>

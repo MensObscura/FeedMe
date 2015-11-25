@@ -74,4 +74,14 @@ public class OffreServiceImpl implements OffreService {
     return offreDao.getAll();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.OffreService#listerOffresPremium()
+   */
+  @Override
+  public List<Offre> listerOffresPremium() {
+    return offreDao.getOffresPremium();
+  }
+
 }
