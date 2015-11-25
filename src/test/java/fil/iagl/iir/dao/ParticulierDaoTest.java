@@ -45,7 +45,113 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(particulier.getPrenom()).isNotNull().isEqualTo(prenom);
     Assertions.assertThat(particulier.getMail()).isNotNull().isEqualTo(mail);
     Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
+    Assertions.assertThat(particulier.getAdresse()).isNull();
     Assertions.assertThat(particulier.getDescription()).isNotNull().isEqualTo(description);
+  }
+
+  @Test
+  public void modifierTestSucess() throws Exception {
+    // Etant donne un particulier enregistre en base avec un ID = 1
+    Integer idParticulier = 1;
+    Particulier particulier = particulierDao.getById(1);
+
+    // lorsque je change sa description et son adresse
+    Integer adresseId = 1;
+    String rue = "4 rue guillaume apollinaire";
+    String villeName = "Lille";
+    String codePostal = "59000";
+    Integer villeId = 1;
+    Ville ville = new Ville();
+    ville.setId(villeId);
+    ville.setCp(codePostal);
+    ville.setNom(villeName);
+    Adresse adresse = new Adresse();
+    adresse.setId(adresseId);
+    adresse.setVoie(rue);
+    adresse.setVille(ville);
+
+    String description = "ceci est une nouvelle description";
+
+    particulier.setAdresse(adresse);
+    particulier.setDescription(description);
+
+    // lorsque je le sauvegarde
+    particulierDao.modifier(particulier);
+
+    Particulier particulierModif = particulierDao.getById(idParticulier);
+
+    // Alors les informations ont bien changées
+    Assertions.assertThat(particulierModif).isNotNull();
+    Assertions.assertThat(particulierModif.getIdUtilisateur()).isNotNull().isEqualTo(particulier.getIdUtilisateur());
+    Assertions.assertThat(particulierModif.getIdParticulier()).isNotNull().isEqualTo(particulier.getIdParticulier());
+    Assertions.assertThat(particulierModif.getNom()).isNotNull().isEqualTo(particulier.getNom());
+    Assertions.assertThat(particulierModif.getPrenom()).isNotNull().isEqualTo(particulier.getPrenom());
+    Assertions.assertThat(particulierModif.getMail()).isNotNull().isEqualTo(particulier.getMail());
+    Assertions.assertThat(particulierModif.getDateNaissance()).isNotNull().isEqualTo(particulier.getDateNaissance());
+    Assertions.assertThat(particulierModif.getAdresse()).isNotNull();
+    assertThat(particulierModif.getAdresse().getId()).isEqualTo(adresseId);
+    assertThat(particulierModif.getAdresse().getVoie()).isEqualTo(rue);
+    assertThat(particulierModif.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
+    assertThat(particulierModif.getAdresse().getVille().getCp()).isEqualTo(codePostal);
+    assertThat(particulierModif.getDescription()).isNotNull().isEqualTo(description);
+  }
+
+  @Test
+  public void modifierTestSucessAutresInfosIntactes() throws Exception {
+    // Etant donne un particulier enregistre en base avec un ID = 1
+    Integer idParticulier = 1;
+    Particulier particulier = particulierDao.getById(idParticulier);
+    String realNom = particulier.getNom();
+    String realMail = particulier.getMail();
+    String realPrenom = particulier.getPrenom();
+    LocalDate RealDateNaissance = particulier.getDateNaissance();
+    Boolean realPremium = particulier.getPremium();
+
+    // lorsque je change tous ses champs
+    particulier.setDateNaissance(LocalDate.of(2012, Month.FEBRUARY, 10));
+    particulier.setNom("fakeNom");
+    particulier.setMail("fakeMail");
+    particulier.setPrenom("fakePrenom");
+    particulier.setPremium(false);
+
+    Integer adresseId = 1;
+    String rue = "4 rue guillaume apollinaire";
+    String villeName = "Lille";
+    String codePostal = "59000";
+    Integer villeId = 1;
+    Ville ville = new Ville();
+    ville.setId(villeId);
+    ville.setCp(codePostal);
+    ville.setNom(villeName);
+    Adresse adresse = new Adresse();
+    adresse.setId(adresseId);
+    adresse.setVoie(rue);
+    adresse.setVille(ville);
+
+    String description = "ceci est une nouvelle description";
+
+    particulier.setAdresse(adresse);
+    particulier.setDescription(description);
+
+    // lorsque je le sauvegarde
+    particulierDao.modifier(particulier);
+
+    // Alors seuls l'adresse et la description du particulier changent
+    Particulier particulierModif = particulierDao.getById(idParticulier);
+
+    Assertions.assertThat(particulierModif).isNotNull();
+    Assertions.assertThat(particulierModif.getIdUtilisateur()).isNotNull().isEqualTo(particulier.getIdUtilisateur());
+    Assertions.assertThat(particulierModif.getIdParticulier()).isNotNull().isEqualTo(particulier.getIdParticulier());
+    Assertions.assertThat(particulierModif.getNom()).isNotNull().isEqualTo(realNom);
+    Assertions.assertThat(particulierModif.getPrenom()).isNotNull().isEqualTo(realPrenom);
+    Assertions.assertThat(particulierModif.getMail()).isNotNull().isEqualTo(realMail);
+    Assertions.assertThat(particulierModif.getDateNaissance()).isNotNull().isEqualTo(RealDateNaissance);
+    Assertions.assertThat(particulierModif.getAdresse()).isNotNull();
+    assertThat(particulierModif.getAdresse().getId()).isEqualTo(adresseId);
+    assertThat(particulierModif.getAdresse().getVoie()).isEqualTo(rue);
+    assertThat(particulierModif.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
+    assertThat(particulierModif.getAdresse().getVille().getCp()).isEqualTo(codePostal);
+    assertThat(particulierModif.getDescription()).isNotNull().isEqualTo(description);
   }
 
   @Test

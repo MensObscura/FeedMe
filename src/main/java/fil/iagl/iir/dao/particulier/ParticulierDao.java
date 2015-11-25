@@ -33,4 +33,12 @@ public interface ParticulierDao {
    */
   Particulier getParticulierByUtilisateurId(@Param("id") Integer id);
 
+  /**
+   * Modifier les informations d'un utilisateur
+   * @param utilisateur
+   *          L'utilisateur à modifier
+   * @return Le nombre de lignes modifiées
+   */
+  Integer modifier(@Param("particulier") Particulier particulier);
+
 }

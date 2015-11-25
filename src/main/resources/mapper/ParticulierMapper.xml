@@ -35,5 +35,12 @@
 		<include refid="select_all_columns_particulier_utilisateur"/>
 		WHERE usr_id = #{id}
 	</select>
+	
+	<update id="modifier">
+		UPDATE UTILISATEUR set
+		usr_adr_id = #{particulier.adresse.id},
+		usr_description = #{particulier.description}
+		WHERE usr_id = #{particulier.idUtilisateur}
+	</update>
 
 </mapper>
