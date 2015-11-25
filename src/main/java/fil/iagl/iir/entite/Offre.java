@@ -43,6 +43,8 @@ public class Offre {
 
   private List<Reservation> reservations;
 
+  private List<Image> images;
+
   private Boolean premium;
 
 }

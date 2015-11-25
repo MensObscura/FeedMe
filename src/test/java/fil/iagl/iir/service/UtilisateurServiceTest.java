@@ -26,7 +26,8 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     Assertions.assertThat(utilisateur.getNom()).isNotNull().isEqualTo(mockUtilisateur.getNom());
     Assertions.assertThat(utilisateur.getMail()).isNotNull().isEqualTo(mockUtilisateur.getMail());
     Assertions.assertThat(utilisateur.getPremium()).isTrue();
-    Assertions.assertThat(utilisateur.getDescription()).isEqualTo(mockUtilisateur.getDescription());
+    Assertions.assertThat(utilisateur.getDescription()).isNotNull().isEqualTo(mockUtilisateur.getDescription());
+    Assertions.assertThat(utilisateur.getAdresseVisible()).isNotNull().isTrue();
 
     Mockito.verify(utilisateurDao, Mockito.times(1)).getById(id);
 
@@ -56,6 +57,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     Assertions.assertThat(particulier.getMail()).isNotNull().isEqualTo(mockParticulier.getMail());
     Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualsToByComparingFields(LocalDate.now().minusYears(20));
     Assertions.assertThat(particulier.getDescription()).isNotNull().isEqualTo(mockParticulier.getDescription());
+    Assertions.assertThat(particulier.getAdresseVisible()).isNotNull().isTrue();
 
     Mockito.verify(particulierDao, Mockito.times(1)).getParticulierByUtilisateurId(idUtilisateur);
   }
