@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.fest.assertions.api.Assertions;
+import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.entite.Menu;
 import fil.iagl.iir.entite.Offre;
+import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.SQLCODE;
 
@@ -49,6 +51,8 @@ public class OffreDaoTest extends AbstractDaoTest {
     Integer ageMin = 20;
     Integer ageMax = 30;
     Boolean premium = true;
+    Integer nbReservation = 1;
+    Integer nbImage = 1;
 
     // les informations de l'adresse associee a cette offre
     Integer idAdresse = 1;
@@ -132,6 +136,16 @@ public class OffreDaoTest extends AbstractDaoTest {
     Assertions.assertThat(offre.getHote().getIdUtilisateur()).isNotNull().isEqualTo(idUtilisateur);
     Assertions.assertThat(offre.getHote().getNom()).isNotNull().isEqualTo(nom);
     Assertions.assertThat(offre.getHote().getMail()).isNotNull().isEqualTo(mail);
+
+    Assertions.assertThat(offre.getReservations()).isNotEmpty().hasSize(nbReservation);
+    Assertions.assertThat(offre.getReservations()).are(new Condition<Reservation>() {
+      @Override
+      public boolean matches(Reservation reservation) {
+        return reservation.getOffre().getId().equals(offre.getId());
+      }
+    });
+
+    Assertions.assertThat(offre.getImages()).isNotEmpty().hasSize(nbImage);
 
   }
 

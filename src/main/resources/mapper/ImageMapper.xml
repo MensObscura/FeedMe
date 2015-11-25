@@ -14,14 +14,29 @@
 		FROM IMAGE
 	</sql>
 	
+	<sql id="select_all_columns_offre_image">
+		SELECT img_id, img_path
+		FROM IMAGE_OFFRE INNER JOIN IMAGE ON ( imo_img_id = img_id )
+	</sql>
+	
 	<select id="getById" resultMap="Image_ResultMap">
 		<include refid="select_all_columns_image"/>
 		WHERE img_id = #{idImage}
 	</select>
 	
+	<select id="getAllByIdOffre" resultMap="Image_ResultMap">
+		<include refid="select_all_columns_offre_image"/>
+		WHERE imo_off_id = #{idOffre}
+	</select>
+	
 	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="img_id" keyProperty="image.id">
 		INSERT INTO IMAGE (img_path)
 		VALUES ( #{image.path} );
+	</insert>
+	
+	<insert id="sauvegarderPourOffre">
+		INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id )
+		VALUES ( #{idOffre}, #{idImage});
 	</insert>
 	
 
