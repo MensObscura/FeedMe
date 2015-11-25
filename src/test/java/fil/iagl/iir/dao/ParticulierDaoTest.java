@@ -47,6 +47,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
     Assertions.assertThat(particulier.getAdresse()).isNull();
     Assertions.assertThat(particulier.getDescription()).isNotNull().isEqualTo(description);
+    Assertions.assertThat(particulier.getAdresseVisible()).isNotNull().isTrue();
   }
 
   @Test
@@ -69,11 +70,12 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     adresse.setId(adresseId);
     adresse.setVoie(rue);
     adresse.setVille(ville);
-
+    Boolean adresseVisible = false;
     String description = "ceci est une nouvelle description";
 
     particulier.setAdresse(adresse);
     particulier.setDescription(description);
+    particulier.setAdresseVisible(adresseVisible);
 
     // lorsque je le sauvegarde
     particulierDao.modifier(particulier);
@@ -94,6 +96,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     assertThat(particulierModif.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
     assertThat(particulierModif.getAdresse().getVille().getCp()).isEqualTo(codePostal);
     assertThat(particulierModif.getDescription()).isNotNull().isEqualTo(description);
+    assertThat(particulierModif.getAdresseVisible()).isNotNull().isFalse();
   }
 
   @Test
@@ -105,7 +108,6 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     String realMail = particulier.getMail();
     String realPrenom = particulier.getPrenom();
     LocalDate RealDateNaissance = particulier.getDateNaissance();
-    Boolean realPremium = particulier.getPremium();
 
     // lorsque je change tous ses champs
     particulier.setDateNaissance(LocalDate.of(2012, Month.FEBRUARY, 10));
@@ -113,6 +115,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     particulier.setMail("fakeMail");
     particulier.setPrenom("fakePrenom");
     particulier.setPremium(false);
+    particulier.setAdresseVisible(false);
 
     Integer adresseId = 1;
     String rue = "4 rue guillaume apollinaire";
@@ -152,6 +155,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     assertThat(particulierModif.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
     assertThat(particulierModif.getAdresse().getVille().getCp()).isEqualTo(codePostal);
     assertThat(particulierModif.getDescription()).isNotNull().isEqualTo(description);
+    assertThat(particulierModif.getAdresseVisible()).isNotNull().isFalse();
   }
 
   @Test
@@ -199,6 +203,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     assertThat(particulier.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
     assertThat(particulier.getAdresse().getVille().getCp()).isEqualTo(codePostal);
     assertThat(particulier.getDescription()).isNotNull().isEqualTo(description);
+    assertThat(particulier.getAdresseVisible()).isNotNull().isFalse();
   }
 
   @Test
