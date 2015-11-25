@@ -22,4 +22,9 @@ public interface UtilisateurService {
    */
   Particulier getParticulierByUtilisisateurId(Integer id);
 
+  /**
+   * Permet de modifier les informations d'un Particulier
+   * @param particulier Les nouvelles informations Particulier
+   */
+  void modifierProfil(Particulier particulier);
 }
