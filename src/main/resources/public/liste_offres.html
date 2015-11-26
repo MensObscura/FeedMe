@@ -53,6 +53,13 @@ Page de visualisation des offres de repas.
 		<ul class="offre-container" ng-repeat="item in list track by item.id">
 			<li class="ligne-tab">
 				<div class="item-view" ng-class="{'item-premium' : item.premium}" ng-click="visualize(item)">
+				<div class="img-tile-premium Aligner ">
+								<div class="mask ">
+
+									<shine> <img class="img-circle img-tile"
+										ng-show="item.premium" src="resources/img/offre/premium.png" /> </shine>
+								</div>
+							</div>
 					<div class="Aligner-left">
 						<div class=" Aligner-item">
 							<h2>{{item.titre}}</h2>
@@ -66,15 +73,7 @@ Page de visualisation des offres de repas.
 							</div>
 						</div>
 						
-						<div class="Aligner-item">
-							
-								<div class="mask">
-										<shine> <img class="img-circle img-tile"
-											ng-show="item.premium" src="resources/img/offre/premium.png"
-											 /> </shine>
-									</div>
-								
-						</div>
+						
 						<div class="Aligner-item">
 							<img src="resources/img/team/missing.jpg"
 								class="img-circle img-tile">

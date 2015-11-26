@@ -930,6 +930,8 @@ button.form {
 	padding: 25px;
 	width: 400px;
 	height: 222px;
+	z-index: 1;
+	position: relative;
 	border-radius: 15px 0px 15px 0px;
 }
 
@@ -1199,12 +1201,13 @@ img.img-tile {
 	height: 50px;
 }
 
-img.img-tile-premium {
-	width: 50px;
-	height: 50px;
-	position :relative;
-	padding-bottom : 20px;
+.img-tile-premium {
+
+	position: absolute;
+	top: -35px; left: 175px;  z-index : 2;
+	
 }
+
 .mask shine {
 	position: relative;
 	display: block;
