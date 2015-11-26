@@ -29,74 +29,102 @@ Page de visualisation d'une offre
     ================================================== -->
     <link rel="stylesheet" type="text/css"  href="resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
-    <link rel='stylesheet' type='text/css' href='resources/fonts/general-fonts.css'>
-
-    <script src="/resources/js/angular.min.js"></script>
+    
+	<link rel="stylesheet" type='text/css' href="/resources/css/angular-material.min.css">
 	</head>
 	
 	<body ng-app="OffreApp">
-		<!-- Menu -->
-		<div ng-include="'/resources/header.html'"></div>
-		
+		<div ng-include="'/resources/header.html'"></div>	
 		<!-- Visualisation des détails de l'offre -->
-		<div ng-controller="ReservationController">
-			<h2>{{offre.titre}}</h2>
-			<h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
-			<form name="ReservationForm" ng-submit="submitForm()" novalidate>
-				<fieldset>
-				<legend>L'offre de repas</legend>
-				
-				<!-- Présentation de l'hôte, du lieu -->
-				<fieldset>
-				<legend>L'hôte</legend>
-					<h3>Identité :</h3>
-					{{offre.hote.prenom}} {{offre.hote.nom}}
-					<h3>Lieu :</h3>
-					{{offre.adresse.voie}} <br>
-					{{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
-					<h3>Prix par convive :</h3>
-					{{offre.prix}} €
-				</fieldset>
-				
-				<!-- Présentation du menu -->
-				<fieldset>
-				<legend>Le menu</legend>
-					<h3>Type de cuisine :</h3>
-					{{offre.typeCuisine.typeCuisine}}
-					<h3>Au menu :</h3>
-					{{offre.menu}}
-					<h3>Nombre de couverts restants :</h3>
-					<!-- soit x sur y soit COMPLET -->
-					{{couverts_restants}}
-					<h3>Durée prévisionnelle :</h3>
-					{{offre.dureeMinute}} min.
-				</fieldset>
-			
-				<!-- Informations diverses (et optionnelles) -->
-				<fieldset>
-				<legend>Divers</legend>
-				{{animaux}}<br>
-				{{age}}<br>
-				{{note}}
-				</fieldset>
-			
-				<!-- Réservation de places -->		
-				<div > 
-				Réserver
-					<input type="number" name="place" ng-model="place" step="0" ng-required="true" min="1" max="{{nombreRestant}}" id="Nbplace" value="n"/> couvert(s)
-					<span style="color:red" ng-show="ReservationForm.place.$invalid && !ReservationForm.place.$pristine">
-						<span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
-						<span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
-						<span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span>
-						<span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span>
-					</span>
-				</label>
-				<input type="submit" ng-disabled="ReservationForm.$invalid" value="Réserver">
-			</div>
-		</form>
+        <div class="une-offre-body">
+            <div class="offre-display text-center" ng-controller="ReservationController">
+                <h2>{{offre.titre}}</h2>
+                <h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
+                <form name="ReservationForm" ng-submit="submitForm()" novalidate>
+                    <fieldset class="inner ">
+                    <legend>L'offre de repas</legend>
+                    
+                    <ul>
+						<li ng-repeat="f in offre.images" style="font:smaller"><img src="{{f.path | correctPath}}" class="medium"></li>
+					</ul>
+
+                    <!-- Présentation de l'hôte, du lieu -->
+                    <fieldset class="inner ">
+                    <legend class="inner ">L'hôte</legend>
+                        <h3>Identité :</h3>
+                        <!-- Un hôte est un utilisateur : pas de prénom  {{offre.hote.prenom}} -->{{offre.hote.nom}}
+                        <h3>Lieu :</h3>
+                        {{offre.adresse.voie}} <br>
+                        {{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
+                        <h3>Prix par convive :</h3>
+                        {{offre.prix}} €
+                    </fieldset class="inner ">
+
+                    <!-- Présentation du menu -->
+                    <fieldset class="inner ">
+                    <legend class="inner ">Le menu</legend>
+                        <h3>Type de cuisine :</h3>
+                        {{offre.typeCuisine.type}}
+                        <h3>Dans votre assiette :</h3>
+                        <h4>Entrée(s) :</h4>
+                       <pre class="white word_respect" > {{offre.menu.entree || "aucunes entrées"}}</pre>
+                        <h4>Plat :</h4>
+                        <pre class="white word_respect" >{{offre.menu.plat}}</pre>
+                        <h4>Dessert(s) :</h4>
+                       <pre class="white word_respect" > {{offre.menu.dessert || "aucuns desserts"}}</pre>
+                        <h4>Carte des boissons :</h4>
+                        <pre class="white word_respect" >{{offre.menu.boisson || "aucunes boissons particulières"}}</pre>
+                        <h3>Nombre de couverts restants :</h3>
+                        <!-- soit x sur y soit COMPLET -->
+                        {{couverts_restants}}
+                        <h3>Durée prévisionnelle :</h3>
+                        {{offre.dureeMinute}} min.
+                    </fieldset>
+
+                    <!-- Informations diverses (et optionnelles) -->
+                    <fieldset class="inner ">
+                    <legend>Divers</legend>
+                    <div ng-if="animaux">{{animaux}}</div>
+                    <div ng-if="age">{{age}}</div>
+                    <div ng-if="note">{{note}}</div>
+                    </fieldset>
+	<br>
+                    <!-- Réservation de places -->		
+                   
+            
+
+						
+						
+									<md-content layout-padding>
+										<br>
+						<md-input-container  flex>
+						<label id="white" for="place">Nombre de place(s) à réserver* :</label> <input
+							id="white" type="number" name="place" ng-model="place"
+							 ng-required="true" ng-min="minCouvert" min="{{minCouvert}}" ng-max="nombreRestant" 
+							id="Nbplace" placeholder="Réserver" />
+						 <span style="color:red" ng-show="(ReservationForm.place.$invalid && !ReservationForm.place.$pristine) || submited">
+                            <span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span>
+                            <span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span>
+                            <span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span>
+                            <span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span>
+						</md-input-container> </md-content>
+						
+
+						<md-button id="form_button_log" type="submit"
+							ng-click="submited=true" ng-disabled="minCouvert == 0" class="form ">Réserver</md-button>
+					
+              
+            </form>
+            </div>
 		</div>
 		
-		<script src="/resources/js/script-offre.js"></script>
+		<script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
+		<script type="text/javascript" src="/resources/js/scripts/angular-animate.min.js"></script>
+	    <script type="text/javascript" src="/resources/js/scripts/angular-aria.min.js"></script>
+	    <script type="text/javascript" src="/resources/js/scripts/angular-material.min.js"></script>
+	    <script type="text/javascript" src="/resources/js/scripts/angular-messages.js"></script>
+	    <script type="text/javascript" src="/resources/js/scripts/moment.js"></script>
+		<script type="text/javascript" src="/resources/js/controllers/controller_offre.js"></script>
 		<!-- Pied de page -->
 		<div ng-include="'/resources/footer.html'"></div>
 	</body>

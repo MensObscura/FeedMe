@@ -10,7 +10,7 @@
     <meta name="description" content="FeedMe est une application de rencontres centré sur la cuisine: vous cuisinez pour des amis à vous, ou de parfaits inconnus, qui quant à eux paient pour venir déguster votre repas.">
     <meta name="keywords" content="cuisine, réseau social, partage, commerce, repas, manger, nourriture, rencontre, aliments, cercle d'amis">
     <meta name="author" content="Team FeedMe">
-    
+        
     <!-- Favicons
     ================================================== -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -34,9 +34,6 @@
 
     <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
 
-    <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
-    <script src="/resources/js/angular.min.js"></script>
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,9 +41,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app="Index">
       
-      <div ng-include="'/resources/header.html'"></div>
     <!-- Navigation
     ==========================================-->
     <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
@@ -59,19 +55,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">FeedMe</a>
+          <a class="navbar-brand" href="index.html"><img class="logo" src="resources/img/icon.png" /> FeedME</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div ng-controller="MenuCtrl" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#tf-home" class="page-scroll">Accueil</a></li>
             <li><a href="#tf-about" class="page-scroll">A propos</a></li>
             <li><a href="#tf-team" class="page-scroll">L'équipe</a></li>
             <li><a href="#tf-testimonials" class="page-scroll">Témoignages</a></li>
             <li><a href="#tf-contact" class="page-scroll">Contact</a></li>
-            <li><a href="resources/login.html">Se connecter</a></li>
-            <li><a href="inscription.html">S'inscrire</a></li>
+            <li ng-if="!authenticated"><a href="login.html">Se connecter</a></li>
+            <li ng-if="!authenticated"><a href="inscription.html">S'inscrire</a></li>
+            <li ng-if="authenticated"><a href="accueil.html">Revenir sur la page principale</a></li>
+	    	<li ng-if="authenticated"><a href="">Se déconnecter</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -333,18 +331,20 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="resources/js/jquery.1.11.1.js"></script>
+    <script src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/jquery.1.11.1.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script type="text/javascript" src="resources/js/bootstrap.js"></script>
-    <script type="text/javascript" src="resources/js/SmoothScroll.js"></script>
-    <script type="text/javascript" src="resources/js/jquery.isotope.js"></script>
-
-    <script src="resources/js/owl.carousel.js"></script>
-
+    <script type="text/javascript" src="/resources/js/scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/SmoothScroll.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/jquery.isotope.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/owl.carousel.js"></script>
+    <script type="text/javascript" src="resources/js/scripts/modernizr.custom.js"></script>
     <!-- Javascripts
     ================================================== -->
-    <script type="text/javascript" src="resources/js/main.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/main.js"></script>
+    <script type="text/javascript"  src="/resources/js/scripts/angular.min.js"></script>
+    <script type="text/javascript"  src="/resources/js/scripts/angular-route.min.js"></script>
+    <script type="text/javascript"  src="/resources/js/controllers/controller_index.js"></script>
 
   </body>
 </html>

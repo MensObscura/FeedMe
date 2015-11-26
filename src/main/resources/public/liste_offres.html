@@ -20,11 +20,6 @@ Page de visualisation des offres de repas.
 
         <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
 
-        <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
-        <script src="/resources/js/angular.min.js"></script>
-        
-		<script src="/resources/js/angular.min.js"></script>
-		<script src="/resources/js/script_list_offre.js"></script>
 		<link rel="stylesheet" type="text/css" href="/resources/css/list_style.css" />
 	</head>
 		
@@ -33,29 +28,40 @@ Page de visualisation des offres de repas.
 			<div ng-include="'/resources/header.html'"></div>
 			
 			<!-- Liste de toutes les offres -->
-			<div id ="vue-offre" ng-controller="ListeCtrl">
+			<div id="vue-offre" ng-controller="ListeCtrl">
                 <!-- Hack à régler -->
                 <br/>
-				<ul ng-repeat="item in list track by item.id">
+				<ul class="offre-container" ng-repeat="item in list track by item.id">
 					<li class="ligne-tab">
 						<div class="item-view" ng-click="visualize(item)">
 							<h2>{{item.titre}}</h2>
 							<p>
-								{{item.typeCuisine.typeCuisine}}
+								{{item.typeCuisine.type}}
 							</p>
 							<p>
 								{{item.prix}} €
 							</p>
-							<p>
-								{{item.nombreRestant}}
+							<div id="nbplace" ng-init='getNbPlaces(item);'>
+							<p ng-if="!(item.nombrePersonne == 0)">
+							Place(s) restante(s) : {{item.nombrePersonne}}
+														
 							</p>
+							<p ng-if="item.nombrePersonne == 0">
+							Complet
+							</p>
+							
+							</div>
 							<p>
-								{{item.dateRepas}}
+								{{item.dateRepas | date:"dd/MM/yyyy 'à' HH'h'mm"}}
 							</p>
 						</div>
 					</li>
 				</ul>
 			</div>
+			
+			<script type="text/javascript" src="/resources/js/scripts/modernizr.custom.js"></script>
+	        <script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
+			<script type="text/javascript" src="/resources/js/controllers/controller_liste_offres.js"></script>
 			
 			<!-- Pied de page -->
 			<div ng-include="'/resources/footer.html'"></div>

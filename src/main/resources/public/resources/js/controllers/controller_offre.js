@@ -1,9 +1,19 @@
 // Chargement du module "OffreApp"
-var app = angular.module("OffreApp", []);
+var app = angular.module("OffreApp", ['ngMaterial']);
+
+app.filter('correctPath', function() {
+	return function(texte) {
+		if (!texte)
+			return texte;
+		else
+			return texte.replace(/\\/g,"/");
+	};
+});
 
 //Création du controller "ReservationController"
-app.controller('ReservationController', function($scope, $http, $window) {  
-
+app.controller('ReservationController', function($scope, $http, $window, $mdToast) {  
+	$scope.submited =false;
+	$scope.minCouvert = 1;
 	// Fonction permettant de récupérer les paramètres de l'url.
 	$scope.getUrlVars = function() {
 		var vars = {};
@@ -23,23 +33,25 @@ app.controller('ReservationController', function($scope, $http, $window) {
 	// On se branche dessus
 	$http.get(route).success(
 			function(data) {
+
 				// On transfert dans "offre" les données
 				$scope.offre = data;
 				// On calcule le nombre de places restantes, que l'on transfert aussi à la vue
 				var place_reservees = 0;
 				for (i = 0; i < data.reservations.length; i++) {
-					place_reservees += data.reservations[i].nb_places;
+					place_reservees += data.reservations[i].nbPlaces;
 				}
 				$scope.nombreRestant = data.nombrePersonne - place_reservees;
 				
 				// Si le nombre de places restantes est 0, on affiche "complet"
 				if ($scope.nombreRestant == 0) {
 					$scope.couverts_restants = "COMPLET"
+						$scope.minCouvert = 0;
 				}
 				else {
 					$scope.couverts_restants = $scope.nombreRestant+" sur "+data.nombrePersonne;
 				}
-				
+								
 				// On met à jour la rubrique "animal" s'il existe des données
 				if (data.animaux)
 					$scope.animaux = "Un animal de compagnie sera présent lors du repas.";
@@ -70,19 +82,15 @@ app.controller('ReservationController', function($scope, $http, $window) {
 
 	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
-		if ($scope.ReservationForm.$valid) {
+		if ($scope.ReservationForm.$valid && $scope.place > 0 ) {
 			
 			// Première étape : convertir la date est la mettre sous la bonne forme
 			var aujourdhui = new Date();
-			var date = "";
-			if ((aujourdhui.getMonth()+1) < 10)
-				date = aujourdhui.getFullYear()+'-0'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
-			else
-				date = aujourdhui.getFullYear()+'-'+(aujourdhui.getMonth()+1)+'-'+aujourdhui.getDate();
+			var date = moment(aujourdhui).format('YYYY-MM-DD');
 
 			// On constitue les données
 			var donnees = {
-					nb_places : $scope.place, 
+					nbPlaces : $scope.place, 
 					offre : $scope.offre,
 					dateReservation : date,
 			};
@@ -94,10 +102,12 @@ app.controller('ReservationController', function($scope, $http, $window) {
 				contentType: "application/json",
 				data: donnees
 			}).success(function(response, status, headers, config){
-				// DECLENCHEMENT D'UN TOASTER ICI : Votre réservation a été enregistrée
+				
+				//$mdToast.show($mdToast.simple().position('bottom left right').content('Votre réservation a été enregistrée.').hideDelay(2000));
+				//setTimeout(function() {$window.location.href = '/login.html';},2000);
 				$window.location.href = "/liste_offres.html";
 			}).error(function(err, status, headers, config){
-				// DECLENCHEMENT D'UN TOASTER ICI : Vous avez déja reservé une place pour cette offre
+				//$mdToast.show($mdToast.simple().position('bottom left right').content('Vous avez déja réservé une place pour cette offre.').hideDelay(2000));
 			});
 			
 		}

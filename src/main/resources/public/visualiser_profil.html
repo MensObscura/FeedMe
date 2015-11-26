@@ -11,24 +11,38 @@ Page permettant une visualisation du profil d'un utilisateur.
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Mon profil</title>
         <meta name="description" content="Visualisation du profil FeedMe">
-        <script src="/resources/js/angular.min.js"></script>
+	    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
+    	<link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
+    	<link rel="stylesheet" type="text/css"  href="resources/css/style.css">
+    	<link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
+		<link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
     </head>
     
     <body ng-app="Profil">
     	<!-- Menu -->
         <div ng-include="'/resources/header.html'"></div>
-        
-        <!-- Affichage des éléments du profil de l'utilisateur connecté -->
-        <div id="profil" ng-controller="ProfilCtrl">
-            <p>Nom: {{profil.nom}}<br/>
-            Prénom: {{profil.prenom}}<br />
-            Date de naissance: {{profil.dateNaissance}}<br />
-            e-m@il: {{profil.mail}}<br/>
+        <div class="containerProfil">
+            <br/>
+            
+            <!-- Affichage des éléments du profil de l'utilisateur connecté -->
+            <div class="profil" ng-controller="ProfilCtrl">
+                <h2>Votre Profil</h2>
+                <p>Nom: {{profil.nom}}<br/>
+                Prénom: {{profil.prenom}}<br />
+                Date de naissance: {{profil.dateNaissance}}<br />
+                e-mail: {{profil.mail}}<br/>
+				<div ng-if="profil.adresse">
+				Adresse : {{profil.adresse.voie}}.<br />
+				{{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})<br />
+		</div>
+            </div>         
         </div>
-        
-        <script src="/resources/js/script-profil.js"></script>
         
         <!-- Pied de page -->
         <div ng-include="'/resources/footer.html'"></div>
+        
+         <script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
+	     <script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
+         <script type="text/javascript" src="/resources/js/controllers/controller_profil.js"></script>
     </body>
 </html>
