@@ -335,8 +335,14 @@
 
 						<div flex>
 							<br> <br>
-							<fieldset>
+							<fieldset ng-class="{'field-premium' : premium}">
+								<div class=" Aligner img-offre-premium ">
+								<div class="mask ">
 
+									<shine> <img class="img-circle img-tile"
+										ng-show="premium" src="resources/img/offre/premium.png" /> </shine>
+								</div>
+							</div>
 								<h2>{{titre || "Titre non complété"}}</h2>
 								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à'
 									HH'h'mm"}}.</h3>
