@@ -831,6 +831,7 @@ nav#footer p {
 .Aligner-item {
 	max-width: 50%;
 	margin: 0;
+	align-content: space-between;
 }
 
 .Aligner-left {
@@ -930,6 +931,14 @@ button.form {
 	width: 400px;
 	height: 222px;
 	border-radius: 15px 0px 15px 0px;
+}
+
+.item-premium {
+	border-style: solid;
+	border-image-source: url(../img/liste-offre/bordure.png);
+	border-image-slice: 20;
+	border-image-width: 1;
+	border-image-outset: 1;
 }
 
 .item-view:hover {
@@ -1190,6 +1199,12 @@ img.img-tile {
 	height: 50px;
 }
 
+img.img-tile-premium {
+	width: 50px;
+	height: 50px;
+	position :relative;
+	padding-bottom : 20px;
+}
 .mask shine {
 	position: relative;
 	display: block;
@@ -1209,7 +1224,8 @@ img.img-tile {
 	content: '';
 	position: absolute;
 	pointer-events: none;
-	width: 50px; height : 50px;
+	width: 50px;
+	height: 50px;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -1222,12 +1238,18 @@ img.img-tile {
 		no-repeat;
 	background-position: inherit;
 	-webkit-mask: url(../img/accueil/tw.png) center;
-	height: 50px; top : 0; left : 0; right : 0; bottom : 0; background :
-	radial-gradient( -150% -70%, circle farthest-side, rgba( 255, 255, 255,
-	0) 90%, rgba( 255, 255, 255, .8) 98%, rgba( 255, 255, 255, 0) 100%)
-	no-repeat; background : radial-gradient( circle farthest-side at -100%
-	-50%, rgba( 255, 255, 255, 0) 90%, rgba( 255, 255, 255, .8) 98%, rgba(
-	255, 255, 255, 0) 100%) no-repeat; background-position : inherit;
-	-webkit-mask : url(../img/accueil/tw.png) center;
+	height: 50px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(-150% -70%, circle farthest-side, rgba(255, 255, 255, 0)
+		90%, rgba(255, 255, 255, .8) 98%, rgba(255, 255, 255, 0) 100%)
+		no-repeat;
+	background: radial-gradient(circle farthest-side at -100% -50%, rgba(255, 255, 255,
+		0) 90%, rgba(255, 255, 255, .8) 98%, rgba(255, 255, 255, 0) 100%)
+		no-repeat;
+	background-position: inherit;
+	-webkit-mask: url(../img/accueil/tw.png) center;
 	mask: url(../img/accueil/rond.svg#mask-firefox);
 }

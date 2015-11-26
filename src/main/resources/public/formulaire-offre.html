@@ -19,7 +19,7 @@
 	mask: url(#mask-firefox);
 }
 </style>
-<svg height = 0>
+<svg height=0>
  <defs>
    <!-- THE mask -->
   <mask id="mask-firefox">
@@ -29,13 +29,13 @@
   </defs>
 </svg>
 <link rel="stylesheet" type="text/css"
-		href="/resources/css/responsive.css">
+	href="/resources/css/responsive.css">
 <link rel='stylesheet' type='text/css'
-		href='/resources/fonts/general-font.css'>
+	href='/resources/fonts/general-font.css'>
 <link rel="stylesheet" type='text/css'
-		href="/resources/css/angular.rangeSlider.css">
+	href="/resources/css/angular.rangeSlider.css">
 <link rel="stylesheet" type='text/css'
-		href="/resources/css/bootstrap-datetimepicker.css">
+	href="/resources/css/bootstrap-datetimepicker.css">
 
 </head>
 
@@ -52,31 +52,38 @@
 				<h2>Votre offre :</h2>
 				<form name="OffreForm" ng-controller="OffreCtrl"
 					ng-submit="submitForm()" novalidate>
-					<div class="Aligner">
-						<div class="item-view text-left Aligner-item">
-							<div class="Aligner-left mask">
-								<div class=" Aligner-item">
-									<h2>{{titre}}</h2>
-									<p>{{typeCuisine.type}}</p>
-									<p>{{prix}} €</p>
-									<p>Place(s) restante(s) : {{nbpers}}</p>
-									<p>{{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
-								</div>
-								<div class="Aligner-item">
 
-									<div class="mask">
-										<shine> <img class="img-circle img-tile"
-											ng-show="premium" src="resources/img/offre/premium.png" />
-										</shine>
+
+
+					<div class="Aligner">
+						<div class="Aligner-item">
+							<div class="Aligner img-tile-premium">
+								<div class="mask ">
+
+									<shine> <img class="img-circle img-tile"
+										ng-show="premium" src="resources/img/offre/premium.png" /> </shine>
+								</div>
+							</div>
+							<div class="item-view text-left "
+								ng-class="{'item-premium' : premium}">
+
+								<div class="Aligner-left">
+
+									<div class=" Aligner-item">
+										<h2>{{titre}}</h2>
+										<p>{{typeCuisine.type}}</p>
+										<p>{{prix}} €</p>
+										<p>Place(s) restante(s) : {{nbpers}}</p>
+										<p>{{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
+									</div>
+
+									<div class="Aligner-item">
+										<img src="resources/img/team/missing.jpg"
+											class="img-circle img-tile">
+
 									</div>
 
 								</div>
-								<div class="Aligner-item">
-									<img src="resources/img/team/missing.jpg"
-										class="img-circle img-tile">
-
-								</div>
-
 							</div>
 						</div>
 
