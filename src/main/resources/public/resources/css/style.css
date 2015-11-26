@@ -1201,6 +1201,19 @@ img.img-tile {
 	height: 50px;
 }
 
+
+img.img-profil{
+ z-index : 2;
+    transition: 0.5s; /* Animation time */
+    -webkit-transition: 0.5s; /* For Safari */
+}
+
+img.img-profil:hover{
+	width: 65px;
+	height: 65px;
+}
+
+
 .img-tile-premium {
 
 	position: absolute;
