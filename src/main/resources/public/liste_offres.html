@@ -18,6 +18,20 @@ Page de visualisation des offres de repas.
 
 <!-- Stylesheet================================================== -->
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<style>
+.mask shine::after {
+	mask: url(#mask-firefox);
+}
+</style>
+<svg height = 0>
+ <defs>
+   <!-- THE mask -->
+  <mask id="mask-firefox">
+    <image width="50" height="50"
+		xlink:href="resources/img/accueil/tw.png" />
+  </mask>
+  </defs>
+</svg>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/responsive.css">
 
@@ -53,8 +67,13 @@ Page de visualisation des offres de repas.
 						</div>
 						
 						<div class="Aligner-item">
-							<img src="resources/img/offre/premium.png"
-								class="img-circle img-tile" ng-show="item.premium">
+							
+								<div class="mask">
+										<shine> <img class="img-circle img-tile"
+											ng-show="item.premium" src="resources/img/offre/premium.png"
+											 /> </shine>
+									</div>
+								
 						</div>
 						<div class="Aligner-item">
 							<img src="resources/img/team/missing.jpg"
