@@ -1,6 +1,16 @@
 // Chargement du module "OffreApp"
 var app = angular.module("OffreApp", ['ngMaterial']);
 
+
+app.filter('correctPath', function() {
+	return function(texte) {
+		if (!texte)
+			return texte;
+		else
+			return texte.replace(/\\/g,"/");
+	};
+});
+
 //Création du controller "ReservationController"
 app.controller('ReservationController', function($scope, $http, $window, $mdToast) {  
 	$scope.submited =false;

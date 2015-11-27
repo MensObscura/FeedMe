@@ -58,4 +58,11 @@ public class UtilisateurController {
     Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
     return utilisateurService.getParticulierByUtilisisateurId(idSession);
   }
+
+  @RequestMapping(value = "/particulier/profil", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+  public Particulier modifierSonProfil(@RequestBody AuthentificationParticulier authentificationParticulier) {
+    Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
+    utilisateurService.modifierProfil(authentificationParticulier.getUtilisateur());
+    return authentificationParticulier.getUtilisateur();
+  }
 }

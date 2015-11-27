@@ -67,10 +67,10 @@ public class FeedMeConfiguration extends WebMvcAutoConfigurationAdapter {
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws IOException {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-
+		
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		sessionFactory.setMapperLocations(resolver.getResources("classpath*:**/mapper/*Mapper.xml"));
-
+		
 		sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
 		try {
 			return sessionFactory.getObject();
@@ -78,6 +78,7 @@ public class FeedMeConfiguration extends WebMvcAutoConfigurationAdapter {
 			throw new FeedMeException(e);
 		}
 	}
+
 
 	/**
 	 * Creation de la Bean "jacksonBuilder" pour Jackson

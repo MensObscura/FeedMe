@@ -56,11 +56,13 @@ Page de visualisation d'une offre
 				</div>
 			</div>
 			<h2>{{offre.titre}}</h2>
-			<h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à'
-				hh'h'mm"}}.</h3>
+			<h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
 			<form name="ReservationForm" ng-submit="submitForm()" novalidate>
 				<fieldset class="inner ">
 					<legend>L'offre de repas</legend>
+ 					<ul>
+						<li ng-repeat="f in offre.images" style="font:smaller"><img src="{{f.path | correctPath}}" class="medium"></li>
+					</ul>
 
 					<!-- Présentation de l'hôte, du lieu -->
 					<fieldset class="inner ">

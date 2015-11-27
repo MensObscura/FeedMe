@@ -7,8 +7,6 @@
 <title>Proposer une offre</title>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular-material.min.css">
-
-
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
@@ -306,6 +304,26 @@
 								<md-content layout-padding>
 
 								<div layout layout-sm="column">
+																		
+									<md-input-container flex> <label
+										for="images">Image(s) :</label>
+									
+								 	<div ngf-drop ngf-select ng-model="fichiers" class="drop-box" 
+								        ngf-drag-over-class="'dragover'" ngf-multiple=profil.premium ngf-allow-dir="false"
+								        accept="image/*" 
+								        ngf-pattern="'image/*'">Faites glisser vos images dans cette zone ou cliquez.</div>
+								    <div ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
+								    Image(s) du repas :			    	
+								    <ul>
+								        <li ng-repeat="f in images" style="font:smaller"><img ngf-src="f" class="thumb"></li>
+								    </ul>
+							    								    									    
+							    </md-input-container>
+							    </div>
+							
+								<md-content layout-padding>
+
+								<div layout layout-sm="column">
 
 									<md-input-container flex> <label
 										id="white">Tranche d'âges : de {{age.min}} à
@@ -335,6 +353,7 @@
 
 						<div flex>
 							<br> <br>
+
 							<fieldset ng-class="{'field-premium' : premium}">
 								<div class=" Aligner img-offre-premium ">
 								<div class="mask ">
@@ -344,11 +363,13 @@
 								</div>
 							</div>
 								<h2>{{titre || "Titre non complété"}}</h2>
-								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à'
-									HH'h'mm"}}.</h3>
+								<h3>Repas organisé le {{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}.</h3>
 
 								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
+										<ul>
+									     <li ng-repeat="f in images" style="font:smaller"><img ngf-src="f" class="medium"></li>
+									</ul>
 									<div class="general-form">
 										<!-- Présentation de l'hôte, du lieu -->
 										<fieldset class="inner ">
@@ -401,6 +422,7 @@
 												Ce repas s'adresse aux {{age.min}}-{{age.max}} ans.<br>
 											</div>
 											<div ng-if="note">{{note}}</div>
+
 										</fieldset>
 										<div>
 								</fieldset>
@@ -417,30 +439,23 @@
 		</div>
 	</div>
 
-	<script type="text/javascript"
-		src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/scripts/angular.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
 
-	<script type="text/javascript"
-		src="/resources/js/scripts/angular-material.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/scripts/angular-animate.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/scripts/angular-aria.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/scripts/angular-messages.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-material.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-animate.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-aria.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-messages.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/moment.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/scripts/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/ng-file-upload-shim.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/ng-file-upload.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/bootstrap-datetimepicker.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/bootstrap.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/scripts/angular.rangeSlider.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular.rangeSlider.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
 
-	<script type="text/javascript"
-		src="/resources/js/controllers/controller_formulaire_offre.js"></script>
+	<script type="text/javascript" src="/resources/js/controllers/controller_formulaire_offre.js"></script>
+
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>

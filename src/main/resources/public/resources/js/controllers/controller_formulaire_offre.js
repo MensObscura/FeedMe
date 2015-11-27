@@ -22,10 +22,11 @@ var dateTimePicker = function() {
 };
     
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload']);
 
 //Création du controller "OffreCtrl"
-validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast) {
+validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, Upload) {
+
 		
 	$scope.age = {
 		min: 18,
@@ -39,6 +40,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 				$scope.profil = donnees;
 				$scope.premium = $scope.profil.premium;
+
 			}
 	);
 	
@@ -87,18 +89,53 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 	$scope.nbpers = 1;
 
 	$scope.complement = "";
+		
+	$scope.$watch('fichiers', function () {
+		if ($scope.fichiers) {
+	        $scope.upload($scope.fichiers);
+	        $scope.historique = new Array();
+	        	        
+			if (!$scope.fichiers.length) {
+				$scope.images = [$scope.fichiers];
+			}
+			else {
+				$scope.images = $scope.fichiers;
+			}
+			
+		}
+    });
+	
+	$scope.historique = new Array();
+	
+	$scope.upload = function (files) {
+        if (files) {
+            for (var i = 0; i < files.length; i++) {
+              var file = files[i];
 
+              if (!file.$error) {
+                Upload.upload({
+                    url: '/image',
+                    data: {file: file}
+                }).success(function (data, status, headers, config) {
+                	$scope.historique.push(data);
+                });
+              }
+            }
+        }
+    };
+	
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
 					
 		if ($scope.OffreForm.$valid) {
-			
+
 			// On récupère la date du repas
 			var date_repas = new Date($scope.date);
 			var aujourdhui = new Date();
 			var date = moment(aujourdhui).format('YYYY-MM-DD');
-			
-			console.log(date_repas);
+
+			 
+
 
 			// On créé on objet pays
 			var pays = {
@@ -145,9 +182,12 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast)
 					animaux : Boolean($scope.animal),
 					adresse : adresse,
 					typeCuisine : typeCuisine,
-					premium : $scope.premium,
+					images : $scope.historique,
+					premium : $scope.profil.premium || $scope.premium
 			};
-									
+			
+				
+
 		    // On envoie les données
             $http({
         		method: 'PUT',
