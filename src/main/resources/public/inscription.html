@@ -112,6 +112,7 @@ Page proposant le formulaire d'inscription.
 								</div>
 								
 							</div>
+													
 							<div layout layout-sm="column">
 								<md-input-container flex> <label id="white"
 									for="mdp">Mot de passe : </label> <input id="white"
@@ -132,8 +133,69 @@ Page proposant le formulaire d'inscription.
 									<div ng-message="mauvaismdp">Les mots de passe sont
 										différents.</div>
 								</div>
-								</md-input-container>
+								</md-input-container>		
+								
 							</div>
+							
+							<fieldset>
+							<legend>Votre domicile</legend>
+							<div layout layout-sm="column">
+								<md-input-container flex> <label
+									id="white" for="numero">Numéro* :</label> <input id="white"
+									type="number" ng-model="numero" name="numero" ng-min="1"
+									placeholder="Numéro de voirie." ng-required="!home"
+									ng-disabled="home">
+								<div ng-messages="InscriptionForm.numero.$error" ng-show="(InscriptionForm.numero.$touched  || submited)">
+									<div ng-message="min">Veuillez saisir un numéro valide.</div>
+									<div ng-message="required">Veuillez saisir un numéro de voirie.</div>
+									<div ng-message="number">Veuillez saisir un nombre.</div>
+								</div>
+								</md-input-container>
+								<md-input-container flex> <label
+									id="white" for="rue">Rue* : </label> <input id="white"
+									type="text" ng-model="rue" name="rue"
+									placeholder="Nom de voirie." ng-required="!home"
+									ng-disabled="home">
+								<div ng-messages="InscriptionForm.rue.$error" ng-show="(InscriptionForm.rue.$touched  || submited)">
+									<div ng-message="required">Veuillez saisir un nom de rue.</div>
+								</div>
+								</md-input-container>
+								<md-input-container flex> <label
+									id="white" for="complement">Complément : </label> <input
+									id="white" type="text" name="complement" ng-model="complement"
+									placeholder="Compléments." ng-disabled="home"> </md-input-container>
+
+							</div>
+							<div layout layout-sm="column">
+								<md-input-container flex> <label
+									id="white" for="ville">Ville* :</label> <input id="white"
+									type="text" name="ville" ng-model="ville"
+									placeholder="Votre ville." ng-required="!home"
+									ng-disabled="home">
+								<div ng-messages="InscriptionForm.ville.$error" ng-show="(InscriptionForm.ville.$touched || submited)">
+									<div ng-message="required">Veuillez saisir votre ville.</div>
+								</div>
+								</md-input-container>
+								<md-input-container flex> <label
+									id="white" for="cp">Code postal* :</label> <input id="white"
+									type="text" name="cp" ng-model="cp"
+									ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
+									placeholder="Votre code postal." ng-required="!home"
+									ng-disabled="home">
+								<div ng-messages="InscriptionForm.cp.$error" ng-show="(InscriptionForm.cp.$touched   || submited)">
+									<div ng-message="pattern">Le code postal saisit est incorrect.</div>
+									<div ng-message="required">Veuillez saisir un code postal.</div>
+								</div>
+								</md-input-container>
+								<md-input-container flex> <label
+									id="white" for="pays">Pays :</label> <md-select
+									id="select_white" name="pays" ng-model="pays"
+									ng-disabled="home"> <md-option id="back_white"
+									ng-value="{{item}}" ng-selected="item.id==1"
+									ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
+							</div>
+							</fieldset>
+							
 							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
 							<md-button id="form_button_log" type="submit" ng-click="submited=true"
 								class="form">Confirmer</md-button> </md-content>

@@ -22,16 +22,43 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 	var date = new Date();
 	$scope.maxDate = new Date(date.getFullYear()-18, date.getMonth(), date.getDate());
 	
+	// On va rechercher toutes les pays en se connectant à la route consacrée
+	$http.get('/settings/pays').success(
+			function(donnees) {
+				$scope.count = donnees;
+			}
+	);
+	
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
 		if ($scope.InscriptionForm.$valid) {
+			
+			// On créé on objet pays
+			var pays = {
+					id : $scope.pays,
+			};
+
+			// On créé un objet ville
+			var ville = {
+					nom : $scope.ville,
+					cp : $scope.cp,
+					pays : pays.id,
+			};
+
+			// On créé un objet adresse
+			var adresse = {
+					voie : $scope.numero + " " + $scope.rue + "" + $scope.complement,
+					ville : ville,
+			};
 
 			// On créé un objet utilisateur
 			var utilisateur = {
 					nom : $scope.nom,
 					prenom : $scope.prenom,
 					mail : $scope.email,
-					dateNaissance : moment($scope.anniversaire).format('YYYY-MM-DD')
+					dateNaissance : moment($scope.anniversaire).format('YYYY-MM-DD'),
+					adresse : adresse,
+					premium : true // JB : A CHANGER !!!!!
 			};
 			// On créé un objet authentification
 			var authentification = {
