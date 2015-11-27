@@ -115,6 +115,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    web.ignoring().antMatchers("/login");
 	    web.ignoring().antMatchers("/utilisateur/particulier");
 	    web.ignoring().antMatchers("/resources/**");
+	    web.ignoring().antMatchers("/settings/pays");
 	    // web.ignoring().antMatchers("/utilisateur/particulier");
 
 	  }
