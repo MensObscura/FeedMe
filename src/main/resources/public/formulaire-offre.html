@@ -308,15 +308,18 @@
 									<md-input-container flex> <label
 										for="images">Image(s) :</label>
 									
-								 	<div ngf-drop ngf-select ng-model="fichiers" class="drop-box" 
+								 	<div ngf-drop ngf-select ng-model="fichiers" class="drop-box text-center" 
 								        ngf-drag-over-class="'dragover'" ngf-multiple=profil.premium ngf-allow-dir="false"
 								        accept="image/*" 
 								        ngf-pattern="'image/*'">Faites glisser vos images dans cette zone ou cliquez.</div>
-								    <div ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
-								    Image(s) du repas :			    	
-								    <ul>
-								        <li ng-repeat="f in images" style="font:smaller"><img ngf-src="f" class="thumb"></li>
-								    </ul>
+								    <div id="white" ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
+								      	<div class="Aligner">
+						<div class="Aligner-item" ng-repeat="f in images" style="font:smaller">
+										 <img ngf-src="f" class="medium">
+								
+									
+								    </div>
+								    </div>
 							    								    									    
 							    </md-input-container>
 							    </div>
@@ -367,9 +370,12 @@
 
 								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
-										<ul>
-									     <li ng-repeat="f in images" style="font:smaller"><img ngf-src="f" class="medium"></li>
-									</ul>
+									 	<div class="Aligner">
+						<div class="Aligner-item" ng-repeat="f in images" style="font:smaller">
+										 <img ngf-src="f" class="medium">
+								
+									</div>
+									</div>
 									<div class="general-form">
 										<!-- Présentation de l'hôte, du lieu -->
 										<fieldset class="inner ">
