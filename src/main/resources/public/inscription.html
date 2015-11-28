@@ -63,7 +63,7 @@ Page proposant le formulaire d'inscription.
 				<!-- Formulaire d'inscription -->
 				<div class="inscriptionForm">
 					<h2>Inscription</h2>
-
+					
 					<form name="InscriptionForm" class="text-center"
 						ng-controller="InscriptionCtrl" ng-submit="submitForm()"
 						novalidate>
@@ -137,8 +137,6 @@ Page proposant le formulaire d'inscription.
 								
 							</div>
 							
-							<fieldset>
-							<legend>Votre domicile</legend>
 							<div layout layout-sm="column">
 								<md-input-container flex> <label
 									id="white" for="numero">Numéro* :</label> <input id="white"
@@ -194,11 +192,11 @@ Page proposant le formulaire d'inscription.
 									ng-value="{{item}}" ng-selected="item.id==1"
 									ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
 							</div>
-							</fieldset>
 							
 							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
 							<md-button id="form_button_log" type="submit" ng-click="submited=true"
 								class="form">Confirmer</md-button> </md-content>
+								</br>
 						</div>
 					</form>
 				</div>
