@@ -25,6 +25,9 @@ Page d'accueil pour utilisateur connecté.
     <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
 
     <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
+    	<script type="text/javascript" src="resources/js/scripts/modernizr.custom.js"></script>
+   		<script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
+     
 		
 	</head>
 	
@@ -34,11 +37,13 @@ Page d'accueil pour utilisateur connecté.
         
 		<!-- Corps de la page -->
 		<div class="page-accueil">
-            <div class="page-accueil-container"></div>
-         
-            <a class="choice" onclick="window.location='/formulaire-offre.html'"><p class="choice-text">Proposer un repas</p></a>
-            <a class="choice" onclick="window.location='/liste_offres.html'"><p class="choice-text">Réserver un couvert</p></a>
-         
+            <div class="page-accueil-container">
+            <div class = "Aligner-item">
+            <a class="choice choice-text" onclick="window.location='/formulaire-offre.html'">Proposer un repas</a>
+              </div>
+                 <div class = "Aligner-item">
+            <a class="choice choice-text" onclick="window.location='/liste_offres.html'">Réserver un couvert</a>
+           </div>
              </div>
 		</div>
 		
