@@ -1,5 +1,5 @@
 // Chargement du module "OffreApp"
-var app = angular.module("OffreApp", ['ngMaterial']);
+var app = angular.module("OffreApp", ['ngMaterial','angular-carousel']);
 
 
 app.filter('correctPath', function() {

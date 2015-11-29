@@ -34,6 +34,8 @@ Page de visualisation d'une offre
 <!-- Stylesheet
     ================================================== -->
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+
+<link href="/resources/css/angular-carousel.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/responsive.css">
 
@@ -60,13 +62,13 @@ Page de visualisation d'une offre
 			<form name="ReservationForm" ng-submit="submitForm()" novalidate>
 				<fieldset class="inner ">
 					<legend>L'offre de repas</legend>
- 						<div class="Aligner">
-						<div class="Aligner-item" ng-repeat="f in offre.images" style="font:smaller">
-										<img src="{{f.path | correctPath}}" class="medium">
-								
-									
-								    </div>
-								    </div>
+					<div class="carousel">
+ 								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
+  								<li ng-repeat="f in offre.images">
+  								  <img src="{{f.path}}" class="medium" >
+ 							 	</li>	
+							</ul>
+							</div>
 					
 					<br>
 					<!-- Présentation de l'hôte, du lieu -->
@@ -142,6 +144,7 @@ Page de visualisation d'une offre
 		</div>
 	</div>
 
+
 	<script type="text/javascript"
 		src="/resources/js/scripts/angular.min.js"></script>
 	<script type="text/javascript"
@@ -153,6 +156,8 @@ Page de visualisation d'une offre
 	<script type="text/javascript"
 		src="/resources/js/scripts/angular-messages.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/moment.js"></script>
+		<script type="text/javascript" src="/resources/js/scripts/angular-touch.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-carousel.js"></script>
 	<script type="text/javascript"
 		src="/resources/js/controllers/controller_offre.js"></script>
 	<!-- Pied de page -->

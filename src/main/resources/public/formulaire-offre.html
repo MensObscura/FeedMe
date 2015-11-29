@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/fonts/font-awesome/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link href="/resources/css/angular-carousel.css" rel="stylesheet" type="text/css" />
 <style>
 .mask shine::after {
 	mask: url(#mask-firefox);
@@ -311,15 +312,24 @@
 								 	<div ngf-drop ngf-select ng-model="fichiers" class="drop-box text-center" 
 								        ngf-drag-over-class="'dragover'" ngf-multiple=profil.premium ngf-allow-dir="false"
 								        accept="image/*" 
-								        ngf-pattern="'image/*'">Faites glisser vos images dans cette zone ou cliquez.</div>
+							        ngf-pattern="'image/*'">Faites glisser vos images dans cette zone ou cliquez.</div>
 								    <div id="white" ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
-								      	<div class="Aligner">
-						<div class="Aligner-item" ng-repeat="f in images" style="font:smaller">
-										 <img ngf-src="f" class="medium">
-								
+								     
+						<div class="carousel">
+ 								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
+  								
+  								<li ng-repeat="f in images">
+  								  <img ngf-src="f" class="medium" >
+ 							 	</li>	
+							</ul>
+							</div>
+					
+
+
+
+
 									
-								    </div>
-								    </div>
+								   
 							    								    									    
 							    </md-input-container>
 							    </div>
@@ -370,12 +380,14 @@
 
 								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
-									 	<div class="Aligner">
-						<div class="Aligner-item" ng-repeat="f in images" style="font:smaller">
-										 <img ngf-src="f" class="medium">
-								
-									</div>
-									</div>
+									 	<div class="carousel">
+ 								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
+  								
+  								<li ng-repeat="f in images">
+  								  <img ngf-src="f" class="medium" >
+ 							 	</li>	
+							</ul>
+							</div>
 									<div class="general-form">
 										<!-- Présentation de l'hôte, du lieu -->
 										<fieldset class="inner ">
@@ -447,7 +459,8 @@
 
 	<script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
-
+	<script type="text/javascript" src="/resources/js/scripts/angular-touch.min.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-carousel.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular-material.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular-animate.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular-aria.min.js"></script>
@@ -460,7 +473,7 @@
 	<script type="text/javascript" src="/resources/js/scripts/angular.rangeSlider.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
 
-	<script type="text/javascript" src="/resources/js/controllers/controller_formulaire_offre.js"></script>
+	<script type="text/javascript" src="/resources/js/controllers/test.js"></script>
 
 
 	<!-- Pied de page -->
