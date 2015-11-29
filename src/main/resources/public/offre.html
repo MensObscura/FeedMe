@@ -65,7 +65,7 @@ Page de visualisation d'une offre
 					<div class="carousel">
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								<li ng-repeat="f in offre.images">
-  								  <img src="{{f.path}}" class="medium" >
+  								  <img src="{{f.path | correctPath}}" class="medium" >
  							 	</li>	
 							</ul>
 							</div>
