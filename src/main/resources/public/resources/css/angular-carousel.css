@@ -58,9 +58,9 @@ div.rn-carousel-indicator span {
   color :rgb(250, 250, 250);
   opacity: 0.75;
   cursor: pointer;
-    -webkit-transition: all .2s ease-in-out;
-       -o-transition: all .3s ease-in-out;
-          transition: all .3s ease-in-out; }
+    -webkit-transition: all .2s ease-out;
+       -o-transition: all .3s ease-out;
+          transition: all .3s ease-out; }
   
 
   .rn-carousel-control:hover {
