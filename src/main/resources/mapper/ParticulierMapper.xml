@@ -36,6 +36,11 @@
 		WHERE usr_id = #{id}
 	</select>
 	
+	<select id="getAllPremium" resultMap="Particulier_ResultMap">
+		<include refid="select_all_columns_particulier_utilisateur"/>
+		WHERE usr_premium
+	</select>
+	
 	<update id="modifier">
 		UPDATE UTILISATEUR set
 		usr_adr_id = #{particulier.adresse.id},

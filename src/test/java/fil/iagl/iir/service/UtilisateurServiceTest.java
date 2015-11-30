@@ -89,4 +89,12 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     // et on vérifie que l'utilisateurDao n'est jamais appelé
     Mockito.verify(particulierDao, Mockito.never()).modifier(Mockito.any(Particulier.class));
   }
+
+  @Test
+  public void getAllPremiumTestSucces() throws Exception {
+    // Quand on appel le service pour recuperer tous les premium
+    utilisateurService.getAllPremium();
+    // On verifie que ce service appel la dao adéquate
+    Mockito.verify(particulierDao, Mockito.times(1)).getAllPremium();
+  }
 }

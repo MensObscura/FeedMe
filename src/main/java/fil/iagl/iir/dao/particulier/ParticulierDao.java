@@ -1,5 +1,7 @@
 package fil.iagl.iir.dao.particulier;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import fil.iagl.iir.entite.Particulier;
@@ -40,5 +42,12 @@ public interface ParticulierDao {
    * @return Le nombre de lignes modifiées
    */
   Integer modifier(@Param("particulier") Particulier particulier);
+
+  /**
+   * Recuperer la liste de tous les utilisateurs premium
+   * 
+   * @return la liste de tous les utilisateurs premium
+   */
+  List<Particulier> getAllPremium();
 
 }

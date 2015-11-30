@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import org.fest.assertions.api.Assertions;
+import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -344,6 +345,19 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     } catch (DataIntegrityViolationException dive) {
       this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
     }
+  }
+
+  @Test
+  public void getAllParticulierTestSucces() throws Exception {
+    int nbPremium = 2;
+    Assertions.assertThat(this.particulierDao.getAllPremium()).isNotEmpty().hasSize(nbPremium).are(new Condition<Particulier>() {
+      @Override
+      public boolean matches(Particulier particulier) {
+        return particulier.getPremium();
+      }
+
+    });
+
   }
 
   /* *********************** BUILDS ************************/
