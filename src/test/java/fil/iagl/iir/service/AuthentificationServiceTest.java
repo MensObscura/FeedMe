@@ -13,6 +13,7 @@ import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.outils.FeedMeException;
+import fil.iagl.iir.outils.FeedMeSession;
 
 public class AuthentificationServiceTest extends AbstractServiceTest {
 
@@ -74,5 +75,12 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
     Mockito.verify(utilisateurDao, Mockito.never()).sauvegarder(Mockito.any());
     Mockito.verify(particulierDao, Mockito.never()).sauvegarder(Mockito.any());
     Mockito.verify(authentificationDao, Mockito.never()).sauvegarder(Mockito.any());
+  }
+
+  @Test
+  public void logoutTestSucces() throws Exception {
+    Assertions.assertThat(FeedMeSession.getIdUtilisateurConnecte()).isNotNull();
+    this.authentificationService.logout();
+    Assertions.assertThat(FeedMeSession.getIdUtilisateurConnecte()).isNull();
   }
 }

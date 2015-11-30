@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -65,6 +66,11 @@ public class AuthentificationServiceImpl implements AuthentificationService {
     utilisateurDao.sauvegarder(authentification.getUtilisateur());
     particulierDao.sauvegarder(authentification.getUtilisateur());
     authentificationDao.sauvegarder(authentification);
+  }
+
+  @Override
+  public void logout() {
+    SecurityContextHolder.clearContext();
   }
 
 }
