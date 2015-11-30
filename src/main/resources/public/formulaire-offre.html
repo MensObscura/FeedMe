@@ -91,7 +91,7 @@
 						<div flex>
 							<!-- Détails du repas proposé -->
 							<fieldset>
-								<legend>Le repas</legend>
+								<legend id ='top'>Le repas</legend>
 
 
 								<md-content layout-padding>
@@ -105,7 +105,7 @@
 										id="white" type="text" name="titre" ng-model="titre"
 										ng-required="true" placeholder="Titre de l'offre."
 										maxlength="18">
-									<div ng-messages="OffreForm.titre.$error"
+									<div  ng-messages="OffreForm.titre.$error"
 										ng-show="(OffreForm.titre.$touched   || submited)">
 										<div ng-message="required">Veuillez saisir un titre pour
 											l'offre.</div>
@@ -171,7 +171,7 @@
 										</span>
 									</div>
 								</div>
-								<div ng-messages="OffreForm.date.$error"
+								<div  ng-messages="OffreForm.date.$error"
 									ng-show="(OffreForm.date.$touched  || submited)">
 									<div ng-message="required">Veuillez seletionner une date.</div>
 								</div>
@@ -237,7 +237,7 @@
 										type="number" ng-model="numero" name="numero" ng-min="1"
 										placeholder="Numéro de voirie." ng-required="!home"
 										ng-disabled="home">
-									<div ng-messages="OffreForm.numero.$error"
+									<div  ng-messages="OffreForm.numero.$error"
 										ng-show="(OffreForm.numero.$touched  || submited)">
 										<div ng-message="min">Veuillez saisir un numéro valide.</div>
 										<div ng-message="required">Veuillez saisir un numéro de
