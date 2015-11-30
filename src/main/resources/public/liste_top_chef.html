@@ -8,7 +8,7 @@ Page de visualisation des offres de repas.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Liste des réservations</title>
+<title>top chef</title>
 
 <!-- Bootstrap -->
 <link rel="stylesheet" type="text/css"
@@ -52,8 +52,7 @@ Page de visualisation des offres de repas.
 		<br />
 		<ul class="offre-container" ng-repeat="item in list track by item.id">
 			<li class="ligne-tab">
-				<div class="item-view chef "
-					ng-class="{'item-premium' : item.premium}" ng-click="visualize(item, $event)">
+				<div class="item-view chef " ng-class="{'item-premium' : item.premium}" ng-click="visualize(item, $event)">
 					<div class="img-tile-premium Aligner ">
 						<div class="mask ">
 
