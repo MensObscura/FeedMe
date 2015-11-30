@@ -1,3 +1,17 @@
+<style>
+.mask shine::after {
+	mask: url(#mask-firefox);
+}
+</style>
+<svg height=0>
+ <defs>
+   <!-- THE mask -->
+  <mask id="mask-firefox">
+    <image width="50" height="50"
+		xlink:href="resources/img/accueil/tw.png" />
+  </mask>
+  </defs>
+</svg>
 <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top" ng-controller="LogoutCtrl">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,6 +28,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
+          	<li><a href="liste_top_chef.html" class="marge"><img class="topchef" src="resources/img/topchef_full.png" /></a></li>
             <li><a href="accueil.html" class="marge">Accueil</a></li>
             <li><a href="profil.html" class="marge">Mon profil</a></li>
             <li><a href="formulaire-offre.html" class="marge">Proposer une offre</a></li>

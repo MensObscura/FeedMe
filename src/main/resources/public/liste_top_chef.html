@@ -1,0 +1,101 @@
+<!-- 
+©Copyright 2015 - FeedMe
+Page de visualisation des offres de repas.
+ -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liste des réservations</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"
+	href="resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/fonts/font-awesome/css/font-awesome.css">
+
+<!-- Stylesheet================================================== -->
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<style>
+.mask shine::after {
+	mask: url(#mask-firefox);
+}
+</style>
+<svg height=0>
+ <defs>
+   <!-- THE mask -->
+  <mask id="mask-firefox">
+    <image width="50" height="50"
+		xlink:href="resources/img/accueil/tw.png" />
+  </mask>
+  </defs>
+</svg>
+<link rel="stylesheet" type="text/css"
+	href="resources/css/responsive.css">
+
+<link rel='stylesheet' type='text/css'
+	href='resources/fonts/general-font.css'>
+
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/list_style.css" />
+</head>
+
+<body ng-app="ListeApp">
+	<!-- Menu -->
+	<div ng-include="'/resources/header.html'"></div>
+
+	<!-- Liste de toutes les offres -->
+	<div id="vue-offre" ng-controller="ListeCtrl">
+		<!-- Hack à régler -->
+		<br />
+		<ul class="offre-container" ng-repeat="item in list track by item.id">
+			<li class="ligne-tab">
+				<div class="item-view chef "
+					ng-class="{'item-premium' : item.premium}" ng-click="visualize(item, $event)">
+					<div class="img-tile-premium Aligner ">
+						<div class="mask ">
+
+							<shine> <img class="img-circle img-tile"
+								ng-show="item.premium" src="resources/img/offre/premium.png" />
+							</shine>
+						</div>
+					</div>
+
+					<div class=" Aligner ">
+					
+					</div>
+					<div class="text-center">
+
+	<div ng-if="!item.hote.photo">
+							<img src="resources/img/team/missing.jpg"
+								class="img-circle img-profil chef-tile">
+						</div>
+						<div ng-if="item.hote.photo">
+							<img src="{{item.hote.photo|correctPath}}"
+								class="img-circle img-profil chef-tile">
+						</div>
+						<br>
+						<h2>{{item.nom}} {{item.prenom}}</h2>
+						<p>{{item.age}}</p>
+						<p>{{item.adresse.ville.nom}}</p>
+						<p>{{item.adresse.ville.pays.nom}}</p>
+
+					</div>
+			</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript"
+		src="/resources/js/scripts/modernizr.custom.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/scripts/angular.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/controllers/controller_liste_top_chef.js"></script>
+	<script src="/resources/js/filters/filters.js"></script>
+
+	<!-- Pied de page -->
+	<div ng-include="'/resources/footer.html'"></div>
+</body>
+</html>

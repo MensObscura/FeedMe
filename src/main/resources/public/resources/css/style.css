@@ -1025,6 +1025,14 @@ ul {
 	height: 32px;
 }
 
+.topchef {
+	display: block;
+	height: 32px;
+	    top: 9px;
+    left: -200px;
+    margin-bottom: %;
+    position: absolute;
+}
 .containerProfil {
 	background: url(../img/profil/background.jpg);
 	background-size: cover;
@@ -1224,7 +1232,7 @@ img.img-profil {
 	-webkit-transition: 0.5s; /* For Safari */
 }
 
-img.img-profil:hover {
+img.img-tile.img-profil:hover {
 	width: 65px;
 	height: 65px;
 }
@@ -1338,4 +1346,19 @@ img.img-profil:hover {
     text-align: center;
 }
 
+.chef{
+	height: 300px;
+	width: 200px;
+	
+}
+
+.chef-tile{
+	height: 100px;
+	width: 100px;
+	
+}
+img.img-profil.chef-tile:hover {
+	width: 110px;
+	height: 110px;
+}
 
