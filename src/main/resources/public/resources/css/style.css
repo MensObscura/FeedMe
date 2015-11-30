@@ -1296,7 +1296,7 @@ img.img-profil:hover {
 	background: #F8F8F8;
 	border-radius: 10px 10px 10px 10px;
 	border: 5px dashed #DDD;
-	width: 200px;
+	width: auto;
 	height: 80px;
 	text-align: center;
 	padding-top: 5%;
@@ -1318,17 +1318,17 @@ img.img-profil:hover {
 
 .medium:hover {
 	position:abolute;
-	height: 35px;
+	height: 80px;
 
 		z-index: 2;
 	}
 	
 .medium {
-	height: 30px;
+	height: 70px;
 	width: auto;
-	margin: 10px;
 		z-index: 1;
 	border-radius: 2px 2px 2px 2px;
+	margin: 10px;
 	  float:left;
 	transition: 0.5s; /* Animation time */
 	-webkit-transition: 0.5s; /* For Safari */

@@ -1,17 +1,17 @@
 input[type=range] {
-  width: 300px; }
+  width: 300; }
 
 ul[rn-carousel] {
   overflow: hidden;
   padding: 0;
-  white-space: nowrap;
+  white-space: no-wrap;
   position: relative;
   -webkit-perspective: 1000px;
   -ms-perspective: 1000px;
   perspective: 1000px;
   -ms-touch-action: pan-y;
   touch-action: pan-y; 
-  height: 70px;
+  height: 110px;
   }
   ul[rn-carousel] > li {
     color: black;
@@ -27,11 +27,12 @@ ul[rn-carousel] {
     padding: 0;
     margin: 0;
     list-style-type: none;
-    width: 50px;
     padding-right: 10px;
-    height: 50px;
+    height: 100px;
+    width: 100px;
     display: inline-block;
     overflow: hidden; }
+    
 
 /* prevent flickering when moving buffer */
 ul[rn-carousel-buffered] > li {
