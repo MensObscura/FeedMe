@@ -1,5 +1,5 @@
 // Chargement du module "ListeApp"
-var app = angular.module("ListeApp", []);
+var app = angular.module("ListeApp", ['appFilters']);
 
 // Création du controller "ListeCtrl"
 app.controller("ListeCtrl", function($scope, $http, $window) {
@@ -13,7 +13,7 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	    
 	// Permet de créer un listener qui va rediriger vers la visualisation de l'offre cliquée
 	$scope.visualize = function (valeur, event) {
-		console.log(this);
+
 		if (event.target.localName == "img")
 			$window.location.href = "/visualiser_profil.html?id="+valeur.hote.idUtilisateur;
 		else
