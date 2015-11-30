@@ -9,12 +9,13 @@
 		<result property="mail" column="usr_mail"/>
 		<result property="premium" column="usr_premium"/>
 		<result property="description" column="usr_description"/>
+		<result property="adresseVisible" column="usr_adresse_visible"/>
 		<association property="adresse" column="usr_adr_id" select="fil.iagl.iir.dao.adresse.AdresseDao.getById" />
 	</resultMap>
 
 
 	<sql id="select_all_columns_utilisateur">
-		SELECT usr_id, usr_nom, usr_mail, usr_premium, usr_adr_id, usr_description
+		SELECT usr_id, usr_nom, usr_mail, usr_premium, usr_adr_id, usr_description, usr_adresse_visible
 		FROM UTILISATEUR
 	</sql>
 	
@@ -24,15 +25,17 @@
 			usr_nom, 
 			usr_mail,
 			usr_premium 
-			<if test="#{utilisateur.adresse} != null">,usr_adr_id</if>
-			<if test="#{utilisateur.description} != null">,usr_description </if>
+			<if test="utilisateur.adresse != null">,usr_adr_id</if>
+			<if test="utilisateur.adresseVisible != null">,usr_adresse_visible</if>
+			<if test="utilisateur.description != null">,usr_description </if>
 		) 
 		VALUES ( 
 			#{utilisateur.nom}, 
 			#{utilisateur.mail},
 			#{utilisateur.premium}  
-			<if test="#{utilisateur.adresse} != null">,#{utilisateur.adresse.id}</if>
-			<if test="#{utilisateur.description} != null">,#{utilisateur.description}</if>);
+			<if test="utilisateur.adresse != null">,#{utilisateur.adresse.id}</if>
+			<if test="utilisateur.adresseVisible != null">,#{utilisateur.adresseVisible}</if>
+			<if test="utilisateur.description != null">,#{utilisateur.description}</if>)
 	</insert>
 
 	<select id="getById" resultMap="Utilisateur_ResultMap">

@@ -24,6 +24,8 @@ public class Utilisateur implements Serializable {
 
   private String description;
 
+  private Boolean adresseVisible;
+
   public Utilisateur(Integer idUtilisateur) {
     this.idUtilisateur = idUtilisateur;
   }

@@ -111,6 +111,7 @@ public abstract class AbstractFeedMeTest {
     utilisateur.setMail("toto.toto@gmail.com");
     utilisateur.setNom("toto");
     utilisateur.setDescription("ceci est la description de toto");
+    utilisateur.setAdresseVisible(Boolean.TRUE);
     return utilisateur;
   }
 
@@ -124,6 +125,7 @@ public abstract class AbstractFeedMeTest {
     particulier.setMail("mail@gmail.com");
     particulier.setDateNaissance(LocalDate.now().minusYears(20));
     particulier.setDescription("ceci est la description de toto");
+    particulier.setAdresseVisible(Boolean.TRUE);
     return particulier;
   }
 
@@ -227,11 +229,15 @@ public abstract class AbstractFeedMeTest {
     String prenom = "bar";
     LocalDate dateNaissance = LocalDate.now().minusYears(20);
 
+    Adresse adresse = new Adresse();
+    adresse.setVoie("Turlututu");
     String password = RandomStringUtils.random(RANDOM_STRING_SIZE);
     Role role = Role.PARTICULIER;
 
     Particulier utilisateur = new Particulier();
 
+    utilisateur.setAdresse(adresse);
+    utilisateur.setPremium(false);
     utilisateur.setIdUtilisateur(idUtilisateur);
     utilisateur.setIdParticulier(idParticulier);
     utilisateur.setMail(mail);

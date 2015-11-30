@@ -33,6 +33,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     Assertions.assertThat(user.getAdresse()).isNull();
     Assertions.assertThat(user.getPremium()).isNotNull().isTrue();
     assertThat(user.getDescription()).isNotNull().isEqualTo(description);
+    assertThat(user.getAdresseVisible()).isNotNull().isTrue();
   }
 
   @Test
@@ -57,6 +58,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     adresse.setVoie(rue);
     adresse.setVille(ville);
 
+    utilisateur.setAdresseVisible(Boolean.FALSE);
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
     utilisateur.setAdresse(adresse);
@@ -70,6 +72,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(utilisateurToCheck.getNom()).isNotNull().isEqualTo(nom);
     assertThat(utilisateurToCheck.getAdresse()).isNotNull();
     assertThat(utilisateurToCheck.getDescription()).isNotNull().isEqualTo(description);
+    assertThat(utilisateurToCheck.getAdresseVisible()).isNotNull().isFalse();
     // Alors les donnees de l'adresse sont celles attendues
     assertThat(utilisateurToCheck.getAdresse().getId()).isEqualTo(adresseId);
     assertThat(utilisateurToCheck.getAdresse().getVoie()).isEqualTo(rue);
@@ -98,10 +101,12 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     String nom = "monnom";
     String mail = "monmail@mail.com";
     Boolean premium = true;
+    Boolean adresseVisible = Boolean.TRUE;
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
     utilisateur.setPremium(premium);
+    utilisateur.setAdresseVisible(adresseVisible);
 
     // n'ayant pas encore son ID renseigne ni son adresse
     Assertions.assertThat(utilisateur.getIdUtilisateur()).isNull();
@@ -116,6 +121,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(utilisateur.getNom()).isNotNull().isEqualTo(nom);
     Assertions.assertThat(utilisateur.getPremium()).isNotNull().isTrue();
     assertThat(utilisateur.getDescription()).isNull();
+    assertThat(utilisateur.getAdresseVisible()).isNotNull().isTrue();
 
     // et que son adresse est nulle
     assertThat(utilisateur.getAdresse()).isNull();
@@ -128,10 +134,12 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     String nom = "monnom";
     String mail = "monmail@mail.com";
     Boolean premium = true;
+    Boolean adresseVisible = true;
 
     utilisateur.setMail(mail);
     utilisateur.setNom(nom);
     utilisateur.setPremium(premium);
+    utilisateur.setAdresseVisible(adresseVisible);
 
     // n'ayant pas encore son ID renseigne ni son adresse
     Assertions.assertThat(utilisateur.getIdUtilisateur()).isNull();
@@ -146,6 +154,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(utilisateur.getNom()).isNotNull().isEqualTo(nom);
     Assertions.assertThat(utilisateur.getPremium()).isNotNull().isTrue();
     assertThat(utilisateur.getAdresse()).isNull();
+    assertThat(utilisateur.getAdresseVisible()).isNotNull().isTrue();
 
     // et que sa description est nulle
     assertThat(utilisateur.getDescription()).isNull();
@@ -154,6 +163,60 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
   @Test
   public void sauvegarderTestSuccesAvecAdresse() throws Exception {
     // Etant donne un utilisateur
+    Utilisateur utilisateur = new Utilisateur();
+    String nom = "hall";
+    String mail = "kolick@mail.com";
+    Boolean premium = true;
+    String description = "ceci est la description de hall";
+    Boolean adresseVisible = false;
+
+    String rue = "4 rue guillaume apollinaire";
+    Integer adresseId = 1;
+    String villeName = "Lille";
+    String codePostal = "59000";
+    Integer villeId = 1;
+    Ville ville = new Ville();
+    ville.setId(villeId);
+    ville.setCp(codePostal);
+    ville.setNom(villeName);
+    Adresse adresse = new Adresse();
+    adresse.setId(adresseId);
+    adresse.setVoie(rue);
+    adresse.setVille(ville);
+
+    utilisateur.setMail(mail);
+    utilisateur.setNom(nom);
+    utilisateur.setPremium(premium);
+    utilisateur.setAdresse(adresse);
+    utilisateur.setDescription(description);
+    utilisateur.setAdresseVisible(adresseVisible);
+
+    // n'ayant pas encore son ID
+    Assertions.assertThat(utilisateur.getIdUtilisateur()).isNull();
+
+    // Quand on sauvegarde cet utilisateur en base
+    utilisateurDao.sauvegarder(utilisateur);
+
+    // Alors on verifie que son ID a bien ete genere
+    assertThat(utilisateur.getIdUtilisateur()).isNotNull().isPositive();
+    assertThat(utilisateur.getMail()).isNotNull().isEqualTo(mail);
+    assertThat(utilisateur.getNom()).isNotNull().isEqualTo(nom);
+    Assertions.assertThat(utilisateur.getPremium()).isNotNull().isTrue();
+    assertThat(utilisateur.getAdresse()).isNotNull();
+    assertThat(utilisateur.getAdresse().getId()).isNotNull().isPositive().isEqualTo(adresseId);
+    assertThat(utilisateur.getAdresse().getVoie()).isNotNull().isEqualTo(rue);
+    assertThat(utilisateur.getAdresse().getVille()).isNotNull();
+    assertThat(utilisateur.getAdresse().getVille().getId()).isNotNull().isPositive().isEqualTo(villeId);
+    assertThat(utilisateur.getAdresse().getVille().getCp()).isNotNull().isEqualTo(codePostal);
+    assertThat(utilisateur.getAdresse().getVille().getNom()).isNotNull().isEqualTo(villeName);
+    assertThat(utilisateur.getDescription()).isNotNull().isEqualTo(description);
+    assertThat(utilisateur.getAdresseVisible()).isNotNull().isFalse();
+
+  }
+
+  @Test
+  public void sauvegarderTestSucessAdresseVisibleDefault() throws Exception {
+    // Etant donne un utilisateur n'ayant pas le champs adresseVisible renseigné
     Utilisateur utilisateur = new Utilisateur();
     String nom = "hall";
     String mail = "kolick@mail.com";
@@ -186,8 +249,11 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     // Quand on sauvegarde cet utilisateur en base
     utilisateurDao.sauvegarder(utilisateur);
 
-    // Alors on verifie que son ID a bien ete genere
+    // Alors on verifie que les informations sont correctes et que la visibilité de son adresse est à false
     assertThat(utilisateur.getIdUtilisateur()).isNotNull().isPositive();
+
+    utilisateur = utilisateurDao.getById(utilisateur.getIdUtilisateur());
+
     assertThat(utilisateur.getMail()).isNotNull().isEqualTo(mail);
     assertThat(utilisateur.getNom()).isNotNull().isEqualTo(nom);
     Assertions.assertThat(utilisateur.getPremium()).isNotNull().isTrue();
@@ -199,7 +265,7 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(utilisateur.getAdresse().getVille().getCp()).isNotNull().isEqualTo(codePostal);
     assertThat(utilisateur.getAdresse().getVille().getNom()).isNotNull().isEqualTo(villeName);
     assertThat(utilisateur.getDescription()).isNotNull().isEqualTo(description);
-
+    assertThat(utilisateur.getAdresseVisible()).isNotNull().isFalse();
   }
 
   @Test
