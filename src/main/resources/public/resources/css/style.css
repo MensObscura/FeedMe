@@ -1313,7 +1313,7 @@ img.img-tile.img-profil:hover {
 }
 
 .dragover {
-	border: 5px dashed blue;
+	border: 5px dashed rgba(254, 186, 49, 1);
 }
 
 .thumb {

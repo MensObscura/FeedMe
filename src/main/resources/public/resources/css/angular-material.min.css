@@ -11529,7 +11529,8 @@ md-select:not ([disabled] ):focus .md-select-value {
 	min-height: 26px;
 	-webkit-flex-grow: 1;
 	-ms-flex-positive: 1;
-	flex-grow: 1
+	flex-grow: 1;
+	border: 0px;
 }
 
 .md-select-value :first-child {

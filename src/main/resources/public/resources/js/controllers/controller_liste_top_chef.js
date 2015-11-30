@@ -31,6 +31,19 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	};
 	
 	
+	
+	//calcule l'age
+	$scope.getAge = function (item) {
+		var date = item.dateNaissance;
+		   var today = new Date();
+		   var dob = new Date(date.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2-$1-$3"));
+	
+		   $scope.age = today.getFullYear() - dob.getFullYear(); //This is the age
+			  item.dateNaissance = $scope.age;
+			  console.log($scope.age);
+		  
+				
+	};
 
 });
 

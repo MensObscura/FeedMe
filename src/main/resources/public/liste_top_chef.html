@@ -76,11 +76,14 @@ Page de visualisation des offres de repas.
 								class="img-circle img-profil chef-tile">
 						</div>
 						<br>
-						<h2>{{item.nom}} {{item.prenom}}</h2>
+						<h5>{{item.nom}} {{item.prenom}}</h5>
 						<p>{{item.age}}</p>
 						<p>{{item.adresse.ville.nom}}</p>
 						<p>{{item.adresse.ville.pays.nom}}</p>
-
+						<div id="age" ng-init='getAge(item);'>
+							
+									<p>{{ item.dateNaissance }} ans</p>
+						<div>
 					</div>
 			</li>
 		</ul>
