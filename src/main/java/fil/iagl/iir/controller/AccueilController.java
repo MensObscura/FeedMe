@@ -23,6 +23,11 @@ public class AccueilController {
     return "redirect:index.html";
   }
 
+  /**
+   * Redirige l'utilisateur vers la page d'acceuil après l'avoir deconnecter
+   * 
+   * @return Redirection vers la page d'accueil
+   */
   @RequestMapping(value = "/logout", method = RequestMethod.GET)
   public String logout() {
     this.authentificationService.logout();
