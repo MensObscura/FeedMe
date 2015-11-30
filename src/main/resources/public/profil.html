@@ -1,6 +1,6 @@
 <!-- 
 ©Copyright 2015 - FeedMe
-Page permettant une visualisation du profil d'un utilisateur.
+Page permettant une visualisation du profil de l'utilisateur connecté.
  -->
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ Page permettant une visualisation du profil d'un utilisateur.
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Profil utilisateur</title>
+        <title>Mon profil</title>
         <meta name="description" content="Visualisation du profil FeedMe">
 	    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
@@ -26,7 +26,7 @@ Page permettant une visualisation du profil d'un utilisateur.
             
             <!-- Affichage des éléments du profil de l'utilisateur connecté -->
             <div class="profil" ng-controller="ProfilCtrl">
-                <h2>Profil de {{profil.prenom}}</h2>
+                <h2>Votre Profil</h2>
                 <p>Nom: {{profil.nom}}<br/>
                 Prénom: {{profil.prenom}}<br />
                 Date de naissance: {{profil.dateNaissance}}<br />
@@ -43,6 +43,6 @@ Page permettant une visualisation du profil d'un utilisateur.
         
          <script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
 	     <script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
-         <script type="text/javascript" src="/resources/js/controllers/controller_visualiser_profil.js"></script>
+         <script type="text/javascript" src="/resources/js/controllers/controller_profil.js"></script>
     </body>
 </html>
