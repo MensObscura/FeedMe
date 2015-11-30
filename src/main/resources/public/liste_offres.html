@@ -64,7 +64,7 @@ Page de visualisation des offres de repas.
 						<div class=" Aligner-item">
 							<h2>{{item.titre}}</h2>
 							<p>{{item.typeCuisine.type}}</p>
-							<p>{{item.prix}} €</p>
+							<p>{{item.prix/100}} €</p>
 							<div id="nbplace" ng-init='getNbPlaces(item);'>
 								<p ng-if="!(item.nombrePersonne == 0)">Place(s) restante(s)
 									: {{item.nombrePersonne}}</p>

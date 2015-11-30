@@ -50,7 +50,7 @@ Page de visualisation des offres de repas.
 	<div id="vue-offre" ng-controller="ListeCtrl">
 		<!-- Hack à régler -->
 		<br />
-		<ul class="offre-container" ng-repeat="item in list track by item.id">
+		<ul class="offre-container" ng-repeat="item in list track by item.idUtilisateur">
 			<li class="ligne-tab">
 				<div class="item-view chef " ng-class="{'item-premium' : item.premium}" ng-click="visualize(item, $event)">
 					<div class="img-tile-premium Aligner ">

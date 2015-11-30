@@ -185,7 +185,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 			var donnees = {
 					dateCreation : date,
 					titre : $scope.titre,
-					prix : parseFloat($scope.prix),
+					prix : parseFloat($scope.prix)*100,
 					nombrePersonne : parseInt($scope.nbpers),
 					dureeMinute : parseInt($scope.duree),
 					dateRepas : moment(date_repas).format('YYYY-MM-DDThh:mm:ss'),
