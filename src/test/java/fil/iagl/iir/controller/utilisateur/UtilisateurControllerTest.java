@@ -225,4 +225,11 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.premium").value(prenium))
       .andExpect(jsonPath("$.adresse.voie").value(voie));
   }
+
+  @Test
+  public void getAllPremiumTestSucces() throws Exception {
+    mockMvc.perform(get("/utilisateur/particulier/premium"))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$").isArray());
+  }
 }
