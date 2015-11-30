@@ -26,8 +26,9 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	// Permet de créer un listener qui va rediriger vers la visualisation de l'offre cliquée
 	$scope.visualize = function (valeur, event) {
 
-		if (event.target.localName == "img")
+		if (event.target.className == "img-circle img-tile img-profil") {
 			$window.location.href = "/visualiser_profil.html?id="+valeur.hote.idUtilisateur;
+		}
 		else
 			$window.location.href = "/offre.html?id="+valeur.id;
 	};

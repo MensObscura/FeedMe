@@ -19,6 +19,7 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 //Création du controller "InscriptionCtrl"
 validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
 	$scope.submited =false;
+	$scope.premium = false;
 	var date = new Date();
 	$scope.maxDate = new Date(date.getFullYear()-18, date.getMonth(), date.getDate());
 	
@@ -58,7 +59,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 					mail : $scope.email,
 					dateNaissance : moment($scope.anniversaire).format('YYYY-MM-DD'),
 					adresse : adresse,
-					premium : true // JB : A CHANGER !!!!!
+					premium : $scope.premium
 			};
 			// On créé un objet authentification
 			var authentification = {
