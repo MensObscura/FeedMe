@@ -1,5 +1,7 @@
 package fil.iagl.iir.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.entite.Particulier;
@@ -21,6 +23,13 @@ public interface UtilisateurService {
    * @return Un particulier
    */
   Particulier getParticulierByUtilisisateurId(Integer id);
+
+  /**
+   * Recupere la liste de tous les utilisateurs premium
+   * 
+   * @return la liste de tous les utilisateurs premium
+   */
+  List<Particulier> getAllPremium();
 
   /**
    * Permet de modifier les informations d'un Particulier
