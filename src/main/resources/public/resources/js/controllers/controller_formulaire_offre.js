@@ -20,6 +20,18 @@ var dateTimePicker = function() {
         }
      };
 };
+
+app.controller("LogoutCtrl", function($scope, $http, $window) {
+	// Fonction permettant une déconnexion :
+	$scope.logout = function () {
+		$http.get('/logout').success(
+			function(donnees) {
+				$scope.authenticated = false;
+				$window.location.href = "/";
+			}
+		);
+	};
+});
     
 //Chargement du module "validationOffre"
 var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel']);

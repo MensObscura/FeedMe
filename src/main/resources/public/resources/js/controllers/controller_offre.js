@@ -1,6 +1,18 @@
 // Chargement du module "OffreApp"
 var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters']);
 
+app.controller("LogoutCtrl", function($scope, $http, $window) {
+	// Fonction permettant une déconnexion :
+	$scope.logout = function () {
+		$http.get('/logout').success(
+			function(donnees) {
+				$scope.authenticated = false;
+				$window.location.href = "/";
+			}
+		);
+	};
+});
+
 //Création du controller "ReservationController"
 app.controller('ReservationController', function($scope, $http, $window, $mdToast) {  
 	$scope.submited =false;
