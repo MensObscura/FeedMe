@@ -21,7 +21,13 @@ var dateTimePicker = function() {
      };
 };
 
-app.controller("LogoutCtrl", function($scope, $http, $window) {
+
+    
+//Chargement du module "validationOffre"
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel']);
+
+
+validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
 		$http.get('/logout').success(
@@ -32,10 +38,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 		);
 	};
 });
-    
-//Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel']);
-
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, Upload) {
 
