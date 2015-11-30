@@ -19,4 +19,8 @@ public interface AuthentificationService extends UserDetailsService {
    */
   public void inscription(Authentification<Particulier> authentification);
 
+  /**
+   * Deconnecte la personne actuellement connecté
+   */
+  public void logout();
 }

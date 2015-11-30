@@ -9,7 +9,17 @@ app.config(
 );
 
 // Création du controller "MenuCtrl"
-app.controller("MenuCtrl", function($scope, $http) {
+app.controller("MenuCtrl", function($scope, $http, $window) {
+	
+	// Fonction permettant une déconnexion :
+	$scope.logout = function () {
+		$http.get('/logout').success(
+			function(donnees) {
+				$scope.authenticated = false;
+				$window.location.href = "/";
+			}
+		);
+	};
 
 	$scope.submited =false;
 	var authenticate = function(credentials, callback) {
