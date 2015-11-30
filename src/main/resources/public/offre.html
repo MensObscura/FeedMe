@@ -62,7 +62,7 @@ Page de visualisation d'une offre
 			<form name="ReservationForm" ng-submit="submitForm()" novalidate>
 				<fieldset class="inner ">
 					<legend>L'offre de repas</legend>
-					<div class="carousel" hidden="{{offre.images.length != 0}}">
+					<div class="carousel" ng-hide="offre.images.length == 0">
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								<li ng-repeat="f in offre.images">
   								  <img src="{{f.path | correctPath}}" class="medium" >
