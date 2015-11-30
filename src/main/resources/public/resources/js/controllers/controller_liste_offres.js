@@ -10,11 +10,17 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 			$scope.nombrePlaces =0;	
 		}
 	);
-    
+	    
 	// Permet de créer un listener qui va rediriger vers la visualisation de l'offre cliquée
-	$scope.visualize = function (valeur) {
-		   $window.location.href = "/offre.html?id="+valeur.id;
+	$scope.visualize = function (valeur, event) {
+		console.log(this);
+		if (event.target.localName == "img")
+			$window.location.href = "/visualiser_profil.html?id="+valeur.hote.idUtilisateur;
+		else
+			$window.location.href = "/offre.html?id="+valeur.id;
 	};
+	
+	
 	//calcule le nombres de places restante
 	$scope.getNbPlaces = function (item) {
 		   var place_reservees = 0;
