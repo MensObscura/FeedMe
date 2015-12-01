@@ -1211,6 +1211,9 @@ button#form_button {
 	height: auto;
 	margin-right: 15%;
 }
+#form_button_log:hover {
+	background-color: #FFC376
+}
 
 button#form_button_log {
 	width: auto;

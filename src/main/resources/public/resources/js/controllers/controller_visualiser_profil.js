@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil", ['ngAnimate']);
+var app = angular.module("Profil",[]);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
