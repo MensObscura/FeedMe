@@ -5,62 +5,260 @@ Page permettant une visualisation du profil d'un utilisateur.
 
 <!DOCTYPE html>
 <html lang="fr">
-<html> 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Profil utilisateur</title>
-        <meta name="description" content="Visualisation du profil FeedMe">
-	    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
-    	<link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
-    	<link rel="stylesheet" type="text/css"  href="resources/css/style.css">
-    	<link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
-		<link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
-    </head>
-    
-    <body ng-app="Profil">
-    	<!-- Menu -->
-        <div ng-include="'/resources/header.html'"></div>
-        <div class="containerProfil">
-            <br/>
-            
-            <!-- Affichage des éléments du profil de l'utilisateur connecté -->
-            <div class="profil" ng-controller="ProfilCtrl">
-                <div class="col-lg-3 image-profil"><img src="resources/img/profil/famille.jpg"></div>
-                <div class="col-lg-7 infos-profil">
-                <h2>Votre profil</h2>
-                <p>Nom: {{profil.nom}}<br/>
-                Prénom: {{profil.prenom}}<br />
-                Date de naissance: {{profil.dateNaissance}}<br />
-                e-mail: {{profil.mail}}<br/>
-                <span  ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-                Bio: {{profil.description}} <span ng-show="hoverEdit" class="animate-show">
-                <a>
-                    <i class="fa fa-pencil-square-o white"></i>
-                    Edit
-                </a>
-            </span></span><br />
-                
-				<div ng-if="profil.adresse" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-                    
-				Adresse : {{profil.adresse.voie}}. <span ng-show="hoverEdit" class="animate-show">
-                <a>
-                    <i class="fa fa-pencil-square-o white"></i> Edit
-                </a>
-            </span><br />
-				{{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})
-				<br />
-                </div>
+<html>
+<head>
+<meta charset="utf-8">
+<meta
+	http-equiv="X-UA-Compatible"
+	content="IE=edge">
+<title>Profil utilisateur</title>
+<meta
+	name="description"
+	content="Visualisation du profil FeedMe">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/css/bootstrap.css">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/fonts/font-awesome/css/font-awesome.css">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/css/style.css">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/css/responsive.css">
+
+<link
+	rel="stylesheet"
+	type='text/css'
+	href="/resources/css/angular-material.min.css">
+<link
+	rel='stylesheet'
+	type='text/css'
+	href='resources/fonts/general-font.css'>
+</head>
+
+<body ng-app="Profil">
+	<!-- Menu -->
+	<div ng-include="'/resources/header.html'"></div>
+	<div class="containerProfil">
+		<br />
+
+		<!-- Affichage des éléments du profil de l'utilisateur connecté -->
+		<div
+			class="profil"
+			ng-controller="ProfilCtrl">
+			<div class="col-lg-3 image-profil Aligner">
+				<img src="resources/img/profil/famille.jpg">
+			</div>
+			<div class="col-lg-7 infos-profil">
+				<h2>Votre profil</h2>
+				<p>
+					Nom: {{profil.nom}}<br /> Prénom: {{profil.prenom}}<br /> Date de naissance: {{profil.dateNaissance}}<br /> e-mail: {{profil.mail}}<br /> 
+					
+					<span
+						ng-show="!editBio"
+						ng-click="setEditBio()"
+						ng-mouseover="hoverIn()"
+						ng-mouseleave="hoverOut()"> Bio: {{profil.description}} <span
+						ng-show="hoverEdit"
+						class="animate-show"> <i class="fa fa-pencil-square-o white"></i> <a>Edit</a>
+
+					</span>
+					</span> <br />
+
+
+
+
+
+
+					<!-- ----------- Affichage des editions ---------- -->
+				<div ng-show="editBio || editAdr">
+					<div class="profil-form">
+
+
+						<form
+							name="ProfilForm"
+							ng-submit="submitEdition()"
+							novalidate>
+							<div ng-show="editBio">
+								<legend>A propos de vous</legend>
+								<md-content layout-padding>
+								<div
+									layout
+									layout-sm="column">
+									<md-input-container flex> <label
+										id="white"
+										for="bio">Bio :</label> <textarea
+										id="white"
+										name="bio"
+										ng-model="profil.description"
+										placeholder="Ecrivez quelque à propos de vous"></textarea> </md-input-container>
+								</div>
+								</md-content>
+							</div>
+							<div ng-show="editAdr">
+								<legend>Adresse</legend>
+								<md-content layout-padding>
+
+								<div
+									layout
+									layout-sm="column">
+									<md-input-container flex> <label
+										id="white"
+										for="numero">Numéro* :</label> <input
+										id="white"
+										type="number"
+										ng-model="numero"
+										name="numero"
+										ng-min="1"
+										placeholder="Numéro de voirie."
+										ng-required="editAdr">
+									<div
+										ng-messages="ProfilFrom.numero.$error"
+										ng-show="(ProfilForm.numero.$touched  || submited)">
+										<div ng-message="min">Veuillez saisir un numéro valide.</div>
+										<div ng-message="required">Veuillez saisir un numéro de voirie.</div>
+										<div ng-message="number">Veuillez saisir un nombre.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label
+										id="white"
+										for="rue">Rue* : </label> <input
+										id="white"
+										type="text"
+										ng-model="rue"
+										name="rue"
+										placeholder="Nom de voirie."
+										ng-required="editAdr">
+									<div
+										ng-messages="ProfilForm.rue.$error"
+										ng-show="(ProfilForm.rue.$touched  || submited)">
+										<div ng-message="required">Veuillez saisir un nom de rue.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label
+										id="white"
+										for="complement">Complément : </label> <input
+										id="white"
+										type="text"
+										name="complement"
+										ng-model="complement"
+										placeholder="Compléments."
+										ng-disabled="home"> </md-input-container>
+
+								</div>
+								<div
+									layout
+									layout-sm="column">
+									<md-input-container flex> <label
+										id="white"
+										for="ville">Ville* :</label> <input
+										id="white"
+										type="text"
+										name="ville"
+										ng-model="ville"
+										placeholder="Votre ville."
+										ng-required="editAdr">
+									<div
+										ng-messages="ProfilForm.ville.$error"
+										ng-show="(ProfilForm.ville.$touched || submited)">
+										<div ng-message="required">Veuillez saisir votre ville.</div>
+									</div>
+									</md-input-container>
+									<md-input-container flex> <label
+										id="white"
+										for="cp">Code postal* :</label> <input
+										id="white"
+										type="text"
+										name="cp"
+										ng-model="cp"
+										ng-pattern="/^[1-9][0-9A-B][0-9]{3}$/"
+										placeholder="Votre code postal."
+										ng-required="editAdr">
+									<div
+										ng-messages="ProfilForm.cp.$error"
+										ng-show="(ProfilForm.cp.$touched   || submited)">
+										<div ng-message="pattern">Le code postal saisit est incorrect.</div>
+										<div ng-message="required">Veuillez saisir un code postal.</div>
+									</div>
+									</md-input-container>
+									<md-input-container
+										flex
+										ng-click="allCountry()"> <label
+										id="white"
+										for="pays">Pays :</label> <md-select
+										id="select_white"
+										name="pays"
+										ng-model="pays"> <md-option
+										id="back_white"
+										ng-value="{{item}}"
+										ng-selected="item.id==1"
+										ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
+								</div>
+								</md-content>
+
+							</div>
+							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
+							<md-button
+								id="form_button_log"
+								type="submit"
+								ng-click="submited=true"
+								class="form">Editer</md-button>
+						</form>
+					</div>
+				</div>
+				<!-----------------Fin edit profil------------------->
+				<div
+					ng-show="!editAdr"
+					ng-click="setEditAdr()"
+					ng-if="profil.adresse"
+					ng-mouseover="hoverIn()"
+					ng-mouseleave="hoverOut()">
+
+					Adresse : {{profil.adresse.voie}}. <span
+						ng-show="hoverEdit"
+						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Edit</a>
+
+					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}}) <br />
+				</div>
+			</div>
 		</div>
-            </div>         
-        </div>
-        
-        <!-- Pied de page -->
-        <div ng-include="'/resources/footer.html'"></div>
-        
-         <script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
-         <script src="resources/js/scripts/angular-animate.min.js"></script>
-	     <script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
-         <script type="text/javascript" src="/resources/js/controllers/controller_profil.js"></script>
-    </body>
+	</div>
+
+	<!-- Pied de page -->
+	<div ng-include="'/resources/footer.html'"></div>
+
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-material.min.js"></script>
+
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-aria.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-messages.js"></script>
+	<script src="resources/js/scripts/angular-animate.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/bootstrap.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
+
+	<script
+		type="text/javascript"
+		src="/resources/js/controllers/controller_profil.js"></script>
+</body>
 </html>

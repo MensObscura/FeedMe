@@ -1061,6 +1061,11 @@ left: -145px;
 	overflow: hidden;
 }
 
+.profil-form {
+    position: relative;
+    padding: 0 0 0;
+}
+
 .image-profil   {
     height: 100%;
 }
