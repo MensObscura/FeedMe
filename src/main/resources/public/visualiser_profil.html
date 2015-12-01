@@ -33,21 +33,8 @@ Page permettant une visualisation du profil d'un utilisateur.
                 Prénom: {{profil.prenom}}<br />
                 Date de naissance: {{profil.dateNaissance}}<br />
                 e-mail: {{profil.mail}}<br/>
-                <span  ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()"><a>
-                    <i class="fa fa-pencil-square-o white"></i>
-                    Edit
-                </a>Bio: {{profil.description}} <span ng-show="hoverEdit" class="animate-show">
-                <a>
-                    <i class="fa fa-pencil-square-o white"></i>
-                    Edit
-                </a>
-            </span></span><br />
-				<div ng-if="profil.adresse" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-                    <span ng-show="hoverEdit" class="animate-show">
-                <a>
-                    <i class="fa fa-pencil-square-o white"></i> Edit
-                </a>
-            </span>
+                Bio: {{profil.description}}<br />
+				<div ng-if="profil.adresse">
 				Adresse : {{profil.adresse.voie}}.<br />
 				{{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})<br />
                 </div>
@@ -60,7 +47,6 @@ Page permettant une visualisation du profil d'un utilisateur.
         <div ng-include="'/resources/footer.html'"></div>
         
          <script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
-         <script src="resources/js/scripts/angular-animate.min.js"></script>
 	     <script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
          <script type="text/javascript" src="/resources/js/controllers/controller_visualiser_profil.js"></script>
     </body>

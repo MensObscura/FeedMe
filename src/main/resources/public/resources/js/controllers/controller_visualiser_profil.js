@@ -43,12 +43,6 @@ app.controller("ProfilCtrl", function($scope, $http, $window) {
 		}
 	);
     
-    $scope.hoverIn = function(){
-        this.hoverEdit = true;
-     };
-
-    $scope.hoverOut = function(){
-        this.hoverEdit = false;
-    };
+  
 	
 });
