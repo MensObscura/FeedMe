@@ -37,6 +37,22 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
   }
 
   @Test
+  public void getByIdTestSuccess_avecImage() throws Exception {
+    // Etant donné un utilisateur qui a une image de profil
+    Integer id = 4;
+    Integer idImage = 1;
+    String path = "/monPath/0.jpg";
+
+    // Quand on récupère l'utilisateur associé à l'ID 5
+    Utilisateur user = utilisateurDao.getById(id);
+
+    // Alors on vérifie que son image est correcte
+    assertThat(user.getImage()).isNotNull();
+    assertThat(user.getImage().getId()).isNotNull().isPositive().isEqualTo(idImage);
+    assertThat(user.getImage().getPath()).isNotNull().isNotEmpty().isEqualTo(path);
+  }
+
+  @Test
   public void testGetUtilisateurAdresseSucess() throws Exception {
     // Etant donne un utilisateur
     int idUtilisateur = 4;

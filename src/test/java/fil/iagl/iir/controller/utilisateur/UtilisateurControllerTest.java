@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -164,6 +165,8 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 
   @Test
   public void afficherProfilEnSessionSuccess() throws Exception {
+    this.fausseConnection(USERNAME_TEST_USER, Optional.empty());
+
     Utilisateur utilisateur = createUtilisateur();
     Particulier particulier = new Particulier();
     String prenom = "titi";
