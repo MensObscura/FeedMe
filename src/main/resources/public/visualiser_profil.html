@@ -26,14 +26,19 @@ Page permettant une visualisation du profil d'un utilisateur.
             
             <!-- Affichage des éléments du profil de l'utilisateur connecté -->
             <div class="profil" ng-controller="ProfilCtrl">
+                <div class="col-lg-3 image-profil"><img src="resources/img/profil/profil.jpg"></div>
+                <div class="col-lg-7 infos-profil">
                 <h2>Profil de {{profil.prenom}}</h2>
                 <p>Nom: {{profil.nom}}<br/>
                 Prénom: {{profil.prenom}}<br />
                 Date de naissance: {{profil.dateNaissance}}<br />
                 e-mail: {{profil.mail}}<br/>
+                Bio: {{profil.description}}<br />
 				<div ng-if="profil.adresse">
 				Adresse : {{profil.adresse.voie}}.<br />
 				{{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})<br />
+                    </div>
+                    
 		</div>
             </div>         
         </div>
