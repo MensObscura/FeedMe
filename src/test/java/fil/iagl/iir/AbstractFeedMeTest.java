@@ -230,7 +230,10 @@ public abstract class AbstractFeedMeTest {
     LocalDate dateNaissance = LocalDate.now().minusYears(20);
 
     Adresse adresse = new Adresse();
+    Ville ville = new Ville();
+    ville.setId(1);
     adresse.setVoie("Turlututu");
+    adresse.setVille(ville);
     String password = RandomStringUtils.random(RANDOM_STRING_SIZE);
     Role role = Role.PARTICULIER;
 
