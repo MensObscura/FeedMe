@@ -1034,6 +1034,7 @@ ul {
     left: -100px;
     position: absolute;
 }
+
 .containerProfil {
 	background: url(../img/profil/background.jpg);
 	background-size: cover;
@@ -1052,14 +1053,26 @@ ul {
 	margin-left: 20%;
 	margin-right: 20%;
 	margin-top: 10%;
-	padding: 5%;
+	padding: 3%;
 	background: rgba(0, 0, 0, 0.85);
 	color: white;
 	line-height: 35px;
 }
 
-.profil h2 {
-	margin-top: -1.5em;
+.image-profil   {
+    height: 100%;
+}
+
+.image-profil img   {
+    max-height: 250px;
+    max-width: 250px;
+    height: 80%;
+    width: auto;
+}
+
+.infos-profil   {
+    margin-left: 5%;
+    margin-top: 1%;
 }
 
 .offre-container {
@@ -1362,4 +1375,3 @@ img.img-profil.chef-tile:hover {
 	width: 110px;
 	height: 110px;
 }
-
