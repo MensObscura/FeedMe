@@ -14,7 +14,7 @@ public class ImageDaoTest extends AbstractDaoTest {
   public void sauvegarderTestSucces() throws Exception {
     // Etant donne une image
     Image image = new Image();
-    image.setPath("/monPath/1.jpg");
+    image.setPath("/monPath/2.jpg");
 
     // Quand on enregistre cette image en base
     imageDao.sauvegarder(image);

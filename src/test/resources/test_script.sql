@@ -25,7 +25,8 @@ ALTER SEQUENCE image_img_id_seq RESTART WITH 1;
 -- Table IMAGE
 -- ---------------------------
 INSERT INTO IMAGE ( img_path ) values
-('/monPath/0.jpg'); -- ID 1
+('/monPath/0.jpg'), -- ID 1
+('/monPath/1.jpg'); -- ID 2
 
 
 -- ---------------------------

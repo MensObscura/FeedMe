@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Particulier;
@@ -20,6 +21,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
   @Autowired
   private ParticulierDao particulierDao;
+
+  @Autowired
+  private ImageDao imageDao;
 
   /*
    * (non-Javadoc)
@@ -52,6 +56,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     if (particulier == null) {
       throw new FeedMeException("Parametre Particulier nul");
     }
+    if (particulier.getImage() != null)
+      imageDao.sauvegarder(particulier.getImage());
     particulierDao.modifier(particulier);
   }
 

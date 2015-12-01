@@ -71,14 +71,31 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
 
   @Test
   public void modifierProfilTestSucces() throws Exception {
+    // Etant donné un particulier avec une adresse (voie) modifiée et une image
+    Particulier particulier = this.createParticulier();
+
+    // Quand on appelle le service de modification de profil particulier
+    utilisateurService.modifierProfil(particulier);
+
+    // Alors on vérifie que l'utilisateurDao, ImageDao ont bien été appelés
+    Mockito.verify(particulierDao, Mockito.times(1)).modifier(particulier);
+    Mockito.verify(imageDao, Mockito.times(1)).sauvegarder(particulier.getImage());
+  }
+
+  @Test
+  public void modifierProfilTestSucces_sansSauvegardeImage() throws Exception {
     // Etant donné un particulier avec une adresse (voie) modifiée
     Particulier particulier = this.createParticulier();
+    // sans modification d'image de profil
+    particulier.setImage(null);
 
     // Quand on appelle le service de modification de profil particulier
     utilisateurService.modifierProfil(particulier);
 
     // Alors on vérifie que l'utilisateurDao a bien été appelé
     Mockito.verify(particulierDao, Mockito.times(1)).modifier(particulier);
+    // et que ImageDao n'est pas appelé
+    Mockito.verify(imageDao, Mockito.never()).sauvegarder(particulier.getImage());
   }
 
   @Test(expected = FeedMeException.class)
