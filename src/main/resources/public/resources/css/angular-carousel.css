@@ -54,7 +54,7 @@ div.rn-carousel-indicator span {
   transition: opacity 0.2s ease-out;
   font-size: 3rem;
   position: absolute;
-  top: 5%;
+  top: 15%;
   font-weight: bold;
   color :rgb(250, 250, 250);
   opacity: 0.75;

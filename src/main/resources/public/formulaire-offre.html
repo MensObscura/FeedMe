@@ -95,7 +95,7 @@
 
 
 								<md-content layout-padding>
-								<div layout layout-sm="column">
+								<div ng-show="!premium" layout layout-sm="column">
 									<md-checkbox ng-model="premium" aria-label="premium"
 										ng-disabled="profil.premium">Offre premium</md-checkbox>
 								</div>
@@ -316,6 +316,7 @@
 								    <div id="white" ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
 								     
 						<div class="carousel" ng-hide="images.length == 0">
+					
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								
   								<li ng-repeat="f in images">

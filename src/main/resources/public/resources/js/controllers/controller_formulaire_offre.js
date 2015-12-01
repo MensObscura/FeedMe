@@ -41,6 +41,7 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload) {
 
+	$scope.images=[];
 		
 	$scope.age = {
 		min: 18,
