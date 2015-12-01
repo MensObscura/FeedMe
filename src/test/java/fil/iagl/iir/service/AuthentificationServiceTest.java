@@ -4,6 +4,7 @@ import org.fest.assertions.api.Assertions;
 import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.mockito.InOrder;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,9 @@ import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.FeedMeSession;
 
 public class AuthentificationServiceTest extends AbstractServiceTest {
+
+  @Mock
+  private AdresseService adresseService;
 
   @Test
   public void loadUserByUsernameTestSucces() throws Exception {
@@ -59,8 +63,9 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
 
     authentificationService.inscription(auth);
 
-    InOrder order = Mockito.inOrder(utilisateurDao, particulierDao, authentificationDao);
+    InOrder order = Mockito.inOrder(utilisateurDao, particulierDao, authentificationDao, adresseService);
 
+    order.verify(adresseService).sauvegarder(auth.getUtilisateur().getAdresse());
     order.verify(utilisateurDao).sauvegarder(auth.getUtilisateur());
     order.verify(particulierDao).sauvegarder(auth.getUtilisateur());
     order.verify(authentificationDao).sauvegarder(auth);
