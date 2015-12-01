@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil", []);
+var app = angular.module("Profil", ['ngAnimate']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -20,9 +20,10 @@ app.controller("ProfilCtrl", function($scope, $http, $window) {
 	$scope.getUrlVars = function() {
 		var vars = {};
 	    var parts = $window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
-	    function(m,cle,valeur) {
+	    function(m, cle,valeur) {
 	      vars[cle] = valeur;
 	    });
+        
 	    return vars;
 	}
 
@@ -35,10 +36,19 @@ app.controller("ProfilCtrl", function($scope, $http, $window) {
 			if (donnees)
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 				$scope.profil = donnees;
+        
 			else
 				// On essaye d'atteindre une page qui n'existe pas...
 				$window.location.href = "/accueil.html";
 		}
 	);
+    
+    $scope.hoverIn = function(){
+        this.hoverEdit = true;
+     };
+
+    $scope.hoverOut = function(){
+        this.hoverEdit = false;
+    };
 	
 });

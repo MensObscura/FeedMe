@@ -1169,6 +1169,11 @@ md-toast {
 	background-color: rgba(238, 238, 238, 0);
 }
 
+.white .white a {
+    color: rgb(250, 250, 250);
+	background-color: rgba(238, 238, 238, 0);
+}
+
 #select_white {
 	color: rgb(250, 250, 250);
 	background-color: rgba(238, 238, 238, 0);
