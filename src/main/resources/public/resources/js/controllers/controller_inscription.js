@@ -1,3 +1,26 @@
+var dateTimePicker = function() {
+     return {
+        restrict: "A",
+        require: "ngModel",
+        link: function (scope, element, attrs, ngModelCtrl) {
+	        var parent = $(element).parent();
+	                    
+	        var jour = new Date();
+	    	var maxDate = new Date(jour.getFullYear()-18, jour.getMonth(), jour.getDate());
+	                    
+	        var dtp = parent.datetimepicker({
+	               format: 'DD/MM/YYYY',
+	               ignoreReadonly: true,
+	               maxDate: maxDate
+	         });
+	        dtp.on("dp.change", function (e) {
+	               ngModelCtrl.$setViewValue(new Date(e.date));
+	               scope.$apply();
+	        });
+        }
+     };
+};
+
 // Chargement du module "Inscription"
 var validationApp = angular.module('Inscription', ['ngMaterial', 'ngMessages']);
 
@@ -20,8 +43,6 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
 	$scope.submited =false;
 	$scope.premium = false;
-	var date = new Date();
-	$scope.maxDate = new Date(date.getFullYear()-18, date.getMonth(), date.getDate());
 	
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
@@ -84,4 +105,4 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 		}
 
 	};
-});
+}).directive('dateTimePicker', dateTimePicker);
