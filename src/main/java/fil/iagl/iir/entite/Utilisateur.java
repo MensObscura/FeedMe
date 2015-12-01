@@ -23,6 +23,8 @@ public class Utilisateur implements Serializable {
   private Boolean premium;
 
   private String description;
+  
+  private Image image;
 
   private Boolean adresseVisible;
 

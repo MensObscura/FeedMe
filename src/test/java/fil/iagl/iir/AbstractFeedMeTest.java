@@ -91,7 +91,7 @@ public abstract class AbstractFeedMeTest {
 
   }
 
-  private void fausseConnection(String username, Optional<Role> role) {
+  protected void fausseConnection(String username, Optional<Role> role) {
     Authentification<? extends Utilisateur> auth = authentificationDao.getByUsername(username);
     if (role.isPresent()) {
       auth.setRole(role.get());
@@ -112,6 +112,9 @@ public abstract class AbstractFeedMeTest {
     utilisateur.setNom("toto");
     utilisateur.setDescription("ceci est la description de toto");
     utilisateur.setAdresseVisible(Boolean.TRUE);
+    Image image = new Image();
+    image.setId(1);
+    utilisateur.setImage(image);
     return utilisateur;
   }
 

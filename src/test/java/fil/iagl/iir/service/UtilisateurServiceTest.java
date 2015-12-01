@@ -28,6 +28,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     Assertions.assertThat(utilisateur.getPremium()).isTrue();
     Assertions.assertThat(utilisateur.getDescription()).isNotNull().isEqualTo(mockUtilisateur.getDescription());
     Assertions.assertThat(utilisateur.getAdresseVisible()).isNotNull().isTrue();
+    Assertions.assertThat(utilisateur.getImage()).isNotNull().isEqualTo(mockUtilisateur.getImage());
 
     Mockito.verify(utilisateurDao, Mockito.times(1)).getById(id);
 
