@@ -670,9 +670,8 @@ nav#footer p {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-	height: 94%;
+	height: 150%;
 	margin: 0;
-	padding-top: 25px;
 }
 
 #StyleFormulaireInscription .overlay {
@@ -758,8 +757,7 @@ nav#footer p {
 }
 
 .general-form {
-	position: relative;
-	padding: 10% 0 0;
+    height: 100%;
 }
 
 #StyleFormulaireLogin {
@@ -932,11 +930,12 @@ button.form {
 	padding: 5px;
 	margin-left: 20%;
 	margin-right: 20%;
+    margin-top: 10%;
+    height: 100%;
 	width: 60%;
 }
 
 .inscriptionForm {
-	margin-bottom: 5%;
 	margin-top: -3%;
 }
 
