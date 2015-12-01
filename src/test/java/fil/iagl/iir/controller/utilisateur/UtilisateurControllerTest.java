@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import fil.iagl.iir.controller.AbstractControllerTest;
 import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.AuthentificationParticulier;
+import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.entite.Utilisateur;
@@ -205,15 +206,18 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     String mail = "toto@titi.fr";
     String nom = "Durand";
     String prenom = "David";
-    Boolean prenium = !authentificationParticulier.getUtilisateur().getPremium();
+    Boolean premium = !authentificationParticulier.getUtilisateur().getPremium();
+    Image image = new Image();
+    image.setPath("mon/path/image.jpg");
 
     authentificationParticulier.getUtilisateur().setDateNaissance(dateNaissance);
     authentificationParticulier.getUtilisateur().setDescription(description);
     authentificationParticulier.getUtilisateur().setMail(mail);
     authentificationParticulier.getUtilisateur().setNom(nom);
     authentificationParticulier.getUtilisateur().setPrenom(prenom);
-    authentificationParticulier.getUtilisateur().setPremium(prenium);
+    authentificationParticulier.getUtilisateur().setPremium(premium);
     authentificationParticulier.getUtilisateur().getAdresse().setVoie(voie);
+    authentificationParticulier.getUtilisateur().setImage(image);
 
     JSONObject jsonAuthenficationParticulier = new JSONObject(authentificationParticulier);
 
@@ -225,8 +229,9 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.mail").value(mail))
       .andExpect(jsonPath("$.nom").value(nom))
       .andExpect(jsonPath("$.prenom").value(prenom))
-      .andExpect(jsonPath("$.premium").value(prenium))
-      .andExpect(jsonPath("$.adresse.voie").value(voie));
+      .andExpect(jsonPath("$.premium").value(premium))
+      .andExpect(jsonPath("$.adresse.voie").value(voie))
+      .andExpect(jsonPath("$.image.path").value(image.getPath()));
   }
 
   @Test

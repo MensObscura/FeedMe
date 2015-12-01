@@ -129,9 +129,17 @@ public abstract class AbstractFeedMeTest {
     particulier.setDateNaissance(LocalDate.now().minusYears(20));
     particulier.setDescription("ceci est la description de toto");
     particulier.setAdresseVisible(Boolean.TRUE);
+    particulier.setImage(createImage());
     return particulier;
   }
 
+  protected Image createImage(){
+    Image image = new Image();
+    image.setId(1);
+    image.setPath("/monPath/1.jpg");
+    return image;
+  }
+  
   protected Reservation createReservation() {
     Integer idOffre = 2;
     Integer idUtilisateur = 2;
