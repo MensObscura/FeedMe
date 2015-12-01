@@ -315,7 +315,7 @@
 							        ngf-pattern="'image/*'">Faites glisser vos images dans cette zone ou cliquez.</div>
 								    <div id="white" ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
 								     
-						<div class="carousel">
+						<div class="carousel" ng-hide="images.length == 0">
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								
   								<li ng-repeat="f in images">
@@ -380,7 +380,7 @@
 
 								<fieldset class="inner ">
 									<legend>L'offre de repas</legend>
-									 	<div class="carousel">
+									 	<div class="carousel" ng-hide="images.length == 0">
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								
   								<li ng-repeat="f in images">
