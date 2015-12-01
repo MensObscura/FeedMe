@@ -22,6 +22,8 @@ Page proposant le formulaire d'inscription.
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <link rel="stylesheet" type="text/css"
 	href="resources/css/responsive.css">
+<link rel="stylesheet" type='text/css'
+	href="/resources/css/bootstrap-datetimepicker.css">
 
 <link rel='stylesheet' type='text/css'
 	href='resources/fonts/general-font.css'>
@@ -100,16 +102,23 @@ Page proposant le formulaire d'inscription.
 								</md-input-container>
 								
 								
-								<md-datepicker flex id="date" ng-required="true" 
-									ng-model="anniversaire" md-max-date="maxDate"
-									md-placeholder="Date de naissance" name="anniversaire"></md-datepicker>
-								<div class="validation-messages"
-									ng-messages="InscriptionForm.anniversaire.$error" ng-show="(InscriptionForm.anniversaire.$touched || submited)">
-									<div ng-message="required">Veuillez selectionner votre
-										date de naissance.</div>
-									<div ng-message="maxdate">Vous devez avoir plus de 18
-										ans.</div>
+								<md-input-container flex> <label id="white"
+									for="date">Date* :</label>
+								<div class="form-group">
+									<div class='input-group date'>
+										<input ng-readonly="true" type='text' class="form-control"
+											ng-required="true" name="date" ng-model="date"
+											data-date-time-picker /> <span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
 								</div>
+								<div  ng-messages="InscriptionForm.date.$error"
+									ng-show="(InscriptionForm.date.$touched  || submited)">
+									<div ng-message="required">Veuillez seletionner une date.</div>
+								</div>
+
+								</md-input-container>
 								
 							</div>
 													
@@ -200,7 +209,7 @@ Page proposant le formulaire d'inscription.
 								</md-input-container>
 							</div>
 							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-							<md-button id="form_button_log" type="submit" ng-click="submited=true"
+							<md-button id="form_button" type="submit" ng-click="submited=true"
 								class="form">Confirmer</md-button> </md-content>
 								</br>
 						</div>
@@ -217,6 +226,7 @@ Page proposant le formulaire d'inscription.
 	<script type="text/javascript" src="/resources/js/scripts/angular-aria.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular-material.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular-messages.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/bootstrap-datetimepicker.js"></script>
 	<script type="text/javascript" src="/resources/js/controllers/controller_inscription.js"></script>
 
 	<!-- Pied de page -->
