@@ -69,7 +69,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 
 			// On créé un objet adresse
 			var adresse = {
-					voie : $scope.numero + " " + $scope.rue + "" + $scope.complement,
+					voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 					ville : ville,
 			};
 

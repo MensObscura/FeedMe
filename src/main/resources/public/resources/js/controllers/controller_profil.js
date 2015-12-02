@@ -131,7 +131,6 @@ app.controller("ProfilCtrl", function($scope, $http) {
 		        $scope.upload($scope.photo);
 		        	        
 	
-					console.log('hello');
 					$scope.profil.image = $scope.photo;
 			
 				
@@ -162,7 +161,9 @@ app.controller("ProfilCtrl", function($scope, $http) {
 		 $scope.submitEdition = function(){
 			 if ($scope.ProfilForm.$valid){
 				 
-				 $scope.homeAction();
+				 if(!$scope.editAdr){
+					 $scope.homeAction();
+				 }
 				 
 				// On créé on objet pays
 					var pays = {
@@ -177,10 +178,11 @@ app.controller("ProfilCtrl", function($scope, $http) {
 					};
 					//build de l'adresse
 					var adresse = {
-							voie : $scope.numero + " " + $scope.rue + "" + $scope.complement,
+							voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 							ville : ville,
 					};
-					
+					console.log(adresse);
+					$scope.profil.adresse = adresse;
 					//on fabrique les données  envoyer
 					var donnees = {
 							idUtilisateur : $scope.profil.idUtilisateur,

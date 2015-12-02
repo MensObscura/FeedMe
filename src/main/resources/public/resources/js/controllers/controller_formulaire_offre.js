@@ -166,7 +166,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 
 			// On créé un objet adresse
 			var adresse = {
-					voie : $scope.numero + " " + $scope.rue + "" + $scope.complement,
+					voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 					ville : ville,
 			};
 
