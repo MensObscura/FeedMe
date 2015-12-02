@@ -966,7 +966,7 @@ button.form {
 
 .inner-item-view:hover {
 	
-	background-color: rgba(0, 0, 0, 0.80);
+	/*background-color: rgba(0, 0, 0, 0.80);*/
 }
 	
 .item-premium {
@@ -1318,7 +1318,7 @@ img.img-profil {
 }
 
 .inner-item-view, img.img-tile.img-profil{
-	 pointer-events:none;
+	/*pointer-events:none;*/
 }
 
 img.img-tile.img-profil{
