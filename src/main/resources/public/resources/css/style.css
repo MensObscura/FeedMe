@@ -758,6 +758,7 @@ nav#footer p {
 
 .general-form {
     height: 100%;
+    
 }
 
 #StyleFormulaireLogin {
@@ -1041,7 +1042,8 @@ left: -145px;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-	height: 94%;
+	height: auto;
+	min-height: 94%;
 	margin: 0;
 }
 

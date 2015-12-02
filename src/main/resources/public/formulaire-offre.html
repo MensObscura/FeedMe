@@ -76,11 +76,17 @@
 										<p>{{date | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
 									</div>
 
-									<div class="Aligner-item">
-										<img src="resources/img/team/missing.jpg"
-											class="img-circle img-tile img-profil">
+								
+										<div ng-if="item.hote.image == null" class="Aligner-item">
+							<img src="resources/img/team/missing.jpg"
+								class="img-circle img-tile img-profil">
+						</div>
+						<div ng-if="!(item.hote.image == null)" class="Aligner-item">
+							<img ngf-src="item.hote.image"
+								class="img-circle img-tile img-profil">
+						</div>
 
-									</div>
+									
 
 								</div>
 							</div>

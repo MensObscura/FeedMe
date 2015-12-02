@@ -59,7 +59,8 @@ Page permettant une visualisation du profil d'un utilisateur.
 						ng-mouseover="hoverInPic()"
 						ng-mouseleave="hoverOutPic()">
 			<div class="image-profil-editable Aligner">
-				<img id="image-profil" ngf-src="profil.image "/>
+				<img id="image-profil" ng-if="profil.image == null" src="resources/img/profil/profil.jpg">
+				<img id="image-profil" ng-if="!(profil.image == null)" ngf-src=" profil.image"/>
 				</div>
 			</div>
 			<span
@@ -241,7 +242,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 								id="form_button_log"
 								type="submit"
 								ng-click="submited=true"
-								class="form">Editer</md-button>
+								class="form">J'ai fini</md-button>
 						</form>
 					</div>
 				</div>
@@ -261,6 +262,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 				</div>
 			</div>
 		</div>
+		 <br>
 	</div>
 
 	<!-- Pied de page -->

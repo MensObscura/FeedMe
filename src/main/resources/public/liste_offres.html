@@ -74,11 +74,11 @@ Page de visualisation des offres de repas.
 						</div>
 						
 						
-						<div ng-if="!item.hote.photo" class="Aligner-item">
+						<div ng-if="item.hote.image == null" class="Aligner-item">
 							<img src="resources/img/team/missing.jpg"
 								class="img-circle img-tile img-profil">
 						</div>
-						<div ng-if="item.hote.photo" class="Aligner-item">
+						<div ng-if="!(item.hote.image == null)" class="Aligner-item">
 							<img src="{{item.hote.photo|correctPath}}"
 								class="img-circle img-tile img-profil">
 						</div>
