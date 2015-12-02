@@ -46,10 +46,18 @@ Page de visualisation d'une offre
 <body ng-app="OffreApp">
 	<div ng-include="'/resources/header.html'"></div>
 	<!-- Visualisation des détails de l'offre -->
-	<div class="une-offre-body">
+	<div id='top' class="une-offre-body" ng-controller="ReservationController">
+	
+	
+			<div ng-show="allowDisplay" class="overlay-photo text-center" ><div class="Aligner">
+						<div class="Aligner-item" ><span class="fa-stack fa-lg" ng-click="disable()">
+<i class="fa fa-times fa-stack-1x"> </i>
+</span></i><img class="showtime" src="{{current.path | correctPath}}"/><p></p></div></div></div>
+
 		<div class="offre-display text-center"
-			ng-class="{'field-premium' : offre.premium}"
-			ng-controller="ReservationController">
+			ng-class="{'field-premium' : offre.premium}">
+			
+			
 			<div class=" Aligner img-offre-premium ">
 				<div class="mask ">
 
@@ -65,7 +73,7 @@ Page de visualisation d'une offre
 					<div class="carousel" ng-hide="offre.images.length == 0">
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								<li ng-repeat="f in offre.images">
-  								  <img src="{{f.path | correctPath}}" class="medium" >
+  								  <img src="{{f.path | correctPath}}" class="medium" ng-click="display(f)">
  							 	</li>	
 							</ul>
 							</div>

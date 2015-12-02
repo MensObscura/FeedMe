@@ -47,11 +47,15 @@
 	<div id="StyleFormulaireOffre" class="text-center">
 		<div class="containerFormOffre">
 			<div class="general-form">
-
+	
 				<h2>Votre offre :</h2>
 				<form name="OffreForm" ng-controller="OffreCtrl"
-					ng-submit="submitForm()" novalidate>
-
+					ng-submit="submitForm()" novalidate >
+					
+<div ng-show="allowDisplay" class="overlay-photo" ><div class="Aligner">
+						<div class="Aligner-item" ><span class="fa-stack fa-lg" ng-click="disable()">
+<i class="fa fa-times fa-stack-1x"> </i>
+</span></i><img class="showtime" ngf-src='current'/><p></p></div></div></div>
 
 
 					<div class="Aligner">
@@ -326,7 +330,7 @@
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								
   								<li ng-repeat="f in images">
-  								  <img ngf-src="f" class="medium" >
+  								  <img ngf-src="f" class="medium"  ng-click="display(f)">
  							 	</li>	
 							</ul>
 							</div>
@@ -391,7 +395,7 @@
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								
   								<li ng-repeat="f in images">
-  								  <img ngf-src="f" class="medium" >
+  								  <img ng-click="display(f)" ngf-src="f" class="medium" >
  							 	</li>	
 							</ul>
 							</div>
@@ -462,6 +466,7 @@
 
 			</div>
 		</div>
+	
 	</div>
 
 	<script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>

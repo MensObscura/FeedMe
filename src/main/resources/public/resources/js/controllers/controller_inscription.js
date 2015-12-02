@@ -68,6 +68,11 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 			};
 
 			// On créé un objet adresse
+			
+			if(angular.isUndefined($scope.complement)){
+				$scope.complement=' ';
+			}
+			
 			var adresse = {
 					voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 					ville : ville,

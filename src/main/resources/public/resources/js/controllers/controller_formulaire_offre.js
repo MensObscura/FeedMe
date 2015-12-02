@@ -41,8 +41,28 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload) {
 
+	//init affichage photo à false
+	$scope.allowDisplay =false;
+
+	// on init images à 0
 	$scope.images=[];
 		
+	// affichage photo
+	$scope.display= function(img) {
+		console.log("laoow");
+		$scope.allowDisplay =true;
+		$scope.current = img;
+		
+		$location.hash('StyleFormulaireOffre');
+		$anchorScroll();
+	};
+	// disable photo
+	$scope.disable= function() {
+		console.log("disble");
+		$scope.allowDisplay =false;
+	};
+	
+	//borne d'age
 	$scope.age = {
 		min: 18,
 		max: 100
@@ -165,6 +185,10 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 			};
 
 			// On créé un objet adresse
+			if(angular.isUndefined($scope.complement)){
+				$scope.complement=' ';
+			}
+			
 			var adresse = {
 					voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 					ville : ville,
@@ -220,10 +244,9 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 			
 			
 			      // the element you wish to scroll to.
-			      $location.hash('top');
-
+			   $location.hash('top');   
 			      // call $anchorScroll()
-			      $anchorScroll();
+			   $anchorScroll();
 			   
 		}
 	};

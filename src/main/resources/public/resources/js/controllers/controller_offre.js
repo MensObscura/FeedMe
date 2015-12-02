@@ -14,7 +14,30 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 });
 
 //Création du controller "ReservationController"
-app.controller('ReservationController', function($scope, $http, $window, $mdToast) {  
+app.controller('ReservationController', function($scope, $http, $window, $mdToast, $location, $anchorScroll) {  
+	
+	
+	//init affichage photo à false
+	$scope.allowDisplay =false;
+
+	// on init images à 0
+	$scope.images=[];
+		
+	// affichage photo
+	$scope.display= function(img) {
+		console.log("laoow");
+		$scope.allowDisplay =true;
+		$scope.current = img;
+		
+		$location.hash('top');
+		$anchorScroll();
+	};
+	// disable photo
+	$scope.disable= function() {
+		console.log("disble");
+		$scope.allowDisplay =false;
+	};
+	
 	$scope.submited =false;
 	$scope.minCouvert = 1;
 	// Fonction permettant de récupérer les paramètres de l'url.

@@ -177,6 +177,12 @@ app.controller("ProfilCtrl", function($scope, $http) {
 							pays : pays.id,
 					};
 					//build de l'adresse
+					
+					if(angular.isUndefined($scope.complement)){
+						$scope.complement=' ';
+					}
+					
+					
 					var adresse = {
 							voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 							ville : ville,
@@ -210,6 +216,9 @@ app.controller("ProfilCtrl", function($scope, $http) {
 		     		    $scope.editAdr =false;
 		     		}).error(function(err, status, headers, config){
 		      			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
+		     			$scope.editBio=false;
+		     			$scope.editPic=false;
+		     		    $scope.editAdr =false;
 		     		});
 					
 				 
