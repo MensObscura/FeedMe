@@ -141,7 +141,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
             data: {file: file}
         }).success(function (data, status, headers, config) {
             $scope.historique.push(data);
-            console.log($scope.historique);
             deferred.resolve(data);
         });
 
