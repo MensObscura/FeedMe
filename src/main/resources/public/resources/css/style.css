@@ -944,14 +944,31 @@ button.form {
 .item-view {
 	background-color: rgba(0, 0, 0, 0.9);
 	margin: 3%;
-	padding: 25px;
 	width: 400px;
 	height: 222px;
 	z-index: 1;
+	transition: 0.5s; /* Animation time */
+	-webkit-transition: 0.5s; /* For Safari */
 	position: relative;
 	border-radius: 15px 0px 15px 0px;
 }
 
+.inner-item-view {
+	padding: 25px;
+	width: 400px;
+	height: 222px;
+	z-index: 2;
+	position: relative;
+	border-radius: 15px 0px 15px 0px;
+		transition: 0.5s; /* Animation time */
+	-webkit-transition: 0.5s; /* For Safari */
+}
+
+.inner-item-view:hover {
+	
+	background-color: rgba(0, 0, 0, 0.60);
+}
+	
 .item-premium {
 	border-style: solid;
 	border-image-source: url(../img/liste-offre/bordure.png);
@@ -1300,6 +1317,15 @@ img.img-profil {
 	-webkit-transition: 0.5s; /* For Safari */
 }
 
+.inner-item-view, img.img-tile.img-profil{
+	 pointer-events:none;
+}
+
+img.img-tile.img-profil{
+	
+	 pointer-events:auto;
+}
+
 img.img-tile.img-profil:hover {
 	width: 65px;
 	height: 65px;
@@ -1309,7 +1335,7 @@ img.img-tile.img-profil:hover {
 	position: absolute;
 	top: -20px;
 	left: -20px;
-	z-index: 2;
+	z-index: 4;
 }
 
 .img-offre-premium {
@@ -1393,6 +1419,7 @@ img.img-tile.img-profil:hover {
 
 
 .medium:hover {
+	cursor: pointer;
 	position:abolute;
 	border-radius: 4px;
      border-color: rgba(254, 186, 49, 0.8);
@@ -1450,5 +1477,10 @@ img.img-tile.img-profil:hover {
 	width : 100%;
 	border-radius: 10px 10px 10px 10px;
 	heigth : auto;
+	
+}
+
+.fa{
+		cursor: pointer;
 	
 }

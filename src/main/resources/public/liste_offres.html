@@ -7,38 +7,55 @@ Page de visualisation des offres de repas.
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1">
 <title>Liste des réservations</title>
 
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css"
+<link
+	rel="stylesheet"
+	type="text/css"
 	href="resources/css/bootstrap.css">
-<link rel="stylesheet" type="text/css"
+<link
+	rel="stylesheet"
+	type="text/css"
 	href="resources/fonts/font-awesome/css/font-awesome.css">
 
 <!-- Stylesheet================================================== -->
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/css/style.css">
 <style>
 .mask shine::after {
 	mask: url(#mask-firefox);
 }
 </style>
-<svg height = 0>
+<svg height=0>
  <defs>
    <!-- THE mask -->
   <mask id="mask-firefox">
-    <image width="50" height="50"
+    <image
+		width="50"
+		height="50"
 		xlink:href="resources/img/accueil/tw.png" />
   </mask>
   </defs>
 </svg>
-<link rel="stylesheet" type="text/css"
+<link
+	rel="stylesheet"
+	type="text/css"
 	href="resources/css/responsive.css">
 
-<link rel='stylesheet' type='text/css'
+<link
+	rel='stylesheet'
+	type='text/css'
 	href='resources/fonts/general-font.css'>
 
-<link rel="stylesheet" type="text/css"
+<link
+	rel="stylesheet"
+	type="text/css"
 	href="/resources/css/list_style.css" />
 </head>
 
@@ -47,51 +64,75 @@ Page de visualisation des offres de repas.
 	<div ng-include="'/resources/header.html'"></div>
 
 	<!-- Liste de toutes les offres -->
-	<div id="vue-offre" ng-controller="ListeCtrl">
+	<div
+		id="vue-offre"
+		ng-controller="ListeCtrl">
 		<!-- Hack à régler -->
 		<br />
-		<ul class="offre-container" ng-repeat="item in list track by item.id">
+		<ul
+			class="offre-container"
+			ng-repeat="item in list track by item.id">
 			<li class="ligne-tab">
-				<div class="item-view" ng-class="{'item-premium' : item.premium}" ng-click="visualize(item, $event)">
+				<div class="item-view">
 				<div class="img-tile-premium Aligner ">
-								<div class="mask ">
+							<div class="mask ">
 
-									<shine> <img class="img-circle img-tile"
-										ng-show="item.premium" src="resources/img/offre/premium.png" /> </shine>
+								<shine> <img
+									class="img-circle img-tile"
+									ng-show="item.premium"
+									src="resources/img/offre/premium.png" /> </shine>
+							</div>
+						</div>
+					<div
+						class="inner-item-view"
+						ng-class="{'item-premium' : item.premium}"
+						ng-click="visualize(item, $event)">
+						
+						<div class="Aligner-left">
+							<div class=" Aligner-item">
+								<h2>{{item.titre}}</h2>
+								<p>{{item.typeCuisine.type}}</p>
+								<p>{{item.prix/100}} €</p>
+								<div
+									id="nbplace"
+									ng-init='getNbPlaces(item);'>
+									<p ng-if="!(item.nombrePersonne == 0)">Place(s) restante(s) : {{item.nombrePersonne}}</p>
+									<p ng-if="item.nombrePersonne == 0">Complet</p>
+									<p>{{item.dateRepas | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
 								</div>
 							</div>
-					<div class="Aligner-left">
-						<div class=" Aligner-item">
-							<h2>{{item.titre}}</h2>
-							<p>{{item.typeCuisine.type}}</p>
-							<p>{{item.prix/100}} €</p>
-							<div id="nbplace" ng-init='getNbPlaces(item);'>
-								<p ng-if="!(item.nombrePersonne == 0)">Place(s) restante(s)
-									: {{item.nombrePersonne}}</p>
-								<p ng-if="item.nombrePersonne == 0">Complet</p>
-								<p>{{item.dateRepas | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
+
+
+							<div
+								ng-if="item.hote.image == null"
+								class="Aligner-item">
+								<img
+									src="resources/img/team/missing.jpg"
+									class="img-circle img-tile img-profil">
+							</div>
+							<div
+								ng-if="!(item.hote.image == null)"
+								class="Aligner-item">
+								<img
+									src="{{item.hote.photo|correctPath}}"
+									class="img-circle img-tile img-profil">
 							</div>
 						</div>
-						
-						
-						<div ng-if="item.hote.image == null" class="Aligner-item">
-							<img src="resources/img/team/missing.jpg"
-								class="img-circle img-tile img-profil">
-						</div>
-						<div ng-if="!(item.hote.image == null)" class="Aligner-item">
-							<img src="{{item.hote.photo|correctPath}}"
-								class="img-circle img-tile img-profil">
-						</div>
 					</div>
+				</div>
+
 			</li>
 		</ul>
 	</div>
 
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
 		src="/resources/js/scripts/modernizr.custom.js"></script>
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
 		src="/resources/js/scripts/angular.min.js"></script>
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
 		src="/resources/js/controllers/controller_liste_offres.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
 
