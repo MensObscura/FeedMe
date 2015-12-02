@@ -97,7 +97,7 @@ app.controller("ProfilCtrl", function($scope, $http) {
 	    // decoupe l'adresse si exsistante
 	    $scope.homeAction = function() {
 	    	
-			if($scope.editAdr){
+			if($scope.profil.adresse != null){
 
 				var rue = $scope.profil.adresse.voie;
 				var num = rue.split(" ")[0];
@@ -164,6 +164,7 @@ app.controller("ProfilCtrl", function($scope, $http) {
 			 if ($scope.ProfilForm.$valid){
 				 
 				 if(!$scope.editAdr){
+					 console.log('yo');
 					 $scope.homeAction();
 				 }
 				 

@@ -99,7 +99,8 @@ Page permettant une visualisation du profil d'un utilisateur.
 						ng-show="!editBio"
 						ng-click="setEditBio()"
 						ng-mouseover="hoverInBio()"
-						ng-mouseleave="hoverOutBio()"> Bio: {{profil.description}} <span
+						ng-mouseleave="hoverOutBio()"> Bio: <div ng-if="profil.description == undefined">Non renseignée</div> 
+						<div ng-if="!(profil.description == undefined)">{{profil.description}}</div> <span
 						ng-show="hoverEditBio"
 						class="animate-show"> <i class="fa fa-pencil-square-o white"></i> <a>Edit</a>
 
@@ -255,15 +256,15 @@ Page permettant une visualisation du profil d'un utilisateur.
 				<div
 					ng-show="!editAdr"
 					ng-click="setEditAdr()"
-					ng-if="profil.adresse"
 					ng-mouseover="hoverInAdr()"
 					ng-mouseleave="hoverOutAdr()">
 
-					Adresse : {{profil.adresse.voie}}. <span
+					Adresse :  {{profil.adresse.voie}}. <span
 						ng-show="hoverEditAdr"
 						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Edit</a>
 
-					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}}) <br />
+					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}}) 
+				
 				</div>
 			</div>
 		</div>
