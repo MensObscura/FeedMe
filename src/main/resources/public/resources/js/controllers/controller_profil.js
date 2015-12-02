@@ -196,6 +196,14 @@ app.controller("ProfilCtrl", function($scope, $http, Upload) {
 							voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 							ville : ville,
 					};
+					
+					var image = null;
+					if($scope.picEdited){
+						image = $scope.historique[0];
+					}else {
+						image = $scope.profil.image;
+					}
+					
 					console.log(adresse);
 					$scope.profil.adresse = adresse;
 					//on fabrique les données  envoyer
@@ -204,7 +212,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload) {
 							adresse : adresse,
 							adresseVisible: $scope.visible,
 							description : $scope.profil.description,
-							image : $scope.historique[0]
+							image : image
 							
 							
 					};
