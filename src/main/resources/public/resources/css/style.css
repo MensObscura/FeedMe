@@ -1080,6 +1080,44 @@ left: -145px;
     margin-top: 1%;
 }
 
+.image-profil-editable {
+         width: 18em;
+    height: 18em;
+    align-content: center;
+    overflow: hidden;
+}
+
+.image-profil.col-lg-3 {
+     width: 18em;
+    height: 18em;
+    margin-bottom : 2em;
+    align-content: center;
+    overflow: hidden;
+}
+#image-profil{
+	 max-width: 100%;
+	height: auto;
+}
+
+ .editable {
+	  width: 18em;
+	 margin-bottom : 2em;
+
+}
+
+.drop-box-profil {
+	background: #F8F8F8;
+	border-radius: 10px 10px 10px 10px;
+	border: 5px dashed #DDD;
+	width: 18em;
+	height: 5em;
+	text-align: center;
+	padding-top: 5%;
+
+	color: grey;
+}
+
+
 .offre-container {
 	height: auto;
 	display: inline-block;
@@ -1385,11 +1423,3 @@ img.img-tile.img-profil:hover {
 	
 }
 
-
-
-.image-profil.col-lg-3 {
-       width: 250px;
-    height: 250px;
-    align-content: center;
-    overflow: hidden;
-}

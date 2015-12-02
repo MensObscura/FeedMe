@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngMessages']);
+var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages']);
 
 
 
@@ -21,6 +21,8 @@ app.controller("ProfilCtrl", function($scope, $http) {
 	
 	//affichage des input d'edition du profil
 	$scope.editBio=false;
+	
+	$scope.editPic=false;
 	 
     $scope.editAdr =false;
 	// On va se connecter sur la route permettant de récupèrer le profil de l'utilisateur
@@ -40,13 +42,31 @@ app.controller("ProfilCtrl", function($scope, $http) {
 	);
 
 	
-	  $scope.hoverIn = function(){
-	        this.hoverEdit = true;
+	  $scope.hoverInPic = function(){
+	        this.hoverEditPic = true;
 	     };
 
 	     
-	    $scope.hoverOut = function(){
-	        this.hoverEdit = false;
+	    $scope.hoverOutPic = function(){
+	        this.hoverEditPic = false;
+	    };
+	    
+	    $scope.hoverInBio = function(){
+	        this.hoverEditBio = true;
+	     };
+
+	     
+	    $scope.hoverOutBio = function(){
+	        this.hoverEditBio = false;
+	    };
+	    
+	    $scope.hoverInAdr = function(){
+	        this.hoverEditAdr = true;
+	     };
+
+	     
+	    $scope.hoverOutAdr = function(){
+	        this.hoverEditAdr = false;
 	    };
 	    
 	    //on affiche l'édition de la bio
@@ -63,7 +83,16 @@ app.controller("ProfilCtrl", function($scope, $http) {
 	        
 	    };
 	    
+	    //on affiche l'édition de la photo
+	    $scope.setEditPic = function(){
+	    	$scope.editPic=true;
+		    
 	    
+	        
+	    };
+	    
+	    
+			
 	    // decoupe l'adresse si exsistante
 	    $scope.homeAction = function() {
 	    	
@@ -95,10 +124,45 @@ app.controller("ProfilCtrl", function($scope, $http) {
 			$scope.count = $scope.saveCountry;
 		};
 		
+		//on surveille 
+		$scope.$watch('photo', function () {
+		
+			if ($scope.photo) {
+		        $scope.upload($scope.photo);
+		        	        
+	
+					console.log('hello');
+					$scope.profil.image = $scope.photo;
+			
+				
+			}
+	    });
+		
+		$scope.historique = new Array();
+		
+		//chargment de l'image
+		$scope.upload = function (files) {
+	        if (files) {
+	            for (var i = 0; i < files.length; i++) {
+	              var file = files[i];
+
+	              if (!file.$error) {
+	                Upload.upload({
+	                    url: '/image',
+	                    data: {file: file}
+	                }).success(function (data, status, headers, config) {
+	                	$scope.historique.push(data);
+	                });
+	              }
+	            }
+	        }
+	    };
 		
 		
 		 $scope.submitEdition = function(){
 			 if ($scope.ProfilForm.$valid){
+				 
+				 $scope.homeAction();
 				 
 				// On créé on objet pays
 					var pays = {
@@ -117,16 +181,35 @@ app.controller("ProfilCtrl", function($scope, $http) {
 							ville : ville,
 					};
 					
-					var donnee = {
+					//on fabrique les données  envoyer
+					var donnees = {
+							idUtilisateur : $scope.profil.idUtilisateur,
 							adresse : adresse,
-							description : profil.description,
-							image : null
+							description : $scope.profil.description,
+							image : $scope.profil.image
 							
 							
-					}
+					};
 			
 				 
 				 console.log('valid');
+					
+					// On envoie les données
+		            $http({
+		        		method: 'PUT',
+		        		url: '/utilisateur/particulier/profil',
+		        		contentType: "application/json",
+		        		data: donnees
+		     		}).success(function(response, status, headers, config){
+		     			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
+		     			//$window.location.href = "/profil.html";
+		     			$scope.editBio=false;
+		     			$scope.editPic=false;
+		     		    $scope.editAdr =false;
+		     		}).error(function(err, status, headers, config){
+		      			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
+		     		});
+					
 				 
 				 
 				 
