@@ -34,6 +34,14 @@ public interface OffreDao {
   Integer sauvegarder(@Param("offre") Offre offre);
 
   /**
+   * Modifie une offre
+   * 
+   * @param offre l'offre à modifier
+   * @return Le nombre de ligne modifié
+   */
+  Integer modifier(@Param("offre") Offre offre);
+
+  /**
    * Récupère la liste des offres Premium
    * 
    * @return La liste des offres Premium

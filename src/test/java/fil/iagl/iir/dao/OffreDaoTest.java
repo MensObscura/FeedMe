@@ -455,4 +455,219 @@ public class OffreDaoTest extends AbstractDaoTest {
     }
   }
 
+  @Test
+  public void modifierOffreTestSucces() throws Exception {
+    Integer idOffre = 1;
+
+    Offre offre = this.createOffre();
+    offre.setId(idOffre);
+
+    // Etant donné les nouvelles infos pour l'offre à modifier
+    String titre = "MonTitre2";
+    Integer prix = 9999;
+    Integer nombrePersonne = 15;
+    Integer dureeMinute = 180;
+    LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 2, 19, 45, 0);
+    Boolean animaux = Boolean.TRUE;
+    String note = "Note2";
+    Integer ageMin = 21;
+    Integer ageMax = 31;
+    Boolean premium = false;
+
+    // les informations de l'adresse associee a cette offre
+    Integer idAdresse = 2;
+
+    // les informations sur le type de cuisine de cette offre
+    Integer idTypeCuisine = 4;
+
+    Menu menu = new Menu();
+    String boisson = "MaBoisson2";
+    String dessert = "MonDessert2";
+    String entree = "MonEntree2";
+    String plat = "MonPlat2";
+    menu.setBoisson(boisson);
+    menu.setDessert(dessert);
+    menu.setEntree(entree);
+    menu.setPlat(plat);
+
+    offre.setTitre(titre);
+    offre.setPrix(prix);
+    offre.setNombrePersonne(nombrePersonne);
+    offre.setDureeMinute(dureeMinute);
+    offre.setDateRepas(dateRepas);
+    offre.setAnimaux(animaux);
+    offre.setNote(note);
+    offre.setAgeMin(ageMin);
+    offre.setAgeMax(ageMax);
+    offre.setPremium(premium);
+    offre.getAdresse().setId(idAdresse);
+    offre.getTypeCuisine().setId(idTypeCuisine);
+    offre.setMenu(menu);
+
+    // On appel la DAO pour modifier l'offre
+    offreDao.modifier(offre);
+
+    // On recupere l'offre modifié
+    Offre offreModifier = offreDao.getById(idOffre);
+
+    // On verifie que les champs suivant on changé
+    Assertions.assertThat(offre.getTitre()).isEqualTo(titre);
+    Assertions.assertThat(offre.getPrix()).isEqualTo(prix);
+    Assertions.assertThat(offre.getNombrePersonne()).isEqualTo(nombrePersonne);
+    Assertions.assertThat(offre.getDureeMinute()).isEqualTo(dureeMinute);
+    Assertions.assertThat(offre.getDateRepas()).isEqualTo(dateRepas);
+    Assertions.assertThat(offre.getAnimaux()).isEqualTo(animaux);
+    Assertions.assertThat(offre.getNote()).isEqualTo(note);
+    Assertions.assertThat(offre.getAgeMax()).isEqualTo(ageMax);
+    Assertions.assertThat(offre.getAgeMin()).isEqualTo(ageMin);
+    Assertions.assertThat(offre.getPremium()).isEqualTo(premium);
+    Assertions.assertThat(offre.getAdresse().getId()).isEqualTo(idAdresse);
+    Assertions.assertThat(offre.getTypeCuisine().getId()).isEqualTo(idTypeCuisine);
+  }
+
+  @Test
+  public void modifierOffreTestEchec_PrixNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setPrix(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_TitreNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setTitre(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_NombrePersonneNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setNombrePersonne(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_DureeMinuteNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setDureeMinute(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_DateRepas() throws Exception {
+    Offre offre = createOffre();
+    offre.setDateRepas(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_AnimauxNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setAnimaux(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_AdresseIdNull() throws Exception {
+    Offre offre = createOffre();
+    offre.getAdresse().setId(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_TypeCuisineIdNull() throws Exception {
+    Offre offre = createOffre();
+    offre.getTypeCuisine().setId(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_PlatNull() throws Exception {
+    Offre offre = createOffre();
+    offre.getMenu().setPlat(null);
+
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_PremiumNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setPremium(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_AdresseIdInexistant() throws Exception {
+    Offre offre = createOffre();
+    offre.getAdresse().setId(Integer.MAX_VALUE);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_TypeCuisineIdInexistant() throws Exception {
+    Offre offre = createOffre();
+    offre.getTypeCuisine().setId(Integer.MAX_VALUE);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
+    }
+  }
+
 }
