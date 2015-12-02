@@ -60,7 +60,9 @@
 
 					<div class="Aligner">
 						<div class="Aligner-item">
-							<div class="item-view" >
+							
+							<div class="item-view text-left "
+								ng-class="{'item-premium' : premium}">
 								<div class="img-tile-premium Aligner ">
 								<div class="mask ">
 
@@ -68,9 +70,6 @@
 										ng-show="premium" src="resources/img/offre/premium.png" /> </shine>
 								</div>
 							</div>
-							<div class="inner-item-view text-left "
-								ng-class="{'item-premium' : premium}">
-							
 								<div class="Aligner-left">
 
 									<div class=" Aligner-item">
@@ -94,7 +93,6 @@
 									
 
 								</div>
-							</div>
 							</div>
 						</div>
 
@@ -322,7 +320,7 @@
 										for="images">Image(s) :</label>
 									
 								 	<div ngf-drop ngf-select ng-model="fichiers" class="drop-box text-center" 
-								        ngf-drag-over-class="'dragover'" ngf-multiple=profil.premium ngf-allow-dir="false"
+								        ngf-drag-over-class="'dragover'" ngf-multiple="premium" ngf-allow-dir="false"
 								        accept="image/*" 
 							        ngf-pattern="'image/*'">Faites glisser vos images dans cette zone ou cliquez.</div>
 								    <div id="white" ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
@@ -332,7 +330,7 @@
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								
   								<li ng-repeat="f in images">
-  								  <img ngf-src="f" class="medium"  ng-click="display(f)">
+  								  <img ngf-src="f" class="medium"  ng-click="supprimer(f)" title="cliquez pour supprimer la photo">
  							 	</li>	
 							</ul>
 							</div>

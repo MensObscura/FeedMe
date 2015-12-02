@@ -21,11 +21,8 @@ var dateTimePicker = function() {
      };
 };
 
-
-    
 //Chargement du module "validationOffre"
 var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel']);
-
 
 validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -39,7 +36,7 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 	};
 });
 //Création du controller "OffreCtrl"
-validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload) {
+validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload, $q) {
 
 	//init affichage photo à false
 	$scope.allowDisplay =false;
@@ -49,7 +46,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 		
 	// affichage photo
 	$scope.display= function(img) {
-		console.log("laoow");
 		$scope.allowDisplay =true;
 		$scope.current = img;
 		
@@ -58,7 +54,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	};
 	// disable photo
 	$scope.disable= function() {
-		console.log("disble");
 		$scope.allowDisplay =false;
 	};
 	
@@ -122,41 +117,127 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	$scope.duree = 60;
 	$scope.prix = 1;
 	$scope.nbpers = 1;
-
+	$scope.images = new Array();
 	$scope.complement = "";
 		
 	$scope.$watch('fichiers', function () {
 		if ($scope.fichiers) {
-	        $scope.upload($scope.fichiers);
-	        $scope.historique = new Array();
 	        	        
-			if (!$scope.fichiers.length) {
+			if (!$scope.fichiers.length && !$scope.premium) {
 				$scope.images = [$scope.fichiers];
 			}
 			else {
-				$scope.images = $scope.fichiers;
+				$scope.images = $scope.images.concat($scope.fichiers);
 			}
-			
+
 		}
     });
 	
-	$scope.historique = new Array();
-	
-	$scope.upload = function (files) {
-        if (files) {
-            for (var i = 0; i < files.length; i++) {
-              var file = files[i];
+	var upload = function (file) {
+		var deferred = $q.defer();
 
-              if (!file.$error) {
-                Upload.upload({
-                    url: '/image',
-                    data: {file: file}
-                }).success(function (data, status, headers, config) {
-                	$scope.historique.push(data);
-                });
-              }
-            }
-        }
+        Upload.upload({
+            url: '/image',
+            data: {file: file}
+        }).success(function (data, status, headers, config) {
+            $scope.historique.push(data);
+            console.log($scope.historique);
+            deferred.resolve(data);
+        });
+
+        return deferred.promise;
+    };
+    
+    var envoi = function() {
+    	
+		// On récupère la date du repas
+		var date_repas = new Date($scope.date);
+		var aujourdhui = new Date();
+		var date = moment(aujourdhui).format('YYYY-MM-DD');
+    	
+    	// On créé on objet pays
+		var pays = {
+				id : $scope.pays,
+		};
+
+		// On créé un objet ville
+		var ville = {
+				nom : $scope.ville,
+				cp : $scope.cp,
+				pays : pays.id,
+		};
+
+		// On créé un objet adresse
+		if(angular.isUndefined($scope.complement)){
+			$scope.complement=' ';
+		}
+		
+		var adresse = {
+				voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
+				ville : ville,
+		};
+
+		// On créé un objet pour le type de cuisine
+		var typeCuisine = {
+				id : $scope.typeCuisine.id,
+		};
+		
+		var menu = {
+				entree: $scope.entree,
+				plat: $scope.plat,
+				dessert: $scope.dessert,
+				boisson: $scope.boisson
+		};
+		
+		// Enfin on peut créer les données que l'on souhaite envoyer
+		var donnees = {
+				dateCreation : date,
+				titre : $scope.titre,
+				prix : parseFloat($scope.prix)*100,
+				nombrePersonne : parseInt($scope.nbpers),
+				dureeMinute : parseInt($scope.duree),
+				dateRepas : moment(date_repas).format('YYYY-MM-DDThh:mm:ss'),
+				note : $scope.note, //optionnel
+				menu : menu,
+				ageMin : $scope.age.min,
+				ageMax : $scope.age.max,
+				animaux : Boolean($scope.animal),
+				adresse : adresse,
+				typeCuisine : typeCuisine,
+				images : $scope.historique,
+				premium : $scope.profil.premium || $scope.premium
+		};
+		
+			
+
+	    // On envoie les données
+        $http({
+    		method: 'PUT',
+    		url: '/offres',
+    		contentType: "application/json",
+    		data: donnees
+ 		}).success(function(response, status, headers, config){
+ 			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
+ 			$window.location.href = "/liste_offres.html";
+ 		}).error(function(err, status, headers, config){
+  			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
+ 		});
+    }
+    
+    var uploadAll = function(i, files) {
+    	if (i < files.length) {
+    		upload(files[i]).then(function(ee) {
+				uploadAll(i+1, files);
+				if (i == files.length-1) {
+					envoi();
+				}
+			});
+    	}
+    };
+    
+    $scope.supprimer = function(file) {
+    	var index = $scope.images.indexOf(file);
+    	$scope.images.splice(index, 1);
     };
 	
 	// Fonction utilisé lors de la validation du formulaire
@@ -164,89 +245,16 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 					
 		if ($scope.OffreForm.$valid) {
 
-			// On récupère la date du repas
-			var date_repas = new Date($scope.date);
-			var aujourdhui = new Date();
-			var date = moment(aujourdhui).format('YYYY-MM-DD');
-
-			 
-
-
-			// On créé on objet pays
-			var pays = {
-					id : $scope.pays,
-			};
-
-			// On créé un objet ville
-			var ville = {
-					nom : $scope.ville,
-					cp : $scope.cp,
-					pays : pays.id,
-			};
-
-			// On créé un objet adresse
-			if(angular.isUndefined($scope.complement)){
-				$scope.complement=' ';
-			}
+			$scope.historique = new Array();
 			
-			var adresse = {
-					voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
-					ville : ville,
-			};
-
-			// On créé un objet pour le type de cuisine
-			var typeCuisine = {
-					id : $scope.typeCuisine.id,
-			};
+			uploadAll(0,$scope.images);
 			
-			var menu = {
-					entree: $scope.entree,
-					plat: $scope.plat,
-					dessert: $scope.dessert,
-					boisson: $scope.boisson
-			};
-			
-			// Enfin on peut créer les données que l'on souhaite envoyer
-			var donnees = {
-					dateCreation : date,
-					titre : $scope.titre,
-					prix : parseFloat($scope.prix)*100,
-					nombrePersonne : parseInt($scope.nbpers),
-					dureeMinute : parseInt($scope.duree),
-					dateRepas : moment(date_repas).format('YYYY-MM-DDThh:mm:ss'),
-					note : $scope.note, //optionnel
-					menu : menu,
-					ageMin : $scope.age.min,
-					ageMax : $scope.age.max,
-					animaux : Boolean($scope.animal),
-					adresse : adresse,
-					typeCuisine : typeCuisine,
-					images : $scope.historique,
-					premium : $scope.profil.premium || $scope.premium
-			};
-			
-				
-
-		    // On envoie les données
-            $http({
-        		method: 'PUT',
-        		url: '/offres',
-        		contentType: "application/json",
-        		data: donnees
-     		}).success(function(response, status, headers, config){
-     			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
-     			$window.location.href = "/liste_offres.html";
-     		}).error(function(err, status, headers, config){
-      			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
-     		});
-
 		}else{
 			
-			
-			      // the element you wish to scroll to.
-			   $location.hash('top');   
-			      // call $anchorScroll()
-			   $anchorScroll();
+			// the element you wish to scroll to.
+			$location.hash('top');   
+			// call $anchorScroll()
+			$anchorScroll();
 			   
 		}
 	};
