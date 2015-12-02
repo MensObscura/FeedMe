@@ -119,6 +119,22 @@ public abstract class AbstractFeedMeTest {
   }
 
   protected Particulier createParticulier() {
+    Integer idPays = 1;
+    String nomVille = "FeedMeTown";
+    String cp = "45678";
+
+    Pays pays = new Pays();
+    pays.setId(idPays);
+
+    Ville ville = new Ville();
+    ville.setPays(pays);
+    ville.setNom(nomVille);
+    ville.setCp(cp);
+
+    Adresse adresse = new Adresse();
+    adresse.setVille(ville);
+    adresse.setVoie("Voie");
+
     Particulier particulier = new Particulier();
     particulier.setIdUtilisateur(1);
     particulier.setIdParticulier(1);
@@ -129,17 +145,18 @@ public abstract class AbstractFeedMeTest {
     particulier.setDateNaissance(LocalDate.now().minusYears(20));
     particulier.setDescription("ceci est la description de toto");
     particulier.setAdresseVisible(Boolean.TRUE);
+    particulier.setAdresse(adresse);
     particulier.setImage(createImage());
     return particulier;
   }
 
-  protected Image createImage(){
+  protected Image createImage() {
     Image image = new Image();
     image.setId(1);
     image.setPath("/monPath/1.jpg");
     return image;
   }
-  
+
   protected Reservation createReservation() {
     Integer idOffre = 2;
     Integer idUtilisateur = 2;
@@ -232,9 +249,10 @@ public abstract class AbstractFeedMeTest {
     return offre;
   }
 
+  Integer idUtilisateur = 2;
+  Integer idParticulier = 2;
+
   protected Authentification<Particulier> createAuthentificationParticulier() {
-    Integer idUtilisateur = 2;
-    Integer idParticulier = 2;
     String mail = "foo.bar@gmail.com";
     String nom = "foo";
     String prenom = "bar";

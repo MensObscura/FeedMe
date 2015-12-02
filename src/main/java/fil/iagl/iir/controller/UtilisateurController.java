@@ -62,9 +62,9 @@ public class UtilisateurController {
   }
 
   @RequestMapping(value = "/particulier/profil", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
-  public Particulier modifierSonProfil(@RequestBody AuthentificationParticulier authentificationParticulier) {
-    utilisateurService.modifierProfil(authentificationParticulier.getUtilisateur());
-    return authentificationParticulier.getUtilisateur();
+  public Particulier modifierSonProfil(@RequestBody Particulier particulier) {
+    utilisateurService.modifierProfil(particulier);
+    return particulier;
   }
 
   @RequestMapping(value = "/particulier/premium", method = RequestMethod.GET)

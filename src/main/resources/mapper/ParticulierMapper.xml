@@ -47,12 +47,9 @@
 
 	<update id="modifier">
 		UPDATE UTILISATEUR set
-		usr_adr_id =
-		#{particulier.adresse.id},
-		usr_description =
-		#{particulier.description},
-		usr_adresse_visible =
-		#{particulier.adresseVisible},
+		usr_adr_id = #{particulier.adresse.id},
+		usr_description = #{particulier.description},
+		usr_adresse_visible = #{particulier.adresseVisible},
 		usr_img_id = #{particulier.image.id}
 		WHERE usr_id = #{particulier.idUtilisateur}
 	</update>
