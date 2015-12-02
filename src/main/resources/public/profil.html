@@ -52,67 +52,79 @@ Page permettant une visualisation du profil d'un utilisateur.
 		<div
 			class="profil"
 			ng-controller="ProfilCtrl">
-			
-			<div class="col-lg-3 editable"><div
-						
-						ng-click="setEditPic()"
-						ng-mouseover="hoverInPic()"
-						ng-mouseleave="hoverOutPic()">
-			<div class="image-profil-editable Aligner">
-				<img id="image-profil" ng-if="(profil.image == null) && !picEdited" src="resources/img/profil/profil.jpg">
-				<img id="image-profil" ng-if="picEdited" ngf-src=" profil.image"/>
-				<img id="image-profil" ng-if="!(profil.image == null) && !picEdited"  src="{{profile.image.path | correctPath}}"/>
+
+			<div class="col-lg-3 editable">
+				<div
+					ng-click="setEditPic()"
+					ng-mouseover="hoverInPic()"
+					ng-mouseleave="hoverOutPic()">
+					<div class="image-profil-editable Aligner">
+						<img
+							id="image-profil"
+							ng-if="(profil.image == null) && !picEdited"
+							src="resources/img/profil/profil.jpg"> <img
+							id="image-profil"
+							ng-if="picEdited"
+							ngf-src=" profil.image" /> <img
+							id="image-profil"
+							ng-if="!(profil.image == null) && !picEdited"
+							src="{{profil.image.path | correctPath}}" />
+					</div>
+				</div>
+				<span
+					ng-show="hoverEditPic"
+					class="animate-show"></i> <a>Cliquez sur la photo pour la changer</a> </span>
+				<div ng-show="editPic">
+					<md-input-container flex> <label for="images"></label>
+
+					<div
+						ngf-drop
+						ngf-select
+						ng-model="photo"
+						class="drop-box-profil text-center"
+						ngf-drag-over-class="'dragover'"
+						ngf-multiple="false"
+						ngf-allow-dir="false"
+						accept="image/*"
+						ngf-pattern="'image/*'">Glissez votre image ou cliquez.</div>
+					<div
+						id="white"
+						ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
+					</md-input-container>
+					<div class="Aligner">
+						<md-button
+							ng-show="!(editBio || editAdr)"
+							id="form_button_log"
+							type="submit"
+							ng-click="submitEdition()"
+							class="form">J'ai Fini</md-button>
+					</div>
 				</div>
 			</div>
-			<span
-						ng-show="hoverEditPic"
-						class="animate-show"></i> <a>Cliquez sur la photo pour la changer</a>
 
-					</span>
-					<div ng-show="editPic">
-							<md-input-container flex> <label
-										for="images"></label>
-									
-								 	<div ngf-drop ngf-select ng-model="photo" class="drop-box-profil text-center" 
-								        ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
-								        accept="image/*" 
-							        ngf-pattern="'image/*'">Glissez votre image ou cliquez.</div>
-								    <div id="white" ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
-							</md-input-container>
-							<div class="Aligner">
-							<md-button
-							ng-show="!(editBio || editAdr)"
-								id="form_button_log"
-								type="submit"
-								ng-click="submitEdition()"
-								class="form">J'ai Fini</md-button>
-								</div>
-							</div>
-					</div>
-					
 			<div class="col-lg-7 infos-profil">
 				<h2>Votre profil</h2>
 				<p>
-					Nom: {{profil.nom}}<br /> Prénom: {{profil.prenom}}  <br /> Date de naissance: {{profil.dateNaissance}}<br /> e-mail: {{profil.mail}}<br /> 
-					
-					<div
-						ng-show="!editBio"
-						ng-click="setEditBio()"
-						ng-mouseover="hoverInBio()"
-						ng-mouseleave="hoverOutBio()"> Bio: <div ng-if="profil.description == undefined">Non renseignée</div> 
-						<div ng-if="!(profil.description == undefined)">{{profil.description}}</div> <span
+					Nom: {{profil.nom}}<br /> Prénom: {{profil.prenom}} <br /> Date de naissance: {{profil.dateNaissance}}<br /> e-mail: {{profil.mail}}<br />
+				<div
+					ng-show="!editBio"
+					ng-click="setEditBio()"
+					ng-mouseover="hoverInBio()"
+					ng-mouseleave="hoverOutBio()">
+					Bio: <span ng-if="profil.description == undefined">Non renseignée</span> <span ng-if="!(profil.description == undefined)">{{profil.description}}</span> <span
 						ng-show="hoverEditBio"
 						class="animate-show"> <i class="fa fa-pencil-square-o white"></i> <a>Edit</a>
 
 					</span>
-					</div> <br />
+				</div>
+				<br />
 
 
 
 
 
 
-					<!-- ----------- Affichage des editions ---------- -->
+				<!-- ----------- Affichage des editions ---------- -->
 				<div ng-show="editBio || editAdr">
 					<div class="profil-form">
 
@@ -121,8 +133,8 @@ Page permettant une visualisation du profil d'un utilisateur.
 							name="ProfilForm"
 							ng-submit="submitEdition()"
 							novalidate>
-							
-							
+
+
 							<div ng-show="editBio">
 								<legend>A propos de vous</legend>
 								<md-content layout-padding>
@@ -142,7 +154,13 @@ Page permettant une visualisation du profil d'un utilisateur.
 							<div ng-show="editAdr">
 								<legend>Adresse</legend>
 								<md-content layout-padding>
-
+								<div
+									layout
+									layout-sm="column">
+									<md-checkbox
+										ng-model="visible"
+										aria-label="visible"> Adresse visible par les autres utilisateurs</md-checkbox>
+								</div>
 								<div
 									layout
 									layout-sm="column">
@@ -242,13 +260,13 @@ Page permettant une visualisation du profil d'un utilisateur.
 
 							</div>
 							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
-								<div class="Aligner">
-							<md-button
-								id="form_button_log"
-								type="submit"
-								ng-click="submited=true"
-								class="form">J'ai fini</md-button>
-								</div>
+							<div class="Aligner">
+								<md-button
+									id="form_button_log"
+									type="submit"
+									ng-click="submited=true"
+									class="form">J'ai fini</md-button>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -259,16 +277,16 @@ Page permettant une visualisation du profil d'un utilisateur.
 					ng-mouseover="hoverInAdr()"
 					ng-mouseleave="hoverOutAdr()">
 
-					Adresse :  {{profil.adresse.voie}}. <span
+					Adresse : {{profil.adresse.voie}}. <span
 						ng-show="hoverEditAdr"
 						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Edit</a>
 
-					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}}) 
-				
+					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})
+
 				</div>
 			</div>
 		</div>
-		 <br>
+		<br>
 	</div>
 
 	<!-- Pied de page -->
@@ -297,10 +315,14 @@ Page permettant une visualisation du profil d'un utilisateur.
 	<script
 		type="text/javascript"
 		src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
-		
-	<script type="text/javascript" src="/resources/js/scripts/ng-file-upload-shim.min.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/ng-file-upload.min.js"></script>
-		<script src="/resources/js/filters/filters.js"></script>
+
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ng-file-upload-shim.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ng-file-upload.min.js"></script>
+	<script src="/resources/js/filters/filters.js"></script>
 	<script
 		type="text/javascript"
 		src="/resources/js/controllers/controller_profil.js"></script>

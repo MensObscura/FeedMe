@@ -114,7 +114,7 @@ Page de visualisation des offres de repas.
 								ng-if="!(item.hote.image == null)"
 								class="Aligner-item">
 								<img
-									src="{{item.hote.photo|correctPath}}"
+									src="{{item.hote.image.path |correctPath}}"
 									class="img-circle img-tile img-profil">
 							</div>
 						</div>

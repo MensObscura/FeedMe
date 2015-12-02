@@ -17,7 +17,9 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 });
 
 // Création du controller "ProfilCtrl"
-app.controller("ProfilCtrl", function($scope, $http) {
+app.controller("ProfilCtrl", function($scope, $http, Upload) {
+	
+	
 	
 	//affichage des input d'edition du profil
 	$scope.editBio=false;
@@ -31,8 +33,13 @@ app.controller("ProfilCtrl", function($scope, $http) {
 		function(donnees) {
 			// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 			$scope.profil = donnees;
+			
+			//checkbox visible
+			$scope.visible = $scope.profil.adresseVisible;
+			
 		}
 	);
+	
 	
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
@@ -142,20 +149,20 @@ app.controller("ProfilCtrl", function($scope, $http) {
 		$scope.historique = new Array();
 		
 		//chargment de l'image
-		$scope.upload = function (files) {
-	        if (files) {
-	            for (var i = 0; i < files.length; i++) {
-	              var file = files[i];
-
+		$scope.upload = function (file) {
+			 console.log('upload');
+	        if (file) {
+	        	  console.log('in');
 	              if (!file.$error) {
 	                Upload.upload({
 	                    url: '/image',
 	                    data: {file: file}
 	                }).success(function (data, status, headers, config) {
+	                	console.log('sucess');
 	                	$scope.historique.push(data);
 	                });
 	              }
-	            }
+	            
 	        }
 	    };
 		
@@ -164,7 +171,6 @@ app.controller("ProfilCtrl", function($scope, $http) {
 			 if ($scope.ProfilForm.$valid){
 				 
 				 if(!$scope.editAdr){
-					 console.log('yo');
 					 $scope.homeAction();
 				 }
 				 
@@ -196,14 +202,14 @@ app.controller("ProfilCtrl", function($scope, $http) {
 					var donnees = {
 							idUtilisateur : $scope.profil.idUtilisateur,
 							adresse : adresse,
+							adresseVisible: $scope.visible,
 							description : $scope.profil.description,
-							image : $scope.profil.image
+							image : $scope.historique[0]
 							
 							
 					};
 			
 				 
-				 console.log('valid');
 					
 					// On envoie les données
 		            $http({
