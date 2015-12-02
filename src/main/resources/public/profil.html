@@ -59,8 +59,9 @@ Page permettant une visualisation du profil d'un utilisateur.
 						ng-mouseover="hoverInPic()"
 						ng-mouseleave="hoverOutPic()">
 			<div class="image-profil-editable Aligner">
-				<img id="image-profil" ng-if="profil.image == null" src="resources/img/profil/profil.jpg">
-				<img id="image-profil" ng-if="!(profil.image == null)" ngf-src=" profil.image"/>
+				<img id="image-profil" ng-if="(profil.image == null) && !picEdited" src="resources/img/profil/profil.jpg">
+				<img id="image-profil" ng-if="picEdited" ngf-src=" profil.image"/>
+				<img id="image-profil" ng-if="!(profil.image == null) && !picEdited"  src="{{profile.image.path | correctPath}}"/>
 				</div>
 			</div>
 			<span
@@ -78,12 +79,14 @@ Page permettant une visualisation du profil d'un utilisateur.
 							        ngf-pattern="'image/*'">Glissez votre image ou cliquez.</div>
 								    <div id="white" ngf-no-file-drop>Le Drag & Drop n'est pas supporté par votre navigateur.</div>
 							</md-input-container>
+							<div class="Aligner">
 							<md-button
 							ng-show="!(editBio || editAdr)"
 								id="form_button_log"
 								type="submit"
 								ng-click="submitEdition()"
 								class="form">J'ai Fini</md-button>
+								</div>
 							</div>
 					</div>
 					
@@ -238,11 +241,13 @@ Page permettant une visualisation du profil d'un utilisateur.
 
 							</div>
 							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
+								<div class="Aligner">
 							<md-button
 								id="form_button_log"
 								type="submit"
 								ng-click="submited=true"
 								class="form">J'ai fini</md-button>
+								</div>
 						</form>
 					</div>
 				</div>
@@ -294,7 +299,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 		
 	<script type="text/javascript" src="/resources/js/scripts/ng-file-upload-shim.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/ng-file-upload.min.js"></script>
-
+		<script src="/resources/js/filters/filters.js"></script>
 	<script
 		type="text/javascript"
 		src="/resources/js/controllers/controller_profil.js"></script>

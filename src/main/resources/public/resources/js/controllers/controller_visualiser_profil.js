@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil",[]);
+var app = angular.module("Profil",['appFilters']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :

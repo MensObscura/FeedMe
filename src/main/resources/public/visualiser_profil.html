@@ -28,7 +28,7 @@ Page permettant une visualisation du profil d'un utilisateur.
             <div class="profil" ng-controller="ProfilCtrl">
                 <div class="col-lg-3 image-profil Aligner">
                 <img id="image-profil" ng-if="profil.image == null" src="resources/img/profil/famille.jpg">
-				<img id="image-profil" ng-if="!(profil.image == null)" ngf-src=" profil.image"/>
+				<img id="image-profil" ng-if="!(profil.image == null)"  src="{{profile.image.path | correctPath}}"/>
                 </div>
                 <div class="col-lg-7 infos-profil">
                 <h2>Profil de {{profil.prenom}}</h2>
@@ -53,5 +53,6 @@ Page permettant une visualisation du profil d'un utilisateur.
          <script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
 	     <script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
          <script type="text/javascript" src="/resources/js/controllers/controller_visualiser_profil.js"></script>
+         		<script src="/resources/js/filters/filters.js"></script>
     </body>
 </html>

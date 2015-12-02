@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages']);
+var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters']);
 
 
 
@@ -23,6 +23,7 @@ app.controller("ProfilCtrl", function($scope, $http) {
 	$scope.editBio=false;
 	
 	$scope.editPic=false;
+	$scope.picEtdited=false;
 	 
     $scope.editAdr =false;
 	// On va se connecter sur la route permettant de récupèrer le profil de l'utilisateur
@@ -132,6 +133,7 @@ app.controller("ProfilCtrl", function($scope, $http) {
 		        	        
 	
 					$scope.profil.image = $scope.photo;
+					$scope.picEdited=true;
 			
 				
 			}
