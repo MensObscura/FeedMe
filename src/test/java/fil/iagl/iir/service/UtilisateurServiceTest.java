@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import fil.iagl.iir.entite.Particulier;
@@ -11,6 +12,9 @@ import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
 
 public class UtilisateurServiceTest extends AbstractServiceTest {
+
+  @Mock
+  private AdresseService adresseService;
 
   @Test
   public void getByIdTestSucces() throws Exception {
@@ -79,23 +83,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
 
     // Alors on vérifie que l'utilisateurDao, ImageDao ont bien été appelés
     Mockito.verify(particulierDao, Mockito.times(1)).modifier(particulier);
-    Mockito.verify(imageDao, Mockito.times(1)).sauvegarder(particulier.getImage());
-  }
-
-  @Test
-  public void modifierProfilTestSucces_sansSauvegardeImage() throws Exception {
-    // Etant donné un particulier avec une adresse (voie) modifiée
-    Particulier particulier = this.createParticulier();
-    // sans modification d'image de profil
-    particulier.setImage(null);
-
-    // Quand on appelle le service de modification de profil particulier
-    utilisateurService.modifierProfil(particulier);
-
-    // Alors on vérifie que l'utilisateurDao a bien été appelé
-    Mockito.verify(particulierDao, Mockito.times(1)).modifier(particulier);
-    // et que ImageDao n'est pas appelé
-    Mockito.verify(imageDao, Mockito.never()).sauvegarder(particulier.getImage());
+    Mockito.verify(adresseService, Mockito.times(1)).sauvegarder(particulier.getAdresse());
   }
 
   @Test(expected = FeedMeException.class)

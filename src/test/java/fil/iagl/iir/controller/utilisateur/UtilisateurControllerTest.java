@@ -198,38 +198,26 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 
   @Test
   public void modifierSonProfil() throws Exception {
-    AuthentificationParticulier authentificationParticulier = (AuthentificationParticulier) createAuthentificationParticulier();
+    Particulier particulier = createParticulier();
 
     LocalDate dateNaissance = LocalDate.now().minusYears(2).minusDays(3).minusMonths(4);
     String voie = "Rue de Toto";
     String description = "Titi";
-    String mail = "toto@titi.fr";
-    String nom = "Durand";
-    String prenom = "David";
-    Boolean premium = !authentificationParticulier.getUtilisateur().getPremium();
     Image image = new Image();
     image.setPath("mon/path/image.jpg");
 
-    authentificationParticulier.getUtilisateur().setDateNaissance(dateNaissance);
-    authentificationParticulier.getUtilisateur().setDescription(description);
-    authentificationParticulier.getUtilisateur().setMail(mail);
-    authentificationParticulier.getUtilisateur().setNom(nom);
-    authentificationParticulier.getUtilisateur().setPrenom(prenom);
-    authentificationParticulier.getUtilisateur().setPremium(premium);
-    authentificationParticulier.getUtilisateur().getAdresse().setVoie(voie);
-    authentificationParticulier.getUtilisateur().setImage(image);
+    particulier.setDateNaissance(dateNaissance);
+    particulier.setDescription(description);
+    particulier.getAdresse().setVoie(voie);
+    particulier.setImage(image);
 
-    JSONObject jsonAuthenficationParticulier = new JSONObject(authentificationParticulier);
+    JSONObject jsonParticulier = new JSONObject(particulier);
 
-    mockMvc.perform(put("/utilisateur/particulier/profil").contentType(FEED_ME_MEDIA_TYPE).content(jsonAuthenficationParticulier.toString()))
+    mockMvc.perform(put("/utilisateur/particulier/profil").contentType(FEED_ME_MEDIA_TYPE).content(jsonParticulier.toString()))
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
       .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()))
       .andExpect(jsonPath("$.description").value(description))
-      .andExpect(jsonPath("$.mail").value(mail))
-      .andExpect(jsonPath("$.nom").value(nom))
-      .andExpect(jsonPath("$.prenom").value(prenom))
-      .andExpect(jsonPath("$.premium").value(premium))
       .andExpect(jsonPath("$.adresse.voie").value(voie))
       .andExpect(jsonPath("$.image.path").value(image.getPath()));
   }
