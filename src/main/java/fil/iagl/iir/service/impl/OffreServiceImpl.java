@@ -1,11 +1,12 @@
 package fil.iagl.iir.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fil.iagl.iir.constante.Premium;
+import fil.iagl.iir.constante.CONSTANTE;
 import fil.iagl.iir.dao.adresse.AdresseDao;
 import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.offre.OffreDao;
@@ -48,7 +49,7 @@ public class OffreServiceImpl implements OffreService {
     if (offre.getNombrePersonne() == 0) {
       throw new FeedMeException("Nombre de convives pour l'offre ne doit pas être égal à 0");
     }
-    if (!offre.getPremium() && offre.getImages().size() > Premium.NB_IMAGE_PAR_OFFRE_NON_PREMIUM) {
+    if (!offre.getPremium() && offre.getImages().size() > CONSTANTE.NB_IMAGE_PAR_OFFRE_NON_PREMIUM) {
       throw new FeedMeException("Pour une offre non premium, une seule image seulement.");
     }
 
@@ -59,6 +60,38 @@ public class OffreServiceImpl implements OffreService {
     offre.getImages().forEach(img -> {
       this.imageDao.sauvegarderPourOffre(img.getId(), offre.getId());
     });
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.OffreService#modifier(fil.iagl.iir.entite.Offre)
+   */
+  @Override
+  public void modifier(Offre offre) {
+    if (offre == null) {
+      throw new FeedMeException("Parametre null");
+    }
+
+    if (offre.getNombrePersonne() == 0) {
+      throw new FeedMeException("Nombre de convives pour l'offre ne doit pas être égal à 0");
+    }
+
+    if (!offre.getPremium() && offre.getImages().size() > CONSTANTE.NB_IMAGE_PAR_OFFRE_NON_PREMIUM) {
+      throw new FeedMeException("Pour une offre non premium, une seule image seulement.");
+    }
+
+    if (LocalDateTime.now().isAfter(this.offreDao.getById(offre.getId()).getDateRepas().minusHours(CONSTANTE.NB_HEURE_POUR_CHANGER_OFFRE))) {
+      throw new FeedMeException("On ne peut pas modifier une offre si celle ci commence dans moins de " + CONSTANTE.NB_HEURE_POUR_CHANGER_OFFRE + " heures.");
+    }
+
+    this.adresseService.sauvegarder(offre.getAdresse());
+    this.imageDao.supprimerPourOffre(offre.getId());
+    offre.getImages().forEach(img -> {
+      this.imageDao.sauvegarderPourOffre(img.getId(), offre.getId());
+    });
+    this.offreDao.modifier(offre);
+
   }
 
   /*

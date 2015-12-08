@@ -1,5 +1,6 @@
 package fil.iagl.iir.service;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import fil.iagl.iir.constante.CONSTANTE;
 import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Offre;
@@ -21,10 +23,19 @@ public class OffreServiceTest extends AbstractServiceTest {
   private Offre offre;
 
   @Mock
+  private Offre offreOriginal;
+
+  @Mock
   private Adresse adresse;
 
   @Mock
   private Ville ville;
+
+  @Mock
+  private Image imageExistante;
+
+  @Mock
+  private Image imageNonExistante;
 
   @Test
   public void sauvegarderTestSucces() throws Exception {
@@ -43,7 +54,7 @@ public class OffreServiceTest extends AbstractServiceTest {
     this.offreService.sauvegarder(offre);
 
     InOrder order = Mockito.inOrder(adresseServiceMock, offreDao, imageDao);
-    order.verify(adresseServiceMock, Mockito.times(1)).sauvegarder(adresse);
+    order.verify(adresseServiceMock, Mockito.times(1)).sauvegarder(offre.getAdresse());
     order.verify(offreDao, Mockito.times(1)).sauvegarder(offre);
     order.verify(imageDao, Mockito.times(1)).sauvegarderPourOffre(Mockito.eq(image1.getId()), Mockito.any(Integer.class));
     order.verify(imageDao, Mockito.times(1)).sauvegarderPourOffre(Mockito.eq(image2.getId()), Mockito.any(Integer.class));
@@ -118,6 +129,69 @@ public class OffreServiceTest extends AbstractServiceTest {
     Assertions.assertThat(offreService.listerOffresPremium()).isEqualTo(list);
 
     Mockito.verify(offreDao, Mockito.times(1)).getOffresPremium();
+  }
+
+  @Test
+  public void modifierOffreTestSucces() throws Exception {
+    Integer idOffre = 1;
+    Integer idImageExistante = 1;
+    Integer idImageNonExistante = 2;
+    Integer nbConvive = 8;
+    Mockito.when(imageExistante.getId()).thenReturn(idImageExistante);
+    Mockito.when(imageNonExistante.getId()).thenReturn(idImageNonExistante);
+    Mockito.when(offre.getId()).thenReturn(idOffre);
+    Mockito.when(offre.getNombrePersonne()).thenReturn(nbConvive);
+    Mockito.when(offre.getAdresse()).thenReturn(adresse);
+    Mockito.when(offre.getPremium()).thenReturn(Boolean.TRUE);
+    Mockito.when(offre.getImages()).thenReturn(Arrays.asList(imageNonExistante, imageExistante));
+    Mockito.when(offreDao.getById(idOffre)).thenReturn(offreOriginal);
+    Mockito.when(offreOriginal.getDateRepas()).thenReturn(LocalDateTime.now().plusHours(CONSTANTE.NB_HEURE_POUR_CHANGER_OFFRE * 2));
+
+    this.offreService.modifier(offre);
+
+    InOrder order = Mockito.inOrder(offreDao, adresseServiceMock, imageDao);
+    order.verify(adresseServiceMock, Mockito.times(1)).sauvegarder(adresse);
+    order.verify(imageDao, Mockito.times(1)).supprimerPourOffre(idOffre);
+    order.verify(imageDao, Mockito.times(1)).sauvegarderPourOffre(idImageNonExistante, idOffre);
+    order.verify(imageDao, Mockito.times(1)).sauvegarderPourOffre(idImageExistante, idOffre);
+    order.verify(offreDao, Mockito.times(1)).modifier(offre);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void modifierOffreTestEchec_OffreNull() throws Exception {
+    this.offreService.modifier(null);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void modifierOffreTestEchec_NbNombrePersonneNull() throws Exception {
+    Mockito.when(offre.getNombrePersonne()).thenReturn(0);
+    this.offreService.modifier(offre);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void modifierOffreTestEchec_PlusQueUneImageEtNonPremium() throws Exception {
+    Image image1 = new Image();
+    Image image2 = new Image();
+    image1.setId(1);
+    image2.setId(2);
+
+    Mockito.when(offre.getNombrePersonne()).thenReturn(1);
+    Mockito.when(offre.getPremium()).thenReturn(Boolean.FALSE);
+    Mockito.when(offre.getImages()).thenReturn(Arrays.asList(image1, image2));
+
+    this.offreService.modifier(offre);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void modifierOffreTestEchec_TropTard() throws Exception {
+    Integer idOffre = 1;
+    Integer nbConvive = 8;
+    Mockito.when(offre.getNombrePersonne()).thenReturn(nbConvive);
+    Mockito.when(offre.getId()).thenReturn(idOffre);
+    Mockito.when(offreDao.getById(idOffre)).thenReturn(offreOriginal);
+    Mockito.when(offreOriginal.getDateRepas()).thenReturn(LocalDateTime.now().plusHours(CONSTANTE.NB_HEURE_POUR_CHANGER_OFFRE - 1));
+
+    this.offreService.modifier(offre);
   }
 
 }

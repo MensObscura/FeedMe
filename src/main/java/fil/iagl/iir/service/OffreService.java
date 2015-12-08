@@ -8,10 +8,18 @@ public interface OffreService {
 
   /**
    * Enregistre l'offre
-   * @param offre L'offre a enregistrer
+   * 
+   * @param offre L'offre à enregistrer
    *
    */
   void sauvegarder(Offre offre);
+
+  /**
+   * Modifie une offre
+   * 
+   * @param offre L'offre à modifier
+   */
+  void modifier(Offre offre);
 
   /**
    * Permet de récupérer une offre selon son ID
