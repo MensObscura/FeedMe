@@ -32,6 +32,18 @@ public class OffreController {
   }
 
   /**
+   * Modifier l'offre dans la base de données
+   * 
+   * @param offre à modifier dans la base
+   * @return offre avec son id tel qu'elle est enregistrée dans la base
+   */
+  @RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+  public Offre modifier(@RequestBody Offre offre) {
+    offreservice.modifier(offre);
+    return offre;
+  }
+
+  /**
    * Retourne l'offre correspondant à un id donné
    * 
    * @param id d'une offre
