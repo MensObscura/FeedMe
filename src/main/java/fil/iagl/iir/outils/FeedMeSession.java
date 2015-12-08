@@ -1,6 +1,7 @@
 package fil.iagl.iir.outils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +23,12 @@ public class FeedMeSession {
   }
 
   public static Integer getIdUtilisateurConnecte() {
-    String username = SecurityContextHolder.getContext()
-      .getAuthentication().getName();
+    Authentication auth = SecurityContextHolder.getContext()
+      .getAuthentication();
+    if (auth == null) {
+      return null;
+    }
+    String username = auth.getName();
     return authentificationDao.getByUsername(username).getUtilisateur().getIdUtilisateur();
   }
 

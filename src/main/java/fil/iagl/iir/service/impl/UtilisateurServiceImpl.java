@@ -1,13 +1,17 @@
 package fil.iagl.iir.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
+import fil.iagl.iir.service.AdresseService;
 import fil.iagl.iir.service.UtilisateurService;
 
 @Service
@@ -18,6 +22,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
   @Autowired
   private ParticulierDao particulierDao;
+
+  @Autowired
+  private ImageDao imageDao;
+
+  @Autowired
+  private AdresseService adresseService;
 
   /*
    * (non-Javadoc)
@@ -50,7 +60,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     if (particulier == null) {
       throw new FeedMeException("Parametre Particulier nul");
     }
+    if (particulier.getAdresse().getId() == null) {
+      adresseService.sauvegarder(particulier.getAdresse());
+    }
     particulierDao.modifier(particulier);
+  }
+
+  @Override
+  public List<Particulier> getAllPremium() {
+    return this.particulierDao.getAllPremium();
   }
 
 }

@@ -1,5 +1,7 @@
 package fil.iagl.iir.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,4 +60,16 @@ public class UtilisateurController {
     Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
     return utilisateurService.getParticulierByUtilisisateurId(idSession);
   }
+
+  @RequestMapping(value = "/particulier/profil", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+  public Particulier modifierSonProfil(@RequestBody Particulier particulier) {
+    utilisateurService.modifierProfil(particulier);
+    return particulier;
+  }
+
+  @RequestMapping(value = "/particulier/premium", method = RequestMethod.GET)
+  public List<Particulier> getAllPremium() {
+    return this.utilisateurService.getAllPremium();
+  }
+
 }

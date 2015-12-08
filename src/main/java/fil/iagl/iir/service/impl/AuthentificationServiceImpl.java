@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,10 +20,14 @@ import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
+import fil.iagl.iir.service.AdresseService;
 import fil.iagl.iir.service.AuthentificationService;
 
 @Service
 public class AuthentificationServiceImpl implements AuthentificationService {
+
+  @Autowired
+  private AdresseService adresseService;
 
   @Autowired
   private AuthentificationDao authentificationDao;
@@ -62,9 +67,17 @@ public class AuthentificationServiceImpl implements AuthentificationService {
     authentification.setRole(Role.PARTICULIER);
     authentification.setPassword(new BCryptPasswordEncoder().encode(authentification.getPassword()));
 
+    if (authentification.getUtilisateur().getAdresse() != null) {
+      adresseService.sauvegarder(authentification.getUtilisateur().getAdresse());
+    }
     utilisateurDao.sauvegarder(authentification.getUtilisateur());
     particulierDao.sauvegarder(authentification.getUtilisateur());
     authentificationDao.sauvegarder(authentification);
+  }
+
+  @Override
+  public void logout() {
+    SecurityContextHolder.clearContext();
   }
 
 }

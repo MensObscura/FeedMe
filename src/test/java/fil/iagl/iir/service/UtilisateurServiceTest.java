@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import fil.iagl.iir.entite.Particulier;
@@ -11,6 +12,9 @@ import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
 
 public class UtilisateurServiceTest extends AbstractServiceTest {
+
+  @Mock
+  private AdresseService adresseService;
 
   @Test
   public void getByIdTestSucces() throws Exception {
@@ -28,6 +32,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     Assertions.assertThat(utilisateur.getPremium()).isTrue();
     Assertions.assertThat(utilisateur.getDescription()).isNotNull().isEqualTo(mockUtilisateur.getDescription());
     Assertions.assertThat(utilisateur.getAdresseVisible()).isNotNull().isTrue();
+    Assertions.assertThat(utilisateur.getImage()).isNotNull().isEqualTo(mockUtilisateur.getImage());
 
     Mockito.verify(utilisateurDao, Mockito.times(1)).getById(id);
 
@@ -70,14 +75,15 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
 
   @Test
   public void modifierProfilTestSucces() throws Exception {
-    // Etant donné un particulier avec une adresse (voie) modifiée
+    // Etant donné un particulier avec une adresse (voie) modifiée et une image
     Particulier particulier = this.createParticulier();
 
     // Quand on appelle le service de modification de profil particulier
     utilisateurService.modifierProfil(particulier);
 
-    // Alors on vérifie que l'utilisateurDao a bien été appelé
+    // Alors on vérifie que l'utilisateurDao, ImageDao ont bien été appelés
     Mockito.verify(particulierDao, Mockito.times(1)).modifier(particulier);
+    Mockito.verify(adresseService, Mockito.times(1)).sauvegarder(particulier.getAdresse());
   }
 
   @Test(expected = FeedMeException.class)
@@ -88,5 +94,13 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     // Alors une FeedMeException est lancée
     // et on vérifie que l'utilisateurDao n'est jamais appelé
     Mockito.verify(particulierDao, Mockito.never()).modifier(Mockito.any(Particulier.class));
+  }
+
+  @Test
+  public void getAllPremiumTestSucces() throws Exception {
+    // Quand on appel le service pour recuperer tous les premium
+    utilisateurService.getAllPremium();
+    // On verifie que ce service appel la dao adéquate
+    Mockito.verify(particulierDao, Mockito.times(1)).getAllPremium();
   }
 }

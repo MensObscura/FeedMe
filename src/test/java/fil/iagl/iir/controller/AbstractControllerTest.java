@@ -49,6 +49,9 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
   protected AuthentificationDao authentificationDao;
 
   @InjectMocks
+  protected AccueilController accueilController;
+
+  @InjectMocks
   protected UtilisateurController utilisateurController;
 
   @InjectMocks

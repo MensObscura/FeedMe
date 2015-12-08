@@ -25,7 +25,8 @@ ALTER SEQUENCE image_img_id_seq RESTART WITH 1;
 -- Table IMAGE
 -- ---------------------------
 INSERT INTO IMAGE ( img_path ) values
-('/monPath/0.jpg'); -- ID 1
+('/monPath/0.jpg'), -- ID 1
+('/monPath/1.jpg'); -- ID 2
 
 
 -- ---------------------------
@@ -50,8 +51,8 @@ INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_premium , usr_description, usr_
 ( 'foo', 'foo.bar@gmail.com', true, null, true), -- ID 2
 ( 'jean', 'jambon-beurre@gmail.com', true, null, true); -- ID 3
 
-INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description) VALUES
-( 'hall', 'kolick@gmail.com', 1, true, 'ceci est la description de hall'); -- ID 4
+INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description, usr_img_id) VALUES
+( 'hall', 'kolick@gmail.com', 1, true, 'ceci est la description de hall', 1); -- ID 4
 
 -- ---------------------------
 -- Table PARTICULIER

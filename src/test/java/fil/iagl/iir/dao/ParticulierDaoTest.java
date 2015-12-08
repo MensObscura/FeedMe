@@ -1,15 +1,15 @@
 package fil.iagl.iir.dao;
 
-import static org.fest.assertions.api.Assertions.assertThat;
-
 import java.time.LocalDate;
 import java.time.Month;
 
 import org.fest.assertions.api.Assertions;
+import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.entite.Adresse;
+import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.entite.Ville;
@@ -56,7 +56,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Integer idParticulier = 1;
     Particulier particulier = particulierDao.getById(1);
 
-    // lorsque je change sa description et son adresse
+    // Quand je modifie son adresse
     Integer adresseId = 1;
     String rue = "4 rue guillaume apollinaire";
     String villeName = "Lille";
@@ -71,13 +71,19 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     adresse.setVoie(rue);
     adresse.setVille(ville);
     Boolean adresseVisible = false;
+    // je modifie sa description
     String description = "ceci est une nouvelle description";
+    // et son image de profil
+    Image nouvelleImage = new Image();
+    nouvelleImage.setId(2);
+    nouvelleImage.setPath("/monPath/1.jpg");
 
     particulier.setAdresse(adresse);
     particulier.setDescription(description);
     particulier.setAdresseVisible(adresseVisible);
+    particulier.setImage(nouvelleImage);
 
-    // lorsque je le sauvegarde
+    // et que je sauvegarde les modifications
     particulierDao.modifier(particulier);
 
     Particulier particulierModif = particulierDao.getById(idParticulier);
@@ -91,12 +97,13 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(particulierModif.getMail()).isNotNull().isEqualTo(particulier.getMail());
     Assertions.assertThat(particulierModif.getDateNaissance()).isNotNull().isEqualTo(particulier.getDateNaissance());
     Assertions.assertThat(particulierModif.getAdresse()).isNotNull();
-    assertThat(particulierModif.getAdresse().getId()).isEqualTo(adresseId);
-    assertThat(particulierModif.getAdresse().getVoie()).isEqualTo(rue);
-    assertThat(particulierModif.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
-    assertThat(particulierModif.getAdresse().getVille().getCp()).isEqualTo(codePostal);
-    assertThat(particulierModif.getDescription()).isNotNull().isEqualTo(description);
-    assertThat(particulierModif.getAdresseVisible()).isNotNull().isFalse();
+    Assertions.assertThat(particulierModif.getAdresse().getId()).isEqualTo(adresseId);
+    Assertions.assertThat(particulierModif.getAdresse().getVoie()).isEqualTo(rue);
+    Assertions.assertThat(particulierModif.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
+    Assertions.assertThat(particulierModif.getAdresse().getVille().getCp()).isEqualTo(codePostal);
+    Assertions.assertThat(particulierModif.getDescription()).isNotNull().isEqualTo(description);
+    Assertions.assertThat(particulierModif.getAdresseVisible()).isNotNull().isFalse();
+    Assertions.assertThat(particulierModif.getImage()).isNotNull().isEqualsToByComparingFields(nouvelleImage);
   }
 
   @Test
@@ -107,7 +114,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     String realNom = particulier.getNom();
     String realMail = particulier.getMail();
     String realPrenom = particulier.getPrenom();
-    LocalDate RealDateNaissance = particulier.getDateNaissance();
+    LocalDate realDateNaissance = particulier.getDateNaissance();
 
     // lorsque je change tous ses champs
     particulier.setDateNaissance(LocalDate.of(2012, Month.FEBRUARY, 10));
@@ -148,14 +155,14 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(particulierModif.getNom()).isNotNull().isEqualTo(realNom);
     Assertions.assertThat(particulierModif.getPrenom()).isNotNull().isEqualTo(realPrenom);
     Assertions.assertThat(particulierModif.getMail()).isNotNull().isEqualTo(realMail);
-    Assertions.assertThat(particulierModif.getDateNaissance()).isNotNull().isEqualTo(RealDateNaissance);
+    Assertions.assertThat(particulierModif.getDateNaissance()).isNotNull().isEqualTo(realDateNaissance);
     Assertions.assertThat(particulierModif.getAdresse()).isNotNull();
-    assertThat(particulierModif.getAdresse().getId()).isEqualTo(adresseId);
-    assertThat(particulierModif.getAdresse().getVoie()).isEqualTo(rue);
-    assertThat(particulierModif.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
-    assertThat(particulierModif.getAdresse().getVille().getCp()).isEqualTo(codePostal);
-    assertThat(particulierModif.getDescription()).isNotNull().isEqualTo(description);
-    assertThat(particulierModif.getAdresseVisible()).isNotNull().isFalse();
+    Assertions.assertThat(particulierModif.getAdresse().getId()).isEqualTo(adresseId);
+    Assertions.assertThat(particulierModif.getAdresse().getVoie()).isEqualTo(rue);
+    Assertions.assertThat(particulierModif.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
+    Assertions.assertThat(particulierModif.getAdresse().getVille().getCp()).isEqualTo(codePostal);
+    Assertions.assertThat(particulierModif.getDescription()).isNotNull().isEqualTo(description);
+    Assertions.assertThat(particulierModif.getAdresseVisible()).isNotNull().isFalse();
   }
 
   @Test
@@ -198,12 +205,12 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     Assertions.assertThat(particulier.getMail()).isNotNull().isEqualTo(mail);
     Assertions.assertThat(particulier.getDateNaissance()).isNotNull().isEqualTo(dateNaissance);
     Assertions.assertThat(particulier.getAdresse()).isNotNull();
-    assertThat(particulier.getAdresse().getId()).isEqualTo(adresseId);
-    assertThat(particulier.getAdresse().getVoie()).isEqualTo(rue);
-    assertThat(particulier.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
-    assertThat(particulier.getAdresse().getVille().getCp()).isEqualTo(codePostal);
-    assertThat(particulier.getDescription()).isNotNull().isEqualTo(description);
-    assertThat(particulier.getAdresseVisible()).isNotNull().isFalse();
+    Assertions.assertThat(particulier.getAdresse().getId()).isEqualTo(adresseId);
+    Assertions.assertThat(particulier.getAdresse().getVoie()).isEqualTo(rue);
+    Assertions.assertThat(particulier.getAdresse().getVille().getNom()).isEqualTo(ville.getNom());
+    Assertions.assertThat(particulier.getAdresse().getVille().getCp()).isEqualTo(codePostal);
+    Assertions.assertThat(particulier.getDescription()).isNotNull().isEqualTo(description);
+    Assertions.assertThat(particulier.getAdresseVisible()).isNotNull().isFalse();
   }
 
   @Test
@@ -344,6 +351,19 @@ public class ParticulierDaoTest extends AbstractDaoTest {
     } catch (DataIntegrityViolationException dive) {
       this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
     }
+  }
+
+  @Test
+  public void getAllParticulierTestSucces() throws Exception {
+    int nbPremium = 2;
+    Assertions.assertThat(this.particulierDao.getAllPremium()).isNotEmpty().hasSize(nbPremium).are(new Condition<Particulier>() {
+      @Override
+      public boolean matches(Particulier particulier) {
+        return particulier.getPremium();
+      }
+
+    });
+
   }
 
   /* *********************** BUILDS ************************/

@@ -4,6 +4,7 @@ import org.fest.assertions.api.Assertions;
 import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.mockito.InOrder;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,8 +14,12 @@ import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.outils.FeedMeException;
+import fil.iagl.iir.outils.FeedMeSession;
 
 public class AuthentificationServiceTest extends AbstractServiceTest {
+
+  @Mock
+  private AdresseService adresseService;
 
   @Test
   public void loadUserByUsernameTestSucces() throws Exception {
@@ -58,8 +63,9 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
 
     authentificationService.inscription(auth);
 
-    InOrder order = Mockito.inOrder(utilisateurDao, particulierDao, authentificationDao);
+    InOrder order = Mockito.inOrder(utilisateurDao, particulierDao, authentificationDao, adresseService);
 
+    order.verify(adresseService).sauvegarder(auth.getUtilisateur().getAdresse());
     order.verify(utilisateurDao).sauvegarder(auth.getUtilisateur());
     order.verify(particulierDao).sauvegarder(auth.getUtilisateur());
     order.verify(authentificationDao).sauvegarder(auth);
@@ -74,5 +80,12 @@ public class AuthentificationServiceTest extends AbstractServiceTest {
     Mockito.verify(utilisateurDao, Mockito.never()).sauvegarder(Mockito.any());
     Mockito.verify(particulierDao, Mockito.never()).sauvegarder(Mockito.any());
     Mockito.verify(authentificationDao, Mockito.never()).sauvegarder(Mockito.any());
+  }
+
+  @Test
+  public void logoutTestSucces() throws Exception {
+    Assertions.assertThat(FeedMeSession.getIdUtilisateurConnecte()).isNotNull();
+    this.authentificationService.logout();
+    Assertions.assertThat(FeedMeSession.getIdUtilisateurConnecte()).isNull();
   }
 }

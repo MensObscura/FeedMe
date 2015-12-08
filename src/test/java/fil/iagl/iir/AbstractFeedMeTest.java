@@ -91,7 +91,7 @@ public abstract class AbstractFeedMeTest {
 
   }
 
-  private void fausseConnection(String username, Optional<Role> role) {
+  protected void fausseConnection(String username, Optional<Role> role) {
     Authentification<? extends Utilisateur> auth = authentificationDao.getByUsername(username);
     if (role.isPresent()) {
       auth.setRole(role.get());
@@ -112,10 +112,29 @@ public abstract class AbstractFeedMeTest {
     utilisateur.setNom("toto");
     utilisateur.setDescription("ceci est la description de toto");
     utilisateur.setAdresseVisible(Boolean.TRUE);
+    Image image = new Image();
+    image.setId(1);
+    utilisateur.setImage(image);
     return utilisateur;
   }
 
   protected Particulier createParticulier() {
+    Integer idPays = 1;
+    String nomVille = "FeedMeTown";
+    String cp = "45678";
+
+    Pays pays = new Pays();
+    pays.setId(idPays);
+
+    Ville ville = new Ville();
+    ville.setPays(pays);
+    ville.setNom(nomVille);
+    ville.setCp(cp);
+
+    Adresse adresse = new Adresse();
+    adresse.setVille(ville);
+    adresse.setVoie("Voie");
+
     Particulier particulier = new Particulier();
     particulier.setIdUtilisateur(1);
     particulier.setIdParticulier(1);
@@ -126,7 +145,16 @@ public abstract class AbstractFeedMeTest {
     particulier.setDateNaissance(LocalDate.now().minusYears(20));
     particulier.setDescription("ceci est la description de toto");
     particulier.setAdresseVisible(Boolean.TRUE);
+    particulier.setAdresse(adresse);
+    particulier.setImage(createImage());
     return particulier;
+  }
+
+  protected Image createImage() {
+    Image image = new Image();
+    image.setId(1);
+    image.setPath("/monPath/1.jpg");
+    return image;
   }
 
   protected Reservation createReservation() {
@@ -221,19 +249,27 @@ public abstract class AbstractFeedMeTest {
     return offre;
   }
 
+  Integer idUtilisateur = 2;
+  Integer idParticulier = 2;
+
   protected Authentification<Particulier> createAuthentificationParticulier() {
-    Integer idUtilisateur = 2;
-    Integer idParticulier = 2;
     String mail = "foo.bar@gmail.com";
     String nom = "foo";
     String prenom = "bar";
     LocalDate dateNaissance = LocalDate.now().minusYears(20);
 
+    Adresse adresse = new Adresse();
+    Ville ville = new Ville();
+    ville.setId(1);
+    adresse.setVoie("Turlututu");
+    adresse.setVille(ville);
     String password = RandomStringUtils.random(RANDOM_STRING_SIZE);
     Role role = Role.PARTICULIER;
 
     Particulier utilisateur = new Particulier();
 
+    utilisateur.setAdresse(adresse);
+    utilisateur.setPremium(false);
     utilisateur.setIdUtilisateur(idUtilisateur);
     utilisateur.setIdParticulier(idParticulier);
     utilisateur.setMail(mail);

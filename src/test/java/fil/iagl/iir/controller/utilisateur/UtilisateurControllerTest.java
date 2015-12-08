@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -22,6 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import fil.iagl.iir.controller.AbstractControllerTest;
 import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.AuthentificationParticulier;
+import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.entite.Utilisateur;
@@ -164,6 +166,8 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 
   @Test
   public void afficherProfilEnSessionSuccess() throws Exception {
+    this.fausseConnection(USERNAME_TEST_USER, Optional.empty());
+
     Utilisateur utilisateur = createUtilisateur();
     Particulier particulier = new Particulier();
     String prenom = "titi";
@@ -192,4 +196,36 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.adresseVisible").value(utilisateur.getAdresseVisible()));
   }
 
+  @Test
+  public void modifierSonProfil() throws Exception {
+    Particulier particulier = createParticulier();
+
+    LocalDate dateNaissance = LocalDate.now().minusYears(2).minusDays(3).minusMonths(4);
+    String voie = "Rue de Toto";
+    String description = "Titi";
+    Image image = new Image();
+    image.setPath("mon/path/image.jpg");
+
+    particulier.setDateNaissance(dateNaissance);
+    particulier.setDescription(description);
+    particulier.getAdresse().setVoie(voie);
+    particulier.setImage(image);
+
+    JSONObject jsonParticulier = new JSONObject(particulier);
+
+    mockMvc.perform(put("/utilisateur/particulier/profil").contentType(FEED_ME_MEDIA_TYPE).content(jsonParticulier.toString()))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()))
+      .andExpect(jsonPath("$.description").value(description))
+      .andExpect(jsonPath("$.adresse.voie").value(voie))
+      .andExpect(jsonPath("$.image.path").value(image.getPath()));
+  }
+
+  @Test
+  public void getAllPremiumTestSucces() throws Exception {
+    mockMvc.perform(get("/utilisateur/particulier/premium"))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$").isArray());
+  }
 }
