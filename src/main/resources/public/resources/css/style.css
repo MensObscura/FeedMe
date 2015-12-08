@@ -1305,7 +1305,9 @@ button#form_button_log {
 #input_3 {
 	color: black;
 }
-
+.red {
+	color : red;
+}
 img.img-tile {
 	width: 50px;
 	height: 50px;
