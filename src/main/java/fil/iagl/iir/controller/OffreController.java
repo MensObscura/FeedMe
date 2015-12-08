@@ -62,4 +62,9 @@ public class OffreController {
     return offreservice.listerOffresPremium();
   }
 
+  @RequestMapping(value = "/aParticipe", method = RequestMethod.GET)
+  public List<Offre> afficherOffresParticipeUserConnecte() {
+    return offreservice.listerOffresParticipeUserConnecte();
+  }
+
 }

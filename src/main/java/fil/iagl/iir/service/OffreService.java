@@ -31,4 +31,10 @@ public interface OffreService {
    * @return La liste des offres Premium
    */
   List<Offre> listerOffresPremium();
+
+  /**
+   * Permet de récupérer la liste des offres auxquelles l'utilisateur connecté a participé
+   * @return La liste des offres auxquelles l'utilisateur connecté a participé
+   */
+  List<Offre> listerOffresParticipeUserConnecte();
 }

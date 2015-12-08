@@ -40,4 +40,10 @@ public interface OffreDao {
    */
   List<Offre> getOffresPremium();
 
+  /**
+   * Récupère la liste des offres auxquelles l'utilisateur connecté a participé
+   * @return La liste des offres auxquelles l'utilisateur connecté a participé
+   */
+  List<Offre> getOffresParticipeUserCourant(@Param("idUtilisateurConnecte") Integer idUtilisateurConnecte);
+
 }
