@@ -134,7 +134,16 @@ public class OffreServiceImpl implements OffreService {
    * @see fil.iagl.iir.service.OffreService#listerOffresParticipeUserConnecte()
    */
   public List<Offre> listerOffresParticipeUserConnecte() {
-    return offreDao.getOffresParticipeUserCourant(FeedMeSession.getIdUtilisateurConnecte());
+    return offreDao.getOffresParticipeUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.OffreService#listerOffresCreesUserConnecte()
+   */
+  public List<Offre> listerOffresCreesUserConnecte() {
+    return offreDao.getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
   }
 
 }

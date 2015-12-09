@@ -74,9 +74,22 @@ public class OffreController {
     return offreservice.listerOffresPremium();
   }
 
+  /**
+   * Retourne les offres auxquelles l'utilisateur connecté a participé
+   * @return La liste des offres auxquelles l'utilisateur connecté a participé
+   */
   @RequestMapping(value = "/aParticipe", method = RequestMethod.GET)
   public List<Offre> afficherOffresParticipeUserConnecte() {
     return offreservice.listerOffresParticipeUserConnecte();
+  }
+
+  /**
+   * Retourne la listes des offres créées par l'utilisateur connecté
+   * @return La liste des offres créees par l'utilisateur connecté
+   */
+  @RequestMapping(value = "/aCree", method = RequestMethod.GET)
+  public List<Offre> afficherOffresCreesUserConnecte() {
+    return offreservice.listerOffresCreesUserConnecte();
   }
 
 }

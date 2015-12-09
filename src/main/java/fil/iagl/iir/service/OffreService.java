@@ -45,4 +45,10 @@ public interface OffreService {
    * @return La liste des offres auxquelles l'utilisateur connecté a participé
    */
   List<Offre> listerOffresParticipeUserConnecte();
+
+  /**
+   * Permet de récupérer la liste des offres créées par l'utilisateur connecté
+   * @return la liste des offres créées par l'utilisateur connecté
+   */
+  List<Offre> listerOffresCreesUserConnecte();
 }

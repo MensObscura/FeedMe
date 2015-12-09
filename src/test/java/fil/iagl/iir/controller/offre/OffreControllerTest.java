@@ -147,4 +147,11 @@ public class OffreControllerTest extends AbstractControllerTest {
       .andExpect(status().isOk())
       .andExpect(jsonPath("$").isArray());
   }
+
+  @Test
+  public void testListerOffresCreesUserConnecte() throws Exception {
+    mockMvc.perform(get("/offres/aCree"))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$").isArray());
+  }
 }
