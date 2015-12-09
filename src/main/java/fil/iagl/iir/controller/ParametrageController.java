@@ -11,6 +11,7 @@ import fil.iagl.iir.dao.pays.PaysDao;
 import fil.iagl.iir.dao.typeCuisine.TypeCuisineDao;
 import fil.iagl.iir.entite.Pays;
 import fil.iagl.iir.entite.TypeCuisine;
+import fil.iagl.iir.outils.DataReturn;
 
 @RestController
 @RequestMapping("/settings")
@@ -28,8 +29,8 @@ public class ParametrageController {
    * @return la liste de tous les pays
    */
   @RequestMapping(value = "/pays", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-  public List<Pays> villes() {
-    return paysDao.getAll();
+  public DataReturn<List<Pays>> villes() {
+    return new DataReturn<>(paysDao.getAll());
   }
 
   /**
@@ -38,8 +39,8 @@ public class ParametrageController {
    * @return la liste de tous les types de cuisine
    */
   @RequestMapping(value = "/typescuisines", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-  public List<TypeCuisine> typescuisines() {
-    return typeCuisineDao.getAll();
+  public DataReturn<List<TypeCuisine>> typescuisines() {
+    return new DataReturn<>(typeCuisineDao.getAll());
   }
 
 }

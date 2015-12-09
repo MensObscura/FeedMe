@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fil.iagl.iir.entite.AuthentificationParticulier;
 import fil.iagl.iir.entite.Particulier;
+import fil.iagl.iir.outils.DataReturn;
 import fil.iagl.iir.outils.FeedMeSession;
+import fil.iagl.iir.outils.MessageSucces;
 import fil.iagl.iir.service.AuthentificationService;
 import fil.iagl.iir.service.UtilisateurService;
 
@@ -33,8 +35,8 @@ public class UtilisateurController {
    * @return l'utilisateur correspondant à l'id
    */
   @RequestMapping(value = "/particulier/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-  public Particulier afficherProfil(@PathVariable("id") Integer id) {
-    return utilisateurService.getParticulierByUtilisisateurId(id);
+  public DataReturn<Particulier> afficherProfil(@PathVariable("id") Integer id) {
+    return new DataReturn<>(utilisateurService.getParticulierByUtilisisateurId(id));
   }
 
   /**
@@ -45,9 +47,10 @@ public class UtilisateurController {
    * @return Le particulier tel qu'inscrit dans la base de données
    */
   @RequestMapping(value = "/particulier", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
-  public Particulier inscription(@RequestBody AuthentificationParticulier auth) {
+  @MessageSucces("L'inscription a bien été prise en compte")
+  public DataReturn<Particulier> inscription(@RequestBody AuthentificationParticulier auth) {
     authentificationService.inscription(auth);
-    return auth.getUtilisateur();
+    return new DataReturn<>(auth.getUtilisateur());
   }
 
   /**
@@ -56,20 +59,21 @@ public class UtilisateurController {
    * @return Le profil de l'utilisateur connecté
    */
   @RequestMapping(value = "/particulier/profil", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-  public Particulier afficherSonProfil() {
+  public DataReturn<Particulier> afficherSonProfil() {
     Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
-    return utilisateurService.getParticulierByUtilisisateurId(idSession);
+    return new DataReturn<>(utilisateurService.getParticulierByUtilisisateurId(idSession));
   }
 
   @RequestMapping(value = "/particulier/profil", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
-  public Particulier modifierSonProfil(@RequestBody Particulier particulier) {
+  @MessageSucces("La modification du profil s'est bien effectuée")
+  public DataReturn<Particulier> modifierSonProfil(@RequestBody Particulier particulier) {
     utilisateurService.modifierProfil(particulier);
-    return particulier;
+    return new DataReturn<>(particulier);
   }
 
   @RequestMapping(value = "/particulier/premium", method = RequestMethod.GET)
-  public List<Particulier> getAllPremium() {
-    return this.utilisateurService.getAllPremium();
+  public DataReturn<List<Particulier>> getAllPremium() {
+    return new DataReturn<>(this.utilisateurService.getAllPremium());
   }
 
 }
