@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import fil.iagl.iir.controller.AbstractControllerTest;
 import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.entite.Offre;
+import fil.iagl.iir.outils.FeedMeSession;
 
 public class OffreControllerTest extends AbstractControllerTest {
 
@@ -153,5 +154,12 @@ public class OffreControllerTest extends AbstractControllerTest {
     mockMvc.perform(get("/offres/aCree"))
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.data").isArray());
+  }
+  
+  @Test
+  public void testListerOffresEnCoursByHote() throws Exception {
+	 mockMvc.perform(get("/offres/enCours/"+FeedMeSession.getIdUtilisateurConnecte()))
+	 .andExpect(status().isOk())
+	 .andExpect(jsonPath("$.data").isArray());
   }
 }

@@ -96,4 +96,8 @@ public class OffreController {
     return new DataReturn<>(offreservice.listerOffresCreesUserConnecte());
   }
 
+  @RequestMapping(value = "/enCours/{idHote}", method = RequestMethod.GET)
+  public DataReturn<List<Offre>> afficherOffresEnCoursByHote(@PathVariable("idHote") Integer idHote) {
+	return new DataReturn<>(offreservice.listerOffresEnCoursByHote(idHote));
+  }
 }
