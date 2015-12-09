@@ -1,3 +1,4 @@
+// Ajout du DateTimePicker.
 var dateTimePicker = function() {
      return {
         restrict: "A",
@@ -6,16 +7,16 @@ var dateTimePicker = function() {
 	        var parent = $(element).parent();
 	                    
 	        var min = new Date();
-	        min.setHours(min.getHours()+2); 
+	        min.setHours(min.getHours()+2); // fixation de la date minimale selectionnable : aujourd'hui + 2h.
 	                    
 	        var dtp = parent.datetimepicker({
-	               format: 'DD/MM/YYYY HH:mm',
-	               ignoreReadonly: true,
-	               minDate: min
+	               format: 'DD/MM/YYYY HH:mm', // la date doit contenir le jour, le mois, l'année ainsi que les heures et minutes.
+	               ignoreReadonly: true, // la case est en readOnly, il faut lui indiquer qu'on autorise ce cas.
+	               minDate: min // date minimale.
 	         });
 	        dtp.on("dp.change", function (e) {
 	               ngModelCtrl.$setViewValue(new Date(e.date));
-	               scope.$apply();
+	               scope.$apply(); // Quand on selectionne une date on affecte au model la date en en question.
 	        });
         }
      };
@@ -38,10 +39,10 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload, $q) {
 
-	//init affichage photo à false
+	// initialisation de l'affichage photo à false
 	$scope.allowDisplay =false;
 
-	// on init images à 0
+	// on initialise les images.
 	$scope.images=[];
 		
 	// affichage photo
@@ -57,12 +58,13 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 		$scope.allowDisplay =false;
 	};
 	
-	//borne d'age
+	// initialisation de la borne d'âges
 	$scope.age = {
 		min: 18,
 		max: 100
 	};
 	
+	// initialement le formulaire n'est pas soumis.
 	$scope.submited =false;
 	
 	$http.get('/utilisateur/particulier/profil').success(
@@ -74,10 +76,11 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 			}
 	);
 	
+	// fonction d'auto-remplissage de l'adresse.
 	$scope.homeAction = function() {
-
+		// il faut que l'utilisateur est une adresse (logiquement oui)
 		if($scope.home){
-
+			// remplissage des champs en conséquence :
 			var rue = $scope.profil.adresse.voie;
 			var num = rue.split(" ")[0];
 			
@@ -119,21 +122,27 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	$scope.nbpers = 1;
 	$scope.images = new Array();
 	$scope.complement = "";
-		
+	
+	// upload des images :
 	$scope.$watch('fichiers', function () {
+		// condition : on ajoute une nouvelle photo.
 		if ($scope.fichiers) {
-	        	        
 			if (!$scope.fichiers.length && !$scope.premium) {
+				// l'utilisateur n'a encore uploadé de photos ou l'offre n'est pas premium,
+				// On initialise l'image avec celle selectionnée.
 				$scope.images = [$scope.fichiers];
 			}
 			else {
+				// dans le cas ou l'utilisateur est premium on ajoute les nouvelles photos à la liste.
 				$scope.images = $scope.images.concat($scope.fichiers);
 			}
 
 		}
     });
 	
+	// fonction d'upload d'une image :
 	var upload = function (file) {
+		// on déclare un defer() pour que les instructions suivantes attendent la fin du téléchargement.
 		var deferred = $q.defer();
 
         Upload.upload({
@@ -141,12 +150,27 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
             data: {file: file}
         }).success(function (data, status, headers, config) {
             $scope.historique.push(data);
+            // quand le téléchargement est fini on débloque le "defer".
             deferred.resolve(data);
         });
 
         return deferred.promise;
     };
     
+    // fonction d'upload de toutes les images :
+    var uploadAll = function(i, files) {
+    	if (i < files.length) {
+    		// on parcourt la liste et on télécharge une à une les images.
+    		upload(files[i]).then(function(ee) {
+				uploadAll(i+1, files);
+				if (i == files.length-1) {
+					envoi();
+				}
+			});
+    	}
+    };
+    
+    // fonction d'envoi du formulaire :
     var envoi = function() {
     	
 		// On récupère la date du repas
@@ -181,6 +205,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 				id : $scope.typeCuisine.id,
 		};
 		
+		// On créé un objet pour le menu
 		var menu = {
 				entree: $scope.entree,
 				plat: $scope.plat,
@@ -223,23 +248,13 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
  		});
     }
     
-    var uploadAll = function(i, files) {
-    	if (i < files.length) {
-    		upload(files[i]).then(function(ee) {
-				uploadAll(i+1, files);
-				if (i == files.length-1) {
-					envoi();
-				}
-			});
-    	}
-    };
-    
+    // Fonction utilisée lors de la suppression d'une image (clic sur le preview)
     $scope.supprimer = function(file) {
     	var index = $scope.images.indexOf(file);
     	$scope.images.splice(index, 1);
     };
 	
-	// Fonction utilisé lors de la validation du formulaire
+	// Fonction utilisée lors de la validation du formulaire
 	$scope.submitForm = function() {
 					
 		if ($scope.OffreForm.$valid) {
