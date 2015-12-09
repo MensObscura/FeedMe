@@ -38,10 +38,10 @@ public class ReservationControllerTest extends AbstractControllerTest {
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      .andExpect(jsonPath("$.id").value(IsNull.notNullValue()))
-      .andExpect(jsonPath("$.offre.id").value(IsNull.notNullValue()))
-      .andExpect(jsonPath("$.dateReservation").value(LocalDate.now().toString()))
-      .andExpect(jsonPath("$.convive.idUtilisateur").value(1));
+      .andExpect(jsonPath("$.data.id").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.data.offre.id").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.data.dateReservation").value(LocalDate.now().toString()))
+      .andExpect(jsonPath("$.data.convive.idUtilisateur").value(1));
   }
 
   @Test

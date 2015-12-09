@@ -46,9 +46,9 @@ public class ImageControllerTest extends AbstractControllerTest {
       // On verifie que le status est bien 200
       .andExpect(status().isOk())
       // On verifie que le json à bien un champs id qui correspond à l'image retourné
-      .andExpect(jsonPath("$.id").value(image.getId()))
+      .andExpect(jsonPath("$.data.id").value(image.getId()))
       // On verifie que le json à bien un champs path qui correspond à l'image retourné
-      .andExpect(jsonPath("$.path").value(image.getPath()));
+      .andExpect(jsonPath("$.data.path").value(image.getPath()));
 
     // On verifie que le service à bien été appelé dans le controlleur
     Mockito.verify(imageService, Mockito.times(1)).sauvegarder(mockMultipartFile);
@@ -70,9 +70,9 @@ public class ImageControllerTest extends AbstractControllerTest {
       // On verifie que le status est bien 200
       .andExpect(status().isOk())
       // On verifie que le json à bien un champs id qui correspond à l'image retourné
-      .andExpect(jsonPath("$.id").value(image.getId()))
+      .andExpect(jsonPath("$.data.id").value(image.getId()))
       // On verifie que le json à bien un champs path qui correspond à l'image retourné
-      .andExpect(jsonPath("$.path").value(image.getPath()));
+      .andExpect(jsonPath("$.data.path").value(image.getPath()));
 
     // On verifie que le service à bien été appelé dans le controlleur
     Mockito.verify(imageService, Mockito.times(1)).getById(idImage);

@@ -50,12 +50,12 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     mockMvc.perform(get("/utilisateur/particulier/{id}", id))
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      .andExpect(jsonPath("$.idUtilisateur").value(id))
-      .andExpect(jsonPath("$.premium").value(premium))
-      .andExpect(jsonPath("$.nom").value(nom))
-      .andExpect(jsonPath("$.mail").value(mail))
-      .andExpect(jsonPath("$.description").value(description))
-      .andExpect(jsonPath("$.adresseVisible").value(adresseVisible));
+      .andExpect(jsonPath("$.data.idUtilisateur").value(id))
+      .andExpect(jsonPath("$.data.premium").value(premium))
+      .andExpect(jsonPath("$.data.nom").value(nom))
+      .andExpect(jsonPath("$.data.mail").value(mail))
+      .andExpect(jsonPath("$.data.description").value(description))
+      .andExpect(jsonPath("$.data.adresseVisible").value(adresseVisible));
 
   }
 
@@ -101,15 +101,15 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      .andExpect(jsonPath("$.idUtilisateur").value(IsNull.notNullValue()))
-      .andExpect(jsonPath("$.idParticulier").value(IsNull.notNullValue()))
-      .andExpect(jsonPath("$.nom").value(nom))
-      .andExpect(jsonPath("$.prenom").value(prenom))
-      .andExpect(jsonPath("$.mail").value(mail))
-      .andExpect(jsonPath("$.premium").value(premium))
-      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)))
-      .andExpect(jsonPath("$.description").value(description))
-      .andExpect(jsonPath("$.adresseVisible").value(adresseVisible));
+      .andExpect(jsonPath("$.data.idUtilisateur").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.data.idParticulier").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.data.nom").value(nom))
+      .andExpect(jsonPath("$.data.prenom").value(prenom))
+      .andExpect(jsonPath("$.data.mail").value(mail))
+      .andExpect(jsonPath("$.data.premium").value(premium))
+      .andExpect(jsonPath("$.data.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)))
+      .andExpect(jsonPath("$.data.description").value(description))
+      .andExpect(jsonPath("$.data.adresseVisible").value(adresseVisible));
 
   }
 
@@ -147,15 +147,15 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      .andExpect(jsonPath("$.idUtilisateur").value(IsNull.notNullValue()))
-      .andExpect(jsonPath("$.idParticulier").value(IsNull.notNullValue()))
-      .andExpect(jsonPath("$.nom").value(nom))
-      .andExpect(jsonPath("$.prenom").value(prenom))
-      .andExpect(jsonPath("$.mail").value(mail))
-      .andExpect(jsonPath("$.premium").value(premium))
-      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)))
-      .andExpect(jsonPath("$.description").value(description))
-      .andExpect(jsonPath("$.adresseVisible").value(adresseVisible));
+      .andExpect(jsonPath("$.data.idUtilisateur").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.data.idParticulier").value(IsNull.notNullValue()))
+      .andExpect(jsonPath("$.data.nom").value(nom))
+      .andExpect(jsonPath("$.data.prenom").value(prenom))
+      .andExpect(jsonPath("$.data.mail").value(mail))
+      .andExpect(jsonPath("$.data.premium").value(premium))
+      .andExpect(jsonPath("$.data.dateNaissance").value(dateNaissance.format(DateTimeFormatter.ISO_DATE)))
+      .andExpect(jsonPath("$.data.description").value(description))
+      .andExpect(jsonPath("$.data.adresseVisible").value(adresseVisible));
 
   }
 
@@ -186,14 +186,14 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
 
     mockMvc.perform(get("/utilisateur/particulier/profil")).andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      .andExpect(jsonPath("$.nom").value(utilisateur.getNom()))
-      .andExpect(jsonPath("$.mail").value(utilisateur.getMail()))
-      .andExpect(jsonPath("$.idUtilisateur").value(utilisateur.getIdUtilisateur()))
-      .andExpect(jsonPath("$.premium").value(utilisateur.getPremium()))
-      .andExpect(jsonPath("$.prenom").value(prenom))
-      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()))
-      .andExpect(jsonPath("$.description").value(utilisateur.getDescription()))
-      .andExpect(jsonPath("$.adresseVisible").value(utilisateur.getAdresseVisible()));
+      .andExpect(jsonPath("$.data.nom").value(utilisateur.getNom()))
+      .andExpect(jsonPath("$.data.mail").value(utilisateur.getMail()))
+      .andExpect(jsonPath("$.data.idUtilisateur").value(utilisateur.getIdUtilisateur()))
+      .andExpect(jsonPath("$.data.premium").value(utilisateur.getPremium()))
+      .andExpect(jsonPath("$.data.prenom").value(prenom))
+      .andExpect(jsonPath("$.data.dateNaissance").value(dateNaissance.toString()))
+      .andExpect(jsonPath("$.data.description").value(utilisateur.getDescription()))
+      .andExpect(jsonPath("$.data.adresseVisible").value(utilisateur.getAdresseVisible()));
   }
 
   @Test
@@ -216,16 +216,16 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     mockMvc.perform(put("/utilisateur/particulier/profil").contentType(FEED_ME_MEDIA_TYPE).content(jsonParticulier.toString()))
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
-      .andExpect(jsonPath("$.dateNaissance").value(dateNaissance.toString()))
-      .andExpect(jsonPath("$.description").value(description))
-      .andExpect(jsonPath("$.adresse.voie").value(voie))
-      .andExpect(jsonPath("$.image.path").value(image.getPath()));
+      .andExpect(jsonPath("$.data.dateNaissance").value(dateNaissance.toString()))
+      .andExpect(jsonPath("$.data.description").value(description))
+      .andExpect(jsonPath("$.data.adresse.voie").value(voie))
+      .andExpect(jsonPath("$.data.image.path").value(image.getPath()));
   }
 
   @Test
   public void getAllPremiumTestSucces() throws Exception {
     mockMvc.perform(get("/utilisateur/particulier/premium"))
       .andExpect(status().isOk())
-      .andExpect(jsonPath("$").isArray());
+      .andExpect(jsonPath("$.data").isArray());
   }
 }
