@@ -123,7 +123,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	$scope.images = new Array();
 	$scope.complement = "";
 	
-	// upload des images :
+	// ajout d'images :
 	$scope.$watch('fichiers', function () {
 		// condition : on ajoute une nouvelle photo.
 		if ($scope.fichiers) {
@@ -248,7 +248,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
  		});
     }
     
-    // Fonction utilisée lors de la suppression d'une image (clic sur le preview)
+    // Fonction utilisée lors de la suppression d'une image (clic sur la preview)
     $scope.supprimer = function(file) {
     	var index = $scope.images.indexOf(file);
     	$scope.images.splice(index, 1);
