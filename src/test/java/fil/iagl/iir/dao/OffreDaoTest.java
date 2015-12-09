@@ -66,6 +66,50 @@ public class OffreDaoTest extends AbstractDaoTest {
   }
 
   @Test
+	public void getOffresEnCoursParticipeUserTestSuccess() throws Exception {
+		// Etant donne qu'il existe un utilisateur quelconque
+		// Quand on recupere la liste des offres en cours auxquelles il participe
+		// Alors on veut une liste non vide avec le bon nombre d'offres
+	  	Offre o1 = createOffre();
+	  	Offre o2 = createOffre();
+		Offre o3 = createOffre();
+		Offre o4 = createOffre();
+		Offre o5 = createOffre();
+		
+		o1.setDateRepas(LocalDateTime.now().minusDays(1)); // KO
+		o2.setDateRepas(LocalDateTime.now().plusMonths(1)); // OK
+		o3.setDateRepas(LocalDateTime.now().plusHours(1)); // OK
+		o4.setDateRepas(LocalDateTime.now().minusYears(1)); // KO
+		o5.setDateRepas(LocalDateTime.now().plusYears(1)); // OK
+		
+		List<Offre> offres;
+		
+		offres = offreDao.getOffresEnCoursByHote(o1.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres.size()).isNotNull().isEqualTo(1);
+		
+		offreDao.sauvegarder(o1);
+		
+		offres = offreDao.getOffresEnCoursByHote(o1.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres.size()).isNotNull().isEqualTo(1);
+		
+		offreDao.sauvegarder(o2);
+		offres = offreDao.getOffresEnCoursByHote(o1.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres.size()).isNotNull().isEqualTo(2);
+		
+		offreDao.sauvegarder(o3);
+		offres = offreDao.getOffresEnCoursByHote(o1.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres.size()).isNotNull().isEqualTo(3);
+		
+		offreDao.sauvegarder(o4);
+		offres = offreDao.getOffresEnCoursByHote(o1.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres.size()).isNotNull().isEqualTo(3);
+		
+		offreDao.sauvegarder(o5);
+		offres = offreDao.getOffresEnCoursByHote(o1.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres.size()).isNotNull().isEqualTo(4);
+	}
+  
+  @Test
   public void getByIdTestSucces() throws Exception {
     // Etant donne les informations d'une offre enregistree en base avec
     // l'ID =1
