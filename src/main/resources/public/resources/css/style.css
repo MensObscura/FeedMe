@@ -1119,6 +1119,12 @@ left: -145px;
 	height: auto;
 }
 
+@-moz-document url-prefix() {  
+#image-profil{   
+    width: 100%;   
+  }
+}
+
  .editable {
 	  width: 18em;
 	 margin-bottom : 2em;
