@@ -128,4 +128,13 @@ public class OffreServiceImpl implements OffreService {
     return offreDao.getOffresPremium();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see fil.iagl.iir.service.OffreService#listerOffresParticipeUserConnecte()
+   */
+  public List<Offre> listerOffresParticipeUserConnecte() {
+    return offreDao.getOffresParticipeUserCourant(FeedMeSession.getIdUtilisateurConnecte());
+  }
+
 }

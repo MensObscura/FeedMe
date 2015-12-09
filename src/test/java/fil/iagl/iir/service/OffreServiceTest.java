@@ -16,6 +16,7 @@ import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Ville;
 import fil.iagl.iir.outils.FeedMeException;
+import fil.iagl.iir.outils.FeedMeSession;
 
 public class OffreServiceTest extends AbstractServiceTest {
 
@@ -129,6 +130,15 @@ public class OffreServiceTest extends AbstractServiceTest {
     Assertions.assertThat(offreService.listerOffresPremium()).isEqualTo(list);
 
     Mockito.verify(offreDao, Mockito.times(1)).getOffresPremium();
+  }
+
+  @Test
+  public void listerOffresParticipeUserConnecteTestSuccess() throws Exception {
+    List<Offre> list = Arrays.asList(offre, offre);
+    Mockito.when(offreDao.getOffresParticipeUserCourant(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
+
+    Assertions.assertThat(offreService.listerOffresParticipeUserConnecte()).isEqualTo(list);
+    Mockito.verify(offreDao, Mockito.times(1)).getOffresParticipeUserCourant(FeedMeSession.getIdUtilisateurConnecte());
   }
 
   @Test

@@ -140,4 +140,11 @@ public class OffreControllerTest extends AbstractControllerTest {
       .andExpect(jsonPath("$.typeCuisine.id").value(offre.getTypeCuisine().getId()))
       .andExpect(jsonPath("$.hote.idUtilisateur").value(offre.getHote().getIdUtilisateur()));
   }
+
+  @Test
+  public void testListerOffresParticipeUserConnecte() throws Exception {
+    mockMvc.perform(get("/offres/aParticipe"))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$").isArray());
+  }
 }
