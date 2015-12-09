@@ -51,4 +51,11 @@ public interface OffreService {
    * @return la liste des offres créées par l'utilisateur connecté
    */
   List<Offre> listerOffresCreesUserConnecte();
+  
+  /**
+   * Permet de récupérer la liste des offres en cours d'un hôte donné
+   * @param idUtilisateur L'id de l'hôte
+   * @return La liste des offres en cours d'un hôte donné
+   */
+  List<Offre> listerOffresEnCoursByHote(Integer idUtilisateur);
 }

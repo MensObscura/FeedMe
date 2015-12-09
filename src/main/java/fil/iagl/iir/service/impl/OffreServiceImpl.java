@@ -145,5 +145,8 @@ public class OffreServiceImpl implements OffreService {
   public List<Offre> listerOffresCreesUserConnecte() {
     return offreDao.getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
   }
-
+  
+  public List<Offre> listerOffresEnCoursByHote(Integer idUtilisateur) {
+	return offreDao.getOffresEnCoursByHote(idUtilisateur);
+  }
 }
