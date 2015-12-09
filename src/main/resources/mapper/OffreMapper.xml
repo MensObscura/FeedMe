@@ -73,6 +73,7 @@
 		WHERE off_id = #{id}
 	</select>
 
+
 	<insert id="sauvegarder" parameterType="fil.iagl.iir.entite.Offre"
 		useGeneratedKeys="true" keyProperty="offre.id" keyColumn="off_id">
 		INSERT INTO
@@ -117,5 +118,11 @@
 		#{offre.premium}
 		);
 	</insert>
+	
+	<select id="getOffresParticipeUserCourant" resultMap="Offre_ResultMap">
+		<include refid="select_all_columns_offre" />
+		INNER JOIN reservation on (reservation.res_off_id = offre.off_id )
+		WHERE (current_timestamp >= off_date_repas) and res_con_id = #{idUtilisateurConnecte}
+	</select>
 
 </mapper>

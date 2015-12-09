@@ -2,6 +2,7 @@ package fil.iagl.iir.dao;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.fest.assertions.api.Assertions;
 import org.fest.assertions.core.Condition;
@@ -12,12 +13,14 @@ import fil.iagl.iir.entite.Menu;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.outils.FeedMeException;
+import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.outils.SQLCODE;
 
 public class OffreDaoTest extends AbstractDaoTest {
 
   private static final int NB_OFFRES = 4;
   private static final int NB_OFFRES_PREMIUM = 2;
+  private static final int NB_OFFRE_PARTICIPEES = 2;
 
   @Test
   public void getAllTestSucces() throws Exception {
@@ -34,10 +37,19 @@ public class OffreDaoTest extends AbstractDaoTest {
 
   @Test
   public void getOffresPremiumTestSucces() throws Exception {
-    // Etand donne qu'il existe NB_OFFRES_PREMIUM en base
+    // Etant donne qu'il existe NB_OFFRES_PREMIUM en base
     // Quand on recupere la liste des offres premium
     // Alors on veut une liste non vide avec le bon nombre d'offres Premium
     Assertions.assertThat(offreDao.getOffresPremium()).isNotEmpty().hasSize(NB_OFFRES_PREMIUM);
+  }
+
+  @Test
+  public void getOffresParticipeUserCourantTestSuccess() throws Exception {
+    // Etant donne qu'il existe un utilisateur connecte
+    // Quand on recupere la liste des offres auxquelles il a participe
+    // Alors on veut une liste non vide avec le bon nombre d'offres
+    List<Offre> offres = offreDao.getOffresParticipeUserCourant(FeedMeSession.getIdUtilisateurConnecte());
+    Assertions.assertThat(offres).isNotNull().hasSize(NB_OFFRE_PARTICIPEES);
   }
 
   @Test
