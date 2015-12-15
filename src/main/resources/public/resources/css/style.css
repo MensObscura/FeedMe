@@ -1325,6 +1325,7 @@ img.img-profil {
 	-webkit-transition: 0.5s; /* For Safari */
 }
 
+
 .inner-item-view, img.img-tile.img-profil{
 	pointer-events:none;
 }
@@ -1456,7 +1457,7 @@ img.img-tile.img-profil:hover {
 .chef{
 	height: 300px;
 	width: 200px;
-	
+	padding: 1em;
 }
 
 .chef-tile{

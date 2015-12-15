@@ -67,12 +67,12 @@ Page de visualisation des offres de repas.
 					</div>
 					<div class="text-center">
 
-	<div ng-if="!item.hote.photo">
+	<div ng-if="!item.image">
 							<img src="resources/img/team/missing.jpg"
 								class="img-circle img-profil chef-tile">
 						</div>
-						<div ng-if="item.hote.photo">
-							<img src="{{item.hote.photo|correctPath}}"
+						<div ng-if="item.image">
+							<img src="{{item.image.path|correctPath}}"
 								class="img-circle img-profil chef-tile">
 						</div>
 						<br>
