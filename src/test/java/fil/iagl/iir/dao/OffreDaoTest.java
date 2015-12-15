@@ -20,14 +20,16 @@ public class OffreDaoTest extends AbstractDaoTest {
 
   private static final int NB_OFFRES = 4;
   private static final int NB_OFFRES_PREMIUM = 2;
-  private static final int NB_OFFRE_PARTICIPEES = 2;
+  private static final int NB_OFFRE_PARTICIPEES = 1;
+  private static final int NB_OFFRES_CREES_USER_CONNECTE = 2;
 
   @Test
   public void getAllTestSucces() throws Exception {
     // Etant donne qu'il existe NB_OFFRES en base
     // Quand on recupere la liste des offres existantes
     // Alors on veut une liste non vide avec le bon nombre d'offres
-    Assertions.assertThat(offreDao.getAll()).isNotEmpty().hasSize(NB_OFFRES);
+    Assertions.assertThat(offreDao.getAll()).isNotEmpty()
+      .hasSize(NB_OFFRES);
     // et on vérifie que les offres sont bien triées par leur top Premium
     Assertions.assertThat(offreDao.getAll().get(0).getPremium()).isTrue();
     Assertions.assertThat(offreDao.getAll().get(1).getPremium()).isTrue();
@@ -40,18 +42,91 @@ public class OffreDaoTest extends AbstractDaoTest {
     // Etant donne qu'il existe NB_OFFRES_PREMIUM en base
     // Quand on recupere la liste des offres premium
     // Alors on veut une liste non vide avec le bon nombre d'offres Premium
-    Assertions.assertThat(offreDao.getOffresPremium()).isNotEmpty().hasSize(NB_OFFRES_PREMIUM);
+    Assertions.assertThat(offreDao.getOffresPremium()).isNotEmpty()
+      .hasSize(NB_OFFRES_PREMIUM);
   }
 
   @Test
-  public void getOffresParticipeUserCourantTestSuccess() throws Exception {
+  public void getOffresParticipeUserConnecteTestSuccess() throws Exception {
     // Etant donne qu'il existe un utilisateur connecte
     // Quand on recupere la liste des offres auxquelles il a participe
     // Alors on veut une liste non vide avec le bon nombre d'offres
-    List<Offre> offres = offreDao.getOffresParticipeUserCourant(FeedMeSession.getIdUtilisateurConnecte());
+    List<Offre> offres = offreDao.getOffresParticipeUserConnecte(
+      FeedMeSession.getIdUtilisateurConnecte());
     Assertions.assertThat(offres).isNotNull().hasSize(NB_OFFRE_PARTICIPEES);
   }
 
+  @Test
+  public void getOffresCreesUserConnecteTestSuccess() throws Exception {
+    // Etant donne qu'il existe un utilisateur connecté
+    // Quand on récupère la liste des offres qu'il a créé
+    // Alors on veut une liste non vide avec le bon nombre d'offres
+    List<Offre> offres = offreDao.getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    Assertions.assertThat(offres).isNotNull().hasSize(NB_OFFRES_CREES_USER_CONNECTE);
+  }
+
+  @Test
+	public void getOffresEnCoursByHoteTestSuccess_moins1Jour() throws Exception {
+		// Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est perimee de 1j
+		// Quand on veut la liste des offres en cours de l'hote
+	  	// Alors l'offre n'est pas retournee
+	  	Offre o = createOffre();
+		o.setDateRepas(LocalDateTime.now().minusDays(1));
+				
+		List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres).isNotNull().hasSize(1);
+		
+		offreDao.sauvegarder(o);
+		
+		offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres).isNotNull().hasSize(1);
+	}
+  
+  @Test
+	public void getOffresEnCoursByHoteTestSuccess_moins1mois() throws Exception {
+		// Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est perimee de 1mois
+		// Quand on veut la liste des offres en cours de l'hote
+	  	// Alors l'offre n'est pas retournee
+	  	Offre o = createOffre();
+		o.setDateRepas(LocalDateTime.now().minusMonths(1));
+				
+		List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres).isNotNull().hasSize(1);
+		
+		offreDao.sauvegarder(o);
+		
+		offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres).isNotNull().hasSize(1);
+	}
+  
+  @Test
+  public void getOffresEnCoursByHoteTestSuccess_plus1an() throws Exception {
+		// Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est dans 1 an
+		// Quand on veut la liste des offres en cours de l'hote
+	  	// Alors l'offre est retournee
+	  	Offre o = createOffre();
+		o.setDateRepas(LocalDateTime.now().plusYears(1));
+				
+		List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres).isNotNull().hasSize(1);
+		
+		offreDao.sauvegarder(o);
+		
+		offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+		Assertions.assertThat(offres).isNotNull().hasSize(2);
+	}
+  
+  @Test
+  public void getOffresEnCoursByHoteTestEchec() throws Exception {
+	  // Etant donne l'id d'un hote null ou non existant
+	  // Quand on veut recuperer ses offres en cours
+	  // Alors la liste des offres est vide.
+	  List<Offre> offres = offreDao.getOffresEnCoursByHote(null);
+	  Assertions.assertThat(offres).isNotNull().isEmpty();
+	  
+	  offres = offreDao.getOffresEnCoursByHote(-1);
+	  Assertions.assertThat(offres).isNotNull().isEmpty();
+  }
   @Test
   public void getByIdTestSucces() throws Exception {
     // Etant donne les informations d'une offre enregistree en base avec
@@ -62,7 +137,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     Integer prix = 999;
     Integer nombrePersonne = 5;
     Integer dureeMinute = 120;
-    LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 1, 19, 45, 0);
+    LocalDateTime dateRepas = LocalDate.now().plusDays(3).atTime(0, 0, 0);
     Boolean animaux = Boolean.FALSE;
     String note = "Note";
     Integer ageMin = 20;
@@ -107,60 +182,89 @@ public class OffreDaoTest extends AbstractDaoTest {
     // celles attendues
     Assertions.assertThat(offre).isNotNull();
     Assertions.assertThat(offre.getId()).isNotNull().isEqualTo(idOffre);
-    Assertions.assertThat(offre.getDateCreation()).isNotNull().isEqualTo(dateCreation);
+    Assertions.assertThat(offre.getDateCreation()).isNotNull()
+      .isEqualTo(dateCreation);
     Assertions.assertThat(offre.getTitre()).isNotNull().isEqualTo(titre);
     Assertions.assertThat(offre.getPrix()).isNotNull().isEqualTo(prix);
     Assertions.assertThat(offre.getPremium()).isNotNull().isTrue();
-    Assertions.assertThat(offre.getNombrePersonne()).isNotNull().isEqualTo(nombrePersonne);
-    Assertions.assertThat(offre.getDureeMinute()).isNotNull().isEqualTo(dureeMinute);
-    Assertions.assertThat(offre.getDateRepas()).isNotNull().isEqualTo(dateRepas);
+    Assertions.assertThat(offre.getNombrePersonne()).isNotNull()
+      .isEqualTo(nombrePersonne);
+    Assertions.assertThat(offre.getDureeMinute()).isNotNull()
+      .isEqualTo(dureeMinute);
+    Assertions.assertThat(offre.getDateRepas()).isNotNull()
+      .isEqualTo(dateRepas);
     Assertions.assertThat(offre.getMenu()).isNotNull();
-    Assertions.assertThat(offre.getMenu().getBoisson()).isNotNull().isEqualTo(boisson);
-    Assertions.assertThat(offre.getMenu().getDessert()).isNotNull().isEqualTo(dessert);
-    Assertions.assertThat(offre.getMenu().getEntree()).isNotNull().isEqualTo(entree);
-    Assertions.assertThat(offre.getMenu().getPlat()).isNotNull().isEqualTo(plat);
-    Assertions.assertThat(offre.getAnimaux()).isNotNull().isEqualTo(animaux);
+    Assertions.assertThat(offre.getMenu().getBoisson()).isNotNull()
+      .isEqualTo(boisson);
+    Assertions.assertThat(offre.getMenu().getDessert()).isNotNull()
+      .isEqualTo(dessert);
+    Assertions.assertThat(offre.getMenu().getEntree()).isNotNull()
+      .isEqualTo(entree);
+    Assertions.assertThat(offre.getMenu().getPlat()).isNotNull()
+      .isEqualTo(plat);
+    Assertions.assertThat(offre.getAnimaux()).isNotNull()
+      .isEqualTo(animaux);
     Assertions.assertThat(offre.getNote()).isNotNull().isEqualTo(note);
     Assertions.assertThat(offre.getAgeMin()).isNotNull().isEqualTo(ageMin);
     Assertions.assertThat(offre.getAgeMax()).isNotNull().isEqualTo(ageMax);
-    Assertions.assertThat(offre.getPremium()).isNotNull().isEqualTo(premium);
+    Assertions.assertThat(offre.getPremium()).isNotNull()
+      .isEqualTo(premium);
 
     // que les informations de l'adresse associee a l'offre sont celles
     // attendues
     Assertions.assertThat(offre.getAdresse()).isNotNull();
     Assertions.assertThat(offre.getAdresse().getVille()).isNotNull();
-    Assertions.assertThat(offre.getAdresse().getVille().getPays()).isNotNull();
+    Assertions.assertThat(offre.getAdresse().getVille().getPays())
+      .isNotNull();
 
-    Assertions.assertThat(offre.getAdresse().getId()).isNotNull().isEqualTo(idAdresse);
-    Assertions.assertThat(offre.getAdresse().getVoie()).isNotNull().isEqualTo(voie);
+    Assertions.assertThat(offre.getAdresse().getId()).isNotNull()
+      .isEqualTo(idAdresse);
+    Assertions.assertThat(offre.getAdresse().getVoie()).isNotNull()
+      .isEqualTo(voie);
 
-    Assertions.assertThat(offre.getAdresse().getVille().getId()).isNotNull().isEqualTo(idVille);
-    Assertions.assertThat(offre.getAdresse().getVille().getCp()).isNotNull().isEqualTo(cp);
-    Assertions.assertThat(offre.getAdresse().getVille().getNom()).isNotNull().isEqualTo(ville);
+    Assertions.assertThat(offre.getAdresse().getVille().getId()).isNotNull()
+      .isEqualTo(idVille);
+    Assertions.assertThat(offre.getAdresse().getVille().getCp()).isNotNull()
+      .isEqualTo(cp);
+    Assertions.assertThat(offre.getAdresse().getVille().getNom())
+      .isNotNull().isEqualTo(ville);
 
-    Assertions.assertThat(offre.getAdresse().getVille().getPays().getId()).isNotNull().isEqualTo(idPays);
-    Assertions.assertThat(offre.getAdresse().getVille().getPays().getNom()).isNotNull().isEqualTo(pays);
-    Assertions.assertThat(offre.getAdresse().getVille().getPays().getCodePays()).isNotNull().isEqualTo(codePays);
+    Assertions.assertThat(offre.getAdresse().getVille().getPays().getId())
+      .isNotNull().isEqualTo(idPays);
+    Assertions.assertThat(offre.getAdresse().getVille().getPays().getNom())
+      .isNotNull().isEqualTo(pays);
+    Assertions
+      .assertThat(
+        offre.getAdresse().getVille().getPays().getCodePays())
+      .isNotNull().isEqualTo(codePays);
 
     // que les informations sur le type de cuisine associe a l'offre sont
     // celles attendues
     Assertions.assertThat(offre.getTypeCuisine()).isNotNull();
-    Assertions.assertThat(offre.getTypeCuisine().getId()).isNotNull().isEqualTo(idTypeCuisine);
-    Assertions.assertThat(offre.getTypeCuisine().getType()).isNotNull().isEqualTo(type);
+    Assertions.assertThat(offre.getTypeCuisine().getId()).isNotNull()
+      .isEqualTo(idTypeCuisine);
+    Assertions.assertThat(offre.getTypeCuisine().getType()).isNotNull()
+      .isEqualTo(type);
 
     // que les informations sur l'hote de l'offre sont celles attendues
     Assertions.assertThat(offre.getHote()).isNotNull();
-    Assertions.assertThat(offre.getHote().getIdUtilisateur()).isNotNull().isEqualTo(idUtilisateur);
-    Assertions.assertThat(offre.getHote().getNom()).isNotNull().isEqualTo(nom);
-    Assertions.assertThat(offre.getHote().getMail()).isNotNull().isEqualTo(mail);
+    Assertions.assertThat(offre.getHote().getIdUtilisateur()).isNotNull()
+      .isEqualTo(idUtilisateur);
+    Assertions.assertThat(offre.getHote().getNom()).isNotNull()
+      .isEqualTo(nom);
+    Assertions.assertThat(offre.getHote().getMail()).isNotNull()
+      .isEqualTo(mail);
 
-    Assertions.assertThat(offre.getReservations()).isNotEmpty().hasSize(nbReservation);
-    Assertions.assertThat(offre.getReservations()).are(new Condition<Reservation>() {
-      @Override
-      public boolean matches(Reservation reservation) {
-        return reservation.getOffre().getId().equals(offre.getId());
-      }
-    });
+    Assertions.assertThat(offre.getReservations()).isNotEmpty()
+      .hasSize(nbReservation);
+    Assertions.assertThat(offre.getReservations())
+      .are(new Condition<Reservation>() {
+        @Override
+        public boolean matches(Reservation reservation) {
+          return reservation.getOffre().getId()
+            .equals(offre.getId());
+        }
+      });
 
     Assertions.assertThat(offre.getImages()).isNotEmpty().hasSize(nbImage);
 
@@ -192,7 +296,8 @@ public class OffreDaoTest extends AbstractDaoTest {
 
     // et que la date de création de l'offre est mise à la date du jour lors
     // de la création
-    Assertions.assertThat(offreDao.getById(offre.getId()).getDateCreation()).isEqualTo(LocalDate.now());
+    Assertions.assertThat(offreDao.getById(offre.getId()).getDateCreation())
+      .isEqualTo(LocalDate.now());
   }
 
   @Test
@@ -257,7 +362,9 @@ public class OffreDaoTest extends AbstractDaoTest {
       offreDao.sauvegarder(offre);
     } catch (Exception e) {
       // Alors on s'attend a ce qu'une exception soit lancee
-      Assertions.assertThat(e).isInstanceOf(FeedMeException.class).hasMessage("Nombre de convive pour l'offre ne doit pas être égal à 0");
+      Assertions.assertThat(e).isInstanceOf(FeedMeException.class)
+        .hasMessage(
+          "Nombre de convive pour l'offre ne doit pas être égal à 0");
     }
   }
 
@@ -464,6 +571,224 @@ public class OffreDaoTest extends AbstractDaoTest {
       Assertions.fail("Doit soulever une exception");
     } catch (DataIntegrityViolationException dive) {
       this.assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestSucces() throws Exception {
+    Integer idOffre = 1;
+
+    Offre offre = this.createOffre();
+    offre.setId(idOffre);
+
+    // Etant donné les nouvelles infos pour l'offre à modifier
+    String titre = "MonTitre2";
+    Integer prix = 9999;
+    Integer nombrePersonne = 15;
+    Integer dureeMinute = 180;
+    LocalDateTime dateRepas = LocalDateTime.of(2015, 2, 2, 19, 45, 0);
+    Boolean animaux = Boolean.TRUE;
+    String note = "Note2";
+    Integer ageMin = 21;
+    Integer ageMax = 31;
+    Boolean premium = false;
+
+    // les informations de l'adresse associee a cette offre
+    Integer idAdresse = 2;
+
+    // les informations sur le type de cuisine de cette offre
+    Integer idTypeCuisine = 4;
+
+    Menu menu = new Menu();
+    String boisson = "MaBoisson2";
+    String dessert = "MonDessert2";
+    String entree = "MonEntree2";
+    String plat = "MonPlat2";
+    menu.setBoisson(boisson);
+    menu.setDessert(dessert);
+    menu.setEntree(entree);
+    menu.setPlat(plat);
+
+    offre.setTitre(titre);
+    offre.setPrix(prix);
+    offre.setNombrePersonne(nombrePersonne);
+    offre.setDureeMinute(dureeMinute);
+    offre.setDateRepas(dateRepas);
+    offre.setAnimaux(animaux);
+    offre.setNote(note);
+    offre.setAgeMin(ageMin);
+    offre.setAgeMax(ageMax);
+    offre.setPremium(premium);
+    offre.getAdresse().setId(idAdresse);
+    offre.getTypeCuisine().setId(idTypeCuisine);
+    offre.setMenu(menu);
+
+    // On appel la DAO pour modifier l'offre
+    offreDao.modifier(offre);
+
+    // On recupere l'offre modifié
+    Offre offreModifier = offreDao.getById(idOffre);
+
+    // On verifie que les champs suivant on changé
+    Assertions.assertThat(offre.getTitre()).isEqualTo(titre);
+    Assertions.assertThat(offre.getPrix()).isEqualTo(prix);
+    Assertions.assertThat(offre.getNombrePersonne())
+      .isEqualTo(nombrePersonne);
+    Assertions.assertThat(offre.getDureeMinute()).isEqualTo(dureeMinute);
+    Assertions.assertThat(offre.getDateRepas()).isEqualTo(dateRepas);
+    Assertions.assertThat(offre.getAnimaux()).isEqualTo(animaux);
+    Assertions.assertThat(offre.getNote()).isEqualTo(note);
+    Assertions.assertThat(offre.getAgeMax()).isEqualTo(ageMax);
+    Assertions.assertThat(offre.getAgeMin()).isEqualTo(ageMin);
+    Assertions.assertThat(offre.getPremium()).isEqualTo(premium);
+    Assertions.assertThat(offre.getAdresse().getId()).isEqualTo(idAdresse);
+    Assertions.assertThat(offre.getTypeCuisine().getId())
+      .isEqualTo(idTypeCuisine);
+  }
+
+  @Test
+  public void modifierOffreTestEchec_PrixNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setPrix(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_TitreNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setTitre(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_NombrePersonneNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setNombrePersonne(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_DureeMinuteNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setDureeMinute(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_DateRepas() throws Exception {
+    Offre offre = createOffre();
+    offre.setDateRepas(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_AnimauxNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setAnimaux(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_AdresseIdNull() throws Exception {
+    Offre offre = createOffre();
+    offre.getAdresse().setId(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_TypeCuisineIdNull() throws Exception {
+    Offre offre = createOffre();
+    offre.getTypeCuisine().setId(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_PlatNull() throws Exception {
+    Offre offre = createOffre();
+    offre.getMenu().setPlat(null);
+
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_PremiumNull() throws Exception {
+    Offre offre = createOffre();
+    offre.setPremium(null);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.NOT_NULL_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_AdresseIdInexistant() throws Exception {
+    Offre offre = createOffre();
+    offre.getAdresse().setId(Integer.MAX_VALUE);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
+    }
+  }
+
+  @Test
+  public void modifierOffreTestEchec_TypeCuisineIdInexistant()
+    throws Exception {
+    Offre offre = createOffre();
+    offre.getTypeCuisine().setId(Integer.MAX_VALUE);
+    try {
+      this.offreDao.modifier(offre);
+      Assertions.fail("Doit soulever une exception");
+    } catch (DataIntegrityViolationException dive) {
+      assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
     }
   }
 

@@ -119,10 +119,41 @@
 		);
 	</insert>
 	
-	<select id="getOffresParticipeUserCourant" resultMap="Offre_ResultMap">
+	<select id="getOffresParticipeUserConnecte" resultMap="Offre_ResultMap">
 		<include refid="select_all_columns_offre" />
 		INNER JOIN reservation on (reservation.res_off_id = offre.off_id )
 		WHERE (current_timestamp >= off_date_repas) and res_con_id = #{idUtilisateurConnecte}
 	</select>
+	
+	<select id="getOffresCreesUserConnecte" resultMap="Offre_ResultMap">
+		<include refid="select_all_columns_offre" />
+		WHERE off_usr_id = #{idUtilisateurConnecte}
+	</select>
+	
+	<select id="getOffresEnCoursByHote" resultMap="Offre_ResultMap">
+		<include refid="select_all_columns_offre" />
+		WHERE (off_date_repas > current_timestamp) and off_usr_id = #{idUtilisateur}
+	</select>
+	
+	<update id="modifier">
+		UPDATE offre 
+		SET
+			off_titre = #{offre.titre},
+			off_prix = #{offre.prix},
+			off_nombre_personne = #{offre.nombrePersonne},
+			off_duree_minute = #{offre.dureeMinute},
+			off_date_repas = #{offre.dateRepas},
+			off_note = #{offre.note},
+			off_plat = #{offre.menu.plat},
+			off_dessert = #{offre.menu.dessert},
+			off_entree = #{offre.menu.entree},
+			off_boisson = #{offre.menu.boisson},
+			off_age_min = #{offre.ageMin},
+			off_age_max = #{offre.ageMax},
+			off_animaux = #{offre.animaux},
+			off_adr_id = #{offre.adresse.id},
+			off_typ_id = #{offre.typeCuisine.id},
+			off_premium  = #{offre.premium}
+	</update>
 
 </mapper>

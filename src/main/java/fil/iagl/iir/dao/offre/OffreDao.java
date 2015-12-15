@@ -34,6 +34,14 @@ public interface OffreDao {
   Integer sauvegarder(@Param("offre") Offre offre);
 
   /**
+   * Modifie une offre
+   * 
+   * @param offre l'offre à modifier
+   * @return Le nombre de ligne modifié
+   */
+  Integer modifier(@Param("offre") Offre offre);
+
+  /**
    * Récupère la liste des offres Premium
    * 
    * @return La liste des offres Premium
@@ -42,8 +50,22 @@ public interface OffreDao {
 
   /**
    * Récupère la liste des offres auxquelles l'utilisateur connecté a participé
+   * @param idUtilisateurConnecte id de l'utilisateur qui est connecté
    * @return La liste des offres auxquelles l'utilisateur connecté a participé
    */
-  List<Offre> getOffresParticipeUserCourant(@Param("idUtilisateurConnecte") Integer idUtilisateurConnecte);
+  List<Offre> getOffresParticipeUserConnecte(@Param("idUtilisateurConnecte") Integer idUtilisateurConnecte);
 
+  /**
+   * Récupère la liste des offres que l'utilisateur connecté a créé
+   * @param idUtilisateurConnecte id de l'utilisateur qui est connecté
+   * @return La liste des offres créées par l'utilisateur connecté
+   */
+  List<Offre> getOffresCreesUserConnecte(@Param("idUtilisateurConnecte") Integer idUtilisateurConnecte);
+
+  /**
+   * Retourne la liste des offres en cours créées par un hôte donné
+   * @param idUtilisateur id d'un hôte
+   * @return La liste des offres en cours créées par l'hôte
+   */
+  List<Offre> getOffresEnCoursByHote(@Param("idUtilisateur") Integer idUtilisateur);
 }

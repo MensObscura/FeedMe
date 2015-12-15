@@ -26,13 +26,13 @@ public class ParametrageControllerTest extends AbstractControllerTest {
   @Test
   public void getVillesTestSucces() throws Exception {
     mockMvc.perform(get("/settings/pays")).andExpect(status().isOk())
-      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE)).andExpect(jsonPath("$").isArray());
+      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE)).andExpect(jsonPath("$.data").isArray());
   }
 
   @Test
   public void getTypesCuisinesTestSucces() throws Exception {
     mockMvc.perform(get("/settings/typescuisines")).andExpect(status().isOk())
-      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE)).andExpect(jsonPath("$").isArray());
+      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE)).andExpect(jsonPath("$.data").isArray());
   }
 
 }

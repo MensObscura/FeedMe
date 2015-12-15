@@ -149,4 +149,16 @@ public class ImageDaoTest extends AbstractDaoTest {
     Assertions.assertThat(imageDao.getById(Integer.MAX_VALUE)).isNull();
   }
 
+  @Test
+  public void supprimerPourOffreTestSucces() throws Exception {
+    // Etant donné une offre avec une image dans la table IMAGE_OFFRE
+    int idOffre = 1;
+
+    // Quand on demande de supprimer les images de cette offre
+    this.imageDao.supprimerPourOffre(idOffre);
+
+    // Alors on verifie que l'offre ne contient plus d'image
+    Assertions.assertThat(offreDao.getById(idOffre).getImages()).isEmpty();
+  }
+
 }

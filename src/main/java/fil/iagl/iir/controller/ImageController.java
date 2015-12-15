@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import fil.iagl.iir.entite.Image;
+import fil.iagl.iir.outils.DataReturn;
 import fil.iagl.iir.service.ImageService;
 
 @RestController
@@ -19,12 +20,12 @@ public class ImageController {
   private ImageService imageService;
 
   @RequestMapping(method = RequestMethod.POST)
-  public Image upload(@RequestParam(value = "file") MultipartFile multipartFile) {
-    return imageService.sauvegarder(multipartFile);
+  public DataReturn<Image> upload(@RequestParam(value = "file") MultipartFile multipartFile) {
+    return new DataReturn<>(imageService.sauvegarder(multipartFile));
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-  public Image getById(@PathVariable("id") Integer id) {
-    return imageService.getById(id);
+  public DataReturn<Image> getById(@PathVariable("id") Integer id) {
+    return new DataReturn<>(imageService.getById(id));
   }
 }
