@@ -28,9 +28,18 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		function(donnees) {
 			// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 			$scope.profil = donnees.data;
-			
 			//checkbox visible
 			$scope.visible = $scope.profil.adresseVisible;
+			
+			var url = "/offres/enCours/" + donnees.data.idUtilisateur;
+			
+			// On va rechercher les repas qu'a créé l'utilisateur.
+			$http.get(url).success(
+					function(donnees) {
+						// Quand on reçoit les données, on place les valeurs dans listeOffres
+						$scope.listeOffres = donnees.data;
+					}
+				);
 			
 		}
 	);
@@ -38,11 +47,11 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	// On va rechercher les repas auxquels l'utilisateur a participé.
 	$http.get('/offres/aParticipe').success(
 			function(donnees) {
-				// Quand on reçoit les données, on les envoie à la vue
+				// Quand on reçoit les données, on place les valeurs dans listeRepas
 				$scope.listeRepas = donnees.data;
 			}
-		);	
-	
+		);
+		
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
@@ -217,7 +226,6 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		}).success(function(response, status, headers, config){
 			console.log(response);
 			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
-			//$window.location.href = "/profil.html";
 			$scope.editBio=false;
 			$scope.editPic=false;
 			$scope.editAdr =false;
