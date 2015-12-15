@@ -208,6 +208,9 @@ Page proposant le formulaire d'inscription.
         							</md-checkbox>
 								</md-input-container>
 							</div>
+							<div ng-show="premium">
+							<input type="button" value="Accéder au paiement" onclick="OuvrirPopup('PaypalFake.html','','top=10,left=10')">
+							</div>
 							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
 							<md-button id="form_button_log" type="submit" ng-click="submited=true"
 								class="form">Confirmer</md-button> </md-content>
@@ -228,6 +231,7 @@ Page proposant le formulaire d'inscription.
 	<script type="text/javascript" src="/resources/js/scripts/angular-messages.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/bootstrap-datetimepicker.js"></script>
 	<script type="text/javascript" src="/resources/js/controllers/controller_inscription.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/popup.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
