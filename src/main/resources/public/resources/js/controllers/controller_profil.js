@@ -152,12 +152,16 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 				});
 			}
 		}
+		else {
+			deferred.resolve("pas de fichier");
+		}
 		
         return deferred.promise;
 	};
 	
     // fonction d'envoi du formulaire :
 	var envoi = function() {
+		console.log("yop");
 		if(!$scope.editAdr){
 			$scope.homeAction();
 		}
@@ -228,8 +232,9 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 
     // fonction de la modification de profil :
 	$scope.submitEdition = function(){
+		
 		if ($scope.ProfilForm.$valid){
-			
+		
     		upload($scope.photo).then(function(ee) {
 				envoi();
 			});

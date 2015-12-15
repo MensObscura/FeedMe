@@ -168,6 +168,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 				}
 			});
     	}
+    	
     };
     
     // fonction d'envoi du formulaire :
@@ -261,8 +262,12 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 
 			$scope.historique = new Array();
 			
-			uploadAll(0,$scope.images);
-			
+			if ($scope.images.length > 0){
+				uploadAll(0,$scope.images);
+			}
+			else{
+				envoi();
+			}
 		}else{
 			
 			// the element you wish to scroll to.
