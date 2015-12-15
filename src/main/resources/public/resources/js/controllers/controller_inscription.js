@@ -47,7 +47,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
-				$scope.count = donnees;
+				$scope.count = donnees.data;
 			}
 	);
 	

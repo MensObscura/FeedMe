@@ -35,7 +35,7 @@ app.controller("ProfilCtrl", function($scope, $http, $window) {
 		function(donnees) {
 			if (donnees)
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-				$scope.profil = donnees;
+				$scope.profil = donnees.data;
         
 			else
 				// On essaye d'atteindre une page qui n'existe pas...

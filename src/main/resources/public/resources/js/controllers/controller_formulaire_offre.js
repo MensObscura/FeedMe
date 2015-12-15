@@ -70,7 +70,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-				$scope.profil = donnees;
+				$scope.profil = donnees.data;
 				$scope.premium = $scope.profil.premium;
 
 			}
@@ -104,14 +104,14 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	// On va rechercher toutes les types de cuisine en se connectant à la route consacrée
 	$http.get('/settings/typescuisines').success(
 			function(donnees) {
-				$scope.cook = donnees;
+				$scope.cook = donnees.data;
 			}
 	);
 
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
-				$scope.count = donnees;
+				$scope.count = donnees.data;
 				$scope.saveCountry = $scope.count;
 			}
 	);

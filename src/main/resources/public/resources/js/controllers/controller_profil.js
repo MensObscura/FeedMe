@@ -27,7 +27,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	$http.get('/utilisateur/particulier/profil').success(
 		function(donnees) {
 			// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-			$scope.profil = donnees;
+			$scope.profil = donnees.data;
 			
 			//checkbox visible
 			$scope.visible = $scope.profil.adresseVisible;
@@ -35,11 +35,18 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		}
 	);
 	
+	// On va rechercher les repas auxquels l'utilisateur a participé.
+	$http.get('/offres/aParticipe').success(
+			function(donnees) {
+				// Quand on reçoit les données, on les envoie à la vue
+				$scope.listeRepas = donnees.data;
+			}
+		);	
 	
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
-				$scope.count = donnees;
+				$scope.count = donnees.data;
 				$scope.saveCountry = $scope.count;
 			}
 	);

@@ -25,7 +25,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 		
 	// affichage photo
 	$scope.display= function(img) {
-		console.log("laoow");
+
 		$scope.allowDisplay =true;
 		$scope.current = img;
 		
@@ -34,7 +34,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 	};
 	// disable photo
 	$scope.disable= function() {
-		console.log("disble");
+
 		$scope.allowDisplay =false;
 	};
 	
@@ -61,7 +61,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 			function(data) {
 
 				// On transfert dans "offre" les données
-				$scope.offre = data;
+				$scope.offre = data.data;
 				// On calcule le nombre de places restantes, que l'on transfert aussi à la vue
 				var place_reservees = 0;
 				for (i = 0; i < data.reservations.length; i++) {

@@ -1,0 +1,13 @@
+<div>
+	<div ng-if="listeRepas">
+		<h3>Mes derniers repas :</h3>
+		<ul>
+			<li ng-repeat="repas in listeRepas">{{repas}}</li>
+		</ul>
+	</div>
+
+	<h3>Mes derni&egrave;res offres cr&eacute;&eacute;es :</h3>
+	<ul>
+		<li ng-repeat="offre in listeOffres">{{offre}}</li>
+	</ul>
+</div>
