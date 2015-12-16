@@ -3,6 +3,8 @@ package fil.iagl.iir.dao;
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.fail;
 
+import javax.validation.constraints.AssertTrue;
+
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -284,6 +286,18 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
     assertThat(utilisateur.getAdresseVisible()).isNotNull().isFalse();
   }
 
+  @Test
+  public void devenirPreniumTestSucces() {
+	  int idNonPrenium = 3;
+	  Utilisateur utilisateur = utilisateurDao.getById(idNonPrenium);
+	  assertThat(utilisateur).isNotNull();
+	  assertThat(utilisateur.getPremium()).isEqualTo(false);
+	  utilisateurDao.devenirPrenium(utilisateur);
+	  utilisateur = utilisateurDao.getById(idNonPrenium);
+	  assertThat(utilisateur).isNotNull();
+	  assertThat(utilisateur.getPremium()).isEqualTo(true);
+  }
+  
   @Test
   public void sauvegarderTestEchec_NomNull() throws Exception {
     // Etant donne un utilisateur n'ayant pas de nom

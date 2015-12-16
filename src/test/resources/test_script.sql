@@ -49,7 +49,7 @@ INSERT INTO ADRESSE (adr_voie, adr_vil_id) VALUES
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_premium , usr_description, usr_adresse_visible) VALUES 
 ( 'toto', 'toto.toto@gmail.com', true, 'ceci est la description de toto', true), -- ID 1
 ( 'foo', 'foo.bar@gmail.com', true, null, true), -- ID 2
-( 'jean', 'jambon-beurre@gmail.com', true, null, true); -- ID 3
+( 'jean', 'jambon-beurre@gmail.com', false, null, true); -- ID 3
 
 INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description, usr_img_id) VALUES
 ( 'hall', 'kolick@gmail.com', 1, true, 'ceci est la description de hall', 1); -- ID 4
