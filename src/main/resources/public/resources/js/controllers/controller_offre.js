@@ -105,7 +105,20 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 					$scope.note = data.note;
 				}
 	);
+	
+	//on recupère les donnée de l'utilisateur courrant
+	$http.get('/utilisateur/particulier/profil').success(
+			function(donnees) {
+				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
+				$scope.profil = donnees;
 
+			}
+	);
+
+	$scope.edition = function(){
+		
+		$window.location.href = "/edition-offre.html?id="+id;
+	}
 	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
 		if ($scope.ReservationForm.$valid && $scope.place > 0 ) {

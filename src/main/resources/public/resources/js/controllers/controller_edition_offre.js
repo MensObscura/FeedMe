@@ -23,7 +23,7 @@ var dateTimePicker = function() {
 };
 
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel','appFilters']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel', 'appFilters']);
 
 validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -38,7 +38,7 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 });
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload, $q) {
-
+	
 	// initialisation de l'affichage photo à false
 	$scope.allowDisplay =false;
 
@@ -76,6 +76,104 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 			}
 	);
 	
+	// Fonction permettant de récupérer les paramètres de l'url.
+	$scope.getUrlVars = function() {
+		var vars = {};
+	    var parts = $window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+	    function(m,cle,valeur) {
+	      vars[cle] = valeur;
+	    });
+	    return vars;
+	}
+	
+	// On va rechercher toutes les types de cuisine en se connectant à la route consacrée
+	$http.get('/settings/typescuisines').success(
+			function(donnees) {
+				$scope.cook = donnees;
+				$scope.saveCook = $scope.cook;
+			}
+	);
+
+	// On va rechercher toutes les pays en se connectant à la route consacrée
+	$http.get('/settings/pays').success(
+			function(donnees) {
+				$scope.count = donnees;
+				$scope.saveCountry = $scope.count;
+			}
+	);
+	
+	// On récupère l'identifiant de l'offre à editer
+	var id = $scope.getUrlVars()["id"];
+	
+	// On en déduit la route sur laquelle se connecter
+	var route = '/offres/'+id;
+
+	// On se branche dessus
+	$http.get(route).success(
+			function(data) {
+
+				// On transfert dans "offre" les données
+				$scope.offre = data;
+				// On set le pays
+				$scope.count = {0:$scope.offre.adresse.ville.pays};
+				// On set la ville 
+				$scope.ville = $scope.offre.adresse.ville.nom;
+				$scope.cp =$scope.offre.adresse.ville.cp;
+				$scope.complement=$scope.offre.adresse.ville.complement;
+				
+				
+				var rue = $scope.offre.adresse.voie;
+				var num = rue.split(" ")[0];
+
+				$scope.numero = parseInt(num);
+				$scope.rue = rue.substring(num.length+1,rue.length);
+
+				// On set le type de cuisine
+				$scope.cook = {0:$scope.offre.typeCuisine};
+			
+				console.log($scope.offre.typeCuisine);
+				// On set le menu
+
+				$scope.entree = $scope.offre.menu.entree;
+				$scope.plat = $scope.offre.menu.plat;
+				$scope.dessert = $scope.offre.menu.dessert;
+				$scope.boisson = $scope.offre.menu.boisson;
+				
+				
+				// Enfin on set le reste
+			
+						
+						$scope.titre = $scope.offre.titre;
+						$scope.prix = $scope.offre.prix/100;
+						$scope.nbpers = $scope.offre.nombrePersonne;
+						$scope.duree = $scope.offre.dureeMinute;
+						$scope.date = $scope.offre.dateRepas ;
+						$scope.note = $scope.offre.note;
+						$scope.age.min = $scope.offre.ageMin;
+						$scope.age.max = $scope.offre.ageMax;
+						$scope.animal = $scope.offre.animal;
+						
+						
+						$scope.images= $scope.offre.images;
+						$scope.premium= $scope.offre.premium;
+				});
+			
+	//on reremplit les selects pour la modification
+	$scope.refillCountry = function(){
+	
+		
+	
+		$scope.count = $scope.saveCountry;
+		
+	}
+	$scope.refillCook = function(){
+		
+		
+		
+		$scope.cook = $scope.saveCook;
+		
+	}
+
 	// fonction d'auto-remplissage de l'adresse.
 	$scope.homeAction = function() {
 		// il faut que l'utilisateur est une adresse (logiquement oui)
@@ -101,20 +199,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 
 	};
 
-	// On va rechercher toutes les types de cuisine en se connectant à la route consacrée
-	$http.get('/settings/typescuisines').success(
-			function(donnees) {
-				$scope.cook = donnees;
-			}
-	);
 
-	// On va rechercher toutes les pays en se connectant à la route consacrée
-	$http.get('/settings/pays').success(
-			function(donnees) {
-				$scope.count = donnees;
-				$scope.saveCountry = $scope.count;
-			}
-	);
 
 	// pré-remplissage des champs 'durée', 'nbpers' et 'prix' par le minimum attendu
 	$scope.duree = 60;
@@ -168,7 +253,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 				}
 			});
     	}
-    	
     };
     
     // fonction d'envoi du formulaire :
@@ -262,12 +346,15 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 
 			$scope.historique = new Array();
 			
+		
 			if ($scope.images.length > 0){
-				uploadAll(0,$scope.images);
-			}
-			else{
-				envoi();
-			}
+							
+								uploadAll(0,$scope.images);
+							}
+							else{
+								envoi();
+							}
+			
 		}else{
 			
 			// the element you wish to scroll to.
