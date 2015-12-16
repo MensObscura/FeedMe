@@ -64,7 +64,9 @@ Page de visualisation d'une offre
 					<shine> <img width=50 height=50 class="img-circle img-tile" ng-show="offre.premium"
 						src="resources/img/offre/premium.png" /> </shine>
 				</div>
+				
 			</div>
+			<div class=" Aligner" ng-if="offre.hote.idUtilisateur==profil.idUtilisateur"><i ng-click="edition()" class="fa fa-pencil-square-o white editOffre"></i></div>
 			<h2>{{offre.titre}}</h2>
 			<h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
 			<form name="ReservationForm" ng-submit="submitForm()" novalidate>
