@@ -3,6 +3,7 @@ package fil.iagl.iir.service;
 import java.time.LocalDate;
 
 import org.fest.assertions.api.Assertions;
+import org.fest.assertions.api.Fail;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -10,6 +11,7 @@ import org.mockito.Mockito;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
+import junit.framework.Assert;
 
 public class UtilisateurServiceTest extends AbstractServiceTest {
 
@@ -102,5 +104,31 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     utilisateurService.getAllPremium();
     // On verifie que ce service appel la dao adéquate
     Mockito.verify(particulierDao, Mockito.times(1)).getAllPremium();
+  }
+  @Test
+  public void devenirPreniumTestSucces() {
+	  Utilisateur utilisateur = this.createUtilisateur();
+	  utilisateur.setPremium(false);
+	  utilisateurService.devenirPrenium(utilisateur);
+	  Mockito.verify(utilisateurDao,Mockito.times(1)).devenirPrenium(utilisateur);
+  }
+  @Test(expected=FeedMeException.class)
+  public void devenirPreniumTestEchec_dejaPrenium() {
+	  Utilisateur utilisateur = this.createUtilisateur();
+	  try {
+		  utilisateurService.devenirPrenium(utilisateur);
+	  } catch (FeedMeException fme) {
+		  Mockito.verify(utilisateurDao,Mockito.never()).devenirPrenium(utilisateur);;
+		  throw fme;
+	  }
+  }
+  @Test(expected=FeedMeException.class)
+  public void devenirPreniumTestEchec_null() {
+	  try {
+		  utilisateurService.devenirPrenium(null);
+	  } catch (FeedMeException fme) {
+		  Mockito.verify(utilisateurDao,Mockito.never()).devenirPrenium(null);;
+		  throw fme;
+	  }
   }
 }
