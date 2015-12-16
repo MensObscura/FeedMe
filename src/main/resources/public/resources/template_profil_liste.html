@@ -2,7 +2,7 @@
 	<div ng-if="listeRepas">
 		<h3>Mes derniers repas :</h3>
 		<ul>
-			<li ng-repeat="repas in listeRepas">{{repas.titre}} le {{repas.dateRepas | date:"dd/MM/yyyy"}} chez {{repas.hote.nom}}.</li>
+			<li ng-repeat="repas in listeRepas">{{repas.titre}} le {{repas.dateRepas | date:"dd/MM/yyyy"}} chez {{repas.hote.prenom}} {{repas.hote.nom}}.</li>
 		</ul>
 	</div>
 
