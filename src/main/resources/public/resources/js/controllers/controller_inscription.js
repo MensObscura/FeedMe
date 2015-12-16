@@ -77,7 +77,7 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 					voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 					ville : ville,
 			};
-			console.log($scope.anniversaire);
+	
 
 			// On créé un objet utilisateur
 			var utilisateur = {
