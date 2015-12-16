@@ -249,10 +249,9 @@ public abstract class AbstractFeedMeTest {
     return offre;
   }
 
-  Integer idUtilisateur = 2;
-  Integer idParticulier = 2;
-
   protected Authentification<Particulier> createAuthentificationParticulier() {
+    Integer idUtilisateur = 2;
+    Integer idParticulier = 2;
     String mail = "foo.bar@gmail.com";
     String nom = "foo";
     String prenom = "bar";

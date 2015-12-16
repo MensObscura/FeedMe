@@ -12,7 +12,7 @@ public class DataReturn<T> {
   private String error;
 
   public DataReturn() {
-
+    super();
   }
 
   public DataReturn(T data) {
