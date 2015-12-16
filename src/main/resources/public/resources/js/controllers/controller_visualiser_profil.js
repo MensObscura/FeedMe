@@ -33,13 +33,24 @@ app.controller("ProfilCtrl", function($scope, $http, $window) {
 	// On va se connecter sur la route permettant de récupèrer le profil de l'utilisateur
 	$http.get('/utilisateur/particulier/'+id).success(
 		function(donnees) {
-			if (donnees)
+			if (donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-				$scope.profil = donnees;
-        
-			else
+				$scope.profil = donnees.data;
+			
+			var url = "/offres/enCours/" + donnees.data.idUtilisateur;
+			
+			// On va rechercher les repas qu'a créé l'utilisateur.
+			$http.get(url).success(
+					function(donnees) {
+						// Quand on reçoit les données, on place les valeurs dans listeOffres
+						$scope.listeOffres = donnees.data;
+					}
+				);
+			}
+			else {
 				// On essaye d'atteindre une page qui n'existe pas...
 				$window.location.href = "/accueil.html";
+			}
 		}
 	);
     

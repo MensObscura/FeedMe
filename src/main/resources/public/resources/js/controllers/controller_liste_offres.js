@@ -18,7 +18,7 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	// On se connecte à la route consacrée pour récupèrer les offres
 	$http.get('/offres').success(
 		function(donnees) {
-			$scope.list = donnees;
+			$scope.list = donnees.data;
 			$scope.nombrePlaces =0;	
 		}
 	);

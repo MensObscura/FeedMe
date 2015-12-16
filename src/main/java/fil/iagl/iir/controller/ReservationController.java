@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fil.iagl.iir.entite.Reservation;
+import fil.iagl.iir.outils.DataReturn;
+import fil.iagl.iir.outils.MessageSucces;
 import fil.iagl.iir.service.ReservationService;
 
 @RestController
@@ -25,8 +27,9 @@ public class ReservationController {
    *         données
    */
   @RequestMapping(method = RequestMethod.PUT)
-  public Reservation reserver(@RequestBody Reservation res) {
+  @MessageSucces("La reservation s'est bien effectuée")
+  public DataReturn<Reservation> reserver(@RequestBody Reservation res) {
     reservation.sauvegarder(res);
-    return res;
+    return new DataReturn<>(res);
   }
 }
