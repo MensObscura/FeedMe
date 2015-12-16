@@ -110,7 +110,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-				$scope.profil = donnees;
+				$scope.profil = donnees.data;
 
 			}
 	);

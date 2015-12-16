@@ -77,13 +77,14 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 					voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 					ville : ville,
 			};
+			console.log($scope.anniversaire);
 
 			// On créé un objet utilisateur
 			var utilisateur = {
 					nom : $scope.nom,
 					prenom : $scope.prenom,
 					mail : $scope.email,
-					dateNaissance : moment($scope.anniversaire).format('YYYY-MM-DD'),
+					dateNaissance : moment($scope.date).format('YYYY-MM-DD'),
 					adresse : adresse,
 					premium : $scope.premium
 			};
