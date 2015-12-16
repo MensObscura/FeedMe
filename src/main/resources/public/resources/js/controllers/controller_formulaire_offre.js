@@ -149,9 +149,9 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
             url: '/image',
             data: {file: file}
         }).success(function (data, status, headers, config) {
-            $scope.historique.push(data);
+            $scope.historique.push(data.data);
             // quand le téléchargement est fini on débloque le "defer".
-            deferred.resolve(data);
+            deferred.resolve(data.data);
         });
 
         return deferred.promise;

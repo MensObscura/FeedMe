@@ -137,7 +137,6 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	$scope.$watch('photo', function () {
 		// condition : on ajoute une nouvelle photo.
 		if ($scope.photo) {
-			//$scope.upload($scope.photo);
 
 			$scope.profil.image = $scope.photo;
 			$scope.picEdited=true;
@@ -155,9 +154,9 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 					url: '/image',
 					data: {file: file}
 				}).success(function (data, status, headers, config) {
-					$scope.historique = data;
+					$scope.historique = data.data;
 		            // quand le téléchargement est fini on débloque le "defer".
-		            deferred.resolve(data);
+		            deferred.resolve(data.data);
 				});
 			}
 		}
@@ -170,7 +169,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	
     // fonction d'envoi du formulaire :
 	var envoi = function() {
-		console.log("yop");
+
 		if(!$scope.editAdr){
 			$scope.homeAction();
 		}
@@ -200,7 +199,9 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		
 		var image = null;
 		
+		//image profil
 		if($scope.picEdited){
+		
 			image = $scope.historique;
 		}else {
 			image = $scope.profil.image;
