@@ -128,7 +128,7 @@ Page de visualisation d'une offre
 
 
 
-
+				<div ng-if="!(offre.hote.idUtilisateur==profil.idUtilisateur)">
 					<md-content layout-padding> <br>
 					<md-input-container flex> <label id="white"
 						for="place">Nombre de place(s) à réserver* :</label> <input
@@ -150,6 +150,7 @@ Page de visualisation d'une offre
 					<md-button id="form_button_log" type="submit"
 						ng-click="submited=true" ng-disabled="minCouvert == 0"
 						class="form ">Réserver</md-button>
+						</div>
 			</form>
 		</div>
 	</div>
