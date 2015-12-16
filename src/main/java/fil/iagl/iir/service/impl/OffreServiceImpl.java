@@ -57,9 +57,7 @@ public class OffreServiceImpl implements OffreService {
 
     this.adresseService.sauvegarder(offre.getAdresse());
     this.offreDao.sauvegarder(offre);
-    offre.getImages().forEach(img -> {
-      this.imageDao.sauvegarderPourOffre(img.getId(), offre.getId());
-    });
+    offre.getImages().forEach(img -> this.imageDao.sauvegarderPourOffre(img.getId(), offre.getId()));
   }
 
   /*
@@ -87,9 +85,7 @@ public class OffreServiceImpl implements OffreService {
 
     this.adresseService.sauvegarder(offre.getAdresse());
     this.imageDao.supprimerPourOffre(offre.getId());
-    offre.getImages().forEach(img -> {
-      this.imageDao.sauvegarderPourOffre(img.getId(), offre.getId());
-    });
+    offre.getImages().forEach(img -> this.imageDao.sauvegarderPourOffre(img.getId(), offre.getId()));
     this.offreDao.modifier(offre);
 
   }
@@ -133,6 +129,7 @@ public class OffreServiceImpl implements OffreService {
    * 
    * @see fil.iagl.iir.service.OffreService#listerOffresParticipeUserConnecte()
    */
+  @Override
   public List<Offre> listerOffresParticipeUserConnecte() {
     return offreDao.getOffresParticipeUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
   }
@@ -142,11 +139,13 @@ public class OffreServiceImpl implements OffreService {
    * 
    * @see fil.iagl.iir.service.OffreService#listerOffresCreesUserConnecte()
    */
+  @Override
   public List<Offre> listerOffresCreesUserConnecte() {
     return offreDao.getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
   }
-  
+
+  @Override
   public List<Offre> listerOffresEnCoursByHote(Integer idUtilisateur) {
-	return offreDao.getOffresEnCoursByHote(idUtilisateur);
+    return offreDao.getOffresEnCoursByHote(idUtilisateur);
   }
 }

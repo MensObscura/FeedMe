@@ -66,67 +66,68 @@ public class OffreDaoTest extends AbstractDaoTest {
   }
 
   @Test
-	public void getOffresEnCoursByHoteTestSuccess_moins1Jour() throws Exception {
-		// Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est perimee de 1j
-		// Quand on veut la liste des offres en cours de l'hote
-	  	// Alors l'offre n'est pas retournee
-	  	Offre o = createOffre();
-		o.setDateRepas(LocalDateTime.now().minusDays(1));
-				
-		List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
-		Assertions.assertThat(offres).isNotNull().hasSize(1);
-		
-		offreDao.sauvegarder(o);
-		
-		offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
-		Assertions.assertThat(offres).isNotNull().hasSize(1);
-	}
-  
+  public void getOffresEnCoursByHoteTestSuccess_moins1Jour() throws Exception {
+    // Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est perimee de 1j
+    // Quand on veut la liste des offres en cours de l'hote
+    // Alors l'offre n'est pas retournee
+    Offre o = createOffre();
+    o.setDateRepas(LocalDateTime.now().minusDays(1));
+
+    List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+    Assertions.assertThat(offres).isNotNull().hasSize(1);
+
+    offreDao.sauvegarder(o);
+
+    offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+    Assertions.assertThat(offres).isNotNull().hasSize(1);
+  }
+
   @Test
-	public void getOffresEnCoursByHoteTestSuccess_moins1mois() throws Exception {
-		// Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est perimee de 1mois
-		// Quand on veut la liste des offres en cours de l'hote
-	  	// Alors l'offre n'est pas retournee
-	  	Offre o = createOffre();
-		o.setDateRepas(LocalDateTime.now().minusMonths(1));
-				
-		List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
-		Assertions.assertThat(offres).isNotNull().hasSize(1);
-		
-		offreDao.sauvegarder(o);
-		
-		offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
-		Assertions.assertThat(offres).isNotNull().hasSize(1);
-	}
-  
+  public void getOffresEnCoursByHoteTestSuccess_moins1mois() throws Exception {
+    // Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est perimee de 1mois
+    // Quand on veut la liste des offres en cours de l'hote
+    // Alors l'offre n'est pas retournee
+    Offre o = createOffre();
+    o.setDateRepas(LocalDateTime.now().minusMonths(1));
+
+    List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+    Assertions.assertThat(offres).isNotNull().hasSize(1);
+
+    offreDao.sauvegarder(o);
+
+    offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+    Assertions.assertThat(offres).isNotNull().hasSize(1);
+  }
+
   @Test
   public void getOffresEnCoursByHoteTestSuccess_plus1an() throws Exception {
-		// Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est dans 1 an
-		// Quand on veut la liste des offres en cours de l'hote
-	  	// Alors l'offre est retournee
-	  	Offre o = createOffre();
-		o.setDateRepas(LocalDateTime.now().plusYears(1));
-				
-		List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
-		Assertions.assertThat(offres).isNotNull().hasSize(1);
-		
-		offreDao.sauvegarder(o);
-		
-		offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
-		Assertions.assertThat(offres).isNotNull().hasSize(2);
-	}
-  
+    // Etant donne qu'il existe un hote qui ajoute une offre telle que la date repas est dans 1 an
+    // Quand on veut la liste des offres en cours de l'hote
+    // Alors l'offre est retournee
+    Offre o = createOffre();
+    o.setDateRepas(LocalDateTime.now().plusYears(1));
+
+    List<Offre> offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+    Assertions.assertThat(offres).isNotNull().hasSize(1);
+
+    offreDao.sauvegarder(o);
+
+    offres = offreDao.getOffresEnCoursByHote(o.getHote().getIdUtilisateur());
+    Assertions.assertThat(offres).isNotNull().hasSize(2);
+  }
+
   @Test
   public void getOffresEnCoursByHoteTestEchec() throws Exception {
-	  // Etant donne l'id d'un hote null ou non existant
-	  // Quand on veut recuperer ses offres en cours
-	  // Alors la liste des offres est vide.
-	  List<Offre> offres = offreDao.getOffresEnCoursByHote(null);
-	  Assertions.assertThat(offres).isNotNull().isEmpty();
-	  
-	  offres = offreDao.getOffresEnCoursByHote(-1);
-	  Assertions.assertThat(offres).isNotNull().isEmpty();
+    // Etant donne l'id d'un hote null ou non existant
+    // Quand on veut recuperer ses offres en cours
+    // Alors la liste des offres est vide.
+    List<Offre> offres = offreDao.getOffresEnCoursByHote(null);
+    Assertions.assertThat(offres).isNotNull().isEmpty();
+
+    offres = offreDao.getOffresEnCoursByHote(-1);
+    Assertions.assertThat(offres).isNotNull().isEmpty();
   }
+
   @Test
   public void getByIdTestSucces() throws Exception {
     // Etant donne les informations d'une offre enregistree en base avec
@@ -630,19 +631,19 @@ public class OffreDaoTest extends AbstractDaoTest {
     Offre offreModifier = offreDao.getById(idOffre);
 
     // On verifie que les champs suivant on changé
-    Assertions.assertThat(offre.getTitre()).isEqualTo(titre);
-    Assertions.assertThat(offre.getPrix()).isEqualTo(prix);
-    Assertions.assertThat(offre.getNombrePersonne())
+    Assertions.assertThat(offreModifier.getTitre()).isEqualTo(titre);
+    Assertions.assertThat(offreModifier.getPrix()).isEqualTo(prix);
+    Assertions.assertThat(offreModifier.getNombrePersonne())
       .isEqualTo(nombrePersonne);
-    Assertions.assertThat(offre.getDureeMinute()).isEqualTo(dureeMinute);
-    Assertions.assertThat(offre.getDateRepas()).isEqualTo(dateRepas);
-    Assertions.assertThat(offre.getAnimaux()).isEqualTo(animaux);
-    Assertions.assertThat(offre.getNote()).isEqualTo(note);
-    Assertions.assertThat(offre.getAgeMax()).isEqualTo(ageMax);
-    Assertions.assertThat(offre.getAgeMin()).isEqualTo(ageMin);
-    Assertions.assertThat(offre.getPremium()).isEqualTo(premium);
-    Assertions.assertThat(offre.getAdresse().getId()).isEqualTo(idAdresse);
-    Assertions.assertThat(offre.getTypeCuisine().getId())
+    Assertions.assertThat(offreModifier.getDureeMinute()).isEqualTo(dureeMinute);
+    Assertions.assertThat(offreModifier.getDateRepas()).isEqualTo(dateRepas);
+    Assertions.assertThat(offreModifier.getAnimaux()).isEqualTo(animaux);
+    Assertions.assertThat(offreModifier.getNote()).isEqualTo(note);
+    Assertions.assertThat(offreModifier.getAgeMax()).isEqualTo(ageMax);
+    Assertions.assertThat(offreModifier.getAgeMin()).isEqualTo(ageMin);
+    Assertions.assertThat(offreModifier.getPremium()).isEqualTo(premium);
+    Assertions.assertThat(offreModifier.getAdresse().getId()).isEqualTo(idAdresse);
+    Assertions.assertThat(offreModifier.getTypeCuisine().getId())
       .isEqualTo(idTypeCuisine);
   }
 

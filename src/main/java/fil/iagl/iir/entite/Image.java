@@ -13,10 +13,6 @@ public class Image implements Serializable {
   private Integer id;
   private String path;
 
-  public Image() {
-
-  }
-
   @Override
   public String toString() {
     return "Image [id=" + id + ", path=" + path + "]";
