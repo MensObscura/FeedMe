@@ -101,8 +101,6 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		$scope.editPic=true;
 	};
 
-
-
 	// fonction d'auto-remplissage de l'adresse.
 	$scope.homeAction = function() {
 		// il faut que l'utilisateur est une adresse (logiquement oui)
@@ -169,7 +167,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	
     // fonction d'envoi du formulaire :
 	var envoi = function() {
-
+		
 		if(!$scope.editAdr){
 			$scope.homeAction();
 		}
