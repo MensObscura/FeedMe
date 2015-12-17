@@ -113,7 +113,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 					ng-mouseleave="hoverOutBio()">
 					Bio: <span ng-if="profil.description == undefined">Non renseignée</span> <span ng-if="!(profil.description == undefined)">{{profil.description}}</span> <span
 						ng-show="hoverEditBio"
-						class="animate-show"> <i class="fa fa-pencil-square-o white"></i> <a>Edit</a>
+						class="animate-show"> <i class="fa fa-pencil-square-o white"></i> <a>Cliquez pour modifier</a>
 
 					</span>
 				</div>
@@ -147,7 +147,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 										id="white"
 										name="bio"
 										ng-model="profil.description"
-										placeholder="Ecrivez quelque à propos de vous"></textarea> </md-input-container>
+										placeholder="Ecrivez quelques lignes à propos de vous"></textarea> </md-input-container>
 								</div>
 								</md-content>
 							</div>
@@ -279,7 +279,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 
 					Adresse : {{profil.adresse.voie}}. <span
 						ng-show="hoverEditAdr"
-						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Edit</a>
+						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Cliquez pour modifier</a>
 
 					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})
 

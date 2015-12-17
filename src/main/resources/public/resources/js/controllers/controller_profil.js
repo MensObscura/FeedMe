@@ -23,6 +23,9 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	$scope.picEtdited=false;
     $scope.editAdr =false;
     
+    $scope.debutOffres = 0;
+    $scope.debutRepas = 0;
+    
 	// On va se connecter sur la route permettant de récupèrer le profil de l'utilisateur
 	$http.get('/utilisateur/particulier/profil').success(
 		function(donnees) {
@@ -248,6 +251,5 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 
 		}
 	};
-
-
+	
 });
