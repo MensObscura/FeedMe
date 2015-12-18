@@ -72,8 +72,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
   }
   
   public void devenirPrenium(Utilisateur utilisateur) {
-	  if (utilisateur == null) { throw new FeedMeException("Utilisateur null"); }
-	  if (utilisateur.getPremium()) { throw new FeedMeException("Utilisateur déjà prénium"); }
+	  if (utilisateur == null) {
+		  throw new FeedMeException("Utilisateur null");
+	  }
+	  if (utilisateur.getPremium()) {
+		  throw new FeedMeException("Utilisateur déjà prénium");
+	  }
 	  utilisateurDao.devenirPrenium(utilisateur);
   }
 

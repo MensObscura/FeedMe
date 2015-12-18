@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fil.iagl.iir.entite.AuthentificationParticulier;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.outils.DataReturn;
+import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.outils.MessageSucces;
 import fil.iagl.iir.service.AuthentificationService;
@@ -74,6 +75,12 @@ public class UtilisateurController {
   @RequestMapping(value = "/particulier/premium", method = RequestMethod.GET)
   public DataReturn<List<Particulier>> getAllPremium() {
     return new DataReturn<>(this.utilisateurService.getAllPremium());
+  }
+  
+  @RequestMapping(value="/particulier/devenirPrenium",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+  public DataReturn<Particulier> devenirPrenium(@RequestBody Particulier particulier) {
+	 utilisateurService.devenirPrenium(particulier);
+	 return new DataReturn<>(utilisateurService.getParticulierByUtilisisateurId(particulier.getIdParticulier()));
   }
 
 }
