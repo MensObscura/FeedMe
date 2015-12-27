@@ -2,7 +2,7 @@
 	<div id="listeRepasProfil" ng-if="listeRepas && listeRepas.length">
 		<h3>Mes derniers repas :</h3>
 		<ul>
-			<li ng-repeat="repas in listeRepas | orderBy: '-dateRepas' | limitTo: 3 : debutRepas">{{repas.titre}} le {{repas.dateRepas | date:"dd/MM/yyyy"}} chez {{repas.hote.prenom}} {{repas.hote.nom}}.</li>
+			<li class="pointer" ng-repeat="repas in listeRepas | orderBy: '-dateRepas' | limitTo: 3 : debutRepas" ng-click="vote(repas)">{{repas.titre}} le {{repas.dateRepas | date:"dd/MM/yyyy"}} chez {{repas.hote.prenom}} {{repas.hote.nom}}.</li>
 		</ul>
 		<a class="fleche" ng-show="debutRepas > 0" ng-click="debutRepas = debutRepas - 3"><< pr&eacute;c&eacute;dents</a><a class="fleche" ng-show="debutRepas < listeRepas.length-3" ng-click="debutRepas = debutRepas + 3">suivants >></a>
 	</div>
@@ -14,11 +14,5 @@
 		</ul>
 		<a class="fleche" ng-show="debutOffres > 0" ng-click="debutOffres = debutOffres - 3"><< pr&eacute;c&eacute;dents</a><a class="fleche" ng-show="debutOffres < listeOffres.length-3" ng-click="debutOffres = debutOffres + 3">suivants >></a>
 	</div>
-</div>
 
-<style>
-.fleche {
-	cursor: pointer;
-	margin-rigth: 8px;
-}
-</style>
+</div>

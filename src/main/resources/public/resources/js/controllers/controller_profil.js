@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters']);
+var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters', 'ngRateIt']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
     
@@ -23,9 +23,16 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	$scope.picEtdited=false;
     $scope.editAdr =false;
     
+    $scope.votepour = null;
+    $scope.notepour = null;
+	$scope.noteActu = null;
+	$scope.cuisine = null;
+    $scope.notesHistorique = [];
+    
     $scope.debutOffres = 0;
     $scope.debutRepas = 0;
     
+               
 	// On va se connecter sur la route permettant de récupèrer le profil de l'utilisateur
 	$http.get('/utilisateur/particulier/profil').success(
 		function(donnees) {
@@ -62,7 +69,66 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 				$scope.saveCountry = $scope.count;
 			}
 	);
+		
+	$scope.changeCuisine = function(note) {
+		$scope.cuisine = note;
+	}
+	
+    $scope.change = function(note) {
+    	var pour = $scope.notepour;
+    	var element = {'note': note, 'utilisateur' : pour};
+    	var ancienneNote = null;
+    	
+    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
+    		 if (valeur.utilisateur.idUtilisateur == pour.idUtilisateur) {
+    			 ancienneNote = valeur;
+    		 }
+    	});
+    	
+    	if (ancienneNote == null) {
+    		$scope.notesHistorique.push(element);
+    	}
+    	else {
+    		$scope.notesHistorique.pop(ancienneNote);
+    		$scope.notesHistorique.push(element);
+    	}
 
+    	$scope.notepour = null;
+    	
+    	//console.log($scope.notesHistorique);
+    }
+        
+    $scope.vote = function(repas) {
+    	$scope.votepour = repas;
+    }
+    
+    $scope.retour = function() {
+    	$scope.votepour = null;
+    	$scope.notepour = null;
+    	$scope.notesHistorique = null;
+    }
+    
+    $scope.noter = function(convive) {
+    	$scope.notepour = convive;
+    	$scope.noteActu = null;
+    	
+    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
+    		if (valeur.utilisateur.idUtilisateur == convive.idUtilisateur) {
+   			 	$scope.noteActu = valeur.note;
+   				return;
+   		 	}
+    	});
+    }
+    
+    $scope.$watch('notepour', function() {
+    	$scope.note = $scope.noteActu;
+    });
+    
+    $scope.envoyer = function() {
+    	console.log($scope.notesHistorique);
+    	console.log($scope.cuisine);
+    }
+    
 	// Avertissements pour les hoverOut/hoverIn :
 	$scope.hoverInPic = function(){
 		this.hoverEditPic = true;

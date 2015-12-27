@@ -40,6 +40,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 	rel='stylesheet'
 	type='text/css'
 	href='resources/fonts/general-font.css'>
+<link rel="stylesheet" type='text/css' href="/resources/css/ng-rateit.css" />
 </head>
 
 <body ng-app="Profil">
@@ -49,11 +50,9 @@ Page permettant une visualisation du profil d'un utilisateur.
 		<br />
 
 		<!-- Affichage des éléments du profil de l'utilisateur connecté -->
-		<div
-			class="profil"
-			ng-controller="ProfilCtrl">
-
-			<div class="col-lg-3 editable">
+		<div class="profil" ng-controller="ProfilCtrl">
+<div ng-show="!votepour">
+		<div class="col-lg-3 editable">
 				<div
 					ng-click="setEditPic()"
 					ng-mouseover="hoverInPic()"
@@ -286,6 +285,10 @@ Page permettant une visualisation du profil d'un utilisateur.
 				</div>
 				<div ng-include="'/resources/template_profil_liste.html'"></div>
 			</div>
+</div>
+<div ng-show="votepour">
+	<div ng-include="'/resources/template_vote.html'"></div>
+</div>
 		</div>
 		<br>
 	</div>
@@ -324,8 +327,12 @@ Page permettant une visualisation du profil d'un utilisateur.
 		type="text/javascript"
 		src="/resources/js/scripts/ng-file-upload.min.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
+		<script
+		type="text/javascript"
+		src="/resources/js/scripts/ng-rateit.js"></script>
 	<script
 		type="text/javascript"
 		src="/resources/js/controllers/controller_profil.js"></script>
+
 </body>
 </html>
