@@ -1,0 +1,56 @@
+<a class="pointer" ng-click="retour()">Retour</a>
+<br>
+<h2>{{votepour.titre}}</h2>
+
+<p>
+	Repas du {{votepour.dateRepas | date:"dd/MM/yyyy"}} pour {{votepour.nombrePersonne + 1}} personnes ({{votepour.prix/100}}&euro; par fourchette).<br>
+</p>
+
+<h3>Participants :</h3>
+<div>
+	<div class="carousel">
+		<ul
+			rn-carousel
+			rn-carousel-controls
+			rn-carousel-controls-allow-loop
+			rn-carousel-easing="easeInOutQuad">
+			<div ng-if="votepour.hote.image == null" title="{{votepour.hote.nom}} {{votepour.hote.prenom}}">
+				<li><img src="resources/img/team/missing.jpg" class="medium" ng-click="noter(votepour.hote)"></li>
+			</div>
+			<div ng-if="votepour.hote.image != null" title="{{votepour.hote.nom}} {{votepour.hote.prenom}}">
+				<li><img src="{{votepour.hote.image.path | correctPath}}" class="medium" ng-click="noter(votepour.hote)"></li>
+			</div>
+			<li ng-repeat="f in votepour.reservations">
+				<div ng-if="f.hote.image == null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="noter(f.convive)">
+					<img src="resources/img/team/missing.jpg" class="medium">
+				</div>
+				<div ng-if="f.hote.image != null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="noter(f.convive)">
+					<img src="{{f.convive.image.path | correctPath}}" class="medium">
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="notation">
+	<div ng-if="notepour">
+		{{notepour}}<br>
+			<div ng-show="notepour.idUtilisateur == votepour.hote.idUtilisateur">
+			Cuisine :
+			<div ng-rate-it ng-model="cuisine" resetable="false" ng-click="changeCuisine(cuisine)" read-only="lectureSeule" step="0.5"></div>
+				{{cuisine}}<br>
+		</div>
+		<div ng-if="notepour.idUtilisateur != profil.idUtilisateur">
+			Convive :
+			<div id="note" ng-rate-it ng-model="note" resetable="false" ng-click="change(note)" read-only="lectureSeule" step="0.5"></div>
+			{{note}}<br>
+		</div>
+	</div>
+	
+	<md-button
+		id="form_button_log"
+		type="submit"
+		ng-click="envoyer()"
+		class="form">Voter
+	</md-button>
+</div>
