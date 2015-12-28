@@ -1520,9 +1520,6 @@ img.img-tile.img-profil:hover {
 #notation {
 	clear: both;
 	display: block;
-}
-
-#notation > div {
 	background-color: white;
 	color: black;
 }

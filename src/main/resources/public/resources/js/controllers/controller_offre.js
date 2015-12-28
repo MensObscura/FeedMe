@@ -150,8 +150,6 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 			});
 			
 		}
-		
-		console.log($scope.place);
 
 	};
 

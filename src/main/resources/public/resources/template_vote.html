@@ -47,10 +47,17 @@
 		</div>
 	</div>
 	
-	<md-button
-		id="form_button_log"
-		type="submit"
-		ng-click="envoyer()"
-		class="form">Voter
-	</md-button>
+	<div ng-if="!notepour">
+		<h3>R&eacute;capitulatif des votes :</h3>
+		Cliquez sur la photo de profil du convive que vous voulez noter.<br>
+		Vous avez &eacute;valu&eacute; {{notesHistorique.length}} personne(s) sur {{votepour.reservations.length}}.<br>
+		{{cuisine && "Vous avez mis "+cuisine+" &agrave; "+votepour.hote.prenom+" pour sa cuisine." || "Vous n'avez pas encore &eacute;valu&eacute; la cuisine."}}<br>
+		{{ambianceMoyenne && "L'ambiance moyenne est de "+ambianceMoyenne+" pour le moment."}}<br>
+		<md-button
+			id="form_button_log"
+			type="submit"
+			ng-click="envoyer()"
+			class="form">Voter
+		</md-button>
+	</div>
 </div>

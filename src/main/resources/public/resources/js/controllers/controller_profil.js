@@ -28,7 +28,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	$scope.noteActu = null;
 	$scope.cuisine = null;
     $scope.notesHistorique = [];
-    
+    $scope.ambianceMoyenne = null;
     $scope.debutOffres = 0;
     $scope.debutRepas = 0;
     
@@ -78,24 +78,30 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     	var pour = $scope.notepour;
     	var element = {'note': note, 'utilisateur' : pour};
     	var ancienneNote = null;
+    	var moyenne = 0;
     	
     	angular.forEach($scope.notesHistorique, function(valeur, cle) {
     		 if (valeur.utilisateur.idUtilisateur == pour.idUtilisateur) {
     			 ancienneNote = valeur;
     		 }
+    		 moyenne = moyenne + valeur.note;
     	});
     	
     	if (ancienneNote == null) {
     		$scope.notesHistorique.push(element);
+    		
+    		moyenne = (moyenne + element.note) / $scope.notesHistorique.length;
     	}
     	else {
     		$scope.notesHistorique.pop(ancienneNote);
     		$scope.notesHistorique.push(element);
+    		
+    		moyenne = (moyenne - ancienneNote.note + element.note) / $scope.notesHistorique.length;
     	}
-
+    	
+    	$scope.ambianceMoyenne = moyenne;
     	$scope.notepour = null;
     	
-    	//console.log($scope.notesHistorique);
     }
         
     $scope.vote = function(repas) {
@@ -292,7 +298,6 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 			contentType: "application/json",
 			data: donnees
 		}).success(function(response, status, headers, config){
-			console.log(response);
 			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
 			$scope.editBio=false;
 			$scope.editPic=false;
