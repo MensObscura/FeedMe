@@ -179,14 +179,13 @@ Page de visualisation d'une offre
 						<!-- Carrousel reservation -->
 						<h3>Reservations :</h3>
 						<div
-							class="carousel"
-							ng-hide="offre.reservations.length == 0">
+							class="carousel">
 							<ul
 								rn-carousel
 								rn-carousel-controls
 								rn-carousel-controls-allow-loop
 								rn-carousel-easing="easeInOutQuad">
-								<li ng-repeat="r in offre.reservations"><img
+								<li ng-repeat="r in liste track by $index"><img
 									src="{{r.convive.image.path | correctPath}}"
 									class="img-reservation"
 									 title="{{r.convive.prenom}}"

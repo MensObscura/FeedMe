@@ -106,16 +106,14 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				// On met à jour la rubrique "note" s'il existe des données
 				if (data.data.note)
 					$scope.note = data.data.note;
+				
+				$scope.faireListe();
+				
 				}
+		
 	);
 	
-	//Création de la list de reservation pour le carrousel
-	$scope.list = $scope.offre.reservations;
-	
-	for (i =  $scope.offre.reservations.length; i < $scope.offre.nombrePersonne; i++) {
-		place_reservees += data.data.reservations[i].nbPlaces;
-	}
-	
+
 	//on recupère les donnée de l'utilisateur courrant
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
@@ -126,14 +124,56 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 	);
 	//on va voir le profil, correspondant à la photo cliquée
 	$scope.voir = function(id){
+		if(id != -1)
 		$window.location.href = "/visualiser_profil.html?id="+id;
+	};
+	//Création de la list de reservation pour le carrousel
+	
+	$scope.faireListe = function(){
+		
+		var image = {
+				path :  "resources\\img\\offre\\libre.png"	
+		};
+		var convive = {
+				idUtilisateur : "-1",
+				prenom : "place libre",
+				image :	image,
+		};
+		
+		var libre ={ 
+				convive : convive
+					
+		 };
+	
+
+		var liste = [];
+		for (i =  0; i < $scope.offre.nombrePersonne; i++) {
+			if(i < $scope.offre.reservations.length){
+				//on peut avoir plusieur place par reservation
+				for(j = 0;j< $scope.offre.reservations[i].nbPlaces; j++){
+				liste.push( $scope.offre.reservations[i]);
+				}
+				i += $scope.offre.reservations[i].nbPlaces - 1;
+			}else{
+				liste.push(libre);
+					}
+				
+					
+				}
+		$scope.liste= liste;
+		console.log($scope.liste);
 	}
+	
+		
+	
+		
+	
 	
 	//edition de l'offre
 	$scope.edition = function(){
 		
 		$window.location.href = "/edition-offre.html?id="+id;
-	}
+	};
 	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
 		if ($scope.ReservationForm.$valid && $scope.place > 0 ) {

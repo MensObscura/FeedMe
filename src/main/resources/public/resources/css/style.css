@@ -1521,3 +1521,6 @@ img.img-tile.img-profil:hover {
 	-webkit-transition: 0.5s; /* For Safari */
 }
 
+.img-reservation:focus{
+	    outline : 0px
+}
