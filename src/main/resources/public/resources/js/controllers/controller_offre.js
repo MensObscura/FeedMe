@@ -13,6 +13,9 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 	};
 });
 
+
+
+
 //Création du controller "ReservationController"
 app.controller('ReservationController', function($scope, $http, $window, $mdToast, $location, $anchorScroll) {  
 	
@@ -106,6 +109,13 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				}
 	);
 	
+	//Création de la list de reservation pour le carrousel
+	$scope.list = $scope.offre.reservations;
+	
+	for (i =  $scope.offre.reservations.length; i < $scope.offre.nombrePersonne; i++) {
+		place_reservees += data.data.reservations[i].nbPlaces;
+	}
+	
 	//on recupère les donnée de l'utilisateur courrant
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
@@ -114,7 +124,12 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 
 			}
 	);
-
+	//on va voir le profil, correspondant à la photo cliquée
+	$scope.voir = function(id){
+		$window.location.href = "/visualiser_profil.html?id="+id;
+	}
+	
+	//edition de l'offre
 	$scope.edition = function(){
 		
 		$window.location.href = "/edition-offre.html?id="+id;
@@ -151,7 +166,6 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 			
 		}
 		
-		console.log($scope.place);
 
 	};
 
