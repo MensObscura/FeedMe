@@ -14,6 +14,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 	    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
     	<link rel="stylesheet" type="text/css"  href="resources/css/style.css">
+        <link rel="stylesheet" type="text/css"  href="resources/css/profil.css">
     	<link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
 		<link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
     </head>
@@ -21,7 +22,7 @@ Page permettant une visualisation du profil d'un utilisateur.
     <body ng-app="Profil">
     	<!-- Menu -->
         <div ng-include="'/resources/header.html'"></div>
-        <div class="containerProfil">
+        <div class="pageProfil">
             <br/>
             
             <!-- Affichage des éléments du profil de l'utilisateur connecté -->
@@ -34,20 +35,23 @@ Page permettant une visualisation du profil d'un utilisateur.
                 Date de naissance: {{profil.dateNaissance}}<br />
                 e-mail: {{profil.mail}}<br/>
                 <span  ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-                Bio: {{profil.description}} <span ng-show="hoverEdit" class="animate-show">
-                <a>
-                    <i class="fa fa-pencil-square-o white"></i>
-                    Edit
-                </a>
-            </span></span><br />
+                Bio: {{profil.description}}<!--  <span ng-show="hoverEdit" class="animate-show">
+<!--                 <a> -->
+<!--                     <i class="fa fa-pencil-square-o white"></i> -->
+<!--                     Edit -->
+<!--                 </a> -->
+ <!--            </span> -->
+ 				</span><br />
                 
 				<div ng-if="profil.adresse" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
                     
-				Adresse : {{profil.adresse.voie}}. <span ng-show="hoverEdit" class="animate-show">
-                <a>
-                    <i class="fa fa-pencil-square-o white"></i> Edit
-                </a>
-            </span><br />
+				Adresse : {{profil.adresse.voie}}. 
+<!-- 				<span ng-show="hoverEdit" class="animate-show"> -->
+<!--                 <a> -->
+<!--                     <i class="fa fa-pencil-square-o white"></i> Edit -->
+<!--                 </a> -->
+<!--             </span> -->
+<br />
 				{{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})
 				<br />
                 </div>

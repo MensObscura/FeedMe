@@ -34,6 +34,7 @@ Page de visualisation d'une offre
 <!-- Stylesheet
     ================================================== -->
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="resources/css/offre.css">
 
 <link href="/resources/css/angular-carousel.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css"
@@ -47,11 +48,11 @@ Page de visualisation d'une offre
 	<div ng-include="'/resources/header.html'"></div>
 	<!-- Visualisation des détails de l'offre -->
 	<div class="une-offre-body">
-		<div class="offre-display text-center"
+		<div class="affichage-offre text-center"
 			ng-class="{'field-premium' : offre.premium}"
 			ng-controller="ReservationController">
 			<div class=" Aligner img-offre-premium ">
-				<div class="mask ">
+				<div class="mask">
 
 					<shine> <img width=50 height=50 class="img-circle img-tile" ng-show="offre.premium"
 						src="resources/img/offre/premium.png" /> </shine>
