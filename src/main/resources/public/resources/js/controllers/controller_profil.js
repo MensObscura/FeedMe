@@ -38,6 +38,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		function(donnees) {
 			// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 			$scope.profil = donnees.data;
+						
 			//checkbox visible
 			$scope.visible = $scope.profil.adresseVisible;
 			
@@ -117,6 +118,11 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     $scope.noter = function(convive) {
     	$scope.notepour = convive;
     	$scope.noteActu = null;
+    	
+		var aujourdhui = new Date();
+		var ddn = new Date(convive.dateNaissance.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2-$1-$3"));
+	
+		$scope.age = aujourdhui.getFullYear() - ddn.getFullYear();
     	
     	angular.forEach($scope.notesHistorique, function(valeur, cle) {
     		if (valeur.utilisateur.idUtilisateur == convive.idUtilisateur) {
