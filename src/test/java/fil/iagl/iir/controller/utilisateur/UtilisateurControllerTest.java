@@ -1,6 +1,5 @@
 package fil.iagl.iir.controller.utilisateur;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -15,12 +14,10 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
-import org.fest.assertions.api.Assertions;
 import org.hamcrest.core.IsNull;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -31,9 +28,6 @@ import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.entite.Utilisateur;
-import fil.iagl.iir.outils.DataReturn;
-import fil.iagl.iir.outils.FeedMeException;
-import junit.framework.Assert;
 
 public class UtilisateurControllerTest extends AbstractControllerTest {
 
