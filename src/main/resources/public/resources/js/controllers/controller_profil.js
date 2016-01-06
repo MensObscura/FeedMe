@@ -82,9 +82,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     	
     	angular.forEach($scope.notesHistorique, function(valeur, cle) {
     		 if (valeur.utilisateur.idUtilisateur == pour.idUtilisateur) {
-    			 console.log(cle);
     			 ancienneNote = cle;
-    			 return;
     		 }
     		 moyenne = moyenne + valeur.note;
     	});
