@@ -17,8 +17,8 @@ INSERT INTO ADRESSE(adr_voie, adr_vil_id) VALUES
 -- ---------------------------
 -- Table UTILISATEUR
 -- ---------------------------
-INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES 
-( 'Me', 'feed.me@univ-lille1.fr',1, true);
+INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description ) VALUES 
+( 'Me', 'feed.me@univ-lille1.fr',1, true, 'Je suis très convivial et j''aime la Vache qui Rit');
 
 -- ---------------------------
 -- Table PARTICULIER
