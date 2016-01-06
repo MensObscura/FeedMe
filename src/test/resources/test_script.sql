@@ -93,3 +93,10 @@ INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation, res_nb_pla
 INSERT INTO image_offre(imo_off_id, imo_img_id) VALUES
 (1, 1);
 
+-- ---------------------------
+-- Table MESSAGE
+-- ---------------------------
+INSERT INTO message(msg_id_usr_expediteur, msg_id_usr_destinataire, msg_date, msg_lu, msg_objet, msg_texte) VALUES
+(1, 2, CURRENT_TIMESTAMP, false, 'premier objet', 'premier texte'), -- ID 1
+(1, 2, CURRENT_TIMESTAMP, false, 'deuxieme objet', 'deuxieme texte'), -- ID 2
+(1, 2, CURRENT_TIMESTAMP, true, 'deuxieme objet', 'deuxieme texte'); -- ID 3
