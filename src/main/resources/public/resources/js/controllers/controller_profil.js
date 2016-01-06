@@ -80,12 +80,17 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     	var ancienneNote = null;
     	var moyenne = 0;
     	
-    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
-    		 if (valeur.utilisateur.idUtilisateur == pour.idUtilisateur) {
-    			 ancienneNote = valeur;
-    		 }
-    		 moyenne = moyenne + valeur.note;
-    	});
+    	var i = 0;
+    	var trouve = false;
+    	while ( i < $scope.notesHistorique.length && !trouve) {
+    		var valeur = $scope.notesHistorique[i];
+    		if (valeur.utilisateur.idUtilisateur == pour.idUtilisateur) {
+    			ancienneNote = i;
+    			trouve = true;
+   		 	}
+    		moyenne = moyenne + valeur.note;
+    		i++;
+    	}
     	
     	if (ancienneNote == null) {
     		$scope.notesHistorique.push(element);
@@ -93,9 +98,8 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     		moyenne = (moyenne + element.note) / $scope.notesHistorique.length;
     	}
     	else {
-    		$scope.notesHistorique.pop(ancienneNote);
+    		$scope.notesHistorique.splice(ancienneNote, 1);
     		$scope.notesHistorique.push(element);
-    		
     		moyenne = (moyenne - ancienneNote.note + element.note) / $scope.notesHistorique.length;
     	}
     	
@@ -111,7 +115,8 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     $scope.retour = function() {
     	$scope.votepour = null;
     	$scope.notepour = null;
-    	$scope.notesHistorique = null;
+    	$scope.cuisine = null;
+    	$scope.notesHistorique = [];
     }
     
     $scope.noter = function(convive) {
