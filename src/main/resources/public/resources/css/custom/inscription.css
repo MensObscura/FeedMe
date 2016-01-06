@@ -1,15 +1,15 @@
-#StyleFormulaireLogin {
-	background: url(../img/forms/login.jpg);
+#StyleFormulaireInscription {
+	background: url(../../img/forms/inscription.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-	height: 100%;
-	margin-top: 0;
+	height: 110%;
+	margin: 0;
 }
 
-#StyleFormulaireLogin .overlay {
+#StyleFormulaireInscription .overlay {
 	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%,
 		rgba(0, 0, 0, 0.73) 17%, rgba(0, 0, 0, 0.66) 35%, rgba(0, 0, 0, 0.55)
 		62%, rgba(0, 0, 0, 0.4) 100%); /* FF3.6+ */
@@ -20,7 +20,7 @@
 		color-stop(100%, rgba(0, 0, 0, 0.4))); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%,
 		rgba(0, 0, 0, 0.73) 17%, rgba(0, 0, 0, 0.66) 35%, rgba(0, 0, 0, 0.55)
-		62%, rgba(0, 0, 0, 0.4) 100%); /* Chrome10+,Safari5.1+ */
+		62%, rgba(0, 0, 0.4) 100%); /* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%,
 		rgba(0, 0, 0, 0.73) 17%, rgba(0, 0, 0, 0.66) 35%, rgba(0, 0, 0, 0.55)
 		62%, rgba(0, 0, 0, 0.4) 100%); /* Opera 11.10+ */
@@ -34,9 +34,8 @@
 		endColorstr='#66000000', GradientType=0); /* IE6-9 */
 	background-attachment: fixed;
 	height: 100%;
-	margin-top: 0;
 }
 
-#StyleFormulaireLogin p.lead {
+#StyleFormulaireInscription p.lead {
 	color: #e3e3e3;
 }

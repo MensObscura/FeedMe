@@ -159,7 +159,7 @@ ul, ol {
 
 /* Home Style */
 #tf-home {
-	background: url(../img/index/01.jpg);
+	background: url(../../img/index/01.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -245,7 +245,7 @@ ul.about-list li span {
 
 /* Team Section */
 #tf-team {
-	background: url(../img/index/03.jpg);
+	background: url(../../img/index/03.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -528,7 +528,7 @@ ol.type li a.active {
 
 /* Contact Section */
 #tf-contact {
-	background: url(../img/index/05.jpg);
+	background: url(../../img/index/05.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -775,7 +775,7 @@ nav#footer-index p {
 }
 
 #vue-offre {
-	background: url(../img/liste-offre/background.jpg);
+	background: url(../../img/liste-offre/background.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -790,7 +790,7 @@ nav#footer-index p {
 /* Style Formulaire Offre */
 #StyleFormulaireOffre {
 	color: #cfcfcf;
-	background: url(../img/forms/offre.jpg);
+	background: url(../../img/forms/offre.jpg);
 	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
@@ -882,7 +882,7 @@ fieldset {
 
 .field-premium {
 	border-style: solid;
-	border-image-source: url(../img/liste-offre/bordure.png);
+	border-image-source: url(../../img/liste-offre/bordure.png);
 	border-image-slice: 30;
 	border-image-width: 1;
 	border-image-outset: 1;
@@ -953,7 +953,7 @@ button.form {
 	
 .item-premium {
 	border-style: solid;
-	border-image-source: url(../img/liste-offre/bordure.png);
+	border-image-source: url(../../img/liste-offre/bordure.png);
 	border-image-slice: 20;
 	border-image-width: 1;
 	border-image-outset: 1;
@@ -1203,7 +1203,7 @@ img.img-tile.img-profil:hover {
 		0) 90%, rgba(255, 255, 255, .8) 98%, rgba(255, 255, 255, 0) 100%)
 		no-repeat;
 	background-position: inherit;
-	-webkit-mask: url(../img/accueil/tw.png) center;
+	-webkit-mask: url(../../img/accueil/tw.png) center;
 	height: 50px;
 	top: 0;
 	left: 0;
@@ -1216,8 +1216,8 @@ img.img-tile.img-profil:hover {
 		0) 90%, rgba(255, 255, 255, .8) 98%, rgba(255, 255, 255, 0) 100%)
 		no-repeat;
 	background-position: inherit;
-	-webkit-mask: url(../img/accueil/tw.png) center;
-	mask: url(../img/accueil/rond.svg#mask-firefox);
+	-webkit-mask: url(../../img/accueil/tw.png) center;
+	mask: url(../../img/accueil/rond.svg#mask-firefox);
 }
 
 .drop-box {

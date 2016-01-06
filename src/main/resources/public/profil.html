@@ -25,9 +25,9 @@ Page permettant une visualisation du profil d'un utilisateur.
 <link
 	rel="stylesheet"
 	type="text/css"
-	href="resources/css/style.css">
+	href="resources/css/custom/style.css">
     
-<link rel="stylesheet" type="text/css"  href="resources/css/profil.css">
+<link rel="stylesheet" type="text/css"  href="resources/css/custom/profil.css">
     
 <link
 	rel="stylesheet"
@@ -47,7 +47,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 <body ng-app="Profil">
 	<!-- Menu -->
 	<div ng-include="'/resources/header.html'"></div>
-	<div class="containerProfil">
+	<div class="pageProfil">
 		<br />
 
 		<!-- Affichage des éléments du profil de l'utilisateur connecté -->
@@ -278,7 +278,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 						ng-show="hoverEditAdr"
 						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Edit</a>
 
-					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})
+					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}}, {{profil.adresse.ville.pays.nom}}
 
 				</div>
 			</div>

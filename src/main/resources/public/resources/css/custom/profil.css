@@ -1,5 +1,5 @@
 .pageProfil {
-	background: url(../img/profil/background.jpg);
+	background: url(../../img/profil/background.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -38,8 +38,14 @@
 
 .image-profil img   {
     max-height: 250px;
+    max-width: 250px;
     width: auto;
-    
+}
+
+.image-profil-editable img   {
+    max-height: 250px;
+    max-width: 250px;
+    width: auto;
 }
 
 .image-profil.col-lg-3 {
@@ -51,9 +57,9 @@
 
 
  .editable {
-	  width: 18em;
+     width: 18em;
 	 margin-bottom : 2em;
-	padding: 0px
+     padding: 0px
 }
 
 .drop-box-profil {
