@@ -2,6 +2,7 @@
 TRUNCATE
 IMAGE_OFFRE,
 IMAGE,
+VOTE,
 AUTHENTIFICATION,
 UTILISATEUR,
 PARTICULIER,
@@ -18,6 +19,7 @@ ALTER SEQUENCE adresse_adr_id_seq RESTART WITH 1;
 ALTER SEQUENCE offre_off_id_seq RESTART WITH 1;
 ALTER SEQUENCE reservation_res_id_seq RESTART WITH 1;
 ALTER SEQUENCE image_img_id_seq RESTART WITH 1;
+ALTER SEQUENCE vote_vot_id_seq RESTART WITH 1;
 
 -- DONNEES DE TEST
 
@@ -90,4 +92,12 @@ INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation, res_nb_pla
 -- ---------------------------
 INSERT INTO image_offre(imo_off_id, imo_img_id) VALUES
 (1, 1);
+
+-- ---------------------------
+-- Table VOTE
+-- ---------------------------
+INSERT INTO VOTE(vot_usr_id, vot_off_id, vot_note) VALUES
+(2, 1, 5), -- ID 1 - L'offre 1 a reçu la note de 5 par l'utilisateur 2
+(3, 1, 3), -- ID 2 - L'offre 1 a reçu la note de 3 par l'utilisateur 3
+(1, 1, 4); -- ID 3 - L'offre 1 a reçu la note de 4 par l'utilisateur 1
 
