@@ -1,6 +1,5 @@
 package fil.iagl.iir.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -151,41 +150,41 @@ public class OffreServiceTest extends AbstractServiceTest {
     Assertions.assertThat(offreService.listerOffresCreesUserConnecte()).isEqualTo(list);
     Mockito.verify(offreDao, Mockito.times(1)).getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
   }
-  
+
   @Test
   public void listerOffresEnCoursByHoteTestSuccess_moins2heures() throws Exception {
-	  List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
-	  
-	  Assertions.assertThat(list).isNotNull();
-	  
-	  Offre o = offre;
-	  o.setDateRepas(LocalDateTime.now().minusHours(2));
-	  offreDao.sauvegarder(o);
-	  // Normalement, l'offre ajoute est perimee... Par consequent, elle ne sera pas comptee.
-	  Mockito.when(offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
+    List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
+
+    Assertions.assertThat(list).isNotNull();
+
+    Offre o = offre;
+    o.setDateRepas(LocalDateTime.now().minusHours(2));
+    offreDao.sauvegarder(o);
+    // Normalement, l'offre ajoute est perimee... Par consequent, elle ne sera pas comptee.
+    Mockito.when(offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
   }
-  
+
   @Test
   public void listerOffresEnCoursByHoteTestSuccess_plus2jours() throws Exception {
-	  List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
-	  
-	  Assertions.assertThat(list).isNotNull();
-	  
-	  Offre o = offre;
-	  o.setDateRepas(LocalDateTime.now().plusDays(2));
-	  offreDao.sauvegarder(o);
-	  // Normalement, l'offre n'est pas perimee donc il y en a une de plus...
-	  list.add(o);	  
-	  Mockito.when(offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
+    List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
+
+    Assertions.assertThat(list).isNotNull();
+
+    Offre o = offre;
+    o.setDateRepas(LocalDateTime.now().plusDays(2));
+    offreDao.sauvegarder(o);
+    // Normalement, l'offre n'est pas perimee donc il y en a une de plus...
+    list.add(o);
+    Mockito.when(offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
   }
-  
+
   @Test
   public void listerOffresEnCoursByHoteTestEchec() throws Exception {
-	  Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList());
-	  Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList());
+    Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList<>());
+    Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList<>());
 
   }
-  
+
   @Test
   public void modifierOffreTestSucces() throws Exception {
     Integer idOffre = 1;
