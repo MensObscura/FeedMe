@@ -16,6 +16,9 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 // Création du controller "ProfilCtrl"
 app.controller("ProfilCtrl", function($scope, $http, $window) {
 	
+    $scope.debutOffres = 0;
+    $scope.debutRepas = 0;
+	
 	// Fonction permettant de récupérer les paramètres de l'url.
 	$scope.getUrlVars = function() {
 		var vars = {};

@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters']);
+var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters', 'ngRateIt']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
     
@@ -23,6 +23,16 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	$scope.picEtdited=false;
     $scope.editAdr =false;
     
+    $scope.votepour = null;
+    $scope.notepour = null;
+	$scope.noteActu = null;
+	$scope.cuisine = null;
+    $scope.notesHistorique = [];
+    $scope.ambianceMoyenne = null;
+    $scope.debutOffres = 0;
+    $scope.debutRepas = 0;
+    
+               
 	// On va se connecter sur la route permettant de récupèrer le profil de l'utilisateur
 	$http.get('/utilisateur/particulier/profil').success(
 		function(donnees) {
@@ -59,7 +69,72 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 				$scope.saveCountry = $scope.count;
 			}
 	);
-
+		
+	$scope.changeCuisine = function(note) {
+		$scope.cuisine = note;
+	}
+	
+    $scope.change = function(note) {
+    	var pour = $scope.notepour;
+    	var element = {'note': note, 'utilisateur' : pour};
+    	var ancienneNote = null;
+    	var moyenne = 0;
+    	
+    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
+    		 if (valeur.utilisateur.idUtilisateur == pour.idUtilisateur) {
+    			 ancienneNote = valeur;
+    		 }
+    		 moyenne = moyenne + valeur.note;
+    	});
+    	
+    	if (ancienneNote == null) {
+    		$scope.notesHistorique.push(element);
+    		
+    		moyenne = (moyenne + element.note) / $scope.notesHistorique.length;
+    	}
+    	else {
+    		$scope.notesHistorique.pop(ancienneNote);
+    		$scope.notesHistorique.push(element);
+    		
+    		moyenne = (moyenne - ancienneNote.note + element.note) / $scope.notesHistorique.length;
+    	}
+    	
+    	$scope.ambianceMoyenne = moyenne;
+    	$scope.notepour = null;
+    	
+    }
+        
+    $scope.vote = function(repas) {
+    	$scope.votepour = repas;
+    }
+    
+    $scope.retour = function() {
+    	$scope.votepour = null;
+    	$scope.notepour = null;
+    	$scope.notesHistorique = null;
+    }
+    
+    $scope.noter = function(convive) {
+    	$scope.notepour = convive;
+    	$scope.noteActu = null;
+    	
+    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
+    		if (valeur.utilisateur.idUtilisateur == convive.idUtilisateur) {
+   			 	$scope.noteActu = valeur.note;
+   				return;
+   		 	}
+    	});
+    }
+    
+    $scope.$watch('notepour', function() {
+    	$scope.note = $scope.noteActu;
+    });
+    
+    $scope.envoyer = function() {
+    	console.log($scope.notesHistorique);
+    	console.log($scope.cuisine);
+    }
+    
 	// Avertissements pour les hoverOut/hoverIn :
 	$scope.hoverInPic = function(){
 		this.hoverEditPic = true;
@@ -223,7 +298,6 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 			contentType: "application/json",
 			data: donnees
 		}).success(function(response, status, headers, config){
-			console.log(response);
 			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
 			$scope.editBio=false;
 			$scope.editPic=false;
@@ -248,6 +322,5 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 
 		}
 	};
-
-
+	
 });

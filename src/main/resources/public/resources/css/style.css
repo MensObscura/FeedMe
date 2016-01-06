@@ -1493,6 +1493,7 @@ img.img-tile.img-profil:hover {
 	color: rgb(250, 250, 250);
 }
 
+
 .editOffre:hover {
 	color: rgba(254, 186, 49, 1);
 }
@@ -1523,4 +1524,25 @@ img.img-tile.img-profil:hover {
 
 .img-reservation:focus{
 	    outline : 0px
+}
+.editOffre:hover{
+	color :  rgba(254, 186, 49, 1);
+	
+}
+
+
+.pointer {
+	cursor: pointer;
+}
+
+.fleche {
+	cursor: pointer;
+	margin-rigth: 8px;
+}
+
+#notation {
+	clear: both;
+	display: block;
+	background-color: white;
+	color: black;
 }
