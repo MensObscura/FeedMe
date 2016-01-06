@@ -34,16 +34,23 @@
 
 <div id="notation">
 	<div ng-if="notepour">
-		{{notepour}}<br>
-			<div ng-show="notepour.idUtilisateur == votepour.hote.idUtilisateur">
-			Cuisine :
-			<div ng-rate-it ng-model="cuisine" resetable="false" ng-click="changeCuisine(cuisine)" read-only="lectureSeule" step="0.5"></div>
-				{{cuisine}}<br>
+		{{notepour.prenom + " " + notepour.nom}}<br>
+		{{!adresseVisible && notepour.adresse.voie + " &agrave; " + notepour.adresse.ville.nom + " (" + notepour.adresse.ville.pays.nom + ")"}}<br ng-if="!adresseVisible">
+		{{age}} ans<br>
+		{{notepour.description}}<br ng-if="notepour.description">
+		
+	<div ng-show="notepour.idUtilisateur == votepour.hote.idUtilisateur">
+		Cuisine :
+		<div ng-rate-it ng-model="cuisine" resetable="false" ng-click="changeCuisine(cuisine)" read-only="lectureSeule" step="0.5"></div>
+			{{cuisine}}<br>
 		</div>
 		<div ng-if="notepour.idUtilisateur != profil.idUtilisateur">
 			Convive :
 			<div id="note" ng-rate-it ng-model="note" resetable="false" ng-click="change(note)" read-only="lectureSeule" step="0.5"></div>
 			{{note}}<br>
+		</div>
+		<div ng-show="notepour.idUtilisateur == profil.idUtilisateur">
+		Vous ne pouvez pas voter pour vous !
 		</div>
 	</div>
 	
