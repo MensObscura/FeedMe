@@ -1546,3 +1546,8 @@ img.img-tile.img-profil:hover {
 	background-color: white;
 	color: black;
 }
+
+.paypal-button{
+	width: 15em;
+	margin: 0.5%;
+	}
