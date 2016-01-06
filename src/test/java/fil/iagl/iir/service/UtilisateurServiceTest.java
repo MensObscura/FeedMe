@@ -3,7 +3,6 @@ package fil.iagl.iir.service;
 import java.time.LocalDate;
 
 import org.fest.assertions.api.Assertions;
-import org.fest.assertions.api.Fail;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -11,7 +10,6 @@ import org.mockito.Mockito;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
-import junit.framework.Assert;
 
 public class UtilisateurServiceTest extends AbstractServiceTest {
 

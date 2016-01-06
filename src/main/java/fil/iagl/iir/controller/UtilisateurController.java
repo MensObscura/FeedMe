@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import fil.iagl.iir.entite.AuthentificationParticulier;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.outils.DataReturn;
-import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.outils.MessageSucces;
 import fil.iagl.iir.service.AuthentificationService;

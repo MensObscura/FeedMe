@@ -3,8 +3,6 @@ package fil.iagl.iir.dao;
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.fail;
 
-import javax.validation.constraints.AssertTrue;
-
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
