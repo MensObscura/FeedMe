@@ -145,10 +145,10 @@ public class OffreServiceTest extends AbstractServiceTest {
   @Test
   public void listerOffresCreesUserConnecteTestSuccess() throws Exception {
     List<Offre> list = Arrays.asList(offre, offre);
-    Mockito.when(offreDao.getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
+    Mockito.when(offreDao.getAllOffresByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
 
     Assertions.assertThat(offreService.listerOffresCreesUserConnecte()).isEqualTo(list);
-    Mockito.verify(offreDao, Mockito.times(1)).getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    Mockito.verify(offreDao, Mockito.times(1)).getAllOffresByHote(FeedMeSession.getIdUtilisateurConnecte());
   }
 
   @Test

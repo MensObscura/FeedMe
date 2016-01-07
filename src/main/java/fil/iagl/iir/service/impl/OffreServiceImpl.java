@@ -141,7 +141,7 @@ public class OffreServiceImpl implements OffreService {
    */
   @Override
   public List<Offre> listerOffresCreesUserConnecte() {
-    return offreDao.getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    return offreDao.getAllOffresByHote(FeedMeSession.getIdUtilisateurConnecte());
   }
 
   @Override
