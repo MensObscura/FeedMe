@@ -125,9 +125,9 @@
 		WHERE (current_timestamp >= off_date_repas) and res_con_id = #{idUtilisateurConnecte}
 	</select>
 	
-	<select id="getOffresCreesUserConnecte" resultMap="Offre_ResultMap">
+	<select id="getAllOffresByHote" resultMap="Offre_ResultMap">
 		<include refid="select_all_columns_offre" />
-		WHERE off_usr_id = #{idUtilisateurConnecte}
+		WHERE off_usr_id = #{idUtilisateur}
 	</select>
 	
 	<select id="getOffresEnCoursByHote" resultMap="Offre_ResultMap">

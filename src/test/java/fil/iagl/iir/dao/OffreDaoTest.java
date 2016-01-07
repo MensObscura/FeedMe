@@ -61,7 +61,7 @@ public class OffreDaoTest extends AbstractDaoTest {
     // Etant donne qu'il existe un utilisateur connecté
     // Quand on récupère la liste des offres qu'il a créé
     // Alors on veut une liste non vide avec le bon nombre d'offres
-    List<Offre> offres = offreDao.getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    List<Offre> offres = offreDao.getAllOffresByHote(FeedMeSession.getIdUtilisateurConnecte());
     Assertions.assertThat(offres).isNotNull().hasSize(NB_OFFRES_CREES_USER_CONNECTE);
   }
 
