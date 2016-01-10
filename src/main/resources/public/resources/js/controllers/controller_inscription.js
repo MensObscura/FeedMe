@@ -43,7 +43,9 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
 	$scope.submited =false;
 	$scope.premium = false;
+	// initilisation du paiement à faux
 	$scope.paye = false;
+	// initialisation de la popover
 	 $scope.dynamicPopover = {
 			    content: 'Hello, World!',
 			    templateUrl: 'paypal-fake.html',
@@ -56,16 +58,15 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 			}
 	);
 	
+	//popover fonction on met payé a true et on ferme la popup
 	$scope.valider = function() {
 		$scope.popoverOuverte = false;
 		$scope.paye=true;
-		console.log("valider");
 	};
-	
+	//popover fonction  on ferme la popup
 	$scope.annuler = function() {
 		$scope.popoverOuverte = false;
 		$scope.premium = false;
-		console.log("annuler");
 	};
 	
 	// Fonction utilisé lors de la validation du formulaire

@@ -109,10 +109,13 @@
 
 
 								<md-content layout-padding>
-								<div ng-show="!profil.premium" layout layout-sm="column">
-									<md-checkbox ng-model="premium" aria-label="premium"
+								<div ng-show="!profil.premium && !paye" layout layout-sm="column">
+									<md-checkbox uib-popover-template="dynamicPopover.templateUrl" popover-append-to-body="true" popover-is-open="popoverOuverte" popover-title="{{dynamicPopover.title}}" ng-model="premium" aria-label="premium"
 										ng-disabled="profil.premium">Offre premium</md-checkbox>
 								</div>
+								
+								<div class="white" ng-show="paye">Félicitation vous avez payé pour une offre premium</div>
+								</br>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
 										id="white" for="titre">Titre de l'offre* :</label> <input
@@ -489,6 +492,7 @@
 	<script type="text/javascript" src="/resources/js/scripts/angular.rangeSlider.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-ui-bootstrap-tpls.js"></script>
 	
 	<script type="text/javascript" src="/resources/js/controllers/controller_formulaire_offre.js"></script>
 

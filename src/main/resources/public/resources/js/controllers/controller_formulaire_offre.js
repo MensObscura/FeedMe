@@ -23,7 +23,7 @@ var dateTimePicker = function() {
 };
 
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel','appFilters']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel','appFilters', 'ui.bootstrap']);
 
 validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -38,7 +38,15 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 });
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload, $q) {
-
+	// initilisation du payement à faux
+	$scope.paye = false;
+	// initialisation de la popover
+	 $scope.dynamicPopover = {
+			    content: 'Hello, World!',
+			    templateUrl: 'paypal-fake.html',
+			    title: 'Paiement'
+			  };
+	
 	// initialisation de l'affichage photo à false
 	$scope.allowDisplay =false;
 
@@ -75,6 +83,8 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 
 			}
 	);
+	
+	
 	
 	// fonction d'auto-remplissage de l'adresse.
 	$scope.homeAction = function() {
@@ -139,6 +149,17 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 
 		}
     });
+	
+	//popover fonction on met payé a true et on ferme la popup
+	$scope.valider = function() {
+		$scope.popoverOuverte = false;
+		$scope.paye=true;
+	};
+	//popover fonction  on ferme la popup
+	$scope.annuler = function() {
+		$scope.popoverOuverte = false;
+		$scope.premium = false;
+	};
 	
 	// fonction d'upload d'une image :
 	var upload = function (file) {
