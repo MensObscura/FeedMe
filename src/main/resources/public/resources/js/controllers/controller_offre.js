@@ -1,5 +1,5 @@
 // Chargement du module "OffreApp"
-var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters']);
+var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters','ui.bootstrap']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -18,7 +18,12 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 
 //Création du controller "ReservationController"
 app.controller('ReservationController', function($scope, $http, $window, $mdToast, $location, $anchorScroll) {  
-	
+	// initialisation de la popover
+	 $scope.dynamicPopover = {
+			    content: 'Hello, World!',
+			    templateUrl: 'paypal-fake.html',
+			    title: 'Paiement'
+			  };
 	
 	//init affichage photo à false
 	$scope.allowDisplay =false;
@@ -113,6 +118,8 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 		
 	);
 	
+	
+	
 
 	//on recupère les donnée de l'utilisateur courrant
 	$http.get('/utilisateur/particulier/profil').success(
@@ -161,12 +168,22 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 					
 				}
 		$scope.liste= liste;
-		console.log($scope.liste);
 	}
 	
 		
 	
+	//popover fonction on met payé a true et on ferme la popup
+	$scope.valider = function() {
+		$scope.dynamicPopover.isOpen =false;
+		$scope.submited=true
+		$scope.submitForm();
+	};
+	//popover fonction  on ferme la popup
+	$scope.annuler = function() {
+		$scope.dynamicPopover.isOpen =false;
 		
+	};
+	
 	
 	
 	//edition de l'offre

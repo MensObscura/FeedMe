@@ -230,11 +230,10 @@ Page de visualisation d'une offre
 						ng-show="(ReservationForm.place.$invalid && !ReservationForm.place.$pristine) || submited"> <span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span> <span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span> <span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span> <span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span></md-input-container> </md-content>
 
 
-					<md-button
+					<md-button uib-popover-template="dynamicPopover.templateUrl"  popover-append-to-body="true" popover-is-open="dynamicPopover.isOpen" popover-title="{{dynamicPopover.title}}"
 						ng-if="!(offre.hote.idUtilisateur==profil.idUtilisateur)"
 						id="form_button_log"
-						type="submit"
-						ng-click="submited=true"
+						type="button"
 						ng-disabled="minCouvert == 0"
 						class="form ">Réserver</md-button>
 			</form>
@@ -270,6 +269,7 @@ Page de visualisation d'une offre
 		type="text/javascript"
 		src="/resources/js/controllers/controller_offre.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-ui-bootstrap-tpls.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
