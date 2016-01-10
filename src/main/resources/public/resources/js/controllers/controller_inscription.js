@@ -22,7 +22,7 @@ var dateTimePicker = function() {
 };
 
 // Chargement du module "Inscription"
-var validationApp = angular.module('Inscription', ['ngMaterial', 'ngMessages']);
+var validationApp = angular.module('Inscription', ['ngMaterial', 'ngMessages','ngAnimate', 'ui.bootstrap']);
 
 // On ajoute une directive qui va se charger de de contrôler l'expression régulière contenue dans le formulaire
 validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
@@ -43,13 +43,30 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
 	$scope.submited =false;
 	$scope.premium = false;
-	
+	$scope.paye = false;
+	 $scope.dynamicPopover = {
+			    content: 'Hello, World!',
+			    templateUrl: 'paypal-fake.html',
+			    title: 'Paiement'
+			  };
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
 				$scope.count = donnees.data;
 			}
 	);
+	
+	$scope.valider = function() {
+		$scope.popoverOuverte = false;
+		$scope.paye=true;
+		console.log("valider");
+	};
+	
+	$scope.annuler = function() {
+		$scope.popoverOuverte = false;
+		$scope.premium = false;
+		console.log("annuler");
+	};
 	
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
@@ -112,3 +129,5 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 
 	};
 }).directive('dateTimePicker', dateTimePicker);
+
+
