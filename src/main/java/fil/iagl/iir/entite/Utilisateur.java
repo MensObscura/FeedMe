@@ -27,6 +27,8 @@ public class Utilisateur implements Serializable {
   private Image image;
 
   private Boolean adresseVisible;
+  
+  private Integer note;
 
   public Utilisateur(Integer idUtilisateur) {
     this.idUtilisateur = idUtilisateur;
