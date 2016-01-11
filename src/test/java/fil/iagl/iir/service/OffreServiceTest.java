@@ -180,9 +180,11 @@ public class OffreServiceTest extends AbstractServiceTest {
   
   @Test
   public void listerOffresEnCoursByHoteTestEchec() throws Exception {
-	  Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList());
-	  Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList());
-
+    // Quand on appelle le service d'Offre pour récupèrer les offres en cours d'un hôte
+    // avec un ID d'utilisateur null ou inconnu
+    // Alors on obtient une liste d'offres vide
+	  Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList<Offre>());
+	  Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList<Offre>());
   }
   
   @Test
