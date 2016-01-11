@@ -3,12 +3,14 @@ package fil.iagl.iir.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.dao.vote.VoteDao;
 import fil.iagl.iir.entite.Vote;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.service.VoteService;
 
+@Service
 public class VoteServiceImpl implements VoteService {
 
   @Autowired
