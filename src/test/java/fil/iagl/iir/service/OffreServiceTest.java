@@ -152,6 +152,22 @@ public class OffreServiceTest extends AbstractServiceTest {
   }
 
   @Test
+  public void getAllOffresByHoteTestSucces() throws Exception {
+    // Etant donné une liste d'offres créées par un utilisateur (ID=1)
+    Integer idUtilisateur = 1;
+    List<Offre> list = Arrays.asList(offre, offre);
+    Mockito.when(offreDao.getAllOffresByHote(idUtilisateur)).thenReturn(list);
+
+    // Quand on récupère la liste des offres dont cet utilisateur est l'hôte
+    List<Offre> listeOffres = offreService.getAllOffresByHote(idUtilisateur);
+
+    // Alors on vérifie que la liste est correcte
+    Assertions.assertThat(listeOffres).isNotNull().isEqualTo(list);
+    // Et que la couche DAO a bien été appelée
+    Mockito.verify(offreDao, Mockito.times(1)).getAllOffresByHote(idUtilisateur);
+  }
+
+  @Test
   public void listerOffresEnCoursByHoteTestSuccess_moins2heures() throws Exception {
     List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
 

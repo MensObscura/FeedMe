@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.constante.CONSTANTE;
-import fil.iagl.iir.dao.adresse.AdresseDao;
 import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.offre.OffreDao;
-import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
@@ -23,12 +21,6 @@ public class OffreServiceImpl implements OffreService {
 
   @Autowired
   private OffreDao offreDao;
-
-  @Autowired
-  private AdresseDao adresseDao;
-
-  @Autowired
-  private VilleDao villeDao;
 
   @Autowired
   private ImageDao imageDao;
@@ -147,5 +139,10 @@ public class OffreServiceImpl implements OffreService {
   @Override
   public List<Offre> listerOffresEnCoursByHote(Integer idUtilisateur) {
     return offreDao.getOffresEnCoursByHote(idUtilisateur);
+  }
+
+  @Override
+  public List<Offre> getAllOffresByHote(Integer idUtilisateur) {
+    return offreDao.getAllOffresByHote(idUtilisateur);
   }
 }
