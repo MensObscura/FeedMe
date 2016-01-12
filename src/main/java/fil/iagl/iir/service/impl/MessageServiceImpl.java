@@ -3,12 +3,14 @@ package fil.iagl.iir.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fil.iagl.iir.dao.message.MessageDao;
 import fil.iagl.iir.entite.Message;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.service.MessageService;
 
+@Service
 public class MessageServiceImpl implements MessageService {
 
   @Autowired
