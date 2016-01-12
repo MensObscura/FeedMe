@@ -22,6 +22,11 @@ ALTER SEQUENCE image_img_id_seq RESTART WITH 1;
 ALTER SEQUENCE message_msg_id_seq RESTART WITH 1;
 
 -- DONNEES DE TEST
+-- ---------------------------
+-- BOT
+-- ---------------------------
+INSERT INTO UTILISATEUR ( usr_id, usr_nom, usr_mail, usr_premium , usr_description, usr_adresse_visible) VALUES 
+( -1, 'bot', 'bot@feedme.com', false, '', false);
 
 -- ---------------------------
 -- Table IMAGE

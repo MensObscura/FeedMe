@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fil.iagl.iir.dao.message.MessageDao;
+import fil.iagl.iir.dao.particulier.ParticulierDao;
 import fil.iagl.iir.dao.reservation.ReservationDao;
+import fil.iagl.iir.entite.Message;
+import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Reservation;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
@@ -15,8 +19,16 @@ import fil.iagl.iir.service.ReservationService;
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
+  private static final Integer BOT_ID = -1;
+
   @Autowired
   private ReservationDao reservationDao;
+
+  @Autowired
+  private MessageDao messageDao;
+
+  @Autowired
+  private ParticulierDao particulierDao;
 
   /*
    * (non-Javadoc)
@@ -30,8 +42,28 @@ public class ReservationServiceImpl implements ReservationService {
     }
     reservation.setConvive(new Utilisateur(FeedMeSession.getIdUtilisateurConnecte()));
 
+    Message message = createAutoMessage(reservation);
+    this.messageDao.sauvegarder(message);
     return this.reservationDao.sauvegarder(reservation);
 
+  }
+
+  private Message createAutoMessage(Reservation reservation) {
+    Particulier utilisateurConnecte = particulierDao.getParticulierByUtilisateurId(FeedMeSession.getIdUtilisateurConnecte());
+    Utilisateur bot = new Utilisateur(BOT_ID);
+    String objet = String.format("Un convive à reservé pour \"%s\"", reservation.getOffre().getTitre());
+    String texte = String
+      .format("Bonjour,\n\n "
+        + "Nous avons le plaisir de vous annoncer que %s %s vient de reserver %d place(s) pour votre annonce \"%s\".\n\n"
+        + "Ceci est un message généré, merci ne pas repondre.", utilisateurConnecte.getPrenom(), utilisateurConnecte.getNom(), reservation.getNb_places(),
+        reservation.getOffre().getTitre());
+
+    Message message = new Message();
+    message.setDestinataire(reservation.getOffre().getHote());
+    message.setExpediteur(bot);
+    message.setObjet(objet);
+    message.setTexte(texte);
+    return message;
   }
 
   /*
