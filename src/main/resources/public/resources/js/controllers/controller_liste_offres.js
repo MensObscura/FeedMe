@@ -1,5 +1,5 @@
 // Chargement du module "ListeApp"
-var app = angular.module("ListeApp", ['appFilters']);
+var app = angular.module("ListeApp", ['appFilters', 'angular-notification-icons', 'ngAnimate', 'ui.bootstrap']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -11,6 +11,12 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 			}
 		);
 	};
+	
+	$scope.items = [
+	                'The first choice!',
+	                'And another choice for you.',
+	                'but wait! A third!'
+	              ];
 });
 
 // Création du controller "ListeCtrl"
