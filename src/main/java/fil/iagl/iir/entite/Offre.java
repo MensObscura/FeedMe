@@ -47,4 +47,6 @@ public class Offre {
 
   private Boolean premium;
 
+  private Integer noteMoyenne;
+  
 }

@@ -39,6 +39,9 @@ public class OffreServiceTest extends AbstractServiceTest {
   @Mock
   private Image imageNonExistante;
 
+  @Mock
+  private VoteService voteService;
+  
   @Test
   public void sauvegarderTestSucces() throws Exception {
     Image image1 = new Image();
@@ -145,10 +148,26 @@ public class OffreServiceTest extends AbstractServiceTest {
   @Test
   public void listerOffresCreesUserConnecteTestSuccess() throws Exception {
     List<Offre> list = Arrays.asList(offre, offre);
-    Mockito.when(offreDao.getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
+    Mockito.when(offreDao.getAllOffresByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
 
     Assertions.assertThat(offreService.listerOffresCreesUserConnecte()).isEqualTo(list);
-    Mockito.verify(offreDao, Mockito.times(1)).getOffresCreesUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    Mockito.verify(offreDao, Mockito.times(1)).getAllOffresByHote(FeedMeSession.getIdUtilisateurConnecte());
+  }
+
+  @Test
+  public void getAllOffresByHoteTestSucces() throws Exception {
+    // Etant donné une liste d'offres créées par un utilisateur (ID=1)
+    Integer idUtilisateur = 1;
+    List<Offre> list = Arrays.asList(offre, offre);
+    Mockito.when(offreDao.getAllOffresByHote(idUtilisateur)).thenReturn(list);
+
+    // Quand on récupère la liste des offres dont cet utilisateur est l'hôte
+    List<Offre> listeOffres = offreService.getAllOffresByHote(idUtilisateur);
+
+    // Alors on vérifie que la liste est correcte
+    Assertions.assertThat(listeOffres).isNotNull().isEqualTo(list);
+    // Et que la couche DAO a bien été appelée
+    Mockito.verify(offreDao, Mockito.times(1)).getAllOffresByHote(idUtilisateur);
   }
 
   @Test
@@ -180,9 +199,11 @@ public class OffreServiceTest extends AbstractServiceTest {
 
   @Test
   public void listerOffresEnCoursByHoteTestEchec() throws Exception {
-    Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList<>());
-    Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList<>());
-
+    // Quand on appelle le service d'Offre pour récupèrer les offres en cours d'un hôte
+    // avec un ID d'utilisateur null ou inconnu
+    // Alors on obtient une liste d'offres vide
+    Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList<Offre>());
+    Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList<Offre>());
   }
 
   @Test

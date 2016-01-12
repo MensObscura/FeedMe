@@ -44,6 +44,7 @@ import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.entite.TypeCuisine;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.entite.Ville;
+import fil.iagl.iir.entite.Vote;
 import fil.iagl.iir.outils.FeedMeAuthentificationToken;
 import fil.iagl.iir.outils.FeedMeException;
 
@@ -285,6 +286,18 @@ public abstract class AbstractFeedMeTest {
     offre.setImages(new ArrayList<Image>());
 
     return offre;
+  }
+
+  protected Vote createVote() {
+    Offre offre = createOffre();
+    offre.setId(4);
+
+    Vote vote = new Vote();
+    vote.setUtilisateur(createParticulier());
+    vote.setOffre(offre);
+    vote.setNote(3);
+
+    return vote;
   }
 
   protected Authentification<Particulier> createAuthentificationParticulier() {

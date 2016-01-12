@@ -3,6 +3,7 @@ TRUNCATE
 MESSAGE,
 IMAGE_OFFRE,
 IMAGE,
+VOTE,
 AUTHENTIFICATION,
 UTILISATEUR,
 PARTICULIER,
@@ -20,6 +21,7 @@ ALTER SEQUENCE offre_off_id_seq RESTART WITH 1;
 ALTER SEQUENCE reservation_res_id_seq RESTART WITH 1;
 ALTER SEQUENCE image_img_id_seq RESTART WITH 1;
 ALTER SEQUENCE message_msg_id_seq RESTART WITH 1;
+ALTER SEQUENCE vote_vot_id_seq RESTART WITH 1;
 
 -- DONNEES DE TEST
 
@@ -100,3 +102,12 @@ INSERT INTO message(msg_id_usr_expediteur, msg_id_usr_destinataire, msg_date, ms
 (1, 2, CURRENT_TIMESTAMP, false, 'premier objet', 'premier texte'), -- ID 1
 (1, 2, CURRENT_TIMESTAMP, false, 'deuxieme objet', 'deuxieme texte'), -- ID 2
 (1, 2, CURRENT_TIMESTAMP, true, 'deuxieme objet', 'deuxieme texte'); -- ID 3
+
+-- ---------------------------
+-- Table VOTE
+-- ---------------------------
+INSERT INTO VOTE(vot_usr_id, vot_off_id, vot_note) VALUES
+(2, 1, 5), -- ID 1 - L'offre 1 a reçu la note de 5 par l'utilisateur 2
+(3, 1, 3), -- ID 2 - L'offre 1 a reçu la note de 3 par l'utilisateur 3
+(1, 1, 4); -- ID 3 - L'offre 1 a reçu la note de 4 par l'utilisateur 1
+
