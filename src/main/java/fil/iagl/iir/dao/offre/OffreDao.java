@@ -56,11 +56,11 @@ public interface OffreDao {
   List<Offre> getOffresParticipeUserConnecte(@Param("idUtilisateurConnecte") Integer idUtilisateurConnecte);
 
   /**
-   * Récupère la liste des offres que l'utilisateur connecté a créé
-   * @param idUtilisateurConnecte id de l'utilisateur qui est connecté
-   * @return La liste des offres créées par l'utilisateur connecté
+   * Récupère la liste des offres qu'un hôte a créées.
+   * @param idUtilisateur l'ID de l'utilisateur qui est l'hôte de l'offre
+   * @return La liste des offres créées par l'utilisateur
    */
-  List<Offre> getOffresCreesUserConnecte(@Param("idUtilisateurConnecte") Integer idUtilisateurConnecte);
+  List<Offre> getAllOffresByHote(@Param("idUtilisateur") Integer idUtilisateur);
 
   /**
    * Retourne la liste des offres en cours créées par un hôte donné

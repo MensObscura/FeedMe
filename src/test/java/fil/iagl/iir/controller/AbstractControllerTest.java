@@ -8,12 +8,14 @@ import org.springframework.web.context.WebApplicationContext;
 
 import fil.iagl.iir.AbstractFeedMeTest;
 import fil.iagl.iir.dao.authentification.AuthentificationDao;
+import fil.iagl.iir.dao.message.MessageDao;
 import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.dao.typeCuisine.TypeCuisineDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.dao.ville.VilleDao;
 import fil.iagl.iir.service.AuthentificationService;
 import fil.iagl.iir.service.ImageService;
+import fil.iagl.iir.service.MessageService;
 import fil.iagl.iir.service.OffreService;
 import fil.iagl.iir.service.UtilisateurService;
 
@@ -31,6 +33,9 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
   protected OffreService offreService;
 
   @Mock
+  protected MessageService messageService;
+  
+  @Mock
   protected OffreDao offreDao;
 
   @Mock
@@ -39,6 +44,9 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
   @Mock
   protected VilleDao villeDao;
 
+  @Mock
+  protected MessageDao messageDao;
+  
   @Mock
   protected ImageService imageService;
 
@@ -66,6 +74,9 @@ public abstract class AbstractControllerTest extends AbstractFeedMeTest {
   @InjectMocks
   protected ImageController imageController;
 
+  @InjectMocks
+  protected MessageController messageController;
+  
   @Autowired
   protected WebApplicationContext wac;
 

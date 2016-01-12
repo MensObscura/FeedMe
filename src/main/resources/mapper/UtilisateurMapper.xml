@@ -46,5 +46,9 @@
 		WHERE usr_id = #{id}
 	</select>
 
-
+	<update id="devenirPrenium">
+		UPDATE UTILISATEUR set
+		usr_premium = true
+		where usr_id = #{utilisateur.idUtilisateur};
+	</update>
 </mapper>

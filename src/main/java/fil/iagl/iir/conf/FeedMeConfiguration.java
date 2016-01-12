@@ -67,31 +67,30 @@ public class FeedMeConfiguration extends WebMvcAutoConfigurationAdapter {
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws IOException {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-		
-		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		sessionFactory.setMapperLocations(resolver.getResources("classpath*:**/mapper/*Mapper.xml"));
-		
-		sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
-		try {
-			return sessionFactory.getObject();
-		} catch (Exception e) {
-			throw new FeedMeException(e);
-		}
-	}
 
+    PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+    sessionFactory.setMapperLocations(resolver.getResources("classpath*:**/mapper/*Mapper.xml"));
+    sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
+    try {
+      return sessionFactory.getObject();
+    } catch (Exception e) {
+      throw new FeedMeException(e);
+    }
+  }
 
-	/**
-	 * Creation de la Bean "jacksonBuilder" pour Jackson
-	 *
-	 * @return La bean "jacksonBuilder"
-	 */
-	@Bean
-	public Jackson2ObjectMapperBuilder jacksonBuilder() {
-		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-		builder.indentOutput(true);
-		builder.deserializerByType(Role.class, new JsonRoleDeserializer());
-		builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-		return builder;
-	}
+  /**
+   * Creation de la Bean "jacksonBuilder" pour Jackson
+   *
+   * @return La bean "jacksonBuilder"
+   */
+  @Bean
+  public Jackson2ObjectMapperBuilder jacksonBuilder() {
+    Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+    builder.indentOutput(true);
+    builder.deserializerByType(Role.class, new JsonRoleDeserializer());
+    builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    return builder;
+  }
+
 
 }

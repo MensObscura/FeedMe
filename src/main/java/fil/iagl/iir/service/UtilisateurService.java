@@ -36,4 +36,10 @@ public interface UtilisateurService {
    * @param particulier Les nouvelles informations Particulier
    */
   void modifierProfil(Particulier particulier);
+  
+  /**
+   * Permet de faire devenir un utilisateur prénium
+   * @param utilisateur qui souhaite devenir prénium
+   */
+  void devenirPrenium(Utilisateur utilisateur);
 }

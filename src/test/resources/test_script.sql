@@ -1,7 +1,9 @@
 -- RESET BDD CONTENT
 TRUNCATE
+MESSAGE,
 IMAGE_OFFRE,
 IMAGE,
+VOTE,
 AUTHENTIFICATION,
 UTILISATEUR,
 PARTICULIER,
@@ -18,8 +20,15 @@ ALTER SEQUENCE adresse_adr_id_seq RESTART WITH 1;
 ALTER SEQUENCE offre_off_id_seq RESTART WITH 1;
 ALTER SEQUENCE reservation_res_id_seq RESTART WITH 1;
 ALTER SEQUENCE image_img_id_seq RESTART WITH 1;
+ALTER SEQUENCE message_msg_id_seq RESTART WITH 1;
+ALTER SEQUENCE vote_vot_id_seq RESTART WITH 1;
 
 -- DONNEES DE TEST
+-- ---------------------------
+-- BOT
+-- ---------------------------
+INSERT INTO UTILISATEUR ( usr_id, usr_nom, usr_mail, usr_premium , usr_description, usr_adresse_visible) VALUES 
+( -1, 'bot', 'bot@feedme.com', false, '', false);
 
 -- ---------------------------
 -- Table IMAGE
@@ -49,7 +58,7 @@ INSERT INTO ADRESSE (adr_voie, adr_vil_id) VALUES
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_premium , usr_description, usr_adresse_visible) VALUES 
 ( 'toto', 'toto.toto@gmail.com', true, 'ceci est la description de toto', true), -- ID 1
 ( 'foo', 'foo.bar@gmail.com', true, null, true), -- ID 2
-( 'jean', 'jambon-beurre@gmail.com', true, null, true); -- ID 3
+( 'jean', 'jambon-beurre@gmail.com', false, null, true); -- ID 3
 
 INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description, usr_img_id) VALUES
 ( 'hall', 'kolick@gmail.com', 1, true, 'ceci est la description de hall', 1); -- ID 4
@@ -90,4 +99,20 @@ INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation, res_nb_pla
 -- ---------------------------
 INSERT INTO image_offre(imo_off_id, imo_img_id) VALUES
 (1, 1);
+
+-- ---------------------------
+-- Table MESSAGE
+-- ---------------------------
+INSERT INTO message(msg_id_usr_expediteur, msg_id_usr_destinataire, msg_date, msg_lu, msg_objet, msg_texte) VALUES
+(1, 2, CURRENT_TIMESTAMP, false, 'premier objet', 'premier texte'), -- ID 1
+(1, 2, CURRENT_TIMESTAMP, false, 'deuxieme objet', 'deuxieme texte'), -- ID 2
+(1, 2, CURRENT_TIMESTAMP, true, 'deuxieme objet', 'deuxieme texte'); -- ID 3
+
+-- ---------------------------
+-- Table VOTE
+-- ---------------------------
+INSERT INTO VOTE(vot_usr_id, vot_off_id, vot_note) VALUES
+(2, 1, 5), -- ID 1 - L'offre 1 a reçu la note de 5 par l'utilisateur 2
+(3, 1, 3), -- ID 2 - L'offre 1 a reçu la note de 3 par l'utilisateur 3
+(1, 1, 4); -- ID 3 - L'offre 1 a reçu la note de 4 par l'utilisateur 1
 

@@ -285,6 +285,18 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
   }
 
   @Test
+  public void devenirPreniumTestSucces() {
+	  int idNonPrenium = 3;
+	  Utilisateur utilisateur = utilisateurDao.getById(idNonPrenium);
+	  assertThat(utilisateur).isNotNull();
+	  assertThat(utilisateur.getPremium()).isEqualTo(false);
+	  utilisateurDao.devenirPrenium(utilisateur);
+	  utilisateur = utilisateurDao.getById(idNonPrenium);
+	  assertThat(utilisateur).isNotNull();
+	  assertThat(utilisateur.getPremium()).isEqualTo(true);
+  }
+  
+  @Test
   public void sauvegarderTestEchec_NomNull() throws Exception {
     // Etant donne un utilisateur n'ayant pas de nom
     Utilisateur utilisateur = new Utilisateur();
