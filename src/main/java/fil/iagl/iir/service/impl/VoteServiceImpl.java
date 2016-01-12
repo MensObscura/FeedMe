@@ -36,7 +36,7 @@ public class VoteServiceImpl implements VoteService {
   /**
    * Retourne la note moeyenne depuis une liste de votes.
    * La note est renvoyée sous forme : 3.75 devient 37
-   * @param la liste des votes
+   * @param votes la liste des votes
    * @return la note moyenne des votes
    */
   @Override
