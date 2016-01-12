@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -155,7 +156,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     Mockito.when(this.offreService.getAllOffresByHote(idUtilisateur)).thenReturn(buildListeOffres());
 
     // Mock des votes
-    Mockito.when(this.voteService.getVotesByOffre(Mockito.anyInt())).thenReturn(buildListeVotes());
+    Mockito.when(this.voteService.getNoteMoyenne(Matchers.anyListOf(Vote.class))).thenReturn(35);
 
     // Quand on appelle le service pour récupèrer un utilisateur
     Utilisateur utilisateur = utilisateurService.getById(idUtilisateur);
@@ -219,17 +220,6 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     offres.add(offre1);
     offres.add(offre2);
     return offres;
-  }
-
-  private List<Vote> buildListeVotes() {
-    List<Vote> votes = new ArrayList<Vote>();
-    Vote vote1 = createVote();
-    Vote vote2 = createVote();
-    vote1.setNote(2);
-    vote2.setNote(5);
-    votes.add(vote1);
-    votes.add(vote2);
-    return votes;
   }
 
 }

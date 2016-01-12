@@ -2,7 +2,6 @@ package fil.iagl.iir.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Utilisateur;
+import fil.iagl.iir.entite.Vote;
 import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.service.AdresseService;
 import fil.iagl.iir.service.OffreService;
@@ -32,7 +32,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
   @Autowired
   private OffreService offreService;
-  
+
   @Autowired
   private VoteService voteService;
 
@@ -79,15 +79,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
   public List<Particulier> getAllPremium() {
     return this.particulierDao.getAllPremium();
   }
-  
+
   public void devenirPrenium(Utilisateur utilisateur) {
-	  if (utilisateur == null) {
-		  throw new FeedMeException("Utilisateur null");
-	  }
-	  if (utilisateur.getPremium()) {
-		  throw new FeedMeException("Utilisateur déjà prénium");
-	  }
-	  utilisateurDao.devenirPrenium(utilisateur);
+    if (utilisateur == null) {
+      throw new FeedMeException("Utilisateur null");
+    }
+    if (utilisateur.getPremium()) {
+      throw new FeedMeException("Utilisateur déjà prénium");
+    }
+    utilisateurDao.devenirPrenium(utilisateur);
   }
 
   /*
@@ -96,19 +96,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
    * Calcule la moyenne de toutes ces notes.
    */
   private Integer getNoteUtilisateur(Integer idUtilisateur) {
-    List<Integer> notes = new ArrayList<Integer>();
+    // On collecte toutes les offres de l'hôte
+    List<Offre> offres = this.offreService.getAllOffresByHote(idUtilisateur);
 
-    // On collecte toutes les notes de toutes les offres de l'hôte
-    for (Offre offre : this.offreService.getAllOffresByHote(idUtilisateur)) {
-      notes.addAll(this.voteService.getVotesByOffre(offre.getId()).stream()
-        .map(v -> v.getNote())
-        .collect(Collectors.toList()));
-    }
+    // On récupère tous les votes
+    List<Vote> votes = new ArrayList<Vote>();
+    offres.stream().forEach(o -> votes.addAll(this.voteService.getVotesByOffre(o.getId())));
 
-    // On calcule la note moyenne: 3.75 devient 37
-    Double noteMoyenne = notes.stream().mapToInt(x -> x).average().orElse(0) * 10;
-
-    return noteMoyenne.intValue();
+    return this.voteService.getNoteMoyenne(votes);
   }
 
 }

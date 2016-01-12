@@ -39,6 +39,9 @@ public class OffreServiceTest extends AbstractServiceTest {
   @Mock
   private Image imageNonExistante;
 
+  @Mock
+  private VoteService voteService;
+  
   @Test
   public void sauvegarderTestSucces() throws Exception {
     Image image1 = new Image();
@@ -169,40 +172,40 @@ public class OffreServiceTest extends AbstractServiceTest {
 
   @Test
   public void listerOffresEnCoursByHoteTestSuccess_moins2heures() throws Exception {
-	  List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
-	  
-	  Assertions.assertThat(list).isNotNull();
-	  
-	  Offre o = offre;
-	  o.setDateRepas(LocalDateTime.now().minusHours(2));
-	  offreDao.sauvegarder(o);
-	  // Normalement, l'offre ajoute est perimee... Par consequent, elle ne sera pas comptee.
-	  Mockito.when(offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
+    List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
+
+    Assertions.assertThat(list).isNotNull();
+
+    Offre o = offre;
+    o.setDateRepas(LocalDateTime.now().minusHours(2));
+    offreDao.sauvegarder(o);
+    // Normalement, l'offre ajoute est perimee... Par consequent, elle ne sera pas comptee.
+    Mockito.when(offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
   }
-  
+
   @Test
   public void listerOffresEnCoursByHoteTestSuccess_plus2jours() throws Exception {
-	  List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
-	  
-	  Assertions.assertThat(list).isNotNull();
-	  
-	  Offre o = offre;
-	  o.setDateRepas(LocalDateTime.now().plusDays(2));
-	  offreDao.sauvegarder(o);
-	  // Normalement, l'offre n'est pas perimee donc il y en a une de plus...
-	  list.add(o);	  
-	  Mockito.when(offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
+    List<Offre> list = offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte());
+
+    Assertions.assertThat(list).isNotNull();
+
+    Offre o = offre;
+    o.setDateRepas(LocalDateTime.now().plusDays(2));
+    offreDao.sauvegarder(o);
+    // Normalement, l'offre n'est pas perimee donc il y en a une de plus...
+    list.add(o);
+    Mockito.when(offreService.listerOffresEnCoursByHote(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(list);
   }
-  
+
   @Test
   public void listerOffresEnCoursByHoteTestEchec() throws Exception {
     // Quand on appelle le service d'Offre pour récupèrer les offres en cours d'un hôte
     // avec un ID d'utilisateur null ou inconnu
     // Alors on obtient une liste d'offres vide
-	  Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList<Offre>());
-	  Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList<Offre>());
+    Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList<Offre>());
+    Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList<Offre>());
   }
-  
+
   @Test
   public void modifierOffreTestSucces() throws Exception {
     Integer idOffre = 1;
