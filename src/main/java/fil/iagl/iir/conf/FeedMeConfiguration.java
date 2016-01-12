@@ -67,7 +67,6 @@ public class FeedMeConfiguration extends WebMvcAutoConfiguration {
 
     PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
     sessionFactory.setMapperLocations(resolver.getResources("classpath*:**/mapper/*Mapper.xml"));
-
     sessionFactory.setTypeHandlersPackage("fil.iagl.iir.typehandler");
     try {
       return sessionFactory.getObject();

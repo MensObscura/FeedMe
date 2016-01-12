@@ -19,4 +19,6 @@ public final class CONSTANTE {
     .collect(Collectors.joining(Character.toString(File.separatorChar)));
   public static final String UPLOADED_IMAGE_LOCATION = Arrays.asList("resources", "img", "upload").stream().collect(Collectors.joining(Character.toString(File.separatorChar)));
 
+  public static final Integer NOTE_MAXIMALE = 5;
+  public static final Integer NOTE_MINIMALE = 1;
 }

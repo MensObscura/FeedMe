@@ -15,6 +15,7 @@ import fil.iagl.iir.dao.reservation.ReservationDao;
 import fil.iagl.iir.dao.typeCuisine.TypeCuisineDao;
 import fil.iagl.iir.dao.utilisateur.UtilisateurDao;
 import fil.iagl.iir.dao.ville.VilleDao;
+import fil.iagl.iir.dao.vote.VoteDao;
 import fil.iagl.iir.outils.SQLCODE;
 
 public abstract class AbstractDaoTest extends AbstractFeedMeTest {
@@ -45,6 +46,9 @@ public abstract class AbstractDaoTest extends AbstractFeedMeTest {
 
   @Autowired
   protected ImageDao imageDao;
+
+  @Autowired
+  protected VoteDao voteDao;
 
   protected void assertSQLCode(DataIntegrityViolationException dive, SQLCODE sqlCode) {
     Assertions.assertThat(dive.getCause()).isInstanceOf(PSQLException.class);

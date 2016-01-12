@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fil.iagl.iir.dao.vote.VoteDao">
+
+	<resultMap type="fil.iagl.iir.entite.Vote" id="Vote_ResultMap">
+		<id property="id" column="vot_id" />
+		<result property="note" column="vot_note" />
+		<association property="utilisateur" column="vot_usr_id" select="fil.iagl.iir.dao.utilisateur.UtilisateurDao.getById" />
+		<association property="offre" column="vot_off_id" select="fil.iagl.iir.dao.offre.OffreDao.getById" />
+	</resultMap>
+
+	<sql id="select_vote">
+		SELECT vot_id, vot_usr_id, vot_off_id, vot_note
+		FROM VOTE
+	</sql>
+
+	<select id="getVotesByOffre" resultMap="Vote_ResultMap">
+		<include refid="select_vote" />
+		WHERE vot_off_id = #{idOffre}
+	</select>
+
+	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="vot_id" keyProperty="vote.id">
+		INSERT INTO VOTE (vot_usr_id, vot_off_id, vot_note)
+		VALUES (#{vote.utilisateur.idUtilisateur}, #{vote.offre.id}, #{vote.note});
+	</insert>
+
+</mapper>
