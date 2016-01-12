@@ -37,7 +37,8 @@ INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES
 ( 'Landerzac', 'slanderzac@grolejac.fr',4, false);
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES 
 ( 'Olivier', 'herveolivier@gemail.com',5, true);
-
+INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES 
+( 'Bot', 'GenLeBot@gemail.com',5, true); 
 -- ---------------------------
 -- Table PARTICULIER
 -- ---------------------------
@@ -49,7 +50,7 @@ INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES
 ( 'Sandrine', '1988-08-29', 3); -- ID 3
 INSERT INTO PARTICULIER ( prt_prenom, prt_date_naissance, prt_usr_id) VALUES 
 ( 'Hervé', '1997-12-11', 4); -- ID 4
-
+ -- BOT ID 5
 -- ---------------------------
 -- Table AUTHENTIFICATION
 -- ---------------------------
