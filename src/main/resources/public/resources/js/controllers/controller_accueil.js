@@ -13,10 +13,9 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 	};
 	
 	
-	$http.get('/offres').success(
+	$http.get('/message').success(
 			function(donnees) {
-				$scope.list = donnees.data;
-				$scope.nombrePlaces =0;	
+				
 			}
 		);
 	$scope.items = [
