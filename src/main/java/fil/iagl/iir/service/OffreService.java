@@ -58,4 +58,11 @@ public interface OffreService {
    * @return La liste des offres en cours d'un hôte donné
    */
   List<Offre> listerOffresEnCoursByHote(Integer idUtilisateur);
+  
+  /**
+   * Permet de récupèrer la liste de toutes les offres proposées par un hôte.
+   * @param idUtilisateur l'hôte dont on recherche les offres
+   * @return La liste de toutes les offres proposées par l'hôte
+   */
+  List<Offre> getAllOffresByHote(Integer idUtilisateur);
 }

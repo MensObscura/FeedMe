@@ -1,5 +1,6 @@
 package fil.iagl.iir.controller.utilisateur;
 
+import static org.junit.Assert.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -227,5 +228,24 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     mockMvc.perform(get("/utilisateur/particulier/premium"))
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.data").isArray());
+  }
+
+  @Test
+  public void devenirPreniumTestSucces() throws Exception {
+    Particulier p = createParticulier();
+    p.setPremium(false);
+    JSONObject jsonParticulier = new JSONObject(p);
+    assertFalse(p.getPremium());
+    utilisateurDao.sauvegarder(p);
+    mockMvc.perform(get("/utilisateur/particulier/devenirPrenium").contentType(FEED_ME_MEDIA_TYPE).content(jsonParticulier.toString()))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
+      .andExpect(jsonPath("$.data.premium").value(true));
+  }
+
+  @Test
+  public void devenirPreniumTestEchec() throws Exception {
+    // Sans données de type particulier
+    mockMvc.perform(get("/utilisateur/particulier/devenirPrenium")).andExpect(status().isBadRequest());
   }
 }

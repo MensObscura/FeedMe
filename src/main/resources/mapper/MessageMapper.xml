@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fil.iagl.iir.dao.message.MessageDao">
+
+	<resultMap type="fil.iagl.iir.entite.Message" id="Message_ResultMap">
+		<id property="id" column="msg_id"/>
+		<result property="date" column="msg_date"/>
+		<result property="objet" column="msg_objet"/>
+		<result property="texte" column="msg_texte"/>
+		<result property="lu" column="msg_lu"/>
+		
+		<association property="expediteur" column="msg_id_usr_expediteur" select="fil.iagl.iir.dao.utilisateur.UtilisateurDao.getById"/>
+		<association property="destinataire" column="msg_id_usr_destinataire" select="fil.iagl.iir.dao.utilisateur.UtilisateurDao.getById"/>
+	
+	</resultMap>
+	
+	<sql id="select_all_columns_message">
+		SELECT msg_id,
+		msg_id_usr_expediteur,
+		msg_id_usr_destinataire,
+		msg_date,
+		msg_lu,
+		msg_objet,
+		msg_texte
+		FROM MESSAGE
+	</sql>
+	
+	<insert id="sauvegarder" useGeneratedKeys="true" keyProperty="message.id" keyColumn="msg_id">
+	INSERT INTO MESSAGE(
+		msg_id_usr_expediteur,
+		msg_id_usr_destinataire,
+		msg_date,
+		msg_lu,
+		msg_objet,
+		msg_texte
+	)
+	VALUES	(
+		#{message.expediteur.idUtilisateur},
+		#{message.destinataire.idUtilisateur},
+		current_timestamp,
+		false,
+		#{message.objet},
+		#{message.texte}
+	);
+	</insert>
+	
+	<delete id="supprimer">
+	DELETE FROM MESSAGE WHERE msg_id=#{idMessage};
+	</delete>
+	
+	<select id="getAll" resultMap="Message_ResultMap">
+		<include refid="select_all_columns_message"/>
+		WHERE msg_id_usr_destinataire = #{idDestinataire}
+	</select>
+	
+	<select id="getAllNonLuParId" resultMap="Message_ResultMap">
+		<include refid="select_all_columns_message"/>
+		WHERE msg_id_usr_destinataire = #{idDestinataire} AND msg_lu = false;
+	</select>
+
+</mapper>

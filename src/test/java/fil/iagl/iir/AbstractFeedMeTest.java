@@ -35,6 +35,7 @@ import fil.iagl.iir.entite.Authentification;
 import fil.iagl.iir.entite.AuthentificationParticulier;
 import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Menu;
+import fil.iagl.iir.entite.Message;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Particulier;
 import fil.iagl.iir.entite.Pays;
@@ -43,6 +44,7 @@ import fil.iagl.iir.entite.Role;
 import fil.iagl.iir.entite.TypeCuisine;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.entite.Ville;
+import fil.iagl.iir.entite.Vote;
 import fil.iagl.iir.outils.FeedMeAuthentificationToken;
 import fil.iagl.iir.outils.FeedMeException;
 
@@ -180,6 +182,43 @@ public abstract class AbstractFeedMeTest {
     return reservation;
   }
 
+  protected Message createMessage() {
+    String objet = "objet";
+    String texte = "texte";
+
+    Utilisateur utilisateur1 = createUtilisateur();
+
+    Integer idUtilisateur = 2;
+    String mail = "foo.bar@gmail.com";
+    String nom = "foo";
+    String prenom = "bar";
+    LocalDate dateNaissance = LocalDate.now().minusYears(20);
+
+    Adresse adresse = new Adresse();
+    Ville ville = new Ville();
+    ville.setId(1);
+    adresse.setVoie("Turlututu");
+    adresse.setVille(ville);
+
+    Particulier utilisateur2 = new Particulier();
+
+    utilisateur2.setAdresse(adresse);
+    utilisateur2.setPremium(false);
+    utilisateur2.setIdUtilisateur(idUtilisateur);
+    utilisateur2.setMail(mail);
+    utilisateur2.setNom(nom);
+    utilisateur2.setPrenom(prenom);
+    utilisateur2.setDateNaissance(dateNaissance);
+
+    Message message = new Message();
+    message.setExpediteur(utilisateur1);
+    message.setDestinataire(utilisateur2);
+    message.setObjet(objet);
+    message.setTexte(texte);
+
+    return message;
+  }
+
   protected Offre createOffre() {
     String titre = "MonTitre";
     String note = "Note";
@@ -249,10 +288,21 @@ public abstract class AbstractFeedMeTest {
     return offre;
   }
 
-  Integer idUtilisateur = 2;
-  Integer idParticulier = 2;
+  protected Vote createVote() {
+    Offre offre = createOffre();
+    offre.setId(4);
+
+    Vote vote = new Vote();
+    vote.setUtilisateur(createParticulier());
+    vote.setOffre(offre);
+    vote.setNote(3);
+
+    return vote;
+  }
 
   protected Authentification<Particulier> createAuthentificationParticulier() {
+    Integer idUtilisateur = 2;
+    Integer idParticulier = 2;
     String mail = "foo.bar@gmail.com";
     String nom = "foo";
     String prenom = "bar";

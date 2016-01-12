@@ -75,5 +75,11 @@ public class UtilisateurController {
   public DataReturn<List<Particulier>> getAllPremium() {
     return new DataReturn<>(this.utilisateurService.getAllPremium());
   }
+  
+  @RequestMapping(value="/particulier/devenirPrenium",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+  public DataReturn<Particulier> devenirPrenium(@RequestBody Particulier particulier) {
+	 utilisateurService.devenirPrenium(particulier);
+	 return new DataReturn<>(utilisateurService.getParticulierByUtilisisateurId(particulier.getIdParticulier()));
+  }
 
 }
