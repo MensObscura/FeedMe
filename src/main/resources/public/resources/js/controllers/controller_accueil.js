@@ -1,5 +1,5 @@
 // Chargement du module "Accueil"
-var app = angular.module("Accueil", []);
+var app = angular.module("Accueil", ['angular-notification-icons', 'ngAnimate', 'ui.bootstrap']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -11,4 +11,19 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 			}
 		);
 	};
+	
+	
+	$http.get('/offres').success(
+			function(donnees) {
+				$scope.list = donnees.data;
+				$scope.nombrePlaces =0;	
+			}
+		);
+	$scope.items = [
+	                'The first choice!',
+	                'And another choice for you.',
+	                'but wait! A third!'
+	              ];
+	
+
 });

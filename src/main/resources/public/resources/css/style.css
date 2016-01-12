@@ -1552,6 +1552,19 @@ img.img-tile.img-profil:hover {
 	margin: 0.5%;
 	}
 	
+
+
+
+
+.img-ico{
+	
+	width : 2.3em;
+	height : 2.3em;
+	margin-top : 11.5%
+	
+	}
+
 .popover{
     max-width: 100%; /* Max Width of the popover (depending on the container!) */
 }
+

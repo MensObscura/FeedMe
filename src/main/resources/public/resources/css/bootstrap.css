@@ -3433,7 +3433,7 @@ tbody.collapse.in {
 }
 .dropdown-menu.pull-right {
   right: 0;
-  left: auto;
+  left: 0;
 }
 .dropdown-menu .divider {
   height: 1px;

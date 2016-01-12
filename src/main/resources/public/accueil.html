@@ -21,10 +21,11 @@ Page d'accueil pour utilisateur connecté.
 
     <!-- Stylesheet
     ================================================== -->
-    <link rel="stylesheet" type="text/css"  href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
 
     <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
+    <link rel='stylesheet' type='text/css' href='resources/css/angular-notification-icons.min.css'>
 		
 	</head>
 	
@@ -34,23 +35,26 @@ Page d'accueil pour utilisateur connecté.
         
 		<!-- Corps de la page -->
 		<div class="page-accueil">
-            <div class="page-accueil-container">
-            <div class = "Aligner-item">
-            <a class="choice choice-text" onclick="window.location='/formulaire-offre.html'">Proposer un repas</a>
-              </div>
-                 <div class = "Aligner-item">
-            <a class="choice choice-text" onclick="window.location='/liste_offres.html'">Réserver un couvert</a>
-           </div>
-             </div>
+      <div class="page-accueil-container">
+        <div class = "Aligner-item">
+          <a class="choice choice-text" onclick="window.location='/formulaire-offre.html'">Proposer un repas</a>
+        </div>
+        <div class = "Aligner-item">
+          <a class="choice choice-text" onclick="window.location='/liste_offres.html'">Réserver un couvert</a>  
+        </div>
+      </div>
 		</div>
 		
 		<!-- Pied de page -->
 		<div ng-include="'/resources/footer.html'"></div>
 		
 		<script type="text/javascript" src="resources/js/scripts/modernizr.custom.js"></script>
-   		<script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
-   		<script type="text/javascript" src="/resources/js/controllers/controller_accueil.js"></script>
-    
+   	<script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
+   	<script type="text/javascript" src="/resources/js/controllers/controller_accueil.js"></script>
+
+    <script type="text/javascript" src="/resources/js/scripts/angular-notification-icons.min.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/angular-animate.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls-1.0.3.js"></script>
 	</body>
 	
 </html>

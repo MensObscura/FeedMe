@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters', 'ngRateIt']);
+var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters', 'ngRateIt', 'angular-notification-icons', 'ui.bootstrap']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
     
@@ -12,6 +12,12 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 			}
 		);
 	};
+	
+	$scope.items = [
+	                'The first choice!',
+	                'And another choice for you.',
+	                'but wait! A third!'
+	              ];
 });
 
 // Création du controller "ProfilCtrl"
