@@ -61,7 +61,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     if (id == null) {
       throw new FeedMeException("parametre null");
     }
-    return particulierDao.getParticulierByUtilisateurId(id);
+    Particulier particulier = particulierDao.getParticulierByUtilisateurId(id);
+    particulier.setNote(getNoteUtilisateur(id));
+    return particulier;
   }
 
   @Override
@@ -77,7 +79,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
   @Override
   public List<Particulier> getAllPremium() {
-    return this.particulierDao.getAllPremium();
+    List<Particulier> particuliersPremiums = this.particulierDao.getAllPremium();
+    particuliersPremiums.stream().forEach(p -> p.setNote(getNoteUtilisateur(p.getIdUtilisateur())));
+    return particuliersPremiums;
   }
 
   public void devenirPrenium(Utilisateur utilisateur) {
