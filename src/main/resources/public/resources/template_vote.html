@@ -61,7 +61,7 @@
 	<div ng-if="!notepour">
 		<h3>R&eacute;capitulatif des votes :</h3>
 		Cliquez sur la photo de profil du convive que vous voulez noter.<br>
-		{{votepour.noteMoyenne && "L'ambiance moyenne est de "+votepour.noteMoyenne+" pour le moment." || "Vous n'avez pas encore vot&eacute; pour les convives de ce repas."}}<br>
+		{{votepour.noteMoyenne && "L'ambiance moyenne est de "+(votepour.noteMoyenne/10)+" pour le moment." || "Vous n'avez pas encore vot&eacute; pour les convives de ce repas."}}<br>
 		{{cuisine && "Vous avez mis "+cuisine+" &agrave; "+votepour.hote.prenom+" pour sa cuisine." || "Vous n'avez pas encore &eacute;valu&eacute; la cuisine."}}<br>
 		Cliquez sur 'Voter' pour enregistrer vos notes ({{notesHistorique.length}} personne(s)).<br>
 		<md-button

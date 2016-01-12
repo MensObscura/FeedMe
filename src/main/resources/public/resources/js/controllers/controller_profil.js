@@ -38,7 +38,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		function(donnees) {
 			// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 			$scope.profil = donnees.data;
-			$scope.noteMoyenne = donnees.data.note/100;
+			$scope.noteMoyenne = donnees.data.note/10;
 						
 			//checkbox visible
 			$scope.visible = $scope.profil.adresseVisible;
