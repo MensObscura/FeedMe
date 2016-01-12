@@ -55,7 +55,7 @@ public class ReservationServiceImpl implements ReservationService {
     String texte = String
       .format("Bonjour,\n\n "
         + "Nous avons le plaisir de vous annoncer que %s %s vient de reserver %d place(s) pour votre annonce \"%s\".\n\n"
-        + "Ceci est un message généré, merci ne pas repondre.", utilisateurConnecte.getPrenom(), utilisateurConnecte.getNom(), reservation.getNb_places(),
+        + "Ceci est un message généré, merci ne pas repondre.", utilisateurConnecte.getPrenom(), utilisateurConnecte.getNom(), reservation.getNbPlaces(),
         reservation.getOffre().getTitre());
 
     Message message = new Message();

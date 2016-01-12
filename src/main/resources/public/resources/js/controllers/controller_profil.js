@@ -38,8 +38,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		function(donnees) {
 			// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 			$scope.profil = donnees.data;
-			$scope.noteMoyenne = donnees.data.note;
-			console.log($scope.profil);
+			$scope.noteMoyenne = donnees.data.note/100;
 						
 			//checkbox visible
 			$scope.visible = $scope.profil.adresseVisible;
@@ -108,6 +107,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
         
     $scope.vote = function(repas) {
     	$scope.votepour = repas;
+    	console.log(repas);
     }
     
     $scope.retour = function() {
@@ -118,6 +118,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     }
     
     $scope.noter = function(convive) {
+    	console.log(convive);
     	$scope.notepour = convive;
     	$scope.noteActu = null;
     	
@@ -143,7 +144,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     	for (var i=0; i < $scope.notesHistorique.length; i++ ) {
     		var vote = {
         		utilisateur: $scope.notesHistorique[i].utilisateur,
-        		note: ($scope.notesHistorique[i].note)*10,
+        		note: ($scope.notesHistorique[i].note),
     			offre: $scope.votepour
         	}
         	
