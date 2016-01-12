@@ -170,6 +170,7 @@ public abstract class AbstractFeedMeTest {
 
     Offre offre = new Offre();
     offre.setId(idOffre);
+    offre.setHote(createUtilisateur());
 
     LocalDate dateReservation = LocalDate.now();
 
