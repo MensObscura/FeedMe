@@ -1374,3 +1374,8 @@ img.img-tile.img-profil:hover {
 .popover{
     max-width: 100%; /* Max Width of the popover (depending on the container!) */
 }
+
+
+.error-message-shadowed {
+    text-shadow: 0.5px 0.5px 2px #f66;
+}

@@ -79,7 +79,7 @@ Page proposant le formulaire d'inscription.
 									name="nom" ng-model="nom" ng-required="true"
 									placeholder="Votre nom.">
 								<div ng-messages="InscriptionForm.nom.$error" ng-show="(InscriptionForm.nom.$touched  || submited)">
-									<div ng-message="required">Veuillez saisir votre nom.</div>
+									<div ng-message="required" class="error-message-shadowed">Veuillez saisir votre nom.</div>
 								</div>
 								</md-input-container>
 								<md-input-container flex> <label id="white"
@@ -87,7 +87,7 @@ Page proposant le formulaire d'inscription.
 									name="prenom" ng-model="prenom" ng-required="true"
 									placeholder="Votre prénom.">
 								<div ng-messages="InscriptionForm.prenom.$error" ng-show="(InscriptionForm.prenom.$touched  || submited)">
-									<div ng-message="required">Veuillez saisir votre prénom.</div>
+									<div ng-message="required" class="error-message-shadowed">Veuillez saisir votre prénom.</div>
 								</div>
 								</md-input-container>
 							</div>
@@ -98,8 +98,8 @@ Page proposant le formulaire d'inscription.
 									name="email" ng-model="email" ng-required="true"
 									placeholder="Adresse mail">
 								<div ng-messages="InscriptionForm.email.$error" ng-show="(InscriptionForm.email.$touched || submited)">
-									<div ng-message="required">Veuillez saisir votre email.</div>
-									<div ng-message="email">Votre email est invalide.</div>
+									<div ng-message="required" class="error-message-shadowed">Veuillez saisir votre email.</div>
+									<div ng-message="email" class="error-message-shadowed">Votre email est invalide.</div>
 								</div>
 								</md-input-container>
 								
@@ -117,7 +117,7 @@ Page proposant le formulaire d'inscription.
 								</div>
 								<div  ng-messages="InscriptionForm.date.$error"
 									ng-show="(InscriptionForm.date.$touched  || submited)">
-									<div ng-message="required">Veuillez seletionner une date.</div>
+									<div ng-message="required" class="error-message-shadowed">Veuillez seletionner une date.</div>
 								</div>
 
 								</md-input-container>
@@ -130,7 +130,7 @@ Page proposant le formulaire d'inscription.
 									type="password" name="mdp" ng-model="mdp" ng-required="true"
 									placeholder="Mot de passe">
 								<div ng-messages="InscriptionForm.mdp.$error" ng-show="(InscriptionForm.mdp.$touched    || submited)">
-									<div ng-message="required">Veuillez saisir un mot de
+									<div ng-message="required" class="error-message-shadowed">Veuillez saisir un mot de
 										passe.</div>
 								</div>
 								</md-input-container>
@@ -139,9 +139,9 @@ Page proposant le formulaire d'inscription.
 									name="cmdp" ng-model="cmdp" ng-required="true"
 									placeholder="Mot de passe" ensure-expression="mdp == cmdp">
 								<div ng-messages="InscriptionForm.cmdp.$error" ng-show="(InscriptionForm.cmdp.$touched || submited)">
-									<div ng-message="required">Veuillez confirmer le mot de
+									<div ng-message="required" class="error-message-shadowed">Veuillez confirmer le mot de
 										passe.</div>
-									<div ng-message="mauvaismdp">Les mots de passe sont
+									<div ng-message="mauvaismdp" class="error-message-shadowed">Les mots de passe sont
 										différents.</div>
 								</div>
 								</md-input-container>		
@@ -155,9 +155,9 @@ Page proposant le formulaire d'inscription.
 									placeholder="Numéro de voirie." ng-required="!home"
 									ng-disabled="home">
 								<div ng-messages="InscriptionForm.numero.$error" ng-show="(InscriptionForm.numero.$touched  || submited)">
-									<div ng-message="min">Veuillez saisir un numéro valide.</div>
-									<div ng-message="required">Veuillez saisir un numéro de voirie.</div>
-									<div ng-message="number">Veuillez saisir un nombre.</div>
+									<div ng-message="min" class="error-message-shadowed">Veuillez saisir un numéro valide.</div>
+									<div ng-message="required" class="error-message-shadowed">Veuillez saisir un numéro de voirie.</div>
+									<div ng-message="number" class="error-message-shadowed">Veuillez saisir un nombre.</div>
 								</div>
 								</md-input-container>
 								<md-input-container flex> <label
@@ -166,7 +166,7 @@ Page proposant le formulaire d'inscription.
 									placeholder="Nom de voirie." ng-required="!home"
 									ng-disabled="home">
 								<div ng-messages="InscriptionForm.rue.$error" ng-show="(InscriptionForm.rue.$touched  || submited)">
-									<div ng-message="required">Veuillez saisir un nom de rue.</div>
+									<div ng-message="required" class="error-message-shadowed">Veuillez saisir un nom de rue.</div>
 								</div>
 								</md-input-container>
 								<md-input-container flex> <label
@@ -182,7 +182,7 @@ Page proposant le formulaire d'inscription.
 									placeholder="Votre ville." ng-required="!home"
 									ng-disabled="home">
 								<div ng-messages="InscriptionForm.ville.$error" ng-show="(InscriptionForm.ville.$touched || submited)">
-									<div ng-message="required">Veuillez saisir votre ville.</div>
+									<div ng-message="required" class="error-message-shadowed">Veuillez saisir votre ville.</div>
 								</div>
 								</md-input-container>
 								<md-input-container flex> <label
@@ -192,8 +192,8 @@ Page proposant le formulaire d'inscription.
 									placeholder="Votre code postal." ng-required="!home"
 									ng-disabled="home">
 								<div ng-messages="InscriptionForm.cp.$error" ng-show="(InscriptionForm.cp.$touched   || submited)">
-									<div ng-message="pattern">Le code postal saisit est incorrect.</div>
-									<div ng-message="required">Veuillez saisir un code postal.</div>
+									<div ng-message="pattern" class="error-message-shadowed">Le code postal saisit est incorrect.</div>
+									<div ng-message="required" class="error-message-shadowed">Veuillez saisir un code postal.</div>
 								</div>
 								</md-input-container>
 								<md-input-container flex> <label
@@ -210,7 +210,7 @@ Page proposant le formulaire d'inscription.
         							</md-checkbox>
 								</md-input-container>
 							</div>
-							<div class="white" ng-show="paye">Félicitation vous avez souscrit à un compte premium</div>
+							<div class="white" ng-show="paye">Félicitations, vous avez souscrit à un compte Premium !</div>
 							<md-button id="form_button_log" type="submit" ng-click="submited=true"
 								class="form">Confirmer</md-button> </md-content>
 								</br>

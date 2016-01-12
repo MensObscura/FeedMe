@@ -57,7 +57,7 @@
 		<div class="overlay">
 			<div class="auth-form" ng-controller="LoginController">
 				<h1>Authentification</h1>
-				<div class="alert alert-danger" ng-show="error">Ce compte
+				<div class="alert alert-danger" ng-show="error" class="error-message-shadowed">Ce compte
 					n'existe pas, veuillez réessayer.</div>
 				<form name="ConnexionForm" id="connexion-form" role="form"
 					ng-submit="login()" novalide>
@@ -69,8 +69,8 @@
 							type="email" id="username" name="username"
 							ng-model="credentials.username" />
 							<div ng-messages="ConnexionForm.username.$error"  ng-show="(ConnexionForm.username.$touched|| submited)">
-							<div ng-message="required">Veuillez saisir une adresse email.</div>
-							<div ng-message="email">Veuillez saisir une adresse email
+							<div ng-message="required" class="error-message-shadowed">Veuillez saisir une adresse email.</div>
+							<div ng-message="email" class="error-message-shadowed">Veuillez saisir une adresse email
 								valide.</div>
 							</div>
 							</md-input-container>
@@ -81,7 +81,7 @@
 							placeholder="Mot de passe" ng-required="true" type="password"
 							id="password" name="password" ng-model="credentials.password" />
 							<div ng-messages="ConnexionForm.password.$error"  ng-show="(ConnexionForm.password.$touched|| submited)">
-							<div ng-message="required">Veuillez saisir une adresse email.</div>
+							<div ng-message="required" class="error-message-shadowed">Veuillez saisir une adresse email.</div>
 							</div>
 						</md-input-container>
 
