@@ -64,6 +64,33 @@ public class VoteServiceTest extends AbstractServiceTest {
     // Et qu'une FeedMeException est lancée
   }
 
+  @Test
+  public void getNoteMoyenneTestSucces() throws Exception {
+    // Etant donnée une liste de votes
+    Integer moyenne = voteService.getNoteMoyenne(buildListeVotes());
+
+    // Quand on appelle le service de calcul de la note moyenne
+    // Alors on vérifie que la note calculée est OK
+    Assertions.assertThat(moyenne).isNotNull().isPositive().isEqualTo(30);
+  }
+
+  @Test
+  public void getNoteMoyenneTestSucces_aucunVote() throws Exception {
+    // Etant donnée une liste de votes vide
+    Integer moyenne = voteService.getNoteMoyenne(new ArrayList<Vote>());
+
+    // Quand on appelle le service de calcul de la note moyenne
+    // Alors on vérifie que la note calculée est 0
+    Assertions.assertThat(moyenne).isNotNull().isEqualTo(0);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void getNoteMoyenneTestEchec_null() throws Exception {
+    // Quand on appelle le service de calcul de la note moyenne avec null
+    // Alors on vérifie qu'une exception est lancée
+    voteService.getNoteMoyenne(null);
+  }
+
   /* ******************************* BUILD *******************************/
 
   private List<Vote> buildListeVotes() {

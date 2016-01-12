@@ -39,6 +39,9 @@ public class OffreServiceTest extends AbstractServiceTest {
   @Mock
   private Image imageNonExistante;
 
+  @Mock
+  private VoteService voteService;
+  
   @Test
   public void sauvegarderTestSucces() throws Exception {
     Image image1 = new Image();
@@ -199,8 +202,8 @@ public class OffreServiceTest extends AbstractServiceTest {
     // Quand on appelle le service d'Offre pour récupèrer les offres en cours d'un hôte
     // avec un ID d'utilisateur null ou inconnu
     // Alors on obtient une liste d'offres vide
-	  Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList<Offre>());
-	  Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList<Offre>());
+    Mockito.when(offreService.listerOffresEnCoursByHote(null)).thenReturn(new LinkedList<Offre>());
+    Mockito.when(offreService.listerOffresEnCoursByHote(-1)).thenReturn(new LinkedList<Offre>());
   }
 
   @Test

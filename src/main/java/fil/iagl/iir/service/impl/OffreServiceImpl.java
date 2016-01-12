@@ -15,6 +15,7 @@ import fil.iagl.iir.outils.FeedMeException;
 import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.service.AdresseService;
 import fil.iagl.iir.service.OffreService;
+import fil.iagl.iir.service.VoteService;
 
 @Service
 public class OffreServiceImpl implements OffreService {
@@ -27,6 +28,9 @@ public class OffreServiceImpl implements OffreService {
 
   @Autowired
   private AdresseService adresseService;
+
+  @Autowired
+  private VoteService voteService;
 
   /*
    * (non-Javadoc)
@@ -133,16 +137,31 @@ public class OffreServiceImpl implements OffreService {
    */
   @Override
   public List<Offre> listerOffresCreesUserConnecte() {
-    return offreDao.getAllOffresByHote(FeedMeSession.getIdUtilisateurConnecte());
+    List<Offre> offres = offreDao.getAllOffresByHote(FeedMeSession.getIdUtilisateurConnecte());
+    return mettreAJourNoteOffres(offres);
   }
 
   @Override
   public List<Offre> listerOffresEnCoursByHote(Integer idUtilisateur) {
-    return offreDao.getOffresEnCoursByHote(idUtilisateur);
+    List<Offre> offres = offreDao.getOffresEnCoursByHote(idUtilisateur);
+    return mettreAJourNoteOffres(offres);
   }
 
   @Override
   public List<Offre> getAllOffresByHote(Integer idUtilisateur) {
-    return offreDao.getAllOffresByHote(idUtilisateur);
+    List<Offre> offres = offreDao.getAllOffresByHote(idUtilisateur);
+    return mettreAJourNoteOffres(offres);
+  }
+
+  /*
+   * Met a jour la note pour chaque offre de la liste
+   * @param offres La liste des offres à mettre à jour
+   * @return La liste des offres mises à jour
+   */
+  private List<Offre> mettreAJourNoteOffres(List<Offre> offres) {
+    offres.stream().forEach(o -> {
+      o.setNoteMoyenne(this.voteService.getNoteMoyenne(this.voteService.getVotesByOffre(o.getId())));
+    });
+    return offres;
   }
 }

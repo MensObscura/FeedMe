@@ -13,4 +13,5 @@ public interface VoteService {
   
   List<Vote> getVotesByOffre(Integer idOffre);
 
+  Integer getNoteMoyenne(List<Vote> votes);
 }
