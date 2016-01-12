@@ -7,87 +7,154 @@ Page de visualisation d'une offre
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1">
+<meta
+	http-equiv="x-ua-compatible"
+	content="ie=edge">
 <title>Visualiser une offre</title>
-<meta name="description"
+<meta
+	name="description"
 	content="FeedMe est une application de rencontres centré sur la cuisine: vous cuisinez pour des amis à vous, ou de parfaits inconnus, qui quant à eux paient pour venir déguster votre repas.">
-<meta name="keywords"
+<meta
+	name="keywords"
 	content="cuisine, réseau social, partage, commerce, repas, manger, nourriture, rencontre, aliments, cercle d'amis">
-<meta name="author" content="Team FeedMe">
+<meta
+	name="author"
+	content="Team FeedMe">
 
 <!-- Favicons
     ================================================== -->
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72"
+<link
+	rel="shortcut icon"
+	href="img/favicon.ico"
+	type="image/x-icon">
+<link
+	rel="apple-touch-icon"
+	href="img/apple-touch-icon.png">
+<link
+	rel="apple-touch-icon"
+	sizes="72x72"
 	href="img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114"
+<link
+	rel="apple-touch-icon"
+	sizes="114x114"
 	href="img/apple-touch-icon-114x114.png">
 
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css"
+<link
+	rel="stylesheet"
+	type="text/css"
 	href="resources/css/bootstrap.css">
-<link rel="stylesheet" type="text/css"
+<link
+	rel="stylesheet"
+	type="text/css"
 	href="resources/fonts/font-awesome/css/font-awesome.css">
 
 <!-- Stylesheet
     ================================================== -->
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/css/style.css">
 
-<link href="/resources/css/angular-carousel.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css"
+<link
+	href="/resources/css/angular-carousel.css"
+	rel="stylesheet"
+	type="text/css" />
+<link
+	rel="stylesheet"
+	type="text/css"
 	href="resources/css/responsive.css">
 
-<link rel="stylesheet" type='text/css'
+<link
+	rel="stylesheet"
+	type='text/css'
 	href="/resources/css/angular-material.min.css">
 </head>
 
 <body ng-app="OffreApp">
 	<div ng-include="'/resources/header.html'"></div>
 	<!-- Visualisation des détails de l'offre -->
-	<div id='top' class="une-offre-body" ng-controller="ReservationController">
-	
-	
-			<div ng-show="allowDisplay" class="overlay-photo text-center" ><div class="Aligner">
-						<div class="Aligner-item" ><span class="fa-stack fa-lg" ng-click="disable()">
-<i class="fa fa-times fa-stack-1x"> </i>
-</span></i><img class="showtime" src="{{current.path | correctPath}}"/><p></p></div></div></div>
+	<div
+		id='top'
+		class="une-offre-body"
+		ng-controller="ReservationController">
 
-		<div class="offre-display text-center"
+
+		<div
+			ng-show="allowDisplay"
+			class="overlay-photo text-center">
+			<div class="Aligner">
+				<div class="Aligner-item">
+					<span
+						class="fa-stack fa-lg"
+						ng-click="disable()"> <i class="fa fa-times fa-stack-1x"> </i>
+					</span></i><img
+						class="showtime"
+						src="{{current.path | correctPath}}" />
+					<p></p>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="offre-display text-center"
 			ng-class="{'field-premium' : offre.premium}">
-			
-			
+
+
 			<div class=" Aligner img-offre-premium ">
 				<div class="mask ">
 
-					<shine> <img width=50 height=50 class="img-circle img-tile" ng-show="offre.premium"
+					<shine> <img
+						width=50
+						height=50
+						class="img-circle img-tile"
+						ng-show="offre.premium"
 						src="resources/img/offre/premium.png" /> </shine>
 				</div>
+
+			</div>
+			<div
+				class=" Aligner"
+				ng-if="offre.hote.idUtilisateur==profil.idUtilisateur">
+				<i
+					ng-click="edition()"
+					class="fa fa-pencil-square-o white editOffre"></i>
 			</div>
 			<h2>{{offre.titre}}</h2>
 			<h3>Repas organisé le {{offre.dateRepas | date:"dd/MM/yyyy 'à' hh'h'mm"}}.</h3>
-			<form name="ReservationForm" ng-submit="submitForm()" novalidate>
+			<form
+				name="ReservationForm"
+				ng-submit="submitForm()"
+				novalidate>
 				<fieldset class="inner ">
 					<legend>L'offre de repas</legend>
-					<div class="carousel" ng-hide="offre.images.length == 0">
- 								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
-  								<li ng-repeat="f in offre.images">
-  								  <img src="{{f.path | correctPath}}" class="medium" ng-click="display(f)">
- 							 	</li>	
-							</ul>
-							</div>
-					
+					<div
+						class="carousel"
+						ng-hide="offre.images.length == 0">
+						<ul
+							rn-carousel
+							rn-carousel-controls
+							rn-carousel-controls-allow-loop
+							rn-carousel-easing="easeInOutQuad">
+							<li ng-repeat="f in offre.images"><img
+								src="{{f.path | correctPath}}"
+								class="medium"
+								ng-click="display(f)"></li>
+						</ul>
+					</div>
+
 					<br>
 					<!-- Présentation de l'hôte, du lieu -->
 					<fieldset class="inner ">
 						<legend class="inner ">L'hôte</legend>
 						<h3>Identité :</h3>
 						<!-- Un hôte est un utilisateur : pas de prénom  {{offre.hote.prenom}} -->
-						{{offre.hote.nom}}
+						{{offre.hote.prenom}} {{offre.hote.nom}}
 						<h3>Lieu :</h3>
-						{{offre.adresse.voie}} <br> {{offre.adresse.ville.cp}}
-						{{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
+						{{offre.adresse.voie}} <br> {{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
 						<h3>Prix par convive :</h3>
 						{{offre.prix/100}} €
 					</fieldset class="inner ">
@@ -109,6 +176,22 @@ Page de visualisation d'une offre
 						<h3>Nombre de couverts restants :</h3>
 						<!-- soit x sur y soit COMPLET -->
 						{{couverts_restants}}
+						<!-- Carrousel reservation -->
+						<h3>Reservations :</h3>
+						<div
+							class="carousel">
+							<ul
+								rn-carousel
+								rn-carousel-controls
+								rn-carousel-controls-allow-loop
+								rn-carousel-easing="easeInOutQuad">
+								<li ng-repeat="r in liste track by $index"><img
+									src="{{r.convive.image.path | correctPath}}"
+									class="img-reservation"
+									 title="{{r.convive.prenom}}"
+									ng-click="voir(r.convive.idUtilisateur)"></li>
+							</ul>
+						</div>
 						<h3>Durée prévisionnelle :</h3>
 						{{offre.dureeMinute}} min.
 					</fieldset>
@@ -127,49 +210,67 @@ Page de visualisation d'une offre
 
 
 
-					<md-content layout-padding> <br>
-					<md-input-container flex> <label id="white"
+					<md-content
+						layout-padding
+						ng-show="!(offre.hote.idUtilisateur==profil.idUtilisateur)"> <br>
+					<md-input-container flex> <label
+						id="white"
 						for="place">Nombre de place(s) à réserver* :</label> <input
-						id="white" type="number" name="place" ng-model="place"
-						ng-required="true" ng-min="minCouvert" min="{{minCouvert}}"
-						ng-max="nombreRestant" id="Nbplace" placeholder="Réserver" /> <span
+						id="white"
+						type="number"
+						name="place"
+						ng-model="place"
+						ng-required="true"
+						ng-min="minCouvert"
+						min="{{minCouvert}}"
+						ng-max="nombreRestant"
+						id="Nbplace"
+						placeholder="Réserver" /> <span
 						style="color: red"
-						ng-show="(ReservationForm.place.$invalid && !ReservationForm.place.$pristine) || submited">
-						<span ng-show="ReservationForm.place.$error.required">Veuillez
-							saisir un nombre de place</span> <span
-						ng-show="ReservationForm.place.$error.number">Veuillez
-							saisir un nombre.</span> <span
-						ng-show="ReservationForm.place.$error.min">Vous devez
-							reserver au moins un repas.</span> <span
-						ng-show="ReservationForm.place.$error.max">Vous ne pouvez
-							pas reserver autant de places.</span></md-input-container> </md-content>
+						ng-show="(ReservationForm.place.$invalid && !ReservationForm.place.$pristine) || submited"> <span ng-show="ReservationForm.place.$error.required">Veuillez saisir un nombre de place</span> <span ng-show="ReservationForm.place.$error.number">Veuillez saisir un nombre.</span> <span ng-show="ReservationForm.place.$error.min">Vous devez reserver au moins un repas.</span> <span ng-show="ReservationForm.place.$error.max">Vous ne pouvez pas reserver autant de places.</span></md-input-container> </md-content>
 
 
-					<md-button id="form_button_log" type="submit"
-						ng-click="submited=true" ng-disabled="minCouvert == 0"
+					<md-button uib-popover-template="dynamicPopover.templateUrl"  popover-append-to-body="true" popover-is-open="dynamicPopover.isOpen" popover-title="{{dynamicPopover.title}}"
+						ng-if="!(offre.hote.idUtilisateur==profil.idUtilisateur)"
+						id="form_button_log"
+						type="button"
+						ng-disabled="minCouvert == 0"
 						class="form ">Réserver</md-button>
 			</form>
 		</div>
 	</div>
 
 
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
 		src="/resources/js/scripts/angular.min.js"></script>
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
 		src="/resources/js/scripts/angular-animate.min.js"></script>
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
 		src="/resources/js/scripts/angular-aria.min.js"></script>
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
 		src="/resources/js/scripts/angular-material.min.js"></script>
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
 		src="/resources/js/scripts/angular-messages.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/moment.js"></script>
-		<script type="text/javascript" src="/resources/js/scripts/angular-touch.min.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/angular-carousel.js"></script>
-	<script type="text/javascript"
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/moment.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-touch.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-carousel.js"></script>
+	<script
+		type="text/javascript"
 		src="/resources/js/controllers/controller_offre.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
-	
+	<script type="text/javascript" src="/resources/js/scripts/angular-ui-bootstrap-tpls.js"></script>
+
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
 </body>

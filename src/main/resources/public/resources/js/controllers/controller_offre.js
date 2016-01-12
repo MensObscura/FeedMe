@@ -1,5 +1,5 @@
 // Chargement du module "OffreApp"
-var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters']);
+var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters','ui.bootstrap']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -13,9 +13,17 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 	};
 });
 
+
+
+
 //Création du controller "ReservationController"
 app.controller('ReservationController', function($scope, $http, $window, $mdToast, $location, $anchorScroll) {  
-	
+	// initialisation de la popover
+	 $scope.dynamicPopover = {
+			    content: 'Hello, World!',
+			    templateUrl: 'paypal-fake.html',
+			    title: 'Paiement'
+			  };
 	
 	//init affichage photo à false
 	$scope.allowDisplay =false;
@@ -103,9 +111,86 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				// On met à jour la rubrique "note" s'il existe des données
 				if (data.data.note)
 					$scope.note = data.data.note;
+				
+				$scope.faireListe();
+				
 				}
+		
 	);
+	
+	
+	
 
+	//on recupère les donnée de l'utilisateur courrant
+	$http.get('/utilisateur/particulier/profil').success(
+			function(donnees) {
+				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
+				$scope.profil = donnees.data;
+
+			}
+	);
+	//on va voir le profil, correspondant à la photo cliquée
+	$scope.voir = function(id){
+		if(id != -1)
+		$window.location.href = "/visualiser_profil.html?id="+id;
+	};
+	//Création de la list de reservation pour le carrousel
+	
+	$scope.faireListe = function(){
+		
+		var image = {
+				path :  "resources\\img\\offre\\libre.png"	
+		};
+		var convive = {
+				idUtilisateur : "-1",
+				prenom : "place libre",
+				image :	image,
+		};
+		
+		var libre ={ 
+				convive : convive
+					
+		 };
+	
+
+		var liste = [];
+		for (i =  0; i < $scope.offre.nombrePersonne; i++) {
+			if(i < $scope.offre.reservations.length){
+				//on peut avoir plusieur place par reservation
+				for(j = 0;j< $scope.offre.reservations[i].nbPlaces; j++){
+				liste.push( $scope.offre.reservations[i]);
+				}
+				i += $scope.offre.reservations[i].nbPlaces - 1;
+			}else{
+				liste.push(libre);
+					}
+				
+					
+				}
+		$scope.liste= liste;
+	}
+	
+		
+	
+	//popover fonction on met payé a true et on ferme la popup
+	$scope.valider = function() {
+		$scope.dynamicPopover.isOpen =false;
+		$scope.submited=true
+		$scope.submitForm();
+	};
+	//popover fonction  on ferme la popup
+	$scope.annuler = function() {
+		$scope.dynamicPopover.isOpen =false;
+		
+	};
+	
+	
+	
+	//edition de l'offre
+	$scope.edition = function(){
+		
+		$window.location.href = "/edition-offre.html?id="+id;
+	};
 	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
 		if ($scope.ReservationForm.$valid && $scope.place > 0 ) {

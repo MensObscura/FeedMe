@@ -22,7 +22,7 @@ var dateTimePicker = function() {
 };
 
 // Chargement du module "Inscription"
-var validationApp = angular.module('Inscription', ['ngMaterial', 'ngMessages']);
+var validationApp = angular.module('Inscription', ['ngMaterial', 'ngMessages','ngAnimate', 'ui.bootstrap']);
 
 // On ajoute une directive qui va se charger de de contrôler l'expression régulière contenue dans le formulaire
 validationApp.directive('ensureExpression', ['$http', '$parse', function($http, $parse) {
@@ -43,13 +43,31 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
 validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
 	$scope.submited =false;
 	$scope.premium = false;
-	
+	// initilisation du paiement à faux
+	$scope.paye = false;
+	// initialisation de la popover
+	 $scope.dynamicPopover = {
+			    content: 'Hello, World!',
+			    templateUrl: 'paypal-fake.html',
+			    title: 'Paiement'
+			  };
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
 				$scope.count = donnees.data;
 			}
 	);
+	
+	//popover fonction on met payé a true et on ferme la popup
+	$scope.valider = function() {
+		$scope.popoverOuverte = false;
+		$scope.paye=true;
+	};
+	//popover fonction  on ferme la popup
+	$scope.annuler = function() {
+		$scope.popoverOuverte = false;
+		$scope.premium = false;
+	};
 	
 	// Fonction utilisé lors de la validation du formulaire
 	$scope.submitForm = function() {
@@ -77,13 +95,14 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 					voie : $scope.numero + " " + $scope.rue + " " + $scope.complement,
 					ville : ville,
 			};
+	
 
 			// On créé un objet utilisateur
 			var utilisateur = {
 					nom : $scope.nom,
 					prenom : $scope.prenom,
 					mail : $scope.email,
-					dateNaissance : moment($scope.anniversaire).format('YYYY-MM-DD'),
+					dateNaissance : moment($scope.date).format('YYYY-MM-DD'),
 					adresse : adresse,
 					premium : $scope.premium
 			};
@@ -111,3 +130,5 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 
 	};
 }).directive('dateTimePicker', dateTimePicker);
+
+

@@ -6,9 +6,11 @@
 	<resultMap type="fil.iagl.iir.entite.Reservation" id="Reservation_ResultMap">
 		<id property="id" column="res_id"/>
 		<result property="offre.id" column="res_off_id"/>
-		<result property="convive.idUtilisateur" column="res_con_id"/>
 		<result property="dateReservation" column="res_date_reservation"/>
 		<result property="nbPlaces" column="res_nb_places"/>
+		
+		
+		<association property="convive" column="res_con_id" select="fil.iagl.iir.dao.particulier.ParticulierDao.getParticulierByUtilisateurId"/>
 	</resultMap>
 
 
