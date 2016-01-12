@@ -44,7 +44,7 @@
 		<div ng-rate-it ng-model="cuisine" resetable="false" ng-click="changeCuisine(cuisine)" read-only="lectureSeule" step="0.5"></div>
 			{{cuisine}}<br>
 		</div>
-		<div ng-if="notepour.idUtilisateur != profil.idUtilisateur">
+		<div ng-if="notepour.idUtilisateur != profil.idUtilisateur && notepour.note == null">
 			Convive :
 			<div id="note" ng-rate-it ng-model="note" resetable="false" ng-click="change(note)" read-only="lectureSeule" step="0.5"></div>
 			{{note}}<br>
@@ -52,14 +52,18 @@
 		<div ng-show="notepour.idUtilisateur == profil.idUtilisateur">
 		Vous ne pouvez pas voter pour vous !
 		</div>
+		<div ng-show="notepour.note != null">
+		Vous avez d&eacute;j&agrave; attribu&eacute; {{(notepour.note/10)}} &agrave; ce convive !
+		</div>
+		
 	</div>
 	
 	<div ng-if="!notepour">
 		<h3>R&eacute;capitulatif des votes :</h3>
 		Cliquez sur la photo de profil du convive que vous voulez noter.<br>
-		Vous avez &eacute;valu&eacute; {{notesHistorique.length}} personne(s) sur {{votepour.reservations.length}}.<br>
+		{{votepour.noteMoyenne && "L'ambiance moyenne est de "+votepour.noteMoyenne+" pour le moment." || "Vous n'avez pas encore vot&eacute; pour les convives de ce repas."}}<br>
 		{{cuisine && "Vous avez mis "+cuisine+" &agrave; "+votepour.hote.prenom+" pour sa cuisine." || "Vous n'avez pas encore &eacute;valu&eacute; la cuisine."}}<br>
-		{{ambianceMoyenne && "L'ambiance moyenne est de "+ambianceMoyenne+" pour le moment."}}<br>
+		Cliquez sur 'Voter' pour enregistrer vos notes ({{notesHistorique.length}} personne(s)).<br>
 		<md-button
 			id="form_button_log"
 			type="submit"

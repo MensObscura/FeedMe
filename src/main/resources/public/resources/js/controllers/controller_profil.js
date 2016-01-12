@@ -38,6 +38,8 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		function(donnees) {
 			// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 			$scope.profil = donnees.data;
+			$scope.noteMoyenne = donnees.data.note;
+			console.log($scope.profil);
 						
 			//checkbox visible
 			$scope.visible = $scope.profil.adresseVisible;
@@ -137,8 +139,27 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
     });
     
     $scope.envoyer = function() {
-    	console.log($scope.notesHistorique);
-    	console.log($scope.cuisine);
+    	
+    	for (var i=0; i < $scope.notesHistorique.length; i++ ) {
+    		var vote = {
+        		utilisateur: $scope.notesHistorique[i].utilisateur,
+        		note: ($scope.notesHistorique[i].note)*10,
+    			offre: $scope.votepour
+        	}
+        	
+        	$http({
+    			method: 'PUT',
+    			url: '/vote',
+    			contentType: "application/json",
+    			data: vote
+    		}).success(function(response, status, headers, config){
+    			$scope.votepour = null;
+    		}).error(function(err, status, headers, config){
+    			
+    		});
+    	}
+    	
+    	console.log($scope.cuisine); // pas encore de liaison avec le backend
     }
     
 	// Avertissements pour les hoverOut/hoverIn :
