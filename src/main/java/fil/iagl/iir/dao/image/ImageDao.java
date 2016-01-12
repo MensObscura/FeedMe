@@ -16,12 +16,20 @@ public interface ImageDao {
 
   /**
    * Sauvegarde une image pour la table d'association des offres
-  
-   * @param idImage
-   * @param idOffre
+   * 
+   * @param idImage l'id de l'image
+   * @param idOffre l'id de l'offre
    * @return le nombre de ligne sauvegarder  
    */
   Integer sauvegarderPourOffre(@Param("idImage") Integer idImage, @Param("idOffre") Integer idOffre);
+
+  /**
+   * Supprime les images relatifs à une offre dans la table d'association uniquement
+   * 
+   * @param idOffre l'id de l'offre
+   * @return le nombre de ligne supprimer
+   */
+  Integer supprimerPourOffre(@Param("idOffre") Integer idOffre);
 
   /**
    * Recupere l'image d'id passé en parametre

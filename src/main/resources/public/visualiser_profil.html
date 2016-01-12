@@ -37,11 +37,11 @@ Page permettant une visualisation du profil d'un utilisateur.
                 Date de naissance: {{profil.dateNaissance}}<br />
                 e-mail: {{profil.mail}}<br/>
                 Bio: {{profil.description}}<br />
-				<div ng-if="profil.adresse">
+				<div ng-if="profil.adresse && profil.adresseVisible">
 				Adresse : {{profil.adresse.voie}}.<br />
 				{{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})<br />
                 </div>
-                    
+                <div ng-include="'/resources/template_profil_liste.html'"></div>   
 		</div>
             </div>     
             <br>    

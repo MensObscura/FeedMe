@@ -7,7 +7,7 @@
 	;
 
 body, html {
-	 position: relative; 
+	position: relative;
 	font-family: 'Lato', sans-serif;
 	text-rendering: optimizeLegibility !important;
 	-webkit-font-smoothing: antialiased !important;
@@ -58,7 +58,6 @@ p.intro {
 
 a {
 	color: #FCAC45;
-	
 }
 
 a:hover, a:focus {
@@ -765,8 +764,8 @@ nav#footer-index p {
 }
 
 .general-form {
-    height: 100%;
-    padding: 10% 0 0;
+	height: 100%;
+	padding: 10% 0 0;
 }
 
 .auth-form {
@@ -915,6 +914,7 @@ button.form {
 	margin-right: 20%;
     margin-top: 5%;
     height: 100%;
+
 	width: 60%;
 }
 
@@ -942,15 +942,14 @@ button.form {
 	z-index: 2;
 	position: relative;
 	border-radius: 15px 0px 15px 0px;
-		transition: 0.5s; /* Animation time */
+	transition: 0.5s; /* Animation time */
 	-webkit-transition: 0.5s; /* For Safari */
 }
 
 .inner-item-view:hover {
-	
 	background-color: rgba(0, 0, 0, 0.80);
 }
-	
+
 .item-premium {
 	border-style: solid;
 	border-image-source: url(../../img/liste-offre/bordure.png);
@@ -984,10 +983,9 @@ ul {
 	display: block;
 	height: 32px;
 	top: 7.5px;
-left: -145px;
-    position: absolute;
+	left: -145px;
+	position: absolute;
 }
-
 
 .validation-messages {
 	font-size: 11px;
@@ -1054,7 +1052,7 @@ md-toast {
 }
 
 .white .white a {
-    color: rgb(250, 250, 250);
+	color: rgb(250, 250, 250);
 	background-color: rgba(238, 238, 238, 0);
 }
 
@@ -1096,6 +1094,7 @@ button#form_button {
 	height: auto;
 	margin-right: 15%;
 }
+
 #form_button_log:hover {
 	background-color: #FFC376
 }
@@ -1128,9 +1127,11 @@ button#form_button_log {
 #input_3, #input_1 {
 	color: black;
 }
+
 .red {
-	color : red;
+	color: red;
 }
+
 img.img-tile {
 	width: 50px;
 	height: 50px;
@@ -1142,14 +1143,12 @@ img.img-profil {
 	-webkit-transition: 0.5s; /* For Safari */
 }
 
-
-.inner-item-view, img.img-tile.img-profil{
-	pointer-events:none;
+.inner-item-view, img.img-tile.img-profil {
+	pointer-events: none;
 }
 
-img.img-tile.img-profil{
-	
-	 pointer-events:auto;
+img.img-tile.img-profil {
+	pointer-events: auto;
 }
 
 img.img-tile.img-profil:hover {
@@ -1242,71 +1241,136 @@ img.img-tile.img-profil:hover {
 	padding-right: 10px;
 }
 
-
-
 .medium:hover {
 	cursor: pointer;
-	position:abolute;
+	position: abolute;
 	border-radius: 4px;
-     border-color: rgba(254, 186, 49, 0.8);
-  -moz-box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(254, 186, 49, 1);
-  -webkit-box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(254, 186, 49, 1);
-  box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(254, 186, 49, 1); 
+	border-color: rgba(254, 186, 49, 0.8);
+	-moz-box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px
+		rgba(254, 186, 49, 1);
+	-webkit-box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px
+		rgba(254, 186, 49, 1);
+	box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px
+		rgba(254, 186, 49, 1);
+}
 
-		
-	}
-	
 .medium {
 	height: 70px;
 	width: 70px;
-		z-index: 1;
+	z-index: 1;
 	border-radius: 2px 2px 2px 2px;
 	margin: 10px;
-	  float:left;
+	float: left;
 	transition: 0.5s; /* Animation time */
 	-webkit-transition: 0.5s; /* For Safari */
 }
 
-.carousel{
-    text-align: center;
+.carousel {
+	text-align: center;
 }
 
-.chef{
+.chef {
 	height: 300px;
 	width: 200px;
 	padding: 1em;
 }
 
-.chef-tile{
+.chef-tile {
 	height: 100px;
 	width: 100px;
-	
 }
 
-.overlay-photo{
+.overlay-photo {
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.9);
 	top: 0;
 	left: 0;
-	height : auto;
-	width : 90%;
-	z-index : 99;
-	margin: 10% 5%;	
+	height: auto;
+	width: 90%;
+	z-index: 99;
+	margin: 10% 5%;
 	border-radius: 10px 10px 10px 10px;
-	border: 5px  rgba(254, 186, 49, 1);
-	border : solid;
-	
+	border: 5px rgba(254, 186, 49, 1);
+	border: solid;
 }
 
-.showtime{
+.showtime {
 	margin-top: 20%;
-	width : 100%;
+	width: 100%;
 	border-radius: 10px 10px 10px 10px;
-	heigth : auto;
+	heigth: auto;
+}
+
+.fa {
+	cursor: pointer;
+}
+
+.editOffre {
+	position: absolute;
+	top: 20px;
+	left: 95%;
+	color: rgb(250, 250, 250);
+}
+
+
+.editOffre:hover {
+	color: rgba(254, 186, 49, 1);
+}
+
+.img-reservation:hover {
+	cursor: pointer;
+	position: abolute;
+	border-radius: 4px;
+	border-color: rgba(254, 186, 49, 0.8);
+	-moz-box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px
+		rgba(254, 186, 49, 1);
+	-webkit-box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px
+		rgba(254, 186, 49, 1);
+	box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.075), 0 0 8px
+		rgba(254, 186, 49, 1);
+}
+
+.img-reservation {
+	height: 70px;
+	width: 70px;
+	z-index: 1;
+	border-radius: 50%;
+	margin: 10px;
+	float: left;
+	transition: 0.5s; /* Animation time */
+	-webkit-transition: 0.5s; /* For Safari */
+}
+
+.img-reservation:focus{
+	    outline : 0px
+}
+.editOffre:hover{
+	color :  rgba(254, 186, 49, 1);
 	
 }
 
-.fa{
-		cursor: pointer;
+
+.pointer {
+	cursor: pointer;
+}
+
+.fleche {
+	cursor: pointer;
+	margin-rigth: 8px;
+}
+
+#notation {
+	clear: both;
+	display: block;
+	background-color: white;
+	color: black;
+}
+
+.paypal-button{
+	width: 15em;
+	margin: 0.5%;
+	}
 	
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
 }

@@ -52,7 +52,7 @@ public class FeedMeSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    try {
 	      http.httpBasic()
 	        .and()
-	        .authorizeRequests().antMatchers("/index.html", "/inscription.html", "/login.html", "/").permitAll().anyRequest()
+	        .authorizeRequests().antMatchers("/index.html", "/inscription.html","/paypal-fake.html", "/login.html", "/").permitAll().anyRequest()
 	        .authenticated().and().csrf()
 	        .csrfTokenRepository(csrfTokenRepository()).and()
 	        .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);

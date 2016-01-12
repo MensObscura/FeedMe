@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Proposer une offre</title>
+<title>Editer une offre</title>
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/angular-material.min.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/fonts/font-awesome/css/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/custom/style.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link href="/resources/css/angular-carousel.css" rel="stylesheet" type="text/css" />
 <style>
 .mask shine::after {
@@ -55,7 +55,15 @@
 <div ng-show="allowDisplay" class="overlay-photo" ><div class="Aligner">
 						<div class="Aligner-item" ><span class="fa-stack fa-lg" ng-click="disable()">
 <i class="fa fa-times fa-stack-1x"> </i>
-</span></i><img class="showtime" ngf-src='current'/><p></p></div></div></div>
+</span></i>
+<div ng-if="!current.path" >
+  								   <img ngf-src="current" class="showtime" >
+  								  </div>
+  								  <div ng-if="current.path" >
+  								  <img  src="{{current.path|correctPath}}" class="showtime" >
+  								  </div>
+<p></p></div></div></div>
+
 
 					<div class="Aligner">
 						<div class="Aligner-item">
@@ -83,7 +91,7 @@
 									</div>
 
 								
-										<div ng-if="profil.image == null" class="Aligner-item">
+											<div ng-if="profil.image == null" class="Aligner-item">
 							<img src="resources/img/team/missing.jpg"
 								class="img-circle img-tile img-profil">
 						</div>
@@ -108,13 +116,10 @@
 
 
 								<md-content layout-padding>
-								<div ng-show="!profil.premium && !paye" layout layout-sm="column">
-									<md-checkbox uib-popover-template="dynamicPopover.templateUrl" popover-append-to-body="true" popover-is-open="popoverOuverte" popover-title="{{dynamicPopover.title}}" ng-model="premium" aria-label="premium"
+								<div ng-show="!profil.premium" layout layout-sm="column">
+									<md-checkbox ng-model="premium" aria-label="premium"
 										ng-disabled="profil.premium">Offre premium</md-checkbox>
 								</div>
-								
-								<div class="white" ng-show="paye">Félicitation vous avez payé pour une offre premium</div>
-								</br>
 								<div layout layout-sm="column">
 									<md-input-container flex> <label
 										id="white" for="titre">Titre de l'offre* :</label> <input
@@ -129,9 +134,9 @@
 									</md-input-container>
 									<md-input-container flex> <label
 										id="white" for="typeCuisine">Type de cuisine :</label> <md-select
-										id="select_white" name="typeCuisine" ng-model="typeCuisine">
+										id="select_white" name="typeCuisine" ng-model="typeCuisine" ng-click="refillCook()">
 									<md-option id="back_white" ng-value="{{item}}"
-										ng-selected="item.id==1" ng-repeat="item in cook">{{item.type}}</md-option>
+										ng-selected="item.id==cook[0].id" ng-repeat="item in cook">{{item.type}}</md-option>
 									</md-select> </md-input-container>
 								</div>
 								<div layout layout-sm="column">
@@ -306,8 +311,8 @@
 									<md-input-container flex> <label
 										id="white" for="pays">Pays :</label> <md-select
 										id="select_white" name="pays" ng-model="pays"
-										ng-disabled="home"> <md-option id="back_white"
-										ng-value="{{item}}" ng-selected="item.id==1"
+										ng-disabled="home"  ng-click="refillCountry()"> <md-option id="back_white"
+										ng-value="{{item}}" ng-selected="item.id==count[0].id"
 										ng-repeat="item in count">{{item.nom}}</md-option> </md-select> </md-input-container>
 								</div>
 								</md-content>
@@ -336,7 +341,12 @@
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								
   								<li ng-repeat="f in images">
+  								<div ng-if="!f.path" >
   								  <img ngf-src="f" class="medium"  ng-click="supprimer(f)" title="cliquez pour supprimer la photo">
+  								  </div>
+  								  <div ng-if="f.path" >
+  								  <img src="{{f.path|correctPath}}" class="medium"  ng-click="supprimer(f)" title="cliquez pour supprimer la photo">
+  								  </div>
  							 	</li>	
 							</ul>
 							</div>
@@ -401,7 +411,12 @@
  								 	<ul  rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-easing="easeInOutQuad">
   								
   								<li ng-repeat="f in images">
-  								  <img ng-click="display(f)" ngf-src="f" class="medium" >
+  								<div ng-if="!f.path" >
+  								   <img ng-click="display(f)" ngf-src="f" class="medium" >
+  								  </div>
+  								  <div ng-if="f.path" >
+  								  <img ng-click="display(f)" src="{{f.path|correctPath}}" class="medium" >
+  								  </div>
  							 	</li>	
 							</ul>
 							</div>
@@ -491,9 +506,8 @@
 	<script type="text/javascript" src="/resources/js/scripts/angular.rangeSlider.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls.min.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
-	<script type="text/javascript" src="/resources/js/scripts/angular-ui-bootstrap-tpls.js"></script>
 	
-	<script type="text/javascript" src="/resources/js/controllers/controller_formulaire_offre.js"></script>
+	<script type="text/javascript" src="/resources/js/controllers/controller_edition_offre.js"></script>
 
 
 	<!-- Pied de page -->

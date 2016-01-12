@@ -1,5 +1,5 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters']);
+var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters', 'ngRateIt']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
     
@@ -23,27 +23,124 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	$scope.picEtdited=false;
     $scope.editAdr =false;
     
+    $scope.votepour = null;
+    $scope.notepour = null;
+	$scope.noteActu = null;
+	$scope.cuisine = null;
+    $scope.notesHistorique = [];
+    $scope.ambianceMoyenne = null;
+    $scope.debutOffres = 0;
+    $scope.debutRepas = 0;
+    
+               
 	// On va se connecter sur la route permettant de récupèrer le profil de l'utilisateur
 	$http.get('/utilisateur/particulier/profil').success(
 		function(donnees) {
 			// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-			$scope.profil = donnees;
-			
+			$scope.profil = donnees.data;
+						
 			//checkbox visible
 			$scope.visible = $scope.profil.adresseVisible;
+			
+			var url = "/offres/enCours/" + donnees.data.idUtilisateur;
+			
+			// On va rechercher les repas qu'a créé l'utilisateur.
+			$http.get(url).success(
+					function(donnees) {
+						// Quand on reçoit les données, on place les valeurs dans listeOffres
+						$scope.listeOffres = donnees.data;
+					}
+				);
 			
 		}
 	);
 	
-	
+	// On va rechercher les repas auxquels l'utilisateur a participé.
+	$http.get('/offres/aParticipe').success(
+			function(donnees) {
+				// Quand on reçoit les données, on place les valeurs dans listeRepas
+				$scope.listeRepas = donnees.data;
+			}
+		);
+		
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
-				$scope.count = donnees;
+				$scope.count = donnees.data;
 				$scope.saveCountry = $scope.count;
 			}
 	);
-
+		
+	$scope.changeCuisine = function(note) {
+		$scope.cuisine = note;
+	}
+	
+    $scope.change = function(note) {
+    	var pour = $scope.notepour;
+    	var element = {'note': note, 'utilisateur' : pour};
+    	var ancienneNote = null;
+    	var moyenne = 0;
+    	
+    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
+    		 if (valeur.utilisateur.idUtilisateur == pour.idUtilisateur) {
+    			 ancienneNote = cle;
+    		 }
+    		 moyenne = moyenne + valeur.note;
+    	});
+    	
+    	if (ancienneNote == null) {
+    		$scope.notesHistorique.push(element);
+    		
+    		moyenne = (moyenne + element.note) / $scope.notesHistorique.length;
+    	}
+    	else {
+    		moyenne = (moyenne - $scope.notesHistorique[ancienneNote].note + element.note) / $scope.notesHistorique.length;
+    		$scope.notesHistorique.splice(ancienneNote, 1);
+    		$scope.notesHistorique.push(element);
+    	}
+    	
+    	$scope.ambianceMoyenne = moyenne;
+    	$scope.notepour = null;
+    	
+    }
+        
+    $scope.vote = function(repas) {
+    	$scope.votepour = repas;
+    }
+    
+    $scope.retour = function() {
+    	$scope.votepour = null;
+    	$scope.notepour = null;
+    	$scope.cuisine = null;
+    	$scope.notesHistorique = [];
+    }
+    
+    $scope.noter = function(convive) {
+    	$scope.notepour = convive;
+    	$scope.noteActu = null;
+    	
+		var aujourdhui = new Date();
+		var ddn = new Date(convive.dateNaissance.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2-$1-$3"));
+	
+		$scope.age = aujourdhui.getFullYear() - ddn.getFullYear();
+    	
+    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
+    		if (valeur.utilisateur.idUtilisateur == convive.idUtilisateur) {
+   			 	$scope.noteActu = valeur.note;
+   				return;
+   		 	}
+    	});
+    }
+    
+    $scope.$watch('notepour', function() {
+    	$scope.note = $scope.noteActu;
+    });
+    
+    $scope.envoyer = function() {
+    	console.log($scope.notesHistorique);
+    	console.log($scope.cuisine);
+    }
+    
 	// Avertissements pour les hoverOut/hoverIn :
 	$scope.hoverInPic = function(){
 		this.hoverEditPic = true;
@@ -85,8 +182,6 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		$scope.editPic=true;
 	};
 
-
-
 	// fonction d'auto-remplissage de l'adresse.
 	$scope.homeAction = function() {
 		// il faut que l'utilisateur est une adresse (logiquement oui)
@@ -121,7 +216,6 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	$scope.$watch('photo', function () {
 		// condition : on ajoute une nouvelle photo.
 		if ($scope.photo) {
-			//$scope.upload($scope.photo);
 
 			$scope.profil.image = $scope.photo;
 			$scope.picEdited=true;
@@ -139,9 +233,9 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 					url: '/image',
 					data: {file: file}
 				}).success(function (data, status, headers, config) {
-					$scope.historique = data;
+					$scope.historique = data.data;
 		            // quand le téléchargement est fini on débloque le "defer".
-		            deferred.resolve(data);
+		            deferred.resolve(data.data);
 				});
 			}
 		}
@@ -154,7 +248,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 	
     // fonction d'envoi du formulaire :
 	var envoi = function() {
-		console.log("yop");
+		
 		if(!$scope.editAdr){
 			$scope.homeAction();
 		}
@@ -184,7 +278,9 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		
 		var image = null;
 		
+		//image profil
 		if($scope.picEdited){
+		
 			image = $scope.historique;
 		}else {
 			image = $scope.profil.image;
@@ -208,9 +304,7 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 			contentType: "application/json",
 			data: donnees
 		}).success(function(response, status, headers, config){
-			console.log(response);
 			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
-			//$window.location.href = "/profil.html";
 			$scope.editBio=false;
 			$scope.editPic=false;
 			$scope.editAdr =false;
@@ -234,6 +328,5 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 
 		}
 	};
-
-
+	
 });

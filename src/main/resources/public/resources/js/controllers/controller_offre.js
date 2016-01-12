@@ -1,5 +1,5 @@
 // Chargement du module "OffreApp"
-var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters']);
+var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters','ui.bootstrap']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window) {
 	// Fonction permettant une déconnexion :
@@ -13,9 +13,17 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 	};
 });
 
+
+
+
 //Création du controller "ReservationController"
 app.controller('ReservationController', function($scope, $http, $window, $mdToast, $location, $anchorScroll) {  
-	
+	// initialisation de la popover
+	 $scope.dynamicPopover = {
+			    content: 'Hello, World!',
+			    templateUrl: 'paypal-fake.html',
+			    title: 'Paiement'
+			  };
 	
 	//init affichage photo à false
 	$scope.allowDisplay =false;
@@ -25,7 +33,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 		
 	// affichage photo
 	$scope.display= function(img) {
-		console.log("laoow");
+
 		$scope.allowDisplay =true;
 		$scope.current = img;
 		
@@ -34,7 +42,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 	};
 	// disable photo
 	$scope.disable= function() {
-		console.log("disble");
+
 		$scope.allowDisplay =false;
 	};
 	
@@ -61,13 +69,13 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 			function(data) {
 
 				// On transfert dans "offre" les données
-				$scope.offre = data;
+				$scope.offre = data.data;
 				// On calcule le nombre de places restantes, que l'on transfert aussi à la vue
 				var place_reservees = 0;
-				for (i = 0; i < data.reservations.length; i++) {
-					place_reservees += data.reservations[i].nbPlaces;
+				for (i = 0; i < data.data.reservations.length; i++) {
+					place_reservees += data.data.reservations[i].nbPlaces;
 				}
-				$scope.nombreRestant = data.nombrePersonne - place_reservees;
+				$scope.nombreRestant = data.data.nombrePersonne - place_reservees;
 				
 				// Si le nombre de places restantes est 0, on affiche "complet"
 				if ($scope.nombreRestant == 0) {
@@ -75,37 +83,114 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 						$scope.minCouvert = 0;
 				}
 				else {
-					$scope.couverts_restants = $scope.nombreRestant+" sur "+data.nombrePersonne;
+					$scope.couverts_restants = $scope.nombreRestant+" sur "+data.data.nombrePersonne;
 				}
 								
 				// On met à jour la rubrique "animal" s'il existe des données
-				if (data.animaux)
+				if (data.data.animaux)
 					$scope.animaux = "Un animal de compagnie sera présent lors du repas.";
 				
 				// On met à jour la rubrique "age" s'il existe des données
 				var age = "Ce repas s'adresse aux ";
-				if (data.ageMin) {
-					if (data.ageMax) {
+				if (data.data.ageMin) {
+					if (data.data.ageMax) {
 						// Les deux bornes sont remplies.
-						$scope.age = age + data.ageMin + "-" + data.ageMax + " ans.";
+						$scope.age = age + data.data.ageMin + "-" + data.data.ageMax + " ans.";
 					}
 					else {
 						// On a juste l'âge minimum.
-						$scope.age = age + "plus de " + data.ageMin + " ans.";
+						$scope.age = age + "plus de " + data.data.ageMin + " ans.";
 					}
 				}
 				else {
-					if (data.ageMax) {
+					if (data.data.ageMax) {
 						// On a juste l'âge maximum.
-						$scope.age = age + "moins de " + data.ageMax + " ans.";
+						$scope.age = age + "moins de " + data.data.ageMax + " ans.";
 					}
 				}
 				// On met à jour la rubrique "note" s'il existe des données
-				if (data.note)
-					$scope.note = data.note;
+				if (data.data.note)
+					$scope.note = data.data.note;
+				
+				$scope.faireListe();
+				
 				}
+		
 	);
+	
+	
+	
 
+	//on recupère les donnée de l'utilisateur courrant
+	$http.get('/utilisateur/particulier/profil').success(
+			function(donnees) {
+				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
+				$scope.profil = donnees.data;
+
+			}
+	);
+	//on va voir le profil, correspondant à la photo cliquée
+	$scope.voir = function(id){
+		if(id != -1)
+		$window.location.href = "/visualiser_profil.html?id="+id;
+	};
+	//Création de la list de reservation pour le carrousel
+	
+	$scope.faireListe = function(){
+		
+		var image = {
+				path :  "resources\\img\\offre\\libre.png"	
+		};
+		var convive = {
+				idUtilisateur : "-1",
+				prenom : "place libre",
+				image :	image,
+		};
+		
+		var libre ={ 
+				convive : convive
+					
+		 };
+	
+
+		var liste = [];
+		for (i =  0; i < $scope.offre.nombrePersonne; i++) {
+			if(i < $scope.offre.reservations.length){
+				//on peut avoir plusieur place par reservation
+				for(j = 0;j< $scope.offre.reservations[i].nbPlaces; j++){
+				liste.push( $scope.offre.reservations[i]);
+				}
+				i += $scope.offre.reservations[i].nbPlaces - 1;
+			}else{
+				liste.push(libre);
+					}
+				
+					
+				}
+		$scope.liste= liste;
+	}
+	
+		
+	
+	//popover fonction on met payé a true et on ferme la popup
+	$scope.valider = function() {
+		$scope.dynamicPopover.isOpen =false;
+		$scope.submited=true
+		$scope.submitForm();
+	};
+	//popover fonction  on ferme la popup
+	$scope.annuler = function() {
+		$scope.dynamicPopover.isOpen =false;
+		
+	};
+	
+	
+	
+	//edition de l'offre
+	$scope.edition = function(){
+		
+		$window.location.href = "/edition-offre.html?id="+id;
+	};
 	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
 		if ($scope.ReservationForm.$valid && $scope.place > 0 ) {

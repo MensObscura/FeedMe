@@ -39,5 +39,10 @@
 		VALUES ( #{idOffre}, #{idImage});
 	</insert>
 	
+	<delete id="supprimerPourOffre">
+		DELETE FROM IMAGE_OFFRE
+		WHERE imo_off_id = #{idOffre}
+	</delete>
+	
 
 </mapper>

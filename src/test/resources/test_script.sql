@@ -72,7 +72,7 @@ INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
 -- ---------------------------
 
 INSERT INTO offre(off_date_creation, off_titre, off_prix, off_nombre_personne, off_duree_minute, off_date_repas, off_entree, off_plat, off_dessert, off_boisson, off_animaux, off_note, off_age_min, off_age_max, off_adr_id, off_typ_id, off_usr_id, off_premium) VALUES
-('2015-01-01', 'MonTitre', 999, 5, 120, '2015-02-01 19:45:00', 'MonEntree', 'MonPlat', 'MonDessert', 'MaBoisson', FALSE, 'Note', 20, 30, 1, 3, 1, true), -- ID 1
+('2015-01-01', 'MonTitre', 999, 5, 120, current_date + interval '3 days', 'MonEntree', 'MonPlat', 'MonDessert', 'MaBoisson', FALSE, 'Note', 20, 30, 1, 3, 1, true), -- ID 1
 ('2015-02-01', 'MonTitre2', 999, 5, 120, '2015-03-01 21:00:00', 'MonEntree', 'MonPlat', 'MonDessert', 'MaBoisson', FALSE, 'Note', 30, 50, 1, 3, 2, true), -- ID 2
 ('2015-03-01', 'MonTitre3', 999, 5, 120, '2015-04-01 20:30:00', 'MonEntree', 'MonPlat', 'MonDessert', 'MaBoisson', FALSE, 'Note', 20, 99, 1, 3, 3, false), -- ID 3
 ('2015-01-01', 'MonTitre', 999, 5, 120, '2015-02-01 19:45:00', 'MonEntree', 'MonPlat', 'MonDessert', 'MaBoisson', FALSE, 'Note', 20, 30, 1, 3, 1, false); -- ID 4
@@ -83,7 +83,7 @@ INSERT INTO offre(off_date_creation, off_titre, off_prix, off_nombre_personne, o
 INSERT INTO RESERVATION(res_off_id, res_con_id, res_date_reservation, res_nb_places) VALUES
 (1, 1, CURRENT_TIMESTAMP, 2), -- ID 1
 (4, 1, CURRENT_TIMESTAMP, 1), -- ID 2
-(4, 2, CURRENT_TIMESTAMP, 1); -- ID 3
+(4, 4, CURRENT_TIMESTAMP, 1); -- ID 3
 
 -- ---------------------------
 -- Table IMAGE_OFFRE

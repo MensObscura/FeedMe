@@ -205,12 +205,12 @@ Page proposant le formulaire d'inscription.
 							</div>
 							<div layout layout-sm="column">
 								<md-input-container flex>
-									<md-checkbox ng-model="premium" aria-label="premium">
-          								Membre Premium
+									<md-checkbox ng-show="!paye" uib-popover-template="dynamicPopover.templateUrl" popover-append-to-body="true" popover-is-open="popoverOuverte" popover-title="{{dynamicPopover.title}}" ng-model="premium" aria-label="premium">
+          								Compte Premium
         							</md-checkbox>
 								</md-input-container>
 							</div>
-							<!-- Validation du formulaire : disponible uniquement quand les champs sont valides -->
+							<div class="white" ng-show="paye">Félicitation vous avez souscrit à un compte premium</div>
 							<md-button id="form_button_log" type="submit" ng-click="submited=true"
 								class="form">Confirmer</md-button> </md-content>
 								</br>
@@ -230,6 +230,7 @@ Page proposant le formulaire d'inscription.
 	<script type="text/javascript" src="/resources/js/scripts/angular-messages.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/bootstrap-datetimepicker.js"></script>
 	<script type="text/javascript" src="/resources/js/controllers/controller_inscription.js"></script>
+	<script type="text/javascript" src="/resources/js/scripts/angular-ui-bootstrap-tpls.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>

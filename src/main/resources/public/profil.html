@@ -42,6 +42,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 	rel='stylesheet'
 	type='text/css'
 	href='resources/fonts/general-font.css'>
+<link rel="stylesheet" type='text/css' href="/resources/css/ng-rateit.css" />
 </head>
 
 <body ng-app="Profil">
@@ -51,11 +52,9 @@ Page permettant une visualisation du profil d'un utilisateur.
 		<br />
 
 		<!-- Affichage des éléments du profil de l'utilisateur connecté -->
-		<div
-			class="profil"
-			ng-controller="ProfilCtrl">
-
-			<div class="col-lg-3 editable">
+		<div class="profil" ng-controller="ProfilCtrl">
+<div ng-show="!votepour">
+		<div class="col-lg-3 editable">
 				<div
 					ng-click="setEditPic()"
 					ng-mouseover="hoverInPic()"
@@ -107,7 +106,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 			<div class="col-lg-7 infos-profil">
 				<h2>Votre profil</h2>
 				<p>
-					Nom: {{profil.nom}}<br /> Prénom: {{profil.prenom}} <br /> Date de naissance: {{profil.dateNaissance}}<br /> e-mail: {{profil.mail}}<br />
+					Nom: {{profil.nom}}<br /> Prénom: {{profil.prenom}} <br /> Date de naissance: {{profil.dateNaissance | date:"dd/MM/yyyy"}}<br /> e-mail: {{profil.mail}}<br />
 				<div
 					ng-show="!editBio"
 					ng-click="setEditBio()"
@@ -115,7 +114,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 					ng-mouseleave="hoverOutBio()">
 					Bio: <span ng-if="profil.description == undefined">Non renseignée</span> <span ng-if="!(profil.description == undefined)">{{profil.description}}</span> <span
 						ng-show="hoverEditBio"
-						class="animate-show"> <i class="fa fa-pencil-square-o white"></i> <a>Edit</a>
+						class="animate-show"> <i class="fa fa-pencil-square-o white"></i> <a>Cliquez pour modifier</a>
 
 					</span>
 				</div>
@@ -144,7 +143,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 										id="white"
 										name="bio"
 										ng-model="profil.description"
-										placeholder="Ecrivez quelque à propos de vous"></textarea> </md-input-container>
+										placeholder="Ecrivez quelques lignes à propos de vous"></textarea> </md-input-container>
 								</div>
 								</md-content>
 							</div>
@@ -276,12 +275,17 @@ Page permettant une visualisation du profil d'un utilisateur.
 
 					Adresse : {{profil.adresse.voie}}. <span
 						ng-show="hoverEditAdr"
-						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Edit</a>
+						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Cliquez pour modifier</a>
 
 					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}}, {{profil.adresse.ville.pays.nom}}
 
 				</div>
+				<div ng-include="'/resources/template_profil_liste.html'"></div>
 			</div>
+</div>
+<div ng-show="votepour">
+	<div ng-include="'/resources/template_vote.html'"></div>
+</div>
 		</div>
 		<br>
 	</div>
@@ -320,8 +324,12 @@ Page permettant une visualisation du profil d'un utilisateur.
 		type="text/javascript"
 		src="/resources/js/scripts/ng-file-upload.min.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
+		<script
+		type="text/javascript"
+		src="/resources/js/scripts/ng-rateit.js"></script>
 	<script
 		type="text/javascript"
 		src="/resources/js/controllers/controller_profil.js"></script>
+
 </body>
 </html>
