@@ -1576,3 +1576,11 @@ img.img-tile.img-profil:hover {
 	max-width: 100%;
 	/* Max Width of the popover (depending on the container!) */
 }
+
+#devenir_premium_bouton {
+	width: 90%;
+	margin-left: 5%;
+	margin-rigth: 5%;
+	margin-bottom: 10%;
+}
+margin-bottom: 2%;

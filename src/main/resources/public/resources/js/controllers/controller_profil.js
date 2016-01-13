@@ -6,9 +6,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees){
 				$scope.idUser = donnees.data.idUtilisateur;
-
-
-
 			}	 
 	);
 
@@ -21,7 +18,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 				$http.get(msgUrl).success(function(donnees) { //
 
 					$scope.items = donnees.data;
-					console.log($scope.nbNotif);
 					$scope.nbNotif = $scope.items.length;
 				});
 			}else{
@@ -106,6 +102,33 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 				$scope.saveCountry = $scope.count;
 			}
 	);
+	
+	// initilisation du paiement à faux
+	$scope.paye = false;
+	// initialisation de la popover
+	 $scope.dynamicPopover = {
+			    content: 'Hello, World!',
+			    templateUrl: 'paypal-fake.html',
+			    title: 'Paiement'
+	 };
+	 
+		//popover fonction on met payé a true et on ferme la popup
+		$scope.valider = function() {
+			$scope.popoverOuverte = false;
+			$scope.paye=true;
+			
+			$http.get('/utilisateur/particulier/devenirPrenium').success(
+					function(donnees){
+						console.log(donnees);
+					}	 
+			);			
+		};
+		
+		//popover fonction  on ferme la popup
+		$scope.annuler = function() {
+			$scope.popoverOuverte = false;
+			$scope.premium = false;
+		};
 		
 	$scope.changeCuisine = function(note) {
 		$scope.cuisine = note;

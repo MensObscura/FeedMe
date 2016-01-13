@@ -57,6 +57,19 @@ Page permettant une visualisation du profil d'un utilisateur.
 		<div class="profil" ng-controller="ProfilCtrl">
 <div ng-show="!votepour">
 		<div class="col-lg-3 editable">
+		<md-button
+			id="devenir_premium_bouton"
+			type="submit"
+			ng-show="(!profil.premium) && !paye"
+			uib-popover-template="dynamicPopover.templateUrl"
+			popover-append-to-body="true"
+			popover-placement="right"
+			popover-is-open="popoverOuverte"
+			popover-title="{{dynamicPopover.title}}"
+			ng-model="premium"
+			aria-label="premium"
+			class="form">Devenir Premium
+		</md-button>
 				<div
 					ng-click="setEditPic()"
 					ng-mouseover="hoverInPic()"
