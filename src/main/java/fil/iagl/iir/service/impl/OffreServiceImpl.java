@@ -1,6 +1,7 @@
 package fil.iagl.iir.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,8 +97,9 @@ public class OffreServiceImpl implements OffreService {
     if (id == null) {
       throw new FeedMeException("Parametre null");
     }
-
-    return this.offreDao.getById(id);
+    Offre offre = this.offreDao.getById(id);
+    mettreAJourNoteOffres(Arrays.asList(offre));
+    return offre;
   }
 
   /*
@@ -107,7 +109,7 @@ public class OffreServiceImpl implements OffreService {
    */
   @Override
   public List<Offre> lister() {
-    return offreDao.getAll();
+    return mettreAJourNoteOffres(offreDao.getAll());
   }
 
   /*
@@ -117,7 +119,7 @@ public class OffreServiceImpl implements OffreService {
    */
   @Override
   public List<Offre> listerOffresPremium() {
-    return offreDao.getOffresPremium();
+    return mettreAJourNoteOffres(offreDao.getOffresPremium());
   }
 
   /*
@@ -127,7 +129,8 @@ public class OffreServiceImpl implements OffreService {
    */
   @Override
   public List<Offre> listerOffresParticipeUserConnecte() {
-    return offreDao.getOffresParticipeUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    List<Offre> offres = offreDao.getOffresParticipeUserConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    return mettreAJourNoteOffres(offres);
   }
 
   /*

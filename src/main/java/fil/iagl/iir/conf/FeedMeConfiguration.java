@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter;
+import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -26,19 +26,20 @@ import fil.iagl.iir.outils.JsonRoleDeserializer;
 /**
  * @author RMS
  * 
- *         Configuration du projet Permet à Spring de faire l'injection de
- *         dependences Permet à Spring de definir la DataSource ( connection
- *         avec la base de donnée ) Permet à MyBatis de trouver les mappers (
- *         .xml ) Permet à Jackson de definir comment serializer/deserialize du
- *         JSON
+ * Configuration du projet
+ * Permet à Spring de faire l'injection de dependences
+ * Permet à Spring de definir la DataSource ( connection avec la base de donnée )
+ * Permet à MyBatis de trouver les mappers ( .xml )
+ * Permet à Jackson de definir comment serializer/deserialize du JSON
  */
 
 @Configuration
 @MapperScan("fil.iagl.iir.dao")
-@ComponentScan({ "fil.iagl.iir.service", "fil.iagl.iir.controller", "fil.iagl.iir.outils" })
+@ComponentScan({"fil.iagl.iir.service", "fil.iagl.iir.controller", "fil.iagl.iir.outils"})
 @EnableAutoConfiguration
 @EnableWebMvc
-public class FeedMeConfiguration extends WebMvcAutoConfigurationAdapter {
+public class FeedMeConfiguration extends WebMvcAutoConfiguration {
+
 
 	/**
 	 * Creation de la Bean "transactionManager" Spring va appeler cette method
@@ -91,6 +92,5 @@ public class FeedMeConfiguration extends WebMvcAutoConfigurationAdapter {
     builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     return builder;
   }
-
 
 }

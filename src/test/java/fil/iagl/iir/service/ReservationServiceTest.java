@@ -27,7 +27,7 @@ public class ReservationServiceTest extends AbstractServiceTest {
   public void sauvegarderTestSucces() throws Exception {
     Mockito.when(reservation.getConvive()).thenReturn(utilisateur);
     Mockito.when(reservation.getOffre()).thenReturn(offre);
-    Mockito.when(reservation.getNb_places()).thenReturn(4);
+    Mockito.when(reservation.getNbPlaces()).thenReturn(4);
     Mockito.when(offre.getTitre()).thenReturn("MonTitre");
     Mockito.when(offre.getHote()).thenReturn(new Utilisateur());
     Mockito.when(particulierDao.getParticulierByUtilisateurId(FeedMeSession.getIdUtilisateurConnecte())).thenReturn(createParticulier());

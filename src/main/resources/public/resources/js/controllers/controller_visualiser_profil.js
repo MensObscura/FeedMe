@@ -1,5 +1,7 @@
 // Chargement du module "Profil"
-var app = angular.module("Profil",['appFilters', 'angular-notification-icons','ngAnimate', 'ui.bootstrap']);
+
+var app = angular.module("Profil",['appFilters','ngRateIt', 'angular-notification-icons','ngAnimate', 'ui.bootstrap']);
+
 
 app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 //	notif
@@ -72,6 +74,7 @@ app.controller("ProfilCtrl", function($scope, $http, $window) {
 			if (donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 				$scope.profil = donnees.data;
+				$scope.noteMoyenne = donnees.data.note/10;
 			
 			var url = "/offres/enCours/" + donnees.data.idUtilisateur;
 			
