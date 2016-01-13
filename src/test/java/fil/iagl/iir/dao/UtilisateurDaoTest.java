@@ -285,13 +285,13 @@ public class UtilisateurDaoTest extends AbstractDaoTest {
   }
 
   @Test
-  public void devenirPreniumTestSucces() {
-	  int idNonPrenium = 3;
-	  Utilisateur utilisateur = utilisateurDao.getById(idNonPrenium);
+  public void devenirPremiumTestSucces() {
+	  int idNonPremium = 3;
+	  Utilisateur utilisateur = utilisateurDao.getById(idNonPremium);
 	  assertThat(utilisateur).isNotNull();
 	  assertThat(utilisateur.getPremium()).isEqualTo(false);
-	  utilisateurDao.devenirPrenium(utilisateur);
-	  utilisateur = utilisateurDao.getById(idNonPrenium);
+	  utilisateurDao.devenirPremium(utilisateur);
+	  utilisateur = utilisateurDao.getById(idNonPremium);
 	  assertThat(utilisateur).isNotNull();
 	  assertThat(utilisateur.getPremium()).isEqualTo(true);
   }

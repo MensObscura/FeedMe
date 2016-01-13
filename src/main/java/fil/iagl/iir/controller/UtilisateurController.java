@@ -36,7 +36,7 @@ public class UtilisateurController {
    */
   @RequestMapping(value = "/particulier/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
   public DataReturn<Particulier> afficherProfil(@PathVariable("id") Integer id) {
-    return new DataReturn<>(utilisateurService.getParticulierByUtilisisateurId(id));
+    return new DataReturn<>(utilisateurService.getParticulierByUtilisateurId(id));
   }
 
   /**
@@ -61,7 +61,7 @@ public class UtilisateurController {
   @RequestMapping(value = "/particulier/profil", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
   public DataReturn<Particulier> afficherSonProfil() {
     Integer idSession = FeedMeSession.getIdUtilisateurConnecte();
-    return new DataReturn<>(utilisateurService.getParticulierByUtilisisateurId(idSession));
+    return new DataReturn<>(utilisateurService.getParticulierByUtilisateurId(idSession));
   }
 
   @RequestMapping(value = "/particulier/profil", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
@@ -76,10 +76,10 @@ public class UtilisateurController {
     return new DataReturn<>(this.utilisateurService.getAllPremium());
   }
   
-  @RequestMapping(value="/particulier/devenirPrenium",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-  public DataReturn<Particulier> devenirPrenium(@RequestBody Particulier particulier) {
-	 utilisateurService.devenirPrenium(particulier);
-	 return new DataReturn<>(utilisateurService.getParticulierByUtilisisateurId(particulier.getIdParticulier()));
+  @RequestMapping(value="/particulier/devenirPremium",method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+  public DataReturn<Particulier> devenirPremium(@RequestBody Particulier particulier) {
+	 utilisateurService.devenirPremium(particulier);
+	 return new DataReturn<>(utilisateurService.getParticulierByUtilisateurId(particulier.getIdParticulier()));
   }
 
 }

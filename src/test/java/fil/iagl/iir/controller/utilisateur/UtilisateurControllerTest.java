@@ -231,21 +231,21 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
   }
 
   @Test
-  public void devenirPreniumTestSucces() throws Exception {
+  public void devenirPremiumTestSucces() throws Exception {
     Particulier p = createParticulier();
     p.setPremium(false);
     JSONObject jsonParticulier = new JSONObject(p);
     assertFalse(p.getPremium());
     utilisateurDao.sauvegarder(p);
-    mockMvc.perform(get("/utilisateur/particulier/devenirPrenium").contentType(FEED_ME_MEDIA_TYPE).content(jsonParticulier.toString()))
+    mockMvc.perform(put("/utilisateur/particulier/devenirPremium").contentType(FEED_ME_MEDIA_TYPE).content(jsonParticulier.toString()))
       .andExpect(status().isOk())
       .andExpect(content().contentType(FEED_ME_MEDIA_TYPE))
       .andExpect(jsonPath("$.data.premium").value(true));
   }
 
   @Test
-  public void devenirPreniumTestEchec() throws Exception {
+  public void devenirPremiumTestEchec() throws Exception {
     // Sans données de type particulier
-    mockMvc.perform(get("/utilisateur/particulier/devenirPrenium")).andExpect(status().isBadRequest());
+    mockMvc.perform(get("/utilisateur/particulier/devenirPremium")).andExpect(status().isBadRequest());
   }
 }
