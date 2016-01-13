@@ -355,7 +355,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 
 	    // On envoie les données
         $http({
-    		method: 'PUT',
+    		method: 'POST',
     		url: '/offres',
     		contentType: "application/json",
     		data: donnees
