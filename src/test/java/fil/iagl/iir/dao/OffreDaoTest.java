@@ -650,6 +650,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_PrixNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.setPrix(null);
     try {
       this.offreDao.modifier(offre);
@@ -662,6 +663,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_TitreNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.setTitre(null);
     try {
       this.offreDao.modifier(offre);
@@ -674,6 +676,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_NombrePersonneNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.setNombrePersonne(null);
     try {
       this.offreDao.modifier(offre);
@@ -686,6 +689,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_DureeMinuteNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.setDureeMinute(null);
     try {
       this.offreDao.modifier(offre);
@@ -698,6 +702,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_DateRepas() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.setDateRepas(null);
     try {
       this.offreDao.modifier(offre);
@@ -710,6 +715,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_AnimauxNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.setAnimaux(null);
     try {
       this.offreDao.modifier(offre);
@@ -722,6 +728,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_AdresseIdNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.getAdresse().setId(null);
     try {
       this.offreDao.modifier(offre);
@@ -734,6 +741,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_TypeCuisineIdNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.getTypeCuisine().setId(null);
     try {
       this.offreDao.modifier(offre);
@@ -746,6 +754,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_PlatNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.getMenu().setPlat(null);
 
     try {
@@ -759,6 +768,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_PremiumNull() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.setPremium(null);
     try {
       this.offreDao.modifier(offre);
@@ -771,6 +781,7 @@ public class OffreDaoTest extends AbstractDaoTest {
   @Test
   public void modifierOffreTestEchec_AdresseIdInexistant() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.getAdresse().setId(Integer.MAX_VALUE);
     try {
       this.offreDao.modifier(offre);
@@ -781,9 +792,9 @@ public class OffreDaoTest extends AbstractDaoTest {
   }
 
   @Test
-  public void modifierOffreTestEchec_TypeCuisineIdInexistant()
-    throws Exception {
+  public void modifierOffreTestEchec_TypeCuisineIdInexistant() throws Exception {
     Offre offre = createOffre();
+    offre.setId(1);
     offre.getTypeCuisine().setId(Integer.MAX_VALUE);
     try {
       this.offreDao.modifier(offre);
