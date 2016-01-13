@@ -51,11 +51,11 @@ public class ReservationServiceImpl implements ReservationService {
   private Message createAutoMessage(Reservation reservation) {
     Particulier utilisateurConnecte = particulierDao.getParticulierByUtilisateurId(FeedMeSession.getIdUtilisateurConnecte());
     Utilisateur bot = new Utilisateur(BOT_ID);
-    String objet = String.format("Un convive à reservé pour \"%s\"", reservation.getOffre().getTitre());
+    String objet = String.format("Un convive a reservé pour \"%s\"", reservation.getOffre().getTitre());
     String texte = String
       .format("Bonjour,\n\n "
         + "Nous avons le plaisir de vous annoncer que %s %s vient de reserver %d place(s) pour votre annonce \"%s\".\n\n"
-        + "Ceci est un message généré, merci ne pas repondre.", utilisateurConnecte.getPrenom(), utilisateurConnecte.getNom(), reservation.getNbPlaces(),
+        + "Ceci est un message auto-généré, merci ne pas repondre.", utilisateurConnecte.getPrenom(), utilisateurConnecte.getNom(), reservation.getNbPlaces(),
         reservation.getOffre().getTitre());
 
     Message message = new Message();
