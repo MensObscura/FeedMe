@@ -19,7 +19,7 @@ import fil.iagl.iir.service.ReservationService;
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
-  private static final Integer BOT_ID = 6;
+  private static final Integer BOT_ID = 5;
 
   @Autowired
   private ReservationDao reservationDao;
