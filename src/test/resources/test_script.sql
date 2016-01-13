@@ -61,7 +61,8 @@ INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_premium , usr_description, usr_
 ( 'jean', 'jambon-beurre@gmail.com', false, null, true); -- ID 3
 
 INSERT INTO UTILISATEUR (usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description, usr_img_id) VALUES
-( 'hall', 'kolick@gmail.com', 1, true, 'ceci est la description de hall', 1); -- ID 4
+( 'hall', 'kolick@gmail.com', 1, true, 'ceci est la description de hall', 1), -- ID 4
+( 'john', 'johndoe@gmail.com', 1, false, 'une description', 1); -- ID 5
 
 -- ---------------------------
 -- Table PARTICULIER
