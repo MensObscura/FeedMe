@@ -37,7 +37,7 @@ Page permettant une visualisation du profil d'un utilisateur.
                 </div>
                 <div class="col-lg-7 infos-profil">
                 <h2>Profil de {{profil.prenom}}</h2>
-                <ng-rate-it ng-model="noteMoyenne" read-only="true"></ng-rate-it>{{"  "+noteMoyenne}}<br>
+                <ng-rate-it class="rate" ng-model="noteMoyenne" read-only="true"></ng-rate-it>{{"  "+noteMoyenne}}<br>
                 <p>Nom: {{profil.nom}}<br/>
                 Prénom: {{profil.prenom}}<br />
                 Date de naissance: {{profil.dateNaissance}}<br />
@@ -58,20 +58,16 @@ Page permettant une visualisation du profil d'un utilisateur.
         
          <script type="text/javascript" src="/resources/js/scripts/angular.min.js"></script>
 	     <script type="text/javascript" src="/resources/js/scripts/jquery-2.1.4.min.js"></script>
-<<<<<<< HEAD
+
 		<script type="text/javascript" src="/resources/js/scripts/angular-notification-icons.min.js"></script>
  	 	  <script type="text/javascript" src="/resources/js/scripts/angular-animate.js"></script>
  	   <script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls-1.0.3.js"></script>
          		<script src="/resources/js/filters/filters.js"></script>
          		
          <script type="text/javascript" src="/resources/js/controllers/controller_visualiser_profil.js"></script>
-=======
+
 	     	<script
 		type="text/javascript"
 		src="/resources/js/scripts/ng-rateit.js"></script>
-         <script type="text/javascript" src="/resources/js/controllers/controller_visualiser_profil.js"></script>
-         		<script src="/resources/js/filters/filters.js"></script>
-         		
->>>>>>> remotes/origin/front-thibaud
-    </body>
+
 </html>

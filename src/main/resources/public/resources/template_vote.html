@@ -41,12 +41,12 @@
 		
 	<div ng-show="notepour.idUtilisateur == votepour.hote.idUtilisateur">
 		Cuisine :
-		<div ng-rate-it ng-model="cuisine" resetable="false" ng-click="changeCuisine(cuisine)" read-only="lectureSeule" step="0.5"></div>
+		<div ng-rate-it class="rate" ng-model="cuisine" resetable="false" ng-click="changeCuisine(cuisine)" read-only="lectureSeule" step="0.5"></div>
 			{{cuisine}}<br>
 		</div>
 		<div ng-if="notepour.idUtilisateur != profil.idUtilisateur && notepour.note == null">
 			Convive :
-			<div id="note" ng-rate-it ng-model="note" resetable="false" ng-click="change(note)" read-only="lectureSeule" step="0.5"></div>
+			<div id="note" class="rate" ng-rate-it ng-model="note" resetable="false" ng-click="change(note)" read-only="lectureSeule" step="0.5"></div>
 			{{note}}<br>
 		</div>
 		<div ng-show="notepour.idUtilisateur == profil.idUtilisateur">
