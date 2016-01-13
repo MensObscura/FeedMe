@@ -1,14 +1,47 @@
-// Chargement du module "OffreApp"
-var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters','ui.bootstrap']);
+//Chargement du module "OffreApp"
+var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters', 'angular-notification-icons', 'ngAnimate','ui.bootstrap']);
 
-app.controller("LogoutCtrl", function($scope, $http, $window) {
+app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
+//	notif
+	$http.get('/utilisateur/particulier/profil').success(
+			function(donnees){
+				$scope.idUser = donnees.data.idUtilisateur;
+
+
+
+			}	 
+	);
+
+
+	$scope.getNotif = function(){
+
+		$interval(function() {
+			if($scope.idUser){
+				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
+				$http.get(msgUrl).success(function(donnees) { //
+
+					$scope.items = donnees.data;
+					console.log($scope.nbNotif);
+					$scope.nbNotif = $scope.items.length;
+				});
+			}else{
+
+				$scope.nbNotif =  1;
+
+			}
+		},3000);
+
+	};
+
+	$scope.getNotif();
+
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
 		$http.get('/logout').success(
-			function(donnees) {
-				$scope.authenticated = false;
-				$window.location.href = "/";
-			}
+				function(donnees) {
+					$scope.authenticated = false;
+					$window.location.href = "/";
+				}
 		);
 	};
 });
@@ -19,24 +52,24 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 //Création du controller "ReservationController"
 app.controller('ReservationController', function($scope, $http, $window, $mdToast, $location, $anchorScroll) {  
 	// initialisation de la popover
-	 $scope.dynamicPopover = {
-			    content: 'Hello, World!',
-			    templateUrl: 'paypal-fake.html',
-			    title: 'Paiement'
-			  };
-	
+	$scope.dynamicPopover = {
+			content: 'Hello, World!',
+			templateUrl: 'paypal-fake.html',
+			title: 'Paiement'
+	};
+
 	//init affichage photo à false
 	$scope.allowDisplay =false;
 
 	// on init images à 0
 	$scope.images=[];
-		
+
 	// affichage photo
 	$scope.display= function(img) {
 
 		$scope.allowDisplay =true;
 		$scope.current = img;
-		
+
 		$location.hash('top');
 		$anchorScroll();
 	};
@@ -45,22 +78,22 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 
 		$scope.allowDisplay =false;
 	};
-	
+
 	$scope.submited =false;
 	$scope.minCouvert = 1;
 	// Fonction permettant de récupérer les paramètres de l'url.
 	$scope.getUrlVars = function() {
 		var vars = {};
-	    var parts = $window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
-	    function(m,cle,valeur) {
-	      vars[cle] = valeur;
-	    });
-	    return vars;
+		var parts = $window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+				function(m,cle,valeur) {
+			vars[cle] = valeur;
+		});
+		return vars;
 	}
 
 	// On récupère l'identifiant de l'offre à afficher
 	var id = $scope.getUrlVars()["id"];
-	
+
 	// On en déduit la route sur laquelle se connecter
 	var route = '/offres/'+id;
 
@@ -76,7 +109,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 					place_reservees += data.data.reservations[i].nbPlaces;
 				}
 				$scope.nombreRestant = data.data.nombrePersonne - place_reservees;
-				
+
 				// Si le nombre de places restantes est 0, on affiche "complet"
 				if ($scope.nombreRestant == 0) {
 					$scope.couverts_restants = "COMPLET"
@@ -85,11 +118,11 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				else {
 					$scope.couverts_restants = $scope.nombreRestant+" sur "+data.data.nombrePersonne;
 				}
-								
+
 				// On met à jour la rubrique "animal" s'il existe des données
 				if (data.data.animaux)
 					$scope.animaux = "Un animal de compagnie sera présent lors du repas.";
-				
+
 				// On met à jour la rubrique "age" s'il existe des données
 				var age = "Ce repas s'adresse aux ";
 				if (data.data.ageMin) {
@@ -111,15 +144,15 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				// On met à jour la rubrique "note" s'il existe des données
 				if (data.data.note)
 					$scope.note = data.data.note;
-				
+
 				$scope.faireListe();
-				
-				}
-		
+
+			}
+
 	);
-	
-	
-	
+
+
+
 
 	//on recupère les donnée de l'utilisateur courrant
 	$http.get('/utilisateur/particulier/profil').success(
@@ -132,12 +165,12 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 	//on va voir le profil, correspondant à la photo cliquée
 	$scope.voir = function(id){
 		if(id != -1)
-		$window.location.href = "/visualiser_profil.html?id="+id;
+			$window.location.href = "/visualiser_profil.html?id="+id;
 	};
 	//Création de la list de reservation pour le carrousel
-	
+
 	$scope.faireListe = function(){
-		
+
 		var image = {
 				path :  "resources\\img\\offre\\libre.png"	
 		};
@@ -146,32 +179,32 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				prenom : "place libre",
 				image :	image,
 		};
-		
+
 		var libre ={ 
 				convive : convive
-					
-		 };
-	
+
+		};
+
 
 		var liste = [];
 		for (i =  0; i < $scope.offre.nombrePersonne; i++) {
 			if(i < $scope.offre.reservations.length){
 				//on peut avoir plusieur place par reservation
 				for(j = 0;j< $scope.offre.reservations[i].nbPlaces; j++){
-				liste.push( $scope.offre.reservations[i]);
+					liste.push( $scope.offre.reservations[i]);
 				}
 				i += $scope.offre.reservations[i].nbPlaces - 1;
 			}else{
 				liste.push(libre);
-					}
-				
-					
-				}
+			}
+
+
+		}
 		$scope.liste= liste;
 	}
-	
-		
-	
+
+
+
 	//popover fonction on met payé a true et on ferme la popup
 	$scope.valider = function() {
 		$scope.dynamicPopover.isOpen =false;
@@ -181,20 +214,20 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 	//popover fonction  on ferme la popup
 	$scope.annuler = function() {
 		$scope.dynamicPopover.isOpen =false;
-		
+
 	};
-	
-	
-	
+
+
+
 	//edition de l'offre
 	$scope.edition = function(){
-		
+
 		$window.location.href = "/edition-offre.html?id="+id;
 	};
 	// Fonction utilisé lors de la validation du formulaire de reservation
 	$scope.submitForm = function() {
 		if ($scope.ReservationForm.$valid && $scope.place > 0 ) {
-			
+
 			// Première étape : convertir la date est la mettre sous la bonne forme
 			var aujourdhui = new Date();
 			var date = moment(aujourdhui).format('YYYY-MM-DD');
@@ -213,14 +246,14 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				contentType: "application/json",
 				data: donnees
 			}).success(function(response, status, headers, config){
-				
+
 				//$mdToast.show($mdToast.simple().position('bottom left right').content('Votre réservation a été enregistrée.').hideDelay(2000));
 				//setTimeout(function() {$window.location.href = '/login.html';},2000);
 				$window.location.href = "/liste_offres.html";
 			}).error(function(err, status, headers, config){
 				//$mdToast.show($mdToast.simple().position('bottom left right').content('Vous avez déja réservé une place pour cette offre.').hideDelay(2000));
 			});
-			
+
 		}
 
 	};

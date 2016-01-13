@@ -72,6 +72,10 @@ Page de visualisation d'une offre
 	rel="stylesheet"
 	type='text/css'
 	href="/resources/css/angular-material.min.css">
+	
+	
+
+<link rel='stylesheet' type='text/css' href='resources/css/angular-notification-icons.min.css'>
 </head>
 
 <body ng-app="OffreApp">
@@ -118,7 +122,10 @@ Page de visualisation d'une offre
 			</div>
 			<div
 				class=" Aligner"
-				ng-if="offre.hote.idUtilisateur==profil.idUtilisateur">
+				ng-if="false">
+				
+				<!--  ng-if="offre.hote.idUtilisateur==profil.idUtilisateur">-->
+				
 				<i
 					ng-click="edition()"
 					class="fa fa-pencil-square-o white editOffre"></i>
@@ -287,6 +294,7 @@ Page de visualisation d'une offre
 		type="text/javascript"
 		src="/resources/js/controllers/controller_offre.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
+		<script type="text/javascript" src="/resources/js/scripts/angular-notification-icons.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular-ui-bootstrap-tpls.js"></script>
 
 	<!-- Pied de page -->

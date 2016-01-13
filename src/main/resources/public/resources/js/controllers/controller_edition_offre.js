@@ -25,7 +25,40 @@ var dateTimePicker = function() {
 //Chargement du module "validationOffre"
 var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider','ui.bootstrap', 'ngFileUpload', 'angular-carousel', 'appFilters']);
 
-validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
+validationApp.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
+//	notif
+	$http.get('/utilisateur/particulier/profil').success(
+			function(donnees){
+				$scope.idUser = donnees.data.idUtilisateur;
+
+
+
+			}	 
+	);
+
+
+	$scope.getNotif = function(){
+
+		$interval(function() {
+			if($scope.idUser){
+				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
+				$http.get(msgUrl).success(function(donnees) { //
+
+					$scope.items = donnees.data;
+					console.log($scope.nbNotif);
+					$scope.nbNotif = $scope.items.length;
+				});
+			}else{
+
+				$scope.nbNotif =  1;
+
+			}
+		},3000);
+
+	};
+
+	$scope.getNotif();
+	
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
 		$http.get('/logout').success(
@@ -70,7 +103,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-				$scope.profil = donnees;
+				$scope.profil = donnees.data;
 				$scope.premium = $scope.profil.premium;
 
 			}
@@ -89,7 +122,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	// On va rechercher toutes les types de cuisine en se connectant à la route consacrée
 	$http.get('/settings/typescuisines').success(
 			function(donnees) {
-				$scope.cook = donnees;
+				$scope.cook = donnees.data;
 				$scope.saveCook = $scope.cook;
 			}
 	);
@@ -97,7 +130,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 	// On va rechercher toutes les pays en se connectant à la route consacrée
 	$http.get('/settings/pays').success(
 			function(donnees) {
-				$scope.count = donnees;
+				$scope.count = donnees.data;
 				$scope.saveCountry = $scope.count;
 			}
 	);
@@ -113,7 +146,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 			function(data) {
 
 				// On transfert dans "offre" les données
-				$scope.offre = data;
+				$scope.offre = data.data;
 				// On set le pays
 				$scope.count = {0:$scope.offre.adresse.ville.pays};
 				// On set la ville 
@@ -300,6 +333,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast,
 		
 		// Enfin on peut créer les données que l'on souhaite envoyer
 		var donnees = {
+				id : $scope.offre.id,
 				dateCreation : date,
 				titre : $scope.titre,
 				prix : parseFloat($scope.prix)*100,

@@ -25,7 +25,40 @@ var dateTimePicker = function() {
 //Chargement du module "validationOffre"
 var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel','appFilters', 'ui.bootstrap', 'angular-notification-icons', 'ngAnimate']);
 
-validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
+validationApp.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
+//	notif
+	$http.get('/utilisateur/particulier/profil').success(
+			function(donnees){
+				$scope.idUser = donnees.data.idUtilisateur;
+
+
+
+			}	 
+	);
+
+
+	$scope.getNotif = function(){
+
+		$interval(function() {
+			if($scope.idUser){
+				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
+				$http.get(msgUrl).success(function(donnees) { //
+
+					$scope.items = donnees.data;
+					console.log($scope.nbNotif);
+					$scope.nbNotif = $scope.items.length;
+				});
+			}else{
+
+				$scope.nbNotif =  1;
+
+			}
+		},3000);
+
+	};
+
+	$scope.getNotif();
+	
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
 		$http.get('/logout').success(
@@ -35,12 +68,7 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window) {
 			}
 		);
 	};
-	
-	$scope.items = [
-	                'The first choice!',
-	                'And another choice for you.',
-	                'but wait! A third!'
-	              ];
+
 });
 //Création du controller "OffreCtrl"
 validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload, $q) {

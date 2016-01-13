@@ -27,14 +27,14 @@
 						offres</a></li>
 				<li><a href="" ng-click="logout()" class="marge">Déconnexion</a></li>
 
-				<li><span uib-dropdown on-toggle="toggled(open)"><notification-icon
-							animation="shake" clear-trigger="click" count="4"
+				<li><span uib-dropdown ><notification-icon
+							animation="bounce"  count="nbNotif"
 							uib-dropdown-toggle> <img
 							src="resources/img/notif2.png" alt="notification" class="img-ico">
 						</i></notification-icon>
 
-						<ul uib-dropdown-menu class="dropdown-menu-left" aria-labelledby="simple-dropdown">
-							<li ng-repeat="notif in items"><a href>{{notif}}</a></li>
+						<ul uib-dropdown-menu class="dropdown-menu-Rigth" aria-labelledby="simple-dropdown">
+							<li ng-repeat="notif in items"><a href>{{notif.objet}}</a></li>
 
 						</ul> </span></li>
 			</ul>

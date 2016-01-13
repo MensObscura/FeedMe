@@ -1,7 +1,40 @@
 // Chargement du module "Profil"
 var app = angular.module("Profil",  ['ngAnimate','ngMaterial', 'ngFileUpload', 'ngMessages', 'appFilters', 'ngRateIt', 'angular-notification-icons', 'ui.bootstrap']);
 
-app.controller("LogoutCtrl", function($scope, $http, $window) {
+app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
+//	notif
+	$http.get('/utilisateur/particulier/profil').success(
+			function(donnees){
+				$scope.idUser = donnees.data.idUtilisateur;
+
+
+
+			}	 
+	);
+
+
+	$scope.getNotif = function(){
+
+		$interval(function() {
+			if($scope.idUser){
+				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
+				$http.get(msgUrl).success(function(donnees) { //
+
+					$scope.items = donnees.data;
+					console.log($scope.nbNotif);
+					$scope.nbNotif = $scope.items.length;
+				});
+			}else{
+
+				$scope.nbNotif =  1;
+
+			}
+		},3000);
+
+	};
+
+	$scope.getNotif();
+	
     
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
@@ -13,11 +46,7 @@ app.controller("LogoutCtrl", function($scope, $http, $window) {
 		);
 	};
 	
-	$scope.items = [
-	                'The first choice!',
-	                'And another choice for you.',
-	                'but wait! A third!'
-	              ];
+
 });
 
 // Création du controller "ProfilCtrl"
