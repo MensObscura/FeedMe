@@ -62,6 +62,8 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	$scope.visualize = function (valeur, event) {
 
 		if (event.target.className == "img-circle img-tile img-profil") {
+			
+			
 			$window.location.href = "/visualiser_profil.html?id="+valeur.hote.idUtilisateur;
 		}
 		else
