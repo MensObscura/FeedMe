@@ -1,0 +1,28 @@
+.offre-container {
+	height: auto;
+	display: inline-block;
+	float: left;
+	margin: 0% 1.5% 0% 1.5%;
+}
+
+.une-offre-body {
+	background: url(../../img/offre/background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+	height: auto;
+	margin: 0;
+	padding: 5%;
+}
+
+.affichage-offre {
+	position: relative;
+	background: rgba(0, 0, 0, 0.85);
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 6%;
+    margin-bottom: 6%;
+	padding: 20px;
+}

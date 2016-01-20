@@ -1,0 +1,82 @@
+.pageProfil {
+	background: url(../../img/profil/background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+	height: 100%;
+    /* Putain de trick de merde */
+    padding-top: 1%;
+	margin: 0;
+}
+
+.profil {
+	position: relative;
+	height: auto;
+	min-height: 50%;
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 10%;
+	padding: 3%;
+	background: rgba(0, 0, 0, 0.85);
+	color: white;
+	line-height: 35px;
+	overflow: hidden;
+}
+
+
+.infos-profil   {
+    margin-left: 5%;
+    margin-top: 1%;
+}
+
+.image-profil   {
+    height: 100%;
+}
+
+.image-profil img   {
+    max-height: 250px;
+    max-width: 250px;
+    width: auto;
+}
+
+.image-profil-editable img   {
+    max-height: 250px;
+    max-width: 250px;
+    width: auto;
+}
+
+.image-profil.col-lg-3 {
+       width: 250px;
+    height: 250px;
+    align-content: center;
+    overflow: hidden;
+}
+
+
+ .editable {
+     width: 18em;
+	 margin-bottom : 2em;
+     padding: 0px
+}
+
+.drop-box-profil {
+	background: #F8F8F8;
+	border-radius: 10px 10px 10px 10px;
+	border: 5px dashed #DDD;
+	width: 18em;
+	height: 5em;
+	text-align: center;
+	padding-top: 5%;
+
+	color: grey;
+}
+
+#devenir_premium_bouton {
+	width: 90%;
+	margin-left: 5%;
+	margin-rigth: 5%;
+	margin-bottom: 10%;
+}

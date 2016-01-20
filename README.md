@@ -4,7 +4,7 @@ Une application centrée nutrition !
 
 #Contributeurs
 
-  Yassine Badache (VaubanParty)
+  Yassine Badache (ybadache)
   
   Thibault Rosa   (MensObscura)
   
