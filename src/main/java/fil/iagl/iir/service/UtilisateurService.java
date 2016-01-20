@@ -22,7 +22,7 @@ public interface UtilisateurService {
    * @param id L'ID de l'utilisateur
    * @return Un particulier
    */
-  Particulier getParticulierByUtilisisateurId(Integer id);
+  Particulier getParticulierByUtilisateurId(Integer id);
 
   /**
    * Recupere la liste de tous les utilisateurs premium
@@ -38,8 +38,8 @@ public interface UtilisateurService {
   void modifierProfil(Particulier particulier);
   
   /**
-   * Permet de faire devenir un utilisateur prénium
-   * @param utilisateur qui souhaite devenir prénium
+   * Permet de faire devenir un utilisateur premium
+   * @param utilisateur qui souhaite devenir premium
    */
-  void devenirPrenium(Utilisateur utilisateur);
+  void devenirPremium(Utilisateur utilisateur);
 }

@@ -46,7 +46,7 @@
 		WHERE usr_id = #{id}
 	</select>
 
-	<update id="devenirPrenium">
+	<update id="devenirPremium">
 		UPDATE UTILISATEUR set
 		usr_premium = true
 		where usr_id = #{utilisateur.idUtilisateur};
