@@ -27,4 +27,5 @@ local.properties
 *.launch
 /.apt_generated/
 /.factorypath
-img/upload/*
+*/upload/
+

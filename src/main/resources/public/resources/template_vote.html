@@ -6,6 +6,18 @@
 	Repas du {{votepour.dateRepas | date:"dd/MM/yyyy"}} pour {{votepour.nombrePersonne + 1}} personnes ({{votepour.prix/100}}&euro; par fourchette).<br>
 </p>
 
+<h3>H&ocirc;te :</h3>
+	<div ng-if="votepour.hote.image == null" title="{{votepour.hote.nom}} {{votepour.hote.prenom}}" ng-click="visualize(votepour.hote)">
+		<img src="resources/img/team/missing.jpg" class="medium">
+	</div>
+	<div ng-if="votepour.hote.image != null" title="{{votepour.hote.nom}} {{votepour.hote.prenom}}" ng-click="visualize(votepour.hote)">
+		<img src="{{votepour.hote.image.path | correctPath}}" class="medium">
+	</div>
+	{{votepour.hote.prenom + " " + votepour.hote.nom}}<br>
+	{{!adresseVisible && votepour.hote.adresse.voie + " &agrave; " + votepour.hote.adresse.ville.nom + " (" + votepour.hote.adresse.ville.pays.nom + ")"}}<br ng-if="!adresseVisible">
+	{{age}} ans<br>
+	{{notepour.description}}<br ng-if="notepour.description">
+
 <h3>Participants :</h3>
 <div>
 	<div class="carousel">
@@ -14,17 +26,11 @@
 			rn-carousel-controls
 			rn-carousel-controls-allow-loop
 			rn-carousel-easing="easeInOutQuad">
-			<div ng-if="votepour.hote.image == null" title="{{votepour.hote.nom}} {{votepour.hote.prenom}}">
-				<li><img src="resources/img/team/missing.jpg" class="medium" ng-click="noter(votepour.hote)"></li>
-			</div>
-			<div ng-if="votepour.hote.image != null" title="{{votepour.hote.nom}} {{votepour.hote.prenom}}">
-				<li><img src="{{votepour.hote.image.path | correctPath}}" class="medium" ng-click="noter(votepour.hote)"></li>
-			</div>
 			<li ng-repeat="f in votepour.reservations">
-				<div ng-if="f.hote.image == null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="noter(f.convive)">
+				<div ng-if="f.hote.image == null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="visualize(f.convive)">
 					<img src="resources/img/team/missing.jpg" class="medium">
 				</div>
-				<div ng-if="f.hote.image != null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="noter(f.convive)">
+				<div ng-if="f.hote.image != null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="visualize(f.convive)">
 					<img src="{{f.convive.image.path | correctPath}}" class="medium">
 				</div>
 			</li>
@@ -33,42 +39,14 @@
 </div>
 
 <div id="notation">
-	<div ng-if="notepour">
-		{{notepour.prenom + " " + notepour.nom}}<br>
-		{{!adresseVisible && notepour.adresse.voie + " &agrave; " + notepour.adresse.ville.nom + " (" + notepour.adresse.ville.pays.nom + ")"}}<br ng-if="!adresseVisible">
-		{{age}} ans<br>
-		{{notepour.description}}<br ng-if="notepour.description">
-		
-	<div ng-show="notepour.idUtilisateur == votepour.hote.idUtilisateur">
-		Cuisine :
-		<div ng-rate-it class="rate" ng-model="cuisine" resetable="false" ng-click="changeCuisine(cuisine)" read-only="lectureSeule" step="0.5"></div>
-			{{cuisine}}<br>
-		</div>
-		<div ng-if="notepour.idUtilisateur != profil.idUtilisateur && notepour.note == null">
-			Convive :
-			<div id="note" class="rate" ng-rate-it ng-model="note" resetable="false" ng-click="change(note)" read-only="lectureSeule" step="0.5"></div>
-			{{note}}<br>
-		</div>
-		<div ng-show="notepour.idUtilisateur == profil.idUtilisateur">
-		Vous ne pouvez pas voter pour vous !
-		</div>
-		<div ng-show="notepour.note != null">
-		Vous avez d&eacute;j&agrave; attribu&eacute; {{(notepour.note/10)}} &agrave; ce convive !
-		</div>
-		
-	</div>
-	
-	<div ng-if="!notepour">
-		<h3>R&eacute;capitulatif des votes :</h3>
-		Cliquez sur la photo de profil du convive que vous voulez noter.<br>
-		{{votepour.noteMoyenne && "L'ambiance moyenne est de "+(votepour.noteMoyenne/10)+" pour le moment." || "Vous n'avez pas encore vot&eacute; pour les convives de ce repas."}}<br>
-		{{cuisine && "Vous avez mis "+cuisine+" &agrave; "+votepour.hote.prenom+" pour sa cuisine." || "Vous n'avez pas encore &eacute;valu&eacute; la cuisine."}}<br>
-		Cliquez sur 'Voter' pour enregistrer vos notes ({{notesHistorique.length}} personne(s)).<br>
-		<md-button
-			id="form_button_log"
-			type="submit"
-			ng-click="envoyer()"
-			class="form">Voter
-		</md-button>
-	</div>
+	<h3>Votre vote :</h3>
+	<div id="note" class="rate" ng-rate-it ng-model="note" resetable="false" ng-click="change(note)" read-only="lectureSeule" step="1"></div>
+		{{note}}<br>
+	<md-button
+		id="form_button_log"
+		type="submit"
+		ng-click="envoyer()"
+		class="form">Voter
+	</md-button>
+</div>
 </div>

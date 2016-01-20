@@ -13,7 +13,8 @@ Page permettant une visualisation du profil d'un utilisateur.
         <meta name="description" content="Visualisation du profil FeedMe">
 	    <link rel="stylesheet" type="text/css"  href="resources/css/bootstrap.css">
     	<link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome/css/font-awesome.css">
-    	<link rel="stylesheet" type="text/css"  href="resources/css/style.css">
+    	<link rel="stylesheet" type="text/css"  href="resources/css/custom/style.css">
+        <link rel="stylesheet" type="text/css"  href="resources/css/custom/profil.css">
     	<link rel="stylesheet" type="text/css" href="resources/css/responsive.css">
 		<link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
 
@@ -26,9 +27,8 @@ Page permettant une visualisation du profil d'un utilisateur.
     <body ng-app="Profil">
     	<!-- Menu -->
         <div ng-include="'/resources/header.html'"></div>
-        <div class="containerProfil">
-            <br/>
-            
+        <div class="pageProfil">
+
             <!-- Affichage des éléments du profil de l'utilisateur connecté -->
             <div class="profil" ng-controller="ProfilCtrl">
                 <div class="col-lg-3 image-profil Aligner">
@@ -42,7 +42,7 @@ Page permettant une visualisation du profil d'un utilisateur.
                 Prénom: {{profil.prenom}}<br />
                 Date de naissance: {{profil.dateNaissance}}<br />
                 e-mail: {{profil.mail}}<br/>
-                Bio: {{profil.description}}<br />
+                Bio: <span ng-if="profil.description == undefined">Non renseignée</span> <span ng-if="!(profil.description == undefined)">{{profil.description}}</span> <span
 				<div ng-if="profil.adresse && profil.adresseVisible">
 				Adresse : {{profil.adresse.voie}}.<br />
 				{{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})<br />

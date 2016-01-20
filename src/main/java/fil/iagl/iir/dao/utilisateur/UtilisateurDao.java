@@ -25,8 +25,8 @@ public interface UtilisateurDao {
   Integer sauvegarder(@Param("utilisateur") Utilisateur utilisateur);
 
   /**
-   * L'utilisateur va devenir prenium.
-   * @param utilisateur qui souhaite devenir prenium
+   * L'utilisateur va devenir premium.
+   * @param utilisateur qui souhaite devenir premium
    */
-  void devenirPrenium(@Param("utilisateur") Utilisateur utilisateur);
+  void devenirPremium(@Param("utilisateur") Utilisateur utilisateur);
 }

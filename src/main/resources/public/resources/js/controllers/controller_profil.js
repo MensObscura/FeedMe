@@ -6,9 +6,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees){
 				$scope.idUser = donnees.data.idUtilisateur;
-
-
-
 			}	 
 	);
 
@@ -21,7 +18,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 				$http.get(msgUrl).success(function(donnees) { //
 
 					$scope.items = donnees.data;
-					console.log($scope.nbNotif);
 					$scope.nbNotif = $scope.items.length;
 				});
 			}else{
@@ -50,7 +46,7 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 });
 
 // Création du controller "ProfilCtrl"
-app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
+app.controller("ProfilCtrl", function($scope, $http, Upload, $q, $window) {
 	
 	//affichage des inputs d'edition du profil
 	$scope.editBio=false;
@@ -106,97 +102,78 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 				$scope.saveCountry = $scope.count;
 			}
 	);
+	
+	// initialisation de la popover
+	 $scope.dynamicPopover = {
+			    content: 'Hello, World!',
+			    templateUrl: 'paypal-fake.html',
+			    title: 'Paiement'
+	 };
+	 
+	//popover fonction on met payé a true et on ferme la popup
+	$scope.valider = function() {
+		$scope.popoverOuverte = false;
+			
+		$http({
+			method: 'PUT',
+			url: '/utilisateur/particulier/devenirPremium',
+			contentType: "application/json",
+			data: $scope.profil
+		}).success(function(response, status, headers, config){
+			$scope.profil.premium = true;
+		}).error(function(err, status, headers, config){
+			
+		});
+					
+	};
 		
-	$scope.changeCuisine = function(note) {
-		$scope.cuisine = note;
-	}
+	//popover fonction  on ferme la popup
+	$scope.annuler = function() {
+		$scope.popoverOuverte = false;
+		$scope.premium = false;
+	};
+	
+	$scope.visualize = function(convive) {
+		var url = "visualiser_profil.html?id="+convive.idUtilisateur;
+		$window.location.href = url;
+	};
+		
 	
     $scope.change = function(note) {
-    	var pour = $scope.notepour;
-    	var element = {'note': note, 'utilisateur' : pour};
-    	var ancienneNote = null;
-    	var moyenne = 0;
-    	
-    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
-    		 if (valeur.utilisateur.idUtilisateur == pour.idUtilisateur) {
-    			 ancienneNote = cle;
-    		 }
-    		 moyenne = moyenne + valeur.note;
-    	});
-    	
-    	if (ancienneNote == null) {
-    		$scope.notesHistorique.push(element);
-    		
-    		moyenne = (moyenne + element.note) / $scope.notesHistorique.length;
-    	}
-    	else {
-    		moyenne = (moyenne - $scope.notesHistorique[ancienneNote].note + element.note) / $scope.notesHistorique.length;
-    		$scope.notesHistorique.splice(ancienneNote, 1);
-    		$scope.notesHistorique.push(element);
-    	}
-    	
-    	$scope.ambianceMoyenne = moyenne;
-    	$scope.notepour = null;
-    	
+    	$scope.note = note;
     }
         
     $scope.vote = function(repas) {
     	$scope.votepour = repas;
-    	console.log(repas);
+		var aujourdhui = new Date();
+		var ddn = new Date(repas.hote.dateNaissance.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2-$1-$3"));
+	
+		$scope.age = aujourdhui.getFullYear() - ddn.getFullYear();
     }
     
     $scope.retour = function() {
     	$scope.votepour = null;
-    	$scope.notepour = null;
-    	$scope.cuisine = null;
-    	$scope.notesHistorique = [];
     }
-    
-    $scope.noter = function(convive) {
-    	console.log(convive);
-    	$scope.notepour = convive;
-    	$scope.noteActu = null;
-    	
-		var aujourdhui = new Date();
-		var ddn = new Date(convive.dateNaissance.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2-$1-$3"));
-	
-		$scope.age = aujourdhui.getFullYear() - ddn.getFullYear();
-    	
-    	angular.forEach($scope.notesHistorique, function(valeur, cle) {
-    		if (valeur.utilisateur.idUtilisateur == convive.idUtilisateur) {
-   			 	$scope.noteActu = valeur.note;
-   				return;
-   		 	}
-    	});
-    }
-    
-    $scope.$watch('notepour', function() {
-    	$scope.note = $scope.noteActu;
-    });
-    
+            
     $scope.envoyer = function() {
     	
-    	for (var i=0; i < $scope.notesHistorique.length; i++ ) {
-    		var vote = {
-        		utilisateur: $scope.notesHistorique[i].utilisateur,
-        		note: ($scope.notesHistorique[i].note),
-    			offre: $scope.votepour
-        	}
-        	
-        	$http({
-    			method: 'PUT',
-    			url: '/vote',
-    			contentType: "application/json",
-    			data: vote
-    		}).success(function(response, status, headers, config){
-    			$scope.votepour = null;
-    		}).error(function(err, status, headers, config){
-    			
-    		});
-    	}
+    	var vote = {
+    		utilisateur: $scope.profil,
+    		note: $scope.note,
+    		offre: $scope.votepour
+    	};
     	
-    	console.log($scope.cuisine); // pas encore de liaison avec le backend
-    }
+        $http({
+    		method: 'PUT',
+    		url: '/vote',
+    		contentType: "application/json",
+    		data: vote
+    	}).success(function(response, status, headers, config){
+    		$scope.votepour = null;
+    	}).error(function(err, status, headers, config){
+    			
+    	});
+    };
     
 	// Avertissements pour les hoverOut/hoverIn :
 	$scope.hoverInPic = function(){

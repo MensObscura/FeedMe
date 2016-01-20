@@ -57,7 +57,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
    * @see fil.iagl.iir.service.UtilisateurService#getParticulierByUtilisisateurId(java.lang.Integer)
    */
   @Override
-  public Particulier getParticulierByUtilisisateurId(Integer id) {
+  public Particulier getParticulierByUtilisateurId(Integer id) {
     if (id == null) {
       throw new FeedMeException("parametre null");
     }
@@ -84,14 +84,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     return particuliersPremiums;
   }
 
-  public void devenirPrenium(Utilisateur utilisateur) {
+  public void devenirPremium(Utilisateur utilisateur) {
     if (utilisateur == null) {
       throw new FeedMeException("Utilisateur null");
     }
     if (utilisateur.getPremium()) {
-      throw new FeedMeException("Utilisateur déjà prénium");
+      throw new FeedMeException("Utilisateur déjà premium");
     }
-    utilisateurDao.devenirPrenium(utilisateur);
+    utilisateurDao.devenirPremium(utilisateur);
   }
 
   /*

@@ -1,0 +1,46 @@
+.page-accueil {
+	background: url(../../img/accueil/accueil.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	color: #cfcfcf;
+	height: 94%;
+	margin: 0;
+	display: flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: -moz-box-flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.page-accueil-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.choice {
+	width: 20em;
+	height: 10em;
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.choice:hover {
+	background-color: rgba(122, 122, 122, 0.5);
+	font-style:
+}
+
+.choice-text {
+	font-size: 2em;
+	color: rgba(255, 255, 255, 1);
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+	text-transform: uppercase;
+	font-weight: bold;
+}

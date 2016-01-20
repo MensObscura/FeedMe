@@ -63,7 +63,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
     Particulier mockParticulier = this.createParticulier();
     Mockito.when(particulierDao.getParticulierByUtilisateurId(idUtilisateur)).thenReturn(mockParticulier);
 
-    Particulier particulier = utilisateurService.getParticulierByUtilisisateurId(idUtilisateur);
+    Particulier particulier = utilisateurService.getParticulierByUtilisateurId(idUtilisateur);
 
     Assertions.assertThat(particulier).isNotNull();
     Assertions.assertThat(particulier.getIdUtilisateur()).isNotNull().isEqualTo(mockParticulier.getIdUtilisateur());
@@ -82,7 +82,7 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
 
   @Test(expected = FeedMeException.class)
   public void getParticulierByUtilisisateurIdTestEchec() throws Exception {
-    utilisateurService.getParticulierByUtilisisateurId(null);
+    utilisateurService.getParticulierByUtilisateurId(null);
     Mockito.verify(utilisateurDao, Mockito.never()).getById(Mockito.anyInt());
   }
 
@@ -118,20 +118,20 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
   }
 
   @Test
-  public void devenirPreniumTestSucces() {
+  public void devenirPremiumTestSucces() {
     Utilisateur utilisateur = this.createUtilisateur();
     utilisateur.setPremium(false);
-    utilisateurService.devenirPrenium(utilisateur);
-    Mockito.verify(utilisateurDao, Mockito.times(1)).devenirPrenium(utilisateur);
+    utilisateurService.devenirPremium(utilisateur);
+    Mockito.verify(utilisateurDao, Mockito.times(1)).devenirPremium(utilisateur);
   }
 
   @Test(expected = FeedMeException.class)
-  public void devenirPreniumTestEchec_dejaPrenium() {
+  public void devenirPremiumTestEchec_dejaPremium() {
     Utilisateur utilisateur = this.createUtilisateur();
     try {
-      utilisateurService.devenirPrenium(utilisateur);
+      utilisateurService.devenirPremium(utilisateur);
     } catch (FeedMeException fme) {
-      Mockito.verify(utilisateurDao, Mockito.never()).devenirPrenium(utilisateur);
+      Mockito.verify(utilisateurDao, Mockito.never()).devenirPremium(utilisateur);
       ;
       throw fme;
     }
@@ -140,9 +140,9 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
   @Test(expected = FeedMeException.class)
   public void devenirPreniumTestEchec_null() {
     try {
-      utilisateurService.devenirPrenium(null);
+      utilisateurService.devenirPremium(null);
     } catch (FeedMeException fme) {
-      Mockito.verify(utilisateurDao, Mockito.never()).devenirPrenium(null);
+      Mockito.verify(utilisateurDao, Mockito.never()).devenirPremium(null);
       ;
       throw fme;
     }

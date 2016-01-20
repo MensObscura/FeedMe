@@ -154,6 +154,7 @@
 			off_adr_id = #{offre.adresse.id},
 			off_typ_id = #{offre.typeCuisine.id},
 			off_premium  = #{offre.premium}
+		WHERE off_id = #{offre.id}
 	</update>
 
 </mapper>

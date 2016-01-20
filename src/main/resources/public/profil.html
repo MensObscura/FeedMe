@@ -5,7 +5,6 @@ Page permettant une visualisation du profil d'un utilisateur.
 
 <!DOCTYPE html>
 <html lang="fr">
-<html>
 <head>
 <meta charset="utf-8">
 <meta
@@ -26,7 +25,10 @@ Page permettant une visualisation du profil d'un utilisateur.
 <link
 	rel="stylesheet"
 	type="text/css"
-	href="resources/css/style.css">
+	href="resources/css/custom/style.css">
+    
+<link rel="stylesheet" type="text/css"  href="resources/css/custom/profil.css">
+    
 <link
 	rel="stylesheet"
 	type="text/css"
@@ -50,13 +52,26 @@ Page permettant une visualisation du profil d'un utilisateur.
 <body ng-app="Profil">
 	<!-- Menu -->
 	<div ng-include="'/resources/header.html'"></div>
-	<div class="containerProfil">
+	<div class="pageProfil">
 		<br />
 
 		<!-- Affichage des éléments du profil de l'utilisateur connecté -->
 		<div class="profil" ng-controller="ProfilCtrl">
 <div ng-show="!votepour">
 		<div class="col-lg-3 editable">
+		<md-button
+			id="devenir_premium_bouton"
+			type="submit"
+			ng-disabled="profil.premium"
+			uib-popover-template="dynamicPopover.templateUrl"
+			popover-append-to-body="true"
+			popover-placement="right"
+			popover-is-open="popoverOuverte"
+			popover-title="{{dynamicPopover.title}}"
+			ng-model="premium"
+			aria-label="premium"
+			class="form">Devenir Premium
+		</md-button>
 				<div
 					ng-click="setEditPic()"
 					ng-mouseover="hoverInPic()"
@@ -122,11 +137,6 @@ Page permettant une visualisation du profil d'un utilisateur.
 					</span>
 				</div>
 				<br />
-
-
-
-
-
 
 				<!-- ----------- Affichage des editions ---------- -->
 				<div ng-show="editBio || editAdr">
@@ -285,7 +295,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 						ng-show="hoverEditAdr"
 						class="animate-show"> <i class="fa fa-pencil-square-o white"></i><a> Cliquez pour modifier</a>
 
-					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}} ({{profil.adresse.ville.pays.nom}})
+					</span> <br /> {{profil.adresse.ville.cp}} {{profil.adresse.ville.nom}}, {{profil.adresse.ville.pays.nom}}
 
 				</div>
 				<div ng-include="'/resources/template_profil_liste.html'"></div>
