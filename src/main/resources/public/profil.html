@@ -60,7 +60,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 		<md-button
 			id="devenir_premium_bouton"
 			type="submit"
-			ng-show="(!profil.premium) && !paye"
+			ng-disabled="profil.premium"
 			uib-popover-template="dynamicPopover.templateUrl"
 			popover-append-to-body="true"
 			popover-placement="right"

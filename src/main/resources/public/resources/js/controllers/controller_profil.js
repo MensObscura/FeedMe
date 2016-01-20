@@ -103,8 +103,6 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 			}
 	);
 	
-	// initilisation du paiement à faux
-	$scope.paye = false;
 	// initialisation de la popover
 	 $scope.dynamicPopover = {
 			    content: 'Hello, World!',
@@ -115,13 +113,18 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q) {
 		//popover fonction on met payé a true et on ferme la popup
 		$scope.valider = function() {
 			$scope.popoverOuverte = false;
-			$scope.paye=true;
 			
-			$http.get('/utilisateur/particulier/devenirPrenium').success(
-					function(donnees){
-						console.log(donnees);
-					}	 
-			);			
+			$http({
+				method: 'PUT',
+				url: '/utilisateur/particulier/devenirPremium',
+				contentType: "application/json",
+				data: $scope.profil
+			}).success(function(response, status, headers, config){
+				$scope.profil.premium = true;
+			}).error(function(err, status, headers, config){
+			
+			});
+					
 		};
 		
 		//popover fonction  on ferme la popup
