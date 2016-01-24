@@ -19,28 +19,12 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 	);
 
 
-	$scope.getNotif = function(){
-
-		$interval(function() {
-			if($scope.idUser){
-				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
-				$http.get(msgUrl).success(function(donnees) { //
-
-					$scope.items = donnees.data;
-					console.log($scope.nbNotif);
-					$scope.nbNotif = $scope.items.length;
-				});
-			}else{
-
-				$scope.nbNotif =  1;
-
-			}
-		},3000);
-
+	$scope.notification = function(){
+		
+		$window.location.href = "/notification.html"
 	};
-	
-	$scope.getNotif();
 
+	
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
 		$http.get('/logout').success(
@@ -51,11 +35,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 		);
 	};
 
-
-	$scope.notification = function(){
-		
-		$window.location.href = "/notification.html"
-	};
 
 
 
@@ -90,7 +69,6 @@ app.controller("notificationCtrl",function($scope, $http, $window, $interval) {
 				$http.get(msgUrl).success(function(donnees) { //
 
 					$scope.items = donnees.data;
-					console.log($scope.nbNotif);
 					$scope.nbNotif = $scope.items.length;
 				});
 			}else{
@@ -105,5 +83,6 @@ app.controller("notificationCtrl",function($scope, $http, $window, $interval) {
 	$scope.afficheMessage = function(notif){
 		$scope.expediteur=notif.expediteur.nom;
 		$scope.message=notif.texte;
+		$scope.objet=notif.objet;
 	};
 });

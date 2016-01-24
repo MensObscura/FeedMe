@@ -76,7 +76,13 @@ Page d'accueil pour utilisateur connecté.
 				</li>
 			</div>
 		</div>
-		<div class="conteneur-message" flex><div ng-show=message class="message" flex>{{message}},from {{expediteur}}</div></div>
+		<div class="conteneur-message" flex><div ng-show=message class="message" flex>
+		Envoyé par : {{expediteur}}
+		<div class="ligne"></div>
+		Objet : {{objet}}
+		<div class="ligne"></div>
+		{{message}}
+		</div></div>
 	</div>
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>

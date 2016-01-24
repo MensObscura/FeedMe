@@ -1601,3 +1601,11 @@ img.img-tile.img-profil:hover {
 .error-message-shadowed {
     text-shadow: 0.5px 0.5px 2px #f66;
 }
+
+
+.ligne {
+     color: rgba(255, 255, 255, 0.4);
+     background: rgba(255, 255, 255, 0.4);
+     width: 95%; 
+     height: 1px;
+}
