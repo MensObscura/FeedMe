@@ -1,5 +1,5 @@
 //Chargement du module "OffreApp"
-var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters', 'angular-notification-icons', 'ngAnimate','ui.bootstrap']);
+var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters', 'angular-notification-icons', 'ngAnimate','ui.bootstrap', 'ngRateIt']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 //	notif
@@ -159,6 +159,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 			function(donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 				$scope.profil = donnees.data;
+				$scope.noteMoyenne = donnees.data.note/10;
 
 			}
 	);

@@ -73,7 +73,7 @@ Page de visualisation d'une offre
 	type='text/css'
 	href="/resources/css/angular-material.min.css">
 	
-	
+<link rel="stylesheet" type='text/css' href="/resources/css/ng-rateit.css" />
 
 <link rel='stylesheet' type='text/css' href='resources/css/angular-notification-icons.min.css'>
 </head>
@@ -160,6 +160,7 @@ Page de visualisation d'une offre
 						<h3>Identité :</h3>
 						<!-- Un hôte est un utilisateur : pas de prénom  {{offre.hote.prenom}} -->
 						{{offre.hote.prenom}} {{offre.hote.nom}}
+						<div><ng-rate-it class="rate" ng-model="noteMoyenne" read-only="true"></ng-rate-it>{{"  "+noteMoyenne}}</div>
 						<h3>Lieu :</h3>
 						{{offre.adresse.voie}} <br> {{offre.adresse.ville.cp}} {{offre.adresse.ville.nom}} ({{offre.adresse.ville.pays.nom}})
 						<h3>Prix par convive :</h3>
@@ -296,6 +297,10 @@ Page de visualisation d'une offre
 	<script src="/resources/js/filters/filters.js"></script>
 		<script type="text/javascript" src="/resources/js/scripts/angular-notification-icons.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular-ui-bootstrap-tpls.js"></script>
+
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ng-rateit.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
