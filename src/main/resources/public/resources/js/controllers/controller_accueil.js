@@ -11,7 +11,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 				$http.get(msgUrl).success(function(donnees) { //
 
 					$scope.items = donnees.data;
-					console.log($scope.nbNotif);
 					$scope.nbNotif = $scope.items.length;
 				});
 				
@@ -19,28 +18,12 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 	);
 
 
-	$scope.getNotif = function(){
-
-		$interval(function() {
-			if($scope.idUser){
-				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
-				$http.get(msgUrl).success(function(donnees) { //
-
-					$scope.items = donnees.data;
-					console.log($scope.nbNotif);
-					$scope.nbNotif = $scope.items.length;
-				});
-			}else{
-
-				$scope.nbNotif =  1;
-
-			}
-		},3000);
-
+	$scope.notification = function(){
+		
+		$window.location.href = "/notification.html"
 	};
 
-	$scope.getNotif();
-
+	
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
 		$http.get('/logout').success(
@@ -51,11 +34,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 		);
 	};
 
-
-	$scope.notification = function(){
-		
-		$window.location.href = "/notification.html"
-	};
 
 
 });
