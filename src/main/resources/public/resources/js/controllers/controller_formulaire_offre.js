@@ -31,7 +31,7 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window, $interva
 				$scope.idUser = donnees.data.idUtilisateur;
 
 				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
-				$http.get(msgUrl).success(function(donnees) { //
+				$http.get(msgUrl).success(function(donnees) { 
 
 					$scope.items = donnees.data;
 					$scope.nbNotif = $scope.items.length;

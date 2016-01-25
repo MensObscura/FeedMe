@@ -34,6 +34,7 @@
 						</i></notification-icon>
 
 						<ul uib-dropdown-menu class="dropdown-menu-Rigth" aria-labelledby="simple-dropdown">
+							<li ><a ng-click="notification()" href>Voir toutes les notifications</a></li>
 							<li ng-repeat="notif in items"><a ng-click="notification()" href>{{notif.objet}}</a></li>
 
 						</ul> </span></li>

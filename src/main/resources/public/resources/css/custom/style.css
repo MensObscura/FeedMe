@@ -627,7 +627,7 @@ nav#footer {
 	color: #ffffff;
 	padding: 2% 2% 4% 2%;
 	height: 6%;
-    border: none;
+	border: none;
 }
 
 nav#footer .fnav {
@@ -642,7 +642,7 @@ ul.footer-social li {
 nav#footer p {
 	font-size: 12px;
 	margin-top: 10px;
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #footer i.fa {
@@ -662,15 +662,12 @@ nav#footer p {
 	color: #ffffff;
 }
 
-
-
-
 nav#footer-index {
 	background: #222222;
 	color: #ffffff;
-    padding: 20px;
+	padding: 20px;
 	height: 6%;
-    border: none;
+	border: none;
 }
 
 nav#footer-index .fnav {
@@ -685,7 +682,7 @@ ul.footer-social li {
 nav#footer-index p {
 	font-size: 12px;
 	margin-top: 10px;
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #footer-index i.fa {
@@ -704,10 +701,6 @@ nav#footer-index p {
 	border-color: #FCAC45;
 	color: #ffffff;
 }
-
-
-
-
 
 /* Début du tri du CSS à partir d'ici:
     ajouts et tri d'éléments avec commentaring
@@ -769,8 +762,8 @@ nav#footer-index p {
 }
 
 .auth-form {
-    height: 100%;
-    padding-top: 10%;
+	height: 100%;
+	padding-top: 10%;
 }
 
 #vue-offre {
@@ -797,8 +790,8 @@ nav#footer-index p {
 	margin: 3% 0% 5% 0%;
 }
 
-.general-form .titre-offre    {
-    padding-top: 2%;
+.general-form .titre-offre {
+	padding-top: 2%;
 }
 
 .Aligner {
@@ -830,10 +823,10 @@ nav#footer-index p {
 }
 
 .container-footer {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 #StyleFormulaireOffre .overlay {
@@ -912,15 +905,14 @@ button.form {
 	padding: 5px;
 	margin-left: 20%;
 	margin-right: 20%;
-    margin-top: 5%;
-    height: 100%;
-
+	margin-top: 5%;
+	height: 100%;
 	width: 60%;
 }
 
 .inscriptionForm {
 	margin-top: 0%;
-    height: auto;
+	height: auto;
 }
 
 .item-view {
@@ -1081,18 +1073,6 @@ ul {
 	display: inline-block;
 	float: left;
 	margin: 0% 1.5% 0% 1.5%;
-}
-
-.une-offre-body {
-	background: url(../img/offre/background.jpg);
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	color: #cfcfcf;
-	height: auto;
-	margin: 0;
-	padding: 5%;
 }
 
 .offre-display {
@@ -1541,25 +1521,31 @@ img.img-tile.img-profil:hover {
 
 .colonne-notif {
 	flex: 0 1 23em;
+	min-width: 23em;
 	padding-left: 0.1em;
 	padding-right: 0.1em;
 	height: 100%;
 	border: 1px solid;
 	background-color: rgba(0, 0, 0, 0.2);
 	border-color: rgba(255, 255, 255, 0.3);
+	padding-left: 0.1em;
 }
 
 .non-lu {
-	
 	border-color: rgba(255, 255, 255, 0.4);
 	color: rgb(255, 255, 255);
 }
 
-.notification:hover{
+.notification:hover {
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
-.notification{
+.notification.vide:hover {
+	cursor: initial;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.notification {
 	cursor: pointer;
 	border: 2px solid;
 	height: 4em;
@@ -1569,8 +1555,12 @@ img.img-tile.img-profil:hover {
 	border: 1px solid;
 }
 
+.vide {
+	justify-content: center;
+	border: 0px;
+}
+
 .lu {
-	
 	border-color: rgba(252, 172, 69, 0.4);
 	color: rgba(252, 172, 69, 0.4);
 }
@@ -1599,13 +1589,12 @@ img.img-tile.img-profil:hover {
 }
 
 .error-message-shadowed {
-    text-shadow: 0.5px 0.5px 2px #f66;
+	text-shadow: 0.5px 0.5px 2px #f66;
 }
 
-
 .ligne {
-     color: rgba(255, 255, 255, 0.4);
-     background: rgba(255, 255, 255, 0.4);
-     width: 95%; 
-     height: 1px;
+	color: rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 0.4);
+	width: 95%;
+	height: 1px;
 }

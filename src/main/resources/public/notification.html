@@ -67,7 +67,8 @@ Page d'accueil pour utilisateur connecté.
 		<div class="conteneur-notif">
 			<div class="colonne-notif" >
 				<ul >
-					<li  ng-repeat="notif in items"><div ng-if="notif.lu" class="notification lu" ng-click="afficheMessage(notif)"
+					<li><div ng-if="allItems.length == 0" class="notification vide">Aucune notification</div></li>
+					<li  ng-repeat="notif in allItems"><div ng-if="notif.lu" class="notification lu" ng-click="afficheMessage(notif)"
 						href>{{notif.objet}}</div><div ng-if="!notif.lu" class="notification non-lu" ng-click="afficheMessage(notif)"
 						href>{{notif.objet}}</div></li>
 
