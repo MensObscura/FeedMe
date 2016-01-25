@@ -64,7 +64,6 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		var url = '/utilisateur/particulier/'+item.hote.idUtilisateur +'';
 		$http.get(url).success(
 				function(donnees) {
-					console.log(donnees.data.note);
 					item.hote.note = donnees.data.note/10;	
 					
 				}
