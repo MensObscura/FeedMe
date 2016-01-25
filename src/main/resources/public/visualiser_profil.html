@@ -40,7 +40,7 @@ Page permettant une visualisation du profil d'un utilisateur.
                 <ng-rate-it class="rate" ng-model="noteMoyenne" read-only="true"></ng-rate-it>{{"  "+noteMoyenne}}<br>
                 <p>Nom: {{profil.nom}}<br/>
                 Prénom: {{profil.prenom}}<br />
-                Date de naissance: {{profil.dateNaissance}}<br />
+                Date de naissance: {{profil.dateNaissance | date:"dd/MM/yyyy"}}<br />
                 e-mail: {{profil.mail}}<br/>
                 Bio: <span ng-if="profil.description == undefined">Non renseignée</span> <span ng-if="!(profil.description == undefined)">{{profil.description}}</span> <span
 				<div ng-if="profil.adresse && profil.adresseVisible">

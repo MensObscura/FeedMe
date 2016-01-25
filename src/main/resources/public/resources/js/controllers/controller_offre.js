@@ -164,8 +164,16 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 	);
 	//on va voir le profil, correspondant à la photo cliquée
 	$scope.voir = function(id){
-		if(id != -1)
-			$window.location.href = "/visualiser_profil.html?id="+id;
+		if(id != -1) {
+			$http.get('/utilisateur/particulier/profil').success(
+					function(donnees){
+						if (donnees.data.idUtilisateur == id)
+							$window.location.href = "/profil.html";
+						else
+							$window.location.href = "/visualiser_profil.html?id="+id;
+					}	 
+			);
+		}
 	};
 	//Création de la list de reservation pour le carrousel
 

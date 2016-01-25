@@ -6,9 +6,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees){
 				$scope.idUser = donnees.data.idUtilisateur;
-
-
-
 			}	 
 	);
 
@@ -62,7 +59,14 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	$scope.visualize = function (valeur, event) {
 
 		if (event.target.className == "img-circle img-tile img-profil") {
-			$window.location.href = "/visualiser_profil.html?id="+valeur.hote.idUtilisateur;
+			$http.get('/utilisateur/particulier/profil').success(
+					function(donnees){
+						if (donnees.data.idUtilisateur == valeur.hote.idUtilisateur)
+							$window.location.href = "/profil.html";
+						else
+							$window.location.href = "/visualiser_profil.html?id="+valeur.hote.idUtilisateur;
+					}	 
+			);
 		}
 		else
 			$window.location.href = "/offre.html?id="+valeur.id;

@@ -6,9 +6,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees){
 				$scope.idUser = donnees.data.idUtilisateur;
-
-
-
 			}	 
 	);
 
@@ -21,7 +18,6 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 				$http.get(msgUrl).success(function(donnees) { //
 
 					$scope.items = donnees.data;
-					console.log($scope.nbNotif);
 					$scope.nbNotif = $scope.items.length;
 				});
 			}else{
@@ -59,10 +55,15 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	    
 	// Permet de créer un listener qui va rediriger vers la visualisation du profil cliqué
 	$scope.visualize = function (valeur, event) {
-
-		
-			$window.location.href = "/visualiser_profil.html?id="+valeur.idUtilisateur;
-		
+		$http.get('/utilisateur/particulier/profil').success(
+				function(donnees){
+					if (donnees.data.idUtilisateur == valeur.idUtilisateur)
+						$window.location.href = "/profil.html";
+					else
+						$window.location.href = "/visualiser_profil.html?id="+valeur.idUtilisateur;
+				}	 
+		);
+				
 	};
 	
 	

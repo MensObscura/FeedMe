@@ -134,8 +134,10 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q, $window) {
 	};
 	
 	$scope.visualize = function(convive) {
-		var url = "visualiser_profil.html?id="+convive.idUtilisateur;
-		$window.location.href = url;
+			if ($scope.profil.idUtilisateur == convive.idUtilisateur)
+				$window.location.href = "/profil.html";
+			else
+				$window.location.href = "/visualiser_profil.html?id="+convive.idUtilisateur;	 
 	};
 		
 	
