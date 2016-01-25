@@ -55,15 +55,22 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		function(donnees) {
 			$scope.list = donnees.data;
 			$scope.nombrePlaces =0;	
+			$scope.noteMoyenne = 0;
 		}
 	);
 
 	// On se connecte à la route permettantS de récupèrer le profil de l'utilisateur
-	$http.get('/utilisateur/particulier/profil').success(
-		function(donnees) {
-			$scope.noteMoyenne = donnees.data.note/10;	
-		}
-	);
+	$scope.getNote = function (item) {
+		var url = '/utilisateur/particulier/'+item.hote.idUtilisateur +'';
+		$http.get(url).success(
+				function(donnees) {
+					console.log(donnees.data.note);
+					item.hote.note = donnees.data.note/10;	
+					
+				}
+			);
+	}
+	
 	    
 	// Permet de créer un listener qui va rediriger vers la visualisation de l'offre cliquée
 	$scope.visualize = function (valeur, event) {
