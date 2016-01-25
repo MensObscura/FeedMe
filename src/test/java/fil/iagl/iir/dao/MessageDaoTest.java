@@ -1,5 +1,7 @@
 package fil.iagl.iir.dao;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.fest.assertions.api.Assertions;
@@ -9,6 +11,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.dao.message.MessageDao;
 import fil.iagl.iir.entite.Message;
+import fil.iagl.iir.outils.FeedMeException;
+import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.outils.SQLCODE;
 
 public class MessageDaoTest extends AbstractDaoTest {
@@ -198,5 +202,40 @@ public class MessageDaoTest extends AbstractDaoTest {
 
     // Alors la liste est vide
     Assertions.assertThat(messages).isNotNull().isEmpty();
+  }
+  
+  @Test
+  public void testMarquerCommeLuSucces() throws Exception {
+	  //Etant donné que j'ai un message non lu d'id idMsg 
+	  // et que je suis l'utilisateur destinataire d'id idDest
+	  Integer idMsg = 1;
+	  Integer idDest = 2;
+	 
+	  List<Message> messagesNonLus = messageDao.getAllNonLuParId(2);
+	  int nbMessagesNonLus = messagesNonLus.size();
+	  
+	  // Quand je le lis mon message non lu idMsg
+	  // Alors une seule ligne correspondant à mon message lu est modifiée
+	  assertTrue(1==messageDao.marquerCommeLu(idMsg));
+	  messagesNonLus = messageDao.getAllNonLuParId(2);
+	  
+	  // Et le message ne doit plus apparaître.
+	  assertEquals(nbMessagesNonLus-1,messagesNonLus.size());
+	  for (Message m : messagesNonLus) {
+		  if (m.getId() == idMsg) {
+			  fail("Le message d'id " + idMsg + "ne devrait plus apparaître.");
+		  }
+	  }
+  }
+	  
+  @Test
+  public void testMarquerCommeLuEchecIdMsgNull() throws Exception {
+	  // Etant donné un id message null
+	  Integer idMsg = null;
+	  
+	  // Quand je déclare ce message d'id null comme lu
+	  // Aucune ligne ne doit être modifiée
+	  assertTrue(0==messageDao.marquerCommeLu(idMsg));
+	  
   }
 }

@@ -35,4 +35,10 @@ public interface MessageService {
    * @return tous les messages de l'utilisateur
    */
   List<Message> getAll(Integer id);
+  
+  /**
+   * Marque le message idMsg comme lu
+   * @param idMsg
+   */
+  void marquerCommeLu(Integer idMsg);
 }

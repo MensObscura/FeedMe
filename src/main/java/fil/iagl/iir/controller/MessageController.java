@@ -35,4 +35,9 @@ public class MessageController {
 		 return new DataReturn<Message>();
 	 }
 	 
+	 @RequestMapping(value = "/{idMsg}/marquerCommeLu", method = RequestMethod.PUT)
+	 public DataReturn<?> marquerCommeLu(@PathVariable("idMsg") Integer idMsg) {
+		 messageService.marquerCommeLu(idMsg);
+		 return new DataReturn<Message>();
+	 }
 }

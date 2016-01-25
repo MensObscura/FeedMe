@@ -59,4 +59,9 @@
 		WHERE msg_id_usr_destinataire = #{idDestinataire} AND msg_lu = false;
 	</select>
 
+	<update id="marquerCommeLu">
+		UPDATE Message
+			SET msg_lu = true
+		WHERE msg_id = #{idMsg};	
+	</update>
 </mapper>

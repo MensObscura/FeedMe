@@ -2,6 +2,7 @@ package fil.iagl.iir.controller.message;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -70,6 +71,21 @@ public class MessageControllerTest extends AbstractControllerTest {
 	public void supprimerMessageTestEchecIdNull() throws Exception {
 		Integer id = null;
 		mockMvc.perform(delete("/msg/{id}",id))
+		.andExpect(status().isMethodNotAllowed());
+	}
+	
+	@Test
+	public void marquerCommeLuTestSucces() throws Exception {
+		Integer id = 2;
+		mockMvc.perform(put("/msg/{id}/marquerCommeLu",id))
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(FEED_ME_MEDIA_TYPE));
+	}
+	
+	@Test
+	public void marquerCommeLuTestEchecIdMsgNull() throws Exception {
+		Integer id = null;
+		mockMvc.perform(put("/msg/{id}/marquerCommeLu",id))
 		.andExpect(status().isMethodNotAllowed());
 	}
 }
