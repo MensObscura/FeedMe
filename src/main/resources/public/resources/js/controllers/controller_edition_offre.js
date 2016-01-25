@@ -23,7 +23,7 @@ var dateTimePicker = function() {
 };
 
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider','ui.bootstrap', 'ngFileUpload', 'angular-carousel', 'appFilters']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel','appFilters', 'ui.bootstrap', 'angular-notification-icons', 'ngAnimate']);
 
 validationApp.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 //	notif
