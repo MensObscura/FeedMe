@@ -3,6 +3,7 @@ package fil.iagl.iir.service;
 import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
@@ -66,6 +67,25 @@ public class ImageServiceTest extends AbstractServiceTest {
   public void sauvegarderTestEchec_PasImage() throws Exception {
     // Etant donnée un fichier qui n'est pas une image
     Mockito.when(mockMultipartFile.getOriginalFilename()).thenReturn("C:/azeiaizuehaiuzeh/euiazbeaze.mp3");
+
+    // On verifie que le service renvoi une exception
+    this.imageService.sauvegarder(mockMultipartFile);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void sauvegarderTestEchec_FichierVide() throws Exception {
+    // Etant donnée un fichier vide
+    Mockito.when(mockMultipartFile.isEmpty()).thenReturn(Boolean.TRUE);
+
+    // On verifie que le service renvoi une exception
+    this.imageService.sauvegarder(mockMultipartFile);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void sauvegarderTestEchec_IOException() throws Exception {
+    // Etant donnée un fichier vide
+    Mockito.when(mockMultipartFile.getOriginalFilename()).thenReturn("chemin/de/l'image/chez/l'upoader.GIF");
+    Mockito.when(mockMultipartFile.getBytes()).thenThrow(new IOException());
 
     // On verifie que le service renvoi une exception
     this.imageService.sauvegarder(mockMultipartFile);

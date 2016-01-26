@@ -58,7 +58,7 @@ public class ImageServiceImpl implements ImageService {
       imageSauvegardee.setPath(logiquePath);
       imageDao.sauvegarder(imageSauvegardee);
       return imageSauvegardee;
-    } catch (IllegalStateException | IOException e) {
+    } catch (IOException e) {
       throw new FeedMeException("Le fichier n'a pas pu s'enregistrer" + image.getOriginalFilename(), e);
     }
   }
