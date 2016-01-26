@@ -57,9 +57,20 @@ Page de visualisation des offres de repas.
 	rel="stylesheet"
 	type="text/css"
 	href="/resources/css/list_style.css" />
-	
-<link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
-<link rel='stylesheet' type='text/css' href='resources/css/angular-notification-icons.min.css'>
+
+<link
+	rel='stylesheet'
+	type='text/css'
+	href='resources/fonts/general-font.css'>
+<link
+	rel='stylesheet'
+	type='text/css'
+	href='resources/css/angular-notification-icons.min.css'>
+
+<link
+	rel="stylesheet"
+	type='text/css'
+	href="/resources/css/ng-rateit.css" />
 
 </head>
 
@@ -77,21 +88,22 @@ Page de visualisation des offres de repas.
 			class="offre-container"
 			ng-repeat="item in list track by item.id">
 			<li class="ligne-tab">
-				<div class="item-view " ng-click="visualize(item, $event)">
-				<div class="img-tile-premium Aligner ">
-							<div class="mask ">
+				<div
+					class="item-view "
+					ng-click="visualize(item, $event)">
+					<div class="img-tile-premium Aligner ">
+						<div class="mask ">
 
-								<shine> <img
-									class="img-circle img-tile"
-									ng-show="item.premium"
-									src="resources/img/offre/premium.png" /> </shine>
-							</div>
+							<shine> <img
+								class="img-circle img-tile"
+								ng-show="item.premium"
+								src="resources/img/offre/premium.png" /> </shine>
 						</div>
+					</div>
 					<div
 						class="inner-item-view"
-						ng-class="{'item-premium' : item.premium}"
-						>
-						
+						ng-class="{'item-premium' : item.premium}">
+
 						<div class="Aligner-left">
 							<div class=" Aligner-item">
 								<h2>{{item.titre}}</h2>
@@ -101,30 +113,37 @@ Page de visualisation des offres de repas.
 									id="nbplace"
 									ng-init='getNbPlaces(item);'>
 									<p ng-if="!(item.nombrePersonne == 0)">Place(s) restante(s) : {{item.nombrePersonne}}</p>
-									<p ng-if="item.nombrePersonne == 0" class="red">Complet</p>
+									<p
+										ng-if="item.nombrePersonne == 0"
+										class="red">Complet</p>
 									<p>{{item.dateRepas | date:"dd/MM/yyyy 'à' HH'h'mm"}}</p>
 								</div>
 							</div>
 
 
-							<div
-								ng-if="item.hote.image == null"
-								class="Aligner-item">
-								<img
-									src="resources/img/team/missing.jpg"
-									class="img-circle img-tile img-profil">
-							</div>
-							<div
-								ng-if="!(item.hote.image == null)"
-								class="Aligner-item">
-								<img
-									src="{{item.hote.image.path |correctPath}}"
-									class="img-circle img-tile img-profil">
+							<div class="Aligner-item ">
+								<div>
+									<div ng-if="item.hote.image == null" >
+										<img
+											src="resources/img/team/missing.jpg"
+											class="img-circle img-tile img-profil">
+									</div>
+									<div ng-if="!(item.hote.image == null)">
+										<img
+											src="{{item.hote.image.path |correctPath}}"
+											class="img-circle img-tile img-profil">
+									</div>
+									<div>
+										<br>
+										<ng-rate-it
+											class="rate-item"
+											ng-init='getNote(item);'
+											read-only="true"
+											ng-model="item.hote.note"></ng-rate-it>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-
 			</li>
 		</ul>
 	</div>
@@ -139,10 +158,20 @@ Page de visualisation des offres de repas.
 		type="text/javascript"
 		src="/resources/js/controllers/controller_liste_offres.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
-	
-	<script type="text/javascript" src="/resources/js/scripts/angular-notification-icons.min.js"></script>
-    <script type="text/javascript" src="/resources/js/scripts/angular-animate.js"></script>
-    <script type="text/javascript" src="/resources/js/scripts/ui-bootstrap-tpls-1.0.3.js"></script>
+
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-notification-icons.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-animate.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ui-bootstrap-tpls-1.0.3.js"></script>
+
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ng-rateit.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>

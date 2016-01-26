@@ -1,5 +1,5 @@
 //Chargement du module "OffreApp"
-var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters', 'angular-notification-icons', 'ngAnimate','ui.bootstrap']);
+var app = angular.module("OffreApp", ['ngMaterial','angular-carousel','appFilters', 'angular-notification-icons', 'ngAnimate','ui.bootstrap', 'ngRateIt']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 //	notif
@@ -103,6 +103,18 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 
 				// On transfert dans "offre" les données
 				$scope.offre = data.data;
+				
+
+				//on recupère les donnée de l'utilisateur courrant
+				var profilUrl ='/utilisateur/particulier/'+$scope.offre.hote.idUtilisateur+'';
+				$http.get(profilUrl).success(
+						function(donnees) {
+							// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
+							$scope.profil = donnees.data;
+							$scope.noteMoyenne = donnees.data.note/10;
+
+						}
+				);
 				// On calcule le nombre de places restantes, que l'on transfert aussi à la vue
 				var place_reservees = 0;
 				for (i = 0; i < data.data.reservations.length; i++) {
@@ -154,14 +166,6 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 
 
 
-	//on recupère les donnée de l'utilisateur courrant
-	$http.get('/utilisateur/particulier/profil').success(
-			function(donnees) {
-				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-				$scope.profil = donnees.data;
-
-			}
-	);
 	//on va voir le profil, correspondant à la photo cliquée
 	$scope.voir = function(id){
 		if(id != -1) {

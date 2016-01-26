@@ -1,5 +1,5 @@
 // Chargement du module "ListeApp"
-var app = angular.module("ListeApp", ['appFilters', 'angular-notification-icons', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module("ListeApp", ['appFilters', 'angular-notification-icons', 'ngAnimate', 'ui.bootstrap', 'ngRateIt']);
 
 app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 //	notif
@@ -52,8 +52,21 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		function(donnees) {
 			$scope.list = donnees.data;
 			$scope.nombrePlaces =0;	
+			$scope.noteMoyenne = 0;
 		}
 	);
+
+	// On se connecte à la route permettantS de récupèrer le profil de l'utilisateur
+	$scope.getNote = function (item) {
+		var url = '/utilisateur/particulier/'+item.hote.idUtilisateur +'';
+		$http.get(url).success(
+				function(donnees) {
+					item.hote.note = donnees.data.note/10;	
+					
+				}
+			);
+	}
+	
 	    
 	// Permet de créer un listener qui va rediriger vers la visualisation de l'offre cliquée
 	$scope.visualize = function (valeur, event) {
