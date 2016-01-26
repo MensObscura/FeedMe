@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class CONSTANTE {
+public final class CONSTANTES {
 
-  private CONSTANTE() {
+  private CONSTANTES() {
   }
 
   public static final Integer NB_IMAGE_PAR_OFFRE_NON_PREMIUM = 1;

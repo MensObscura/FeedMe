@@ -15,7 +15,7 @@ import org.mockito.Mockito;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.MultipartFile;
 
-import fil.iagl.iir.constante.CONSTANTE;
+import fil.iagl.iir.constante.CONSTANTES;
 import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.outils.FeedMeException;
 
@@ -43,7 +43,7 @@ public class ImageServiceTest extends AbstractServiceTest {
     // On verifie que l'image retourner n'est pas nul
     Assertions.assertThat(savedImage).isNotNull();
     // On verifie que le path de l'image existe bien et a bien été sauvegarder sur le disque
-    File result = new File(CONSTANTE.STATIC_RESSOURCE_LOCATION + File.separatorChar + savedImage.getPath());
+    File result = new File(CONSTANTES.STATIC_RESSOURCE_LOCATION + File.separatorChar + savedImage.getPath());
     Assertions.assertThat(result).exists();
     // On verifie que le contenu est le meme que l'image uploadé ( pixel )
     byte[] originalPixels = ((DataBufferByte) ImageIO.read(originalFile).getRaster().getDataBuffer()).getData();

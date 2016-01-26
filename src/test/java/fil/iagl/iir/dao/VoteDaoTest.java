@@ -1,6 +1,6 @@
 package fil.iagl.iir.dao;
 
-import static fil.iagl.iir.predicat.Predicats.estNoteValide;
+import static fil.iagl.iir.predicat.PREDICATS.estNoteValide;
 
 import java.util.List;
 
