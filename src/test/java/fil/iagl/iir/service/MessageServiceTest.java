@@ -1,7 +1,5 @@
 package fil.iagl.iir.service;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -93,29 +91,31 @@ public class MessageServiceTest extends AbstractServiceTest {
     // Je vérifie que la DAO associée est bien appelée
     Mockito.verify(messageDao, Mockito.times(1)).getAll(Mockito.anyInt());
   }
-  
-  @Test
-  public void marquerCommeLuTestSucces() throws Exception {
-	  // Lorsque j'appelle le service avec un id non null
-	  messageService.marquerCommeLu(Mockito.anyInt());
-	  
-	  // Je vérifie que la DAO associée est bien appelée
-	  Mockito.verify(messageDao,Mockito.times(1)).marquerCommeLu(Mockito.anyInt());
-  }
 
   @Test
-  public void marquerCommeLuTestEchecIdMsgNull() throws Exception {
-	  Integer idMsg = null;
-	  
-	  // Lorsque j'appelle le service avec un id null
-	  try {
-		  // Je vérifie que j'ai bien une erreur retournée
-		  messageService.marquerCommeLu(idMsg);
-		  fail("Exception attendue");
-	  } catch (FeedMeException fme) {
-		  // OK
-	  }
-	  // Et que la DAO n'a jamais été appelée
-	  Mockito.verify(messageDao,Mockito.never()).marquerCommeLu(idMsg);
+  public void marquerCommeLuTestSucces() throws Exception {
+    // Lorsque j'appelle le service avec un id non null
+    messageService.marquerCommeLu(Mockito.anyInt());
+
+    // Je vérifie que la DAO associée est bien appelée
+    Mockito.verify(messageDao, Mockito.times(1)).marquerCommeLu(Mockito.anyInt());
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void marquerCommeLuTestEchec_IdMsgNull() throws Exception {
+    Integer idMsg = null;
+    // Lorsque j'appelle le service avec un id null
+    messageService.marquerCommeLu(idMsg);
+    // Et que la DAO n'a jamais été appelée
+    Mockito.verify(messageDao, Mockito.never()).marquerCommeLu(idMsg);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void marquerCommeLuTestEchec_IdMsgNegatif() throws Exception {
+    Integer idMsg = Integer.MIN_VALUE;
+    // Lorsque j'appelle le service avec un id négatif
+    messageService.marquerCommeLu(idMsg);
+    // Et que la DAO n'a jamais été appelée
+    Mockito.verify(messageDao, Mockito.never()).marquerCommeLu(idMsg);
   }
 }
