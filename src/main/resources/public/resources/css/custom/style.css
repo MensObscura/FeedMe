@@ -1479,13 +1479,6 @@ img.img-tile.img-profil:hover {
 	border-radius: 2em 2em;
 		border: 2px solid;
 	border-color: rgba(254, 186, 49, 0.8);
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px
-		rgba(254, 186, 49, 0.6);
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px
-		rgba(254, 186, 49, 0.6);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px
-		rgba(254, 186, 49, 0.6);
-
 }
 
 

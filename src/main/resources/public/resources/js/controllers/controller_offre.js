@@ -198,12 +198,13 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				//on peut avoir plusieur place par reservation
 				for(j = 0;j< $scope.offre.reservations[r].nbPlaces; j++){
 					i++
-					liste.push( $scope.offre.reservations[i]);
+					liste.push( $scope.offre.reservations[r]);
 				}
 			}
 			placeVide = true;
 		}else{
 				liste.push(libre);
+				i++;
 			}
 
 			 
