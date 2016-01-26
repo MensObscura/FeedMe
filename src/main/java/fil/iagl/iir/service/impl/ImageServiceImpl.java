@@ -36,7 +36,7 @@ public class ImageServiceImpl implements ImageService {
       throw new FeedMeException("Le fichier est vide");
     }
 
-    String imageExt = CONSTANTE.IMAGE_EXTENSION_VALIDE.stream().filter(ext -> image.getOriginalFilename().endsWith(ext)).findAny()
+    String imageExt = CONSTANTE.IMAGE_EXTENSION_VALIDE.stream().filter(ext -> image.getOriginalFilename().toLowerCase().endsWith(ext)).findAny()
       .orElseThrow(() -> new FeedMeException("Ne correspond à aucun format connu"));
 
     try {

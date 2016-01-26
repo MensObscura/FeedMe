@@ -31,7 +31,7 @@ public class ImageServiceTest extends AbstractServiceTest {
   public void sauvegarderTestSucces() throws Exception {
     // Etant donnée une certaine image ayant un format accepté
     File originalFile = new ClassPathResource("img" + File.separatorChar + "icon.gif").getFile();
-    Mockito.when(mockMultipartFile.getOriginalFilename()).thenReturn("chemin/de/l'image/chez/l'upoader.gif");
+    Mockito.when(mockMultipartFile.getOriginalFilename()).thenReturn("chemin/de/l'image/chez/l'upoader.GIF");
     byte[] binaryArray = IOUtils.toByteArray(new FileInputStream(originalFile));
     Mockito.when(mockMultipartFile.getBytes()).thenReturn(binaryArray);
 
