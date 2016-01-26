@@ -158,13 +158,13 @@ public class OffreServiceImpl implements OffreService {
 
   /*
    * Met a jour la note pour chaque offre de la liste
+   * 
    * @param offres La liste des offres à mettre à jour
+   * 
    * @return La liste des offres mises à jour
    */
   private List<Offre> mettreAJourNoteOffres(List<Offre> offres) {
-    offres.stream().forEach(o -> {
-      o.setNoteMoyenne(this.voteService.getNoteMoyenne(this.voteService.getVotesByOffre(o.getId())));
-    });
+    offres.stream().forEach(o -> o.setNoteMoyenne(this.voteService.getNoteMoyenne(this.voteService.getVotesByOffre(o.getId()))));
     return offres;
   }
 }

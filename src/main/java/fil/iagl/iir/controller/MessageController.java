@@ -15,29 +15,29 @@ import fil.iagl.iir.service.MessageService;
 @RestController
 @RequestMapping("/msg")
 public class MessageController {
-	
-	 @Autowired
-	  private MessageService messageService;
-	 
-	 @RequestMapping(value = "/{idUser}/nonLus", method = RequestMethod.GET)
-	 public DataReturn<List<Message>> getMessagesNonLus(@PathVariable("idUser") Integer idUser) {
-		 return new DataReturn<List<Message>>(messageService.getAllNonLuParId(idUser));
-	 }
-	 
-	 @RequestMapping(value = "/{idUser}", method = RequestMethod.GET)
-	 public DataReturn<List<Message>> getMessages(@PathVariable("idUser") Integer idUser) {
-		 return new DataReturn<List<Message>>(messageService.getAll(idUser));
-	 }
-	 
-	 @RequestMapping(value = "/{idMsg}", method = RequestMethod.DELETE)
-	 public DataReturn<?> supprimerMessage(@PathVariable("idMsg") Integer idMsg) {
-		 messageService.supprimer(idMsg);
-		 return new DataReturn<Message>();
-	 }
-	 
-	 @RequestMapping(value = "/{idMsg}/marquerCommeLu", method = RequestMethod.PUT)
-	 public DataReturn<?> marquerCommeLu(@PathVariable("idMsg") Integer idMsg) {
-		 messageService.marquerCommeLu(idMsg);
-		 return new DataReturn<Message>();
-	 }
+
+  @Autowired
+  private MessageService messageService;
+
+  @RequestMapping(value = "/{idUser}/nonLus", method = RequestMethod.GET)
+  public DataReturn<List<Message>> getMessagesNonLus(@PathVariable("idUser") Integer idUser) {
+    return new DataReturn<List<Message>>(messageService.getAllNonLuParId(idUser));
+  }
+
+  @RequestMapping(value = "/{idUser}", method = RequestMethod.GET)
+  public DataReturn<List<Message>> getMessages(@PathVariable("idUser") Integer idUser) {
+    return new DataReturn<List<Message>>(messageService.getAll(idUser));
+  }
+
+  @RequestMapping(value = "/{idMsg}", method = RequestMethod.DELETE)
+  public DataReturn<Message> supprimerMessage(@PathVariable("idMsg") Integer idMsg) {
+    messageService.supprimer(idMsg);
+    return new DataReturn<Message>();
+  }
+
+  @RequestMapping(value = "/{idMsg}/marquerCommeLu", method = RequestMethod.PUT)
+  public DataReturn<Message> marquerCommeLu(@PathVariable("idMsg") Integer idMsg) {
+    messageService.marquerCommeLu(idMsg);
+    return new DataReturn<Message>();
+  }
 }

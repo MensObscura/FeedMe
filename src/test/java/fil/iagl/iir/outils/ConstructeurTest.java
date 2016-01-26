@@ -13,7 +13,7 @@ import fil.iagl.iir.predicat.PREDICATS;
 public class ConstructeurTest {
 
   @Test
-  public void ConstanteConstructeurPriveTest() throws Exception {
+  public void ConstanteConstructeurPriveTest() {
     nePossedeQueDesConstructeursPrives(CONSTANTES.class);
     nePossedeQueDesConstructeursPrives(PREDICATS.class);
   }
