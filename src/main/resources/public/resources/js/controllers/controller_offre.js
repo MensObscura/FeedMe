@@ -100,7 +100,7 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				$http.get(profilUrl).success(
 						function(donnees) {
 							// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
-							$scope.profil = donnees.data;
+							
 							$scope.noteMoyenne = donnees.data.note/10;
 
 						}
@@ -154,20 +154,23 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 	);
 
 
+	var profilUrl ='/utilisateur/particulier/profil';
+	$http.get(profilUrl).success(
+			function(donnees) {
+				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
+				$scope.profil = donnees.data;
 
+			}
+	);
 
 	//on va voir le profil, correspondant à la photo cliquée
 	$scope.voir = function(id){
 		if(id != -1) {
-			$http.get('/utilisateur/particulier/profil').success(
-					function(donnees){
-						if (donnees.data.idUtilisateur == id)
-							$window.location.href = "/profil.html";
-						else
-							$window.location.href = "/visualiser_profil.html?id="+id;
-					}	 
-			);
-		}
+			if ($scope.profil.idUtilisateur == id)
+				$window.location.href = "/profil.html";
+			else
+				$window.location.href = "/visualiser_profil.html?id="+id;
+		}	 
 	};
 	//Création de la list de reservation pour le carrousel
 
