@@ -6,42 +6,33 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 	$http.get('/utilisateur/particulier/profil').success(
 			function(donnees){
 				$scope.idUser = donnees.data.idUtilisateur;
-			}	 
-	);
 
-
-	$scope.getNotif = function(){
-
-		$interval(function() {
-			if($scope.idUser){
 				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
-				$http.get(msgUrl).success(function(donnees) { //
+				$http.get(msgUrl).success(function(donnees) { 
 
 					$scope.items = donnees.data;
 					$scope.nbNotif = $scope.items.length;
 				});
-			}else{
+				
+			}	 
+	);
 
-				$scope.nbNotif =  1;
 
-			}
-		},3000);
-
+	$scope.notification = function(){
+		
+		$window.location.href = "/notification.html"
 	};
 
-	$scope.getNotif();
 	
-    
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
 		$http.get('/logout').success(
-			function(donnees) {
-				$scope.authenticated = false;
-				$window.location.href = "/";
-			}
+				function(donnees) {
+					$scope.authenticated = false;
+					$window.location.href = "/";
+				}
 		);
 	};
-	
 
 });
 

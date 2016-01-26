@@ -7,34 +7,23 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 			function(donnees){
 				$scope.idUser = donnees.data.idUtilisateur;
 
+				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
+				$http.get(msgUrl).success(function(donnees) { 
 
-
+					$scope.items = donnees.data;
+					$scope.nbNotif = $scope.items.length;
+				});
+				
 			}	 
 	);
 
 
-	$scope.getNotif = function(){
-
-		$interval(function() {
-			if($scope.idUser){
-				var msgUrl = 'msg/'+$scope.idUser+'/nonLus';
-				$http.get(msgUrl).success(function(donnees) { //
-
-					$scope.items = donnees.data;
-					console.log($scope.nbNotif);
-					$scope.nbNotif = $scope.items.length;
-				});
-			}else{
-
-				$scope.nbNotif =  1;
-
-			}
-		},3000);
-
+	$scope.notification = function(){
+		
+		$window.location.href = "/notification.html"
 	};
 
-	$scope.getNotif();
-
+	
 	// Fonction permettant une déconnexion :
 	$scope.logout = function () {
 		$http.get('/logout').success(
@@ -44,6 +33,7 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 				}
 		);
 	};
+
 });
 
 
@@ -199,18 +189,24 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 
 
 		var liste = [];
-		for (i =  0; i < $scope.offre.nombrePersonne; i++) {
-			if(i < $scope.offre.reservations.length){
+		var i =0;
+		var placeVide = false;
+		while( i < $scope.offre.nombrePersonne) {
+			
+			if(!placeVide){
+			for( r = 0 ; r < $scope.offre.reservations.length; r++ ){
 				//on peut avoir plusieur place par reservation
-				for(j = 0;j< $scope.offre.reservations[i].nbPlaces; j++){
+				for(j = 0;j< $scope.offre.reservations[r].nbPlaces; j++){
+					i++
 					liste.push( $scope.offre.reservations[i]);
 				}
-				i += $scope.offre.reservations[i].nbPlaces - 1;
-			}else{
+			}
+			placeVide = true;
+		}else{
 				liste.push(libre);
 			}
 
-
+			 
 		}
 		$scope.liste= liste;
 	}

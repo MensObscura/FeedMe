@@ -68,5 +68,16 @@ public class MessageServiceImpl implements MessageService {
   public List<Message> getAll(Integer id) {
     return messageDao.getAll(id);
   }
+  
+  @Override
+	public void marquerCommeLu(Integer idMsg) {
+      if (idMsg == null) {
+    	  throw new FeedMeException("Paramètre null");
+      } 
+      if (idMsg < 0) {
+    	  throw new FeedMeException("idMsg < 0");
+      }
+      messageDao.marquerCommeLu(idMsg);
+  }
 
 }

@@ -1,0 +1,112 @@
+<!-- 
+©Copyright 2015 - FeedMe
+Page d'accueil pour utilisateur connecté.
+ -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1">
+<meta
+	http-equiv="x-ua-compatible"
+	content="ie=edge">
+<title>Notifications</title>
+<!-- Bootstrap -->
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/css/bootstrap.css">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/fonts/font-awesome/css/font-awesome.css">
+
+<!-- Slider
+    ================================================== -->
+<link
+	href="resources/css/owl.carousel.css"
+	rel="stylesheet"
+	media="screen">
+<link
+	href="resources/css/owl.theme.css"
+	rel="stylesheet"
+	media="screen">
+
+<!-- Stylesheet
+    ================================================== -->
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/css/custom/style.css">
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="resources/css/responsive.css">
+
+    <link rel="stylesheet" type="text/css"  href="resources/css/custom/accueil.css">
+<link
+	rel='stylesheet'
+	type='text/css'
+	href='resources/fonts/general-font.css'>
+<link
+	rel='stylesheet'
+	type='text/css'
+	href='resources/css/angular-notification-icons.min.css'>
+
+</head>
+
+<body ng-app="Notification">
+	<!-- Menu -->
+	<div ng-include="'/resources/header.html'"></div>
+
+	<!-- Corps de la page -->
+	<div ng-controller="notificationCtrl" class="page-notification">
+		<div class="conteneur-notif">
+			<div class="colonne-notif" >
+				<ul >
+					<li><div ng-if="allItems.length == 0" class="notification vide">Aucune notification</div></li>
+					<li  ng-repeat="notif in allItems"><div ng-if="notif.lu" class="notification lu" ng-click="afficheMessage(notif)"
+						href>{{notif.objet}}</div><div ng-if="!notif.lu" class="notification non-lu" ng-click="afficheMessage(notif)"
+						href>{{notif.objet}}</div></li>
+
+				</ul>
+				</span>
+				</li>
+			</div>
+		</div>
+		<div class="conteneur-message" flex><div ng-show=message class="message" flex>
+		Envoyé par : {{expediteur}}
+		<div class="ligne"></div>
+		Objet : {{objet}}
+		<div class="ligne"></div>
+		{{message}}
+		</div></div>
+	</div>
+	<!-- Pied de page -->
+	<div ng-include="'/resources/footer.html'"></div>
+
+	<script
+		type="text/javascript"
+		src="resources/js/scripts/modernizr.custom.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/controllers/controller_notification.js"></script>
+
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-notification-icons.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-animate.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ui-bootstrap-tpls-1.0.3.js"></script>
+</body>
+
+</html>

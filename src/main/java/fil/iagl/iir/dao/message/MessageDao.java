@@ -39,5 +39,12 @@ public interface MessageDao {
    * @return la liste des messages pour l'utilisateur spécifié
    */
   List<Message> getAll(@Param("idDestinataire") Integer id);
+  
+  /**
+   * Permet de considérer un message commu étant lu.
+   * @param idMsg id du message à définir comme étant lu
+   * @return le nombre de lignes modifiées
+   */
+  Integer marquerCommeLu(@Param("idMsg") Integer idMsg);
 
 }

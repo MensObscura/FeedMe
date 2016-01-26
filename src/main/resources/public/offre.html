@@ -57,7 +57,22 @@ Page de visualisation d'une offre
 
 <link rel="stylesheet" type="text/css" href="resources/css/custom/style.css">
 <link rel="stylesheet" type="text/css" href="resources/css/custom/offre.css">
-
+<style>
+.mask shine::after {
+	mask: url(#mask-firefox);
+}
+</style>
+<svg height=0>
+ <defs>
+   <!-- THE mask -->
+  <mask id="mask-firefox">
+    <image
+		width="50"
+		height="50"
+		xlink:href="resources/img/accueil/tw.png" />
+  </mask>
+  </defs>
+</svg>
 
 <link
 	href="/resources/css/angular-carousel.css"
