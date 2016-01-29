@@ -1,5 +1,7 @@
 #FeedMe
 
+[![GetBadges Game](https://mensobscura-feedme.getbadges.io/shield/company/mensobscura-feedme)](https://mensobscura-feedme.getbadges.io/?ref=shield-game)
+
 Une application centrée nutrition !
 
 #Contributeurs
