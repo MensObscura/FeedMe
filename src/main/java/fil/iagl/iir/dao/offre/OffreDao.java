@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import fil.iagl.iir.entite.Filtres;
 import fil.iagl.iir.entite.Offre;
 
 public interface OffreDao {
@@ -68,4 +69,12 @@ public interface OffreDao {
    * @return La liste des offres en cours créées par l'hôte
    */
   List<Offre> getOffresEnCoursByHote(@Param("idUtilisateur") Integer idUtilisateur);
+
+  /**
+   * Retourne le resultat de la recherche en utilisant les filtres définies
+   * 
+   * @param filtres les filtres à utiliser
+   * @return La liste des offres correspondant à la recherche
+   */
+  List<Offre> rechercher(@Param("filtres") Filtres filtres);
 }

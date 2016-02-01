@@ -57,6 +57,36 @@
 		off_premium
 		FROM OFFRE
 	</sql>
+	
+	<sql id="select_all_columns_offre_jointure_ville_particulier">
+		SELECT
+		off_id,
+		off_date_creation,
+		off_titre,
+		off_prix,
+		off_nombre_personne,
+		off_duree_minute,
+		off_date_repas,
+		off_note,
+		off_plat,
+		off_dessert,
+		off_entree,
+		off_boisson,
+		off_age_min,
+		off_age_max,
+		off_animaux,
+		off_adr_id,
+		vil_nom,
+		vil_cp,
+		prt_date_naissance,
+		off_typ_id,
+		off_usr_id,
+		off_premium
+		FROM OFFRE o1
+			INNER JOIN ADRESSE ON ( off_adr_id = adr_id ) 
+			INNER JOIN VILLE ON ( adr_vil_id = vil_id )
+			INNER JOIN PARTICULIER ON ( off_usr_id = prt_usr_id )
+	</sql>
 
 	<select id="getAll" resultMap="Offre_ResultMap">
 		<include refid="select_all_columns_offre" />
@@ -71,6 +101,69 @@
 	<select id="getById" resultMap="Offre_ResultMap">
 		<include refid="select_all_columns_offre" />
 		WHERE off_id = #{id}
+	</select>
+	
+	<select id="rechercher" resultMap="Offre_ResultMap">
+		<include refid="select_all_columns_offre_jointure_ville_particulier"/>
+		WHERE
+			unaccent(lower(replace(off_titre, ' ', ''))) LIKE '%' || unaccent(lower(replace(#{filtres.global}, ' ', ''))) || '%'
+			<if test="filtres.date != null">
+				AND off_date_repas::date = #{filtres.date}
+			</if>
+			<if test="filtres.villeOuCP != null">
+				AND ((unaccent(lower(replace(vil_nom, ' ', ''))) LIKE '%' || unaccent(lower(replace(#{filtres.villeOuCP}, ' ', ''))) || '%') OR vil_cp = #{filtres.villeOuCP})
+			</if>
+			<if test="filtres.idTypeCuisine != null">
+				AND off_typ_id = #{filtres.idTypeCuisine}
+			</if>
+			<if test="filtres.animaux != null">
+				AND off_animaux = #{filtres.animaux}
+			</if>
+			<if test="filtres.premium != null">
+				AND off_premium = #{filtres.premium}
+			</if>
+			<if test="filtres.prixMin != null">
+				AND off_prix >= #{filtres.prixMin}
+			</if>
+			<if test="filtres.prixMax != null">
+				AND #{filtres.prixMax} >= off_prix
+			</if>
+			<if test="filtres.dureeMin != null">
+				AND off_duree_minute >= #{filtres.dureeMin}
+			</if>
+			<if test="filtres.dureeMax != null">
+				AND #{filtres.dureeMax} >= off_duree_minute
+			</if>
+			<if test="filtres.ageValide != null">
+				AND EXISTS (
+					SELECT * 
+					from PARTICULIER 
+					WHERE prt_usr_id = #{filtres.idUtilisateurConnecte} 
+					AND (CURRENT_DATE - prt_date_naissance)/365 BETWEEN off_age_min AND off_age_max
+				) 
+			</if>
+			<if test="filtres.nbPlaceRestanteMinimum != null">
+				AND (
+					SELECT COALESCE(
+						(
+							SELECT (off_nombre_personne - sum(res_nb_places)) >= #{filtres.nbPlaceRestanteMinimum}
+							FROM RESERVATION 
+							WHERE res_off_id = off_id 
+						), 
+						(
+							SELECT off_nombre_personne >= #{filtres.nbPlaceRestanteMinimum}
+						)
+					)
+				)	
+			</if>
+			<if test="filtres.noteMinimal != null">
+				AND (
+					SELECT AVG(vot_note) >= #{filtres.noteMinimal} 
+					FROM VOTE 
+						INNER JOIN OFFRE o2 ON ( o2.off_id = vot_off_id )
+					WHERE o1.off_usr_id = 1
+				)	
+			</if>
 	</select>
 
 

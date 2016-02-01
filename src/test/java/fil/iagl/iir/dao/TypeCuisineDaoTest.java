@@ -10,7 +10,7 @@ import fil.iagl.iir.entite.TypeCuisine;
 
 public class TypeCuisineDaoTest extends AbstractDaoTest {
 
-  private static final int NB_TYPE_CUISINE = 14;
+  private static final int NB_TYPE_CUISINE = 15;
 
   @Test
   public void testGetAll() throws Exception {

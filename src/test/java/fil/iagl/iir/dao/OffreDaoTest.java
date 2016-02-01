@@ -9,6 +9,7 @@ import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import fil.iagl.iir.entite.Filtres;
 import fil.iagl.iir.entite.Menu;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Reservation;
@@ -18,10 +19,28 @@ import fil.iagl.iir.outils.SQLCODE;
 
 public class OffreDaoTest extends AbstractDaoTest {
 
-  private static final int NB_OFFRES = 4;
+  private static final int NB_OFFRES = 6;
   private static final int NB_OFFRES_PREMIUM = 2;
   private static final int NB_OFFRE_PARTICIPEES = 1;
-  private static final int NB_OFFRES_CREES_USER_CONNECTE = 2;
+  private static final int NB_OFFRES_CREES_USER_CONNECTE = 4;
+
+  // CONSTANTES RELATIVES AU TEST 'RECHERCHE'
+  private static final int NB_OFFRES_FILTRE_1_JANVIER = 4;
+  private static final int NB_OFFRES_FILTRE_ANIMAUX = 2;
+  private static final int NB_OFFRES_FILTRE_AGE_VALIDE = 3;
+  private static final int NB_OFFRES_FILTRE_PREMIUM = 2;
+  private static final int NB_OFFRES_FILTRE_DUREE_ENTRE_90_ET_120 = 5;
+  private static final int NB_OFFRES_FILTRE_DUREE_INFERIEUR_120 = 5;
+  private static final int NB_OFFRES_FILTRE_DUREE_SUPERIEUR_90 = 6;
+  private static final int NB_OFFRES_FILTRE_PRIX_ENTRE_10_ET_15 = 2;
+  private static final int NB_OFFRES_FILTRE_PRIX_INFERIEUR_A_15 = 6;
+  private static final int NB_OFFRES_FILTRE_PRIX_SUPERIEUR_A_10 = 2;
+  private static final int NB_OFFRES_FILTRE_4_PLACES_RESTANTES = 4;
+  private static final int NB_OFFRES_FILTRE_4_ETOILES_MINIMUM = 4;
+  private static final int NB_OFFRES_FILTRE_CUISINE_STEAK_HOUSE = 4;
+  private static final int NB_OFFRES_FILTRE_CP_59790 = 1;
+  private static final int NB_OFFRES_FILTRE_VILLE_RONCHIN = 1;
+  private static final int NB_OFFRES_FILTRE_GLOBAL_COUSCOUS = 2;
 
   @Test
   public void getAllTestSucces() throws Exception {
@@ -802,6 +821,216 @@ public class OffreDaoTest extends AbstractDaoTest {
     } catch (DataIntegrityViolationException dive) {
       assertSQLCode(dive, SQLCODE.FOREIGN_KEY_VIOLATION);
     }
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreGlobal() throws Exception {
+    // Etant donné le filtre global 'couscous'
+    Filtres filtres = new Filtres();
+    filtres.setGlobal("couscous");
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_GLOBAL_COUSCOUS);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreVille() throws Exception {
+    // Etant donné le filtre 'ville Ronchin'
+    Filtres filtres = new Filtres();
+    filtres.setVilleOuCP("Ronchin");
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_VILLE_RONCHIN);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreCP() throws Exception {
+    // Etant donné le filtre 'code postal 59790'
+    Filtres filtres = new Filtres();
+    filtres.setVilleOuCP("59790");
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_CP_59790);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreTypeRepas() throws Exception {
+    // Etant donné le filtre 'cuisine steak house'
+    Filtres filtres = new Filtres();
+    filtres.setIdTypeCuisine(3);
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_CUISINE_STEAK_HOUSE);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreNoteMinimal() throws Exception {
+    // Etant donné le filtre 'hote avec 4 étoiles minimum'
+    Filtres filtres = new Filtres();
+    filtres.setNoteMinimal(4);
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_4_ETOILES_MINIMUM);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreNbPlaceRestante() throws Exception {
+    // Etant donné le filtre 'nombre de place restante supérieur à 4'
+    Filtres filtres = new Filtres();
+    filtres.setNbPlaceRestanteMinimum(4);
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_4_PLACES_RESTANTES);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltrePrixMin() throws Exception {
+    // Etant donné le filtre 'prix inférieur à 15 euros'
+    Filtres filtres = new Filtres();
+    filtres.setPrixMin(10 * 100); // Car le prix est en stocké en centime
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_PRIX_SUPERIEUR_A_10);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltrePrixMax() throws Exception {
+    // Etant donné le filtre 'prix inférieur à 15 euros'
+    Filtres filtres = new Filtres();
+    filtres.setPrixMax(15 * 100); // Car le prix est en stocké en centime
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_PRIX_INFERIEUR_A_15);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltrePrixMinEtPrixMax() throws Exception {
+    // Etant donné le filtre 'prix compris entre 10 et 15 euros'
+    Filtres filtres = new Filtres();
+    filtres.setPrixMin(10 * 100); // Car le prix est en stocké en centime
+    filtres.setDureeMax(15 * 100); // Car le prix est en stocké en centime
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_PRIX_ENTRE_10_ET_15);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreDureeMin() throws Exception {
+    // Etant donné le filtre 'durée supérieur à 90 minutes'
+    Filtres filtres = new Filtres();
+    filtres.setDureeMin(90);
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_DUREE_SUPERIEUR_90);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreDureeMax() throws Exception {
+    // Etant donné le filtre 'durée inférieur à 120 minutes'
+    Filtres filtres = new Filtres();
+    filtres.setDureeMax(120);
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_DUREE_INFERIEUR_120);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreDureeMinEtDureeMax() throws Exception {
+    // Etant donné le filtre 'durée compris entre 90 minutes et 120 minutes'
+    Filtres filtres = new Filtres();
+    filtres.setDureeMin(90);
+    filtres.setDureeMax(120);
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_DUREE_ENTRE_90_ET_120);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltrePremium() throws Exception {
+    // Etant donné le filtre 'offre premium uniquement'
+    Filtres filtres = new Filtres();
+    filtres.setPremium(Boolean.TRUE);
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_PREMIUM);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreAgeValide() throws Exception {
+    // Etant donné le filtre 'age valide pour offre'
+    Filtres filtres = new Filtres();
+    filtres.setIdUtilisateurConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    filtres.setAgeValide(Boolean.TRUE);
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_AGE_VALIDE);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreAnimaux() throws Exception {
+    // Etant donné le filtre 'avec animaux uniquement'
+    Filtres filtres = new Filtres();
+    filtres.setAnimaux(Boolean.TRUE);
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_ANIMAUX);
+  }
+
+  @Test
+  public void rechercherTestSucces_FiltreDate() throws Exception {
+    // Etant donné le filtre date pour le 1er janvier
+    Filtres filtres = new Filtres();
+    filtres.setDate(LocalDate.of(2015, 1, 1));
+
+    // Quand on recherche des offres avec ce filtre
+    List<Offre> offres = this.offreDao.rechercher(filtres);
+
+    // On verifie que le nombre de resultat est correct
+    Assertions.assertThat(offres).hasSize(NB_OFFRES_FILTRE_1_JANVIER);
   }
 
 }

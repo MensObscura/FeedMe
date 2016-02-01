@@ -25,8 +25,8 @@ public class AdresseDaoTest extends AbstractDaoTest {
   public void getByIdTestSuccess() throws Exception {
     // Etant donne une adresse enregistree avec l'ID = 2
     String voie = "4 rue guillaume apollinaire";
-    String ville = "Lille";
-    String cp = "59000";
+    String ville = "Ronchin";
+    String cp = "59790";
     String pays = "France";
     String code_pays = "FR";
 
