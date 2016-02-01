@@ -1,14 +1,14 @@
 package fil.iagl.iir.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import fil.iagl.iir.entite.Particulier;
+import fil.iagl.iir.entite.Vote;
+import fil.iagl.iir.outils.FeedMeException;
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import fil.iagl.iir.entite.Vote;
-import fil.iagl.iir.outils.FeedMeException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VoteServiceTest extends AbstractServiceTest {
 
@@ -89,6 +89,41 @@ public class VoteServiceTest extends AbstractServiceTest {
     // Quand on appelle le service de calcul de la note moyenne avec null
     // Alors on vérifie qu'une exception est lancée
     voteService.getNoteMoyenne(null);
+  }
+
+  @Test
+  public void getVoteTestSucces() throws Exception {
+    // Etant donné un vote
+    Vote mockVote = createVote();
+    Integer idOffre = 1;
+    // et un utilisateur
+    Particulier particulier = createParticulier();
+    Integer idUtilisateur = 1;
+
+    Mockito.when(voteDao.getVote(idUtilisateur, idOffre)).thenReturn(mockVote);
+
+    // Quand je récupère la liste des votes pour une offre donnée
+    Vote voteResultant = this.voteService.getVote(idUtilisateur, idOffre);
+
+    // Alors je veux récupèrer les bonnes données
+    Assertions.assertThat(voteResultant).isEqualTo(mockVote);
+
+    // Et on vérifie que la DAO a bien été appelée
+    Mockito.verify(voteDao, Mockito.times(1)).getVote(idUtilisateur, idOffre);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void getVoteTestEchec_idUtilisateurNul() throws Exception {
+    // Quand on récupère un vote avec un Id utilisateur nul
+    // Alors on vérifie qu'une exception est lancée
+    voteService.getVote(null, 1);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void getVoteTestEchec_idOffreNul() throws Exception {
+    // Quand on récupère un vote avec un Id offre nul
+    // Alors on vérifie qu'une exception est lancée
+    voteService.getVote(1, null);
   }
 
   /* ******************************* BUILD *******************************/

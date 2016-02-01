@@ -1,10 +1,9 @@
 package fil.iagl.iir.dao.vote;
 
-import java.util.List;
-
+import fil.iagl.iir.entite.Vote;
 import org.apache.ibatis.annotations.Param;
 
-import fil.iagl.iir.entite.Vote;
+import java.util.List;
 
 public interface VoteDao {
 
@@ -22,4 +21,11 @@ public interface VoteDao {
    */
   public Integer sauvegarder(@Param("vote") Vote vote);
 
+  /**
+   * Retourne le vote d'un utilisateur pour une offre.
+   * @param idutilisateur l'ID de l'utilisateur
+   * @param idOffre l'ID de l'offre
+   * @return le vote de l'utilisateur pour cette offre
+   */
+  public Vote getVote(@Param("idUtilisateur") Integer idutilisateur, @Param("idOffre") Integer idOffre);
 }
