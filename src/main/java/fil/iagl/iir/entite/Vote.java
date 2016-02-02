@@ -7,11 +7,11 @@ import lombok.Setter;
 @Getter
 public class Vote {
 
-  public Integer id;
+  private Integer id;
 
-  public Utilisateur utilisateur; // L'utilisateur qui a donné une note
+  private Utilisateur utilisateur; // L'utilisateur qui a donné une note
 
-  public Offre offre; // L'offre qui est notée
+  private Offre offre; // L'offre qui est notée
 
-  public Integer note;
+  private Integer note;
 }

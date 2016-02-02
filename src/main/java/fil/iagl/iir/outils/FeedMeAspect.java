@@ -17,7 +17,7 @@ public class FeedMeAspect {
   private static Logger log = Logger.getLogger(FeedMeAspect.class);
 
   @Around("execution(fil.iagl.iir.outils.DataReturn fil.iagl.iir.controller.**.*(..)) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
-  public DataReturn<? extends Object> injecterRetourDansObjet(ProceedingJoinPoint joinPoint) throws Throwable {
+  public DataReturn<?> injecterRetourDansObjet(ProceedingJoinPoint joinPoint) throws Throwable {
     DataReturn<?> result;
     try {
       result = (DataReturn<?>) joinPoint.proceed();

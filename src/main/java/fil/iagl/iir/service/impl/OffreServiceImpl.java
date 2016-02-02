@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fil.iagl.iir.constante.CONSTANTE;
+import fil.iagl.iir.constante.CONSTANTES;
 import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.offre.OffreDao;
 import fil.iagl.iir.entite.Offre;
@@ -46,7 +46,7 @@ public class OffreServiceImpl implements OffreService {
     if (offre.getNombrePersonne() == 0) {
       throw new FeedMeException("Nombre de convives pour l'offre ne doit pas être égal à 0");
     }
-    if (!offre.getPremium() && offre.getImages().size() > CONSTANTE.NB_IMAGE_PAR_OFFRE_NON_PREMIUM) {
+    if (!offre.getPremium() && offre.getImages().size() > CONSTANTES.NB_IMAGE_PAR_OFFRE_NON_PREMIUM) {
       throw new FeedMeException("Pour une offre non premium, une seule image seulement.");
     }
 
@@ -72,12 +72,12 @@ public class OffreServiceImpl implements OffreService {
       throw new FeedMeException("Nombre de convives pour l'offre ne doit pas être égal à 0");
     }
 
-    if (!offre.getPremium() && offre.getImages().size() > CONSTANTE.NB_IMAGE_PAR_OFFRE_NON_PREMIUM) {
+    if (!offre.getPremium() && offre.getImages().size() > CONSTANTES.NB_IMAGE_PAR_OFFRE_NON_PREMIUM) {
       throw new FeedMeException("Pour une offre non premium, une seule image seulement.");
     }
 
-    if (LocalDateTime.now().isAfter(this.offreDao.getById(offre.getId()).getDateRepas().minusHours(CONSTANTE.NB_HEURE_POUR_CHANGER_OFFRE))) {
-      throw new FeedMeException("On ne peut pas modifier une offre si celle ci commence dans moins de " + CONSTANTE.NB_HEURE_POUR_CHANGER_OFFRE + " heures.");
+    if (LocalDateTime.now().isAfter(this.offreDao.getById(offre.getId()).getDateRepas().minusHours(CONSTANTES.NB_HEURE_POUR_CHANGER_OFFRE))) {
+      throw new FeedMeException("On ne peut pas modifier une offre si celle ci commence dans moins de " + CONSTANTES.NB_HEURE_POUR_CHANGER_OFFRE + " heures.");
     }
 
     this.adresseService.sauvegarder(offre.getAdresse());
@@ -158,13 +158,13 @@ public class OffreServiceImpl implements OffreService {
 
   /*
    * Met a jour la note pour chaque offre de la liste
+   * 
    * @param offres La liste des offres à mettre à jour
+   * 
    * @return La liste des offres mises à jour
    */
   private List<Offre> mettreAJourNoteOffres(List<Offre> offres) {
-    offres.stream().forEach(o -> {
-      o.setNoteMoyenne(this.voteService.getNoteMoyenne(this.voteService.getVotesByOffre(o.getId())));
-    });
+    offres.stream().forEach(o -> o.setNoteMoyenne(this.voteService.getNoteMoyenne(this.voteService.getVotesByOffre(o.getId()))));
     return offres;
   }
 }

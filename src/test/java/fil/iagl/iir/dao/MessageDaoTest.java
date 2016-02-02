@@ -1,18 +1,15 @@
 package fil.iagl.iir.dao;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.fest.assertions.api.Assertions;
+import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import fil.iagl.iir.dao.message.MessageDao;
 import fil.iagl.iir.entite.Message;
-import fil.iagl.iir.outils.FeedMeException;
-import fil.iagl.iir.outils.FeedMeSession;
 import fil.iagl.iir.outils.SQLCODE;
 
 public class MessageDaoTest extends AbstractDaoTest {
@@ -127,19 +124,24 @@ public class MessageDaoTest extends AbstractDaoTest {
   @Test
   public void supprimerTestSuccess() throws Exception {
     // Etant donné un message d'id 2 qui est enregistré en base de donné
+    Integer idUtilisateur = 2;
     Integer idMessage = 2;
+    Integer tailleAvant = messageDao.getAll(idUtilisateur).size();
+
     // Quand je supprime le test qui a pour id 2
     messageDao.supprimer(idMessage);
 
     // Alors il y a un message de moins
-    Assertions.assertThat(messageDao.getAll(idMessage).size()).isEqualTo(NB_MESSAGES_POUR_UTILISATEUR_2 - 1);
+    Assertions.assertThat(messageDao.getAll(idUtilisateur)).hasSize(tailleAvant - 1);
 
     // Et le message d'id 2 n'est plus présent
-    for (Message m : messageDao.getAll(idMessage)) {
-      if (m.getId() == idMessage) {
-        Assertions.fail("ce message aurait du être supprimé");
+    Assertions.assertThat(messageDao.getAll(idUtilisateur)).areNot(new Condition<Message>() {
+
+      @Override
+      public boolean matches(Message message) {
+        return idMessage.equals(message.getId());
       }
-    }
+    });
   }
 
   @Test
@@ -149,7 +151,7 @@ public class MessageDaoTest extends AbstractDaoTest {
     List<Message> messages = messageDao.getAll(2);
 
     // Alors la liste a la taille attendue
-    Assertions.assertThat(messages.size()).isEqualTo(NB_MESSAGES_POUR_UTILISATEUR_2);
+    Assertions.assertThat(messages).hasSize(NB_MESSAGES_POUR_UTILISATEUR_2);
 
   }
 
@@ -180,8 +182,7 @@ public class MessageDaoTest extends AbstractDaoTest {
     List<Message> messages = messageDao.getAllNonLuParId(2);
 
     // Alors la liste n'est pas nulle et a la taille attendue
-    Assertions.assertThat(messages).isNotNull();
-    Assertions.assertThat(messages.size()).isEqualTo(NB_MESSAGES_NON_LU_POUR_UTILISATEUR_2);
+    Assertions.assertThat(messages).hasSize(NB_MESSAGES_NON_LU_POUR_UTILISATEUR_2);
   }
 
   @Test
@@ -203,39 +204,25 @@ public class MessageDaoTest extends AbstractDaoTest {
     // Alors la liste est vide
     Assertions.assertThat(messages).isNotNull().isEmpty();
   }
-  
+
   @Test
   public void testMarquerCommeLuSucces() throws Exception {
-	  //Etant donné que j'ai un message non lu d'id idMsg 
-	  // et que je suis l'utilisateur destinataire d'id idDest
-	  Integer idMsg = 1;
-	  Integer idDest = 2;
-	 
-	  List<Message> messagesNonLus = messageDao.getAllNonLuParId(2);
-	  int nbMessagesNonLus = messagesNonLus.size();
-	  
-	  // Quand je le lis mon message non lu idMsg
-	  // Alors une seule ligne correspondant à mon message lu est modifiée
-	  assertTrue(1==messageDao.marquerCommeLu(idMsg));
-	  messagesNonLus = messageDao.getAllNonLuParId(2);
-	  
-	  // Et le message ne doit plus apparaître.
-	  assertEquals(nbMessagesNonLus-1,messagesNonLus.size());
-	  for (Message m : messagesNonLus) {
-		  if (m.getId() == idMsg) {
-			  fail("Le message d'id " + idMsg + "ne devrait plus apparaître.");
-		  }
-	  }
+    // Etant donné que j'ai un message non lu d'id idMsg
+    Integer idMsg = 1;
+    Integer idUtilisateur = 2;
+    Integer tailleAvant = messageDao.getAllNonLuParId(idUtilisateur).size();
+
+    // Quand je le lis mon message non lu idMsg
+    messageDao.marquerCommeLu(idMsg);
+
+    // Je verifie que le nombre de message non lu est décrémenté, et que le message d'id deux est bien lu
+    Assertions.assertThat(messageDao.getAllNonLuParId(idUtilisateur)).hasSize(tailleAvant - 1).areNot(new Condition<Message>() {
+      @Override
+      public boolean matches(Message message) {
+        return idMsg.equals(message.getId()) && !message.getLu();
+      }
+    });
+
   }
-	  
-  @Test
-  public void testMarquerCommeLuEchecIdMsgNull() throws Exception {
-	  // Etant donné un id message null
-	  Integer idMsg = null;
-	  
-	  // Quand je déclare ce message d'id null comme lu
-	  // Aucune ligne ne doit être modifiée
-	  assertTrue(0==messageDao.marquerCommeLu(idMsg));
-	  
-  }
+
 }

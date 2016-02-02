@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import fil.iagl.iir.constante.CONSTANTE;
+import fil.iagl.iir.constante.CONSTANTES;
 import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.outils.FeedMeException;
@@ -36,15 +36,15 @@ public class ImageServiceImpl implements ImageService {
       throw new FeedMeException("Le fichier est vide");
     }
 
-    String imageExt = CONSTANTE.IMAGE_EXTENSION_VALIDE.stream().filter(ext -> image.getOriginalFilename().endsWith(ext)).findAny()
+    String imageExt = CONSTANTES.IMAGE_EXTENSION_VALIDE.stream().filter(ext -> image.getOriginalFilename().toLowerCase().endsWith(ext)).findAny()
       .orElseThrow(() -> new FeedMeException("Ne correspond à aucun format connu"));
 
     try {
       BufferedImage src = ImageIO.read(new ByteArrayInputStream(image.getBytes()));
 
       String fileName = generateNewName();
-      String physiquePath = CONSTANTE.STATIC_RESSOURCE_LOCATION + File.separatorChar + CONSTANTE.UPLOADED_IMAGE_LOCATION + File.separatorChar + fileName + imageExt;
-      String logiquePath = CONSTANTE.UPLOADED_IMAGE_LOCATION + File.separatorChar + fileName + imageExt;
+      String physiquePath = CONSTANTES.STATIC_RESSOURCE_LOCATION + File.separatorChar + CONSTANTES.UPLOADED_IMAGE_LOCATION + File.separatorChar + fileName + imageExt;
+      String logiquePath = CONSTANTES.UPLOADED_IMAGE_LOCATION + File.separatorChar + fileName + imageExt;
 
       File dest = new File(physiquePath);
       dest.createNewFile();
@@ -58,7 +58,7 @@ public class ImageServiceImpl implements ImageService {
       imageSauvegardee.setPath(logiquePath);
       imageDao.sauvegarder(imageSauvegardee);
       return imageSauvegardee;
-    } catch (IllegalStateException | IOException e) {
+    } catch (IOException e) {
       throw new FeedMeException("Le fichier n'a pas pu s'enregistrer" + image.getOriginalFilename(), e);
     }
   }

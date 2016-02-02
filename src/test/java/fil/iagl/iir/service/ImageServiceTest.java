@@ -3,6 +3,7 @@ package fil.iagl.iir.service;
 import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
@@ -15,7 +16,7 @@ import org.mockito.Mockito;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.MultipartFile;
 
-import fil.iagl.iir.constante.CONSTANTE;
+import fil.iagl.iir.constante.CONSTANTES;
 import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.outils.FeedMeException;
 
@@ -31,7 +32,7 @@ public class ImageServiceTest extends AbstractServiceTest {
   public void sauvegarderTestSucces() throws Exception {
     // Etant donnée une certaine image ayant un format accepté
     File originalFile = new ClassPathResource("img" + File.separatorChar + "icon.gif").getFile();
-    Mockito.when(mockMultipartFile.getOriginalFilename()).thenReturn("chemin/de/l'image/chez/l'upoader.gif");
+    Mockito.when(mockMultipartFile.getOriginalFilename()).thenReturn("chemin/de/l'image/chez/l'upoader.GIF");
     byte[] binaryArray = IOUtils.toByteArray(new FileInputStream(originalFile));
     Mockito.when(mockMultipartFile.getBytes()).thenReturn(binaryArray);
 
@@ -43,7 +44,7 @@ public class ImageServiceTest extends AbstractServiceTest {
     // On verifie que l'image retourner n'est pas nul
     Assertions.assertThat(savedImage).isNotNull();
     // On verifie que le path de l'image existe bien et a bien été sauvegarder sur le disque
-    File result = new File(CONSTANTE.STATIC_RESSOURCE_LOCATION + File.separatorChar + savedImage.getPath());
+    File result = new File(CONSTANTES.STATIC_RESSOURCE_LOCATION + File.separatorChar + savedImage.getPath());
     Assertions.assertThat(result).exists();
     // On verifie que le contenu est le meme que l'image uploadé ( pixel )
     byte[] originalPixels = ((DataBufferByte) ImageIO.read(originalFile).getRaster().getDataBuffer()).getData();
@@ -66,6 +67,25 @@ public class ImageServiceTest extends AbstractServiceTest {
   public void sauvegarderTestEchec_PasImage() throws Exception {
     // Etant donnée un fichier qui n'est pas une image
     Mockito.when(mockMultipartFile.getOriginalFilename()).thenReturn("C:/azeiaizuehaiuzeh/euiazbeaze.mp3");
+
+    // On verifie que le service renvoi une exception
+    this.imageService.sauvegarder(mockMultipartFile);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void sauvegarderTestEchec_FichierVide() throws Exception {
+    // Etant donnée un fichier vide
+    Mockito.when(mockMultipartFile.isEmpty()).thenReturn(Boolean.TRUE);
+
+    // On verifie que le service renvoi une exception
+    this.imageService.sauvegarder(mockMultipartFile);
+  }
+
+  @Test(expected = FeedMeException.class)
+  public void sauvegarderTestEchec_IOException() throws Exception {
+    // Etant donnée un fichier vide
+    Mockito.when(mockMultipartFile.getOriginalFilename()).thenReturn("chemin/de/l'image/chez/l'upoader.GIF");
+    Mockito.when(mockMultipartFile.getBytes()).thenThrow(new IOException());
 
     // On verifie que le service renvoi une exception
     this.imageService.sauvegarder(mockMultipartFile);

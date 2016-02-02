@@ -31,7 +31,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 
     Integer idParticulier = 1;
     String prenom = "titi";
-    LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 31);
+    LocalDate dateNaissance = LocalDate.of(1980, Month.JANUARY, 1);
 
     // Quand on recupere le particulier associe a cet ID
     Particulier particulier = particulierDao.getById(idParticulier);
@@ -193,7 +193,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 
     Integer idParticulier = 2;
     String prenom = "toto";
-    LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 31);
+    LocalDate dateNaissance = LocalDate.of(1995, Month.JANUARY, 1);
 
     Particulier particulier = particulierDao.getById(idParticulier);
 
@@ -236,7 +236,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 
     Integer idParticulier = 1;
     String prenom = "titi";
-    LocalDate dateNaissance = LocalDate.of(2015, Month.JANUARY, 31);
+    LocalDate dateNaissance = LocalDate.of(1980, Month.JANUARY, 1);
 
     // Quand on recupere le particulier a partir de l'ID de l'utilisateur
     // associe
@@ -244,7 +244,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 
     // Alors les informations du particulier recupere sont celles attendues
     Assertions.assertThat(p).isNotNull();
-    Assertions.assertThat(p.getIdParticulier()).isPositive().isNotNull().isEqualTo(idParticulier);
+    Assertions.assertThat(p.getIdUtilisateur()).isPositive().isNotNull().isEqualTo(idUtilisateur);
     Assertions.assertThat(p.getNom()).isNotNull().isEqualTo(nom);
     Assertions.assertThat(p.getMail()).isNotNull().isEqualTo(mail);
     Assertions.assertThat(p.getIdParticulier()).isNotNull().isPositive().isEqualTo(idParticulier);
@@ -355,7 +355,7 @@ public class ParticulierDaoTest extends AbstractDaoTest {
 
   @Test
   public void getAllParticulierTestSucces() throws Exception {
-    int nbPremium = 2;
+    int nbPremium = 3;
     Assertions.assertThat(this.particulierDao.getAllPremium()).isNotEmpty().hasSize(nbPremium).are(new Condition<Particulier>() {
       @Override
       public boolean matches(Particulier particulier) {

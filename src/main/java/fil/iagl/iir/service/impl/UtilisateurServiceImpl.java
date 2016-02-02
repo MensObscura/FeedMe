@@ -84,6 +84,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     return particuliersPremiums;
   }
 
+  @Override
   public void devenirPremium(Utilisateur utilisateur) {
     if (utilisateur == null) {
       throw new FeedMeException("Utilisateur null");
