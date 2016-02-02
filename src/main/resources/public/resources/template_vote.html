@@ -38,7 +38,7 @@
 	</div>
 </div>
 
-<div id="notation">
+<div id="notation" ng-if="!dejaVote">
 	<h3>Votre vote :</h3>
 	<div id="note" class="rate" ng-rate-it ng-model="note" resetable="false" ng-click="change(note)" read-only="lectureSeule" step="1"></div>
 		{{note}}<br>
@@ -49,4 +49,6 @@
 		class="form">Voter
 	</md-button>
 </div>
+<div id="notation" ng-if="dejaVote">
+	<h3>Vous avez d&eacute;j&agrave; not&eacute; ce repas...</h3>
 </div>

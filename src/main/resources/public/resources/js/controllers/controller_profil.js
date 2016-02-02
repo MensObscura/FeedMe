@@ -138,6 +138,13 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q, $window) {
         
     $scope.vote = function(repas) {
     	$scope.votepour = repas;
+    	
+    	$http.get('/vote/aDejaVote/'+repas.id).success(
+    			function(donnees) {
+    				$scope.dejaVote = donnees.data;
+    			}
+    	);
+    	
 		var aujourdhui = new Date();
 		var ddn = new Date(repas.hote.dateNaissance.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2-$1-$3"));
 	
