@@ -1,3 +1,117 @@
-<div id="filtre_recherche">
-	
+<meta charset="utf-8">
+<div
+	id="filtre_recherche"
+	class="fond-recherche">
+	<div>
+
+		<form
+			name="RechercheForm"
+			ng-submit="submitForm()"
+			class="barre-recherche"
+			novalidate>
+			<div>
+				<md-input-container
+					class="recherche"
+					flex> <label
+					id="white"
+					for="recherche">Recherche* :</label> <input
+					id="white"
+					type="text"
+					name="recherche"
+					ng-model="recherche"
+					ng-required="true"
+					placeholder="recherche" /> </md-input-container>
+				</br>
+				 <a
+					ng-if="!plusDeFiltre"
+					ng-click="filtre()"
+					class="plusdefiltre">Plus de filtres</a> <a
+					ng-if="plusDeFiltre"
+					ng-click="filtre()"
+					class="plusdefiltre">Moins de filtres</a> </md-input-container>
+
+			</div>
+		
+			<div ng-if="plusDeFiltre">
+			<br/>
+				<div class="ligne"></div>
+				<md-input-container
+					class="filtre"
+					flex> <label
+					id="white"
+					for="ville">Ville ou code postal :</label> <input
+					id="white"
+					type="text"
+					name="ville"
+					ng-model="ville"
+					ng-required="true"
+					placeholder="ville ou code postal" /> </md-input-container>
+				<md-input-container
+					class="filtre"
+					flex> <label id="white">Prix : de {{prix.min}} à {{prix.max}} €</label>
+				<div
+					id="tranches"
+					range-slider
+					class="filtre-slider"
+					min="0"
+					max="100"
+					model-min="prix.min"
+					model-max="prix.max"></div>
+				</md-input-container>
+				<md-input-container
+					class="filtre"
+					flex> <label id="white">Premium :</label> <md-switch
+					ng-model="premium"
+					class="md-warn"
+					aria-label="Premium"> </md-switch> </md-input-container>
+				<md-input-container
+					class="filtre"
+					flex> <label id="white">Dans ma tranche d'âges :</label> <md-switch
+					ng-model="age"
+					class="md-warn"
+					aria-label="Age"> </md-switch> </md-input-container>
+				
+						<div class="ligne"></div>
+					<br/>
+					<md-input-container class="filtre"
+				flex>
+				<label id="white">Note :</label>
+				<ng-rate-it
+					class="rate"
+					read-only="false"
+					resetable="false"
+					ng-model="note"></ng-rate-it> </md-input-container>
+						<md-input-container
+					class="filtre"
+					flex> <label id="white">Durée: de {{duree.min}} à {{duree.max}} €</label>
+				<div
+					id="tranches"
+					range-slider
+					class="filtre-slider"
+					min="60"
+					max="300"
+					model-min="duree.min"
+					model-max="duree.max"></div>
+				</md-input-container>
+				<md-input-container
+					class="filtre"
+					flex> <label id="white">Animaux :</label> <md-switch
+					ng-model="animaux"
+					class="md-warn"
+					aria-label="Animaux"> </md-switch> </md-input-container>
+					<md-input-container
+					class="filtre"
+					flex> <label
+					id="white"
+					for="places">Nombre de places restantes :</label> <input
+					id="white"
+					type="number"
+					name="places"
+					ng-model="places"
+					ng-required="true"
+					placeholder="0" /> </md-input-container>
+			</div>
+		</form>
+
+	</div>
 </div>

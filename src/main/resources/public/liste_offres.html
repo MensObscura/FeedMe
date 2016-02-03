@@ -22,6 +22,7 @@ Page de visualisation des offres de repas.
 	type="text/css"
 	href="resources/fonts/font-awesome/css/font-awesome.css">
 
+
 <!-- Stylesheet================================================== -->
 <link
 	rel="stylesheet"
@@ -57,7 +58,10 @@ Page de visualisation des offres de repas.
 	rel="stylesheet"
 	type="text/css"
 	href="/resources/css/list_style.css" />
-
+<link
+	rel="stylesheet"
+	type='text/css'
+	href="/resources/css/angular-material.min.css">
 <link
 	rel='stylesheet'
 	type='text/css'
@@ -71,19 +75,28 @@ Page de visualisation des offres de repas.
 	rel="stylesheet"
 	type='text/css'
 	href="/resources/css/ng-rateit.css" />
+	
+		
+<link rel="stylesheet" type='text/css'
+	href="/resources/css/angular.rangeSlider.css">
 
 </head>
 
-<body ng-app="ListeApp">
+<body
+	ng-app="ListeApp"
+	ng-controller="ListeCtrl" id="vue-offre">
 	<!-- Menu -->
 	<div ng-include="'/resources/header.html'"></div>
-
 	<!-- Liste de toutes les offres -->
-	<div
-		id="vue-offre"
-		ng-controller="ListeCtrl">
-		<div ng-include="'/resources/filtre_recherche.html'"></div>
+	<div ng-include="'/resources/filtre_recherche.html'"></div>
+	<br />
+	<br />
+
+	<div >
+
+		
 		<br />
+
 		<ul
 			class="offre-container"
 			ng-repeat="item in list track by item.id">
@@ -123,7 +136,7 @@ Page de visualisation des offres de repas.
 
 							<div class="Aligner-item ">
 								<div>
-									<div ng-if="item.hote.image == null" >
+									<div ng-if="item.hote.image == null">
 										<img
 											src="resources/img/team/missing.jpg"
 											class="img-circle img-tile img-profil">
@@ -144,9 +157,14 @@ Page de visualisation des offres de repas.
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
 			</li>
+
 		</ul>
+
 	</div>
+
 
 	<script
 		type="text/javascript"
@@ -154,9 +172,6 @@ Page de visualisation des offres de repas.
 	<script
 		type="text/javascript"
 		src="/resources/js/scripts/angular.min.js"></script>
-	<script
-		type="text/javascript"
-		src="/resources/js/controllers/controller_liste_offres.js"></script>
 	<script src="/resources/js/filters/filters.js"></script>
 
 	<script
@@ -171,7 +186,23 @@ Page de visualisation des offres de repas.
 
 	<script
 		type="text/javascript"
+		src="/resources/js/scripts/angular.rangeSlider.js"></script>
+	<script
+		type="text/javascript"
 		src="/resources/js/scripts/ng-rateit.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-material.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-aria.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/angular-messages.js"></script>
+		
+	<script
+		type="text/javascript"
+		src="/resources/js/controllers/controller_liste_offres.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
