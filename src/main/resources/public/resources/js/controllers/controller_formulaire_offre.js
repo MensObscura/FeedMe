@@ -60,7 +60,7 @@ validationApp.controller("LogoutCtrl", function($scope, $http, $window, $interva
 
 });
 //Création du controller "OffreCtrl"
-validationApp.controller('OffreCtrl', function($scope, $http, $window, $mdToast, $location, $anchorScroll, Upload, $q) {
+validationApp.controller('OffreCtrl', function($scope, $http, $window, $location, $anchorScroll, Upload, $q) {
 	// initilisation du payement à faux
 	$scope.paye = false;
 	// initialisation de la popover

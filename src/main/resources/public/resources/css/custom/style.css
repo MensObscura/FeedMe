@@ -1617,15 +1617,17 @@ img.img-tile.img-profil:hover {
 	height: auto;
 	display: inline-block;
 	width:100%;
-	margin: 0% 3% 0% 3%;
+	transition: 3s;
+	margin: -2% 3% 0% 3%;
 }
 
 .fond-recherche{
 	padding: 111px 0% 1% 0%;
-	background: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.8);
 	border-radius: 0.5em 0.5em;
 	border: 1px solid;
 	border-color: rgba(0, 0, 0, 0.4);
+
 	
 
 }
@@ -1636,15 +1638,23 @@ img.img-tile.img-profil:hover {
 }
 
 .filtre{
-
-	width : 20em;
+	margin: 0%;
+	width : 18em;
 }
 
-.filtre-slider{
-	border: 0px solid;
-	background: rgba(0, 0, 0, 0);
+.switch-label-filtre{
+	bottom:75%;
+}
+.input-label-filtre{
+	bottom:110%;
 }
 
+.slider-label-filtre{
+	bottom: 90%;
+}
+.switch-filtre{
+	padding-top: 5%
+}
 md-switch.md-default-theme.md-checked.md-warn .md-bar, md-switch.md-checked.md-warn .md-bar {
     background-color: rgba(254, 186, 49, 0.5);
 }
@@ -1652,4 +1662,25 @@ md-switch.md-default-theme.md-checked.md-warn .md-bar, md-switch.md-checked.md-w
 md-switch.md-default-theme.md-checked.md-warn .md-thumb, md-switch.md-checked.md-warn .md-thumb {
     background-color: rgba(254, 186, 49, 1);
 }
+.date-label-filtre{
+	bottom: 70%;
+}
+#date-filtre{
+	color: rgba(0, 0, 0, 1);
+}
+.calendrier-filtre{
+	    color: #555;
+}
 
+#form_button_filtre{
+	width: auto;
+	margin-left: 15%;
+	height: auto;
+	margin-right: 15%;
+	margin-top:0%;
+}
+
+
+#form_button_filtre:hover {
+	background-color: #FFC376
+}

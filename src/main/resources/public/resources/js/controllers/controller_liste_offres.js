@@ -1,3 +1,26 @@
+// Ajout du DateTimePicker.
+var dateTimePicker = function() {
+     return {
+        restrict: "A",
+        require: "ngModel",
+        link: function (scope, element, attrs, ngModelCtrl) {
+	        var parent = $(element).parent();
+	                    
+	        var min = new Date();
+	                    
+	        var dtp = parent.datetimepicker({
+	               format: 'DD/MM/YYYY',
+	               ignoreReadonly: true,
+	               minDate: min
+	         });
+	        dtp.on("dp.change", function (e) {
+	               ngModelCtrl.$setViewValue(new Date(e.date));
+	               scope.$apply();
+	        });
+        }
+     };
+};
+
 //Chargement du module "ListeApp"
 var app = angular.module("ListeApp", ['ngMaterial','ui-rangeSlider', 'appFilters', 'angular-notification-icons', 'ngAnimate', 'ui.bootstrap', 'ngRateIt']);
 
@@ -38,21 +61,27 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 
 //Création du controller "ListeCtrl"
 app.controller("ListeCtrl", function($scope, $http, $window) {
+	
+	//initialisation des filtres
 	$scope.plusDeFiltre=false;
 
 	$scope.filtre = function(){
 		$scope.plusDeFiltre = ! $scope.plusDeFiltre;
 	};
+	
+	
 
 	$scope.prix={
-			min:0,
-			max:100
+			min : 0,
+			max : 100
 	};
 	
 	$scope.duree={
-			min:60,
-			max:300
+			min : 60,
+			max: 300
 	};
+
+	
 	
 	$scope.premium=false;
 	
@@ -62,6 +91,9 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	$scope.animaux=false;
 	$scope.places=0;
 	
+	$scope.rechercher= function(){
+		console.log("Pas de route")
+	};
 	// On se connecte à la route consacrée pour récupèrer les offres
 	$http.get('/offres').success(
 			function(donnees) {
@@ -113,6 +145,6 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		item.nombrePersonne = $scope.nombrePlaces;
 
 	};
-});
+}).directive('dateTimePicker', dateTimePicker);
 
 
