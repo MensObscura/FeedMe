@@ -39,6 +39,10 @@
 	href="/resources/css/angular.rangeSlider.css">
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/bootstrap-datetimepicker.css">
+<link
+	rel="stylesheet"
+	type='text/css'
+	href="/resources/css/ng-rateit.css" />
 
 </head>
 
@@ -88,6 +92,7 @@
 									</div>
 
 								
+										<div>
 										<div ng-if="profil.image == null" class="Aligner-item">
 							<img src="resources/img/team/missing.jpg"
 								class="img-circle img-tile img-profil">
@@ -96,7 +101,15 @@
 							<img src="{{profil.image.path |correctPath}}"
 								class="img-circle img-tile img-profil">
 						</div>
-
+						<div>
+										<br>
+										<ng-rate-it
+											class="rate-item"
+											ng-init='note'
+											read-only="true"
+											ng-model="noteMoyenne">{{"  "+noteMoyenne}}</ng-rate-it>
+									</div>
+									</div>
 									
 
 								</div>
@@ -416,13 +429,13 @@
 											<legend>L'hôte</legend>
 											<h3>Identité :</h3>
 											{{profil.prenom}} {{profil.nom}}
+											<div><ng-rate-it class="rate" ng-model="noteMoyenne" read-only="true"></ng-rate-it>{{"  "+noteMoyenne}}</div>
 											<h3>Lieu :</h3>
 											{{numero}} {{rue}} {{complement}}<br> {{cp}} {{ville}}
 											({{pays.nom}})
 											<h3>Prix par convive :</h3>
 											{{prix}} €
 										</fieldset>
-
 										<!-- Présentation du menu -->
 										<fieldset class="inner ">
 											<legend>Le menu</legend>
@@ -504,6 +517,9 @@
 	
 	<script type="text/javascript" src="/resources/js/controllers/controller_formulaire_offre.js"></script>
 
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ng-rateit.js"></script>
 
 	<!-- Pied de page -->
 	<div ng-include="'/resources/footer.html'"></div>
