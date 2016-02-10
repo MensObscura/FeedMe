@@ -11,7 +11,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import fil.iagl.iir.constante.CONSTANTE;
+import fil.iagl.iir.constante.CONSTANTES;
 import fil.iagl.iir.entite.Adresse;
 import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Offre;
@@ -220,7 +220,7 @@ public class OffreServiceTest extends AbstractServiceTest {
     Mockito.when(offre.getPremium()).thenReturn(Boolean.TRUE);
     Mockito.when(offre.getImages()).thenReturn(Arrays.asList(imageNonExistante, imageExistante));
     Mockito.when(offreDao.getById(idOffre)).thenReturn(offreOriginal);
-    Mockito.when(offreOriginal.getDateRepas()).thenReturn(LocalDateTime.now().plusHours(CONSTANTE.NB_HEURE_POUR_CHANGER_OFFRE * 2));
+    Mockito.when(offreOriginal.getDateRepas()).thenReturn(LocalDateTime.now().plusHours(CONSTANTES.NB_HEURE_POUR_CHANGER_OFFRE * 2));
 
     this.offreService.modifier(offre);
 
@@ -264,7 +264,7 @@ public class OffreServiceTest extends AbstractServiceTest {
     Mockito.when(offre.getNombrePersonne()).thenReturn(nbConvive);
     Mockito.when(offre.getId()).thenReturn(idOffre);
     Mockito.when(offreDao.getById(idOffre)).thenReturn(offreOriginal);
-    Mockito.when(offreOriginal.getDateRepas()).thenReturn(LocalDateTime.now().plusHours(CONSTANTE.NB_HEURE_POUR_CHANGER_OFFRE - 1));
+    Mockito.when(offreOriginal.getDateRepas()).thenReturn(LocalDateTime.now().plusHours(CONSTANTES.NB_HEURE_POUR_CHANGER_OFFRE - 1));
 
     this.offreService.modifier(offre);
   }

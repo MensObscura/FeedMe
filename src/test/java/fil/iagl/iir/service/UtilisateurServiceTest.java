@@ -87,16 +87,30 @@ public class UtilisateurServiceTest extends AbstractServiceTest {
   }
 
   @Test
-  public void modifierProfilTestSucces() throws Exception {
-    // Etant donné un particulier avec une adresse (voie) modifiée et une image
+  public void modifierProfilTestSucces_AvecIdAdresseNull() throws Exception {
+    // Etant donné un particulier avec une adresse (voie) non existante en base de donnée et une image
     Particulier particulier = this.createParticulier();
 
     // Quand on appelle le service de modification de profil particulier
     utilisateurService.modifierProfil(particulier);
 
-    // Alors on vérifie que l'utilisateurDao, ImageDao ont bien été appelés
+    // Alors on vérifie que la dao Particulier a bien été appelé ainsi que le service adresse
     Mockito.verify(particulierDao, Mockito.times(1)).modifier(particulier);
     Mockito.verify(adresseService, Mockito.times(1)).sauvegarder(particulier.getAdresse());
+  }
+
+  @Test
+  public void modifierProfilTestSucces_AvecIdAdresseNonNull() throws Exception {
+    // Etant donné un particulier avec une adresse (voie) modifiée et une image
+    Particulier particulier = this.createParticulier();
+    particulier.getAdresse().setId(1);
+
+    // Quand on appelle le service de modification de profil particulier
+    utilisateurService.modifierProfil(particulier);
+
+    // Alors on vérifie que la dao Particulier a bien été appelé, mais pas le service adresse
+    Mockito.verify(particulierDao, Mockito.times(1)).modifier(particulier);
+    Mockito.verify(adresseService, Mockito.never()).sauvegarder(particulier.getAdresse());
   }
 
   @Test(expected = FeedMeException.class)
