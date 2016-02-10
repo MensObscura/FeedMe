@@ -40,7 +40,7 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 
 
 //Création du controller "ReservationController"
-app.controller('ReservationController', function($scope, $http, $window, $mdToast, $location, $anchorScroll) {  
+app.controller('ReservationController', function($scope, $http, $window, $location, $anchorScroll) {  
 	// initialisation de la popover
 	$scope.dynamicPopover = {
 			content: 'Hello, World!',
@@ -263,7 +263,25 @@ app.controller('ReservationController', function($scope, $http, $window, $mdToas
 				//setTimeout(function() {$window.location.href = '/login.html';},2000);
 				$window.location.href = "/liste_offres.html";
 			}).error(function(err, status, headers, config){
-				//$mdToast.show($mdToast.simple().position('bottom left right').content('Vous avez déja réservé une place pour cette offre.').hideDelay(2000));
+				
+				toastr.options = {
+						  "newestOnTop": false,
+						  "progressBar": false,
+						  "positionClass": "toast-bottom-center",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": "300",
+						  "hideDuration": "1000",
+						  "timeOut": "5000",
+						  "extendedTimeOut": "1000",
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+						};
+				
+				toastr.error("Vous avez déja réservé une place pour cette offre.");
+
 			});
 
 		}

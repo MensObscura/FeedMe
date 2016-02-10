@@ -343,7 +343,26 @@ app.controller("ProfilCtrl", function($scope, $http, Upload, $q, $window) {
 			$scope.editPic=false;
 			$scope.editAdr =false;
 		}).error(function(err, status, headers, config){
-			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
+			
+			toastr.options = {
+					  "newestOnTop": false,
+					  "progressBar": false,
+					  "positionClass": "toast-bottom-center",
+					  "preventDuplicates": false,
+					  "onclick": null,
+					  "showDuration": "300",
+					  "hideDuration": "1000",
+					  "timeOut": "5000",
+					  "extendedTimeOut": "1000",
+					  "showEasing": "swing",
+					  "hideEasing": "linear",
+					  "showMethod": "fadeIn",
+					  "hideMethod": "fadeOut"
+					};
+			
+			toastr.error("Notre service est indisponible pour le moment, veuillez réessayer plus tard.");
+			
+			
 			$scope.editBio=false;
 			$scope.editPic=false;
 			$scope.editAdr =false;
