@@ -8,9 +8,6 @@ import java.util.stream.Collectors;
 
 public final class CONSTANTES {
 
-  private CONSTANTES() {
-  }
-
   public static final Integer NB_IMAGE_PAR_OFFRE_NON_PREMIUM = 1;
   public static final Long NB_HEURE_POUR_CHANGER_OFFRE = 48L;
 
@@ -21,4 +18,7 @@ public final class CONSTANTES {
 
   public static final Integer NOTE_MAXIMALE = 5;
   public static final Integer NOTE_MINIMALE = 1;
+
+  private CONSTANTES() {
+  }
 }

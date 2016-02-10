@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import fil.iagl.iir.constante.CONSTANTES;
 import fil.iagl.iir.dao.image.ImageDao;
 import fil.iagl.iir.dao.offre.OffreDao;
+import fil.iagl.iir.entite.Filtres;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Utilisateur;
 import fil.iagl.iir.outils.FeedMeException;
@@ -158,13 +159,19 @@ public class OffreServiceImpl implements OffreService {
 
   /*
    * Met a jour la note pour chaque offre de la liste
+   * 
    * @param offres La liste des offres à mettre à jour
+   * 
    * @return La liste des offres mises à jour
    */
   private List<Offre> mettreAJourNoteOffres(List<Offre> offres) {
-    offres.stream().forEach(o -> {
-      o.setNoteMoyenne(this.voteService.getNoteMoyenne(this.voteService.getVotesByOffre(o.getId())));
-    });
+    offres.stream().forEach(o -> o.setNoteMoyenne(this.voteService.getNoteMoyenne(this.voteService.getVotesByOffre(o.getId()))));
     return offres;
+  }
+
+  @Override
+  public List<Offre> recherche(Filtres filtre) {
+    filtre.setIdUtilisateurConnecte(FeedMeSession.getIdUtilisateurConnecte());
+    return offreDao.rechercher(filtre);
   }
 }

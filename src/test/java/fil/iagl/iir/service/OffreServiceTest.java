@@ -41,9 +41,9 @@ public class OffreServiceTest extends AbstractServiceTest {
 
   @Mock
   private VoteService voteService;
-  
+
   @Test
-  public void sauvegarderTestSucces() throws Exception {
+  public void sauvegarderTestSucces_Premium() throws Exception {
     Image image1 = new Image();
     Image image2 = new Image();
     image1.setId(1);
@@ -63,6 +63,29 @@ public class OffreServiceTest extends AbstractServiceTest {
     order.verify(offreDao, Mockito.times(1)).sauvegarder(offre);
     order.verify(imageDao, Mockito.times(1)).sauvegarderPourOffre(Mockito.eq(image1.getId()), Mockito.any(Integer.class));
     order.verify(imageDao, Mockito.times(1)).sauvegarderPourOffre(Mockito.eq(image2.getId()), Mockito.any(Integer.class));
+
+  }
+
+  @Test
+  public void sauvegarderTestSucces_NonPremium() throws Exception {
+    Image image1 = new Image();
+    Image image2 = new Image();
+    image1.setId(1);
+    image2.setId(2);
+
+    Mockito.when(offre.getNombrePersonne()).thenReturn(1);
+    Mockito.when(offre.getAdresse()).thenReturn(adresse);
+    Mockito.when(adresse.getVille()).thenReturn(ville);
+    Mockito.when(offre.getNombrePersonne()).thenReturn(2);
+    Mockito.when(offre.getPremium()).thenReturn(Boolean.FALSE);
+    Mockito.when(offre.getImages()).thenReturn(Arrays.asList(image1));
+
+    this.offreService.sauvegarder(offre);
+
+    InOrder order = Mockito.inOrder(adresseServiceMock, offreDao, imageDao);
+    order.verify(adresseServiceMock, Mockito.times(1)).sauvegarder(offre.getAdresse());
+    order.verify(offreDao, Mockito.times(1)).sauvegarder(offre);
+    order.verify(imageDao, Mockito.times(1)).sauvegarderPourOffre(Mockito.eq(image1.getId()), Mockito.any(Integer.class));
 
   }
 

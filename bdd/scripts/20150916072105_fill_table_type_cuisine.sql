@@ -15,7 +15,8 @@ INSERT INTO TYPE_CUISINE (TYP_CUISINE) VALUES
 ('Italienne'),
 ('Savoyard'),
 ('Alsacienne'),
-('Mexicaine');
+('Mexicaine'),
+('Orientale');
 
 
 -- //@UNDO

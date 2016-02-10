@@ -1,10 +1,9 @@
 package fil.iagl.iir.service;
 
-import java.util.List;
-
+import fil.iagl.iir.entite.Vote;
 import org.springframework.stereotype.Service;
 
-import fil.iagl.iir.entite.Vote;
+import java.util.List;
 
 @Service
 public interface VoteService {
@@ -14,4 +13,7 @@ public interface VoteService {
   List<Vote> getVotesByOffre(Integer idOffre);
 
   Integer getNoteMoyenne(List<Vote> votes);
+
+  Vote getVote(Integer idUtilisateur, Integer idOffre);
+
 }

@@ -2,6 +2,7 @@ package fil.iagl.iir.service;
 
 import java.util.List;
 
+import fil.iagl.iir.entite.Filtres;
 import fil.iagl.iir.entite.Offre;
 
 public interface OffreService {
@@ -51,18 +52,26 @@ public interface OffreService {
    * @return la liste des offres créées par l'utilisateur connecté
    */
   List<Offre> listerOffresCreesUserConnecte();
-  
+
   /**
    * Permet de récupérer la liste des offres en cours d'un hôte donné
    * @param idUtilisateur L'id de l'hôte
    * @return La liste des offres en cours d'un hôte donné
    */
   List<Offre> listerOffresEnCoursByHote(Integer idUtilisateur);
-  
+
   /**
    * Permet de récupèrer la liste de toutes les offres proposées par un hôte.
    * @param idUtilisateur l'hôte dont on recherche les offres
    * @return La liste de toutes les offres proposées par l'hôte
    */
   List<Offre> getAllOffresByHote(Integer idUtilisateur);
+
+  /**
+   * Permet de faire une recherche d'offre en fonction des critères choisis
+   * 
+   * @param filtre les filtres choisis
+   * @return la liste d'offres correspondante
+   */
+  List<Offre> recherche(Filtres filtre);
 }

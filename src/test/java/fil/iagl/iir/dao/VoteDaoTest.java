@@ -1,16 +1,15 @@
 package fil.iagl.iir.dao;
 
-import static fil.iagl.iir.predicat.PREDICATS.estNoteValide;
-
-import java.util.List;
-
+import fil.iagl.iir.entite.Vote;
+import fil.iagl.iir.outils.SQLCODE;
 import org.fest.assertions.api.Assertions;
 import org.fest.assertions.core.Condition;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import fil.iagl.iir.entite.Vote;
-import fil.iagl.iir.outils.SQLCODE;
+import java.util.List;
+
+import static fil.iagl.iir.predicat.PREDICATS.estNoteValide;
 
 public class VoteDaoTest extends AbstractDaoTest {
 
@@ -53,6 +52,36 @@ public class VoteDaoTest extends AbstractDaoTest {
   public void getVotesByOffreTestEchec_IdOffreInconnu() throws Exception {
     // De même avec un ID d'offre inconnu
     Assertions.assertThat(voteDao.getVotesByOffre(99)).isNotNull().isEmpty();
+  }
+
+  @Test
+  public void getVoteTestSucces() throws Exception {
+    // Etant donné que l'offre 1 est notée par l'utilisateur 1
+    Integer idOffre = 1;
+    Integer idUtilisateur = 1;
+
+    // Quand on récupère le vote
+    Vote vote = voteDao.getVote(idUtilisateur, idOffre);
+
+    // Alors on obtient les bonnes données
+    Assertions.assertThat(vote).isNotNull();
+    Assertions.assertThat(vote.getUtilisateur().getIdUtilisateur()).isEqualTo(idUtilisateur);
+    Assertions.assertThat(vote.getOffre().getId()).isEqualTo(idOffre);
+    Assertions.assertThat(vote.getNote()).isEqualTo(4);
+  }
+
+
+  @Test
+  public void getVoteTestSucces_AucuneNote() throws Exception {
+    // Etant donné que l'offre 1 n'est pas notée par l'utilisateur 1
+    Integer idOffre = 2;
+    Integer idUtilisateur = 1;
+
+    // Quand on récupère le vote
+    Vote vote = voteDao.getVote(idUtilisateur, idOffre);
+
+    // Alors on obtient les bonnes données
+    Assertions.assertThat(vote).isNull();
   }
 
   @Test

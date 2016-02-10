@@ -172,7 +172,7 @@ public class UtilisateurControllerTest extends AbstractControllerTest {
     Utilisateur utilisateur = createUtilisateur();
     Particulier particulier = new Particulier();
     String prenom = "titi";
-    LocalDate dateNaissance = LocalDate.of(2015, 1, 31);
+    LocalDate dateNaissance = LocalDate.of(1980, 1, 1);
     Boolean adresseVisible = true;
 
     particulier.setDateNaissance(dateNaissance);

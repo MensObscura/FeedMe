@@ -1,2 +1,3 @@
-drop schema public cascade;
-create schema public;
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+CREATE EXTENSION unaccent;

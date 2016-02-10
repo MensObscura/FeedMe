@@ -20,6 +20,12 @@
 		WHERE vot_off_id = #{idOffre}
 	</select>
 
+	<select id="getVote" resultMap="Vote_ResultMap">
+		<include refid="select_vote" />
+		WHERE vot_usr_id = #{idUtilisateur}
+		AND vot_off_id = #{idOffre}
+	</select>
+
 	<insert id="sauvegarder" useGeneratedKeys="true" keyColumn="vot_id" keyProperty="vote.id">
 		INSERT INTO VOTE (vot_usr_id, vot_off_id, vot_note)
 		VALUES (#{vote.utilisateur.idUtilisateur}, #{vote.offre.id}, #{vote.note});
