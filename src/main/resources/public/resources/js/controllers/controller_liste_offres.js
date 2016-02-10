@@ -91,7 +91,57 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	$scope.animaux=false;
 	$scope.places=0;
 	
+	$scope.simpleRecherche= function(){
+		var donnees = {
+		recherche : $scope.recherche,
+		}
+//		 // On envoie les données
+//        $http({
+//    		method: 'PUT',
+//    		url: '/offres/recherche',
+//    		contentType: "application/json",
+//    		data: donnees
+// 		}).success(
+//				function(donnees) {
+//			$scope.list = donnees.data;
+//			$scope.nombrePlaces =0;	
+//			$scope.noteMoyenne = 0;
+//		});
+    
+		
+	};
+	
 	$scope.rechercher= function(){
+		
+		var date_repas = new Date($scope.date);
+		
+		var donnees{
+			recherche : $scope.recherche,
+		premium : $scope.premium,
+		prix.min : $scope.prix.min,
+		prix.max : $scope.prix.max,
+		duree.min : $scope.duree.min,
+		duree.max : $scope.duree.max,
+		note :	$scope.note,
+		age : $scope.age,
+		ville : $scope.ville,
+		animaux : $scope.animaux,
+		place : $scope.place,
+		date : moment(date_repas).format('YYYY-MM-DDThh:mm:ss')
+		}
+		
+		// On envoie les données
+//        $http({
+//    		method: 'PUT',
+//    		url: '/offres/recherche',
+//    		contentType: "application/json",
+//    		data: donnees
+// 		}).success(
+//				function(donnees) {
+//			$scope.list = donnees.data;
+//			$scope.nombrePlaces =0;	
+//			$scope.noteMoyenne = 0;
+//		});
 		console.log("Pas de route")
 	};
 	// On se connecte à la route consacrée pour récupèrer les offres

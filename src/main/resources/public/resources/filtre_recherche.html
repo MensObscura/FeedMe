@@ -20,6 +20,7 @@
 					type="text"
 					name="recherche"
 					ng-model="recherche"
+					ng-keyup="$event.keyCode == 13 && simpleRecherche()"
 					ng-required="true"
 					placeholder="recherche" /> </md-input-container>
 				</br> <a
