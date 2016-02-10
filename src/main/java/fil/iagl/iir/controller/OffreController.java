@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import fil.iagl.iir.entite.Filtres;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.outils.DataReturn;
 import fil.iagl.iir.outils.MessageSucces;
@@ -98,6 +99,11 @@ public class OffreController {
 
   @RequestMapping(value = "/enCours/{idHote}", method = RequestMethod.GET)
   public DataReturn<List<Offre>> afficherOffresEnCoursByHote(@PathVariable("idHote") Integer idHote) {
-	return new DataReturn<>(offreservice.listerOffresEnCoursByHote(idHote));
+    return new DataReturn<>(offreservice.listerOffresEnCoursByHote(idHote));
+  }
+
+  @RequestMapping(value = "/recherche", method = RequestMethod.POST)
+  public List<Offre> rechercher(@RequestBody Filtres filtre) {
+    return offreservice.recherche(filtre);
   }
 }
