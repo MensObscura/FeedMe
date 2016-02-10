@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 
 import fil.iagl.iir.constante.CONSTANTES;
 import fil.iagl.iir.entite.Adresse;
+import fil.iagl.iir.entite.Filtres;
 import fil.iagl.iir.entite.Image;
 import fil.iagl.iir.entite.Offre;
 import fil.iagl.iir.entite.Ville;
@@ -41,6 +42,9 @@ public class OffreServiceTest extends AbstractServiceTest {
 
   @Mock
   private VoteService voteService;
+
+  @Mock
+  private Filtres filtres;
 
   @Test
   public void sauvegarderTestSucces_Premium() throws Exception {
@@ -290,6 +294,15 @@ public class OffreServiceTest extends AbstractServiceTest {
     Mockito.when(offreOriginal.getDateRepas()).thenReturn(LocalDateTime.now().plusHours(CONSTANTES.NB_HEURE_POUR_CHANGER_OFFRE - 1));
 
     this.offreService.modifier(offre);
+  }
+
+  @Test
+  public void testRechercheOffreParFiltre() throws Exception {
+
+    offreDao.rechercher(filtres);
+
+    InOrder order = Mockito.inOrder(offreDao);
+    order.verify(offreDao, Mockito.times(1)).rechercher(filtres);
   }
 
 }
