@@ -1,24 +1,24 @@
-// Ajout du DateTimePicker.
+//Ajout du DateTimePicker.
 var dateTimePicker = function() {
-     return {
-        restrict: "A",
-        require: "ngModel",
-        link: function (scope, element, attrs, ngModelCtrl) {
-	        var parent = $(element).parent();
-	                    
-	        var min = new Date();
-	                    
-	        var dtp = parent.datetimepicker({
-	               format: 'DD/MM/YYYY',
-	               ignoreReadonly: true,
-	               minDate: min
-	         });
-	        dtp.on("dp.change", function (e) {
-	               ngModelCtrl.$setViewValue(new Date(e.date));
-	               scope.$apply();
-	        });
-        }
-     };
+	return {
+		restrict: "A",
+		require: "ngModel",
+		link: function (scope, element, attrs, ngModelCtrl) {
+			var parent = $(element).parent();
+
+			var min = new Date();
+
+			var dtp = parent.datetimepicker({
+				format: 'DD/MM/YYYY',
+				ignoreReadonly: true,
+				minDate: min
+			});
+			dtp.on("dp.change", function (e) {
+				ngModelCtrl.$setViewValue(new Date(e.date));
+				scope.$apply();
+			});
+		}
+	};
 };
 
 //Chargement du module "ListeApp"
@@ -61,93 +61,105 @@ app.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 
 //Création du controller "ListeCtrl"
 app.controller("ListeCtrl", function($scope, $http, $window) {
-	
+
 	//initialisation des filtres
 	$scope.plusDeFiltre=false;
 
 	$scope.filtre = function(){
 		$scope.plusDeFiltre = ! $scope.plusDeFiltre;
 	};
-	
-	
+
+
 
 	$scope.prix={
 			min : 0,
 			max : 100
 	};
-	
+
 	$scope.duree={
 			min : 60,
 			max: 300
 	};
 
-	
-	
+
+
 	$scope.premium=false;
-	
+
 	$scope.age=false;
-	
+	$scope.note=0;
 	$scope.ville="";
 	$scope.animaux=false;
 	$scope.places=0;
+	$scope.recherche="";
+
+	 $scope.change = function(note) {
+	    	$scope.note = note;
+	    }
 	
 	$scope.simpleRecherche= function(){
+		
 		var donnees = {
-		recherche : $scope.recherche,
-		}
-//		 // On envoie les données
-//        $http({
-//    		method: 'PUT',
-//    		url: '/offres/recherche',
-//    		contentType: "application/json",
-//    		data: donnees
-// 		}).success(
-//				function(donnees) {
-//			$scope.list = donnees.data;
-//			$scope.nombrePlaces =0;	
-//			$scope.noteMoyenne = 0;
-//		});
-    
-		
-	};
-	
-	$scope.rechercher= function(){
-		
-		var date_repas = new Date($scope.date);
-		
-		var donnees{
-			recherche : $scope.recherche,
-		premium : $scope.premium,
-		prix.min : $scope.prix.min,
-		prix.max : $scope.prix.max,
-		duree.min : $scope.duree.min,
-		duree.max : $scope.duree.max,
-		note :	$scope.note,
-		age : $scope.age,
-		ville : $scope.ville,
-		animaux : $scope.animaux,
-		place : $scope.place,
-		date : moment(date_repas).format('YYYY-MM-DDThh:mm:ss')
+				global : $scope.recherche,
 		}
 		
+		console.log(donnees);
 		// On envoie les données
-//        $http({
-//    		method: 'PUT',
-//    		url: '/offres/recherche',
-//    		contentType: "application/json",
-//    		data: donnees
-// 		}).success(
-//				function(donnees) {
-//			$scope.list = donnees.data;
-//			$scope.nombrePlaces =0;	
-//			$scope.noteMoyenne = 0;
-//		});
-		console.log("Pas de route")
+		$http({
+		method: 'POST',
+		url: '/offres/recherche',
+		contentType: "application/json",
+		data: donnees
+		}).success(
+		function(donnees) {
+		$scope.list = donnees;
+		console.log(donnees);
+		$scope.nombrePlaces =0;	
+		$scope.noteMoyenne = 0;
+		});
+
+
+	};
+
+	$scope.rechercher= function(){
+
+		var date_repas = new Date($scope.date);
+
+		var donnees ={
+				global : $scope.recherche,
+				premium : $scope.premium,
+				prixMin :  $scope.prix.min,
+				prixMax: $scope.prix.max,
+				dureeMin: $scope.duree.min,
+				dureeMax : $scope.duree.max,
+				noteMinimal :	$scope.note,
+				ageValide : $scope.age,
+				villeOuCP : $scope.ville,
+				animaux : $scope.animaux,
+				nbPlaceRestanteMinimum : $scope.places,
+				date : moment(date_repas).format('YYYY-MM-DDThh:mm:ss')
+		}
+		console.log(donnees);
+		// On envoie les données
+		$http({
+			method: 'POST',
+			url: '/offres/recherche',
+			contentType: "application/json",
+			data: donnees
+			}).success(
+			function(donnees) {
+			$scope.list = donnees;
+			console.log(donnees);
+			$scope.nombrePlaces =0;	
+			$scope.noteMoyenne = 0;
+			});
+
+		
 	};
 	// On se connecte à la route consacrée pour récupèrer les offres
 	$http.get('/offres').success(
 			function(donnees) {
 				$scope.list = donnees.data;
+				console.log(donnees);
 				$scope.nombrePlaces =0;	
 				$scope.noteMoyenne = 0;
 			}
