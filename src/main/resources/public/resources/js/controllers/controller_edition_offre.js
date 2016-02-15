@@ -373,7 +373,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 			toastr.error("Notre service est indisponible pour le moment, veuillez réessayer plus tard.");
 		});
         
- 		});
     }
     
     // Fonction utilisée lors de la suppression d'une image (clic sur la preview)
