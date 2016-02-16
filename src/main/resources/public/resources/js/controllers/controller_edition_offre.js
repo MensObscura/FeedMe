@@ -371,7 +371,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 					};
 			
 			toastr.error("Notre service est indisponible pour le moment, veuillez réessayer plus tard.");
-		});
         
  		});
     }
