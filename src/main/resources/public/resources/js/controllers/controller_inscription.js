@@ -40,7 +40,7 @@ validationApp.directive('ensureExpression', ['$http', '$parse', function($http, 
  }]);
 
 //Création du controller "InscriptionCtrl"
-validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $mdToast) {
+validationApp.controller('InscriptionCtrl', function($scope, $http, $window) {
 	$scope.submited =false;
 	$scope.premium = false;
 	// initilisation du paiement à faux
@@ -122,7 +122,24 @@ validationApp.controller('InscriptionCtrl', function($scope, $http, $window, $md
 				//setTimeout(function() {$window.location.href = '/login.html';},2000);
 				$window.location.href = '/login.html';
 			}).error(function(err, status, headers, config){
-				 //$mdToast.show($mdToast.simple().position('bottom left right').content('Cette adresse email est déja enregistrée par un utilisateur.').hideDelay(2000));
+				
+				toastr.options = {
+						  "newestOnTop": false,
+						  "progressBar": false,
+						  "positionClass": "toast-bottom-center",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": "300",
+						  "hideDuration": "1000",
+						  "timeOut": "5000",
+						  "extendedTimeOut": "1000",
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+						};
+				
+				toastr.error("Cette adresse email est déjà enregistrée pour un autre compte.");
 			});
 
 

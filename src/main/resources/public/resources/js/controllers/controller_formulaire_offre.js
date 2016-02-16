@@ -289,7 +289,24 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
  			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
  			$window.location.href = "/liste_offres.html";
  		}).error(function(err, status, headers, config){
-  			//$mdToast.show($mdToast.simple().content('Notre service est indisponible pour le moment, veuillez réessayer plus tard.').hideDelay(2000));
+ 			
+			toastr.options = {
+					  "newestOnTop": false,
+					  "progressBar": false,
+					  "positionClass": "toast-bottom-center",
+					  "preventDuplicates": false,
+					  "onclick": null,
+					  "showDuration": "300",
+					  "hideDuration": "1000",
+					  "timeOut": "5000",
+					  "extendedTimeOut": "1000",
+					  "showEasing": "swing",
+					  "hideEasing": "linear",
+					  "showMethod": "fadeIn",
+					  "hideMethod": "fadeOut"
+					};
+			
+			toastr.error("Notre service est indisponible pour le moment, veuillez réessayer plus tard.");
  		});
     }
     

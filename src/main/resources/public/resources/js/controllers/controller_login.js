@@ -40,12 +40,10 @@ login.controller('LoginController', function($rootScope, $scope, $http, $locatio
 		authenticate($scope.credentials,
 				function(authenticated) {
 			if (authenticated) {
-				console.log("Login succeeded")
 				$rootScope.authenticated = true;
 				$scope.error = false;
 				window.location = "/accueil.html";
 			} else {
-				console.log("Login failed")
 				$rootScope.authenticated = false;
 				$scope.error = true;
 				$location.path("login.html");
@@ -58,7 +56,6 @@ login.controller('LoginController', function($rootScope, $scope, $http, $locatio
 			$rootScope.authenticated = false;
 			$location.path("/");
 		}).error(function(data) {
-			console.log("Logout failed")
 			$rootScope.authenticated = false;
 		});
 	}
