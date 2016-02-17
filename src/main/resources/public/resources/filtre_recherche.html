@@ -19,10 +19,11 @@
 					id="white"
 					type="text"
 					name="recherche"
-					ng-model="$parent.recherche"
+					ng-model="foo.recherche"
 					ng-keyup="$event.keyCode == 13 && simpleRecherche()"
 					ng-required="true"
 					placeholder="recherche" /> </md-input-container>
+					
 				</br> <a
 					ng-if="!plusDeFiltre"
 					ng-click="filtre()"
@@ -30,10 +31,31 @@
 					ng-if="plusDeFiltre"
 					ng-click="filtre()"
 					class="plusdefiltre">Moins de filtres</a>
+					
 				</md-input-container>
 
+			</div></br>
+	<md-input-container
+					ng-if="plusDeFiltre"
+					class="filtre"
+					flex> <label
+					id="white"
+					class="date-label-filtre"
+					for="date">Date :</label>
+				<div class="form-group filtre ">
+					<div id="date-filtre" class='input-group filtre  date'>
+						<input
+							id="white"
+							ng-readonly="true"
+							type='text'
+							ng-required="true"
+							name="date"
+							ng-model="foo.date"
+							data-date-time-picker /> <span class="input-group-addon calendrier-filtre"> <span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
 			</div>
-
+				</md-input-container>
 			<div ng-if="plusDeFiltre">
 				<div class="ligne"></div>
 				<br />
@@ -47,8 +69,7 @@
 					id="white"
 					type="text"
 					name="ville"
-					ng-model="$parent.ville"
-					ng-required="true"
+					ng-model="foo.ville"
 					placeholder="ville ou code postal" /> </md-input-container>
 				<md-input-container
 					class="filtre"
@@ -60,15 +81,15 @@
 					range-slider
 					min="0"
 					max="100"
-					model-min="$parent.prix.min"
-					model-max="$parent.prix.max"></div>
+					model-min="foo.prix.min"
+					model-max="foo.prix.max"></div>
 				</md-input-container>
 				<md-input-container
 					class="filtre"
 					flex> <label
 					class="switch-label-filtre"
-					id="white">Premium :</label> <md-switch
-					ng-model="$parent.premium"
+					id="white">Premium uniquement:</label> <md-switch
+					ng-model="foo.premium"
 					class="md-warn filtre switch-filtre"
 					aria-label="Premium"> </md-switch> </md-input-container>
 				<md-input-container
@@ -76,29 +97,23 @@
 					flex> <label
 					class="switch-label-filtre"
 					id="white">Dans ma tranche d'âges :</label> <md-switch
-					ng-model="$parent.age"
+					ng-model="foo.age"
 					class="md-warn filtre switch-filtre"
 					aria-label="Age"> </md-switch> </md-input-container>
-				<md-input-container
+		
+						<md-input-container
 					class="filtre"
 					flex> <label
 					id="white"
-					class="date-label-filtre"
-					for="date">Date* :</label>
-				<div class="form-group filtre ">
-					<div id="date-filtre" class='input-group filtre  date'>
-						<input
-							id="white"
-							ng-readonly="true"
-							type='text'
-							ng-required="true"
-							name="date"
-							ng-model="$parent.date"
-							data-date-time-picker /> <span class="input-group-addon calendrier-filtre"> <span class="glyphicon glyphicon-calendar"></span>
-						</span>
-					</div>
-				</div>
-				</md-input-container>
+					for="typeCuisine">Type de cuisine :</label> <md-select
+					id="select_white"
+					name="typeCuisine"
+					ng-model="foo.typeCuisine"> <md-option
+					id="back_white"
+					ng-value="{{item}}"
+					ng-selected="item.id==cook[0].id"
+					ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
+				
 				<div class="ligne"></div>
 				<br />
 				<md-input-container
@@ -107,8 +122,8 @@
 					class="rate"
 					read-only="false"
 					resetable="false"
-					ng-model="$parent.note"
-					ng-click="change($parent.note)"></ng-rate-it> </md-input-container>
+					ng-model="foo.note"
+					ng-click="change(foo.note)"></ng-rate-it> </md-input-container>
 				<md-input-container
 					class="filtre"
 					flex> <label
@@ -119,15 +134,15 @@
 					range-slider
 					min="60"
 					max="300"
-					model-min="$parent.duree.min"
-					model-max="$parent.duree.max"></div>
+					model-min="foo.duree.min"
+					model-max="foo.duree.max"></div>
 				</md-input-container>
 				<md-input-container
 					class="filtre"
 					flex> <label
 					class="switch-label-filtre"
-					id="white">Animaux :</label> <md-switch
-					ng-model="$parent.animaux"
+					id="white">Sans animaux :</label> <md-switch
+					ng-model="foo.animaux"
 					class="md-warn filtre switch-filtre"
 					aria-label="Animaux"> </md-switch> </md-input-container>
 				<md-input-container
@@ -139,7 +154,7 @@
 					id="white"
 					type="number"
 					name="places"
-					ng-model="$parent.places"
+					ng-model="foo.places"
 					ng-required="true"
 					placeholder="0" /></md-input-container> <md-input-container
 					class="filtre"

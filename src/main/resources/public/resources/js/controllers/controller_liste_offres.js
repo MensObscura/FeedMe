@@ -69,8 +69,18 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		$scope.plusDeFiltre = ! $scope.plusDeFiltre;
 	};
 
-
-
+	// On va rechercher toutes les types de cuisine en se connectant à la route consacrée
+	$http.get('/settings/typescuisines').success(
+			function(donnees) {
+				$scope.cook = donnees.data;
+				var obj ={
+						id: $scope.cook.length,
+						type: "tous"
+				}
+				$scope.cook.push(obj);
+			}
+	);
+ 
 	$scope.prix={
 			min : 0,
 			max : 100
@@ -85,21 +95,42 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 
 	$scope.premium=false;
 
-	$scope.age=false;
-	$scope.note=0;
-	$scope.ville="";
-	$scope.animaux=false;
-	$scope.places=0;
-	$scope.recherche="";
+	
+	$scope.foo={
+			recherche : "",
+			typeCusisine : 0,
+			animaux : false,
+			ville : "",
+			note : 0,
+			age :  false,
+			duree: $scope.duree,
+			prix : $scope.prix,
+			places : 0,
+			date : undefined
+			};
+
 
 	 $scope.change = function(note) {
-	    	$scope.note = note;
+	    	$scope.foo.note = note;
 	    }
+	 
 	
 	$scope.simpleRecherche= function(){
 		
 		var donnees = {
-				global : $scope.recherche,
+				global : $scope.foo.recherche,
+				premium :       undefined,
+				prixMin :       undefined,
+				prixMax:        undefined,
+				dureeMin:       undefined,
+				dureeMax :      undefined,
+				noteMinimal :   undefined,
+				ageValide :     undefined,
+				villeOuCP :     undefined,
+				idTypeCuisine : undefined,
+				animaux :       undefined,
+				nbPlaceRestanteMinimum :undefined,
+				date :          undefined
 		}
 		
 		console.log(donnees);
@@ -122,21 +153,24 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 
 	$scope.rechercher= function(){
 
-		var date_repas = new Date($scope.date);
-
+		var date_repas = new Date($scope.foo.date);
+		console.log($scope.foo);
+		var date = moment(date_repas).format('YYYY-MM-DD');
 		var donnees ={
-				global : $scope.recherche,
-				premium : $scope.premium,
-				prixMin :  $scope.prix.min,
-				prixMax: $scope.prix.max,
-				dureeMin: $scope.duree.min,
-				dureeMax : $scope.duree.max,
-				noteMinimal :	$scope.note,
-				ageValide : $scope.age,
-				villeOuCP : $scope.ville,
-				animaux : $scope.animaux,
-				nbPlaceRestanteMinimum : $scope.places,
-				date : moment(date_repas).format('YYYY-MM-DDThh:mm:ss')
+				global : $scope.foo.recherche,
+				premium : $scope.foo.premium? $scope.foo.premium : undefined,
+				prixMin :  $scope.foo.prix.min,
+				prixMax: $scope.foo.prix.max,
+				dureeMin: $scope.foo.duree.min,
+				dureeMax : $scope.foo.duree.max,
+				noteMinimal :	$scope.foo.note,
+				ageValide : $scope.foo.age? $scope.foo.age : undefined,
+				villeOuCP : $scope.foo.ville == "" ? undefined : $scope.foo.ville,
+				idTypeCuisine : $scope.foo.typeCuisine.id == ($scope.cook.length -1) ? undefined : $scope.foo.typeCuisine.id,
+				animaux : $scope.foo.animaux ? !$scope.foo.animaux : undefined,
+				nbPlaceRestanteMinimum : $scope.foo.places == 0 ? undefined : $scope.foo.places,
+				date : $scope.foo.date == undefined ? $scope.foo.date : date
+				
 		}
 		console.log(donnees);
 		// On envoie les données
