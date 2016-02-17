@@ -253,7 +253,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 	var upload = function (file) {
 		// on déclare un defer() pour que les instructions suivantes attendent la fin du téléchargement.
 		var deferred = $q.defer();
-
+		console.log(file)
         Upload.upload({
             url: '/image',
             data: {file: file}
@@ -270,12 +270,14 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
     var uploadAll = function(i, files) {
     	if (i < files.length) {
     		// on parcourt la liste et on télécharge une à une les images.
-    		upload(files[i]).then(function(ee) {
-				uploadAll(i+1, files);
-				if (i == files.length-1) {
-					envoi();
-				}
-			});
+    		if (files[i].name) {
+	    		upload(files[i]).then(function(ee) {
+					uploadAll(i+1, files);
+					if (i == files.length-1) {
+						envoi();
+					}
+				});
+    		}
     	}
     };
     
@@ -351,8 +353,31 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
     		contentType: "application/json",
     		data: donnees
  		}).success(function(response, status, headers, config){
- 			//$mdToast.show($mdToast.simple().content('Votre offre a bien été enregistrée.').hideDelay(2000));
- 			$window.location.href = "/liste_offres.html";
+ 			 			
+ 			if (response.succes == null) {
+ 				
+ 				toastr.options = {
+ 						  "newestOnTop": false,
+ 						  "progressBar": false,
+ 						  "positionClass": "toast-bottom-center",
+ 						  "preventDuplicates": false,
+ 						  "onclick": null,
+ 						  "showDuration": "300",
+ 						  "hideDuration": "1000",
+ 						  "timeOut": "5000",
+ 						  "extendedTimeOut": "1000",
+ 						  "showEasing": "swing",
+ 						  "hideEasing": "linear",
+ 						  "showMethod": "fadeIn",
+ 						  "hideMethod": "fadeOut"
+ 						};
+ 				
+ 				toastr.error(response.error);
+ 				
+ 			}
+ 			else {
+ 				$window.location.href = "/liste_offres.html";
+ 			}
  		}).error(function(err, status, headers, config){
  			
 			toastr.options = {
