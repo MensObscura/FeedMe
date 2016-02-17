@@ -51,9 +51,8 @@ Page de visualisation des offres de repas.
 	<div ng-include="'/resources/header.html'"></div>
 
 	<!-- Liste de toutes les offres -->
-	<div id="vue-offre" ng-controller="ListeCtrl">
-		<!-- Hack à régler -->
-		<br />
+	<div id="vue-offre" class="vue-top-chef" ng-controller="ListeCtrl">
+				
 		<ul class="offre-container" ng-repeat="item in list track by item.idUtilisateur">
 			<li class="ligne-tab">
 				<div class="item-view chef " ng-class="{'item-premium' : item.premium}" ng-click="visualize(item, $event)">

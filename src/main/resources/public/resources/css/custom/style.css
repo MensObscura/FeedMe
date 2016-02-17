@@ -778,6 +778,9 @@ nav#footer-index p {
 	padding-bottom: 5%;
 }
 
+.vue-top-chef{
+	padding-top : 100px;
+}
 /* Style Formulaire Offre */
 #StyleFormulaireOffre {
 	color: #cfcfcf;
