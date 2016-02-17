@@ -157,12 +157,12 @@
 				)	
 			</if>
 			<if test="filtres.noteMinimal != null">
-				AND (
-					SELECT AVG(vot_note) >= #{filtres.noteMinimal} 
+				AND ( SELECT COALESCE(
+					(SELECT AVG(vot_note) 
 					FROM VOTE 
 						INNER JOIN OFFRE o2 ON ( o2.off_id = vot_off_id )
-					WHERE o1.off_usr_id = 1
-				)	
+					WHERE o1.off_usr_id = o2.off_usr_id), 0 )
+				) >= #{filtres.noteMinimal} 	
 			</if>
 	</select>
 

@@ -102,7 +102,7 @@ public class OffreController {
     return new DataReturn<>(offreservice.listerOffresEnCoursByHote(idHote));
   }
 
-  @RequestMapping(value = "/recherche", method = RequestMethod.POST)
+  @RequestMapping(value = "/recherche", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
   public List<Offre> rechercher(@RequestBody Filtres filtre) {
     return offreservice.recherche(filtre);
   }

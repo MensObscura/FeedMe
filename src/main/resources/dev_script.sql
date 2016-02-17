@@ -67,11 +67,11 @@ INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
 -- ---------------------------
 -- Table OFFRE
 -- ---------------------------
-INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, OFF_PREMIUM) VALUES
-('2012-10-13','Tomates nordiques',1200,5,123,'2012-10-19 03:14:07','Des tomates delicieuses','Salade composee.', 'Tomates Farcies, riz a la creme fraiche et au vin blanc.', 'Poires belle Helene',10,45,'true',1,1,1, true);
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2012-10-13','Tomates nordique',1250,5,123,'2012-10-19 03:14:07','Des tomates délicieuses','Salade composée', 'Tomates Farcies, riz à la crème fraiche et au vin blanc', 'Poires belle Hélène', null, 10,45,'true',1,1,1, true);
 
-INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, OFF_PREMIUM) VALUES
-('2012-10-13','Poulet subsaharien',1900,4,168,'2012-10-19 03:14:07','Attention les arachides sont un allergene','Buffet froid.', 'Poulet aux arachides, riz, carottes, piment.', 'Kakis et autres fruits exotiques',18,29,'true',2,1,1, true);
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2012-10-13','Poulet subsaharien',580,4,168,'2012-10-19 03:14:07','Attention les arachides sont un allergène','Buffet froid', 'Poulet aux arachides, riz, carottes, piment', 'Kakis et autres fruits exotiques', null, 18,29,'true',2,1,1, true);
 
 -- ---------------------------
 -- Table RESERVATION

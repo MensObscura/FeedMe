@@ -142,10 +142,9 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		data: donnees
 		}).success(
 		function(donnees) {
-		$scope.list = donnees;
-		console.log(donnees);
-		$scope.nombrePlaces =0;	
-		$scope.noteMoyenne = 0;
+			$scope.list = donnees;
+			$scope.nombrePlaces =0;	
+			$scope.noteMoyenne = 0;
 		});
 
 
@@ -159,8 +158,8 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		var donnees ={
 				global : $scope.foo.recherche,
 				premium : $scope.foo.premium? $scope.foo.premium : undefined,
-				prixMin :  $scope.foo.prix.min,
-				prixMax: $scope.foo.prix.max,
+				prixMin :  $scope.foo.prix.min*100,
+				prixMax: $scope.foo.prix.max*100,
 				dureeMin: $scope.foo.duree.min,
 				dureeMax : $scope.foo.duree.max,
 				noteMinimal :	$scope.foo.note,
@@ -182,7 +181,6 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 			}).success(
 			function(donnees) {
 			$scope.list = donnees;
-			console.log(donnees);
 			$scope.nombrePlaces =0;	
 			$scope.noteMoyenne = 0;
 			});
@@ -193,7 +191,6 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	$http.get('/offres').success(
 			function(donnees) {
 				$scope.list = donnees.data;
-				console.log(donnees);
 				$scope.nombrePlaces =0;	
 				$scope.noteMoyenne = 0;
 			}
