@@ -18,6 +18,7 @@
 <link rel='stylesheet' type='text/css' href='resources/fonts/general-font.css'>
 <link rel='stylesheet' type='text/css' href='resources/css/angular-notification-icons.min.css'>
 
+
 <style>
 .mask shine::after {
 	mask: url(#mask-firefox);
@@ -40,7 +41,10 @@
 	href="/resources/css/angular.rangeSlider.css">
 <link rel="stylesheet" type='text/css'
 	href="/resources/css/bootstrap-datetimepicker.css">
-
+<link
+	rel="stylesheet"
+	type='text/css'
+	href="/resources/css/ng-rateit.css" />
 </head>
 
 <body ng-app="validationOffre">
@@ -96,7 +100,8 @@
 									</div>
 
 								
-											<div ng-if="profil.image == null" class="Aligner-item">
+										<div>
+										<div ng-if="profil.image == null" class="Aligner-item">
 							<img src="resources/img/team/missing.jpg"
 								class="img-circle img-tile img-profil">
 						</div>
@@ -104,7 +109,15 @@
 							<img src="{{profil.image.path |correctPath}}"
 								class="img-circle img-tile img-profil">
 						</div>
-
+						<div>
+										<br>
+										<ng-rate-it
+											class="rate-item"
+											ng-init='note'
+											read-only="true"
+											ng-model="noteMoyenne">{{"  "+noteMoyenne}}</ng-rate-it>
+									</div>
+									</div>
 									
 
 								</div>
@@ -514,6 +527,10 @@
 	<script type="text/javascript" src="/resources/js/scripts/angular-notification-icons.min.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/angular-ui-bootstrap-tpls.js"></script>
 	<script type="text/javascript" src="/resources/js/scripts/toastr.min.js"></script>
+	<script
+		type="text/javascript"
+		src="/resources/js/scripts/ng-rateit.js"></script>
+	
 	
 	<script type="text/javascript" src="/resources/js/controllers/controller_edition_offre.js"></script>
 

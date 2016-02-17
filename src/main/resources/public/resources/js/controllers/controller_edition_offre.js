@@ -23,7 +23,7 @@ var dateTimePicker = function() {
 };
 
 //Chargement du module "validationOffre"
-var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel','appFilters', 'ui.bootstrap', 'angular-notification-icons', 'ngAnimate']);
+var validationApp = angular.module('validationOffre', ['ngMaterial', 'ngMessages','ui-rangeSlider', 'ngFileUpload', 'angular-carousel','appFilters', 'ui.bootstrap', 'angular-notification-icons', 'ngAnimate', 'ngRateIt']);
 
 validationApp.controller("LogoutCtrl", function($scope, $http, $window, $interval) {
 //	notif
@@ -94,6 +94,7 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 			function(donnees) {
 				// Quand on reçoit les données, on les envoie à la vue (stockage dans la variable profil)
 				$scope.profil = donnees.data;
+				$scope.noteMoyenne = donnees.data.note/10;
 				$scope.premium = $scope.profil.premium;
 
 			}
