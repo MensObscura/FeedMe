@@ -773,6 +773,7 @@ nav#footer-index p {
 	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	overflow-x: hidden;
 	color: #cfcfcf;
 	height: auto;
 	min-height: 94%;
@@ -1687,4 +1688,10 @@ md-switch.md-default-theme.md-checked.md-warn .md-thumb, md-switch.md-checked.md
 
 #form_button_filtre:hover {
 	background-color: #FFC376
+}
+
+.liste-offre-contenu{
+	overflow: auto;
+	overflow-x: hidden;
+	margin-bottom : 2%;
 }
