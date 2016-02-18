@@ -155,7 +155,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 				// On set le type de cuisine
 				$scope.cook = {0:$scope.offre.typeCuisine};
 			
-				console.log($scope.offre.typeCuisine);
 				// On set le menu
 
 				$scope.entree = $scope.offre.menu.entree;
@@ -229,11 +228,11 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 	$scope.duree = 60;
 	$scope.prix = 1;
 	$scope.nbpers = 1;
-	$scope.images = new Array();
 	$scope.complement = "";
 	
 	// ajout d'images :
 	$scope.$watch('fichiers', function () {
+		
 		// condition : on ajoute une nouvelle photo.
 		if ($scope.fichiers) {
 			if (!$scope.fichiers.length && !$scope.premium) {
@@ -245,15 +244,15 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 				// dans le cas ou l'utilisateur est premium on ajoute les nouvelles photos à la liste.
 				$scope.images = $scope.images.concat($scope.fichiers);
 			}
-
 		}
+		
     });
 	
 	// fonction d'upload d'une image :
 	var upload = function (file) {
 		// on déclare un defer() pour que les instructions suivantes attendent la fin du téléchargement.
 		var deferred = $q.defer();
-		console.log(file)
+
         Upload.upload({
             url: '/image',
             data: {file: file}
@@ -269,8 +268,13 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
     // fonction d'upload de toutes les images :
     var uploadAll = function(i, files) {
     	if (i < files.length) {
-    		// on parcourt la liste et on télécharge une à une les images.
-    		if (files[i].name) {
+    		if (angular.isDefined(files[i].id)) {
+    			// l'image est déjà téléchargée
+    			$scope.historique.push(files[i]);
+    			uploadAll(i+1, files);
+    		}
+    		else {
+    			// l'image est nouvelle :
 	    		upload(files[i]).then(function(ee) {
 					uploadAll(i+1, files);
 					if (i == files.length-1) {
@@ -323,6 +327,8 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 				dessert: $scope.dessert,
 				boisson: $scope.boisson
 		};
+		
+		console.log($scope.historique);
 		
 		// Enfin on peut créer les données que l'on souhaite envoyer
 		var donnees = {
