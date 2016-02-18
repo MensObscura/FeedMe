@@ -252,15 +252,22 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 	var upload = function (file) {
 		// on déclare un defer() pour que les instructions suivantes attendent la fin du téléchargement.
 		var deferred = $q.defer();
-
-        Upload.upload({
-            url: '/image',
-            data: {file: file}
-        }).success(function (data, status, headers, config) {
-            $scope.historique.push(data.data);
-            // quand le téléchargement est fini on débloque le "defer".
-            deferred.resolve(data.data);
-        });
+		
+		if (angular.isDefined(file.id)) {
+			// l'image est déjà téléchargée
+			$scope.historique.push(file);
+			deferred.resolve(file);
+		}
+		else {
+	        Upload.upload({
+	            url: '/image',
+	            data: {file: file}
+	        }).success(function (data, status, headers, config) {
+	            $scope.historique.push(data.data);
+	            // quand le téléchargement est fini on débloque le "defer".
+	            deferred.resolve(data.data);
+	        });
+		}
 
         return deferred.promise;
     };
@@ -268,20 +275,12 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
     // fonction d'upload de toutes les images :
     var uploadAll = function(i, files) {
     	if (i < files.length) {
-    		if (angular.isDefined(files[i].id)) {
-    			// l'image est déjà téléchargée
-    			$scope.historique.push(files[i]);
-    			uploadAll(i+1, files);
-    		}
-    		else {
-    			// l'image est nouvelle :
-	    		upload(files[i]).then(function(ee) {
-					uploadAll(i+1, files);
-				});
-    		}
-			if (i == files.length-1) {
-				envoi();
-			}
+	    	upload(files[i]).then(function(ee) {
+				uploadAll(i+1, files);
+				if (i == files.length-1) {
+					envoi();
+				}
+			});
     	}
     };
     
