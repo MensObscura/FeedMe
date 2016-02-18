@@ -277,11 +277,11 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
     			// l'image est nouvelle :
 	    		upload(files[i]).then(function(ee) {
 					uploadAll(i+1, files);
-					if (i == files.length-1) {
-						envoi();
-					}
 				});
     		}
+			if (i == files.length-1) {
+				envoi();
+			}
     	}
     };
     
@@ -327,8 +327,6 @@ validationApp.controller('OffreCtrl', function($scope, $http, $window, $location
 				dessert: $scope.dessert,
 				boisson: $scope.boisson
 		};
-		
-		console.log($scope.historique);
 		
 		// Enfin on peut créer les données que l'on souhaite envoyer
 		var donnees = {
