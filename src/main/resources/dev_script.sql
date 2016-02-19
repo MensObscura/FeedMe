@@ -90,7 +90,7 @@ INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_
 ('2012-10-13','Poulet subsaharien',580,4,168,'2012-10-19 03:14:07','Attention les arachides sont un allergène','Buffet froid', 'Poulet aux arachides, riz, carottes, piment', 'Kakis et autres fruits exotiques', null, 18,29,'true',2,1,1, true);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
-('2016-02-19','Samedi Barbecue',450,8,180,'2016-02-27 12:45:00','','Petites saucisses, melon au Porto et olives','Poitrine de porc grillé au miel et aux épices, taboulet libanais et salade de tomates','Charlotte aux fraises','IGP Pays d\'Oc rosé',18,65,'false',3,8,2,false);
+('2016-02-19','Samedi Barbecue',450,8,180,'2016-02-27 12:45:00','','Petites saucisses, melon au Porto et olives','Poitrine de porc grillé au miel et aux épices, taboulet libanais et salade de tomates','Charlotte aux fraises','IGP Pays d’Oc rosé',18,65,'false',3,8,2,false);
 
 -- ---------------------------
 -- Table IMAGE_OFFRE
@@ -117,6 +117,9 @@ INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLA
 -- ---------------------------
 INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
 (3, 2, 4);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
 (3, 1, 3);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
 (4, 1, 5);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
 (4, 2, 2);
