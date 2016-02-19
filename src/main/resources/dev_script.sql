@@ -33,11 +33,11 @@ INSERT INTO ADRESSE(adr_voie, adr_vil_id) VALUES
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES 
 ( 'Me', 'feed.me@univ-lille1.fr',1, true);
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES 
-( 'Legrand', 'theo.legrand@legrand.com',3, false);
+( 'Legrand', 'theo.legrand@legrand.com',2, false);
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES 
-( 'Landerzac', 'slanderzac@grolejac.fr',4, false);
+( 'Landerzac', 'slanderzac@grolejac.fr',3, false);
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES 
-( 'Olivier', 'herveolivier@gemail.com',5, true);
+( 'Olivier', 'herveolivier@gemail.com',4, true);
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium ) VALUES 
 ( 'Bot', 'GenLeBot@gemail.com',5, true); 
 -- ---------------------------
@@ -63,7 +63,8 @@ INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
 (3, '$2a$10$5APlvjPGjBJBVvlaonocsO/1aZKhf9skqVCv2aUR/XdayADlwvdS2', 1); -- MDP : sandrine
 INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
 (4, '$2a$10$5CK7dxLzpaWz54nF6q9oSOoy5Xh1BPBH1jeZWihS2GqZvuU3LZ0t6', 1); -- MDP : olivier
-
+INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
+(6, '$2a$10$JLWfbNC60AIeh1sQOfc7N.STbmfrj1lH9w34PwOmFxQL6n3n.S2Aq', 1); -- MDP : thibault
 -- ---------------------------
 -- Table OFFRE
 -- ---------------------------
