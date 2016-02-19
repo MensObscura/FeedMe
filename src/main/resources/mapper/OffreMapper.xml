@@ -89,7 +89,8 @@
 	</sql>
 
 	<select id="getAll" resultMap="Offre_ResultMap">
-		<include refid="select_all_columns_offre" />
+		<include refid="select_all_columns_offre" />	
+		WHERE off_date_repas > current_date
 		ORDER BY off_premium DESC
 	</select>
 
