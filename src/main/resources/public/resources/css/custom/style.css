@@ -1690,3 +1690,7 @@ md-switch.md-default-theme.md-checked.md-warn .md-thumb, md-switch.md-checked.md
 	overflow-x: hidden;
 	margin-bottom : 2%;
 }
+
+.justifie {
+	text-align: justify;
+}
