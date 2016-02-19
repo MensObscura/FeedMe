@@ -131,7 +131,7 @@ Page permettant une visualisation du profil d'un utilisateur.
 					ng-click="setEditBio()"
 					ng-mouseover="hoverInBio()"
 					ng-mouseleave="hoverOutBio()">
-					Bio: <span ng-if="profil.description == undefined">Non renseignée</span> <span ng-if="!(profil.description == undefined)">{{profil.description}}</span> <span
+					Bio: <span ng-if="profil.description == undefined"><p>Non renseignée</p></span> <span ng-if="!(profil.description == undefined)"><p class="justifie">{{profil.description}}</p></span> <span
 						ng-show="hoverEditBio"
 						class="animate-show"> <i class="fa fa-pencil-square-o white"></i> <a>Cliquez pour modifier</a>
 
