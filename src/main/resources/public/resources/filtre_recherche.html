@@ -111,7 +111,7 @@
 					ng-model="foo.typeCuisine"> <md-option
 					id="back_white"
 					ng-value="{{item}}"
-					ng-selected="item.id==cook[0].id"
+					ng-selected="item.id==cook[(cook.length)-1].id"
 					ng-repeat="item in cook">{{item.type}}</md-option> </md-select> </md-input-container>
 				
 				<div class="ligne"></div>
