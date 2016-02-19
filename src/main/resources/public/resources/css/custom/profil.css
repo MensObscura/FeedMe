@@ -5,7 +5,8 @@
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
-	/*height: auto;*/
+	height: auto;
+	min-height : 94%;
     /* Putain de trick de merde */
     padding-top: 1%;
 	margin: 0;
