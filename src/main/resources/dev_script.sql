@@ -23,6 +23,14 @@ INSERT INTO IMAGE (IMG_PATH) VALUES
 ('resources\img\upload\57V54cnv0qr5GJnw_1902161444_1455889479424.jpg');
 INSERT INTO IMAGE (IMG_PATH) VALUES
 ('resources\img\upload\wmq9JqJSfSpqRv2U_1902161459_1455890352472.jpg');
+INSERT INTO IMAGE (IMG_PATH) VALUES
+('resources\img\upload\nRDTFfcGVQjEE5lF_1902161525_1455891929388.jpg');
+INSERT INTO IMAGE (IMG_PATH) VALUES
+('resources\img\upload\kbulAicwFMkJ0YLL_1902161525_1455891929350.jpg');
+INSERT INTO IMAGE (IMG_PATH) VALUES
+('resources\img\upload\yHIPGfCYBQP9pArH_1902161525_1455891929424.jpg');
+INSERT INTO IMAGE (IMG_PATH) VALUES
+('resources\img\upload\ut4QiaifhCsRn8oM_1902161525_1455891929298.jpg');
 
 -- ---------------------------
 -- Table VILLE
@@ -144,7 +152,10 @@ INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_
 ('2016-02-19','Fruits de la mer',650,3,100,'2016-02-25 19:55:00','','Soupe de poissons','Tartare de dorade et saumon accompagné de frites','Tarte tatin','Muscadet frais',18,100,'false',7,16,7,false);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
-('2016-02-19','Repas breton',350,5,200,'2016-02-24 21:00:00','','','Galettes complétes','Crêpes flambées au Grand Marnier','une bolée de Cidre',18,100,'false',5,1,4,false);
+('2016-02-19','Repas breton',350,5,200,'2016-02-24 21:00:00','','','Galettes complétes','Crêpes flambées au Grand Marnier','une bolée de Cidre',18,100,'false',5,1,4,true);
+
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2016-02-19','Repas gastronomique',1200,5,200,'2016-02-24 20:00:00','','Coppa à la roquette, Velouté d’endive à la mimolette','Ailerons de poulet marinés','Gelée à la noix de coco et aux fruits variés','Sancerre ou Côtes-de-Beaune Villages',18,25,'false',9,4,9,true);
 
 -- ---------------------------
 -- Table IMAGE_OFFRE
@@ -155,6 +166,14 @@ INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
 (4, 10);
 INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
 (5, 11);
+INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
+(6, 12);
+INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
+(6, 13);
+INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
+(6, 14);
+INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
+(6, 15);
 
 -- ---------------------------
 -- Table RESERVATION
