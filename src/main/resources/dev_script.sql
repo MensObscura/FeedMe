@@ -141,12 +141,35 @@ INSERT INTO AUTHENTIFICATION ( aut_usr_id, aut_password, aut_rol_id ) VALUES
 -- ---------------------------
 -- Table OFFRE
 -- ---------------------------
+-- Passée
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
 ('2012-10-13','Tomates nordique',1250,5,123,'2012-10-19 03:14:07','Des tomates délicieuses','Salade composée', 'Tomates Farcies, riz à la crème fraiche et au vin blanc', 'Poires belle Hélène', null, 10,45,'true',1,1,1, true);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
 ('2012-10-13','Poulet subsaharien',580,4,168,'2012-10-19 03:14:07','Attention les arachides sont un allergène','Buffet froid', 'Poulet aux arachides, riz, carottes, piment', 'Kakis et autres fruits exotiques', null, 18,29,'true',2,1,1, true);
 
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2012-11-13','Barbecue sans sluten',740,8,160,'2012-11-19 03:14:07','100% Gluten free','Salade de pommes de terres sans gluten', 'Merguez, chipolatas et autres charcuteries', 'Glaces au sirop', null, 18,50,'true',9,1,9, true);
+
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2013-12-12','Soirée carte et pizza',720,5,240,'2013-12-19 03:14:07','','Chips, cacahuètes et jus de fruits', 'pizza :  4 fromages, cannibales et diavolos', 'Tiramisu', null, 20,25,'true',8,1,8, true);
+
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2012-09-13','Tarte façon théobald',830,4,300,'2012-10-01 03:14:07','110% Gluten, attention le gluten est un allergène','Soupe aux croutons', 'Tarte aux lardons, pommes terres, terrine de lapin, maroille et crème fraiche', 'biscuits secs aux amandes', null, 18,100,'true',7,1,7, true);
+
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2012-04-13','Pâtes épicées',300,3,60,'2012-05-02 03:14:07','','Salade composée,emmental, chèvre, noix et pommes.', 'Pâtes au piments, accompagné de noix de muscade et potiron. Saupoudrées de graines de pavot et sésame', 'Cônes citron framboise', null, 18,50,'true',6,1,6, false);
+
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2016-02-19','Barbecue du samedi',450,8,180,'2016-02-20 12:45:00','','Petites saucisses, melon au Porto et olives','Poitrine de porc grillé au miel et aux épices, taboulet libanais et salade de tomates','Charlotte aux fraises','IGP Pays d’Oc rosé',18,65,'false',3,8,2,false);
+
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2015-12-10','Repas Périgourdin',500,4,200,'2015-12-20 12:00:00','','Tourain perigourdin','Salade Périgourdine','Gateau aux noix','Vin rouge Cahors',20,40,'true',4,1,3,true);
+
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2015-02-19','Repas breton',350,5,200,'2015-02-24 21:00:00','','','Galettes complétes','Crêpes flambées au Grand Marnier','une bolée de Cidre',18,100,'false',5,1,4,true);
+
+-- Future
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
 ('2016-02-19','Samedi Barbecue',450,8,180,'2016-02-27 12:45:00','','Petites saucisses, melon au Porto et olives','Poitrine de porc grillé au miel et aux épices, taboulet libanais et salade de tomates','Charlotte aux fraises','IGP Pays d’Oc rosé',18,65,'false',3,8,2,false);
 
@@ -195,6 +218,20 @@ INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLA
 (1, 3, '2015-12-26', 1);
 INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLACES) VALUES
 (1, 4, '2015-12-26', 1);
+INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLACES) VALUES
+(3, 6, '2015-12-26', 8);
+INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLACES) VALUES
+(4, 7, '2015-12-26', 5);
+INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLACES) VALUES
+(5, 8, '2015-12-26', 4);
+INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLACES) VALUES
+(6, 9, '2015-12-26', 3);
+INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLACES) VALUES
+(7, 6, '2015-12-26', 1);
+INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLACES) VALUES
+(8, 6, '2015-12-26', 2);
+INSERT INTO RESERVATION(RES_OFF_ID, RES_CON_ID, RES_DATE_RESERVATION, RES_NB_PLACES) VALUES
+(9, 6, '2015-12-26', 1);
 
 -- ---------------------------
 -- Table VOTE
@@ -207,3 +244,17 @@ INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
 (4, 1, 5);
 INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
 (4, 2, 2);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
+(6, 3, 4);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
+(7, 4, 4);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
+(8, 5, 4);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
+(9, 6, 3);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
+(6, 7, 4);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
+(6, 8, 3);
+INSERT INTO VOTE ( vot_usr_id, vot_off_id, vot_note) VALUES
+(6, 9, 5);
