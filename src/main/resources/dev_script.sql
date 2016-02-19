@@ -94,7 +94,7 @@ INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id ,usr_premium, usr_descri
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description, usr_img_id ) VALUES 
 ( 'BAREVERE', 'thibaud@barevere.fr',7, false, 'La suprématie de ma cuisine n’a d égal que la grandeur de la Théobaldie.', 7);
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description, usr_img_id ) VALUES 
-( 'CHEBADA', 'yassine@chebada.fr',8, true, 'Je ne jure que par la cuillère et sachez qu’en toute chose la cuillère ce suffit à elle même !',8 );
+( 'CHEBADA', 'yassine@chebada.fr',8, true, 'Je ne jure que par la cuillère et sachez qu’en toute chose la cuillère se suffit à elle même !',8 );
 INSERT INTO UTILISATEUR ( usr_nom, usr_mail, usr_adr_id, usr_premium, usr_description, usr_img_id ) VALUES 
 ( 'DETERELA', 'jb@deterela.fr',9, true, 'Rien de tel qu’un petit barbecue au milieu du feu... euh autour du feu pardon.', 9 );
 
@@ -149,16 +149,16 @@ INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_
 ('2012-10-13','Poulet subsaharien',580,4,168,'2012-10-19 03:14:07','Attention les arachides sont un allergène','Buffet froid', 'Poulet aux arachides, riz, carottes, piment', 'Kakis et autres fruits exotiques', null, 18,29,'true',2,1,1, true);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
-('2012-11-13','Barbecue sans sluten',740,8,160,'2012-11-19 03:14:07','100% Gluten free','Salade de pommes de terres sans gluten', 'Merguez, chipolatas et autres charcuteries', 'Glaces au sirop', null, 18,50,'true',9,1,9, true);
+('2012-11-13','Barbecue sans sluten',740,8,160,'2012-11-19 03:14:07','100% Gluten free','Salade de pommes de terre sans gluten', 'Merguez, chipolatas et autres charcuteries', 'Glaces au sirop', null, 18,50,'true',9,1,9, true);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
-('2013-12-12','Soirée carte et pizza',720,5,240,'2013-12-19 03:14:07','','Chips, cacahuètes et jus de fruits', 'pizza :  4 fromages, cannibales et diavolos', 'Tiramisu', null, 20,25,'true',8,1,8, true);
+('2013-12-12','Soirée cartes et pizzas',720,5,240,'2013-12-19 03:14:07','','Chips, cacahuètes et jus de fruits', 'pizza :  4 fromages, cannibales et diavolos', 'Tiramisu', null, 20,25,'true',8,1,8, true);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
-('2012-09-13','Tarte façon théobald',830,4,300,'2012-10-01 03:14:07','110% Gluten, attention le gluten est un allergène','Soupe aux croutons', 'Tarte aux lardons, pommes terres, terrine de lapin, maroille et crème fraiche', 'biscuits secs aux amandes', null, 18,100,'true',7,1,7, true);
+('2012-09-13','Tarte façon théobald',830,4,300,'2012-10-01 03:14:07','110% Gluten, attention le gluten est un allergène','Soupe aux croutons', 'Tarte aux lardons, pommes de terre, terrine de lapin, maroille et crème fraiche', 'biscuits secs aux amandes', null, 18,100,'true',7,1,7, true);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
-('2012-04-13','Pâtes épicées',300,3,60,'2012-05-02 03:14:07','','Salade composée,emmental, chèvre, noix et pommes.', 'Pâtes au piments, accompagné de noix de muscade et potiron. Saupoudrées de graines de pavot et sésame', 'Cônes citron framboise', null, 18,50,'true',6,1,6, false);
+('2012-04-13','Pâtes épicées',300,3,60,'2012-05-02 03:14:07','','Salade composée,emmental, chèvre, noix et pommes.', 'Pâtes au piments, accompagnées de noix de muscade et potiron. Saupoudrées de graines de pavot et sésame', 'Cônes citron framboise', null, 18,50,'true',6,1,6, false);
 
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
 ('2016-02-19','Barbecue du samedi',450,8,180,'2016-02-20 12:45:00','','Petites saucisses, melon au Porto et olives','Poitrine de porc grillé au miel et aux épices, taboulet libanais et salade de tomates','Charlotte aux fraises','IGP Pays d’Oc rosé',18,65,'false',3,8,2,false);
