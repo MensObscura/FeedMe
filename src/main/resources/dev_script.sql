@@ -31,6 +31,8 @@ INSERT INTO IMAGE (IMG_PATH) VALUES
 ('resources\img\upload\yHIPGfCYBQP9pArH_1902161525_1455891929424.jpg');
 INSERT INTO IMAGE (IMG_PATH) VALUES
 ('resources\img\upload\ut4QiaifhCsRn8oM_1902161525_1455891929298.jpg');
+INSERT INTO IMAGE (IMG_PATH) VALUES
+('resources\img\upload\BwtuAGAN8KVIb65f_1902161534_1455892446588.jpg');
 
 -- ---------------------------
 -- Table VILLE
@@ -157,6 +159,9 @@ INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_
 INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
 ('2016-02-19','Repas gastronomique',1200,5,200,'2016-02-24 20:00:00','','Coppa à la roquette, Velouté d’endive à la mimolette','Ailerons de poulet marinés','Gelée à la noix de coco et aux fruits variés','Sancerre ou Côtes-de-Beaune Villages',18,25,'false',9,4,9,true);
 
+INSERT INTO OFFRE(OFF_DATE_CREATION,OFF_TITRE,OFF_PRIX, OFF_NOMBRE_PERSONNE,OFF_DUREE_MINUTE, OFF_DATE_REPAS, OFF_NOTE, OFF_ENTREE, OFF_PLAT, OFF_DESSERT, OFF_BOISSON, OFF_AGE_MIN, OFF_AGE_MAX, OFF_ANIMAUX, OFF_ADR_ID, OFF_TYP_ID, OFF_USR_ID, off_premium) VALUES
+('2016-02-19','Repas Périgourdin',500,4,200,'2016-02-24 12:00:00','','Tourain perigourdin','Salade Périgourdine','Gateau aux noix','Vin rouge Cahors',20,40,'true',4,1,3,true);
+
 -- ---------------------------
 -- Table IMAGE_OFFRE
 -- ---------------------------
@@ -174,6 +179,8 @@ INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
 (6, 14);
 INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
 (6, 15);
+INSERT INTO IMAGE_OFFRE ( imo_off_id, imo_img_id) VALUES
+(7, 16);
 
 -- ---------------------------
 -- Table RESERVATION
