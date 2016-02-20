@@ -56,7 +56,7 @@ Page de visualisation des offres de repas.
 	<!-- Liste de toutes les offres -->
 	<div id="vue-offre" class="vue-top-chef" ng-controller="ListeCtrl">
 				
-		<ul class="offre-container" ng-repeat="item in list track by item.idUtilisateur">
+		<ul class="offre-container" ng-repeat="item in list | orderBy: '-note' track by item.idUtilisateur">
 			<li class="ligne-tab">
 				<div class="item-view chef " ng-class="{'item-premium' : item.premium}" ng-click="visualize(item, $event)">
 					<div class="img-tile-premium Aligner ">
