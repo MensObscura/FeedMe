@@ -27,10 +27,10 @@
 			rn-carousel-controls-allow-loop
 			rn-carousel-easing="easeInOutQuad">
 			<li ng-repeat="f in votepour.reservations">
-				<div ng-if="f.hote.image == null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="visualize(f.convive)">
+				<div ng-if="f.convive.image == null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="visualize(f.convive)">
 					<img src="resources/img/team/missing.jpg" class="medium">
 				</div>
-				<div ng-if="f.hote.image != null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="visualize(f.convive)">
+				<div ng-if="f.convive.image != null" title="{{f.convive.nom}} {{f.convive.prenom}}" ng-click="visualize(f.convive)">
 					<img src="{{f.convive.image.path | correctPath}}" class="medium">
 				</div>
 			</li>
