@@ -127,8 +127,7 @@ Page de visualisation des offres de repas.
 								<p>{{item.typeCuisine.type}}</p>
 								<p>{{item.prix/100}} €</p>
 								<div
-									id="nbplace"
-									ng-init='getNbPlaces(item);'>
+									id="nbplace">
 									<p ng-if="!(item.nombrePersonne == 0)">Place(s) restante(s) : {{item.nombrePersonne}}</p>
 									<p
 										ng-if="item.nombrePersonne == 0"
@@ -154,7 +153,6 @@ Page de visualisation des offres de repas.
 										<br>
 										<ng-rate-it
 											class="rate-item"
-											ng-init='getNote(item);'
 											read-only="true"
 											ng-model="item.hote.note"></ng-rate-it>
 									</div>

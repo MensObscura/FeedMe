@@ -198,9 +198,16 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 	// On se connecte à la route consacrée pour récupèrer les offres
 	$http.get('/offres').success(
 			function(donnees) {
-				$scope.list = donnees.data;
+				
 				$scope.nombrePlaces =0;	
 				$scope.noteMoyenne = 0;
+				for(var i=0;i<donnees.data.length; i++){
+					$scope.getNote(donnees.data[i]);
+					$scope.getNbPlaces(donnees.data[i]);
+					
+				}
+				$scope.list = donnees.data;
+				
 			}
 	);
 
