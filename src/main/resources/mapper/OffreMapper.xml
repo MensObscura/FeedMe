@@ -97,6 +97,7 @@
 	<select id="getOffresPremium" resultMap="Offre_ResultMap">
 		<include refid="select_all_columns_offre" />
 		WHERE off_premium = TRUE
+		AND off_date_repas > current_date
 	</select>
 
 	<select id="getById" resultMap="Offre_ResultMap">
@@ -108,6 +109,7 @@
 		<include refid="select_all_columns_offre_jointure_ville_particulier"/>
 		WHERE
 			unaccent(lower(replace(off_titre, ' ', ''))) LIKE '%' || unaccent(lower(replace(#{filtres.global}, ' ', ''))) || '%'
+			AND off_date_repas > current_date
 			<if test="filtres.date != null">
 				AND off_date_repas::date = #{filtres.date}
 			</if>
