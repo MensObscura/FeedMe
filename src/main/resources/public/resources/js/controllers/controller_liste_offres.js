@@ -143,6 +143,10 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 		}).success(
 		function(donnees) {
 			$scope.list = donnees;
+			for(var i=0;i<donnees.length; i++){
+				$scope.getNote(donnees[i]);
+				$scope.getNbPlaces(donnees[i]);
+			}
 			$scope.nombrePlaces =0;	
 			$scope.noteMoyenne = 0;
 		});
@@ -181,6 +185,10 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 			}).success(
 			function(donnees) {
 			$scope.list = donnees;
+			for(var i=0;i<donnees.length; i++){
+				$scope.getNote(donnees[i]);
+				$scope.getNbPlaces(donnees[i]);
+			}
 			$scope.nombrePlaces =0;	
 			$scope.noteMoyenne = 0;
 			});
