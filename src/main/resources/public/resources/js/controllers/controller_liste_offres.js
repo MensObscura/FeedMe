@@ -74,7 +74,7 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 			function(donnees) {
 				$scope.cook = donnees.data;
 				var obj ={
-						id: $scope.cook.length,
+						id: $scope.cook.length+1,
 						type: "tous"
 				}
 				$scope.cook.push(obj);
@@ -169,7 +169,7 @@ app.controller("ListeCtrl", function($scope, $http, $window) {
 				noteMinimal :	$scope.foo.note,
 				ageValide : $scope.foo.age? $scope.foo.age : undefined,
 				villeOuCP : $scope.foo.ville == "" ? undefined : $scope.foo.ville,
-				idTypeCuisine : $scope.foo.typeCuisine.id == ($scope.cook.length -1) ? undefined : $scope.foo.typeCuisine.id,
+				idTypeCuisine : $scope.foo.typeCuisine.id == ($scope.cook.length) ? undefined : $scope.foo.typeCuisine.id,
 				animaux : $scope.foo.animaux ? !$scope.foo.animaux : undefined,
 				nbPlaceRestanteMinimum : $scope.foo.places == 0 ? undefined : $scope.foo.places,
 				date : $scope.foo.date == undefined ? $scope.foo.date : date
