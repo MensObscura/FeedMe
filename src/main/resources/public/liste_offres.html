@@ -138,7 +138,7 @@ Page de visualisation des offres de repas.
 
 
 							<div class="Aligner-item ">
-								<div>
+								<div class=" Aligner">
 									<div ng-if="item.hote.image == null">
 										<img
 											src="resources/img/team/missing.jpg"
@@ -149,6 +149,7 @@ Page de visualisation des offres de repas.
 											src="{{item.hote.image.path |correctPath}}"
 											class="img-circle img-tile img-profil">
 									</div>
+									</div>
 									<div>
 										<br>
 										<ng-rate-it
@@ -156,7 +157,7 @@ Page de visualisation des offres de repas.
 											read-only="true"
 											ng-model="item.hote.note"></ng-rate-it>
 									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>
